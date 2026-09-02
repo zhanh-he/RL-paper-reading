@@ -1,6 +1,10 @@
 
 # Huawei RL 研究文献总目录
 
+[Open interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Edit catalog](https://app.pagescms.org/) · [Editing guide](EDITING.md) · [Edit raw data](https://github.com/zhanh-he/RL-paper-reading/edit/main/data/literature.csv)
+
+> `data/literature.csv` 是目录的唯一数据源；下面的 Markdown 表格由 GitHub Actions 自动生成，请勿直接手改。
+
 这个目录用于持续收集 Huawei RL / music generation post-training / reward design 方向的论文笔记。每篇文章单独成文，目录只保留导航、主题归类和对项目研发路线的启发。
 
 维护约定：本窗口之后关于 Huawei RL、music RLHF、reward receipt、DPO/GSPO、music MOS/reward metric 的讨论，默认同步沉淀到这个 Obsidian vault。具体规则见 文献库维护约定。
@@ -11,6 +15,7 @@ Felix 星级由 Felix 独立判断，当前刻意留空。年份与 venue 使用
 
 `主题` 严格使用两个标签：第一个是领域（`MusicGen / MusicEval / MIR / AudioGen / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`），第二个是项目分工（`Reward / RL / Reward-n-RL / Other`）。`Reward` 包括指标、评估器、reward model、confidence 与 benchmark；`RL` 包括优化器和 post-training 算法；`Reward-n-RL` 表示两者都是论文核心；`Other` 表示底座、背景或基础设施。
 
+<!-- catalog:start -->
 | 年份 / Venue | Felix 星级 | Zhanh 星级 | 主题 | 文献全名 | 核心词汇 | 超链接 | 对项目的直接价值 |
 |---|:---:|:---:|---|---|---|---|---|
 | 2025<br>ICASSP |  | 5/5 | `MusicEval` · `Reward` | Accompaniment Prompt Adherence: A Measure for Evaluating Music Accompaniment Systems | APA；reference-aware FAD；mismatched anchor | [paper](https://arxiv.org/abs/2503.06346) · [github](https://github.com/SonyCSLParis/audio-metrics) · [web](https://pypi.org/project/audio-metrics/) | ICASSP metric qualification receipt：timing/pitch/nuisance perturbations + 875 次人工评分；但不是 per-song reward，也没有 policy-attack test。 |
@@ -76,6 +81,7 @@ Felix 星级由 Felix 独立判断，当前刻意留空。年份与 venue 使用
 | 2026<br>arXiv |  | 3/5 | `MusicGen` · `Other` | HAFM: Hierarchical Autoregressive Foundation Model for Music Accompaniment Generation | HAFM；dual-rate tokenization；three-stage AR | [paper](https://arxiv.org/abs/2604.09054) · [github](https://github.com/HackerHyper/HAFM) · [web](https://huggingface.co/zhuqijian/HAFM) | 与 Qwen codec-token accompaniment generation 形态接近；dual-rate semantic/acoustic representation 可启发分层 reward。 |
 | 2026<br>arXiv |  | 3/5 | `CV` · `Reward` | Masked Diffusion Modeling for Anomaly Detection | MaskDiff-AD；reconstruction surprisal；nominal-only training | [paper](https://arxiv.org/abs/2605.30046) · [github](https://github.com/lxzhang1/MaskDiff-AD) | 可作 reward-hacked output OOD guardrail/diagnostic；原实验不是音频，近期不作主 reward。 |
 | 2020<br>Web |  | 2/5 | `Other` · `Other` | 自回归（Autoregressive, AR）模型与非自回归（Non-Autoregressive, NAR）模型 | autoregressive；non-autoregressive；parallel decoding | [web](https://www.cnblogs.com/ytxwzqin/p/12813965.html) | 便于团队沟通生成依赖和速度；概念混合经典时间序列 AR 与 neural autoregression，不作为论文证据。 |
+<!-- catalog:end -->
 
 ## 星级说明
 

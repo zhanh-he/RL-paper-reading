@@ -1,0 +1,19 @@
+media:
+  input: site/assets/media
+  output: /assets/media
+  rename: safe
+
+settings:
+  commit:
+    identity: user
+    templates:
+      update: "catalog: update literature table via Pages CMS"
+
+content:
+  - name: literature
+    label: Literature catalog
+    type: file
+    path: data/literature.csv
+    format: datagrid
+    operations:
+      delete: false

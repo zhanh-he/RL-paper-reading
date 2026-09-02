@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive Huawei RL literature catalog for music reward and reinforcement learning research."
+    />
+    <title>Huawei RL Literature Catalog</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script
+      defer
+      src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
+    ></script>
+    <script type="module" src="./assets/app.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="Huawei RL literature catalog home">
+        <span class="brand-mark" aria-hidden="true">RL</span>
+        <span>
+          <strong>Huawei RL Literature</strong>
+          <small>Music reward and post-training index</small>
+        </span>
+      </a>
+      <nav class="header-actions" aria-label="Catalog actions">
+        <a
+          class="button button-secondary"
+          href="https://github.com/zhanh-he/RL-paper-reading"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i data-lucide="github" aria-hidden="true"></i>
+          Repository
+        </a>
+        <a
+          class="button button-primary"
+          href="https://app.pagescms.org/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i data-lucide="pencil-line" aria-hidden="true"></i>
+          Edit catalog
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="catalog-heading" aria-labelledby="catalog-title">
+        <div>
+          <p class="eyebrow">Shared research index</p>
+          <h1 id="catalog-title">Literature catalog</h1>
+        </div>
+        <div class="catalog-status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="sync-status">Loading catalog</span>
+        </div>
+      </section>
+
+      <section class="filters" aria-label="Catalog filters">
+        <div class="filter-row filter-row-primary">
+          <label class="search-control" for="search-input">
+            <i data-lucide="search" aria-hidden="true"></i>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search title, keywords, venue, or project value"
+              autocomplete="off"
+            />
+            <kbd>/</kbd>
+          </label>
+
+          <label class="select-control">
+            <span>Domain</span>
+            <select id="domain-filter" aria-label="Filter by domain">
+              <option value="">All domains</option>
+            </select>
+          </label>
+
+          <label class="select-control">
+            <span>Year</span>
+            <select id="year-filter" aria-label="Filter by year">
+              <option value="">All years</option>
+            </select>
+          </label>
+
+          <label class="select-control">
+            <span>Venue</span>
+            <select id="venue-filter" aria-label="Filter by venue">
+              <option value="">All venues</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="filter-row filter-row-secondary">
+          <div class="filter-group">
+            <span class="filter-label">Workstream</span>
+            <div class="segmented-control" id="workstream-filter" role="group">
+              <button type="button" data-value="" aria-pressed="true">All</button>
+              <button type="button" data-value="Reward" aria-pressed="false">Reward</button>
+              <button type="button" data-value="RL" aria-pressed="false">RL</button>
+              <button type="button" data-value="Reward-n-RL" aria-pressed="false">
+                Reward-n-RL
+              </button>
+              <button type="button" data-value="Other" aria-pressed="false">Other</button>
+            </div>
+          </div>
+
+          <label class="select-control select-compact">
+            <span>Zhanh</span>
+            <select id="zhanh-filter" aria-label="Filter by Zhanh rating">
+              <option value="">All ratings</option>
+            </select>
+          </label>
+
+          <label class="select-control select-compact">
+            <span>Felix</span>
+            <select id="felix-filter" aria-label="Filter by Felix rating">
+              <option value="">All ratings</option>
+              <option value="unrated">Unrated</option>
+            </select>
+          </label>
+
+          <div class="toolbar-actions">
+            <button class="icon-button" id="copy-view" type="button" title="Copy filtered view link">
+              <i data-lucide="link" aria-hidden="true"></i>
+              <span class="sr-only">Copy filtered view link</span>
+            </button>
+            <button class="icon-button" id="export-csv" type="button" title="Export filtered rows">
+              <i data-lucide="download" aria-hidden="true"></i>
+              <span class="sr-only">Export filtered rows</span>
+            </button>
+            <button class="button button-quiet" id="clear-filters" type="button">
+              <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+              Reset
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-summary" aria-live="polite">
+        <p id="result-count">Loading records</p>
+        <div id="active-filters" class="active-filters"></div>
+      </section>
+
+      <section class="table-shell" aria-label="Literature results" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th class="year-column" scope="col">
+                <button class="sort-button" type="button" data-sort="year">
+                  Year / Venue <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="rating-column felix-column" scope="col">
+                <button class="sort-button" type="button" data-sort="felix_rating">
+                  Felix <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="rating-column zhanh-column" scope="col">
+                <button class="sort-button" type="button" data-sort="zhanh_rating">
+                  Zhanh <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="domain-column" scope="col">
+                <button class="sort-button" type="button" data-sort="domain">
+                  Domain <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="workstream-column" scope="col">Workstream</th>
+              <th class="title-column" scope="col">
+                <button class="sort-button" type="button" data-sort="title">
+                  Literature <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="keywords-column optional-wide" scope="col">Core terms</th>
+              <th class="links-column" scope="col">Links</th>
+              <th class="value-column optional-wide" scope="col">Direct project value</th>
+            </tr>
+          </thead>
+          <tbody id="catalog-body"></tbody>
+        </table>
+        <div class="table-state" id="table-state">
+          <i data-lucide="loader-circle" class="spin" aria-hidden="true"></i>
+          Loading literature data
+        </div>
+      </section>
+    </main>
+
+    <dialog id="detail-dialog" aria-labelledby="detail-title">
+      <div class="dialog-header">
+        <div>
+          <p id="detail-meta" class="eyebrow"></p>
+          <h2 id="detail-title"></h2>
+        </div>
+        <button class="icon-button" id="close-dialog" type="button" title="Close">
+          <i data-lucide="x" aria-hidden="true"></i>
+          <span class="sr-only">Close</span>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-labels" id="detail-labels"></div>
+        <section>
+          <h3>Core terms</h3>
+          <p id="detail-keywords"></p>
+        </section>
+        <section>
+          <h3>Direct project value</h3>
+          <p id="detail-value"></p>
+        </section>
+        <nav id="detail-links" class="detail-links" aria-label="Literature links"></nav>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
