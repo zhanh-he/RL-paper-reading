@@ -10,7 +10,7 @@
    - [Hanyu request](https://github.com/zhanh-he/RL-paper-reading/edit/main/Update_request_hanyu.txt)
 3. 希望更改的Request会被提交给gpt，在gpt完成后会带时间戳归档到 [`Done_UPD_request/`](Done_UPD_request/)，原位置会留下新的空白模板供下次使用。
 
-也可以直接修改 [`data/literature.csv`](data/literature.csv)，但不要手改下方表格或 `site/data/literature.json`；它们由 GitHub Actions 自动生成。
+也可以直接修改 [`data/literature.csv`](data/literature.csv)，但不要手改 `site/data/literature.json`；它们由 GitHub Actions 自动生成。
 
 ## Labels
 - Domain：`MusicGen / MusicEval / MIR / AudioGen / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`
