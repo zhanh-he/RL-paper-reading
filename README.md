@@ -1,7 +1,4 @@
 # RL Paper Reading
-
-Zhanh、Felix 和 Hanyu 共用的 music generation、reward 与 post-training 文献目录。
-
 [Open interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Update guide](EDITING.md)
 
 ## How To Use
