@@ -1265,6 +1265,29 @@
     ]
   },
   {
+    "id": "2026-DAFx-Adapting-Diffusion-Music-Synthesis-Voice-Conversion",
+    "year": "2026",
+    "venue": "DAFx",
+    "felix_rating": "",
+    "zhanh_rating": "3.5/5",
+    "domain": "AudioGen",
+    "workstream": "Other",
+    "title": "Adapting Diffusion-Based Music Synthesis to Speech and Singing Voice Conversion",
+    "keywords": "T5-Voc；PPG + F0 conditioning；FiLM identity conditioning",
+    "paper_url": "https://arxiv.org/abs/2607.13278",
+    "github_url": "",
+    "github_note": "",
+    "demo_url": "https://benadar293.github.io/voice-conversion/",
+    "web_url": "https://www.audiolabs-erlangen.de/fau/professor/mueller/publications",
+    "direct_value": "DAFx 2026：把器乐 T5 diffusion 的 score/timbre conditioning 迁移为 PPG+F0 与 speaker/singer FiLM，歌声 naturalness、performer similarity 和 pitch control 可匹配或超过 FlowMAC；但加入 instrumental data 后 vocal quality、FAD 与 phonetic fidelity 均退化。对我们最重要的是跨域共训并非免费增益，必须单独验证 domain balance、vocal fidelity guardrail 和 time-varying conditioning。",
+    "source_order": 55,
+    "keywords_list": [
+      "T5-Voc",
+      "PPG + F0 conditioning",
+      "FiLM identity conditioning"
+    ]
+  },
+  {
     "id": "2023-OUP-Music-Recruits-the-Reward-System",
     "year": "2023",
     "venue": "OUP",
@@ -1280,7 +1303,7 @@
     "demo_url": "",
     "web_url": "https://academic.oup.com/book/55154/chapter/424072391",
     "direct_value": "支持区分 structural perception 与 hedonic valuation；不能用来声称 beat alignment 等价于 pleasure。",
-    "source_order": 55,
+    "source_order": 56,
     "keywords_list": [
       "mesolimbic reward",
       "hedonic valuation",
@@ -1303,7 +1326,7 @@
     "demo_url": "https://google.github.io/df-conformer/surf/",
     "web_url": "",
     "direct_value": "用于分析 separator-induced BeatReward noise、构造 remix stress tests；不设为截稿前复现依赖。",
-    "source_order": 56,
+    "source_order": 57,
     "keywords_list": [
       "SURF",
       "unsupervised remixing",
@@ -1326,7 +1349,7 @@
     "demo_url": "",
     "web_url": "",
     "direct_value": "支持 learned semantic judge + explicit MIR expert 分层；模型地图停留在 2024，不代表当前 SOTA。",
-    "source_order": 57,
+    "source_order": 58,
     "keywords_list": [
       "music foundation model",
       "audio language model",
@@ -1349,7 +1372,7 @@
     "demo_url": "https://lonzi.github.io/mr_flowdpo_demopage/",
     "web_url": "",
     "direct_value": "CLAP、production quality、music-HuBERT semantic consistency 三轴构造 strong-dominating pairs；迁移 pair recipe，不直接套 flow loss。",
-    "source_order": 58,
+    "source_order": 59,
     "keywords_list": [
       "MR-FlowDPO",
       "MRSD",
@@ -1372,7 +1395,7 @@
     "demo_url": "https://storage.googleapis.com/sing-song/index.html",
     "web_url": "",
     "direct_value": "支撑 separated-vocal leakage 和 noise/artifact augmentation；preference receipt 必须记录 separator 与 residual leakage。",
-    "source_order": 59,
+    "source_order": 60,
     "keywords_list": [
       "SingSong",
       "AudioLM adaptation",
@@ -1395,7 +1418,7 @@
     "demo_url": "",
     "web_url": "https://huggingface.co/zhuqijian/HAFM",
     "direct_value": "与 Qwen codec-token accompaniment generation 形态接近；dual-rate semantic/acoustic representation 可启发分层 reward。",
-    "source_order": 60,
+    "source_order": 61,
     "keywords_list": [
       "HAFM",
       "dual-rate tokenization",
@@ -1418,7 +1441,7 @@
     "demo_url": "",
     "web_url": "",
     "direct_value": "可作 reward-hacked output OOD guardrail/diagnostic；原实验不是音频，近期不作主 reward。",
-    "source_order": 61,
+    "source_order": 62,
     "keywords_list": [
       "MaskDiff-AD",
       "reconstruction surprisal",
@@ -1441,7 +1464,7 @@
     "demo_url": "",
     "web_url": "https://www.cnblogs.com/ytxwzqin/p/12813965.html",
     "direct_value": "便于团队沟通生成依赖和速度；概念混合经典时间序列 AR 与 neural autoregression，不作为论文证据。",
-    "source_order": 62,
+    "source_order": 63,
     "keywords_list": [
       "autoregressive",
       "non-autoregressive",

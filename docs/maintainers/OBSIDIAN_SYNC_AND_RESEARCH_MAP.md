@@ -1,27 +1,43 @@
-# RL Paper Reading
+# Maintainer Knowledge Base And Obsidian Sync
 
-Zhanh、Felix 和 Hanyu 共用的 music generation、reward 与 post-training 文献目录。
+> Internal maintainer/agent reference. This file was moved out of the team README on 2026-09-05. It preserves the former research map and private knowledge-base context without putting those details in the three-person usage guide.
 
-[Open interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Update guide](EDITING.md)
+## Canonical Locations
 
-## How To Use
+- Shared GitHub checkout on the Mac mini: `/Users/jollibear/Documents/huawei-rl-paper-reading`
+- Obsidian catalog: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/Huawei RL 文献目录.md`
+- Obsidian reading cards: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/articles/`
+- Obsidian maintenance protocol: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/Huawei RL 文献库维护约定.md`
 
-1. 在 [interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) 搜索、筛选和排序文献；点击标题查看摘要及 paper/code/demo 链接。
-2. 需要新增论文、修改评分或纠正内容时，编辑自己的 request 文件并提交：
-   - [Zhanh request](https://github.com/zhanh-he/RL-paper-reading/edit/main/Update_request_zhanh.txt)
-   - [Felix request](https://github.com/zhanh-he/RL-paper-reading/edit/main/Update_request_felix.txt)
-   - [Hanyu request](https://github.com/zhanh-he/RL-paper-reading/edit/main/Update_request_hanyu.txt)
-3. Request 完成后会带时间戳归档到 [`Done_UPD_request/`](Done_UPD_request/)，原位置会留下新的空白模板供下次使用。
+## Weekly Sync Procedure
 
-也可以直接修改 [`data/literature.csv`](data/literature.csv)，但不要手改下方表格或 `site/data/literature.json`；它们由 GitHub Actions 自动生成。
+1. Pull/rebase the GitHub repository and process all root `Update_request_*.txt` files.
+2. Treat `data/literature.csv` as the shared catalog source; run `npm run build` and `npm run check`.
+3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
+4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and direct project value.
+5. Preserve Obsidian-only wikilinks, internal project context, experiments, private paths, and detailed notes. Never publish those fields into `site/data/literature.json`.
+6. Update the Obsidian note timestamps and maintenance log. Do not delete older notes or unrelated local changes.
+7. Push GitHub changes normally. The Obsidian vault remains local and is synchronized through its own existing workflow.
 
-## Labels
+## Preserved Former README
 
-- Domain：`MusicGen / MusicEval / MIR / AudioGen / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`
-- Workstream：`Reward / RL / Reward-n-RL / Other`
-- Felix 与 Zhanh 的星级分别由本人维护；空白表示尚未评分。
+The material below is the former repository README snapshot. It is retained for maintainer context and historical traceability; its embedded catalog table is not the current generated source.
 
-## Literature Catalog
+# Huawei RL 研究文献总目录
+
+[Open interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Edit catalog](https://app.pagescms.org/) · [Editing guide](EDITING.md) · [Edit raw data](https://github.com/zhanh-he/RL-paper-reading/edit/main/data/literature.csv)
+
+> `data/literature.csv` 是目录的唯一数据源；下面的 Markdown 表格由 GitHub Actions 自动生成，请勿直接手改。
+
+这个目录用于持续收集 Huawei RL / music generation post-training / reward design 方向的论文笔记。每篇文章单独成文，目录只保留导航、主题归类和对项目研发路线的启发。
+
+维护约定：本窗口之后关于 Huawei RL、music RLHF、reward receipt、DPO/GSPO、music MOS/reward metric 的讨论，默认同步沉淀到这个 Obsidian vault。具体规则见 文献库维护约定。
+
+## 文献索引（按 Zhanh 星级排序）
+
+Felix 星级由 Felix 独立判断，当前刻意留空。年份与 venue 使用两行显示；`arXiv` 表示截至 2026-09-02 尚未核验到正式发表 venue。外部入口只保留已核验可访问的 `paper / github / demo / web`，没有公开入口时不编造链接。
+
+`主题` 严格使用两个标签：第一个是领域（`MusicGen / MusicEval / MIR / AudioGen / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`），第二个是项目分工（`Reward / RL / Reward-n-RL / Other`）。`Reward` 包括指标、评估器、reward model、confidence 与 benchmark；`RL` 包括优化器和 post-training 算法；`Reward-n-RL` 表示两者都是论文核心；`Other` 表示底座、背景或基础设施。
 
 <!-- catalog:start -->
 | 年份 / Venue | Felix 星级 | Zhanh 星级 | 主题 | 文献全名 | 核心词汇 | 超链接 | 对项目的直接价值 |
@@ -81,7 +97,6 @@ Zhanh、Felix 和 Hanyu 共用的 music generation、reward 与 post-training �
 | 2026<br>arXiv |  | 4/5 | `AudioGen` · `Reward-n-RL` | Resonate: Reinforcing Text-to-Audio Generation via Online Feedback from Large Audio Language Models | Resonate；LALM feedback；online GRPO | [paper](https://arxiv.org/abs/2603.11661) | 说明 reward 成熟时 online GRPO 可优于 offline；不支持“DPO 普遍优于 GRPO”，反而强调先修 reward。 |
 | 2026<br>arXiv |  | 4/5 | `MusicEval` · `Reward` | MuQ-Eval: An Open-Source Per-Sample Quality Metric for AI Music Generation Evaluation | MuQ-Eval；per-sample quality；frozen MuQ | [paper](https://arxiv.org/abs/2603.22677) · [github](https://github.com/dgtql/MuQ-Eval) | 最像 music DNSMOS/UTMOS 的开放 per-sample quality predictor；可用于 Best-of-K 和 DPO quality gate，但对结构扰动不敏感。 |
 | 2026<br>arXiv |  | 4/5 | `MusicEval` · `Reward-n-RL` | TuneJury: An Open Metric for Improving Music Generation Preference Alignment | TuneJury；anchor calibration；pairwise reward | [paper](https://arxiv.org/abs/2606.17006) · [github](https://github.com/yonghyunk1m/TuneJury) · [demo](https://huggingface.co/spaces/TuneJury/tune-jury-demo) · [web](https://huggingface.co/spaces/TuneJury/tune-jury) | 开放 instance-level pairwise reward；可做 Best-of-N、pair filtering 和 OOD anchor calibration，但需验证 vocal-fit/beat sensitivity。 |
-| 2026<br>DAFx |  | 3.5/5 | `AudioGen` · `Other` | Adapting Diffusion-Based Music Synthesis to Speech and Singing Voice Conversion | T5-Voc；PPG + F0 conditioning；FiLM identity conditioning | [paper](https://arxiv.org/abs/2607.13278) · [demo](https://benadar293.github.io/voice-conversion/) · [web](https://www.audiolabs-erlangen.de/fau/professor/mueller/publications) | DAFx 2026：把器乐 T5 diffusion 的 score/timbre conditioning 迁移为 PPG+F0 与 speaker/singer FiLM，歌声 naturalness、performer similarity 和 pitch control 可匹配或超过 FlowMAC；但加入 instrumental data 后 vocal quality、FAD 与 phonetic fidelity 均退化。对我们最重要的是跨域共训并非免费增益，必须单独验证 domain balance、vocal fidelity guardrail 和 time-varying conditioning。 |
 | 2023<br>OUP |  | 3.5/5 | `Other` · `Other` | Music Recruits the Reward System | mesolimbic reward；hedonic valuation；musical pleasure | [web](https://academic.oup.com/book/55154/chapter/424072391) | 支持区分 structural perception 与 hedonic valuation；不能用来声称 beat alignment 等价于 pleasure。 |
 | 2026<br>ICML |  | 3.5/5 | `SourceSep` · `Other` | SURF: Separation via Unsupervised Remixing Flow | SURF；unsupervised remixing；teacher-student flow | [paper](https://arxiv.org/abs/2606.04921) · [demo](https://google.github.io/df-conformer/surf/) | 用于分析 separator-induced BeatReward noise、构造 remix stress tests；不设为截稿前复现依赖。 |
 | 2024<br>arXiv |  | 3.5/5 | `AudioLLM` · `Other` | A Survey of Foundation Models for Music Understanding | music foundation model；audio language model；survey taxonomy | [paper](https://arxiv.org/abs/2409.09601) | 支持 learned semantic judge + explicit MIR expert 分层；模型地图停留在 2024，不代表当前 SOTA。 |
@@ -91,3 +106,114 @@ Zhanh、Felix 和 Hanyu 共用的 music generation、reward 与 post-training �
 | 2026<br>arXiv |  | 3/5 | `CV` · `Reward` | Masked Diffusion Modeling for Anomaly Detection | MaskDiff-AD；reconstruction surprisal；nominal-only training | [paper](https://arxiv.org/abs/2605.30046) · [github](https://github.com/lxzhang1/MaskDiff-AD) | 可作 reward-hacked output OOD guardrail/diagnostic；原实验不是音频，近期不作主 reward。 |
 | 2020<br>Web |  | 2/5 | `Other` · `Other` | 自回归（Autoregressive, AR）模型与非自回归（Non-Autoregressive, NAR）模型 | autoregressive；non-autoregressive；parallel decoding | [web](https://www.cnblogs.com/ytxwzqin/p/12813965.html) | 便于团队沟通生成依赖和速度；概念混合经典时间序列 AR 与 neural autoregression，不作为论文证据。 |
 <!-- catalog:end -->
+
+## 星级说明
+
+- Felix 星级：由 Felix 独立判断，当前全部留空。
+- Zhanh 星级：表示对 Huawei RL 当前 research output 的直接相关性，不等于论文整体质量评分。
+- 5/5：战略核心文献，直接支撑 research output 或方法路线。
+- 4.5/5：高度相关的实现型文献或强 baseline，足以进入近期技术路线讨论。
+- 4/5：当前项目重点文献，能影响 reward、pair construction、training 或 evaluation。
+- 3.5/5：有明确技术启发，但主要作为模块或对照。
+- 3/5：背景参考，遇到对应问题时回看。
+
+## 当前主题地图
+
+- Useful Literature: Dynamic Policy Data and Reward Validity：本轮 literature review 的忠实归档；按项目相关性分级汇总 policy-induced distribution shift、reward overoptimization、multi-reward conflict、confidence/DPO/GRPO 与 music/audio 证据，并给出 ICASSP citation jobs 和八步实验主线。
+- Offline accuracy != online validity：领导汇报版理论主线；纠正 scalar-invariant 术语，把解法扩展为 confidence/Pareto DPO、robust reward system、conservative GRPO 与 current-policy refresh 四层防线。
+- GAPT music reward hacking：当前最直接的公开音乐证据；coherence reward 高但策略坍缩为重复简单和弦，说明 artificial corruption accuracy 和 KL/rule guardrail 都不足，必须检查 policy-generated trajectories。
+- GRPO overoptimization -> Pareto DPO 主线：当前总判断；代码审计确认 v5 GRPO beat-only，提出 adversarial scorer tests、checkpoint trajectory、public SongGen/CMI-Pref 和 confidence/Pareto DPO。
+- Experiment Design v7：当前实验版本；v5 scorer 与 v6 confidence 保留，优化路线改为 offline-online mismatch + Pareto DPO。
+- Confidence-aware / noisy-reward 主线：把 confidence 定义为 pair reward direction 的 correctness probability，用 risk-coverage/AURC 评价，并将 reranking、DPO、GRPO 变成 selective supervision；当前优先级高于继续做固定 composite score。
+- BeatReward v6：confidence/risk-coverage canonical provenance；已被 v7 实验路线 supersede，但定义和结果仍有效。
+- v6 public result：v2/v5 raw vs non-tie ranking、risk-coverage 与 metrical-alias high-confidence failure。
+- ICASSP / BeatReward 主线：把论文收敛为 confidence-aware、perturbation-validated vocal-accompaniment beat reward；metric/meta-evaluation 是核心，reranking/DPO 是 downstream utility。
+- ICASSP 2026 ASAE Challenge：最强 venue signal；其 unseen-generator Hard set、structure-aware winner 与 top-tier bottleneck直接决定我们的 evaluation framing。
+- MuseCritic：公开五维 critique-conditioned song reward 与 GRPO baseline；本地 controlled audit 证明它能识别 clean/shifted，却不能稳定区分 70/120 ms severity，不能把 Coherence 当 beat。
+- BeatReward v4：historical onset-grid/ensemble 设计与 signed-offset、metrical-alias provenance。
+- BeatReward v3：保留 strict + onset universal fusion 的 evaluated negative-result provenance。
+- Beat This：公开 detector transfer；论文贡献必须位于 detector 之后的 pairwise reward construct 与 meta-evaluation。
+- Genre-bias audit：SongEval aesthetics 可能有 shortcut；不允许用其五维分数调 BeatReward。
+- Multi-stem aesthetics：stem interaction 与 uncertainty 已是 concurrent direction；我们的区分点是 explicit timing、controlled corruption、locality 与 abstention。
+- APA：最近的 ICASSP accompaniment metric 范式；其 perturbation + human validation 应直接进入我们的实验设计。
+- STAGE：plain beat F1 的最近工作；决定 BeatReward 的 novelty 最低门槛。
+- Omni-RewardBench：通用 multimodal judge 可能在底层感知、模态平衡和跨模态融合上失败，独立 MIR verifier 可提供审计证据。
+- GDPO / ADPO / GIFT：分别回答 multi-reward normalization、offline listwise ranking、online explicit-implicit advantage matching；当前依次作为 P2 guardrail、P1 stretch、P2 stretch。
+- Composite reward for post-training：speech paper 的关键不是 speech，而是把 perceptual quality、content preservation、naturalness 组合成 reward，并用 human evaluation 防 reward hacking。
+- FlowSE-GRPO：single audio metric 在 online GRPO 中会快速提分并 reward hack；证明强 proxy 需要独立 guardrails 和 optimization-path audit。
+- DDSynth-RL：公开音乐 GRPO + 多 audio reward + 可听 demo；OOD matching 大幅改善但 in-domain 退化，是 policy-shift/retention trade-off 的核心案例。
+- GRPO-Guard：proxy reward 上升而 gold quality 下降的 optimizer-side 机制与修复；要求我们补 ratio/clip/gradient statistics。
+- Flow-GRPO：flow matching online RL 的基础工程；与 GRPO-Guard 共 repo 但 demo page 和研究问题不同。
+- GenSR-Pref：multi-metric unanimous winner + DPO；支持把 beat 当 objective、coverage/noise/quality 当 non-inferiority constraints。
+- Music RLHF：音乐生成可以被 human preference / reward post-training 改善，但训练成本和标注成本高。
+- Song multi-preference DPO：song generation 里可以把 lyrics、prompt、musicality、instrument/style 拆成多偏好；对我们是 multi-reward DPO 的直接参考。
+- Hallucination-free song generation：DPO/PPO/GRPO 对比可作为我们方法排序的外部证据。
+- MR-FlowDPO：flow-matching T2M 的 multi-reward DPO；MRSD 强支配 pair、数据驱动 margin 与独立 human/control evaluation 可直接进入我们的 DPO baseline。
+- AIME human-preference benchmark：ICASSP 2025 的 12-generator、15,600-pair 公共基准；原 labels 作 overall guardrail，新增 rhythm-focused labels 作 BeatReward truth。
+- SongEval paper：full-song professional aesthetics 与可听高低分 demo；必须保持 Coherence/Structure/Musicality 与 beat correctness 的构念边界。
+- Reward overoptimization：Best-of-K 与 RL 都可能过度优化 imperfect proxy；决定我们必须 sweep K/steps 并保留独立 human/control evaluation。
+- 14_Same-Prompt_Pairs_Risk-Coverage_and_Best-of-K：把 same-prompt ranking、selective risk 与 inference-time utility 串成 post-training 前的三步 go/no-go。
+- CLaMP-DPO / automatic preference construction：每个 prompt 用 ground-truth embedding anchor 给 candidates 排序，top/bottom quantile 构造 DPO pairs；对我们 reward receipt 很有启发。
+- GSPO vs DPO：GSPO 适合后续直接优化 composite reward，但当前第一版应先保留 DPO，因为 pair 可解释、可回放、可 ablate。
+- VideoRLVR / verifiable rewards：可验证 reward 不应只做 sparse success，而要拆成 dense decomposed rewards；音乐里可迁移为 hard checks + MIR diagnostics + learned perceptual score + human A/B。
+- awesome-RLVR：把 RLVR 作为大领域综述入口；对我们是 reward receipt、verifier-guided reranking、DPO pair construction 和后续 GSPO/GRPO 的统一路线图。
+- Is One Layer Enough?：RL post-training 的收益可能集中在中层；对 Qwen-DPO/LoRA 的直接问题是 full-parameter、all-layer LoRA、middle-layer LoRA 哪个更稳。
+- Music MOS / reward metrics：音乐里没有单一 UTMOS/DNSMOS 等价物，应该拆成 quality、alignment、naturalness/aesthetics 和 guardrails。
+- Vocal-conditioned accompaniment data strategy：separated vocal leakage、train/inference mismatch、noise/artifact augmentation、decoding config 都要写入 pair metadata。
+
+## 方法路线索引
+
+| route | status | key notes |
+|---|---|---|
+| GRPO overoptimization audit | P0 / current | base/25/50/75/100/150 proxy-control-human trajectory；先判断 Goodhart 与 early-stop point |
+| Pareto/unanimous DPO | P0 / current | beat margin/confidence通过且 coverage/noise/quality non-inferior；冲突 pair abstain |
+| reward-direction confidence | P0 / current | development fit、validation threshold、test AURC；先验证能否识别错误 pair |
+| selective Best-of-K | P0 / current | 只在高置信 pair/group 上 rerank；最先验证 human utility |
+| best-of-K reranking | P0 | 用于验证 reward/scorer，不改模型 |
+| offline DPO | P0/P1 | 只在 chosen/rejected direction 通过 confidence/human calibration 后进入 |
+| soft / confidence-weighted DPO | P1 | 用 calibrated probability 表示 ambiguous preference；对照 hard filter |
+| Anchored ADPO | P1 stretch | 对同一 vocal 的 K candidates 做 ordinal/listwise preference learning；先有 DPO baseline |
+| multi-reward DPO | broad v1 / P1 | 长期 reward-recipe 路线；当前 v4 论文只把 BeatReward-DPO 当 downstream utility |
+| DPO variants | P1/P2 | TDPO / SimPO / KTO 用于 length、reference cost、pair scarcity 问题 |
+| selective GRPO + SFT anchor | P1/P2 stretch | reward direction、group logging、coverage 过 gate 后小规模做；不可靠 group 回到 SFT/NLL |
+| GSPO / GRPO / GDPO | P2 | reward 稳定、online rollout ready 后再做；必须显式比较 `scale_rewards` 与 raw group spread |
+| GIFT | P2 stretch | online group rollout + explicit/implicit advantage matching；不作为 ICASSP 截稿依赖 |
+| PPO / reward model | P3 | 老式 RLHF baseline，当前不优先 |
+
+## 数据集与资源索引
+
+| 类型 | 资源 | 状态 | 对项目的直接价值 |
+|---|---|---|---|
+| Public validation map | Public Datasets for MIR Reward Validation | 已整理 / 当前入口 | 区分 stem construct validation、generated-song stress test 与 internal utility；包含 MoisesDB、MUSDB18、Slakh2100、CMI-Pref、SongEval、Muse。 |
+| Same-prompt cross-generator human benchmark | AIME | 公开 / payload 待本地精确审计 | 6,000 generated tracks、12 systems、15,600 human pairs；含 Suno/Udio，适合公开 disagreement mining 和 rhythm relabel。 |
+| Public trainable backbone | SongGen ICML 2025 dual-track | training code/checkpoints released / terms待逐项核对 | 1.3B AR、30s、vocal/accompaniment 分轨；当前 public Best-of-K/DPO 首选。 |
+| Large cross-generator pool | CMI-Pref-Pseudo | 56K generations / 23 models / 165K pairs | OOD/disagreement mining；pseudo labels 不能作为 beat GT，需 rhythm-specific relabel。 |
+| Aligned stems | MoisesDB / MUSDB18 | 已调研 / license gate | 从自然对齐 stems 构造已知 timing perturbations，是 BeatReward 可验证 ground truth 的主体。 |
+| Exact timing supplement | Slakh2100 | 已调研 / CC BY 4.0 | aligned MIDI + stems，适合 meter、tempo、offset、drift 组件验证；无歌声。 |
+| Generated-song stress test | SongEval / ASAE Challenge | payload 已精确审计 / NC | 2,400 audio、2,399 metadata，缺 ID 315；metadata 无 generator/genre/prompt。适合 frozen external stress test，不是 stem truth。 |
+| Large SunoV5 corpus | Muse | 已整理 / payload blocked | 论文称 116k 首、约 7,771h，但当前 HF 数据页为空且仅约 2.67 kB；适合未来 long-form stress test，不能进入当前关键路径。 |
+| Song generation code / weights | SongGeneration | 已收录 / license 风险 | 可看 design，不直接商用复用。 |
+| Generated music MOS data | MusicEval | 待整理 | 可训练/验证 generated music quality 和 text alignment metric。 |
+| Music quality metric | MuQ-Eval | 待整理 | P0 music quality scorer 候选。 |
+| Pairwise reward model | TuneJury | 待整理 | P0/P1 preference score 候选。 |
+| Multimodal reward model | CMI-RM | 已整理 / learned baseline | 未来 vocal/style/text/audio prompt reward 候选，也是当前 BeatReward complementarity baseline。 |
+| Traditional instrument datasets | CCMusic / ChMusic / FolkMusic / Guzheng Tech datasets | 已在 LeVo KB 记录 | 多数有 NC/ND 或边界不清；先作研究评测和 benchmark。 |
+
+## 后续收录模板
+
+每来一篇新文章，用同一套结构：
+
+1. 基本信息：标题、作者、年份、会议/期刊、链接、代码、数据、license。
+2. 重要度：按对 Huawei RL 当前 research output 的直接价值排序。
+3. 中文简介：一句话定位 + 解决的问题。
+4. 内容核心：方法、数据、reward、训练、实验设置、主要结果。
+5. 对本项目的启发：可迁移设计、可做实验、风险点。
+6. 我的判断：值得复现 / 只作为背景 / 暂时观望。
+7. 待办：下一次讨论或实验要做什么。
+
+## 反向链接
+
+- Huawei RL 文献库维护约定
+- Huawei RL
+- 14_Qwen_RLHF_Method_Ranking_Taskbook
+- 01_Research_Output_Reward_Receipt
