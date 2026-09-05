@@ -12,8 +12,8 @@ This file is the first-read instruction for any agent working in this repository
 ## Sources Of Truth
 
 - `data/literature.csv` is the only editable source for the shared literature catalog.
-- The table between `<!-- catalog:start -->` and `<!-- catalog:end -->` in `README.md` is generated.
 - `site/data/literature.json` is generated and must not be edited manually.
+- `README.md` is a short, manually maintained team entrypoint. Do not add a generated catalog table to it; link to the interactive site instead.
 - Run `npm run build` after catalog changes and `npm run check` before committing.
 - Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `EDITING.md`; keep `keywords` to at most three useful terms.
 - Never fill or change `felix_rating` unless Felix requested it. Preserve each person's independent rating.

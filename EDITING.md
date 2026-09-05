@@ -1,7 +1,7 @@
 # Updating the literature catalog
 
-The shared catalog lives in `data/literature.csv`. `README.md` and the interactive
-site are generated views; do not edit the generated Markdown table directly.
+The shared catalog lives in `data/literature.csv`. The interactive site's JSON is
+generated from it. `README.md` stays short and is maintained manually as the team entrypoint.
 
 ## Recommended no-install workflow
 

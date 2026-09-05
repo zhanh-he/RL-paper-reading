@@ -6,7 +6,6 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CSV_PATH = path.join(ROOT, "data", "literature.csv");
 const JSON_PATH = path.join(ROOT, "site", "data", "literature.json");
-const README_PATH = path.join(ROOT, "README.md");
 const CHECK_ONLY = process.argv.includes("--check");
 
 const EXPECTED_HEADERS = [
@@ -184,60 +183,6 @@ function loadCatalog() {
   return catalog;
 }
 
-function escapeMarkdownCell(value) {
-  return String(value ?? "")
-    .replace(/\r?\n/g, "<br>")
-    .replace(/\|/g, "\\|");
-}
-
-function markdownLinks(record) {
-  const links = [];
-  if (record.paper_url) links.push(`[paper](${record.paper_url})`);
-  if (record.github_url) {
-    const suffix = record.github_note ? ` (${record.github_note})` : "";
-    links.push(`[github${suffix}](${record.github_url})`);
-  }
-  if (record.demo_url) links.push(`[demo](${record.demo_url})`);
-  if (record.web_url) links.push(`[web](${record.web_url})`);
-  return links.join(" · ");
-}
-
-function buildMarkdownTable(catalog) {
-  const header = [
-    "| 年份 / Venue | Felix 星级 | Zhanh 星级 | 主题 | 文献全名 | 核心词汇 | 超链接 | 对项目的直接价值 |",
-    "|---|:---:|:---:|---|---|---|---|---|"
-  ];
-  const rows = catalog.map((record) => {
-    const cells = [
-      `${record.year}<br>${record.venue}`,
-      record.felix_rating,
-      record.zhanh_rating,
-      `\`${record.domain}\` · \`${record.workstream}\``,
-      record.title,
-      record.keywords,
-      markdownLinks(record),
-      record.direct_value
-    ].map(escapeMarkdownCell);
-    return `| ${cells.join(" | ")} |`;
-  });
-  return [...header, ...rows].join("\n");
-}
-
-function updateReadme(catalog) {
-  const start = "<!-- catalog:start -->";
-  const end = "<!-- catalog:end -->";
-  const current = fs.readFileSync(README_PATH, "utf8");
-  const startIndex = current.indexOf(start);
-  const endIndex = current.indexOf(end);
-  if (startIndex < 0 || endIndex < 0 || endIndex <= startIndex) {
-    throw new Error("README catalog markers are missing or out of order");
-  }
-  const generated = `${start}\n${buildMarkdownTable(catalog)}\n${end}`;
-  return `${current.slice(0, startIndex)}${generated}${current.slice(
-    endIndex + end.length
-  )}`;
-}
-
 function writeOrCheck(filePath, next) {
   const current = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
   if (CHECK_ONLY) {
@@ -254,7 +199,6 @@ const catalog = loadCatalog();
 const publicCatalog = catalog.map(({ obsidian_target, ...record }) => record);
 const json = `${JSON.stringify(publicCatalog, null, 2)}\n`;
 writeOrCheck(JSON_PATH, json);
-writeOrCheck(README_PATH, updateReadme(catalog));
 
 console.log(
   `${CHECK_ONLY ? "Checked" : "Built"} ${catalog.length} literature records successfully.`

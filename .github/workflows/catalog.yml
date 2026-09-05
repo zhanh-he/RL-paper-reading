@@ -35,18 +35,18 @@ jobs:
 
       - name: Require generated files in pull requests
         if: github.event_name == 'pull_request'
-        run: git diff --exit-code -- README.md site/data/literature.json
+        run: git diff --exit-code -- site/data/literature.json
 
       - name: Commit generated files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- README.md site/data/literature.json; then
+          if git diff --quiet -- site/data/literature.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md site/data/literature.json
-          git commit -m "catalog: rebuild generated views [skip ci]"
+          git add site/data/literature.json
+          git commit -m "catalog: rebuild site data [skip ci]"
           git push
 
       - name: Configure GitHub Pages
