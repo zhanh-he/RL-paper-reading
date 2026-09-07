@@ -14,7 +14,7 @@
 1. Pull/rebase the GitHub repository and process all root `Update_request_*.txt` files.
 2. Treat `data/literature.csv` as the shared catalog source; run `npm run build` and `npm run check`.
 3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
-4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and direct project value.
+4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and independently attributed Zhanh/Felix project notes.
 5. Preserve Obsidian-only wikilinks, internal project context, experiments, private paths, and detailed notes. Never publish those fields into `site/data/literature.json`.
 6. Update the Obsidian note timestamps and maintenance log. Do not delete older notes or unrelated local changes.
 7. Push GitHub changes normally. The Obsidian vault remains local and is synchronized through its own existing workflow.

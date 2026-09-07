@@ -13,6 +13,6 @@
 也可以直接修改 [`data/literature.csv`](data/literature.csv)，但不要手改 `site/data/literature.json`；它们由 GitHub Actions 自动生成。
 
 ## Labels
-- Domain：`MusicGen / MusicEval / MIR / AudioGen / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`
+- Domain：`MusicGen / MusicEval / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / ML / SourceSep / Multimodal / Other`
 - Workstream：`Reward / RL / Reward-n-RL / Other`
-- Felix 与 Zhanh 的星级
+- Felix 与 Zhanh 的星级及解读分别由本人维护；`*` 表示评分存疑、等待重读。

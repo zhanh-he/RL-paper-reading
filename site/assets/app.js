@@ -12,7 +12,8 @@ const CSV_HEADERS = [
   "github_url",
   "demo_url",
   "web_url",
-  "direct_value"
+  "zhanh_note",
+  "felix_note"
 ];
 
 const elements = {
@@ -37,7 +38,7 @@ const elements = {
   detailTitle: document.querySelector("#detail-title"),
   detailLabels: document.querySelector("#detail-labels"),
   detailKeywords: document.querySelector("#detail-keywords"),
-  detailValue: document.querySelector("#detail-value"),
+  detailNotes: document.querySelector("#detail-notes"),
   detailLinks: document.querySelector("#detail-links"),
   toast: document.querySelector("#toast")
 };
@@ -147,7 +148,8 @@ function recordSearchText(record) {
   return [
     record.title,
     record.keywords,
-    record.direct_value,
+    record.zhanh_note,
+    record.felix_note,
     record.domain,
     record.workstream,
     record.year,
@@ -189,11 +191,45 @@ function compareRecords(left, right) {
 
 function makeTag(value, kind) {
   const classSuffix = value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  return el("span", `tag tag-${kind === "domain" ? "domain" : classSuffix}`, value);
+  const className =
+    kind === "domain"
+      ? `tag tag-domain tag-domain-${classSuffix}`
+      : `tag tag-${classSuffix}`;
+  return el("span", className, value);
 }
 
 function makeRating(value) {
-  return el("span", `rating${value ? "" : " rating-unrated"}`, value || "—");
+  const provisional = value?.endsWith("*");
+  const rating = el(
+    "span",
+    `rating${value ? "" : " rating-unrated"}${provisional ? " rating-provisional" : ""}`,
+    value || "—"
+  );
+  if (provisional) rating.title = "Provisional rating pending reread";
+  return rating;
+}
+
+function makeProjectNotes(record, compact = false) {
+  const notes = [
+    ["Zhanh", record.zhanh_note, "zhanh"],
+    ["Felix", record.felix_note, "felix"]
+  ].filter(([, note]) => Boolean(note));
+
+  if (notes.length === 0) {
+    return [el("span", "note-empty", "No project note recorded")];
+  }
+
+  return notes.map(([name, note, author]) => {
+    const paragraph = el(
+      "p",
+      `author-note author-${author}${compact ? " author-note-compact" : ""}`
+    );
+    paragraph.append(
+      el("strong", "author-label", `${name}:`),
+      document.createTextNode(` ${note}`)
+    );
+    return paragraph;
+  });
 }
 
 function resourceDefinition(record) {
@@ -249,7 +285,10 @@ function makeRow(record) {
     linkList.append(makeResourceLink(record, definition));
   }
   linksCell.append(linkList);
-  const valueCell = el("td", "direct-value optional-wide", record.direct_value);
+  const valueCell = el("td", "direct-value optional-wide");
+  const noteStack = el("div", "note-stack note-stack-compact");
+  noteStack.append(...makeProjectNotes(record, true));
+  valueCell.append(noteStack);
 
   row.append(
     yearCell,
@@ -325,7 +364,7 @@ function openDetails(record) {
     makeRating(record.felix_rating)
   );
   elements.detailKeywords.textContent = record.keywords || "No terms recorded";
-  elements.detailValue.textContent = record.direct_value || "No project note recorded";
+  elements.detailNotes.replaceChildren(...makeProjectNotes(record));
   elements.detailLinks.replaceChildren(
     ...resourceDefinition(record).map((definition) => makeResourceLink(record, definition))
   );

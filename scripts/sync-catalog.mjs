@@ -23,7 +23,8 @@ const EXPECTED_HEADERS = [
   "github_note",
   "demo_url",
   "web_url",
-  "direct_value",
+  "zhanh_note",
+  "felix_note",
   "obsidian_target"
 ];
 
@@ -32,6 +33,7 @@ const DOMAINS = new Set([
   "MusicEval",
   "MIR",
   "AudioGen",
+  "Speech",
   "SpeechEnhance",
   "AudioLLM",
   "LLM",
@@ -42,7 +44,7 @@ const DOMAINS = new Set([
   "Other"
 ]);
 const WORKSTREAMS = new Set(["Reward", "RL", "Reward-n-RL", "Other"]);
-const RATING_PATTERN = /^(?:[0-5](?:\.5)?)\/5$/;
+const RATING_PATTERN = /^(?:[0-5](?:\.5)?)\/5\*?$/;
 
 function parseCsv(input) {
   const rows = [];

@@ -16,7 +16,8 @@ This file is the first-read instruction for any agent working in this repository
 - `README.md` is a short, manually maintained team entrypoint. Do not add a generated catalog table to it; link to the interactive site instead.
 - Run `npm run build` after catalog changes and `npm run check` before committing.
 - Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `EDITING.md`; keep `keywords` to at most three useful terms.
-- Never fill or change `felix_rating` unless Felix requested it. Preserve each person's independent rating.
+- A trailing `*` marks a provisional rating pending reread, for example `4/5*`.
+- Keep `zhanh_note` and `felix_note` separately attributed. Never fill or change Felix's rating or note unless Felix requested it; preserve each person's independent judgment.
 
 ## Update Request Protocol
 

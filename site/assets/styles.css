@@ -16,6 +16,8 @@
   --amber-soft: #f8edda;
   --red: #a63a32;
   --red-soft: #f7e8e6;
+  --zhanh-note: #7c2430;
+  --felix-note: #174979;
   --violet: #6c4aa1;
   --violet-soft: #f0eafb;
   --shadow: 0 14px 36px rgba(23, 33, 30, 0.12);
@@ -575,9 +577,75 @@ tbody tr:hover td {
   font-weight: 600;
 }
 
+.rating-provisional {
+  color: #8a5a14;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
 .tag-domain {
-  color: var(--blue);
-  background: var(--blue-soft);
+  color: #3f4a45;
+  background: #edf0ee;
+}
+
+.tag-domain-musicgen {
+  color: #0f624d;
+  background: #dff2e9;
+}
+
+.tag-domain-musiceval {
+  color: #17606f;
+  background: #dff1f3;
+}
+
+.tag-domain-mir {
+  color: #835b10;
+  background: #f6ebce;
+}
+
+.tag-domain-audiogen {
+  color: #245ea8;
+  background: #e3edfb;
+}
+
+.tag-domain-speech {
+  color: #9a3038;
+  background: #f8e4e6;
+}
+
+.tag-domain-speechenhance {
+  color: #7b3f68;
+  background: #f3e5ef;
+}
+
+.tag-domain-audiollm {
+  color: #65429a;
+  background: #eee7f8;
+}
+
+.tag-domain-llm {
+  color: #3f5294;
+  background: #e7eafb;
+}
+
+.tag-domain-cv {
+  color: #17678c;
+  background: #dff0f8;
+}
+
+.tag-domain-ml {
+  color: #46544e;
+  background: #e5ebe7;
+}
+
+.tag-domain-sourcesep {
+  color: #965223;
+  background: #f8e8dc;
+}
+
+.tag-domain-multimodal {
+  color: #8a376d;
+  background: #f6e4f0;
 }
 
 .tag-reward {
@@ -655,6 +723,41 @@ tbody tr:hover td {
 
 .direct-value {
   color: #3f4a45;
+}
+
+.note-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.note-stack-compact {
+  gap: 7px;
+}
+
+.author-note {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.author-note-compact {
+  line-height: 1.45;
+}
+
+.author-zhanh {
+  color: var(--zhanh-note);
+}
+
+.author-felix {
+  color: var(--felix-note);
+}
+
+.author-label {
+  font-weight: 800;
+}
+
+.note-empty {
+  color: #8a9690;
+  font-style: italic;
 }
 
 .table-state {
@@ -817,6 +920,16 @@ dialog::backdrop {
   .brand small,
   .button-secondary {
     display: none;
+  }
+
+  .brand > span:last-child {
+    min-width: 0;
+    max-width: 132px;
+  }
+
+  .brand strong {
+    line-height: 1.15;
+    white-space: normal;
   }
 
   .catalog-heading {
