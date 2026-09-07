@@ -13,7 +13,8 @@ const CSV_HEADERS = [
   "demo_url",
   "web_url",
   "zhanh_note",
-  "felix_note"
+  "felix_note",
+  "hanyu_note"
 ];
 
 const elements = {
@@ -150,6 +151,7 @@ function recordSearchText(record) {
     record.keywords,
     record.zhanh_note,
     record.felix_note,
+    record.hanyu_note,
     record.domain,
     record.workstream,
     record.year,
@@ -212,7 +214,8 @@ function makeRating(value) {
 function makeProjectNotes(record, compact = false) {
   const notes = [
     ["Zhanh", record.zhanh_note, "zhanh"],
-    ["Felix", record.felix_note, "felix"]
+    ["Felix", record.felix_note, "felix"],
+    ["Hanyu", record.hanyu_note, "hanyu"]
   ].filter(([, note]) => Boolean(note));
 
   if (notes.length === 0) {

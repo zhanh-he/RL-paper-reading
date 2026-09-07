@@ -17,7 +17,7 @@ This file is the first-read instruction for any agent working in this repository
 - Run `npm run build` after catalog changes and `npm run check` before committing.
 - Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `EDITING.md`; keep `keywords` to at most three useful terms.
 - A trailing `*` marks a provisional rating pending reread, for example `4/5*`.
-- Keep `zhanh_note` and `felix_note` separately attributed. Never fill or change Felix's rating or note unless Felix requested it; preserve each person's independent judgment.
+- Keep `zhanh_note`, `felix_note`, and `hanyu_note` separately attributed. Never fill or change another contributor's note, and never change Felix's rating unless Felix requested it; preserve each person's independent judgment.
 
 ## Update Request Protocol
 

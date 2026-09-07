@@ -17,7 +17,8 @@
   --red: #a63a32;
   --red-soft: #f7e8e6;
   --zhanh-note: #7c2430;
-  --felix-note: #174979;
+  --felix-note: #176b57;
+  --hanyu-note: #174979;
   --violet: #6c4aa1;
   --violet-soft: #f0eafb;
   --shadow: 0 14px 36px rgba(23, 33, 30, 0.12);
@@ -593,39 +594,25 @@ tbody tr:hover td {
   background: #dff2e9;
 }
 
-.tag-domain-musiceval {
+.tag-domain-musiceval,
+.tag-domain-mir {
   color: #17606f;
   background: #dff1f3;
 }
 
-.tag-domain-mir {
-  color: #835b10;
-  background: #f6ebce;
-}
-
-.tag-domain-audiogen {
+.tag-domain-audiogen,
+.tag-domain-speech,
+.tag-domain-speechenhance,
+.tag-domain-audiollm,
+.tag-domain-sourcesep {
   color: #245ea8;
   background: #e3edfb;
 }
 
-.tag-domain-speech {
-  color: #9a3038;
-  background: #f8e4e6;
-}
-
-.tag-domain-speechenhance {
-  color: #7b3f68;
-  background: #f3e5ef;
-}
-
-.tag-domain-audiollm {
-  color: #65429a;
-  background: #eee7f8;
-}
-
-.tag-domain-llm {
-  color: #3f5294;
-  background: #e7eafb;
+.tag-domain-llm,
+.tag-domain-multimodal {
+  color: #59635e;
+  background: #e9ecea;
 }
 
 .tag-domain-cv {
@@ -633,19 +620,9 @@ tbody tr:hover td {
   background: #dff0f8;
 }
 
-.tag-domain-ml {
+.tag-domain-machinelearning {
   color: #46544e;
   background: #e5ebe7;
-}
-
-.tag-domain-sourcesep {
-  color: #965223;
-  background: #f8e8dc;
-}
-
-.tag-domain-multimodal {
-  color: #8a376d;
-  background: #f6e4f0;
 }
 
 .tag-reward {
@@ -749,6 +726,10 @@ tbody tr:hover td {
 
 .author-felix {
   color: var(--felix-note);
+}
+
+.author-hanyu {
+  color: var(--hanyu-note);
 }
 
 .author-label {

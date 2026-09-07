@@ -25,6 +25,7 @@ const EXPECTED_HEADERS = [
   "web_url",
   "zhanh_note",
   "felix_note",
+  "hanyu_note",
   "obsidian_target"
 ];
 
@@ -38,7 +39,7 @@ const DOMAINS = new Set([
   "AudioLLM",
   "LLM",
   "CV",
-  "ML",
+  "MachineLearning",
   "SourceSep",
   "Multimodal",
   "Other"

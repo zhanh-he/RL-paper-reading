@@ -1,0 +1,25 @@
+Update requests by Zhanh
+
+Add new requests below this line, then commit the file through GitHub.
+---
+Conformal Risk Control 只能给0/5，我觉得这个不搭边。虽然教了我怎么搞pair risk，但我不知道和我们有什么关系。还是有，别写ML，写MachineLearning
+SelectiveNet: A Deep Neural Network with an Integrated Reject Option 我给 0分，我觉得这个也没有多大关系
+
+Video Models Can Reason with Verifiable Rewards 我给1分，虽然又说怎么搞verifiable rewards但是不够细腻。只是很粗略的描述“Verfiable Rewards“这个概念，还有给了一些文献，但是没有深入原理或者方法论、实验设计之类的。如果我理解错了你要告诉我，我目前是这样看的。
+
+Direct Preference Optimization: Your Language Model Is Secretly a Reward Model
+这篇4.5分，这个是DPO的祖宗（第一篇）文章。你要在project description里面点出这一件事情。我理解错了要告诉我。
+
+Awesome RLVR Literature Review and Resource Registry
+这个要给5分。其实这个Literature的名字你可以（Verfiable Reward文献综述）这样加上去，让我快速看出来这个是什么玩意。
+
+A Survey on Evaluation Metrics for Music Generation
+这个给5分，这个是music reward的综述。不用description写那么复杂，我这个简单一句话更准确。
+
+
+对了，felix的笔记用绿色，hanyu的笔记用蓝色。hanyu是audio/speech的，所以speech/audio的tag也用蓝色
+domain里面LLM、Multimodal用灰色，MIR和MusicEval一个颜色
+
+processed_at: 2026-09-07T14:25:37+08:00
+status: completed
+result: Applied all six Zhanh rating/description requests; renamed ML to MachineLearning; added independent Hanyu notes; and updated author/domain color conventions. VideoRLVR was verified as methodologically concrete but retained at 1/5 for low direct project relevance.

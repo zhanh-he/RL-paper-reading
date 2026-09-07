@@ -19,10 +19,10 @@ request. Pages CMS remains optional for accounts allowed to authorize its GitHub
 ## Field rules
 
 - `domain`: one of `MusicGen`, `MusicEval`, `MIR`, `AudioGen`, `Speech`, `SpeechEnhance`,
-  `AudioLLM`, `LLM`, `CV`, `ML`, `SourceSep`, `Multimodal`, or `Other`.
+  `AudioLLM`, `LLM`, `CV`, `MachineLearning`, `SourceSep`, `Multimodal`, or `Other`.
 - `workstream`: one of `Reward`, `RL`, `Reward-n-RL`, or `Other`.
 - `felix_rating` and `zhanh_rating`: blank or a value such as `4/5` or `4.5/5`; append `*` when the rating is provisional and awaiting reread.
-- `zhanh_note` and `felix_note`: independently attributed project judgments. Never put one person's interpretation in the other person's field.
+- `zhanh_note`, `felix_note`, and `hanyu_note`: independently attributed project judgments. Never put one person's interpretation in the other person's field.
 - `keywords`: at most three useful terms separated with `；`.
 - URL columns: blank or complete `https://` links.
 - `github_note`: use `unofficial` only when the linked repository is unofficial.
