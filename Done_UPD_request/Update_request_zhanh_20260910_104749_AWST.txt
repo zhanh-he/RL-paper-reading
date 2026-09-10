@@ -1,0 +1,31 @@
+Update requests by Zhanh
+
+Add new requests below this line, then commit the file through GitHub.
+---
+https://benadar293.github.io/voice-conversion/
+Adapting Diffusion-Based Music Synthesis to Speech and Singing Voice Conversion
+加入这篇文章
+
+https://arxiv.org/pdf/2508.17229
+加入这篇文章
+
+还有，加入下面的这些内容：
+1. RL没有SFT那么容易过拟合，因为SFT有GT答案拟合，但RL是根据自己生成样本的相对优化，不存在真实答案
+Goolge Deepmind“SFT Memorizes, RL Generalizes”ICML 2025
+https://tianzhechu.com/SFTvsRL/
+--- RL确实适合解决训推不一致，因为会让生成的distribution移动 ---
+
+2.“RL会压制低概率解 ，且依赖SFT模型的能力”
+斯坦福 "The Invisible Leash: Why RLVR May or May Not Escape Its Origin"
+智库解读 https://eu.36kr.com/zh/p/3957481215786115
+--- 但是，RL会让生成的distribution锐化 ---
+--- 我们RL有过早抵达近端最优解的感觉，而没有往远的、好的distribution走 ---
+
+3. "SFT到RL可能会有一条 Policy Shift > Re-adapt > Overfit的曲线"
+https://developer.aliyun.com/article/1685186
+
+都是4.5/5星星
+
+processed_at: 2026-09-10T10:47:49+08:00
+status: completed
+result: Reused and updated two existing catalog records, added three verified primary papers, applied Zhanh's 4.5/5 ratings, and preserved precise caveats about RL generalization, base-policy support, and the scope of CHORD's SFT trajectory.
