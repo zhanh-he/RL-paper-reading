@@ -1,0 +1,96 @@
+{
+  "optimizer_step": 100,
+  "heldout": [
+    {
+      "index": 0,
+      "prompt": {
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5101,
+      "audio": "step_000100/heldout_0/audio.flac",
+      "reward": {
+        "Coherence": 3.626,
+        "Musicality": 3.5658,
+        "Memorability": 3.5598,
+        "Clarity": 3.4659,
+        "Naturalness": 3.1961,
+        "mean": 3.4827199999999996
+      },
+      "signal": {
+        "peak": 0.8511906862258911,
+        "rms": 0.1480885969281057,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      }
+    },
+    {
+      "index": 1,
+      "prompt": {
+        "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+        "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5102,
+      "audio": "step_000100/heldout_1/audio.flac",
+      "reward": {
+        "Coherence": 3.8657,
+        "Musicality": 3.806,
+        "Memorability": 3.9373,
+        "Clarity": 3.7428,
+        "Naturalness": 3.4831,
+        "mean": 3.76698
+      },
+      "signal": {
+        "peak": 0.8165335655212402,
+        "rms": 0.0931533742024829,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      }
+    },
+    {
+      "index": 2,
+      "prompt": {
+        "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+        "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5103,
+      "audio": "step_000100/heldout_2/audio.flac",
+      "reward": {
+        "Coherence": 3.7241,
+        "Musicality": 3.7018,
+        "Memorability": 3.5613,
+        "Clarity": 3.3916,
+        "Naturalness": 3.4667,
+        "mean": 3.5691
+      },
+      "signal": {
+        "peak": 0.8166991472244263,
+        "rms": 0.14702433232764578,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      }
+    }
+  ],
+  "mean_reward": 3.6062666666666665
+}

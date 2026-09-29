@@ -46,12 +46,15 @@ export MUSE_CRITIC_MAX_NEW_TOKENS=512
 export MUSE_MUCODEC_MAX_WORKERS=1
 export MUSE_CRITIC_MAX_WORKERS=1
 export MUSECRITIC_RM_STRICT=true
+MAX_STEPS="${MAX_STEPS:-1}"
+MAX_PROMPTS="${MAX_PROMPTS:-2}"
+SAVE_STEPS="${SAVE_STEPS:-1}"
 SERVICE_GPU=1
 if [[ "${SINGLE_GPU:-false}" == true ]]; then
     SERVICE_GPU=0
 fi
 
-"$TRAIN_PY" - "$DATA" "$RUN_DIR/pilot.jsonl" <<'PY'
+"$TRAIN_PY" - "$DATA" "$RUN_DIR/pilot.jsonl" "$MAX_PROMPTS" <<'PY'
 import json
 import sys
 
@@ -61,7 +64,7 @@ with open(sys.argv[1], encoding="utf-8") as source:
         item = json.loads(line)
         first = next(message for message in item["messages"] if message["role"] == "user")
         rows.append({"messages": [first, {"role": "assistant", "content": ""}]})
-        if len(rows) == 2:
+        if len(rows) == int(sys.argv[3]):
             break
 with open(sys.argv[2], "w", encoding="utf-8") as target:
     for row in rows:
@@ -119,10 +122,23 @@ for port in "${ports[@]}"; do
 done
 
 if [[ -n "${HELDOUT_PY:-}" ]]; then
-    : "${EVAL_ADAPTER:?Set EVAL_ADAPTER for held-out replay}"
-    "$TRAIN_PY" "$HELDOUT_PY" --model "$MODEL" --adapter "$EVAL_ADAPTER" \
-        --plugin "$PLUGIN" --output "$RUN_DIR" >"$RUN_DIR/heldout.log" 2>&1
-    cat "$RUN_DIR/receipt.json"
+    if [[ -n "${EVAL_SOURCE_JOB:-}" ]]; then
+        for step in 25 50; do
+            adapter=$(find "$LAB_ROOT/experiments/muse_grpo_pilot/outputs/$EVAL_SOURCE_JOB/checkpoint" \
+                -type d -name "checkpoint-$step" -print -quit)
+            [[ -n "$adapter" ]] || { printf 'Missing adapter at step %s\n' "$step" >&2; exit 1; }
+            stage="$RUN_DIR/step_$(printf '%06d' "$step")"
+            "$TRAIN_PY" "$HELDOUT_PY" --model "$MODEL" --adapter "$adapter" \
+                --plugin "$PLUGIN" --output "$stage" --optimizer-step "$step" \
+                >"$RUN_DIR/heldout_step_${step}.log" 2>&1
+            cat "$stage/receipt.json"
+        done
+    else
+        : "${EVAL_ADAPTER:?Set EVAL_ADAPTER for held-out replay}"
+        "$TRAIN_PY" "$HELDOUT_PY" --model "$MODEL" --adapter "$EVAL_ADAPTER" \
+            --plugin "$PLUGIN" --output "$RUN_DIR" >"$RUN_DIR/heldout.log" 2>&1
+        cat "$RUN_DIR/receipt.json"
+    fi
     exit 0
 fi
 
@@ -133,13 +149,13 @@ fi
     "${vllm_args[@]}" \
     --max_completion_length 512 --max_length 2048 \
     --per_device_train_batch_size 2 --gradient_accumulation_steps 1 \
-    --num_generations 2 --max_steps 1 --learning_rate 1e-6 \
-    --save_steps 1 --logging_steps 1 --temperature 0.9 \
+    --num_generations 2 --max_steps "$MAX_STEPS" --learning_rate 1e-6 \
+    --save_steps "$SAVE_STEPS" --logging_steps 1 --temperature 0.9 \
     --repetition_penalty 1.3 --top_p 0.9 \
     --report_to none --output_dir "$RUN_DIR/checkpoint" \
     >"$RUN_DIR/train.log" 2>&1
 
-"$TRAIN_PY" - "$RUN_DIR" <<'PY'
+"$TRAIN_PY" - "$RUN_DIR" "$MAX_STEPS" "$MAX_PROMPTS" <<'PY'
 import json
 import pathlib
 import sys
@@ -150,15 +166,15 @@ adapters = list((root / "checkpoint").rglob("adapter_model.safetensors"))
 decoded = list((root / "decoded").glob("*.wav"))
 training_logged_reward = "'rewards/MusecriticRM/mean'" in (root / "train.log").read_text()
 receipt = {
-    "status": "completed_one_step_online_musecritic_grpo" if adapters and decoded and training_logged_reward else "incomplete",
+    "status": "completed_online_musecritic_grpo" if adapters and decoded and training_logged_reward else "incomplete",
     "rollout_records": len(records),
     "decoded_wavs": len(decoded),
     "training_logged_reward": training_logged_reward,
     "adapter_checkpoints": len(adapters),
-    "dataset_prompts": 2,
+    "dataset_prompts": int(sys.argv[3]),
     "group_size": 2,
-    "optimizer_steps_requested": 1,
-    "scope": "engineering smoke only; no held-out quality claim",
+    "optimizer_steps_requested": int(sys.argv[2]),
+    "scope": "training completion only; held-out and listening evaluation are separate",
 }
 (root / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
 print(json.dumps(receipt, indent=2))

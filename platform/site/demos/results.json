@@ -9,6 +9,7 @@
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
@@ -2134,7 +2135,43 @@
           },
           {
             "step": 100,
-            "status": "running"
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000100.flac",
+            "wave": "visuals/yue2_longrun_000100_wave.png",
+            "spectrum": "visuals/yue2_longrun_000100_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000100/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.626,
+                "Musicality": 3.5658,
+                "Memorability": 3.5598,
+                "Clarity": 3.4659,
+                "Naturalness": 3.1961,
+                "mean": 3.4827199999999996
+              },
+              "signal": {
+                "peak": 0.8511906862258911,
+                "rms": 0.1480885969281057,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.6062666666666665
           },
           {
             "step": 300,
@@ -2282,6 +2319,14 @@
               "generated_tokens": 500,
               "audio_tokens": 489
             }
+          },
+          {
+            "step": 25,
+            "status": "running"
+          },
+          {
+            "step": 50,
+            "status": "running"
           },
           {
             "step": 100,
