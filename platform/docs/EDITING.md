@@ -1,18 +1,18 @@
 # Updating the literature catalog
 
-The shared catalog lives in `data/literature.csv`. The interactive site's JSON is
+The shared catalog lives in `platform/data/literature.csv`. The interactive site's JSON is
 generated from it. `README.md` stays short and is maintained manually as the team entrypoint.
 
 ## Recommended no-install workflow
 
-1. Open [`update-request/`](update-request/README.md) and use the literature or new-method template.
-2. Add one request per file with a descriptive name. Keep the author's rating and judgment attributed.
-3. Commit the new file through GitHub's normal web editor. No GitHub App is required.
-4. The maintainer/agent verifies and applies the change, then archives the request under `update-request/archive/` with processing status.
+1. Open your stable request file in `upd_request/`: [Zhanh](../../upd_request/Update_request_zhanh.txt), [Felix](../../upd_request/Update_request_felix.txt), or [Hanyu](../../upd_request/Update_request_hanyu.txt).
+2. Add papers, method ideas, rating changes or corrections below the marker. Keep each person's rating and judgment attributed.
+3. Commit the TXT through GitHub's normal web editor. No GitHub App is required.
+4. The maintainer/agent verifies the request, archives the original in `upd_request/done_requests/` with an AWST timestamp and processing receipt, then recreates the blank TXT at the stable path.
 
-The legacy root `Update_request_*.txt` files remain in place, including any pending text. They use the previous `Done_UPD_request/` archive convention until explicitly processed; this layout change does not process or discard them.
+The existing pending request text was moved without processing or rewriting it. A new method becomes task code under `music-trans/` or `music-gen/` only when implemented; there is no second request workflow.
 
-Contributors who prefer Git may edit `data/literature.csv` directly and open a pull
+Contributors who prefer Git may edit `platform/data/literature.csv` directly and open a pull
 request. Pages CMS remains optional for accounts allowed to authorize its GitHub App.
 
 ## Field rules
@@ -32,12 +32,12 @@ request. Pages CMS remains optional for accounts allowed to authorize its GitHub
 ## Direct data workflow
 
 GitHub's CSV editor remains available at
-[Edit raw data](https://github.com/zhanh-he/RL-paper-reading/edit/main/data/literature.csv).
-After a local edit, run:
+[Edit raw data](https://github.com/zhanh-he/RL-paper-reading/edit/main/platform/data/literature.csv).
+After a local edit, run from the repository root:
 
 ```bash
-npm run build
-npm run check
+npm --prefix platform run build
+npm --prefix platform run check
 ```
 
 The workflow rejects unsupported labels, duplicate IDs or titles, malformed URLs,
