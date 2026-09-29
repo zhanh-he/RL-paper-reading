@@ -1,14 +1,15 @@
 {
   "generated_from": [
+    "platform/site/demos/replays.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed30.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed31.json",
     "music-trans/choral-singing/rewards/audits/2026-09-29/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json",
     "music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/verification.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json"
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/verification.json"
   ],
   "choral": {
     "status": "paired_song_bootstrap",
@@ -921,5 +922,219 @@
       }
     },
     "caveat": "One prompt/group, two rollouts, one optimizer step and one held-out prompt. Short capped fragment, not a statistical song-quality result."
+  },
+  "replays": {
+    "lyrics": {
+      "yue2": {
+        "name": "YuE2-3B",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/yue2_songeval_before.flac",
+            "wave": "visuals/yue2_songeval_before_wave.png",
+            "spectrum": "visuals/yue2_songeval_before_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
+            "receipt_key": "before",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.8291,
+                "Musicality": 3.7992,
+                "Memorability": 3.8867,
+                "Clarity": 3.6915,
+                "Naturalness": 3.4849,
+                "mean": 3.7382799999999996
+              },
+              "signal": {
+                "peak": 0.8847516179084778,
+                "rms": 0.1104228775038593,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            }
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/yue2_songeval_after.flac",
+            "wave": "visuals/yue2_songeval_after_wave.png",
+            "spectrum": "visuals/yue2_songeval_after_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
+            "receipt_key": "after",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.3914,
+                "Musicality": 3.3173,
+                "Memorability": 3.2671,
+                "Clarity": 3.3089,
+                "Naturalness": 3.2208,
+                "mean": 3.3010999999999995
+              },
+              "signal": {
+                "peak": 0.7920576333999634,
+                "rms": 0.12220983013409607,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            }
+          },
+          {
+            "step": 100,
+            "status": "pending"
+          },
+          {
+            "step": 300,
+            "status": "pending"
+          },
+          {
+            "step": 1000,
+            "status": "pending"
+          }
+        ]
+      },
+      "muse": {
+        "name": "Muse-0.6b + MuCodec",
+        "style": "English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM; intimate melody and natural accompaniment",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/muse_songeval_before.flac",
+            "wave": "visuals/muse_songeval_before_wave.png",
+            "spectrum": "visuals/muse_songeval_before_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
+            "receipt_key": "before",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.5907,
+                "Musicality": 3.5705,
+                "Memorability": 3.6386,
+                "Clarity": 3.49,
+                "Naturalness": 3.5025,
+                "mean": 3.55846
+              },
+              "signal": {
+                "seconds": 19.8,
+                "peak": 0.717498779296875,
+                "rms": 0.10192784894964059,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 5.260942760942761e-7
+              }
+            }
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/muse_songeval_after.flac",
+            "wave": "visuals/muse_songeval_after_wave.png",
+            "spectrum": "visuals/muse_songeval_after_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
+            "receipt_key": "after",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.3343,
+                "Musicality": 3.4754,
+                "Memorability": 3.473,
+                "Clarity": 3.2552,
+                "Naturalness": 3.1269,
+                "mean": 3.33296
+              },
+              "signal": {
+                "seconds": 19.8,
+                "peak": 0.49462890625,
+                "rms": 0.05156136489600848,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 5.260942760942761e-7
+              }
+            }
+          },
+          {
+            "step": 100,
+            "status": "pending"
+          },
+          {
+            "step": 300,
+            "status": "pending"
+          },
+          {
+            "step": 1000,
+            "status": "pending"
+          }
+        ]
+      }
+    },
+    "vocal": {
+      "input": {
+        "audio": "audio/guide_vocal.wav",
+        "wave": "visuals/guide_vocal_wave.png",
+        "spectrum": "visuals/guide_vocal_spectrum.png"
+      },
+      "reference": null,
+      "stages": [
+        {
+          "step": 0,
+          "status": "measured",
+          "audio": "audio/ace_complete_seed29.wav",
+          "wave": "visuals/ace_complete_seed29_wave.png",
+          "spectrum": "visuals/ace_complete_seed29_spectrum.png"
+        },
+        {
+          "step": 100,
+          "status": "pending"
+        },
+        {
+          "step": 300,
+          "status": "pending"
+        },
+        {
+          "step": 1000,
+          "status": "pending"
+        }
+      ]
+    },
+    "choral": {
+      "input": null,
+      "reference": null,
+      "stages": [
+        {
+          "step": 0,
+          "status": "metrics_only"
+        },
+        {
+          "step": 100,
+          "status": "pending"
+        },
+        {
+          "step": 300,
+          "status": "pending"
+        },
+        {
+          "step": 1000,
+          "status": "pending"
+        },
+        {
+          "step": 1152,
+          "status": "metrics_only",
+          "scope": "frame_head"
+        }
+      ]
+    }
   }
 }
