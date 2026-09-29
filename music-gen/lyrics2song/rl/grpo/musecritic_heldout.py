@@ -1,4 +1,4 @@
-"""Replay a fixed Muse prompt before/after a one-step MuseCritic-GRPO adapter."""
+"""Replay a fixed Muse prompt before/after a MuseCritic-GRPO adapter."""
 
 import argparse
 import json
@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=5101)
     parser.add_argument("--max-tokens", type=int, default=500)
+    parser.add_argument("--optimizer-step", type=int, default=1)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(args.plugin.parent.resolve()))
@@ -53,7 +54,8 @@ def main():
         print(f"{name}: reward={reward:.4f}, audio_tokens={len(row['audio_tokens'])}", flush=True)
     difference = sum(a != b for a, b in zip(pairs["before"]["token_ids"], pairs["after"]["token_ids"]))
     receipt = {
-        "status": "one_step_musecritic_grpo_heldout_pair",
+        "status": "musecritic_grpo_heldout_pair",
+        "optimizer_step": args.optimizer_step,
         "model": "Muse-0.6b + MuCodec",
         "reward_model": "MuseCritic",
         "heldout_prompt": HELDOUT_PROMPT,
@@ -61,7 +63,7 @@ def main():
         "generated_token_difference": difference,
         "before": {key: value for key, value in pairs["before"].items() if key != "token_ids"},
         "after": {key: value for key, value in pairs["after"].items() if key != "token_ids"},
-        "caveat": "One short held-out prompt/seed after one small online GRPO update; reward and signal are not a human-quality or generalization claim.",
+        "caveat": "One short held-out prompt/seed; reward and signal are not a human-quality or generalization claim.",
     }
     (args.output / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps(receipt, indent=2), flush=True)

@@ -11,7 +11,7 @@
         { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
         { "step": 5, "status": "measured", "audio": "audio/yue2_longrun_000005.flac", "wave": "visuals/yue2_longrun_000005_wave.png", "spectrum": "visuals/yue2_longrun_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json", "receipt_key": "heldout:0" },
         { "step": 50, "status": "measured", "audio": "audio/yue2_longrun_000050.flac", "wave": "visuals/yue2_longrun_000050_wave.png", "spectrum": "visuals/yue2_longrun_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "running" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_longrun_000100.flac", "wave": "visuals/yue2_longrun_000100_wave.png", "spectrum": "visuals/yue2_longrun_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json", "receipt_key": "heldout:0" },
         { "step": 300, "status": "pending" },
         { "step": 1000, "status": "pending" }
       ]
@@ -40,6 +40,8 @@
       "stages": [
         { "step": 0, "status": "measured", "audio": "audio/muse_musecritic_before.wav", "wave": "visuals/muse_musecritic_before_wave.png", "spectrum": "visuals/muse_musecritic_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "before" },
         { "step": 1, "status": "measured", "audio": "audio/muse_musecritic_after.wav", "wave": "visuals/muse_musecritic_after_wave.png", "spectrum": "visuals/muse_musecritic_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "after" },
+        { "step": 25, "status": "running" },
+        { "step": 50, "status": "running" },
         { "step": 100, "status": "pending" },
         { "step": 300, "status": "pending" },
         { "step": 1000, "status": "pending" }

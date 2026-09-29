@@ -23,14 +23,17 @@ actually run; a blank GRPO stage is not an implied positive result.
    post-training result. The public weights remain gated for our account.
    [Receipt](../music-trans/multi-inst/models/muscriptor/muscriptor_receipt.json).
 3. **Lyrics-to-song has real but negative early GRPO comparisons.** YuE2-3B
-   SongEval-GRPO was measured at 0/1/5/50 updates on three fixed held-out
-   prompts; the corresponding SongEval means were 3.8403/3.6030/3.6160/3.5704.
-   Its 100-update job is running. Muse-0.6b SongEval one-step pilot moved one
+   SongEval-GRPO was measured at 0/1/5/50/100 updates on three fixed held-out
+   prompts; the corresponding SongEval means were
+   3.8403/3.6030/3.6160/3.5704/3.6063. The 100-update first held-out clip
+   has peak 0.851 and zero near-full-scale samples. Muse-0.6b SongEval one-step pilot moved one
    held-out SongEval score 3.5585 to 3.3330. A separate online MuseCritic
    one-step run on Gadi completed; its held-out MuseCritic mean fell 3.0781 to
    2.5313, while peak amplitude rose 0.197 to 0.422 without full-scale
    clipping. These are *not* quality gains or a reward-hacking finding.
    [MuseCritic receipt](../music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json).
+   A separate 50-step MuseCritic run is active on Gadi with automatic 25/50
+   held-out replay after training; no result is claimed for those steps yet.
 4. **SongEval vulnerability is conditional.** In a controlled 47-clip
    perturbation audit, safe gain increased mean score by 0.0430; full-scale
    hard clipping by 0.0951 relative to normalized reference. After matching

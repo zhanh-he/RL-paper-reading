@@ -317,7 +317,7 @@ function renderLyrics(data) {
     } else if (step === 1) {
       $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {
-      $('#lyrics-interpretation').textContent = `${step} 步留出片段 SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。该样本的主观偏好与其他留出样本也必须核对，不能只凭 reward 认定改善。`;
+      $('#lyrics-interpretation').textContent = `YuE2 ${step} 步：三条固定留出提示的 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前试听样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。主观偏好仍需独立核对，不能只凭 reward 认定改善。`;
     }
     $('#listen-status').textContent = '选择 A 或 B 开始播放';
     for (const button of document.querySelectorAll('[data-listen]')) button.setAttribute('aria-pressed', 'false');
