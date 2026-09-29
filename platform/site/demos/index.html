@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Music post-training experiments with measured results, reward audits and audio demos." />
+    <title>Music Post-Training Lab | Experiments</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script type="module" src="./lab.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="../">
+        <span class="brand-mark" aria-hidden="true">RL</span>
+        <span><strong>Music Post-Training Lab</strong><small>Verified experiment record</small></span>
+      </a>
+      <nav class="header-actions" aria-label="Site navigation">
+        <a class="button button-secondary" href="../"><i data-lucide="library-big" aria-hidden="true"></i>Literature</a>
+        <a class="button button-secondary" href="https://github.com/zhanh-he/RL-paper-reading" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i>Repository</a>
+      </nav>
+    </header>
+
+    <main class="lab-main">
+      <section class="lab-heading">
+        <div>
+          <p class="eyebrow">Presentation evidence · 29 Sep 2026</p>
+          <h1>Music post-training experiments</h1>
+          <p class="lab-subtitle">同一页看已测结果、reward 失效模式和可播放样本。每个结果都标明实验层级与限制。</p>
+        </div>
+        <div class="lab-legend" aria-label="Evidence labels"><span class="state measured">实测</span><span class="state diagnostic">诊断</span><span class="state inference">推理</span><span class="state pending">待运行</span></div>
+      </section>
+
+      <nav class="lab-tabs" aria-label="Experiment views">
+        <button class="lab-tab" type="button" data-view="overview" aria-selected="true">Overview</button>
+        <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
+        <button class="lab-tab" type="button" data-view="rewards" aria-selected="false">MIDI rewards</button>
+        <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal demo</button>
+      </nav>
+
+      <section class="lab-view" id="view-overview">
+        <div class="section-intro"><div><p class="eyebrow">The short version</p><h2>What we actually learned</h2></div><p>把提升幅度和失败案例放在一起看。</p></div>
+        <div class="finding-grid">
+          <article class="finding"><span class="state measured">实测 · 30 首短片段</span><strong id="headline-grpo">Loading</strong><p>弱 ChoralStream frame head 用 96 首训练歌曲做 GRPO 后，seed 29 测试 frame F1 的变化；另两次训练 seed 同向。</p><a href="#choral" data-open-view="choral">看对照实验 <span aria-hidden="true">↗</span></a></article>
+          <article class="finding"><span class="state measured">监督对照</span><strong id="headline-bce">Loading</strong><p>相同起点和歌曲上的 weighted BCE 更强。GRPO 的提升不能单独讲成最优训练方法。</p><a href="#choral" data-open-view="choral">看完整指标 <span aria-hidden="true">↗</span></a></article>
+          <article class="finding"><span class="state diagnostic">四例 MIDI 审计</span><strong id="headline-swap">Loading</strong><p>声部交换时普通 onset 匹配看不见错误；track-aware note reward 能识别。</p><a href="#rewards" data-open-view="rewards">看 reward 压测 <span aria-hidden="true">↗</span></a></article>
+        </div>
+        <div class="case-status">
+          <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
+          <div class="status-row"><span>合唱转录</span><span class="state measured">frame-head GRPO 已测</span><small>完整 SATB MIDI GRPO 尚未运行</small></div>
+          <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">ACE-Step completion 已生成</span><small>非纯伴奏；GRPO 尚未运行</small></div>
+          <div class="status-row"><span>以词生曲</span><span class="state pending">MuseCritic 作业已提交</span><small>Gadi H200 排队；不能报训练结果</small></div>
+        </div>
+      </section>
+
+      <section class="lab-view" id="view-choral" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral transcription: frame-head GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
+        <div class="protocol-strip"><span><strong>96</strong> train songs</span><span><strong>28</strong> validation</span><span><strong>30</strong> test songs</span><span><strong>5.12 s</strong> per song</span><span><strong>8</strong> rollouts/group</span><span><strong>1,152</strong> updates</span></div>
+        <div class="metric-controls"><label for="head-select">Evaluation head</label><select id="head-select"><option value="frame">Frame F1</option><option value="onset">Onset F1</option><option value="offset">Offset F1</option></select><span>Higher is better · fixed threshold</span></div>
+        <div class="chart" id="choral-chart" aria-label="Held-out F1 by training arm"></div>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Training arm</th><th>Onset F1</th><th>Frame F1</th><th>Offset F1</th><th>Frame Δ vs frozen</th></tr></thead><tbody id="choral-table"></tbody></table></div>
+        <div class="evidence-note"><strong>Interpretation</strong><p>Frame-only GRPO 的 frame F1 从 <span id="frame-before"></span> 到 <span id="frame-after"></span>（seed 29），30 首歌 paired bootstrap 的变化 95% 区间 <span id="frame-ci"></span>。三个训练 seed 的测试 frame F1 为 <span id="seed-range"></span>。但 onset / offset F1 下降，weighted BCE 更好。此实验只更新 Bernoulli frame head，encoder 和 AR MIDI decoder 冻结；不是完整 SATB note-F1 GRPO。</p></div>
+        <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head" target="_blank" rel="noreferrer">Protocol, code and JSON receipts <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="lab-view" id="view-rewards" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Case 03 · Reward diagnostic</p><h2>What should a SATB reward penalize?</h2></div><span class="state diagnostic">诊断 · 4 MIDI 对</span></div>
+        <p class="section-copy">选一个受控错误，看哪些指标会漏报。受控样本从四个参考 MIDI 构造，不代表随机测试集，也未用于 GRPO 训练。</p>
+        <div class="metric-controls"><label for="variant-select">Controlled error</label><select id="variant-select"><option value="swap_soprano_alto">Swap Soprano / Alto</option><option value="drop_bass">Drop Bass</option><option value="shift_onset_100ms">Shift 100 ms</option><option value="fragment_sustained">Fragment sustained notes</option><option value="overfill_octave">Octave overfill</option></select></div>
+        <div class="audit-grid" id="audit-metrics"></div>
+        <div class="evidence-note"><strong id="audit-conclusion-title">Reward lesson</strong><p id="audit-conclusion"></p></div>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Existing predictions · 4 examples</th><th>Mean F1</th><th>Role</th></tr></thead><tbody id="real-audit-table"></tbody></table></div>
+        <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rewards" target="_blank" rel="noreferrer">Metric definitions, tests and aggregate audit <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="lab-view" id="view-vocal" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Case 02 · Model inference</p><h2>Vocal-conditioned music completion</h2></div><span class="state inference">单次推理 · lab5090</span></div>
+        <p class="section-copy">ACE-Step 1.5 base 的官方 <code>complete</code> 路径，16 秒、seed 29、50 steps。输入是自行合成的唱元音引导声，并非真人声；输出是歌曲 completion，尚未验证为独立伴奏轨道。</p>
+        <div class="audio-grid">
+          <div class="audio-item"><span class="audio-index">01 / INPUT</span><h3>Synthetic vocal guide</h3><audio controls preload="metadata" src="./audio/guide_vocal.wav">Your browser does not support audio playback.</audio><small>Original synthetic asset · 16 s · mono</small></div>
+          <div class="audio-item"><span class="audio-index">02 / OUTPUT</span><h3>ACE-Step 1.5 completion</h3><audio controls preload="metadata" src="./audio/ace_complete_seed29.wav">Your browser does not support audio playback.</audio><small>Base model · fixed seed 29 · 16 s · stereo</small></div>
+        </div>
+        <div class="evidence-note"><strong>What this does and does not prove</strong><p>证明模型在本地可加载、接受 vocal guide 并产出非静音音频；尚无人工听感评分、coverage/richness/beat reward 结果或 GRPO 前后对照。后续应先换授权真人声输入，再验证原人声保留与伴奏分离。</p></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">Inference code and provenance ↗</a><a class="source-link" href="https://github.com/ace-step/ACE-Step-1.5" target="_blank" rel="noreferrer">Official ACE-Step repository ↗</a></div>
+      </section>
+
+      <footer class="lab-footer">Data are generated from versioned aggregate receipts. No private recordings, source IDs or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+{
+  "status": "local_online_grpo_frame_policy_pilot",
+  "scope": "ChoralStream frame/onset/offset head only; not MIDI event decoding or SATB track-note",
+  "algorithm": "grpo",
+  "arm": "frame",
+  "seed": 30,
+  "epochs": 3,
+  "group_size": 8,
+  "update_epochs": 4,
+  "train_original_songs": 96,
+  "valid_original_songs": 28,
+  "test_original_songs": 30,
+  "segment_index": 2,
+  "clip_eps": 0.2,
+  "lr": 0.0005,
+  "kl_beta": 0.01,
+  "bce_pos_weight": null,
+  "train_steps": 1152,
+  "skipped_groups": 0,
+  "mean_clip_fraction": 0.0,
+  "before_valid": {
+    "onset": {
+      "precision": 0.002906532048340217,
+      "recall": 0.1532258064516129,
+      "f1": 0.005704849121753491,
+      "tp": 76,
+      "fp": 26072,
+      "fn": 420
+    },
+    "frame": {
+      "precision": 0.12707108498129344,
+      "recall": 0.15635661145135435,
+      "f1": 0.14020086611996682,
+      "tp": 3804,
+      "fp": 26132,
+      "fn": 20525
+    },
+    "offset": {
+      "precision": 0.00372704218858065,
+      "recall": 0.19556451612903225,
+      "f1": 0.00731468215066737,
+      "tp": 97,
+      "fp": 25929,
+      "fn": 399
+    }
+  },
+  "after_valid": {
+    "onset": {
+      "precision": 0.0023396133481098386,
+      "recall": 0.22983870967741934,
+      "f1": 0.0046320750883751165,
+      "tp": 114,
+      "fp": 48612,
+      "fn": 382
+    },
+    "frame": {
+      "precision": 0.22243256774516554,
+      "recall": 0.5843643388548646,
+      "f1": 0.32221655617882033,
+      "tp": 14217,
+      "fp": 49699,
+      "fn": 10112
+    },
+    "offset": {
+      "precision": 0.002531119548176272,
+      "recall": 0.2701612903225806,
+      "f1": 0.005015251604693377,
+      "tp": 134,
+      "fp": 52807,
+      "fn": 362
+    }
+  },
+  "before_test": {
+    "onset": {
+      "precision": 0.0035908119072419276,
+      "recall": 0.18555240793201133,
+      "f1": 0.007045283424760676,
+      "tp": 131,
+      "fp": 36351,
+      "fn": 575
+    },
+    "frame": {
+      "precision": 0.11320978011313877,
+      "recall": 0.175890854263965,
+      "f1": 0.13775524898476427,
+      "tp": 4783,
+      "fp": 37466,
+      "fn": 22410
+    },
+    "offset": {
+      "precision": 0.00429856449173455,
+      "recall": 0.23109843081312412,
+      "f1": 0.008440137542982182,
+      "tp": 162,
+      "fp": 37525,
+      "fn": 539
+    }
+  },
+  "after_test": {
+    "onset": {
+      "precision": 0.0024165576846534374,
+      "recall": 0.24079320113314448,
+      "f1": 0.004785093027837983,
+      "tp": 170,
+      "fp": 70178,
+      "fn": 536
+    },
+    "frame": {
+      "precision": 0.20949345021666585,
+      "recall": 0.6186886331041077,
+      "f1": 0.31300173951870214,
+      "tp": 16824,
+      "fp": 63484,
+      "fn": 10369
+    },
+    "offset": {
+      "precision": 0.0029834021990335457,
+      "recall": 0.30385164051355207,
+      "f1": 0.00590878828229028,
+      "tp": 213,
+      "fp": 71182,
+      "fn": 488
+    }
+  },
+  "checkpoint_sha256": "15a07b1dd21f85dd2e69ddbc11b4ef82c585ab4e90f362b7033175e2694393ff"
+}

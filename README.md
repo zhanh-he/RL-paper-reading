@@ -1,19 +1,19 @@
 # Music Post-Training Lab
 
-[Literature catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Experiment map](#experiment-map) · [Request an update](upd_request/) · [Editing guide](platform/docs/EDITING.md)
+[Literature catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Live experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) · [Presentation brief](notes/2026-09-29-presentation-brief.md) · [Request an update](upd_request/) · [Editing guide](platform/docs/EDITING.md)
 
-This repository keeps the shared RL literature catalog and the public-facing structure for music post-training experiments. The GitHub Pages URL remains the literature site; its source, data and build tools now live together under [`platform/`](platform/). This README is the experiment overview until verified results justify a separate overview site.
+This repository keeps the shared RL literature catalog and measured music post-training pilots. GitHub Pages now has an [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) with versioned aggregate results and a playable vocal-completion sample. The page labels local measurements, diagnostic tests, model inference and queued jobs separately.
 
 ## Experiment Map
 
 | Area | Task | Current state |
 | --- | --- | --- |
 | [Music transcription](music-trans/README.md) | [Multi-instrument](music-trans/multi-inst/README.md) | Model, reward and DPO/GRPO layout; no local training result published here |
-| [Music transcription](music-trans/README.md) | [Choral singing](music-trans/choral-singing/README.md) | SATB-aware reward plan; no local training result published here |
-| [Music generation](music-gen/README.md) | [Fixed vocal to accompaniment](music-gen/vocal2accomp/README.md) | Beat, coverage, richness and combined reward contracts |
-| [Music generation](music-gen/README.md) | [Lyrics to song](music-gen/lyrics2song/README.md) | Open-model and reward comparison plan |
+| [Music transcription](music-trans/README.md) | [Choral singing](music-trans/choral-singing/README.md) | [Real frame-head GRPO pilot](music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/README.md), 30-song held-out test; [four-pair note reward audit](music-trans/choral-singing/rewards/audits/2026-09-29/README.md) |
+| [Music generation](music-gen/README.md) | [Fixed vocal to accompaniment](music-gen/vocal2accomp/README.md) | [ACE-Step 1.5 completion inference](music-gen/vocal2accomp/models/ace-step-1.5/README.md); beat/coverage/richness GRPO not yet run |
+| [Music generation](music-gen/README.md) | [Lyrics to song](music-gen/lyrics2song/README.md) | MuseCritic online GRPO smoke submitted on Gadi; no result until checkpoint and rollouts exist |
 
-Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds an adapter/config and provenance, not weights. Simple reward implementations belong in one Python file each; `combine.py` at the reward root composes them after their scales and failure modes have been checked. A run gets its own folder under the appropriate RL method, with a reproducible record using the [experiment template](notes/EXPERIMENT_RECORD.md). Public demo pages will live under [`platform/site/demos/`](platform/site/demos/README.md) when actual, redistributable artifacts exist.
+Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds an adapter/config and provenance, not weights. Simple reward implementations belong in one Python file each; `combine.py` at the reward root composes them after their scales and failure modes have been checked. A run gets its own folder under the appropriate RL method, with a reproducible record using the [experiment template](notes/EXPERIMENT_RECORD.md). [Model and data selection](notes/2026-09-29-model-data-reward-selection.md) records gates, licenses and recommended next experiments.
 
 ## Literature And Updates
 
