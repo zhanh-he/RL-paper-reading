@@ -1,0 +1,24 @@
+{
+  "status": "inference_complete_not_grpo",
+  "model": "ACE-Step 1.5 base",
+  "task": "complete",
+  "seed": 29,
+  "steps": 50,
+  "guide": {
+    "public_path": "platform/site/demos/audio/guide_vocal.wav",
+    "sample_rate": 48000,
+    "seconds": 16.0,
+    "channels": 1,
+    "rms": 0.23309624061548562,
+    "sha256": "b4336c4f124adeba71076388735751c7b4426d4ac4391891ab6d520baa7d5b79"
+  },
+  "output": {
+    "public_path": "platform/site/demos/audio/ace_complete_seed29.wav",
+    "sample_rate": 48000,
+    "seconds": 16.0,
+    "channels": 2,
+    "rms": 0.15607641735852526,
+    "sha256": "d16ae6c20b713756161734e0e006429e19a8e421e3e83599dcd6b6c7153abd00"
+  },
+  "warning": "The complete task may return a vocal-plus-accompaniment mix, not an isolated accompaniment stem."
+}

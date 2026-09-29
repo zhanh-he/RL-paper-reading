@@ -1,0 +1,217 @@
+{
+  "status": "local_diagnostic_reward_audit_not_training",
+  "pairs": 4,
+  "sampling": "existing examples; not a random held-out benchmark",
+  "real_predictions": {
+    "onset": {
+      "mean_f1": 0.12428259377037468,
+      "mean_precision": 0.12663719324651612,
+      "mean_recall": 0.12888931052365363
+    },
+    "offset": {
+      "mean_f1": 0.06679760062734157,
+      "mean_precision": 0.06845785062711647,
+      "mean_recall": 0.06881018665025183
+    },
+    "track_onset": {
+      "mean_f1": 0.08852038942320044,
+      "mean_precision": 0.08790116338588387,
+      "mean_recall": 0.09449622979368665
+    },
+    "track_note": {
+      "mean_f1": 0.04718115510247954,
+      "mean_precision": 0.04712457156916804,
+      "mean_recall": 0.05021055671467062
+    },
+    "active_voice": {
+      "mean_f1": 0.7394356537695359,
+      "mean_precision": 0.819588764939365,
+      "mean_recall": 0.6990396189120545
+    },
+    "mean_fragmentation_rate": 0.025683801306779358,
+    "total_reference_notes": 2197,
+    "total_estimate_notes": 1987
+  },
+  "controlled": {
+    "oracle": {
+      "onset": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "offset": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "track_onset": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "track_note": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "active_voice": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "mean_fragmentation_rate": 0.0,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 2197
+    },
+    "drop_bass": {
+      "onset": {
+        "mean_f1": 0.9206424336077885,
+        "mean_precision": 1.0,
+        "mean_recall": 0.857472713228844
+      },
+      "offset": {
+        "mean_f1": 0.9206424336077885,
+        "mean_precision": 1.0,
+        "mean_recall": 0.857472713228844
+      },
+      "track_onset": {
+        "mean_f1": 0.9206424336077885,
+        "mean_precision": 1.0,
+        "mean_recall": 0.857472713228844
+      },
+      "track_note": {
+        "mean_f1": 0.9206424336077885,
+        "mean_precision": 1.0,
+        "mean_recall": 0.857472713228844
+      },
+      "active_voice": {
+        "mean_f1": 0.9103213905076213,
+        "mean_precision": 1.0,
+        "mean_recall": 0.8400058956735545
+      },
+      "mean_fragmentation_rate": 0.0,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 1820
+    },
+    "swap_soprano_alto": {
+      "onset": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "offset": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "track_onset": {
+        "mean_f1": 0.34140790925932774,
+        "mean_precision": 0.34140790925932774,
+        "mean_recall": 0.34140790925932774
+      },
+      "track_note": {
+        "mean_f1": 0.3349927210922563,
+        "mean_precision": 0.3349927210922563,
+        "mean_recall": 0.3349927210922563
+      },
+      "active_voice": {
+        "mean_f1": 0.9765884289620347,
+        "mean_precision": 0.9765884289620347,
+        "mean_recall": 0.9765884289620347
+      },
+      "mean_fragmentation_rate": 0.0,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 2197
+    },
+    "shift_onset_100ms": {
+      "onset": {
+        "mean_f1": 0.0034059945504087193,
+        "mean_precision": 0.0034059945504087193,
+        "mean_recall": 0.0034059945504087193
+      },
+      "offset": {
+        "mean_f1": 0.0,
+        "mean_precision": 0.0,
+        "mean_recall": 0.0
+      },
+      "track_onset": {
+        "mean_f1": 0.0034059945504087193,
+        "mean_precision": 0.0034059945504087193,
+        "mean_recall": 0.0034059945504087193
+      },
+      "track_note": {
+        "mean_f1": 0.0,
+        "mean_precision": 0.0,
+        "mean_recall": 0.0
+      },
+      "active_voice": {
+        "mean_f1": 0.9968533161995146,
+        "mean_precision": 0.9981288299165174,
+        "mean_recall": 0.9955824599143148
+      },
+      "mean_fragmentation_rate": 0.0,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 2197
+    },
+    "fragment_sustained": {
+      "onset": {
+        "mean_f1": 0.7304784958447518,
+        "mean_precision": 0.5767271519501567,
+        "mean_recall": 1.0
+      },
+      "offset": {
+        "mean_f1": 0.1975592992123211,
+        "mean_precision": 0.1582064888049681,
+        "mean_recall": 0.2632028095944589
+      },
+      "track_onset": {
+        "mean_f1": 0.7304784958447518,
+        "mean_precision": 0.5767271519501567,
+        "mean_recall": 1.0
+      },
+      "track_note": {
+        "mean_f1": 0.19215491199468704,
+        "mean_precision": 0.1540224857184952,
+        "mean_recall": 0.255546976353596
+      },
+      "active_voice": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "mean_fragmentation_rate": 0.8393783058382012,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 3936
+    },
+    "overfill_octave": {
+      "onset": {
+        "mean_f1": 0.6666666666666666,
+        "mean_precision": 0.5,
+        "mean_recall": 1.0
+      },
+      "offset": {
+        "mean_f1": 0.6666666666666666,
+        "mean_precision": 0.5,
+        "mean_recall": 1.0
+      },
+      "track_onset": {
+        "mean_f1": 0.6666666666666666,
+        "mean_precision": 0.5,
+        "mean_recall": 1.0
+      },
+      "track_note": {
+        "mean_f1": 0.6666666666666666,
+        "mean_precision": 0.5,
+        "mean_recall": 1.0
+      },
+      "active_voice": {
+        "mean_f1": 1.0,
+        "mean_precision": 1.0,
+        "mean_recall": 1.0
+      },
+      "mean_fragmentation_rate": 0.0002828054298642534,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 4394
+    }
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "generated_from": [
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed30.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed31.json",
+    "music-trans/choral-singing/rewards/audits/2026-09-29/receipt.json"
+  ],
+  "choral": {
+    "status": "paired_song_bootstrap",
+    "songs": 30,
+    "clip_seconds": 5.12,
+    "draws": 10000,
+    "seed": 20260929,
+    "baseline_f1": {
+      "onset": 0.007045283424760676,
+      "frame": 0.13775524898476427,
+      "offset": 0.008440137542982182
+    },
+    "runs": {
+      "frame": {
+        "f1": {
+          "onset": 0.005239433321625102,
+          "frame": 0.3033406440317404,
+          "offset": 0.006313293625287455
+        },
+        "delta_f1": {
+          "onset": -0.0018058501031355733,
+          "frame": 0.1655853950469761,
+          "offset": -0.0021268439176947273
+        },
+        "delta_ci95": {
+          "onset": [
+            -0.002888367772115293,
+            -0.0007847506909517988
+          ],
+          "frame": [
+            0.13304075290927514,
+            0.20384295225963114
+          ],
+          "offset": [
+            -0.0034837124589858826,
+            -0.0009679743656505856
+          ]
+        }
+      },
+      "combined": {
+        "f1": {
+          "onset": 0.005161443424350741,
+          "frame": 0.29971181556195964,
+          "offset": 0.00652861368968683
+        },
+        "delta_f1": {
+          "onset": -0.0018838400004099346,
+          "frame": 0.16195656657719537,
+          "offset": -0.001911523853295352
+        },
+        "delta_ci95": {
+          "onset": [
+            -0.0030861613544825436,
+            -0.000864160477411294
+          ],
+          "frame": [
+            0.12635010056735796,
+            0.20432304305770668
+          ],
+          "offset": [
+            -0.0033593077536078595,
+            -0.0007371950334615149
+          ]
+        }
+      },
+      "onset": {
+        "f1": {
+          "onset": 0.006307545139304077,
+          "frame": 0.14745667183316893,
+          "offset": 0.005601392778744985
+        },
+        "delta_f1": {
+          "onset": -0.0007377382854565984,
+          "frame": 0.009701422848404667,
+          "offset": -0.0028387447642371968
+        },
+        "delta_ci95": {
+          "onset": [
+            -0.0016533708918109527,
+            0.00003894952971893407
+          ],
+          "frame": [
+            -0.00780419254484132,
+            0.029639351438115344
+          ],
+          "offset": [
+            -0.004047317367506326,
+            -0.0018570759791825295
+          ]
+        }
+      },
+      "offset": {
+        "f1": {
+          "onset": 0.004125795786770131,
+          "frame": 0.13882928103599484,
+          "offset": 0.007173467486491523
+        },
+        "delta_f1": {
+          "onset": -0.002919487637990545,
+          "frame": 0.0010740320512305779,
+          "offset": -0.0012666700564906595
+        },
+        "delta_ci95": {
+          "onset": [
+            -0.0038503742561340347,
+            -0.0019427542174453702
+          ],
+          "frame": [
+            -0.015400203680672197,
+            0.01964109516327881
+          ],
+          "offset": [
+            -0.002545527833821205,
+            -0.00018019341471581696
+          ]
+        }
+      },
+      "bce": {
+        "f1": {
+          "onset": 0.04850995590004009,
+          "frame": 0.4541114351157678,
+          "offset": 0.038611624563565414
+        },
+        "delta_f1": {
+          "onset": 0.041464672475279414,
+          "frame": 0.3163561861310035,
+          "offset": 0.030171487020583233
+        },
+        "delta_ci95": {
+          "onset": [
+            0.03608220266726035,
+            0.04721757143650077
+          ],
+          "frame": [
+            0.2817975352024729,
+            0.35193939988173156
+          ],
+          "offset": [
+            0.024337748156758217,
+            0.03743401527086422
+          ]
+        }
+      }
+    }
+  },
+  "choral_seed_repeats": [
+    {
+      "seed": 30,
+      "frame_f1": 0.31300173951870214,
+      "onset_f1": 0.004785093027837983,
+      "offset_f1": 0.00590878828229028
+    },
+    {
+      "seed": 31,
+      "frame_f1": 0.3133929944893361,
+      "onset_f1": 0.005229649840836744,
+      "offset_f1": 0.005746557019716636
+    }
+  ],
+  "reward_audit": {
+    "status": "local_diagnostic_reward_audit_not_training",
+    "pairs": 4,
+    "sampling": "existing examples; not a random held-out benchmark",
+    "real_predictions": {
+      "onset": {
+        "mean_f1": 0.12428259377037468,
+        "mean_precision": 0.12663719324651612,
+        "mean_recall": 0.12888931052365363
+      },
+      "offset": {
+        "mean_f1": 0.06679760062734157,
+        "mean_precision": 0.06845785062711647,
+        "mean_recall": 0.06881018665025183
+      },
+      "track_onset": {
+        "mean_f1": 0.08852038942320044,
+        "mean_precision": 0.08790116338588387,
+        "mean_recall": 0.09449622979368665
+      },
+      "track_note": {
+        "mean_f1": 0.04718115510247954,
+        "mean_precision": 0.04712457156916804,
+        "mean_recall": 0.05021055671467062
+      },
+      "active_voice": {
+        "mean_f1": 0.7394356537695359,
+        "mean_precision": 0.819588764939365,
+        "mean_recall": 0.6990396189120545
+      },
+      "mean_fragmentation_rate": 0.025683801306779358,
+      "total_reference_notes": 2197,
+      "total_estimate_notes": 1987
+    },
+    "controlled": {
+      "oracle": {
+        "onset": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "offset": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "track_onset": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "track_note": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "active_voice": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "mean_fragmentation_rate": 0,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 2197
+      },
+      "drop_bass": {
+        "onset": {
+          "mean_f1": 0.9206424336077885,
+          "mean_precision": 1,
+          "mean_recall": 0.857472713228844
+        },
+        "offset": {
+          "mean_f1": 0.9206424336077885,
+          "mean_precision": 1,
+          "mean_recall": 0.857472713228844
+        },
+        "track_onset": {
+          "mean_f1": 0.9206424336077885,
+          "mean_precision": 1,
+          "mean_recall": 0.857472713228844
+        },
+        "track_note": {
+          "mean_f1": 0.9206424336077885,
+          "mean_precision": 1,
+          "mean_recall": 0.857472713228844
+        },
+        "active_voice": {
+          "mean_f1": 0.9103213905076213,
+          "mean_precision": 1,
+          "mean_recall": 0.8400058956735545
+        },
+        "mean_fragmentation_rate": 0,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 1820
+      },
+      "swap_soprano_alto": {
+        "onset": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "offset": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "track_onset": {
+          "mean_f1": 0.34140790925932774,
+          "mean_precision": 0.34140790925932774,
+          "mean_recall": 0.34140790925932774
+        },
+        "track_note": {
+          "mean_f1": 0.3349927210922563,
+          "mean_precision": 0.3349927210922563,
+          "mean_recall": 0.3349927210922563
+        },
+        "active_voice": {
+          "mean_f1": 0.9765884289620347,
+          "mean_precision": 0.9765884289620347,
+          "mean_recall": 0.9765884289620347
+        },
+        "mean_fragmentation_rate": 0,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 2197
+      },
+      "shift_onset_100ms": {
+        "onset": {
+          "mean_f1": 0.0034059945504087193,
+          "mean_precision": 0.0034059945504087193,
+          "mean_recall": 0.0034059945504087193
+        },
+        "offset": {
+          "mean_f1": 0,
+          "mean_precision": 0,
+          "mean_recall": 0
+        },
+        "track_onset": {
+          "mean_f1": 0.0034059945504087193,
+          "mean_precision": 0.0034059945504087193,
+          "mean_recall": 0.0034059945504087193
+        },
+        "track_note": {
+          "mean_f1": 0,
+          "mean_precision": 0,
+          "mean_recall": 0
+        },
+        "active_voice": {
+          "mean_f1": 0.9968533161995146,
+          "mean_precision": 0.9981288299165174,
+          "mean_recall": 0.9955824599143148
+        },
+        "mean_fragmentation_rate": 0,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 2197
+      },
+      "fragment_sustained": {
+        "onset": {
+          "mean_f1": 0.7304784958447518,
+          "mean_precision": 0.5767271519501567,
+          "mean_recall": 1
+        },
+        "offset": {
+          "mean_f1": 0.1975592992123211,
+          "mean_precision": 0.1582064888049681,
+          "mean_recall": 0.2632028095944589
+        },
+        "track_onset": {
+          "mean_f1": 0.7304784958447518,
+          "mean_precision": 0.5767271519501567,
+          "mean_recall": 1
+        },
+        "track_note": {
+          "mean_f1": 0.19215491199468704,
+          "mean_precision": 0.1540224857184952,
+          "mean_recall": 0.255546976353596
+        },
+        "active_voice": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "mean_fragmentation_rate": 0.8393783058382012,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 3936
+      },
+      "overfill_octave": {
+        "onset": {
+          "mean_f1": 0.6666666666666666,
+          "mean_precision": 0.5,
+          "mean_recall": 1
+        },
+        "offset": {
+          "mean_f1": 0.6666666666666666,
+          "mean_precision": 0.5,
+          "mean_recall": 1
+        },
+        "track_onset": {
+          "mean_f1": 0.6666666666666666,
+          "mean_precision": 0.5,
+          "mean_recall": 1
+        },
+        "track_note": {
+          "mean_f1": 0.6666666666666666,
+          "mean_precision": 0.5,
+          "mean_recall": 1
+        },
+        "active_voice": {
+          "mean_f1": 1,
+          "mean_precision": 1,
+          "mean_recall": 1
+        },
+        "mean_fragmentation_rate": 0.0002828054298642534,
+        "total_reference_notes": 2197,
+        "total_estimate_notes": 4394
+      }
+    }
+  }
+}

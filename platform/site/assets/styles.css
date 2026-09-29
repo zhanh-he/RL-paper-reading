@@ -903,6 +903,13 @@ dialog::backdrop {
     display: none;
   }
 
+  .experiment-link {
+    display: inline-flex;
+    width: 38px;
+    padding: 0;
+    font-size: 0;
+  }
+
   .brand > span:last-child {
     min-width: 0;
     max-width: 132px;

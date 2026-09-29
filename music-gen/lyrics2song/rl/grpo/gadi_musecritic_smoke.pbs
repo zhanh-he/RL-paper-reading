@@ -1,0 +1,140 @@
+#!/usr/bin/env bash
+#PBS -P wa66
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=128GB
+#PBS -l jobfs=60GB
+#PBS -l walltime=02:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66
+#PBS -l wd
+#PBS -N musecritic-grpo-smoke
+# Submit with LAB_ROOT, TRAIN_PY, and CODEC_PY passed via qsub -v.
+set -euo pipefail
+
+export PYTHONNOUSERSITE=1
+unset PYTHONHOME
+module purge
+module load python3/3.11.7
+module load cuda/12.8.0
+
+: "${LAB_ROOT:?Set LAB_ROOT to the staged vocal2accomp-muse root}"
+: "${TRAIN_PY:?Set TRAIN_PY to the ms-swift environment python}"
+: "${CODEC_PY:?Set CODEC_PY to the MuCodec environment python}"
+
+PLUGIN="$LAB_ROOT/src/MuseCritic/muse_grpo/plugin.py"
+DATA="$LAB_ROOT/src/MuseCritic/muse_grpo/grpo_train.jsonl"
+RUN_DIR="$LAB_ROOT/experiments/muse_grpo_pilot/outputs/${PBS_JOBID:-manual}"
+mkdir -p "$RUN_DIR"
+export TMPDIR="$PBS_JOBFS/tmp"
+export XDG_CACHE_HOME="$PBS_JOBFS/cache/xdg"
+export HF_HOME="$PBS_JOBFS/cache/huggingface"
+export TORCH_HOME="$PBS_JOBFS/cache/torch"
+export TRITON_CACHE_DIR="$PBS_JOBFS/cache/triton"
+mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$HF_HOME" "$TORCH_HOME" "$TRITON_CACHE_DIR"
+export CUDA_VISIBLE_DEVICES=0
+export NPROC_PER_NODE=1
+export MODEL="$LAB_ROOT/models/Muse-0.6b"
+export MUSE_MUCODEC_API_BASE=http://127.0.0.1:18003
+export MUSE_CRITIC_API_BASE=http://127.0.0.1:18002/v1
+export MUSECRITIC_RM_AUDIO_DIR="$RUN_DIR/decoded"
+export MUSE_ROLLOUT_RESULT_PATH="$RUN_DIR/rollouts.jsonl"
+export MUSE_GRPO_MAX_TOTAL_TOKENS=512
+export MUSE_DECODE_DURATION=10.24
+export MUSE_DECODE_STEPS=20
+export MUSE_CRITIC_MAX_NEW_TOKENS=512
+export MUSE_MUCODEC_MAX_WORKERS=1
+export MUSE_CRITIC_MAX_WORKERS=1
+export MUSECRITIC_RM_STRICT=true
+
+"$TRAIN_PY" - "$DATA" "$RUN_DIR/pilot.jsonl" <<'PY'
+import json
+import sys
+
+rows = []
+with open(sys.argv[1], encoding="utf-8") as source:
+    for line in source:
+        item = json.loads(line)
+        first = next(message for message in item["messages"] if message["role"] == "user")
+        rows.append({"messages": [first, {"role": "assistant", "content": ""}]})
+        if len(rows) == 2:
+            break
+with open(sys.argv[2], "w", encoding="utf-8") as target:
+    for row in rows:
+        target.write(json.dumps(row, ensure_ascii=False) + "\n")
+PY
+
+pids=()
+cleanup() {
+    for pid in "${pids[@]}"; do kill "$pid" 2>/dev/null || true; done
+    wait 2>/dev/null || true
+}
+trap cleanup EXIT
+
+"$CODEC_PY" "$LAB_ROOT/src/MuCodec/deploy/mucodec_serve.py" \
+    --model "$LAB_ROOT/src/MuCodec/weights/mucodec.pt" \
+    --host 127.0.0.1 --port 18003 >"$RUN_DIR/mucodec.log" 2>&1 &
+pids+=("$!")
+"$TRAIN_PY" "$LAB_ROOT/src/MuseCritic/muse_grpo/deploy/musecritic/musecritic_serve.py" \
+    --model "$LAB_ROOT/models/MuseCritic" --host 127.0.0.1 --port 18002 \
+    --max-new-tokens 512 >"$RUN_DIR/musecritic.log" 2>&1 &
+pids+=("$!")
+"$(dirname "$TRAIN_PY")/swift" rollout \
+    --model_type qwen3 --model "$MODEL" --external_plugins "$PLUGIN" \
+    --multi_turn_scheduler muse_multi_turn_scheduler \
+    --vllm_use_async_engine true --host 127.0.0.1 --port 18001 \
+    --vllm_max_model_len 2048 --vllm_gpu_memory_utilization 0.15 \
+    --temperature 0.9 --repetition_penalty 1.3 --top_p 0.9 \
+    >"$RUN_DIR/rollout_server.log" 2>&1 &
+pids+=("$!")
+
+for port in 18001 18002 18003; do
+    ready=false
+    for _ in $(seq 1 180); do
+        if curl -fsS "http://127.0.0.1:$port/health" > /dev/null 2>&1; then
+            ready=true
+            break
+        fi
+        sleep 5
+    done
+    if [[ "$ready" != true ]]; then
+        printf 'Service on port %s did not become ready\n' "$port" >&2
+        exit 1
+    fi
+done
+
+"$(dirname "$TRAIN_PY")/swift" rlhf \
+    --rlhf_type grpo --model_type qwen3 --model "$MODEL" \
+    --reward_funcs musecritic_rm --external_plugins "$PLUGIN" \
+    --tuner_type lora --lora_rank 8 --dataset "$RUN_DIR/pilot.jsonl" \
+    --use_vllm true --vllm_mode server \
+    --vllm_server_host 127.0.0.1 --vllm_server_port 18001 \
+    --vllm_server_pass_dataset true --vllm_server_timeout 1200 \
+    --max_completion_length 512 --max_length 2048 \
+    --per_device_train_batch_size 1 --gradient_accumulation_steps 1 \
+    --num_generations 2 --max_steps 1 --learning_rate 1e-6 \
+    --save_steps 1 --logging_steps 1 --temperature 0.9 \
+    --repetition_penalty 1.3 --top_p 0.9 \
+    --report_to none --output_dir "$RUN_DIR/checkpoint" \
+    >"$RUN_DIR/train.log" 2>&1
+
+"$TRAIN_PY" - "$RUN_DIR" <<'PY'
+import json
+import pathlib
+import sys
+
+root = pathlib.Path(sys.argv[1])
+records = list((root / "rollouts.jsonl").open(encoding="utf-8")) if (root / "rollouts.jsonl").exists() else []
+adapters = list((root / "checkpoint").rglob("adapter_model.safetensors"))
+receipt = {
+    "status": "completed_one_step_online_musecritic_grpo" if records and adapters else "incomplete",
+    "rollout_records": len(records),
+    "adapter_checkpoints": len(adapters),
+    "dataset_prompts": 2,
+    "group_size": 2,
+    "optimizer_steps_requested": 1,
+    "scope": "engineering smoke only; no held-out quality claim",
+}
+(root / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+print(json.dumps(receipt, indent=2))
+PY
