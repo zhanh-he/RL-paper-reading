@@ -7,13 +7,15 @@ is the curated, public case/stage manifest. The build validates each referenced
 media file and rejects a `pending` stage that claims public media.
 
 Each case follows input, reference output (when a legitimate reference exists),
-baseline, then checkpoints ordered by **optimizer updates**. YuE2 and Muse
-currently have only a same-prompt/same-seed baseline and one-step SongEval-GRPO
-pilot. Their 100/300/1000-step slots are explicitly pending. The ACE-Step
-50-step *diffusion inference* output is a baseline, not a GRPO checkpoint or
-isolated accompaniment. ChoralStream has aggregate metrics, but no distributable
-song-level audio or MIDI to render as a piano roll. No stage is labeled
-underfit, good fit or reward hacking without matched held-out evidence.
+baseline, then checkpoints ordered by **optimizer updates**. YuE2/SongEval has
+0/1/5/50 measured updates and 100 running. Muse has one-step SongEval and
+MuseCritic GRPO experiments, each with a same-prompt/same-seed held-out audio
+pair; neither single-step result proves improvement. The ACE-Step 50-step
+*diffusion inference* output and AnyAccomp output are baselines, not GRPO
+checkpoints. ChoralStream has a public synthetic audio/MIDI comparison, but its
+frame-head GRPO has unchanged full-song note decoding. The separate MuScriptor
+hosted-demo output has no local GRPO. No stage is labeled underfit, good fit or
+reward hacking without matched held-out evidence.
 
 To add a real stage, keep the same held-out prompt/input, seed, decode settings,
 audio duration and reward implementation; save the output audio, a waveform and
@@ -23,7 +25,8 @@ signal peak/RMS/near-full-scale fraction, training step, model/checkpoint hash,
 sample provenance, and any human listening ratings. Set the stage's repository-
 relative `receipt` and `receipt_key` (`before` or `after`) when changing its
 status to `measured`; the build checks the metrics and the UI then makes the
-stage selectable for A/B replay. For MIDI
+stage selectable for A/B replay. Keep the reward name attached to each score:
+SongEval and MuseCritic values are not interchangeable. For MIDI
 transcription, add reference and decoded MIDI only with redistribution rights;
 render paired piano rolls and include 50 ms onset and onset+offset F1 alongside
 frame F1. Use several fixed held-out prompts/songs before arguing a trend.

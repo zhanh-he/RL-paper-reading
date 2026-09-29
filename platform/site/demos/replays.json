@@ -7,9 +7,11 @@
       "seed": 5101,
       "reference": null,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_songeval_before.flac", "wave": "visuals/yue2_songeval_before_wave.png", "spectrum": "visuals/yue2_songeval_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json", "receipt_key": "before" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_songeval_after.flac", "wave": "visuals/yue2_songeval_after_wave.png", "spectrum": "visuals/yue2_songeval_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json", "receipt_key": "after" },
-        { "step": 100, "status": "pending" },
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_longrun_000005.flac", "wave": "visuals/yue2_longrun_000005_wave.png", "spectrum": "visuals/yue2_longrun_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_longrun_000050.flac", "wave": "visuals/yue2_longrun_000050_wave.png", "spectrum": "visuals/yue2_longrun_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "running" },
         { "step": 300, "status": "pending" },
         { "step": 1000, "status": "pending" }
       ]
@@ -27,6 +29,21 @@
         { "step": 300, "status": "pending" },
         { "step": 1000, "status": "pending" }
       ]
+    },
+    "musecritic": {
+      "name": "Muse-0.6b + MuCodec · MuseCritic GRPO",
+      "style": "English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM; intimate melody and natural accompaniment",
+      "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+      "seed": 5101,
+      "reference": null,
+      "reward_model": "MuseCritic",
+      "stages": [
+        { "step": 0, "status": "measured", "audio": "audio/muse_musecritic_before.wav", "wave": "visuals/muse_musecritic_before_wave.png", "spectrum": "visuals/muse_musecritic_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "before" },
+        { "step": 1, "status": "measured", "audio": "audio/muse_musecritic_after.wav", "wave": "visuals/muse_musecritic_after_wave.png", "spectrum": "visuals/muse_musecritic_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "after" },
+        { "step": 100, "status": "pending" },
+        { "step": 300, "status": "pending" },
+        { "step": 1000, "status": "pending" }
+      ]
     }
   },
   "vocal": {
@@ -37,6 +54,10 @@
       { "step": 100, "status": "pending" },
       { "step": 300, "status": "pending" },
       { "step": 1000, "status": "pending" }
+    ],
+    "outputs": [
+      { "model": "AnyAccomp", "kind": "accompaniment_only", "step": 0, "status": "measured", "audio": "audio/anyaccomp_accompaniment_seed29.wav", "wave": "visuals/anyaccomp_accompaniment_seed29_wave.png", "spectrum": "visuals/anyaccomp_accompaniment_seed29_spectrum.png" },
+      { "model": "AnyAccomp", "kind": "input_plus_accompaniment", "step": 0, "status": "measured", "audio": "audio/anyaccomp_mixture_seed29.wav", "wave": "visuals/anyaccomp_mixture_seed29_wave.png", "spectrum": "visuals/anyaccomp_mixture_seed29_spectrum.png" }
     ]
   },
   "choral": {

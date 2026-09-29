@@ -1,14 +1,23 @@
 {
   "generated_from": [
     "platform/site/demos/replays.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/notes.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/receipt.json",
+    "music-trans/multi-inst/models/muscriptor/muscriptor_receipt.json",
+    "music-gen/vocal2accomp/models/anyaccomp/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed30.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed31.json",
     "music-trans/choral-singing/rewards/audits/2026-09-29/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json",
     "music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/verification.json"
   ],
   "choral": {
@@ -496,6 +505,952 @@
     },
     "caveat": "The post-trained frame head is not used by decode_events, so identical MIDI metrics are a structural consequence, not a null hypothesis test of event-level GRPO."
   },
+  "choral_demo": {
+    "notes": {
+      "reference": [
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 0,
+          "end": 1.12
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 1.25,
+          "end": 2.37
+        },
+        {
+          "voice": 0,
+          "pitch": 76,
+          "start": 2.5,
+          "end": 3.62
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.75,
+          "end": 4.87
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 5,
+          "end": 6.12
+        },
+        {
+          "voice": 0,
+          "pitch": 71,
+          "start": 6.25,
+          "end": 7.37
+        },
+        {
+          "voice": 0,
+          "pitch": 69,
+          "start": 7.5,
+          "end": 8.620000000000001
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.75,
+          "end": 9.870000000000001
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 0,
+          "end": 1.12
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 1.25,
+          "end": 2.37
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 2.5,
+          "end": 3.62
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.75,
+          "end": 4.87
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 5,
+          "end": 6.12
+        },
+        {
+          "voice": 1,
+          "pitch": 64,
+          "start": 6.25,
+          "end": 7.37
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 7.5,
+          "end": 8.620000000000001
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.75,
+          "end": 9.870000000000001
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 0,
+          "end": 1.12
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 1.25,
+          "end": 2.37
+        },
+        {
+          "voice": 2,
+          "pitch": 64,
+          "start": 2.5,
+          "end": 3.62
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.75,
+          "end": 4.87
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 5,
+          "end": 6.12
+        },
+        {
+          "voice": 2,
+          "pitch": 59,
+          "start": 6.25,
+          "end": 7.37
+        },
+        {
+          "voice": 2,
+          "pitch": 57,
+          "start": 7.5,
+          "end": 8.620000000000001
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 8.75,
+          "end": 9.870000000000001
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 0,
+          "end": 1.12
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 1.25,
+          "end": 2.37
+        },
+        {
+          "voice": 3,
+          "pitch": 52,
+          "start": 2.5,
+          "end": 3.62
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.75,
+          "end": 4.87
+        },
+        {
+          "voice": 3,
+          "pitch": 53,
+          "start": 5,
+          "end": 6.12
+        },
+        {
+          "voice": 3,
+          "pitch": 52,
+          "start": 6.25,
+          "end": 7.37
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 7.5,
+          "end": 8.620000000000001
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 8.75,
+          "end": 9.870000000000001
+        }
+      ],
+      "baseline": [
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 0.0000016668839180056239,
+          "end": 0.9500008225440979
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 0.00000183775637196959,
+          "end": 0.9583348631858826
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 0.000002332744770683348,
+          "end": 0.7014181017875671
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 0.000024073582608252764,
+          "end": 0.9182347655296326
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 0.7840893864631653,
+          "end": 2.3753719329833984
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 0.8024796843528748,
+          "end": 2.418660879135132
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 0.8195763230323792,
+          "end": 2.323094606399536
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 0.8210599422454834,
+          "end": 2.890178918838501
+        },
+        {
+          "voice": 3,
+          "pitch": 52,
+          "start": 2.1157989501953125,
+          "end": 3.607646942138672
+        },
+        {
+          "voice": 2,
+          "pitch": 64,
+          "start": 2.1176984310150146,
+          "end": 3.4683585166931152
+        },
+        {
+          "voice": 1,
+          "pitch": 71,
+          "start": 2.128041982650757,
+          "end": 3.49708890914917
+        },
+        {
+          "voice": 0,
+          "pitch": 76,
+          "start": 2.1602823734283447,
+          "end": 3.3471550941467285
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.3646764755249023,
+          "end": 4.471722602844238
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.367021322250366,
+          "end": 4.5483903884887695
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.3680295944213867,
+          "end": 4.524895668029785
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.3736953735351562,
+          "end": 4.493234157562256
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.840000629425049,
+          "end": 4.871277332305908
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.840001344680786,
+          "end": 4.906899929046631
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.8400022983551025,
+          "end": 4.907351016998291
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.8400068283081055,
+          "end": 4.841732025146484
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.304107189178467,
+          "end": 5.032864570617676
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.381749153137207,
+          "end": 5.123082160949707
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 4.416409969329834,
+          "end": 5.130222797393799
+        },
+        {
+          "voice": 3,
+          "pitch": 53,
+          "start": 4.429172039031982,
+          "end": 5.128308296203613
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.579078197479248,
+          "end": 6.330663204193115
+        },
+        {
+          "voice": 3,
+          "pitch": 71,
+          "start": 4.849069118499756,
+          "end": 6.652309417724609
+        },
+        {
+          "voice": 3,
+          "pitch": 60,
+          "start": 4.872952938079834,
+          "end": 6.645565509796143
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 4.900958061218262,
+          "end": 6.916658401489258
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.926082611083984,
+          "end": 7.519845008850098
+        },
+        {
+          "voice": 0,
+          "pitch": 71,
+          "start": 6.752162933349609,
+          "end": 8.354576110839844
+        },
+        {
+          "voice": 1,
+          "pitch": 59,
+          "start": 6.761233329772949,
+          "end": 8.422712326049805
+        },
+        {
+          "voice": 2,
+          "pitch": 50,
+          "start": 7.641672134399414,
+          "end": 8.879874229431152
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 7.676443099975586,
+          "end": 8.830138206481934
+        },
+        {
+          "voice": 2,
+          "pitch": 57,
+          "start": 7.680000305175781,
+          "end": 8.508920669555664
+        },
+        {
+          "voice": 0,
+          "pitch": 69,
+          "start": 7.680004119873047,
+          "end": 8.928625106811523
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 7.680004119873047,
+          "end": 8.441901206970215
+        },
+        {
+          "voice": 2,
+          "pitch": 48,
+          "start": 8.326541900634766,
+          "end": 9.730978012084961
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.395087242126465,
+          "end": 8.944308280944824
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.454483032226562,
+          "end": 9.006766319274902
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 8.796271324157715,
+          "end": 10.830331802368164
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 8.887019157409668,
+          "end": 11.218801498413086
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.921740531921387,
+          "end": 11.51414680480957
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.963461875915527,
+          "end": 11.255882263183594
+        }
+      ],
+      "grpo": [
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 0.0000016668839180056239,
+          "end": 0.9500008225440979
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 0.00000183775637196959,
+          "end": 0.9583348631858826
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 0.000002332744770683348,
+          "end": 0.7014181017875671
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 0.000024073582608252764,
+          "end": 0.9182347655296326
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 0.7840893864631653,
+          "end": 2.3753719329833984
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 0.8024796843528748,
+          "end": 2.418660879135132
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 0.8195763230323792,
+          "end": 2.323094606399536
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 0.8210599422454834,
+          "end": 2.890178918838501
+        },
+        {
+          "voice": 3,
+          "pitch": 52,
+          "start": 2.1157989501953125,
+          "end": 3.607646942138672
+        },
+        {
+          "voice": 2,
+          "pitch": 64,
+          "start": 2.1176984310150146,
+          "end": 3.4683585166931152
+        },
+        {
+          "voice": 1,
+          "pitch": 71,
+          "start": 2.128041982650757,
+          "end": 3.49708890914917
+        },
+        {
+          "voice": 0,
+          "pitch": 76,
+          "start": 2.1602823734283447,
+          "end": 3.3471550941467285
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.3646764755249023,
+          "end": 4.471722602844238
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.367021322250366,
+          "end": 4.5483903884887695
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.3680295944213867,
+          "end": 4.524895668029785
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.3736953735351562,
+          "end": 4.493234157562256
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.840000629425049,
+          "end": 4.871277332305908
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.840001344680786,
+          "end": 4.906899929046631
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.8400022983551025,
+          "end": 4.907351016998291
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.8400068283081055,
+          "end": 4.841732025146484
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.304107189178467,
+          "end": 5.032864570617676
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.381749153137207,
+          "end": 5.123082160949707
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 4.416409969329834,
+          "end": 5.130222797393799
+        },
+        {
+          "voice": 3,
+          "pitch": 53,
+          "start": 4.429172039031982,
+          "end": 5.128308296203613
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.579078197479248,
+          "end": 6.330663204193115
+        },
+        {
+          "voice": 3,
+          "pitch": 71,
+          "start": 4.849069118499756,
+          "end": 6.652309417724609
+        },
+        {
+          "voice": 3,
+          "pitch": 60,
+          "start": 4.872952938079834,
+          "end": 6.645565509796143
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 4.900958061218262,
+          "end": 6.916658401489258
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.926082611083984,
+          "end": 7.519845008850098
+        },
+        {
+          "voice": 0,
+          "pitch": 71,
+          "start": 6.752162933349609,
+          "end": 8.354576110839844
+        },
+        {
+          "voice": 1,
+          "pitch": 59,
+          "start": 6.761233329772949,
+          "end": 8.422712326049805
+        },
+        {
+          "voice": 2,
+          "pitch": 50,
+          "start": 7.641672134399414,
+          "end": 8.879874229431152
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 7.676443099975586,
+          "end": 8.830138206481934
+        },
+        {
+          "voice": 2,
+          "pitch": 57,
+          "start": 7.680000305175781,
+          "end": 8.508920669555664
+        },
+        {
+          "voice": 0,
+          "pitch": 69,
+          "start": 7.680004119873047,
+          "end": 8.928625106811523
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 7.680004119873047,
+          "end": 8.441901206970215
+        },
+        {
+          "voice": 2,
+          "pitch": 48,
+          "start": 8.326541900634766,
+          "end": 9.730978012084961
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.395087242126465,
+          "end": 8.944308280944824
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.454483032226562,
+          "end": 9.006766319274902
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 8.796271324157715,
+          "end": 10.830331802368164
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 8.887019157409668,
+          "end": 11.218801498413086
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.921740531921387,
+          "end": 11.51414680480957
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.963461875915527,
+          "end": 11.255882263183594
+        }
+      ]
+    },
+    "receipt": {
+      "status": "public_synthetic_illustration_not_heldout_benchmark",
+      "scope": "Original harmonic SATB synthesis; the trained checkpoint changes frame_prj only",
+      "reference_notes": 32,
+      "predicted_notes": {
+        "baseline": 43,
+        "grpo": 43
+      },
+      "event_decode_identical": true,
+      "protocol": "mir_eval onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration)",
+      "metrics": {
+        "baseline": {
+          "note_onset_50ms": {
+            "precision": 0.11627906976744186,
+            "recall": 0.15625,
+            "f1": 0.13333333333333333,
+            "tp": 5,
+            "fp": 38,
+            "fn": 27
+          },
+          "note_onset_offset_50ms": {
+            "precision": 0.06976744186046512,
+            "recall": 0.09375,
+            "f1": 0.08,
+            "tp": 3,
+            "fp": 40,
+            "fn": 29
+          },
+          "track_note_onset_50ms": {
+            "precision": 0.11627906976744186,
+            "recall": 0.15625,
+            "f1": 0.13333333333333333,
+            "tp": 5,
+            "fp": 38,
+            "fn": 27
+          },
+          "track_note_onset_offset_50ms": {
+            "precision": 0.06976744186046512,
+            "recall": 0.09375,
+            "f1": 0.08,
+            "tp": 3,
+            "fp": 40,
+            "fn": 29
+          },
+          "frame_16ms": {
+            "precision": 0.5786143625434989,
+            "recall": 0.8064373897707231,
+            "f1": 0.6737889114017315,
+            "tp": 1829,
+            "fp": 1332,
+            "fn": 439
+          },
+          "track_frame_16ms": {
+            "precision": 0.494279847462599,
+            "recall": 0.7429453262786596,
+            "f1": 0.5936233926369562,
+            "tp": 1685,
+            "fp": 1724,
+            "fn": 583
+          }
+        },
+        "grpo": {
+          "note_onset_50ms": {
+            "precision": 0.11627906976744186,
+            "recall": 0.15625,
+            "f1": 0.13333333333333333,
+            "tp": 5,
+            "fp": 38,
+            "fn": 27
+          },
+          "note_onset_offset_50ms": {
+            "precision": 0.06976744186046512,
+            "recall": 0.09375,
+            "f1": 0.08,
+            "tp": 3,
+            "fp": 40,
+            "fn": 29
+          },
+          "track_note_onset_50ms": {
+            "precision": 0.11627906976744186,
+            "recall": 0.15625,
+            "f1": 0.13333333333333333,
+            "tp": 5,
+            "fp": 38,
+            "fn": 27
+          },
+          "track_note_onset_offset_50ms": {
+            "precision": 0.06976744186046512,
+            "recall": 0.09375,
+            "f1": 0.08,
+            "tp": 3,
+            "fp": 40,
+            "fn": 29
+          },
+          "frame_16ms": {
+            "precision": 0.5786143625434989,
+            "recall": 0.8064373897707231,
+            "f1": 0.6737889114017315,
+            "tp": 1829,
+            "fp": 1332,
+            "fn": 439
+          },
+          "track_frame_16ms": {
+            "precision": 0.494279847462599,
+            "recall": 0.7429453262786596,
+            "f1": 0.5936233926369562,
+            "tp": 1685,
+            "fp": 1724,
+            "fn": 583
+          }
+        }
+      }
+    },
+    "muscriptor": {
+      "status": "official_online_demo_baseline_not_grpo",
+      "input": "Original 10.2-second harmonic SATB synthesis; not a held-out benchmark",
+      "model": "MuScriptor official hosted demo",
+      "instrument_tracks": [
+        {
+          "name": "acoustic piano",
+          "program": 0,
+          "notes": 16
+        }
+      ],
+      "reference_notes": 32,
+      "predicted_notes": 16,
+      "estimated_notes": [
+        {
+          "pitch": 53,
+          "start": 5.030208333333333,
+          "end": 6.160416666666666
+        },
+        {
+          "pitch": 60,
+          "start": 5.030208333333333,
+          "end": 6.160416666666666
+        },
+        {
+          "pitch": 65,
+          "start": 5.030208333333333,
+          "end": 6.160416666666666
+        },
+        {
+          "pitch": 72,
+          "start": 5.030208333333333,
+          "end": 6.160416666666666
+        },
+        {
+          "pitch": 52,
+          "start": 6.219791666666667,
+          "end": 7.3999999999999995
+        },
+        {
+          "pitch": 59,
+          "start": 6.219791666666667,
+          "end": 7.3999999999999995
+        },
+        {
+          "pitch": 64,
+          "start": 6.219791666666667,
+          "end": 7.3999999999999995
+        },
+        {
+          "pitch": 71,
+          "start": 6.219791666666667,
+          "end": 7.3999999999999995
+        },
+        {
+          "pitch": 50,
+          "start": 7.460416666666666,
+          "end": 8.65
+        },
+        {
+          "pitch": 57,
+          "start": 7.460416666666666,
+          "end": 8.65
+        },
+        {
+          "pitch": 65,
+          "start": 7.460416666666666,
+          "end": 8.65
+        },
+        {
+          "pitch": 69,
+          "start": 7.460416666666666,
+          "end": 8.65
+        },
+        {
+          "pitch": 48,
+          "start": 8.719791666666666,
+          "end": 8.730208333333334
+        },
+        {
+          "pitch": 60,
+          "start": 8.719791666666666,
+          "end": 8.730208333333334
+        },
+        {
+          "pitch": 67,
+          "start": 8.719791666666666,
+          "end": 8.730208333333334
+        },
+        {
+          "pitch": 72,
+          "start": 8.719791666666666,
+          "end": 8.730208333333334
+        }
+      ],
+      "protocol": "mir_eval onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration)",
+      "note_onset_50ms": {
+        "precision": 1,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "tp": 16,
+        "fp": 0,
+        "fn": 16
+      },
+      "note_onset_offset_50ms": {
+        "precision": 0.75,
+        "recall": 0.375,
+        "f1": 0.5,
+        "tp": 12,
+        "fp": 4,
+        "fn": 20
+      },
+      "track_aware_metrics": null,
+      "caveat": "The hosted model returned one acoustic-piano track without SATB voice labels; do not compare a track-aware F1. This output cannot establish a MuScriptor GRPO result."
+    }
+  },
   "songeval_audit": {
     "status": "controlled_perturbation_audit_not_grpo",
     "date": "2026-09-29",
@@ -782,6 +1737,44 @@
     },
     "limitations": "Controlled waveform perturbations do not establish GRPO behavior or a causal explanation for any proprietary model. Bootstrap resamples clips, not model seeds."
   },
+  "vocal_reward": {
+    "status": "inference_complete_not_grpo",
+    "model": "AnyAccomp public checkpoint",
+    "model_source": "https://huggingface.co/amphion/anyaccomp",
+    "run_host": "lab5090",
+    "input": "platform/site/demos/audio/guide_vocal.wav",
+    "seed": 29,
+    "n_timesteps": 50,
+    "cfg": 3,
+    "outputs": {
+      "accompaniment": {
+        "public_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.wav",
+        "sample_rate": 24000,
+        "seconds": 16,
+        "rms": 0.03013126365840435,
+        "peak": 0.212860107421875,
+        "sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea"
+      },
+      "mixture": {
+        "public_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.wav",
+        "sample_rate": 24000,
+        "seconds": 16,
+        "rms": 0.23373523354530334,
+        "peak": 0.72735595703125,
+        "sha256": "ad206f8ac57371f06fb3c82d28eefb3e867d6cc76b65c3914b8239e5a78279b6"
+      }
+    },
+    "reward_diagnostics": {
+      "coverage": 0.758988015978695,
+      "beat_v2": {
+        "score": 0.3684210526315789,
+        "reference_beats": 19,
+        "accompaniment_beats": 19
+      },
+      "scope": "Reference-free activity coverage and vocal-reference beat F-measure on one synthetic guide; not a GRPO reward comparison or human quality judgement"
+    },
+    "warning": "Synthetic vocal guide, no paired ground truth, no reward evaluation and no GRPO. The mixture is the original guide added to the generated accompaniment."
+  },
   "yue2": {
     "status": "on_policy_two_rollout_one_step_grpo_pilot",
     "train_rollout_rewards": [
@@ -923,6 +1916,53 @@
     },
     "caveat": "One prompt/group, two rollouts, one optimizer step and one held-out prompt. Short capped fragment, not a statistical song-quality result."
   },
+  "musecritic": {
+    "status": "one_step_musecritic_grpo_heldout_pair",
+    "model": "Muse-0.6b + MuCodec",
+    "reward_model": "MuseCritic",
+    "heldout_prompt": "Please generate a song in the following style: English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM.\n[Verse][desc:Intimate melody and natural acoustic accompaniment.][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
+    "heldout_seed": 5101,
+    "generated_token_difference": 479,
+    "before": {
+      "reward": {
+        "Coherence": 3.21875,
+        "Musicality": 3.171875,
+        "Memorability": 3.125,
+        "Clarity": 2.8125,
+        "Naturalness": 3.0625,
+        "mean": 3.078125
+      },
+      "signal": {
+        "seconds": 10.24,
+        "peak": 0.19693364202976227,
+        "rms": 0.028642967365519766,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 0.0000010172526041666667
+      },
+      "generated_tokens": 500,
+      "audio_tokens": 493
+    },
+    "after": {
+      "reward": {
+        "Coherence": 3.265625,
+        "Musicality": 1.796875,
+        "Memorability": 2.21875,
+        "Clarity": 2.09375,
+        "Naturalness": 3.28125,
+        "mean": 2.53125
+      },
+      "signal": {
+        "seconds": 10.24,
+        "peak": 0.42237982153892517,
+        "rms": 0.05936361807949647,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 0.0000010172526041666667
+      },
+      "generated_tokens": 500,
+      "audio_tokens": 489
+    },
+    "caveat": "One short held-out prompt/seed after one small online GRPO update; reward and signal are not a human-quality or generalization claim."
+  },
   "replays": {
     "lyrics": {
       "yue2": {
@@ -935,23 +1975,32 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_songeval_before.flac",
-            "wave": "visuals/yue2_songeval_before_wave.png",
-            "spectrum": "visuals/yue2_songeval_before_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
-            "receipt_key": "before",
+            "audio": "audio/yue2_longrun_000000.flac",
+            "wave": "visuals/yue2_longrun_000000_wave.png",
+            "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
+            "receipt_key": "heldout:0",
             "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000000/heldout_0/audio.flac",
               "reward": {
-                "Coherence": 3.8291,
-                "Musicality": 3.7992,
-                "Memorability": 3.8867,
-                "Clarity": 3.6915,
-                "Naturalness": 3.4849,
-                "mean": 3.7382799999999996
+                "Coherence": 3.8722,
+                "Musicality": 3.6763,
+                "Memorability": 3.9212,
+                "Clarity": 3.7496,
+                "Naturalness": 3.6249,
+                "mean": 3.76884
               },
               "signal": {
-                "peak": 0.8847516179084778,
-                "rms": 0.1104228775038593,
+                "peak": 0.9242455959320068,
+                "rms": 0.14428411252608547,
                 "near_full_scale_fraction": 0,
                 "flat_top_fraction": 4.340518917717651e-7
               },
@@ -960,28 +2009,38 @@
                 "abc": false,
                 "semantic": true
               }
-            }
+            },
+            "mean_reward": 3.84034
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_songeval_after.flac",
-            "wave": "visuals/yue2_songeval_after_wave.png",
-            "spectrum": "visuals/yue2_songeval_after_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
-            "receipt_key": "after",
+            "audio": "audio/yue2_longrun_000001.flac",
+            "wave": "visuals/yue2_longrun_000001_wave.png",
+            "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
+            "receipt_key": "heldout:0",
             "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000001/heldout_0/audio.flac",
               "reward": {
-                "Coherence": 3.3914,
-                "Musicality": 3.3173,
-                "Memorability": 3.2671,
-                "Clarity": 3.3089,
-                "Naturalness": 3.2208,
-                "mean": 3.3010999999999995
+                "Coherence": 3.7008,
+                "Musicality": 3.7127,
+                "Memorability": 3.7244,
+                "Clarity": 3.6547,
+                "Naturalness": 3.5993,
+                "mean": 3.6783799999999998
               },
               "signal": {
-                "peak": 0.7920576333999634,
-                "rms": 0.12220983013409607,
+                "peak": 0.8074740171432495,
+                "rms": 0.13242658278818117,
                 "near_full_scale_fraction": 0,
                 "flat_top_fraction": 4.340518917717651e-7
               },
@@ -990,11 +2049,92 @@
                 "abc": false,
                 "semantic": true
               }
-            }
+            },
+            "mean_reward": 3.60298
+          },
+          {
+            "step": 5,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000005.flac",
+            "wave": "visuals/yue2_longrun_000005_wave.png",
+            "spectrum": "visuals/yue2_longrun_000005_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000005/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.4117,
+                "Musicality": 3.4658,
+                "Memorability": 3.5783,
+                "Clarity": 3.4721,
+                "Naturalness": 3.2523,
+                "mean": 3.4360399999999998
+              },
+              "signal": {
+                "peak": 0.8399021625518799,
+                "rms": 0.13474388786975167,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.616006666666666
+          },
+          {
+            "step": 50,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000050.flac",
+            "wave": "visuals/yue2_longrun_000050_wave.png",
+            "spectrum": "visuals/yue2_longrun_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000050/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.458,
+                "Musicality": 3.4311,
+                "Memorability": 3.5288,
+                "Clarity": 3.4018,
+                "Naturalness": 3.1883,
+                "mean": 3.4015999999999997
+              },
+              "signal": {
+                "peak": 0.9999998807907104,
+                "rms": 0.14273572095769463,
+                "near_full_scale_fraction": 0.0000026043113506305907,
+                "flat_top_fraction": 0.0000026043113506305907
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.570413333333333
           },
           {
             "step": 100,
-            "status": "pending"
+            "status": "running"
           },
           {
             "step": 300,
@@ -1078,6 +2218,84 @@
             "status": "pending"
           }
         ]
+      },
+      "musecritic": {
+        "name": "Muse-0.6b + MuCodec · MuseCritic GRPO",
+        "style": "English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM; intimate melody and natural accompaniment",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "reward_model": "MuseCritic",
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/muse_musecritic_before.wav",
+            "wave": "visuals/muse_musecritic_before_wave.png",
+            "spectrum": "visuals/muse_musecritic_before_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
+            "receipt_key": "before",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.21875,
+                "Musicality": 3.171875,
+                "Memorability": 3.125,
+                "Clarity": 2.8125,
+                "Naturalness": 3.0625,
+                "mean": 3.078125
+              },
+              "signal": {
+                "seconds": 10.24,
+                "peak": 0.19693364202976227,
+                "rms": 0.028642967365519766,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 0.0000010172526041666667
+              },
+              "generated_tokens": 500,
+              "audio_tokens": 493
+            }
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/muse_musecritic_after.wav",
+            "wave": "visuals/muse_musecritic_after_wave.png",
+            "spectrum": "visuals/muse_musecritic_after_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
+            "receipt_key": "after",
+            "metrics": {
+              "reward": {
+                "Coherence": 3.265625,
+                "Musicality": 1.796875,
+                "Memorability": 2.21875,
+                "Clarity": 2.09375,
+                "Naturalness": 3.28125,
+                "mean": 2.53125
+              },
+              "signal": {
+                "seconds": 10.24,
+                "peak": 0.42237982153892517,
+                "rms": 0.05936361807949647,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 0.0000010172526041666667
+              },
+              "generated_tokens": 500,
+              "audio_tokens": 489
+            }
+          },
+          {
+            "step": 100,
+            "status": "pending"
+          },
+          {
+            "step": 300,
+            "status": "pending"
+          },
+          {
+            "step": 1000,
+            "status": "pending"
+          }
+        ]
       }
     },
     "vocal": {
@@ -1106,6 +2324,26 @@
         {
           "step": 1000,
           "status": "pending"
+        }
+      ],
+      "outputs": [
+        {
+          "model": "AnyAccomp",
+          "kind": "accompaniment_only",
+          "step": 0,
+          "status": "measured",
+          "audio": "audio/anyaccomp_accompaniment_seed29.wav",
+          "wave": "visuals/anyaccomp_accompaniment_seed29_wave.png",
+          "spectrum": "visuals/anyaccomp_accompaniment_seed29_spectrum.png"
+        },
+        {
+          "model": "AnyAccomp",
+          "kind": "input_plus_accompaniment",
+          "step": 0,
+          "status": "measured",
+          "audio": "audio/anyaccomp_mixture_seed29.wav",
+          "wave": "visuals/anyaccomp_mixture_seed29_wave.png",
+          "spectrum": "visuals/anyaccomp_mixture_seed29_spectrum.png"
         }
       ]
     },
