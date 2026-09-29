@@ -1,5 +1,5 @@
 media:
-  input: site/assets/media
+  input: platform/site/assets/media
   output: /assets/media
   rename: safe
 
@@ -13,7 +13,7 @@ content:
   - name: literature
     label: Literature catalog
     type: file
-    path: data/literature.csv
+    path: platform/data/literature.csv
     format: datagrid
     operations:
       delete: false

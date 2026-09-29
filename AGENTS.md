@@ -5,33 +5,34 @@ This file is the first-read instruction for any agent working in this repository
 ## Required Read Order
 
 1. Read this `AGENTS.md`.
-2. Pull/rebase `main`, then inspect `update-request/` and the legacy root-level `Update_request_*.txt` files. Do not process pending requests during unrelated repository-structure work.
-3. Read `README.md`, `EDITING.md`, and `data/literature.csv` before changing catalog behavior.
-4. Read `docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md` only for maintainer work, weekly knowledge-base sync, or explicit Obsidian requests.
+2. Pull/rebase `main`, then read the three `upd_request/Update_request_*.txt` files. Do not process pending requests during unrelated repository-structure work.
+3. Read `README.md`, `platform/docs/EDITING.md`, and `platform/data/literature.csv` before changing catalog behavior.
+4. Read `platform/docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md` only for maintainer work, weekly knowledge-base sync, or explicit Obsidian requests.
 
 ## Sources Of Truth
 
-- `data/literature.csv` is the only editable source for the shared literature catalog.
-- `site/data/literature.json` is generated and must not be edited manually.
+- `platform/data/literature.csv` is the only editable source for the shared literature catalog.
+- `platform/site/data/literature.json` is generated and must not be edited manually.
 - `README.md` is a short, manually maintained team entrypoint. Do not add a generated catalog table to it; link to the interactive site instead.
-- Run `npm run build` after catalog changes and `npm run check` before committing.
-- Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `EDITING.md`; keep `keywords` to at most three useful terms.
+- Run `npm --prefix platform run build` after catalog changes and `npm --prefix platform run check` before committing.
+- Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `platform/docs/EDITING.md`; keep `keywords` to at most three useful terms.
 - A trailing `*` marks a provisional rating pending reread, for example `4/5*`.
 - Keep `zhanh_note`, `felix_note`, and `hanyu_note` separately attributed. Never fill or change another contributor's note, and never change Felix's rating unless Felix requested it; preserve each person's independent judgment.
 
 ## Update Request Protocol
 
 1. Synchronize with `origin/main` before editing. Rebase or fast-forward; preserve concurrent work.
-2. For an update-processing task, check new one-request-per-file submissions under `update-request/literature/` and `update-request/new-methods/`, plus pending legacy root `Update_request_*.txt`. An unrelated structural task must leave them pending.
+2. For an update-processing task, check all three `upd_request/Update_request_*.txt` files. Treat a placeholder-only file as `no-action`; an unrelated structural task must leave pending text untouched.
 3. For literature requests, verify title, year, venue, publication status, and links against primary sources. Do not invent code/demo links.
 4. Apply changes to the shared CSV and, when explicitly requested or during the weekly sync, the Obsidian vault.
-5. Archive a processed new request in `update-request/archive/`, preserving its original text and appending processing metadata. Legacy root requests retain their existing `Done_UPD_request/` archival convention until they are processed; do not silently migrate or close them.
-6. Build, validate, review the diff, rebase again if the remote moved, commit, push, and verify the GitHub Action.
+5. Archive the original request in `upd_request/done_requests/` with an AWST timestamp. Preserve its text verbatim and append `processed_at`, `status`, and a concise result summary.
+6. Recreate the contributor's blank TXT template at the same path so its GitHub edit link stays stable.
+7. Build, validate, review the diff, rebase again if the remote moved, commit, push, and verify the GitHub Action.
 
 ## Experiment Publishing
 
-- `site/index.html` and `data/literature.csv` remain the literature site's stable entry and source of truth. Do not move them merely to mirror the new task folders.
-- Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
+- `platform/site/index.html` and `platform/data/literature.csv` remain the literature site's entry and source of truth. The deployed Pages URL stays stable although the repository source moved.
+- Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `platform/site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
 - Do not publish private vault notes, restricted data, checkpoints, credentials or unlicensed audio. Label external paper results, local measurements and plans distinctly. Do not create dummy reward implementations or demo pages that look like completed experiments.
 
 ## README Audience
@@ -42,7 +43,7 @@ This file is the first-read instruction for any agent working in this repository
 
 - Routine GitHub edits do not require immediate Obsidian synchronization.
 - Run the private-vault synchronization when Zhanh explicitly asks, when a request asks for a detailed note, or during the usual weekly maintenance pass.
-- Follow `docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md`; never delete unrelated vault content and never expose private notes in the public catalog.
+- Follow `platform/docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md`; never delete unrelated vault content and never expose private notes in the public catalog.
 - The public CSV and the Obsidian catalog should agree on paper identity and shared metadata. Obsidian may contain richer internal links, detailed reading cards, experiment context, and private judgments.
 
 ## Safety And Git Hygiene

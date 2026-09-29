@@ -29,23 +29,23 @@ jobs:
 
       - name: Validate data and build derived files
         run: |
-          npm run build
-          npm run check
+          npm --prefix platform run build
+          npm --prefix platform run check
           git diff --check
 
       - name: Require generated files in pull requests
         if: github.event_name == 'pull_request'
-        run: git diff --exit-code -- site/data/literature.json
+        run: git diff --exit-code -- platform/site/data/literature.json
 
       - name: Commit generated files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- site/data/literature.json; then
+          if git diff --quiet -- platform/site/data/literature.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data/literature.json
+          git add platform/site/data/literature.json
           git commit -m "catalog: rebuild site data [skip ci]"
           git push
 
@@ -57,7 +57,7 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v5
         with:
-          path: site
+          path: platform/site
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
