@@ -1,0 +1,115 @@
+{
+  "status": "official_online_demo_baseline_not_grpo",
+  "input": "Original 10.2-second harmonic SATB synthesis; not a held-out benchmark",
+  "model": "MuScriptor official hosted demo",
+  "instrument_tracks": [
+    {
+      "name": "acoustic piano",
+      "program": 0,
+      "notes": 16
+    }
+  ],
+  "reference_notes": 32,
+  "predicted_notes": 16,
+  "estimated_notes": [
+    {
+      "pitch": 53,
+      "start": 5.030208333333333,
+      "end": 6.160416666666666
+    },
+    {
+      "pitch": 60,
+      "start": 5.030208333333333,
+      "end": 6.160416666666666
+    },
+    {
+      "pitch": 65,
+      "start": 5.030208333333333,
+      "end": 6.160416666666666
+    },
+    {
+      "pitch": 72,
+      "start": 5.030208333333333,
+      "end": 6.160416666666666
+    },
+    {
+      "pitch": 52,
+      "start": 6.219791666666667,
+      "end": 7.3999999999999995
+    },
+    {
+      "pitch": 59,
+      "start": 6.219791666666667,
+      "end": 7.3999999999999995
+    },
+    {
+      "pitch": 64,
+      "start": 6.219791666666667,
+      "end": 7.3999999999999995
+    },
+    {
+      "pitch": 71,
+      "start": 6.219791666666667,
+      "end": 7.3999999999999995
+    },
+    {
+      "pitch": 50,
+      "start": 7.460416666666666,
+      "end": 8.65
+    },
+    {
+      "pitch": 57,
+      "start": 7.460416666666666,
+      "end": 8.65
+    },
+    {
+      "pitch": 65,
+      "start": 7.460416666666666,
+      "end": 8.65
+    },
+    {
+      "pitch": 69,
+      "start": 7.460416666666666,
+      "end": 8.65
+    },
+    {
+      "pitch": 48,
+      "start": 8.719791666666666,
+      "end": 8.730208333333334
+    },
+    {
+      "pitch": 60,
+      "start": 8.719791666666666,
+      "end": 8.730208333333334
+    },
+    {
+      "pitch": 67,
+      "start": 8.719791666666666,
+      "end": 8.730208333333334
+    },
+    {
+      "pitch": 72,
+      "start": 8.719791666666666,
+      "end": 8.730208333333334
+    }
+  ],
+  "protocol": "mir_eval onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration)",
+  "note_onset_50ms": {
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.6666666666666666,
+    "tp": 16,
+    "fp": 0,
+    "fn": 16
+  },
+  "note_onset_offset_50ms": {
+    "precision": 0.75,
+    "recall": 0.375,
+    "f1": 0.5,
+    "tp": 12,
+    "fp": 4,
+    "fn": 20
+  },
+  "track_aware_metrics": null,
+  "caveat": "The hosted model returned one acoustic-piano track without SATB voice labels; do not compare a track-aware F1. This output cannot establish a MuScriptor GRPO result."
+}

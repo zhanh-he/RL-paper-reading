@@ -51,16 +51,24 @@
         <div class="case-status">
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">frame-head GRPO 已测</span><small>完整 SATB MIDI GRPO 尚未运行</small></div>
-          <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">ACE-Step completion 已生成</span><small>非纯伴奏；GRPO 尚未运行</small></div>
+          <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">两个模型 baseline 已生成</span><small>ACE-Step completion + AnyAccomp 纯伴奏；GRPO 尚未运行</small></div>
           <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 一步 GRPO 已测</span><small>Muse 与 MuseCritic 是独立实验；看配对与队列状态</small></div>
         </div>
       </section>
 
       <section class="lab-view" id="view-choral" hidden>
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral transcription: frame-head GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
-        <div class="source-grid"><div class="source-block"><span class="source-label">Input / reference</span><strong>30 首 YouChorale-Pro 测试歌曲</strong><p>原始音频、参考 SATB MIDI 与逐首 ID 不公开；此页不能提供可信的逐首回放。</p></div><div class="source-block"><span class="source-label">Baseline / trained MIDI</span><strong>逐首 MIDI 尚无公开资源</strong><p>1152 次更新只改变 frame head；自回归 MIDI 解码输出前后完全相同。不能用帧级提升代替 MIDI 听感。</p></div></div>
+        <div class="source-grid"><div class="source-block"><span class="source-label">Held-out benchmark</span><strong>30 首 YouChorale-Pro 测试歌曲</strong><p>原始音频、参考 SATB MIDI 与逐首 ID 不公开。下方保留完整歌曲的汇总指标，不把公开合成例算进测试集。</p></div><div class="source-block"><span class="source-label">Public listening example</span><strong>原创 4 声部合成片段</strong><p>32 个参考音符，10.2 秒。同一输入下对比 ChoralStream baseline、frame-head GRPO 和 MuScriptor 在线 baseline；示范例不属于 held-out benchmark。</p></div></div>
         <div class="stage-rail" id="choral-stage-rail" aria-label="Choral training stages"></div>
-        <div class="midi-empty"><i data-lucide="piano" aria-hidden="true"></i><div><strong>MIDI piano roll 与音频回放待真实样本</strong><p>目前仅展示可核对的汇总指标；未用示意音符冒充模型输出。</p></div></div>
+        <h3 class="subsection-heading">公开样本：先听再看 MIDI</h3>
+        <div class="audio-grid choral-listen" id="choral-listen">
+          <div class="audio-item"><span class="audio-index">INPUT / REFERENCE</span><h3>原创 SATB 合成输入</h3><audio controls preload="metadata" src="./audio/choral_synth_input.wav"></audio><a class="source-link" href="./midi/choral_synth_reference.mid" download>参考 MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">BASELINE / 0 UPDATES</span><h3>ChoralStream 转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_baseline.wav"></audio><a class="source-link" href="./midi/choral_synth_baseline.mid" download>Baseline MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">FRAME-HEAD GRPO / 1,152 UPDATES</span><h3>GRPO 后转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_grpo.wav"></audio><a class="source-link" href="./midi/choral_synth_grpo.mid" download>GRPO MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">SECOND MODEL / NO GRPO</span><h3>MuScriptor · 官方 demo 输出</h3><audio controls preload="metadata" src="./audio/muscriptor_synth_baseline.wav"></audio><a class="source-link" href="./midi/muscriptor_synth_baseline.mid" download>MuScriptor MIDI ↓</a></div>
+        </div>
+        <div class="metric-controls choral-roll-controls"><span class="control-label">Piano roll</span><div class="segmented" role="group" aria-label="Choral MIDI stage"><button type="button" data-choral-roll="reference" aria-pressed="true">Reference</button><button type="button" data-choral-roll="baseline" aria-pressed="false">ChoralStream</button><button type="button" data-choral-roll="grpo" aria-pressed="false">GRPO</button><button type="button" data-choral-roll="muscriptor" aria-pressed="false">MuScriptor</button></div><span id="choral-example-score"></span></div>
+        <figure class="midi-figure"><div class="midi-canvas-scroll"><canvas id="choral-piano-roll" width="1100" height="390" role="img" aria-label="Piano roll of original reference or actual model output"></canvas></div><figcaption>原创建模示例，参考音符与模型预测分开展示。ChoralStream baseline 与 GRPO 的事件 MIDI 完全相同。MuScriptor 只输出单条 acoustic-piano 轨，卷帘图不替它推断 SATB 声部；合成器渲染仅供试听音符。</figcaption></figure>
         <div class="protocol-strip"><span><strong>96</strong> train songs</span><span><strong>28</strong> validation</span><span><strong>30</strong> test songs</span><span><strong>5.12 s</strong> per song</span><span><strong>8</strong> rollouts/group</span><span><strong>1,152</strong> updates</span></div>
         <div class="metric-controls"><label for="head-select">Evaluation head</label><select id="head-select"><option value="frame">Frame F1</option><option value="onset">Onset F1</option><option value="offset">Offset F1</option></select><span>Higher is better · fixed threshold</span></div>
         <div class="chart" id="choral-chart" aria-label="Held-out F1 by training arm"></div>
@@ -68,13 +76,13 @@
         <div class="evidence-note"><strong>Interpretation</strong><p>Frame-only GRPO 的 frame F1 从 <span id="frame-before"></span> 到 <span id="frame-after"></span>（seed 29），30 首歌 paired bootstrap 的变化 95% 区间 <span id="frame-ci"></span>。三个训练 seed 的测试 frame F1 为 <span id="seed-range"></span>。但 onset / offset F1 下降，weighted BCE 更好。此实验只更新 Bernoulli frame head，encoder 和 AR MIDI decoder 冻结；不是完整 SATB note-F1 GRPO。</p></div>
         <h3 class="subsection-heading">完整歌曲的 MIDI 音符指标</h3>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Match criterion</th><th>Pitch F1</th><th>Pitch + SATB F1</th><th>GRPO 前后</th></tr></thead><tbody id="choral-note-table"></tbody></table></div>
-        <div class="evidence-note"><strong>Evaluation boundary</strong><p>同一批 30 首测试歌、完整歌曲解码。音符 onset 容差 50 ms；offset 容差 max(50 ms, 参考音长的 20%)。参数比对和同歌重放均确认 frame-head 更新没有进入 AR MIDI 解码器，所以上表前后相同；不能把 frame-head 的提升写作完整转录提升。</p></div>
+        <div class="evidence-note"><strong>Evaluation boundary</strong><p>同一批 30 首测试歌、完整歌曲解码。音符 onset 容差 50 ms；offset 容差 max(50 ms, 参考音长的 20%)。参数比对和同歌重放均确认 frame-head 更新没有进入 AR MIDI 解码器，所以上表前后相同；不能把 frame-head 的提升写作完整转录提升。公开合成例也验证了这个边界，但它不参与 30 首歌的指标。</p></div>
         <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head" target="_blank" rel="noreferrer">Protocol, code and JSON receipts <span aria-hidden="true">↗</span></a>
       </section>
 
       <section class="lab-view" id="view-lyrics">
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Same prompt, same seed</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · lab5090</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
-        <div class="metric-controls replay-model-controls"><span class="control-label">Model</span><div class="segmented" role="group" aria-label="Model"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2-3B</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse-0.6b</button></div><span>held-out seed 5101</span></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · SongEval</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span>held-out seed 5101</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <h3 class="subsection-heading">Checkpoint timeline</h3>
         <div class="stage-rail" id="lyrics-stage-rail" aria-label="Lyrics training stages"></div>
@@ -108,13 +116,14 @@
       </section>
 
       <section class="lab-view" id="view-vocal" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Case 02 · Model inference</p><h2>Vocal → song completion</h2></div><div class="section-actions"><span class="state inference">单次推理 · lab5090</span><button class="button button-secondary" type="button" data-jump="vocal-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
+        <div class="section-intro"><div><p class="eyebrow">Case 02 · Two model baselines</p><h2>Vocal → accompaniment / song</h2></div><div class="section-actions"><span class="state inference">两模型推理 · lab5090</span><button class="button button-secondary" type="button" data-jump="vocal-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input</span><strong>自行合成的唱元音引导声</strong><p>16 秒、单声道，不是真人演唱。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>暂无对应的参考歌曲</strong><p>因此不能报告与参考伴奏的 coverage、beat 或 richness 提升。</p></div></div>
         <h3 class="subsection-heading">Checkpoint timeline</h3><div class="stage-rail" id="vocal-stage-rail" aria-label="Vocal training stages"></div>
         <div class="compare-grid" id="vocal-compare"></div>
-        <div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> diffusion steps, not GRPO</span><span><strong>0</strong> GRPO updates</span></div>
-        <div class="evidence-note"><strong>What this does and does not prove</strong><p>证明模型在本地可加载、接受 vocal guide 并产出非静音音频；尚无人工听感评分、coverage/richness/beat reward 结果或 GRPO 前后对照。后续应先换授权真人声输入，再验证原人声保留与伴奏分离。</p></div>
-        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">Inference code and provenance ↗</a><a class="source-link" href="https://github.com/ace-step/ACE-Step-1.5" target="_blank" rel="noreferrer">Official ACE-Step repository ↗</a></div>
+        <div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>2</strong> baseline models</span><span><strong>0</strong> GRPO updates</span></div>
+        <div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div>
+        <div class="evidence-note"><strong>What this does and does not prove</strong><p>两个模型都已在本地接受相同合成 vocal guide 并产出非静音音频。ACE-Step 输出 full-mix completion；AnyAccomp 单独输出伴奏，并提供 vocal + 伴奏混音以便试听。coverage 与 beat-v2 是这一个合成样本的诊断值，不等于主观听感或 GRPO 增益。尚无 richness 验证、人工偏好或 GRPO 前后对照；模型输出的任务边界不能混为一谈。</p></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">ACE-Step receipt ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/anyaccomp" target="_blank" rel="noreferrer">AnyAccomp receipt ↗</a><a class="source-link" href="https://github.com/AmphionTeam/AnyAccomp" target="_blank" rel="noreferrer">AnyAccomp upstream ↗</a></div>
       </section>
 
       <footer class="lab-footer">Data are generated from versioned aggregate receipts. No private recordings, source IDs or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>

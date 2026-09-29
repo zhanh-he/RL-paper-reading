@@ -1,0 +1,113 @@
+{
+  "status": "public_synthetic_illustration_not_heldout_benchmark",
+  "scope": "Original harmonic SATB synthesis; the trained checkpoint changes frame_prj only",
+  "reference_notes": 32,
+  "predicted_notes": {
+    "baseline": 43,
+    "grpo": 43
+  },
+  "event_decode_identical": true,
+  "protocol": "mir_eval onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration)",
+  "metrics": {
+    "baseline": {
+      "note_onset_50ms": {
+        "precision": 0.11627906976744186,
+        "recall": 0.15625,
+        "f1": 0.13333333333333333,
+        "tp": 5,
+        "fp": 38,
+        "fn": 27
+      },
+      "note_onset_offset_50ms": {
+        "precision": 0.06976744186046512,
+        "recall": 0.09375,
+        "f1": 0.08,
+        "tp": 3,
+        "fp": 40,
+        "fn": 29
+      },
+      "track_note_onset_50ms": {
+        "precision": 0.11627906976744186,
+        "recall": 0.15625,
+        "f1": 0.13333333333333333,
+        "tp": 5,
+        "fp": 38,
+        "fn": 27
+      },
+      "track_note_onset_offset_50ms": {
+        "precision": 0.06976744186046512,
+        "recall": 0.09375,
+        "f1": 0.08,
+        "tp": 3,
+        "fp": 40,
+        "fn": 29
+      },
+      "frame_16ms": {
+        "precision": 0.5786143625434989,
+        "recall": 0.8064373897707231,
+        "f1": 0.6737889114017315,
+        "tp": 1829,
+        "fp": 1332,
+        "fn": 439
+      },
+      "track_frame_16ms": {
+        "precision": 0.494279847462599,
+        "recall": 0.7429453262786596,
+        "f1": 0.5936233926369562,
+        "tp": 1685,
+        "fp": 1724,
+        "fn": 583
+      }
+    },
+    "grpo": {
+      "note_onset_50ms": {
+        "precision": 0.11627906976744186,
+        "recall": 0.15625,
+        "f1": 0.13333333333333333,
+        "tp": 5,
+        "fp": 38,
+        "fn": 27
+      },
+      "note_onset_offset_50ms": {
+        "precision": 0.06976744186046512,
+        "recall": 0.09375,
+        "f1": 0.08,
+        "tp": 3,
+        "fp": 40,
+        "fn": 29
+      },
+      "track_note_onset_50ms": {
+        "precision": 0.11627906976744186,
+        "recall": 0.15625,
+        "f1": 0.13333333333333333,
+        "tp": 5,
+        "fp": 38,
+        "fn": 27
+      },
+      "track_note_onset_offset_50ms": {
+        "precision": 0.06976744186046512,
+        "recall": 0.09375,
+        "f1": 0.08,
+        "tp": 3,
+        "fp": 40,
+        "fn": 29
+      },
+      "frame_16ms": {
+        "precision": 0.5786143625434989,
+        "recall": 0.8064373897707231,
+        "f1": 0.6737889114017315,
+        "tp": 1829,
+        "fp": 1332,
+        "fn": 439
+      },
+      "track_frame_16ms": {
+        "precision": 0.494279847462599,
+        "recall": 0.7429453262786596,
+        "f1": 0.5936233926369562,
+        "tp": 1685,
+        "fp": 1724,
+        "fn": 583
+      }
+    }
+  }
+}

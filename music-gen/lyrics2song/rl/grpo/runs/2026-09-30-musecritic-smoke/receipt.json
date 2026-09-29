@@ -1,0 +1,21 @@
+{
+  "status": "completed_one_step_online_musecritic_grpo_engineering_smoke",
+  "job_id": "180155391.gadi-pbs",
+  "project": "iv96",
+  "host": "Gadi H200",
+  "exit_status": 0,
+  "walltime": "00:05:14",
+  "model": "Muse-0.6b",
+  "reward": "MuseCritic five-score mean after MuCodec decoding",
+  "training_prompts": 2,
+  "group_size": 2,
+  "optimizer_steps": 1,
+  "lora_trainable_parameters_reported": "5.0463M",
+  "training_reward_mean": 2.51015615,
+  "training_reward_std": 0.4982892,
+  "gradient_norm": 0.26083252,
+  "decoded_training_wavs": 2,
+  "adapter_sha256": "1b0fa83e8e207350520e07e1437aef247d491fdee79347093a58f49b50a53044",
+  "remote_adapter": "/g/data/wa66/hanyu/vocal2accomp-muse/experiments/muse_grpo_pilot/outputs/180155391.gadi-pbs/checkpoint/v0-20260930-060428/checkpoint-1",
+  "caveat": "One optimizer step on two short training prompts. The single-GPU path did not write an external-vLLM rollout JSONL, but did decode two WAVs and save an adapter. No held-out or human-listening claim follows from the training reward."
+}

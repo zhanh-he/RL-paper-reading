@@ -1,0 +1,38 @@
+{
+  "status": "inference_complete_not_grpo",
+  "model": "AnyAccomp public checkpoint",
+  "model_source": "https://huggingface.co/amphion/anyaccomp",
+  "run_host": "lab5090",
+  "input": "platform/site/demos/audio/guide_vocal.wav",
+  "seed": 29,
+  "n_timesteps": 50,
+  "cfg": 3.0,
+  "outputs": {
+    "accompaniment": {
+      "public_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.wav",
+      "sample_rate": 24000,
+      "seconds": 16.0,
+      "rms": 0.03013126365840435,
+      "peak": 0.212860107421875,
+      "sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea"
+    },
+    "mixture": {
+      "public_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.wav",
+      "sample_rate": 24000,
+      "seconds": 16.0,
+      "rms": 0.23373523354530334,
+      "peak": 0.72735595703125,
+      "sha256": "ad206f8ac57371f06fb3c82d28eefb3e867d6cc76b65c3914b8239e5a78279b6"
+    }
+  },
+  "reward_diagnostics": {
+    "coverage": 0.758988015978695,
+    "beat_v2": {
+      "score": 0.3684210526315789,
+      "reference_beats": 19,
+      "accompaniment_beats": 19
+    },
+    "scope": "Reference-free activity coverage and vocal-reference beat F-measure on one synthetic guide; not a GRPO reward comparison or human quality judgement"
+  },
+  "warning": "Synthetic vocal guide, no paired ground truth, no reward evaluation and no GRPO. The mixture is the original guide added to the generated accompaniment."
+}
