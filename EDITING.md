@@ -5,13 +5,12 @@ generated from it. `README.md` stays short and is maintained manually as the tea
 
 ## Recommended no-install workflow
 
-1. Open your root request file: `Update_request_zhanh.txt`,
-   `Update_request_felix.txt`, or `Update_request_hanyu.txt`.
-2. Add the requested paper, rating change, correction, or question below the marker.
-3. Commit the request through GitHub's normal web editor. No GitHub App is required.
-4. The maintainer/agent verifies and applies the change, then moves the completed
-   request to `Done_UPD_request/` with an AWST timestamp.
-5. A fresh blank request file is recreated at the same path for the next update.
+1. Open [`update-request/`](update-request/README.md) and use the literature or new-method template.
+2. Add one request per file with a descriptive name. Keep the author's rating and judgment attributed.
+3. Commit the new file through GitHub's normal web editor. No GitHub App is required.
+4. The maintainer/agent verifies and applies the change, then archives the request under `update-request/archive/` with processing status.
+
+The legacy root `Update_request_*.txt` files remain in place, including any pending text. They use the previous `Done_UPD_request/` archive convention until explicitly processed; this layout change does not process or discard them.
 
 Contributors who prefer Git may edit `data/literature.csv` directly and open a pull
 request. Pages CMS remains optional for accounts allowed to authorize its GitHub App.

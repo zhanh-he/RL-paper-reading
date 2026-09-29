@@ -5,7 +5,7 @@ This file is the first-read instruction for any agent working in this repository
 ## Required Read Order
 
 1. Read this `AGENTS.md`.
-2. Pull/rebase `main`, then read every root-level `Update_request_*.txt` file.
+2. Pull/rebase `main`, then inspect `update-request/` and the legacy root-level `Update_request_*.txt` files. Do not process pending requests during unrelated repository-structure work.
 3. Read `README.md`, `EDITING.md`, and `data/literature.csv` before changing catalog behavior.
 4. Read `docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md` only for maintainer work, weekly knowledge-base sync, or explicit Obsidian requests.
 
@@ -22,13 +22,17 @@ This file is the first-read instruction for any agent working in this repository
 ## Update Request Protocol
 
 1. Synchronize with `origin/main` before editing. Rebase or fast-forward; preserve concurrent work.
-2. Process every root `Update_request_*.txt`. Treat a placeholder-only file as checked with status `no-action`.
+2. For an update-processing task, check new one-request-per-file submissions under `update-request/literature/` and `update-request/new-methods/`, plus pending legacy root `Update_request_*.txt`. An unrelated structural task must leave them pending.
 3. For literature requests, verify title, year, venue, publication status, and links against primary sources. Do not invent code/demo links.
 4. Apply changes to the shared CSV and, when explicitly requested or during the weekly sync, the Obsidian vault.
-5. Archive the original request in `Done_UPD_request/` as `Update_request_<name>_YYYYMMDD_HHMMSS_AWST.txt`.
-6. Preserve the original request verbatim and append `processed_at`, `status`, and a concise result summary.
-7. Recreate the root request file from the blank template so its stable GitHub edit link continues to work.
-8. Build, validate, review the diff, rebase again if the remote moved, commit, push, and verify the GitHub Action.
+5. Archive a processed new request in `update-request/archive/`, preserving its original text and appending processing metadata. Legacy root requests retain their existing `Done_UPD_request/` archival convention until they are processed; do not silently migrate or close them.
+6. Build, validate, review the diff, rebase again if the remote moved, commit, push, and verify the GitHub Action.
+
+## Experiment Publishing
+
+- `site/index.html` and `data/literature.csv` remain the literature site's stable entry and source of truth. Do not move them merely to mirror the new task folders.
+- Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
+- Do not publish private vault notes, restricted data, checkpoints, credentials or unlicensed audio. Label external paper results, local measurements and plans distinctly. Do not create dummy reward implementations or demo pages that look like completed experiments.
 
 ## README Audience
 
