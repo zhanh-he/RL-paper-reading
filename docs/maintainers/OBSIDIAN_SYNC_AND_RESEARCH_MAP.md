@@ -11,7 +11,7 @@
 
 ## Weekly Sync Procedure
 
-1. Pull/rebase the GitHub repository and process all root `Update_request_*.txt` files.
+1. Pull/rebase the GitHub repository and process new files under `update-request/literature/` and `update-request/new-methods/`, plus pending legacy root `Update_request_*.txt` files.
 2. Treat `data/literature.csv` as the shared catalog source; run `npm run build` and `npm run check`.
 3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
 4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and independently attributed Zhanh/Felix/Hanyu project notes.
