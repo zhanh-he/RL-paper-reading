@@ -1,5 +1,6 @@
 const $ = (selector) => document.querySelector(selector);
 const fmt = (value, digits = 4) => Number(value).toFixed(digits);
+const signed = (value, digits = 3) => `${value >= 0 ? '+' : ''}${fmt(value, digits)}`;
 const armLabels = {
   baseline: 'Frozen checkpoint',
   onset: 'GRPO · onset only',
@@ -24,9 +25,10 @@ const auditLessons = {
 };
 
 function setView(view) {
-  const chosen = ['overview', 'choral', 'rewards', 'vocal'].includes(view) ? view : 'overview';
+  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal'].includes(view) ? view : 'overview';
   for (const section of document.querySelectorAll('.lab-view')) section.hidden = section.id !== `view-${chosen}`;
   for (const tab of document.querySelectorAll('.lab-tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === chosen));
+  document.querySelector(`.lab-tab[data-view="${chosen}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
   if (location.hash !== `#${chosen}`) history.replaceState(null, '', `#${chosen}`);
 }
 
@@ -86,6 +88,58 @@ function renderRewards(data) {
   }));
 }
 
+function appendCells(body, rows) {
+  body.replaceChildren(...rows.map((values) => {
+    const tr = document.createElement('tr');
+    for (const value of values) {
+      const cell = document.createElement('td'); cell.textContent = value; tr.append(cell);
+    }
+    return tr;
+  }));
+}
+
+function renderChoralNotes(data) {
+  const rows = [
+    ['Frame (16 ms)', 'frame_16ms', 'track_frame_16ms'],
+    ['Onset (50 ms)', 'note_onset_50ms', 'track_note_onset_50ms'],
+    ['Onset + offset (50 ms minimum)', 'note_onset_offset_50ms', 'track_note_onset_offset_50ms'],
+  ];
+  appendCells($('#choral-note-table'), rows.map(([label, pitch, track]) => [
+    label, fmt(data.before[pitch].f1), fmt(data.before[track].f1), '相同',
+  ]));
+}
+
+function pairRows(data) {
+  return [['Before', data.before], ['After', data.after]].map(([name, entry]) => [
+    name, fmt(entry.reward.mean), fmt(entry.signal.peak, 3),
+    `${(entry.signal.near_full_scale_fraction * 100).toFixed(4)}%`,
+  ]);
+}
+
+function renderLyrics(data, verification, muse) {
+  appendCells($('#yue2-table'), pairRows(data));
+  $('#yue2-token-change').textContent = `${verification.post_update_semantic_changed_positions}/${verification.semantic_tokens}`;
+  $('#yue2-reward-change').textContent = `${fmt(data.before.reward.mean)} → ${fmt(data.after.reward.mean)}`;
+  if (muse) {
+    $('#muse-result').hidden = false;
+    appendCells($('#muse-table'), pairRows(muse));
+    $('#muse-interpretation').textContent = `同 seed 的留出片段，SongEval ${fmt(muse.before.reward.mean)} → ${fmt(muse.after.reward.mean)}；未训练重放波形${muse.untrained_replay_audio_identical ? '完全相同' : '不相同，不能归因于训练'}。单步、小样本结果不代表长期趋势。`;
+  }
+}
+
+function renderSongEval(data) {
+  const pairs = [
+    ['Safe gain − normalized reference', 'safe_gain_minus_reference'],
+    ['Full-scale clip − normalized reference', 'hard_clip_full_scale_minus_reference'],
+    ['RMS-matched clip − safe gain', 'hard_clip_rms_matched_minus_safe_gain'],
+    ['6 kHz bandlimit − reference', 'bandlimit_6khz_upsampled_minus_reference'],
+  ];
+  appendCells($('#songeval-table'), pairs.map(([label, key]) => {
+    const score = data.comparisons[key].five_mean;
+    return [label, signed(score.mean), `[${signed(score.paired_bootstrap_95pct[0])}, ${signed(score.paired_bootstrap_95pct[1])}]`, `${score.positive} / ${score.n}`];
+  }));
+}
+
 for (const tab of document.querySelectorAll('.lab-tab')) tab.addEventListener('click', () => setView(tab.dataset.view));
 for (const link of document.querySelectorAll('[data-open-view]')) link.addEventListener('click', (event) => { event.preventDefault(); setView(link.dataset.openView); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 window.addEventListener('hashchange', () => setView(location.hash.slice(1)));
@@ -96,8 +150,11 @@ try {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
   renderChoral(data.choral);
+  renderChoralNotes(data.choral_note);
   $('#seed-range').textContent = [data.choral.runs.frame.f1.frame, ...data.choral_seed_repeats.map((row) => row.frame_f1)].map((score) => fmt(score)).join(' / ');
   renderRewards(data.reward_audit);
+  renderLyrics(data.yue2, data.yue2_verification, data.muse);
+  renderSongEval(data.songeval_audit);
 } catch (error) {
   $('#headline-grpo').textContent = 'Data unavailable';
   $('#headline-bce').textContent = 'Data unavailable';

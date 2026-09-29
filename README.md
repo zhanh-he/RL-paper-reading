@@ -9,9 +9,9 @@ This repository keeps the shared RL literature catalog and measured music post-t
 | Area | Task | Current state |
 | --- | --- | --- |
 | [Music transcription](music-trans/README.md) | [Multi-instrument](music-trans/multi-inst/README.md) | Model, reward and DPO/GRPO layout; no local training result published here |
-| [Music transcription](music-trans/README.md) | [Choral singing](music-trans/choral-singing/README.md) | [Real frame-head GRPO pilot](music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/README.md), 30-song held-out test; [four-pair note reward audit](music-trans/choral-singing/rewards/audits/2026-09-29/README.md) |
+| [Music transcription](music-trans/README.md) | [Choral singing](music-trans/choral-singing/README.md) | [Frame-head GRPO and full-song 50 ms note F1](music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/README.md), 30-song held-out test; [four-pair note reward audit](music-trans/choral-singing/rewards/audits/2026-09-29/README.md) |
 | [Music generation](music-gen/README.md) | [Fixed vocal to accompaniment](music-gen/vocal2accomp/README.md) | [ACE-Step 1.5 completion inference](music-gen/vocal2accomp/models/ace-step-1.5/README.md); beat/coverage/richness GRPO not yet run |
-| [Music generation](music-gen/README.md) | [Lyrics to song](music-gen/lyrics2song/README.md) | MuseCritic online GRPO smoke submitted on Gadi; no result until checkpoint and rollouts exist |
+| [Music generation](music-gen/README.md) | [Lyrics to song](music-gen/lyrics2song/README.md) | [YuE2](music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/README.md) and [Muse](music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/README.md) SongEval one-step GRPO with audio pairs; separate MuseCritic Gadi job still queued |
 
 Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds an adapter/config and provenance, not weights. Simple reward implementations belong in one Python file each; `combine.py` at the reward root composes them after their scales and failure modes have been checked. A run gets its own folder under the appropriate RL method, with a reproducible record using the [experiment template](notes/EXPERIMENT_RECORD.md). [Model and data selection](notes/2026-09-29-model-data-reward-selection.md) records gates, licenses and recommended next experiments.
 

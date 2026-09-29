@@ -39,6 +39,28 @@ and offset-only increase their sampled training rewards slightly, but their
 thresholded held-out F1 drops. This is a reward/decode mismatch to investigate,
 not evidence that those heads improved.
 
+## Full-song MIDI check
+
+We separately decoded all 30 held-out YouChorale-Pro songs with the checkpoint's
+autoregressive MIDI decoder (beam 2, SATB presence threshold 0.5). The frame-head
+GRPO update changes only `frame_prj`; the event decoder does not use it. A paired
+song decode and parameter comparison confirmed that the MIDI output is identical
+before and after. These numbers therefore describe the frozen MIDI baseline, not
+a GRPO gain:
+
+| Match criterion | Pitch only F1 | Pitch + SATB track F1 |
+| --- | ---: | ---: |
+| 16 ms frame grid | 0.5542 | 0.3670 |
+| Pitch + onset within 50 ms | 0.1063 | 0.0661 |
+| Pitch + onset within 50 ms + offset within max(50 ms, 20% reference duration) | 0.0234 | 0.0145 |
+
+Counts are pooled over complete songs, with mir_eval note matching for the last
+two rows. This makes explicit the usual distinction between frame-wise F1,
+onset-constrained note F1, and onset+offset-constrained note F1. It is not a
+single joint "frame+onset" score. The [evaluation script](../../evaluate_notes.py)
+and [aggregate receipt](note_metrics_50ms.json) include precision, recall and
+the matched checkpoint/test-set hashes; song IDs and source audio stay private.
+
 ## Reproduction
 
 Run `frame_grpo.py` on a machine with the local ChoralStream code, its checkpoint
