@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Music post-training experiments with measured results, reward audits and audio demos." />
+    <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css" />
@@ -25,23 +25,23 @@
     <main class="lab-main">
       <section class="lab-heading">
         <div>
-          <p class="eyebrow">Presentation evidence · 29 Sep 2026</p>
-          <h1>Music post-training experiments</h1>
-          <p class="lab-subtitle">同一页看已测结果、reward 失效模式和可播放样本。每个结果都标明实验层级与限制。</p>
+          <p class="eyebrow">Presentation evidence · 30 Sep 2026</p>
+          <h1>Music post-training replay</h1>
+          <p class="lab-subtitle">逐样本对齐输入、基线、训练阶段与客观分数。先听，再看频谱与 reward。</p>
         </div>
         <div class="lab-legend" aria-label="Evidence labels"><span class="state measured">实测</span><span class="state diagnostic">诊断</span><span class="state inference">推理</span><span class="state pending">待运行</span></div>
       </section>
 
       <nav class="lab-tabs" aria-label="Experiment views">
-        <button class="lab-tab" type="button" data-view="overview" aria-selected="true">Overview</button>
+        <button class="lab-tab" type="button" data-view="lyrics" aria-selected="true">Lyrics replay</button>
+        <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal replay</button>
         <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
-        <button class="lab-tab" type="button" data-view="lyrics" aria-selected="false">Lyrics GRPO</button>
+        <button class="lab-tab" type="button" data-view="overview" aria-selected="false">Overview</button>
         <button class="lab-tab" type="button" data-view="songeval" aria-selected="false">SongEval audit</button>
         <button class="lab-tab" type="button" data-view="rewards" aria-selected="false">MIDI rewards</button>
-        <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal demo</button>
       </nav>
 
-      <section class="lab-view" id="view-overview">
+      <section class="lab-view" id="view-overview" hidden>
         <div class="section-intro"><div><p class="eyebrow">The short version</p><h2>What we actually learned</h2></div><p>把提升幅度和失败案例放在一起看。</p></div>
         <div class="finding-grid">
           <article class="finding"><span class="state measured">实测 · 30 首短片段</span><strong id="headline-grpo">Loading</strong><p>弱 ChoralStream frame head 用 96 首训练歌曲做 GRPO 后，seed 29 测试 frame F1 的变化；另两次训练 seed 同向。</p><a href="#choral" data-open-view="choral">看对照实验 <span aria-hidden="true">↗</span></a></article>
@@ -58,6 +58,9 @@
 
       <section class="lab-view" id="view-choral" hidden>
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral transcription: frame-head GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
+        <div class="source-grid"><div class="source-block"><span class="source-label">Input / reference</span><strong>30 首 YouChorale-Pro 测试歌曲</strong><p>原始音频、参考 SATB MIDI 与逐首 ID 不公开；此页不能提供可信的逐首回放。</p></div><div class="source-block"><span class="source-label">Baseline / trained MIDI</span><strong>逐首 MIDI 尚无公开资源</strong><p>1152 次更新只改变 frame head；自回归 MIDI 解码输出前后完全相同。不能用帧级提升代替 MIDI 听感。</p></div></div>
+        <div class="stage-rail" id="choral-stage-rail" aria-label="Choral training stages"></div>
+        <div class="midi-empty"><i data-lucide="piano" aria-hidden="true"></i><div><strong>MIDI piano roll 与音频回放待真实样本</strong><p>目前仅展示可核对的汇总指标；未用示意音符冒充模型输出。</p></div></div>
         <div class="protocol-strip"><span><strong>96</strong> train songs</span><span><strong>28</strong> validation</span><span><strong>30</strong> test songs</span><span><strong>5.12 s</strong> per song</span><span><strong>8</strong> rollouts/group</span><span><strong>1,152</strong> updates</span></div>
         <div class="metric-controls"><label for="head-select">Evaluation head</label><select id="head-select"><option value="frame">Frame F1</option><option value="onset">Onset F1</option><option value="offset">Offset F1</option></select><span>Higher is better · fixed threshold</span></div>
         <div class="chart" id="choral-chart" aria-label="Held-out F1 by training arm"></div>
@@ -69,17 +72,19 @@
         <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head" target="_blank" rel="noreferrer">Protocol, code and JSON receipts <span aria-hidden="true">↗</span></a>
       </section>
 
-      <section class="lab-view" id="view-lyrics" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Case 01 · On-policy pilot</p><h2>Lyrics-to-song: SongEval GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
-        <div class="protocol-strip"><span><strong>2</strong> rollouts/group</span><span><strong>1</strong> LoRA update</span><span><strong>1</strong> held-out prompt</span><span><strong>600</strong> YuE2 semantic tokens</span><span><strong>24 s</strong> capped fragment</span></div>
-        <p class="section-copy">YuE2-3B 使用原始英文短歌词，SongEval 五维均分作为唯一训练 reward。留出提示使用另一组歌词和风格，前后固定同 seed；另做未经训练的原模型重放控制。</p>
-        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Held-out pair</th><th>SongEval mean</th><th>Signal peak</th><th>≥0.999 samples</th></tr></thead><tbody id="yue2-table"></tbody></table></div>
-        <div class="audio-grid">
-          <div class="audio-item"><span class="audio-index">01 / BEFORE GRPO</span><h3>YuE2 baseline · seed 5101</h3><audio controls preload="metadata" src="./audio/yue2_songeval_before.flac">Your browser does not support audio playback.</audio><small>48 kHz · original lyrics · noncommercial academic model</small></div>
-          <div class="audio-item"><span class="audio-index">02 / AFTER GRPO</span><h3>YuE2 LoRA · same seed</h3><audio controls preload="metadata" src="./audio/yue2_songeval_after.flac">Your browser does not support audio playback.</audio><small>One optimizer step · 24 s · 48 kHz</small></div>
-        </div>
-        <div class="evidence-note"><strong>Do not overclaim</strong><p>未训练重放的波形样本完全相同；训练后 <span id="yue2-token-change"></span> 个语义 token 改变。此单次留出样本的 reward <span id="yue2-reward-change"></span>，并未出现满幅削波。短片段被 token 上限截断，不能据此推断长期 GRPO、完整歌曲质量或任何闭源系统的原因。</p></div>
-        <div id="muse-result" hidden><h3 class="subsection-heading">Muse-0.6b · 独立小试验</h3><p class="section-copy">同样是 2 条 rollout、1 步 LoRA GRPO；Muse 输出强制 500 tokens，MuCodec 20 步解码。留出音频前后等长 19.8 秒。</p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Held-out pair</th><th>SongEval mean</th><th>Signal peak</th><th>≥0.999 samples</th></tr></thead><tbody id="muse-table"></tbody></table></div><div class="audio-grid"><div class="audio-item"><span class="audio-index">01 / BEFORE GRPO</span><h3>Muse baseline</h3><audio controls preload="metadata" src="./audio/muse_songeval_before.flac">Your browser does not support audio playback.</audio><small>48 kHz · released Muse/MuCodec weights</small></div><div class="audio-item"><span class="audio-index">02 / AFTER GRPO</span><h3>Muse LoRA · same seed</h3><audio controls preload="metadata" src="./audio/muse_songeval_after.flac">Your browser does not support audio playback.</audio><small>One optimizer step · 19.8 s · 48 kHz</small></div></div><div class="evidence-note"><strong>Interpretation</strong><p id="muse-interpretation"></p></div></div>
+      <section class="lab-view" id="view-lyrics">
+        <div class="section-intro"><div><p class="eyebrow">Case 01 · Same prompt, same seed</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · lab5090</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Model</span><div class="segmented" role="group" aria-label="Model"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2-3B</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse-0.6b</button></div><span>held-out seed 5101</span></div>
+        <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
+        <h3 class="subsection-heading">Checkpoint timeline</h3>
+        <div class="stage-rail" id="lyrics-stage-rail" aria-label="Lyrics training stages"></div>
+        <p class="stage-context" id="lyrics-stage-context"></p>
+        <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Switch audio at the same position"><button type="button" data-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-listen="candidate" aria-pressed="false">B · 1 step</button></div><span id="listen-status" aria-live="polite">选择 A 或 B 开始播放</span></div>
+        <div class="compare-grid" id="lyrics-compare"></div>
+        <h3 class="subsection-heading">Objective checks</h3>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Metric</th><th>Baseline</th><th id="lyrics-metric-head">1 step</th><th>Δ</th></tr></thead><tbody id="lyrics-metric-table"></tbody></table></div>
+        <div class="evidence-note"><strong>当前证据的边界</strong><p id="lyrics-interpretation"></p></div>
+        <form class="review-form" id="listening-review"><div><span class="source-label">Human listening review</span><h3>这段音频你更愿意保留哪版？</h3></div><label>Preference<select name="preference"><option value="">未选择</option><option value="baseline">A · Baseline</option><option value="candidate">B · 1 step</option><option value="tie">差不多</option></select></label><label>听感备注<input name="note" type="text" maxlength="240" placeholder="如：人声清晰度、杂音、旋律连续性" /></label><button class="button button-primary" type="submit"><i data-lucide="save" aria-hidden="true"></i>保存</button><span id="review-status" aria-live="polite"></span></form>
         <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
       </section>
 
@@ -95,6 +100,7 @@
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Reward diagnostic</p><h2>What should a SATB reward penalize?</h2></div><span class="state diagnostic">诊断 · 4 MIDI 对</span></div>
         <p class="section-copy">选一个受控错误，看哪些指标会漏报。受控样本从四个参考 MIDI 构造，不代表随机测试集，也未用于 GRPO 训练。</p>
         <div class="metric-controls"><label for="variant-select">Controlled error</label><select id="variant-select"><option value="swap_soprano_alto">Swap Soprano / Alto</option><option value="drop_bass">Drop Bass</option><option value="shift_onset_100ms">Shift 100 ms</option><option value="fragment_sustained">Fragment sustained notes</option><option value="overfill_octave">Octave overfill</option></select></div>
+        <figure class="midi-figure"><div class="midi-canvas-scroll"><canvas id="reward-piano-roll" width="1100" height="370" role="img" aria-label="Synthetic SATB piano roll showing reference and controlled error"></canvas></div><figcaption>合成 MIDI 示意：绿色为参考，红色为受控错误；不是模型输出，也不参与页面中的实测分数。</figcaption></figure>
         <div class="audit-grid" id="audit-metrics"></div>
         <div class="evidence-note"><strong id="audit-conclusion-title">Reward lesson</strong><p id="audit-conclusion"></p></div>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Existing predictions · 4 examples</th><th>Mean F1</th><th>Role</th></tr></thead><tbody id="real-audit-table"></tbody></table></div>
@@ -102,12 +108,11 @@
       </section>
 
       <section class="lab-view" id="view-vocal" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Case 02 · Model inference</p><h2>Vocal-conditioned music completion</h2></div><span class="state inference">单次推理 · lab5090</span></div>
-        <p class="section-copy">ACE-Step 1.5 base 的官方 <code>complete</code> 路径，16 秒、seed 29、50 steps。输入是自行合成的唱元音引导声，并非真人声；输出是歌曲 completion，尚未验证为独立伴奏轨道。</p>
-        <div class="audio-grid">
-          <div class="audio-item"><span class="audio-index">01 / INPUT</span><h3>Synthetic vocal guide</h3><audio controls preload="metadata" src="./audio/guide_vocal.wav">Your browser does not support audio playback.</audio><small>Original synthetic asset · 16 s · mono</small></div>
-          <div class="audio-item"><span class="audio-index">02 / OUTPUT</span><h3>ACE-Step 1.5 completion</h3><audio controls preload="metadata" src="./audio/ace_complete_seed29.wav">Your browser does not support audio playback.</audio><small>Base model · fixed seed 29 · 16 s · stereo</small></div>
-        </div>
+        <div class="section-intro"><div><p class="eyebrow">Case 02 · Model inference</p><h2>Vocal → song completion</h2></div><div class="section-actions"><span class="state inference">单次推理 · lab5090</span><button class="button button-secondary" type="button" data-jump="vocal-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
+        <div class="source-grid"><div class="source-block"><span class="source-label">Input</span><strong>自行合成的唱元音引导声</strong><p>16 秒、单声道，不是真人演唱。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>暂无对应的参考歌曲</strong><p>因此不能报告与参考伴奏的 coverage、beat 或 richness 提升。</p></div></div>
+        <h3 class="subsection-heading">Checkpoint timeline</h3><div class="stage-rail" id="vocal-stage-rail" aria-label="Vocal training stages"></div>
+        <div class="compare-grid" id="vocal-compare"></div>
+        <div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> diffusion steps, not GRPO</span><span><strong>0</strong> GRPO updates</span></div>
         <div class="evidence-note"><strong>What this does and does not prove</strong><p>证明模型在本地可加载、接受 vocal guide 并产出非静音音频；尚无人工听感评分、coverage/richness/beat reward 结果或 GRPO 前后对照。后续应先换授权真人声输入，再验证原人声保留与伴奏分离。</p></div>
         <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">Inference code and provenance ↗</a><a class="source-link" href="https://github.com/ace-step/ACE-Step-1.5" target="_blank" rel="noreferrer">Official ACE-Step repository ↗</a></div>
       </section>
