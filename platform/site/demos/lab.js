@@ -213,9 +213,9 @@ function appendCells(body, rows) {
 
 function renderChoralNotes(data) {
   const rows = [
-    ['Frame (16 ms)', 'frame_16ms', 'track_frame_16ms'],
-    ['Onset (50 ms)', 'note_onset_50ms', 'track_note_onset_50ms'],
-    ['Onset + offset (50 ms minimum)', 'note_onset_offset_50ms', 'track_note_onset_offset_50ms'],
+    ['Frame-wise (16 ms grid)', 'frame_16ms', 'track_frame_16ms'],
+    ['Pitch + onset (50 ms)', 'note_onset_50ms', 'track_note_onset_50ms'],
+    ['Pitch + onset + offset (50 ms minimum)', 'note_onset_offset_50ms', 'track_note_onset_offset_50ms'],
   ];
   appendCells($('#choral-note-table'), rows.map(([label, pitch, track]) => [
     label, fmt(data.before[pitch].f1), fmt(data.before[track].f1), '相同',

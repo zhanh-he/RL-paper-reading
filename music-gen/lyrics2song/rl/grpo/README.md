@@ -13,6 +13,22 @@ Muse-0.6b and MuCodec weights. Each run must record training group size,
 reward values, parameter change, untrained replay determinism, held-out scores,
 audio peaks and whether the song was capped or truncated.
 
-These are pipeline checks, not adequately powered music-quality experiments.
-Longer-run GRPO needs multiple prompts, independent held-out rewards, blind
-listening, duration/loudness controls and explicit KL monitoring.
+The [YuE2 longer run](runs/2026-09-30-yue2-longrun/step_000100/receipt.json)
+trained from the previous day's one-step LoRA, with 8 original training prompts,
+2 rollouts per update and 3 independent fixed held-out prompts. Its measured
+0/1/5/50/100-update held-out SongEval means are
+3.8403/3.6030/3.6160/3.5704/3.6063; the [replay](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
+includes one same-prompt/seed audio pair at each milestone. None establishes
+improvement or full-scale clipping.
+
+A separate [MuseCritic one-step online GRPO](runs/2026-09-30-musecritic-smoke/receipt.json)
+completed on Gadi. Its [held-out pair](runs/2026-09-30-musecritic-heldout/receipt.json)
+fell from 3.0781 to 2.5313 on MuseCritic's own scale. Another Gadi job is
+training 50 steps from about 100 public MuseCritic prompts, with dependent
+held-out evaluation at 25 and 50; those are not results yet. `gadi_musecritic_smoke.pbs`
+is parameterized for that run. Do not compare SongEval and MuseCritic numbers
+as if they were the same reward.
+
+These are still small pilot experiments, not adequately powered music-quality
+claims. Longer-run GRPO needs blind listening, duration/loudness controls,
+multiple seeds and explicit KL monitoring alongside held-out rewards.
