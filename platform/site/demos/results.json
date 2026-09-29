@@ -3,7 +3,12 @@
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed30.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed31.json",
-    "music-trans/choral-singing/rewards/audits/2026-09-29/receipt.json"
+    "music-trans/choral-singing/rewards/audits/2026-09-29/receipt.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json",
+    "music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/verification.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json"
   ],
   "choral": {
     "status": "paired_song_bootstrap",
@@ -379,5 +384,542 @@
         "total_estimate_notes": 4394
       }
     }
+  },
+  "choral_note": {
+    "status": "measured_full_song_event_decoder_unchanged_by_frame_head_grpo",
+    "songs": 30,
+    "matched_test_manifest_sha256": "2f14e11c3a23b61a82459b3f26487afe423f5ff526f269c0049ae76ba62c0fe5",
+    "checkpoint_sha256": "15a07b1dd21f85dd2e69ddbc11b4ef82c585ab4e90f362b7033175e2694393ff",
+    "only_frame_head_parameters_changed": true,
+    "paired_song_event_decode_identical": true,
+    "protocol": "Full-song beam=2, presence=0.5, 16ms frame grid, mir_eval note onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration); pooled counts, both pitch-only and SATB-track-aware.",
+    "before": {
+      "note_onset_50ms": {
+        "precision": 0.09764341823375387,
+        "recall": 0.11675964932255493,
+        "f1": 0.10634932980736823,
+        "tp": 2051,
+        "fp": 18954,
+        "fn": 15515
+      },
+      "note_onset_offset_50ms": {
+        "precision": 0.02147107831468698,
+        "recall": 0.025674598656495504,
+        "f1": 0.023385445023463222,
+        "tp": 451,
+        "fp": 20554,
+        "fn": 17115
+      },
+      "track_note_onset_50ms": {
+        "precision": 0.06065222566055701,
+        "recall": 0.07252647159284982,
+        "f1": 0.06605999325918437,
+        "tp": 1274,
+        "fp": 19731,
+        "fn": 16292
+      },
+      "track_note_onset_offset_50ms": {
+        "precision": 0.013330159485836705,
+        "recall": 0.015939883866560402,
+        "f1": 0.014518679837183376,
+        "tp": 280,
+        "fp": 20725,
+        "fn": 17286
+      },
+      "frame_16ms": {
+        "precision": 0.4951280154858258,
+        "recall": 0.6291515467748183,
+        "f1": 0.5541514179410749,
+        "tp": 636646,
+        "fp": 649175,
+        "fn": 375266
+      },
+      "track_frame_16ms": {
+        "precision": 0.31921556651408783,
+        "recall": 0.4315342457784479,
+        "f1": 0.3669729821596559,
+        "tp": 459921,
+        "fp": 980864,
+        "fn": 605860
+      }
+    },
+    "after": {
+      "note_onset_50ms": {
+        "precision": 0.09764341823375387,
+        "recall": 0.11675964932255493,
+        "f1": 0.10634932980736823,
+        "tp": 2051,
+        "fp": 18954,
+        "fn": 15515
+      },
+      "note_onset_offset_50ms": {
+        "precision": 0.02147107831468698,
+        "recall": 0.025674598656495504,
+        "f1": 0.023385445023463222,
+        "tp": 451,
+        "fp": 20554,
+        "fn": 17115
+      },
+      "track_note_onset_50ms": {
+        "precision": 0.06065222566055701,
+        "recall": 0.07252647159284982,
+        "f1": 0.06605999325918437,
+        "tp": 1274,
+        "fp": 19731,
+        "fn": 16292
+      },
+      "track_note_onset_offset_50ms": {
+        "precision": 0.013330159485836705,
+        "recall": 0.015939883866560402,
+        "f1": 0.014518679837183376,
+        "tp": 280,
+        "fp": 20725,
+        "fn": 17286
+      },
+      "frame_16ms": {
+        "precision": 0.4951280154858258,
+        "recall": 0.6291515467748183,
+        "f1": 0.5541514179410749,
+        "tp": 636646,
+        "fp": 649175,
+        "fn": 375266
+      },
+      "track_frame_16ms": {
+        "precision": 0.31921556651408783,
+        "recall": 0.4315342457784479,
+        "f1": 0.3669729821596559,
+        "tp": 459921,
+        "fp": 980864,
+        "fn": 605860
+      }
+    },
+    "caveat": "The post-trained frame head is not used by decode_events, so identical MIDI metrics are a structural consequence, not a null hypothesis test of event-level GRPO."
+  },
+  "songeval_audit": {
+    "status": "controlled_perturbation_audit_not_grpo",
+    "date": "2026-09-29",
+    "clips": 47,
+    "reward": "Official SongEval checkpoint; five direct output scores without a training-specific reward wrapper",
+    "input": "evaluation-only music excerpts; no audio, source IDs or individual scores published",
+    "method": "Peak-normalize each original mono waveform to 0.5; safe gain x1.6; hard clip after x3.2; separately RMS-match hard clip to safe gain; 6kHz lowpass/upsample control. Score through SongEval 24kHz mono path.",
+    "comparisons": {
+      "safe_gain_minus_reference": {
+        "Coherence": {
+          "mean": 0.04128777727167657,
+          "median": 0.04486680030822754,
+          "positive": 43,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.03425337361528518,
+            0.048345288634300224
+          ]
+        },
+        "Musicality": {
+          "mean": 0.03563090080910541,
+          "median": 0.04188346862792969,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.026653174517002512,
+            0.04397652453564582
+          ]
+        },
+        "Memorability": {
+          "mean": 0.04756962745747668,
+          "median": 0.05062365531921387,
+          "positive": 43,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.038028079144498135,
+            0.0567465787872355
+          ]
+        },
+        "Clarity": {
+          "mean": 0.04080410967481897,
+          "median": 0.04970550537109375,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.031206551891692143,
+            0.05006319436621158
+          ]
+        },
+        "Naturalness": {
+          "mean": 0.04961617703133441,
+          "median": 0.05449867248535156,
+          "positive": 43,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.040852620944063715,
+            0.05785089255647456
+          ]
+        },
+        "five_mean": {
+          "mean": 0.04298171844888243,
+          "median": 0.04800753593444851,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.034739069887932385,
+            0.05096746184724448
+          ]
+        }
+      },
+      "hard_clip_full_scale_minus_reference": {
+        "Coherence": {
+          "mean": 0.08966742424254721,
+          "median": 0.09030961990356445,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.07214819579682452,
+            0.10689863670379557
+          ]
+        },
+        "Musicality": {
+          "mean": 0.07612577905046179,
+          "median": 0.08073091506958008,
+          "positive": 39,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.05462664619405219,
+            0.09765727240988548
+          ]
+        },
+        "Memorability": {
+          "mean": 0.11103462665639025,
+          "median": 0.12123823165893555,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.0872891921946343,
+            0.13408709003570232
+          ]
+        },
+        "Clarity": {
+          "mean": 0.08467942603090976,
+          "median": 0.10094308853149414,
+          "positive": 39,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.0631247840029128,
+            0.10530207436135475
+          ]
+        },
+        "Naturalness": {
+          "mean": 0.11421877526222392,
+          "median": 0.1320030689239502,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.0927567220748739,
+            0.13522584381255698
+          ]
+        },
+        "five_mean": {
+          "mean": 0.0951452062485066,
+          "median": 0.11212234497070384,
+          "positive": 42,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            0.07448529930824929,
+            0.11490242993578
+          ]
+        }
+      },
+      "hard_clip_rms_matched_minus_safe_gain": {
+        "Coherence": {
+          "mean": -0.0005086812567203603,
+          "median": -0.0005555152893066406,
+          "positive": 21,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.0034702154550146544,
+            0.0022966441321880244
+          ]
+        },
+        "Musicality": {
+          "mean": -0.0025437334750561,
+          "median": 0.000003337860107421875,
+          "positive": 25,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.00731618049296927,
+            0.0017739306104944076
+          ]
+        },
+        "Memorability": {
+          "mean": -0.00013616998144920837,
+          "median": 0.0011377334594726562,
+          "positive": 26,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.0036780795518388137,
+            0.0033788784387263817
+          ]
+        },
+        "Clarity": {
+          "mean": -0.005914409109886656,
+          "median": -0.0001366138458251953,
+          "positive": 21,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.011016189798395686,
+            -0.001317172862113791
+          ]
+        },
+        "Naturalness": {
+          "mean": -0.0007756745561640313,
+          "median": -0.0009400844573974609,
+          "positive": 21,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.00627295362188461,
+            0.0052702009043794976
+          ]
+        },
+        "five_mean": {
+          "mean": -0.0019757336758552168,
+          "median": -0.0000806331634519708,
+          "positive": 22,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.005660330678554183,
+            0.0014755578751260137
+          ]
+        }
+      },
+      "bandlimit_6khz_upsampled_minus_reference": {
+        "Coherence": {
+          "mean": -0.1880503309533951,
+          "median": -0.15874266624450684,
+          "positive": 6,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.24577404641090556,
+            -0.12999191081270262
+          ]
+        },
+        "Musicality": {
+          "mean": -0.1443339966713114,
+          "median": -0.1238868236541748,
+          "positive": 11,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.20012814504034976,
+            -0.08767996214805765
+          ]
+        },
+        "Memorability": {
+          "mean": -0.21775561951576394,
+          "median": -0.21138525009155273,
+          "positive": 6,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.2754463549624098,
+            -0.16218803017697436
+          ]
+        },
+        "Clarity": {
+          "mean": -0.2360183355656076,
+          "median": -0.2194972038269043,
+          "positive": 3,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.29379064231476887,
+            -0.174490532405833
+          ]
+        },
+        "Naturalness": {
+          "mean": -0.1277029717222173,
+          "median": -0.1153268814086914,
+          "positive": 9,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.17473600760419317,
+            -0.08012950724743784
+          ]
+        },
+        "five_mean": {
+          "mean": -0.18277225088565904,
+          "median": -0.1494539737701417,
+          "positive": 6,
+          "n": 47,
+          "paired_bootstrap_95pct": [
+            -0.23406050305417236,
+            -0.1288337705870892
+          ]
+        }
+      }
+    },
+    "mean_signal": {
+      "hard_clip_rms_matched": {
+        "peak": 0.5032225974062656,
+        "rms": 0.1480668125881125,
+        "flat_top_fraction": 0.005785432849262637
+      },
+      "hard_clip_full_scale": {
+        "peak": 1,
+        "rms": 0.29391204529047854,
+        "flat_top_fraction": 0.005785400685096734
+      },
+      "safe_gain": {
+        "peak": 0.8000000068481933,
+        "rms": 0.14806681233912314,
+        "flat_top_fraction": 3.8596999083321273e-7
+      },
+      "bandlimit_6khz_upsampled": {
+        "peak": 0.4536048598746036,
+        "rms": 0.0908539920156293,
+        "flat_top_fraction": 3.779289493575208e-7
+      },
+      "reference": {
+        "peak": 0.49999999746363216,
+        "rms": 0.09254175612282695,
+        "flat_top_fraction": 3.8596999083321273e-7
+      }
+    },
+    "limitations": "Controlled waveform perturbations do not establish GRPO behavior or a causal explanation for any proprietary model. Bootstrap resamples clips, not model seeds."
+  },
+  "yue2": {
+    "status": "on_policy_two_rollout_one_step_grpo_pilot",
+    "train_rollout_rewards": [
+      {
+        "Coherence": 4.0571,
+        "Musicality": 3.9749,
+        "Memorability": 4.13,
+        "Clarity": 3.8085,
+        "Naturalness": 3.6836,
+        "mean": 3.9308199999999998
+      },
+      {
+        "Coherence": 4.2973,
+        "Musicality": 4.3656,
+        "Memorability": 4.1932,
+        "Clarity": 4.2145,
+        "Naturalness": 4.0573,
+        "mean": 4.225580000000001
+      }
+    ],
+    "train_rollout_lengths": [
+      600,
+      600
+    ],
+    "advantages": [
+      -1.0000016689300537,
+      0.9999983906745911
+    ],
+    "gradient_norm": 0.06265430152416229,
+    "mean_action_logprob_delta": 0.001068319659680128,
+    "heldout_prompt": "distinct original short English folk verse",
+    "heldout_seed": 5101,
+    "before": {
+      "reward": {
+        "Coherence": 3.8291,
+        "Musicality": 3.7992,
+        "Memorability": 3.8867,
+        "Clarity": 3.6915,
+        "Naturalness": 3.4849,
+        "mean": 3.7382799999999996
+      },
+      "signal": {
+        "peak": 0.8847516179084778,
+        "rms": 0.1104228775038593,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 4.340518917717651e-7
+      },
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      }
+    },
+    "after": {
+      "reward": {
+        "Coherence": 3.3914,
+        "Musicality": 3.3173,
+        "Memorability": 3.2671,
+        "Clarity": 3.3089,
+        "Naturalness": 3.2208,
+        "mean": 3.3010999999999995
+      },
+      "signal": {
+        "peak": 0.7920576333999634,
+        "rms": 0.12220983013409607,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 4.340518917717651e-7
+      },
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      }
+    },
+    "caveat": "Single GRPO step, 2 rollouts and 1 held-out seed; audio is capped and may be truncated. No generalization claim."
+  },
+  "yue2_verification": {
+    "untrained_replay_semantic_identical": true,
+    "untrained_replay_audio_samples_identical": true,
+    "post_update_semantic_changed_positions": 502,
+    "semantic_tokens": 600,
+    "post_update_audio_rms_difference": 0.12982665997751866
+  },
+  "muse": {
+    "status": "on_policy_two_rollout_one_step_grpo_pilot",
+    "model": "Muse-0.6b + MuCodec released checkpoints",
+    "codec_steps": 20,
+    "max_new_tokens": 500,
+    "force_length": true,
+    "training": {
+      "algorithm": "on-policy GRPO, 2 rollouts, 1 LoRA optimizer step",
+      "group_rewards": [
+        3.390860080718994,
+        3.533940076828003
+      ],
+      "advantages": [
+        -0.9999983310699463,
+        1.0000016689300537
+      ],
+      "gradient_norm": 0.12175300717353821,
+      "mean_action_logprob_delta": 0.002042311243712902
+    },
+    "heldout_seed": 5101,
+    "untrained_replay_audio_identical": true,
+    "heldout_generated_token_difference": 347,
+    "before": {
+      "reward": {
+        "Coherence": 3.5907,
+        "Musicality": 3.5705,
+        "Memorability": 3.6386,
+        "Clarity": 3.49,
+        "Naturalness": 3.5025,
+        "mean": 3.55846
+      },
+      "signal": {
+        "seconds": 19.8,
+        "peak": 0.717498779296875,
+        "rms": 0.10192784894964059,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 5.260942760942761e-7
+      }
+    },
+    "after": {
+      "reward": {
+        "Coherence": 3.3343,
+        "Musicality": 3.4754,
+        "Memorability": 3.473,
+        "Clarity": 3.2552,
+        "Naturalness": 3.1269,
+        "mean": 3.33296
+      },
+      "signal": {
+        "seconds": 19.8,
+        "peak": 0.49462890625,
+        "rms": 0.05156136489600848,
+        "near_full_scale_fraction": 0,
+        "flat_top_fraction": 5.260942760942761e-7
+      }
+    },
+    "caveat": "One prompt/group, two rollouts, one optimizer step and one held-out prompt. Short capped fragment, not a statistical song-quality result."
   }
 }

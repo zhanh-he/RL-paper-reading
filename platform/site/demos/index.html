@@ -35,6 +35,8 @@
       <nav class="lab-tabs" aria-label="Experiment views">
         <button class="lab-tab" type="button" data-view="overview" aria-selected="true">Overview</button>
         <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
+        <button class="lab-tab" type="button" data-view="lyrics" aria-selected="false">Lyrics GRPO</button>
+        <button class="lab-tab" type="button" data-view="songeval" aria-selected="false">SongEval audit</button>
         <button class="lab-tab" type="button" data-view="rewards" aria-selected="false">MIDI rewards</button>
         <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal demo</button>
       </nav>
@@ -50,7 +52,7 @@
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">frame-head GRPO 已测</span><small>完整 SATB MIDI GRPO 尚未运行</small></div>
           <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">ACE-Step completion 已生成</span><small>非纯伴奏；GRPO 尚未运行</small></div>
-          <div class="status-row"><span>以词生曲</span><span class="state pending">MuseCritic 作业已提交</span><small>Gadi H200 排队；不能报训练结果</small></div>
+          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 一步 GRPO 已测</span><small>Muse 与 MuseCritic 是独立实验；看配对与队列状态</small></div>
         </div>
       </section>
 
@@ -61,7 +63,32 @@
         <div class="chart" id="choral-chart" aria-label="Held-out F1 by training arm"></div>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Training arm</th><th>Onset F1</th><th>Frame F1</th><th>Offset F1</th><th>Frame Δ vs frozen</th></tr></thead><tbody id="choral-table"></tbody></table></div>
         <div class="evidence-note"><strong>Interpretation</strong><p>Frame-only GRPO 的 frame F1 从 <span id="frame-before"></span> 到 <span id="frame-after"></span>（seed 29），30 首歌 paired bootstrap 的变化 95% 区间 <span id="frame-ci"></span>。三个训练 seed 的测试 frame F1 为 <span id="seed-range"></span>。但 onset / offset F1 下降，weighted BCE 更好。此实验只更新 Bernoulli frame head，encoder 和 AR MIDI decoder 冻结；不是完整 SATB note-F1 GRPO。</p></div>
+        <h3 class="subsection-heading">完整歌曲的 MIDI 音符指标</h3>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Match criterion</th><th>Pitch F1</th><th>Pitch + SATB F1</th><th>GRPO 前后</th></tr></thead><tbody id="choral-note-table"></tbody></table></div>
+        <div class="evidence-note"><strong>Evaluation boundary</strong><p>同一批 30 首测试歌、完整歌曲解码。音符 onset 容差 50 ms；offset 容差 max(50 ms, 参考音长的 20%)。参数比对和同歌重放均确认 frame-head 更新没有进入 AR MIDI 解码器，所以上表前后相同；不能把 frame-head 的提升写作完整转录提升。</p></div>
         <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head" target="_blank" rel="noreferrer">Protocol, code and JSON receipts <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="lab-view" id="view-lyrics" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Case 01 · On-policy pilot</p><h2>Lyrics-to-song: SongEval GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
+        <div class="protocol-strip"><span><strong>2</strong> rollouts/group</span><span><strong>1</strong> LoRA update</span><span><strong>1</strong> held-out prompt</span><span><strong>600</strong> YuE2 semantic tokens</span><span><strong>24 s</strong> capped fragment</span></div>
+        <p class="section-copy">YuE2-3B 使用原始英文短歌词，SongEval 五维均分作为唯一训练 reward。留出提示使用另一组歌词和风格，前后固定同 seed；另做未经训练的原模型重放控制。</p>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Held-out pair</th><th>SongEval mean</th><th>Signal peak</th><th>≥0.999 samples</th></tr></thead><tbody id="yue2-table"></tbody></table></div>
+        <div class="audio-grid">
+          <div class="audio-item"><span class="audio-index">01 / BEFORE GRPO</span><h3>YuE2 baseline · seed 5101</h3><audio controls preload="metadata" src="./audio/yue2_songeval_before.flac">Your browser does not support audio playback.</audio><small>48 kHz · original lyrics · noncommercial academic model</small></div>
+          <div class="audio-item"><span class="audio-index">02 / AFTER GRPO</span><h3>YuE2 LoRA · same seed</h3><audio controls preload="metadata" src="./audio/yue2_songeval_after.flac">Your browser does not support audio playback.</audio><small>One optimizer step · 24 s · 48 kHz</small></div>
+        </div>
+        <div class="evidence-note"><strong>Do not overclaim</strong><p>未训练重放的波形样本完全相同；训练后 <span id="yue2-token-change"></span> 个语义 token 改变。此单次留出样本的 reward <span id="yue2-reward-change"></span>，并未出现满幅削波。短片段被 token 上限截断，不能据此推断长期 GRPO、完整歌曲质量或任何闭源系统的原因。</p></div>
+        <div id="muse-result" hidden><h3 class="subsection-heading">Muse-0.6b · 独立小试验</h3><p class="section-copy">同样是 2 条 rollout、1 步 LoRA GRPO；Muse 输出强制 500 tokens，MuCodec 20 步解码。留出音频前后等长 19.8 秒。</p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Held-out pair</th><th>SongEval mean</th><th>Signal peak</th><th>≥0.999 samples</th></tr></thead><tbody id="muse-table"></tbody></table></div><div class="audio-grid"><div class="audio-item"><span class="audio-index">01 / BEFORE GRPO</span><h3>Muse baseline</h3><audio controls preload="metadata" src="./audio/muse_songeval_before.flac">Your browser does not support audio playback.</audio><small>48 kHz · released Muse/MuCodec weights</small></div><div class="audio-item"><span class="audio-index">02 / AFTER GRPO</span><h3>Muse LoRA · same seed</h3><audio controls preload="metadata" src="./audio/muse_songeval_after.flac">Your browser does not support audio playback.</audio><small>One optimizer step · 19.8 s · 48 kHz</small></div></div><div class="evidence-note"><strong>Interpretation</strong><p id="muse-interpretation"></p></div></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
+      </section>
+
+      <section class="lab-view" id="view-songeval" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Reward mechanism · Controlled test</p><h2>SongEval 的响度与削波敏感性</h2></div><span class="state diagnostic">诊断 · 47 首</span></div>
+        <p class="section-copy">同一批评测音频分别做安全增益、硬削波、与安全增益 RMS 匹配的硬削波，以及 6 kHz 带限后重新升采样。只用于评测，不用于训练；下表是 SongEval 五维均分的配对差值。</p>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Treatment − control</th><th>Mean Δ</th><th>95% paired bootstrap</th><th>Positive / 47</th></tr></thead><tbody id="songeval-table"></tbody></table></div>
+        <div class="evidence-note"><strong>Reading the result</strong><p>更响的样本更容易拿高分；当硬削波和干净增益匹配 RMS 后，整体优势消失，Clarity 略受罚。SongEval 官方路径先转为单声道 24 kHz，因此输出频谱延伸到 22.05 kHz 不能证明其输入链路或高频细节没有问题。这是开源 reward 的失效模式审计，不能独立判定任何闭源训练事故。</p></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rewards" target="_blank" rel="noreferrer">Audit code and aggregate receipt ↗</a><a class="source-link" href="https://github.com/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval official repository ↗</a></div>
       </section>
 
       <section class="lab-view" id="view-rewards" hidden>

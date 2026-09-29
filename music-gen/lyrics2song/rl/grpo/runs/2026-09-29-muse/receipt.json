@@ -1,0 +1,58 @@
+{
+  "status": "on_policy_two_rollout_one_step_grpo_pilot",
+  "model": "Muse-0.6b + MuCodec released checkpoints",
+  "codec_steps": 20,
+  "max_new_tokens": 500,
+  "force_length": true,
+  "training": {
+    "algorithm": "on-policy GRPO, 2 rollouts, 1 LoRA optimizer step",
+    "group_rewards": [
+      3.390860080718994,
+      3.533940076828003
+    ],
+    "advantages": [
+      -0.9999983310699463,
+      1.0000016689300537
+    ],
+    "gradient_norm": 0.12175300717353821,
+    "mean_action_logprob_delta": 0.002042311243712902
+  },
+  "heldout_seed": 5101,
+  "untrained_replay_audio_identical": true,
+  "heldout_generated_token_difference": 347,
+  "before": {
+    "reward": {
+      "Coherence": 3.5907,
+      "Musicality": 3.5705,
+      "Memorability": 3.6386,
+      "Clarity": 3.49,
+      "Naturalness": 3.5025,
+      "mean": 3.55846
+    },
+    "signal": {
+      "seconds": 19.8,
+      "peak": 0.717498779296875,
+      "rms": 0.10192784894964059,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 5.260942760942761e-07
+    }
+  },
+  "after": {
+    "reward": {
+      "Coherence": 3.3343,
+      "Musicality": 3.4754,
+      "Memorability": 3.473,
+      "Clarity": 3.2552,
+      "Naturalness": 3.1269,
+      "mean": 3.33296
+    },
+    "signal": {
+      "seconds": 19.8,
+      "peak": 0.49462890625,
+      "rms": 0.05156136489600848,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 5.260942760942761e-07
+    }
+  },
+  "caveat": "One prompt/group, two rollouts, one optimizer step and one held-out prompt. Short capped fragment, not a statistical song-quality result."
+}

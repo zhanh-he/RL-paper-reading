@@ -1,0 +1,76 @@
+{
+  "status": "on_policy_two_rollout_one_step_grpo_pilot",
+  "train_rollout_rewards": [
+    {
+      "Coherence": 4.0571,
+      "Musicality": 3.9749,
+      "Memorability": 4.13,
+      "Clarity": 3.8085,
+      "Naturalness": 3.6836,
+      "mean": 3.9308199999999998
+    },
+    {
+      "Coherence": 4.2973,
+      "Musicality": 4.3656,
+      "Memorability": 4.1932,
+      "Clarity": 4.2145,
+      "Naturalness": 4.0573,
+      "mean": 4.225580000000001
+    }
+  ],
+  "train_rollout_lengths": [
+    600,
+    600
+  ],
+  "advantages": [
+    -1.0000016689300537,
+    0.9999983906745911
+  ],
+  "gradient_norm": 0.06265430152416229,
+  "mean_action_logprob_delta": 0.001068319659680128,
+  "heldout_prompt": "distinct original short English folk verse",
+  "heldout_seed": 5101,
+  "before": {
+    "reward": {
+      "Coherence": 3.8291,
+      "Musicality": 3.7992,
+      "Memorability": 3.8867,
+      "Clarity": 3.6915,
+      "Naturalness": 3.4849,
+      "mean": 3.7382799999999996
+    },
+    "signal": {
+      "peak": 0.8847516179084778,
+      "rms": 0.1104228775038593,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 4.340518917717651e-07
+    },
+    "seconds": 23.998666666666665,
+    "truncated": {
+      "abc": false,
+      "semantic": true
+    }
+  },
+  "after": {
+    "reward": {
+      "Coherence": 3.3914,
+      "Musicality": 3.3173,
+      "Memorability": 3.2671,
+      "Clarity": 3.3089,
+      "Naturalness": 3.2208,
+      "mean": 3.3010999999999995
+    },
+    "signal": {
+      "peak": 0.7920576333999634,
+      "rms": 0.12220983013409607,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 4.340518917717651e-07
+    },
+    "seconds": 23.998666666666665,
+    "truncated": {
+      "abc": false,
+      "semantic": true
+    }
+  },
+  "caveat": "Single GRPO step, 2 rollouts and 1 held-out seed; audio is capped and may be truncated. No generalization claim."
+}

@@ -1,0 +1,110 @@
+{
+  "status": "measured_full_song_event_decoder_unchanged_by_frame_head_grpo",
+  "songs": 30,
+  "matched_test_manifest_sha256": "2f14e11c3a23b61a82459b3f26487afe423f5ff526f269c0049ae76ba62c0fe5",
+  "checkpoint_sha256": "15a07b1dd21f85dd2e69ddbc11b4ef82c585ab4e90f362b7033175e2694393ff",
+  "only_frame_head_parameters_changed": true,
+  "paired_song_event_decode_identical": true,
+  "protocol": "Full-song beam=2, presence=0.5, 16ms frame grid, mir_eval note onset tolerance 50ms; offset tolerance max(50ms, 20% reference duration); pooled counts, both pitch-only and SATB-track-aware.",
+  "before": {
+    "note_onset_50ms": {
+      "precision": 0.09764341823375387,
+      "recall": 0.11675964932255493,
+      "f1": 0.10634932980736823,
+      "tp": 2051,
+      "fp": 18954,
+      "fn": 15515
+    },
+    "note_onset_offset_50ms": {
+      "precision": 0.02147107831468698,
+      "recall": 0.025674598656495504,
+      "f1": 0.023385445023463222,
+      "tp": 451,
+      "fp": 20554,
+      "fn": 17115
+    },
+    "track_note_onset_50ms": {
+      "precision": 0.06065222566055701,
+      "recall": 0.07252647159284982,
+      "f1": 0.06605999325918437,
+      "tp": 1274,
+      "fp": 19731,
+      "fn": 16292
+    },
+    "track_note_onset_offset_50ms": {
+      "precision": 0.013330159485836705,
+      "recall": 0.015939883866560402,
+      "f1": 0.014518679837183376,
+      "tp": 280,
+      "fp": 20725,
+      "fn": 17286
+    },
+    "frame_16ms": {
+      "precision": 0.4951280154858258,
+      "recall": 0.6291515467748183,
+      "f1": 0.5541514179410749,
+      "tp": 636646,
+      "fp": 649175,
+      "fn": 375266
+    },
+    "track_frame_16ms": {
+      "precision": 0.31921556651408783,
+      "recall": 0.4315342457784479,
+      "f1": 0.3669729821596559,
+      "tp": 459921,
+      "fp": 980864,
+      "fn": 605860
+    }
+  },
+  "after": {
+    "note_onset_50ms": {
+      "precision": 0.09764341823375387,
+      "recall": 0.11675964932255493,
+      "f1": 0.10634932980736823,
+      "tp": 2051,
+      "fp": 18954,
+      "fn": 15515
+    },
+    "note_onset_offset_50ms": {
+      "precision": 0.02147107831468698,
+      "recall": 0.025674598656495504,
+      "f1": 0.023385445023463222,
+      "tp": 451,
+      "fp": 20554,
+      "fn": 17115
+    },
+    "track_note_onset_50ms": {
+      "precision": 0.06065222566055701,
+      "recall": 0.07252647159284982,
+      "f1": 0.06605999325918437,
+      "tp": 1274,
+      "fp": 19731,
+      "fn": 16292
+    },
+    "track_note_onset_offset_50ms": {
+      "precision": 0.013330159485836705,
+      "recall": 0.015939883866560402,
+      "f1": 0.014518679837183376,
+      "tp": 280,
+      "fp": 20725,
+      "fn": 17286
+    },
+    "frame_16ms": {
+      "precision": 0.4951280154858258,
+      "recall": 0.6291515467748183,
+      "f1": 0.5541514179410749,
+      "tp": 636646,
+      "fp": 649175,
+      "fn": 375266
+    },
+    "track_frame_16ms": {
+      "precision": 0.31921556651408783,
+      "recall": 0.4315342457784479,
+      "f1": 0.3669729821596559,
+      "tp": 459921,
+      "fp": 980864,
+      "fn": 605860
+    }
+  },
+  "caveat": "The post-trained frame head is not used by decode_events, so identical MIDI metrics are a structural consequence, not a null hypothesis test of event-level GRPO."
+}
