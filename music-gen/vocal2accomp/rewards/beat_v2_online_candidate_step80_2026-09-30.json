@@ -1,0 +1,30 @@
+{
+  "step": 80,
+  "candidate_index": 2,
+  "training_seconds": 6,
+  "scores": {
+    "reward": 0.3076923076923077,
+    "rms_coverage": 0.026490066225165563,
+    "onset_fit_proxy": 0.10880020260810852,
+    "band_occupancy_proxy": 0.8571428571428571,
+    "spectral_flatness": 0.22800427675247192,
+    "peak": 0.03258578106760979,
+    "clipping_fraction": 0.0,
+    "quality_penalty": 0.0,
+    "proxy_reward": 0.22142917214273392,
+    "beat_v2_score": 0.3076923076923077,
+    "beat_v2_reference_beats": 8,
+    "beat_v2_accompaniment_beats": 5
+  },
+  "sha256": "1df5609c99ba1bbb9da9d69f7f8f931f1deb7a02887df21aece23e50ea2f845c",
+  "independent_rescore_of_saved_wav": {
+    "beat_v2_f1_6s": 0.3076923076923077,
+    "reference_beats": 8,
+    "accompaniment_beats": 5,
+    "rms_coverage_40ms": 0.026490066225165563,
+    "stft_coverage": 0.0,
+    "stereo_rms": 0.00523938381714918,
+    "stereo_peak": 0.034332275390625
+  },
+  "source": "online Beat-v2 rollout; not a fixed-seed checkpoint replay or causal evidence of learned reward hacking"
+}

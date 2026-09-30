@@ -1,0 +1,24 @@
+{
+  "kind": "constructed_click_track_not_model_output",
+  "seconds": 6.0,
+  "reference_beats": [
+    0.01,
+    0.71,
+    1.4,
+    2.15,
+    2.87,
+    3.62,
+    4.41,
+    5.17
+  ],
+  "beat_v2_f1": 1.0,
+  "detected_accompaniment_beats": 8,
+  "stft_coverage": 0.0905861456483126,
+  "rms": 0.03937591361246131,
+  "peak": 0.5398353934288025,
+  "shifted_350ms_control": {
+    "beat_v2_f1": 0.0,
+    "detected_accompaniment_beats": 8,
+    "stft_coverage": 0.0905861456483126
+  }
+}
