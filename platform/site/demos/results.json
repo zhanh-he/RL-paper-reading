@@ -12,6 +12,7 @@
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000025/receipt.json",
@@ -12029,7 +12030,56 @@
           },
           {
             "step": 50,
-            "status": "pending"
+            "status": "measured",
+            "audio": "audio/yue2_highlr_000050.flac",
+            "wave": "visuals/yue2_highlr_000050_wave.png",
+            "spectrum": "visuals/yue2_highlr_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000050/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.7836,
+                "Musicality": 3.807,
+                "Memorability": 3.8749,
+                "Clarity": 3.7856,
+                "Naturalness": 3.6887,
+                "mean": 3.7879600000000004
+              },
+              "signal": {
+                "peak": 0.9999998807907104,
+                "rms": 0.15218387908449021,
+                "near_full_scale_fraction": 8.681037835435302e-7,
+                "flat_top_fraction": 8.681037835435302e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.7639,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.8633333333333333,
+                "Musicality": 3.8024,
+                "Memorability": 3.8488333333333333,
+                "Clarity": 3.7023333333333333,
+                "Naturalness": 3.6026000000000002
+              },
+              "max_peak": 0.9999998807907104,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            }
           },
           {
             "step": 100,

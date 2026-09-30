@@ -1,4 +1,4 @@
-"""Compare YuE2's raw float output with the PCM-24 public replay export."""
+"""Locate YuE2 full-scale peaks before VAE clamping and PCM-24 export."""
 
 import argparse
 import hashlib
@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 import torch
+import yue2
 from peft import PeftModel
 
 from yue2 import YuE2Pipeline
@@ -43,6 +44,25 @@ def signal_stats(audio):
     }
 
 
+def decode_before_pipeline_clamp(pipe, latents):
+    z = torch.as_tensor(latents, dtype=torch.float32)
+    if z.ndim == 2 and z.shape[1] == 64:
+        z = z.T.unsqueeze(0)
+    if z.ndim != 3 or z.shape[0] != 1 or z.shape[1] != 64:
+        raise ValueError("Unexpected YuE2 latent shape")
+    model = pipe._vae.to(pipe.device)
+    try:
+        with torch.inference_mode():
+            audio = model.decode_tiled(z, core_frames=pipe.vae_core_frames,
+                                       halo_frames=16, output_device="cpu")
+        if not torch.isfinite(audio).all():
+            raise ValueError("VAE produced non-finite audio")
+        return audio[0].float().T.contiguous().numpy()
+    finally:
+        model.to("cpu")
+        torch.cuda.empty_cache()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", type=Path, required=True)
@@ -66,9 +86,12 @@ def main():
     with torch.inference_mode():
         song = pipe(**{**HELDOUT[index], "seed": 5101 + index},
                     semantic_sampling={"max_tokens": args.max_tokens, "min_tokens": 200})
+    unclamped = decode_before_pipeline_clamp(pipe, song.latents)
     raw = np.asarray(song.audio, dtype=np.float32)
-    raw_path = args.output / "audio_float.wav"
+    unclamped_path = args.output / "audio_preclamp_float.wav"
+    raw_path = args.output / "audio_pipeline_float.wav"
     flac_path = args.output / "audio_pcm24.flac"
+    sf.write(unclamped_path, unclamped, song.sample_rate, subtype="FLOAT")
     sf.write(raw_path, raw, song.sample_rate, subtype="FLOAT")
     sf.write(flac_path, raw, song.sample_rate, subtype="PCM_24")
     decoded, sample_rate = sf.read(flac_path, dtype="float32")
@@ -77,15 +100,24 @@ def main():
         raise AssertionError("Unexpected FLAC sample rate")
     comparable = reference_rate == sample_rate and reference.shape == decoded.shape
     exact_audio_match = comparable and bool(np.array_equal(reference, decoded))
+    pipeline_match = unclamped.shape == raw.shape and bool(
+        np.array_equal(np.clip(unclamped, -1, 1), raw)
+    )
     receipt = {
-        "status": "same_seed_float_to_pcm24_export_probe",
+        "status": "same_seed_vae_clamp_to_pcm24_export_probe",
         "optimizer_adapter": str(args.adapter),
+        "yue2_version": yue2.__version__,
+        "yue2_runtime_sha256": pipe.runtime_sha256,
         "heldout_index": index,
         "seed": 5101 + index,
         "sample_rate": song.sample_rate,
         "truncated": song.truncated,
-        "raw_float": signal_stats(raw),
+        "vae_preclamp_float": signal_stats(unclamped),
+        "pipeline_float": signal_stats(raw),
         "pcm24_flac": signal_stats(decoded),
+        "pipeline_matches_clamped_vae": pipeline_match,
+        "samples_changed_by_pipeline_clamp": int(np.count_nonzero(unclamped != raw))
+        if pipeline_match else None,
         "reference_flac_sha256": sha256(args.reference_flac),
         "rerendered_flac_sha256": sha256(flac_path),
         "identical_to_reference_flac": sha256(args.reference_flac) == sha256(flac_path),

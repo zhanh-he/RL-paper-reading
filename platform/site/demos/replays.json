@@ -26,7 +26,7 @@
         { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
         { "step": 5, "status": "measured", "audio": "audio/yue2_highlr_000005.flac", "wave": "visuals/yue2_highlr_000005_wave.png", "spectrum": "visuals/yue2_highlr_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json", "receipt_key": "heldout:0" },
         { "step": 25, "status": "measured", "audio": "audio/yue2_highlr_000025.flac", "wave": "visuals/yue2_highlr_000025_wave.png", "spectrum": "visuals/yue2_highlr_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "pending" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_highlr_000050.flac", "wave": "visuals/yue2_highlr_000050_wave.png", "spectrum": "visuals/yue2_highlr_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json", "receipt_key": "heldout:0" },
         { "step": 100, "status": "pending" }
       ]
     },

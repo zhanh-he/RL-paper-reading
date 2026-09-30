@@ -1,7 +1,7 @@
 # YuE2 SongEval high-learning-rate stress arm
 
-**Status:** 5- and 25-update held-out replays measured; 100-update target
-paused at checkpoint 25 while a separate 5090 job runs.
+**Status:** 5-, 25-, and 50-update held-out replays measured; the same trajectory
+is now continuing from checkpoint 50 toward 100 updates.
 This is a deliberately higher-learning-rate diagnostic, not a quality claim.
 
 The run uses the [same implementation](../../yue2_songeval_longrun.py), source
@@ -14,20 +14,37 @@ them. The [reward and optimizer protocol](../../../../rewards/songeval-grpo-prot
 states why this single-update-per-group method has no active ratio clip or
 reference KL safeguard.
 
-| Optimizer update | 0 | 1 | 5 | 25 |
-| --- | ---: | ---: | ---: | ---: |
-| LR 1e-4: SongEval Mean5, 3 held-out prompts | 3.8403 | 3.6030 | 3.4285 | 3.6296 |
-| LR 2e-5 control, same prompts | 3.8403 | 3.6030 | 3.6160 | not evaluated |
+| Optimizer update | 0 | 1 | 5 | 25 | 50 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| LR 1e-4: SongEval Mean5, 3 held-out prompts | 3.8403 | 3.6030 | 3.4285 | 3.6296 | 3.7639 |
+| LR 2e-5 control, same prompts | 3.8403 | 3.6030 | 3.6160 | not evaluated | 3.5704 |
 
-| Held-out prompt | Frozen mean | High-LR step 5 | High-LR step 25 | Near-full-scale samples, step 5 / 25 |
+Mean of each SongEval dimension across the same three held-out clips:
+
+| Dimension | Frozen 0 | LR 1e-4 step 5 | LR 1e-4 step 25 | LR 1e-4 step 50 |
 | --- | ---: | ---: | ---: | ---: |
-| 0 (public A/B audio) | 3.7688 | 3.2961 | 3.7539 | 12 / 37 |
-| 1 | 3.7869 | 3.6036 | 3.4847 | 0 / 0 |
-| 2 | 3.9653 | 3.3857 | 3.6503 | 0 / 0 |
+| Coherence | 3.9588 | 3.5941 | 3.7198 | 3.8633 |
+| Musicality | 3.8736 | 3.5269 | 3.6942 | 3.8024 |
+| Memorability | 3.9619 | 3.4649 | 3.6777 | 3.8488 |
+| Clarity | 3.7849 | 3.3228 | 3.5970 | 3.7023 |
+| Naturalness | 3.6226 | 3.2337 | 3.4595 | 3.6026 |
+
+All five remain below the frozen baseline at step 50. These are model-judge
+scores, not independent listening ratings.
+
+| Held-out prompt | Frozen mean | High-LR step 5 | High-LR step 25 | High-LR step 50 | Near-full-scale samples, step 5 / 25 / 50 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 0 (public A/B audio) | 3.7688 | 3.2961 | 3.7539 | 3.7880 | 12 / 37 / 2 |
+| 1 | 3.7869 | 3.6036 | 3.4847 | 4.0407 | 0 / 0 / 0 |
+| 2 | 3.9653 | 3.3857 | 3.6503 | 3.4630 | 0 / 0 / 0 |
 
 Each prompt's step-25 reward remains below its own frozen baseline. Audio
 content and RMS also change, so the increasing near-full-scale count on
 prompt 0 is an observation, not a controlled clipping effect.
+At step 50, two prompts score above their own frozen scores while the third
+falls by 0.5023; the three-song mean is still 0.0764 below baseline. All
+three clips are again semantic-token truncated. Prompt 0 has only two
+near-full-scale samples, neither exactly full scale.
 
 At update 5, all three held-out clips hit the semantic token cap. The first
 clip has 12 samples at or above 0.999 absolute amplitude, including 3 at
@@ -41,8 +58,9 @@ with a longest consecutive run of 17 samples; the other two have zero.
 The three-song mean remains below the frozen baseline, so this is still not
 evidence that the reward prefers clipping. The update-25 adapter SHA-256 is
 `657f08d65797c648f9c121ac514b08e6c9b7c392b8018f0ac3e36bec51ec6504`.
-The [update-5](step_000005/receipt.json) and
-[update-25](step_000025/receipt.json) receipts include five dimensions and
+The [update-5](step_000005/receipt.json),
+[update-25](step_000025/receipt.json), and
+[update-50](step_000050/receipt.json) receipts include five dimensions and
 signal diagnostics for every held-out clip. The first clip of each is replayable in the
 [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics).
 
@@ -53,14 +71,16 @@ step-1 adapter, their concatenated float32 parameter-delta L2 norms are
 larger policy update, not better music. The control step-25 adapter has no
 held-out audio evaluation and is not used as a score comparator above.
 The stress run's `steps.jsonl` contains exactly the contiguous optimizer
-updates 2-25, with finite rewards and gradient norms throughout. The
-[float-to-FLAC probe](../../probe_yue2_float_path.py) can determine whether
-the full-scale samples originate in raw generation or PCM-24 export; that
-attribution is still pending shared-GPU access.
+updates 2-50, with finite rewards and gradient norms throughout. The
+[VAE-to-FLAC probe](../../probe_yue2_float_path.py) compares the VAE's
+pre-clamp float output, YuE2 pipeline's `clamp(-1, 1)` float output, and PCM-24
+FLAC. It verifies the rerender against the published audio; that attribution
+is still pending shared-GPU access.
 
 Two initial launches OOMed when another legitimate 5090 experiment grew its
 GPU allocation; neither produced a public post-update-3 evaluation. The
 run resumed from its saved step-3 adapter and AdamW state after that
-other process exited. It then reached and evaluated checkpoint 25 before
-releasing the GPU to the other experiment. Lower held-out scores and sparse
-full-scale peaks are not, by themselves, evidence of reward hacking.
+other process exited. It reached checkpoint 25, temporarily released the GPU,
+then resumed with the same AdamW state and evaluated checkpoint 50. Lower
+held-out scores and sparse full-scale peaks are not, by themselves, evidence
+of reward hacking.
