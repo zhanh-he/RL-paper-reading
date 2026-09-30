@@ -98,7 +98,15 @@ The coverage-only arm has much more accompaniment energy than the fixed vocal at
 
 ## Original Beat-v2 reward arm
 
-The `--reward beat_v2` arm sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. Online rewards use six seconds, while fixed checkpoint replays use twelve seconds, so those F1 values are not interchangeable. This online arm is running on lab5090; its post-training checkpoints must not be inferred from the combined proxy arm.
+The `--reward beat_v2` arm sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. Online rewards use six seconds, while fixed checkpoint replays use twelve seconds, so those F1 values are not interchangeable. The saved 0/5/50-step [Beat-v2 paired replay](../../../../platform/site/demos/vocal-lada.html?arm=beat_v2) is measured; training continues to step 100:
+
+| Step | Beat-v2 F1, fixed 12 s | RMS coverage, fixed 12 s | STFT coverage, fixed 12 s | Acc/vocal RMS dB | Clipped samples |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 0.296 | 0.528 | 0.296 | -7.2 | 0 |
+| 5 | 0.296 | 0.528 | 0.296 | -7.2 | 0 |
+| 50 | 0.216 | 0.880 | 0.641 | -4.8 | 0 |
+
+The step-5 WAV is byte-identical to baseline. Mean six-second training-candidate F1 was 0.172 in steps 1-10 and 0.247 in steps 43-52, but those are different sampled trajectories, not a controlled before/after pair. The 12-second fixed replay falls at step 50 while both coverage metrics rise. This shows metric/segment disagreement, not a verified listener-quality direction.
 
 ```bash
 .env/bin/python train_lada_band_v2.py \
