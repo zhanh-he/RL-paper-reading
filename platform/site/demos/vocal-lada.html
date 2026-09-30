@@ -81,7 +81,8 @@
     <section aria-label="Evidence boundary"><h2>证据边界</h2><p class="note" id="boundary">单歌手、单旋律、小片段实验；这个页面是同输入 A/B 听感展示，不是跨歌曲显著性结论。LoRA 仅更新离散扩散模型的输出投影；主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，裁剪项实际上不提供多轮 PPO 约束；这是单遍 GRPO-style 实验。组合代理 reward 不等同人工偏好。</p></section>
   </main>
   <script type="module">
-    const files = './vocal-lada-run.json';
+    const arm = new URLSearchParams(location.search).get('arm') === 'coverage' ? 'coverage' : 'combined';
+    const files = arm === 'coverage' ? './vocal-lada-coverage-run.json' : './vocal-lada-run.json';
     const byId = id => document.getElementById(id);
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
@@ -125,6 +126,11 @@
       try { const response = await fetch(files, { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); data = await response.json(); }
       catch { byId('cards').textContent = '运行记录尚未发布。'; return; }
       const config = data.config || {};
+      if (arm === 'coverage') {
+        document.title = 'LaDA-Band · coverage-only replay';
+        document.querySelector('h1').textContent = 'LaDA-Band · Coverage-only';
+        byId('boundary').textContent = '单歌手、单旋律、小片段实验；仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。';
+      }
       for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
         const span = document.createElement('span'); const strong = document.createElement('strong'); strong.textContent = `${name}: `; span.append(strong, String(value ?? '—')); byId('facts').append(span);
       }
@@ -153,7 +159,8 @@
       const baseline = data.stages.find(item => item.step === 0);
       const latest = [...data.stages].reverse().find(item => item.step > 0 && item.beat_v2);
       if (baseline?.beat_v2 && latest?.beat_v2) {
-        byId('finding').textContent = `${latest.step} 步：组合代理 ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；但 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
+        const rewardName = arm === 'coverage' ? 'RMS coverage reward' : '组合代理';
+        byId('finding').textContent = `${latest.step} 步：${rewardName} ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
       }
       byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);
       if (select.options.length) select.value = select.options[select.options.length - 1].value;

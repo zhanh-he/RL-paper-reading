@@ -21,7 +21,9 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
-def publish(run_dir: Path, site_dir: Path) -> Path:
+def publish(run_dir: Path, site_dir: Path, slug: str = "combined") -> Path:
+    if slug not in {"combined", "coverage"}:
+        raise ValueError(f"unsupported reward arm: {slug}")
     run = json.loads((run_dir / "run.json").read_text())
     evaluations = {int(item["step"]): item for item in read_jsonl(run_dir / "evaluations.jsonl")}
     audio_dir = site_dir / "audio"
@@ -41,7 +43,7 @@ def publish(run_dir: Path, site_dir: Path) -> Path:
         source = run_dir / f"step_{step:04d}.wav"
         if item is None or not source.is_file():
             continue
-        name = f"lada_emma_combined_step_{step:04d}"
+        name = f"lada_emma_{slug}_step_{step:04d}"
         audio = audio_dir / f"{name}.wav"
         mixture = audio_dir / f"{name}_mix.wav"
         spectrum = visual_dir / f"{name}_spectrum.png"
@@ -86,7 +88,7 @@ def publish(run_dir: Path, site_dir: Path) -> Path:
         "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",
         "note": "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim.",
     }
-    output = site_dir / "vocal-lada-run.json"
+    output = site_dir / ("vocal-lada-run.json" if slug == "combined" else f"vocal-lada-{slug}-run.json")
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     return output
 
@@ -95,5 +97,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--site-dir", type=Path, required=True)
+    parser.add_argument("--slug", choices=["combined", "coverage"], default="combined")
     args = parser.parse_args()
-    print(publish(args.run_dir, args.site_dir))
+    print(publish(args.run_dir, args.site_dir, args.slug))
