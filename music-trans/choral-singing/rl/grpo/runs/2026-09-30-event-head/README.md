@@ -19,14 +19,20 @@ reference-backed reward is in [satb_reward.py](../../../../rewards/satb_reward.p
   reference KL coefficient `0.01`. A zero-variance reward group skips the
   optimizer update and is counted separately from requested steps.
 - Predeclared checkpoints at 100, 300 and 1000 steps for the combined arm.
-  All seven single-reward arms use the same start, seed, split and 1000
-  requested steps, with checkpoints at 300 and 1000. Effective optimizer
-  updates vary because zero-variance rollout groups cannot supply an advantage.
+  All seven single-reward arms use the same start, seed and split; their
+  companion 300-step runs saved 100/300, while the 1000-step runs saved
+  300/1000. Effective optimizer updates vary because zero-variance rollout
+  groups cannot supply an advantage.
 - A later [one-step rerun](step_000001/receipt.json) used the same starting
   checkpoint SHA-256, seed, 16/8-song split and optimizer settings, then
   stopped after one effective combined-reward update. Its pre-update
   aggregate is identical to the original baseline. This is a separate run,
   not an extracted checkpoint from the 1000-step run.
+- Five displayed single-reward arms have 100-step checkpoints from their
+  original 300-step runs. Their 300-step head files match the corresponding
+  1000-step runs byte-for-byte. Separate one-step reruns used the same starting
+  checkpoint, seed, split and optimizer settings. Anonymous aggregate receipts
+  and the public-example replay are in [early-steps](early-steps/).
 - Held-out MIDI is deterministically re-decoded. Frame F1 is computed on a
   10 ms grid; note onset matching uses 50 ms; complete-note matching also
   requires offset within `max(50 ms, 20% reference duration)`. We report
@@ -69,8 +75,8 @@ human review are needed.
 The [one-song receipt](public-synthetic-replay.json) and
 [piano-roll notes](public-synthetic-notes.json) belong to an original 10.2 s
 synthetic SATB example, not to the held-out test. The same audio input is
-decoded with the frozen model, combined 1/100/300/1000-step heads and all seven
-single-reward 300-step heads;
+decoded with the frozen model, combined 1/100/300/1000-step heads, and the five
+displayed single-reward 1/100/300-step heads;
 predicted notes are clipped to the input duration. Its MIDI files and ACE
 Studio renders are on the [demo page](../../../../../../platform/site/demos/).
 All ACE renders use the same Elirah / Emma / Julian / Mangus singer assignment,

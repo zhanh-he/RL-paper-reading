@@ -1,0 +1,81 @@
+{
+  "status": "public_synthetic_event_head_replay",
+  "input": "original synthetic SATB audio, not held-out benchmark",
+  "steps": {
+    "arm_onset_1": {
+      "midi": "choral_event_arm_onset_1.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 48,
+      "frame_f1": 0.6231025944665733,
+      "onset_f1": 0.1,
+      "onset_offset_f1": 0.075,
+      "track_onset_f1": 0.1,
+      "track_note_f1": 0.075
+    },
+    "arm_onset_offset_1": {
+      "midi": "choral_event_arm_onset_offset_1.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 44,
+      "frame_f1": 0.684826762246117,
+      "onset_f1": 0.10526315789473684,
+      "onset_offset_f1": 0.07894736842105263,
+      "track_onset_f1": 0.10526315789473684,
+      "track_note_f1": 0.07894736842105263
+    },
+    "arm_frame_1": {
+      "midi": "choral_event_arm_frame_1.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 44,
+      "frame_f1": 0.6830901698158335,
+      "onset_f1": 0.10526315789473684,
+      "onset_offset_f1": 0.07894736842105263,
+      "track_onset_f1": 0.10526315789473684,
+      "track_note_f1": 0.07894736842105263
+    },
+    "arm_coverage_1": {
+      "midi": "choral_event_arm_coverage_1.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 45,
+      "frame_f1": 0.6826762246117085,
+      "onset_f1": 0.12987012987012986,
+      "onset_offset_f1": 0.07792207792207792,
+      "track_onset_f1": 0.12987012987012986,
+      "track_note_f1": 0.07792207792207792
+    },
+    "arm_continuity_1": {
+      "midi": "choral_event_arm_continuity_1.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 45,
+      "frame_f1": 0.6488818254058349,
+      "onset_f1": 0.1038961038961039,
+      "onset_offset_f1": 0.07792207792207792,
+      "track_onset_f1": 0.1038961038961039,
+      "track_note_f1": 0.07792207792207792
+    }
+  }
+}

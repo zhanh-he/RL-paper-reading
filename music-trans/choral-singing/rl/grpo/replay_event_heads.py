@@ -7,6 +7,7 @@ base checkpoint or the event-head checkpoints into the repository.
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -25,6 +26,7 @@ def main():
     parser.add_argument("--head-run", type=Path, required=True)
     parser.add_argument("--extra-stage", action="append", default=[], metavar="STEP=HEAD_PT")
     parser.add_argument("--arm-run", action="append", default=[], metavar="ARM=RUN_DIR")
+    parser.add_argument("--only-extra-stages", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -49,16 +51,19 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     reference = load_satb_midi(args.reference)
 
-    stages = {"0": None}
+    stages = {} if args.only_extra_stages else {"0": None}
     for item in args.extra_stage:
         step, sep, path = item.partition("=")
-        if not sep or not step.isdecimal() or int(step) <= 0 or step in stages:
-            parser.error("--extra-stage needs a positive STEP=HEAD_PT")
+        valid_step = step.isdecimal() and int(step) > 0
+        valid_arm = re.fullmatch(r"arm_[a-z_]+_[1-9][0-9]*", step)
+        if not sep or not (valid_step or valid_arm) or step in stages:
+            parser.error("--extra-stage needs STEP=HEAD_PT or arm_NAME_STEP=HEAD_PT")
         stages[step] = Path(path)
-    stages.update({
-        str(step): args.head_run / f"step_{step:06d}" / "event_heads.pt"
-        for step in (100, 300, 1000)
-    })
+    if not args.only_extra_stages:
+        stages.update({
+            str(step): args.head_run / f"step_{step:06d}" / "event_heads.pt"
+            for step in (100, 300, 1000)
+        })
     for item in args.arm_run:
         arm, sep, run_dir = item.partition("=")
         if not sep or not arm.replace("_", "").isalpha():

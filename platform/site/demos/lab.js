@@ -406,7 +406,7 @@ function renderEventReplay(data, pilot) {
     button.className = 'stage-item available'; button.dataset.step = String(step);
     const title = document.createElement('strong'); title.textContent = `${step} 步`;
     const state = document.createElement('span'); state.className = 'state measured';
-    state.textContent = step === 300 ? 'A–F 可试听' : 'A 可试听';
+    state.textContent = step === 1000 ? 'A 可试听' : 'A–F 可试听';
     button.append(title, state); button.addEventListener('click', () => selectStep(step));
     return button;
   }));
@@ -428,7 +428,7 @@ function renderEventPilot(data) {
   const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
     coverage: 'Coverage only', continuity: 'Continuity only' };
   for (const [arm, label] of Object.entries(armNames)) {
-    for (const step of [300, 1000]) {
+    for (const step of [1, 100, 300, 1000]) {
       const stage = data.arms[arm]?.milestones?.[String(step)];
       if (stage) rows.push({ label, step, updates: stage.updated_steps, metrics: stage.metrics, kind: 'single' });
     }

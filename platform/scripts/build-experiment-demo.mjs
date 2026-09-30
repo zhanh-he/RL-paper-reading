@@ -32,8 +32,10 @@ if (muscriptorTrain.status !== 'single_public_song_muscriptor_medium_grpo_smoke_
     ['frame', 'onset', 'offset'].every((name) => Number.isFinite(metrics?.[name])))) {
   throw new Error('MuScriptor medium smoke receipts are incomplete');
 }
+const activeChoralArms = ['onset', 'onset_offset', 'frame', 'coverage', 'continuity'];
 for (const key of ['0', '1', '100', '300', '1000',
-  ...['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'weak_voice', 'precision'].map((arm) => `arm_${arm}_300`)]) {
+  ...activeChoralArms.flatMap((arm) => [1, 100, 300].map((step) => `arm_${arm}_${step}`)),
+  'arm_weak_voice_300', 'arm_precision_300']) {
   if (!Number.isInteger(eventReceipt.steps[key]?.note_count) || eventReceipt.steps[key].note_count !== eventNotes[key]?.length) {
     throw new Error(`Public event MIDI note count mismatch at ${key}`);
   }
@@ -69,6 +71,13 @@ for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity', '
   await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
   for (const kind of ['wave', 'spectrum']) {
     await access(resolve(root, `platform/site/demos/visuals/${name}_${kind}.png`));
+  }
+}
+for (const arm of activeChoralArms) {
+  for (const step of [1, 100]) {
+    const name = `choral_event_arm_${arm}_${step}`;
+    await access(resolve(root, `platform/site/demos/midi/${name}.mid`));
+    await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
   }
 }
 await access(resolve(root, 'platform/site/demos/midi/choral_event_arm_weak_voice_300.mid'));
@@ -194,6 +203,11 @@ const result = {
     'music-trans/choral-singing/benchmarks/icaspp2027_pawct_table2.json',
     `${eventPath}/aggregate.json`,
     `${eventPath}/step_000001/receipt.json`,
+    ...activeChoralArms.flatMap((arm) => [1, 100].map((step) =>
+      `${eventPath}/early-steps/arm_${arm}_${step}.json`)),
+    `${eventPath}/early-steps/public-synthetic-replay-1.json`,
+    `${eventPath}/early-steps/public-synthetic-replay-100.json`,
+    `${eventPath}/early-steps/public-synthetic-notes.json`,
     `${eventPath}/public-synthetic-replay.json`,
     `${eventPath}/public-synthetic-notes.json`,
     `${muscriptorSmokePath}/receipt.json`,
