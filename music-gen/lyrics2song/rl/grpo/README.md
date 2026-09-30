@@ -34,3 +34,9 @@ they were the same reward.
 These are still small pilot experiments, not adequately powered music-quality
 claims. Longer-run GRPO needs blind listening, duration/loudness controls,
 multiple seeds and explicit KL monitoring alongside held-out rewards.
+
+The [Muse SongEval prompt-matched replay](runs/2026-09-30-muse-matched/README.md)
+regenerates the one-step adapter's held-out 0/1 audio using the same style,
+lyrics and seed as the YuE2 comparison. On this one song, official SongEval
+mean changed 2.8776 to 3.1095, while peak and RMS also rose. This is a
+single-sample observation, not evidence of general quality improvement.

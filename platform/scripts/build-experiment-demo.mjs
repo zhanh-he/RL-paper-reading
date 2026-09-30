@@ -4,10 +4,18 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
 const output = resolve(root, 'platform/site/demos/results.json');
-const musePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json';
+const musePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json';
 const muse = await readJson(musePath);
 const replaysPath = 'platform/site/demos/replays.json';
 const replays = await readJson(replaysPath);
+if (replays.lyrics.muse.style !== replays.lyrics.yue2.style ||
+    replays.lyrics.muse.lyrics !== replays.lyrics.yue2.lyrics ||
+    replays.lyrics.muse.seed !== replays.lyrics.yue2.seed ||
+    muse.heldout_style !== replays.lyrics.yue2.style ||
+    muse.heldout_lyrics !== replays.lyrics.yue2.lyrics ||
+    muse.heldout_seed !== replays.lyrics.yue2.seed) {
+  throw new Error('Muse SongEval public replay must use the YuE2 held-out style, lyrics and seed');
+}
 const choralDemoPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic';
 const eventPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head';
 const muscriptorSmokePath = 'music-trans/multi-inst/rl/grpo/runs/2026-09-30-muscriptor-medium-smoke';
@@ -73,7 +81,7 @@ for (const entry of cases) {
   }
   for (const stage of [entry.input, entry.reference, ...entry.stages, ...(entry.outputs || []),
     ...entry.stages.map((item) => item.paired_baseline).filter(Boolean)].filter(Boolean)) {
-    if (['pending', 'running'].includes(stage.status) && (stage.audio || stage.wave || stage.spectrum)) {
+    if (['pending', 'queued', 'running'].includes(stage.status) && (stage.audio || stage.wave || stage.spectrum)) {
       throw new Error(`Unmeasured step ${stage.step} must not claim public media`);
     }
     if (stage.status === 'measured' && (!stage.audio || !stage.wave || !stage.spectrum)) {

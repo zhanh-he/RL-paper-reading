@@ -6,9 +6,9 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20260930-choral-eight-grid" />
+    <link rel="stylesheet" href="./styles.css?v=20260930-lyrics-matched" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-choral-eight-grid"></script>
+    <script type="module" src="./lab.js?v=20260930-lyrics-matched"></script>
   </head>
   <body>
     <header class="app-header">
@@ -125,8 +125,8 @@
       </section>
 
       <section class="lab-view" id="view-lyrics">
-        <div class="section-intro"><div><p class="eyebrow">Case 01 · Same prompt, same seed</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · lab5090</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
-        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · LR 2e-5</button><button type="button" data-replay-model="yue2_stress" aria-pressed="false">YuE2 · LR 1e-4</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span>held-out seed 5101</span></div>
+        <div class="section-intro"><div><p class="eyebrow">Case 01 · Fixed held-out seed</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · 5090 / Gadi</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · SongEval · 2e-5</button><button type="button" data-replay-model="yue2_stress" aria-pressed="false">YuE2 · SongEval · 1e-4</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span>held-out seed 5101</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
         <h3 class="subsection-heading">Checkpoint timeline</h3>

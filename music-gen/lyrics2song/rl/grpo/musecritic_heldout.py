@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -10,6 +11,13 @@ import torch
 from peft import PeftModel
 
 from muse_songeval_pilot import HELDOUT_PROMPT, load, rollout, signal
+
+
+YUE2_MATCHED_PROMPT = (
+    "Please generate a song in the following style: English, mellow acoustic folk, "
+    "guitar, light percussion, male vocal, 92 BPM.\n"
+    "[Verse][lyrics:\nUnder open skies we roam\nEvery little road leads home]"
+)
 
 
 def main():
@@ -22,6 +30,10 @@ def main():
     parser.add_argument("--max-tokens", type=int, default=500)
     parser.add_argument("--optimizer-step", type=int, default=1)
     args = parser.parse_args()
+    prompt_variant = os.environ.get("MUSE_HELDOUT_PROMPT_VARIANT", "legacy")
+    if prompt_variant not in ("legacy", "yue2-matched"):
+        raise ValueError(f"Unknown MUSE_HELDOUT_PROMPT_VARIANT: {prompt_variant}")
+    prompt = YUE2_MATCHED_PROMPT if prompt_variant == "yue2-matched" else HELDOUT_PROMPT
     args.output.mkdir(parents=True, exist_ok=True)
     sys.path.insert(0, str(args.plugin.parent.resolve()))
     from plugin import MusecriticRM
@@ -33,7 +45,7 @@ def main():
         if name == "after":
             model = PeftModel.from_pretrained(model, args.adapter).merge_and_unload().eval()
         token_file = args.output / f"heldout_{name}_tokens.json"
-        row = rollout(model, tokenizer, HELDOUT_PROMPT, args.seed, args.max_tokens,
+        row = rollout(model, tokenizer, prompt, args.seed, args.max_tokens,
                       token_file, force_length=True)
         if not row["audio_tokens"]:
             raise RuntimeError(f"{name} has no Muse audio tokens")
@@ -58,7 +70,8 @@ def main():
         "optimizer_step": args.optimizer_step,
         "model": "Muse-0.6b + MuCodec",
         "reward_model": "MuseCritic",
-        "heldout_prompt": HELDOUT_PROMPT,
+        "heldout_prompt": prompt,
+        "prompt_variant": prompt_variant,
         "heldout_seed": args.seed,
         "generated_token_difference": difference,
         "before": {key: value for key, value in pairs["before"].items() if key != "token_ids"},

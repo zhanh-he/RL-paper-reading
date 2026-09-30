@@ -570,7 +570,7 @@ function renderStageRail(selector, stages, onSelect = null, selectedStep = null)
     title.textContent = stage.step === 0 ? 'Baseline' : `${stage.step} ${stage.step === 1 ? 'step' : 'steps'}`;
     const state = document.createElement('span');
     state.className = `state ${stage.status === 'measured' ? 'measured' : stage.status === 'metrics_only' ? 'diagnostic' : 'pending'}`;
-    state.textContent = stage.status === 'measured' ? '可试听' : stage.status === 'metrics_only' ? '仅指标' : stage.status === 'running' ? '运行中' : '待运行';
+    state.textContent = stage.status === 'measured' ? '可试听' : stage.status === 'metrics_only' ? '仅指标' : stage.status === 'running' ? '运行中' : stage.status === 'queued' ? '排队中' : '待运行';
     item.append(title, state);
     return item;
   }));
@@ -585,9 +585,11 @@ function createMediaPanel({ label, title, asset, details, listenRole }) {
   const waveImage = document.createElement('img'); waveImage.src = `./${asset.wave}`; waveImage.alt = `${title} waveform, full duration`; waveImage.loading = 'lazy';
   const playhead = document.createElement('span'); playhead.className = 'wave-playhead'; playhead.setAttribute('aria-hidden', 'true');
   wave.append(waveImage, playhead);
+  const waveCaption = document.createElement('div'); waveCaption.className = 'visual-caption';
+  waveCaption.textContent = 'Waveform · amplitude -1 to +1 (fixed)';
   const spectrum = document.createElement('figure'); spectrum.className = 'spectrum-visual';
   const spectrumImage = document.createElement('img'); spectrumImage.src = `./${asset.spectrum}`; spectrumImage.alt = `${title} spectrogram on a logarithmic frequency scale`; spectrumImage.loading = 'lazy';
-  const caption = document.createElement('figcaption'); caption.textContent = 'Log-frequency spectrogram';
+  const caption = document.createElement('figcaption'); caption.textContent = 'Log frequency 40 Hz–16 kHz · viridis -80 to 0 dBFS (fixed)';
   spectrum.append(spectrumImage, caption);
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./${asset.audio}`;
   const playingLabel = () => listenRole === 'baseline' ? 'A · Baseline' : document.querySelector('[data-listen="candidate"]').textContent;
@@ -609,7 +611,7 @@ function createMediaPanel({ label, title, asset, details, listenRole }) {
   audioLink.rel = 'noopener';
   audioLink.className = 'audio-fallback';
   audioLink.textContent = '单独打开音频 ↗';
-  panel.append(index, heading, wave, spectrum, audio, audioLink, note);
+  panel.append(index, heading, wave, waveCaption, spectrum, audio, audioLink, note);
   return panel;
 }
 
@@ -655,8 +657,9 @@ function renderLyrics(data) {
     for (const button of document.querySelectorAll('[data-replay-model]')) button.setAttribute('aria-pressed', String(button.dataset.replayModel === model));
     renderStageRail('#lyrics-stage-rail', descriptor.stages, (stage) => renderModel(model, stage.step), step);
     const pending = descriptor.stages.filter((stage) => stage.status === 'pending').map((stage) => stage.step);
+    const queued = descriptor.stages.filter((stage) => stage.status === 'queued').map((stage) => stage.step);
     const running = descriptor.stages.filter((stage) => stage.status === 'running').map((stage) => stage.step);
-    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
+    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 已提交 Gadi 排队。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     const isYuE2 = model.startsWith('yue2');
     $('#lyrics-heldout-section').hidden = !isYuE2;
     $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
@@ -668,7 +671,7 @@ function renderLyrics(data) {
     $('#lyrics-train-protocol').textContent = isYuE2
       ? `YuE2：8 条原创训练提示，每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${model === 'yue2_stress' ? '1e-4（压力测试）' : '2e-5（常规对照）'}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；本轮无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。`
       : model === 'musecritic' ? 'MuseCritic：独立的 Muse + MuCodec 在线训练；25/50 步实验从 100 条公开提示采样。解码有随机性，单条 A/B 不能直接归因于参数更新。' :
-        'Muse：两条训练 rollout 的一步工程试验；单条留出试听只验证流程，不构成质量改善证据。';
+        'Muse：两条训练 rollout 的一步 SongEval-GRPO 工程试验；这里以与 YuE2 相同的风格、歌词和 seed 5101 重新生成留出试听，MuCodec 解码仍有随机性。';
     if (isYuE2) {
       const baseMean = baseline.mean_reward;
       const armRows = [
@@ -683,12 +686,11 @@ function renderLyrics(data) {
     }
     document.querySelector('[data-listen="candidate"]').textContent = `B · ${step} ${step === 1 ? 'step' : 'steps'}`;
     $('#lyrics-metric-head').textContent = `${step} ${step === 1 ? 'step' : 'steps'}`;
-    const pairedBaseline = selected.paired_baseline || baseline;
     $('#lyrics-compare').replaceChildren(
-      createMediaPanel({ label: 'A / BASELINE', title: `${descriptor.name} · 0 updates`, asset: pairedBaseline, details: '48 kHz · held-out seed 5101', listenRole: 'baseline' }),
+      createMediaPanel({ label: 'A / FROZEN BASELINE', title: `${descriptor.name} · 0 updates`, asset: baseline, details: '固定音频 · 所有训练阶段共用 · held-out seed 5101', listenRole: 'baseline' }),
       createMediaPanel({ label: 'B / GRPO', title: `${descriptor.name} · ${step} ${step === 1 ? 'update' : 'updates'}`, asset: selected, details: '同 prompt、同 seed · 独立留出样本', listenRole: 'candidate' }),
     );
-    const before = pairedBaseline.metrics, after = selected.metrics;
+    const before = baseline.metrics, after = selected.metrics;
     const rewardName = descriptor.reward_model || 'SongEval';
     const metrics = [
       ...['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness', 'mean'].map((key) => [`${rewardName} · ${key}`, before.reward[key], after.reward[key], 4]),
@@ -698,10 +700,9 @@ function renderLyrics(data) {
     ];
     appendCells($('#lyrics-metric-table'), metrics.map(([name, a, b, digits]) => [name, fmt(a, digits), fmt(b, digits), signed(b - a, digits)]));
     if (step === 1 && model === 'muse') {
-      const changed = `${receipt.heldout_generated_token_difference}/${receipt.max_new_tokens} generated tokens`;
-      $('#lyrics-interpretation').textContent = `未训练重放波形完全相同；更新后 ${changed} 改变。本次留出片段 SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，两版均无满幅削波。只有 2 条训练 rollout、1 次优化与 1 条留出样本；不足以判断长程优化、听感改善或 reward hacking。`;
+      $('#lyrics-interpretation').textContent = `相同提示词与 seed 5101 的重新生成片段，SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；两版均无满幅削波。B 的峰值与 RMS 也改变，因此这一个样本的分数上涨不能单独证明审美改善。训练只有 2 条 rollout 和 1 次优化，仍需多首歌、独立解码和盲听验证。`;
     } else if (model === 'musecritic') {
-      $('#lyrics-interpretation').textContent = `MuseCritic GRPO ${step} 步的单条留出音频：均分 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。两版均无满幅削波。每个阶段使用各自的 A/B 解码，MuCodec 重解码存在随机性；相同 baseline token 在 25/50 步评估中也生成不同波形，故不能把单条分差全归因于 adapter。`;
+      $('#lyrics-interpretation').textContent = `MuseCritic GRPO ${step} 步的单条留出音频：固定 A 的均分 ${fmt(before.reward.mean)} → B 的 ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。两版均无满幅削波。A 始终是同一文件；B 在各阶段单独解码，MuCodec 的随机性仍使这组试听和分差不能单独归因于 adapter。原始训练 receipt 还保留了每阶段重解码的 paired baseline 供核查。`;
     } else if (model === 'yue2_stress' && step === 5) {
       $('#lyrics-interpretation').textContent = `高 LR 第 5 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，低于常规 LR 同步数。试听样本有 12 个近满幅采样（最长连续 4 个），其余两条没有。这是稀疏峰值异常；reward 没有上升，尚不能称为 reward hacking。`;
     } else if (model === 'yue2_stress' && step === 25) {
