@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
 const runs = {};
+const dimensions = ['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness'];
 for (const [arm, directory] of [
   ['yue2', '2026-09-30-yue2-longrun'],
   ['yue2_stress', '2026-09-30-yue2-lr-stress'],
@@ -21,7 +22,22 @@ for (const [arm, directory] of [
     points.push({ step: end, reward: rewards.reduce((sum, reward) => sum + reward, 0) / rewards.length,
       updates: window.length });
   }
-  runs[arm] = { points, updates: 99, kl_status: 'not_recorded' };
+  const heldout = [];
+  for (const step of [0, 1, 5, 25, 50, 100]) {
+    const receiptDirectory = step <= 1 ? '2026-09-30-yue2-longrun' : directory;
+    const receipt = JSON.parse(await readFile(resolve(root,
+      `music-gen/lyrics2song/rl/grpo/runs/${receiptDirectory}/step_${String(step).padStart(6, '0')}/receipt.json`), 'utf8'));
+    const songs = receipt.heldout;
+    if (receipt.optimizer_step !== step || songs?.length !== 3 ||
+      songs.some((song, index) => song.seed !== 5101 + index ||
+        dimensions.some((dimension) => !Number.isFinite(song.reward?.[dimension])))) {
+      throw new Error(`Incomplete YuE2 held-out dimensions: ${arm} step ${step}`);
+    }
+    const scores = Object.fromEntries(dimensions.map((dimension) =>
+      [dimension, songs.reduce((sum, song) => sum + song.reward[dimension], 0) / songs.length]));
+    heldout.push({ step, ...scores });
+  }
+  runs[arm] = { points, heldout, updates: 99, kl_status: 'not_recorded' };
 }
 const output = resolve(root, 'platform/site/demos/yue2-training-curves.json');
 const contents = `${JSON.stringify({ status: 'measured_training_reward_only', bin_size: 5, runs }, null, 2)}\n`;

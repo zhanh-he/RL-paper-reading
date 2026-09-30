@@ -105,6 +105,56 @@
           "updates": 5
         }
       ],
+      "heldout": [
+        {
+          "step": 0,
+          "Coherence": 3.958833333333333,
+          "Musicality": 3.8735666666666666,
+          "Memorability": 3.961866666666667,
+          "Clarity": 3.7848666666666664,
+          "Naturalness": 3.6225666666666663
+        },
+        {
+          "step": 1,
+          "Coherence": 3.7067,
+          "Musicality": 3.6257333333333333,
+          "Memorability": 3.6352333333333333,
+          "Clarity": 3.6155333333333335,
+          "Naturalness": 3.4316999999999998
+        },
+        {
+          "step": 5,
+          "Coherence": 3.685233333333333,
+          "Musicality": 3.6828000000000003,
+          "Memorability": 3.6825666666666663,
+          "Clarity": 3.5867333333333336,
+          "Naturalness": 3.4427
+        },
+        {
+          "step": 25,
+          "Coherence": 3.738433333333333,
+          "Musicality": 3.6456,
+          "Memorability": 3.6065,
+          "Clarity": 3.4783666666666666,
+          "Naturalness": 3.3454
+        },
+        {
+          "step": 50,
+          "Coherence": 3.7038999999999995,
+          "Musicality": 3.6156,
+          "Memorability": 3.666733333333333,
+          "Clarity": 3.501466666666667,
+          "Naturalness": 3.3643666666666667
+        },
+        {
+          "step": 100,
+          "Coherence": 3.7386,
+          "Musicality": 3.6912000000000003,
+          "Memorability": 3.686133333333333,
+          "Clarity": 3.5334333333333334,
+          "Naturalness": 3.3819666666666666
+        }
+      ],
       "updates": 99,
       "kl_status": "not_recorded"
     },
@@ -209,6 +259,56 @@
           "step": 100,
           "reward": 3.7374160528182983,
           "updates": 5
+        }
+      ],
+      "heldout": [
+        {
+          "step": 0,
+          "Coherence": 3.958833333333333,
+          "Musicality": 3.8735666666666666,
+          "Memorability": 3.961866666666667,
+          "Clarity": 3.7848666666666664,
+          "Naturalness": 3.6225666666666663
+        },
+        {
+          "step": 1,
+          "Coherence": 3.7067,
+          "Musicality": 3.6257333333333333,
+          "Memorability": 3.6352333333333333,
+          "Clarity": 3.6155333333333335,
+          "Naturalness": 3.4316999999999998
+        },
+        {
+          "step": 5,
+          "Coherence": 3.5940666666666665,
+          "Musicality": 3.5269,
+          "Memorability": 3.4649,
+          "Clarity": 3.322833333333333,
+          "Naturalness": 3.2336666666666667
+        },
+        {
+          "step": 25,
+          "Coherence": 3.7197666666666667,
+          "Musicality": 3.694233333333333,
+          "Memorability": 3.6777333333333337,
+          "Clarity": 3.597,
+          "Naturalness": 3.4595
+        },
+        {
+          "step": 50,
+          "Coherence": 3.8633333333333333,
+          "Musicality": 3.8024,
+          "Memorability": 3.8488333333333333,
+          "Clarity": 3.7023333333333333,
+          "Naturalness": 3.6026000000000002
+        },
+        {
+          "step": 100,
+          "Coherence": 3.5391333333333335,
+          "Musicality": 3.5068333333333332,
+          "Memorability": 3.4956333333333327,
+          "Clarity": 3.4124,
+          "Naturalness": 3.1941666666666664
         }
       ],
       "updates": 99,
