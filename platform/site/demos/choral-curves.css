@@ -3,11 +3,13 @@
 .choral-training-heading h3 { margin: 0; font-size: 1rem; }
 .choral-training-heading span, .choral-training-note { color: var(--ink-muted); font-size: .75rem; }
 .choral-training-plots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 14px; }
-.choral-training figure { margin: 0; min-width: 0; }
+.choral-training figure { margin: 0; min-width: 0; position: relative; }
 .choral-training-plots figure { border-top: 1px solid var(--line); padding-top: 8px; }
 .choral-training figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: .77rem; font-weight: 750; }
 .choral-training figcaption strong { font-size: .78rem; font-variant-numeric: tabular-nums; }
 .choral-training canvas { display: block; width: 100%; height: 154px; }
+.training-chart-tooltip { position: absolute; z-index: 2; transform: translateX(-50%); max-width: min(280px, 90%); padding: 7px 10px; border: 1px solid var(--line-strong); border-radius: 4px; background: #fff; color: var(--ink); box-shadow: 0 3px 12px #17211e20; font-size: .74rem; line-height: 1.45; white-space: pre-line; pointer-events: none; }
+.training-chart-tooltip[hidden] { display: none; }
 #yue2-training .choral-training-plots { grid-template-columns: minmax(0, 1fr); }
 #yue2-training .choral-deep-dive { margin-top: 10px; }
 .choral-training-note { margin: 5px 0 10px; line-height: 1.5; }

@@ -1,5 +1,8 @@
+import { createMilestones } from './chart-milestones.js';
+
 const section = document.querySelector('#yue2-training');
 const canvas = document.querySelector('#yue2-reward-chart');
+const milestones = createMilestones(canvas, 100);
 const value = document.querySelector('#yue2-reward-value');
 const details = document.querySelector('#yue2-dimensions-details');
 const dimensionList = document.querySelector('#yue2-dimension-plots');
@@ -12,7 +15,7 @@ const dimensions = [
 ];
 let runs;
 
-function drawChart(canvas, points, key, color, compact = false) {
+function drawChart(canvas, points, key, color, compact = false, marks = null) {
   const width = canvas.getBoundingClientRect().width;
   if (width < 20) return;
   const height = compact ? 112 : 154;
@@ -64,6 +67,7 @@ function drawChart(canvas, points, key, color, compact = false) {
       context.fill();
     }
   }
+  marks?.draw(context, width, height - margin.bottom, color);
 }
 
 function draw() {
@@ -72,7 +76,11 @@ function draw() {
   const run = runs[arm];
   if (!run) return;
   const points = run.points;
-  drawChart(canvas, points, 'reward', '#08745d');
+  milestones.set(run.heldout.filter((point) => point.step > 0).map((point) => {
+    const training = points.find((candidate) => candidate.step === point.step);
+    return { step: point.step, label: `第 ${point.step} 步 · 留出 SongEval 均分 ${point.mean.toFixed(4)}${training ? `\n训练 rollout 5 步窗口均值 ${training.reward.toFixed(4)}` : '\n训练 rollout reward 未记录'}` };
+  }));
+  drawChart(canvas, points, 'reward', '#08745d', false, milestones);
   value.textContent = `${points[0].reward.toFixed(3)} → ${points.at(-1).reward.toFixed(3)}`;
   if (!details.open) return;
   for (const [key, color] of dimensions) {

@@ -7,11 +7,11 @@
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-yue2-three-songs" />
-    <link rel="stylesheet" href="./choral-curves.css?v=20260930-yue2-reward" />
+    <link rel="stylesheet" href="./choral-curves.css?v=20260930-milestones" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20260930-reward-copy"></script>
-    <script type="module" src="./choral-curves.js?v=20260930"></script>
-    <script type="module" src="./yue2-curves.js?v=20260930-dimensions"></script>
+    <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
+    <script type="module" src="./yue2-curves.js?v=20260930-milestones"></script>
   </head>
   <body>
     <header class="app-header">
@@ -68,7 +68,7 @@
             <figure><figcaption>综合 reward <strong id="choral-combined-reward-value"></strong></figcaption><canvas id="choral-combined-reward-chart" role="img" aria-label="综合 reward 随训练步数变化的曲线"></canvas></figure>
             <figure><figcaption>KL <strong id="choral-combined-kl-value"></strong></figcaption><canvas id="choral-combined-kl-chart" role="img" aria-label="KL 随训练步数变化的曲线"></canvas></figure>
           </div>
-          <p class="choral-training-note">训练 rollout 的窗口均值，不是未见歌曲上的 F1；KL 为训练日志的估计值。横轴为优化器步数，纵轴各自独立缩放。</p>
+          <p class="choral-training-note">训练 rollout 的窗口均值，不是未见歌曲上的 F1；KL 为训练日志的估计值。横轴圆点标记 1/100/300/1000 步，悬停可看对应窗口分数；第 1 步没有单独的训练 reward 记录。纵轴各自独立缩放。</p>
           <div class="choral-training-foldouts" id="choral-training-foldouts">
             <details class="choral-deep-dive"><summary>五个单项 reward 的训练曲线</summary>
               <p class="section-copy">每条曲线来自各自独立的单项 reward GRPO，不是 Combined 运行的内部逐项分数。每点为 25 步内有效更新的训练 reward 均值；跳过的更新不参与均值。</p>
@@ -159,7 +159,7 @@
               <div class="choral-small-plots" id="yue2-dimension-plots"></div>
             </details>
             <details class="choral-deep-dive"><summary>曲线口径、KL 记录与训练框架</summary>
-              <p class="section-copy">每点是每步两条训练采样的 SongEval 五维均分，再取 5 步窗口均值；切换 LR 会显示各自的训练轨迹。这不是固定留出提示的分数，也不能单凭训练曲线判断音质提升。</p>
+              <p class="section-copy">每点是每步两条训练采样的 SongEval 五维均分，再取 5 步窗口均值；切换 LR 会显示各自的训练轨迹。横轴圆点标记 1/5/25/50/100 步，悬停可看三首固定留出歌曲的均分，以及有记录时的训练窗口均值。两种分数口径不同，留出分数没有画进训练曲线；不能单凭训练曲线判断音质提升。</p>
               <p class="section-copy">本轮没有 TensorBoard KL 曲线，也未计算或保存 reference-policy KL。梯度范数不是 KL，不能用它补画。</p>
               <p class="section-copy">YuE2 的 GRPO 由项目内 PyTorch 循环实现，用 PEFT/LoRA 和本地 YuE2 pipeline；未使用 TRL、MILES、verl 或 verl-omni 的训练器。</p>
             </details>

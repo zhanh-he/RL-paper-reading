@@ -1,3 +1,5 @@
+import { createMilestones } from './chart-milestones.js';
+
 const definitions = document.querySelector('#view-choral .choral-reward-details');
 const foldouts = document.querySelector('#choral-training-foldouts');
 foldouts.prepend(definitions);
@@ -10,7 +12,7 @@ const arms = [
   ['continuity', 'Continuity', '#657a2b'],
 ];
 
-function chart(canvas, points, key, color, compact = false) {
+function chart(canvas, points, key, color, compact = false, marks = null) {
   const draw = () => {
     const width = canvas.getBoundingClientRect().width;
     if (width < 20) return;
@@ -60,6 +62,7 @@ function chart(canvas, points, key, color, compact = false) {
       connected = true;
     }
     context.stroke();
+    marks?.draw(context, width, height - margin.bottom, color);
   };
   new ResizeObserver(draw).observe(canvas.parentElement);
   draw();
@@ -76,7 +79,13 @@ try {
     `${first.reward.toFixed(3)} → ${last.reward.toFixed(3)}`;
   document.querySelector('#choral-combined-kl-value').textContent =
     `${first.kl.toFixed(3)} → ${last.kl.toFixed(3)}`;
-  chart(document.querySelector('#choral-combined-reward-chart'), combined, 'reward', '#08745d');
+  const combinedCanvas = document.querySelector('#choral-combined-reward-chart');
+  const combinedMarks = createMilestones(combinedCanvas, 1000);
+  combinedMarks.set([1, 100, 300, 1000].map((step) => {
+    const point = combined.find((entry) => entry.step === step);
+    return { step, label: `第 ${step} 步 · ${point ? `训练 combined reward 25 步窗口均值 ${point.reward.toFixed(4)}` : '训练 combined reward 未单独记录'}` };
+  }));
+  chart(combinedCanvas, combined, 'reward', '#08745d', false, combinedMarks);
   chart(document.querySelector('#choral-combined-kl-chart'), combined, 'kl', '#b36b24');
 
   const list = document.querySelector('#choral-small-plots');

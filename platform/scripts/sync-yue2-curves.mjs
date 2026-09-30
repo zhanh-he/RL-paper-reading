@@ -35,7 +35,11 @@ for (const [arm, directory] of [
     }
     const scores = Object.fromEntries(dimensions.map((dimension) =>
       [dimension, songs.reduce((sum, song) => sum + song.reward[dimension], 0) / songs.length]));
-    heldout.push({ step, ...scores });
+    const mean = dimensions.reduce((sum, dimension) => sum + scores[dimension], 0) / dimensions.length;
+    if (Math.abs(mean - receipt.mean_reward) > 1e-6) {
+      throw new Error(`Inconsistent YuE2 held-out mean: ${arm} step ${step}`);
+    }
+    heldout.push({ step, mean, ...scores });
   }
   runs[arm] = { points, heldout, updates: 99, kl_status: 'not_recorded' };
 }
