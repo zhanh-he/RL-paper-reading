@@ -72,11 +72,15 @@ def main() -> None:
         tokens, _ = sample_trajectory(model, voc_ids, condition, cfg, cfg.eval_seed)
         generated = decode(module, tokens)
         sf.write(args.output / f"step_{step:04d}.wav", generated, 48000)
+        metrics = score_audio(generated, vocal_rms, 48000, "combined" if cfg.reward == "beat_v2" else cfg.reward)
+        if cfg.reward == "beat_v2":
+            metrics["proxy_reward"] = metrics.pop("reward")
+            metrics["reward"] = None  # Filled only after the original Madmom scorer runs offline.
         record = {
             "step": step,
             "source_start_seconds": args.start_seconds,
             "duration_seconds": args.duration_seconds,
-            **score_audio(generated, vocal_rms, 48000, cfg.reward),
+            **metrics,
         }
         records.append(record)
         print(json.dumps(record), flush=True)

@@ -24,8 +24,6 @@ def read_jsonl(path: Path) -> list[dict]:
 def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: Path | None = None) -> Path:
     if slug not in {"combined", "coverage", "beat_v2"}:
         raise ValueError(f"unsupported reward arm: {slug}")
-    if heldout_dir is not None and slug != "combined":
-        raise ValueError("held-out phrase replay is only defined for the combined run")
     run = json.loads((run_dir / "run.json").read_text())
     audio_run_dir = heldout_dir or run_dir
     if heldout_dir is None:
@@ -67,6 +65,11 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
             "-filter_complex", "[0:a][1:a]amix=inputs=2:duration=first:normalize=0[m]",
             "-map", "[m]", "-ac", "2", "-ar", "48000", "-c:a", "pcm_s16le", str(mixture),
         ], check=True)
+        metrics = {key: item[key] for key in METRIC_FIELDS if key in item}
+        if heldout_dir is not None and slug == "beat_v2":
+            if str(step) not in beat_scores:
+                raise ValueError(f"held-out Beat-v2 score missing for step {step}")
+            metrics["reward"] = beat_scores[str(step)]["score"]
         stages.append({
             "step": step,
             "audio": f"./audio/{mixture.name}",
@@ -74,7 +77,7 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
             "spectrum": f"./visuals/{spectrum.name}",
             "same_as_baseline": step > 0 and hashlib.sha256(source.read_bytes()).digest() == baseline_hash,
             "beat_v2": beat_scores.get(str(step)),
-            **{key: item[key] for key in METRIC_FIELDS if key in item},
+            **metrics,
         })
 
     curve = []
@@ -104,7 +107,7 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
         "note": "Same-singer held-out phrase, not a held-out song." if heldout_dir else "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim.",
     }
     if heldout_dir is not None:
-        output_name = "vocal-lada-heldout-run.json"
+        output_name = "vocal-lada-heldout-run.json" if slug == "combined" else f"vocal-lada-{slug}-heldout-run.json"
     elif slug == "combined":
         output_name = "vocal-lada-run.json"
     else:

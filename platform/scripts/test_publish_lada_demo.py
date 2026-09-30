@@ -49,6 +49,27 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual((site / "audio/lada_emma_combined_heldout_step_0000.wav").read_bytes(), b"heldout accompaniment")
             self.assertEqual((site / "audio/lada_emma_combined_step_0000.wav").read_bytes(), b"training accompaniment")
 
+    def test_heldout_beat_reward_uses_independent_madmom_score(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run, heldout, site = (root / name for name in ("run", "heldout", "site"))
+            for path in (run, heldout, site / "audio"):
+                path.mkdir(parents=True)
+            (run / "run.json").write_text(json.dumps({"args": {"reward": "beat_v2", "seconds": 6, "eval_seconds": 12}}))
+            (heldout / "source.wav").write_bytes(b"heldout vocal")
+            (heldout / "step_0000.wav").write_bytes(b"heldout accompaniment")
+            (heldout / "evaluations.json").write_text(json.dumps([{"step": 0, "duration_seconds": 6, "reward": None, "proxy_reward": 0.8}]))
+            (heldout / "beat_v2.json").write_text(json.dumps({"0": {"score": 0.25}}))
+
+            with patch.object(MODULE.subprocess, "run"):
+                output = MODULE.publish(run, site, slug="beat_v2", heldout_dir=heldout)
+
+            self.assertEqual(output.name, "vocal-lada-beat_v2-heldout-run.json")
+            data = json.loads(output.read_text())
+            self.assertEqual(data["stages"][0]["reward"], 0.25)
+            self.assertEqual(data["stages"][0]["beat_v2"]["score"], 0.25)
+            self.assertEqual((site / "audio/lada_emma_beat_v2_heldout_step_0000.wav").read_bytes(), b"heldout accompaniment")
+
 
 if __name__ == "__main__":
     unittest.main()

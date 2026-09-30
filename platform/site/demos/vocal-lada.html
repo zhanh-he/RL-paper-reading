@@ -98,8 +98,11 @@
     const params = new URLSearchParams(location.search);
     const phrase = params.get('phrase') === 'heldout' ? 'heldout' : 'training';
     const requestedArm = params.get('arm');
-    const arm = phrase === 'heldout' ? 'combined' : ['coverage', 'beat_v2'].includes(requestedArm) ? requestedArm : 'combined';
-    const files = phrase === 'heldout' ? './vocal-lada-heldout-run.json' : arm === 'combined' ? './vocal-lada-run.json' : `./vocal-lada-${arm}-run.json`;
+    const arm = ['coverage', 'beat_v2'].includes(requestedArm) ? requestedArm : 'combined';
+    const dataPath = (rewardArm, replayPhrase) => replayPhrase === 'heldout'
+      ? rewardArm === 'combined' ? './vocal-lada-heldout-run.json' : `./vocal-lada-${rewardArm}-heldout-run.json`
+      : rewardArm === 'combined' ? './vocal-lada-run.json' : `./vocal-lada-${rewardArm}-run.json`;
+    const files = dataPath(arm, phrase);
     const byId = id => document.getElementById(id);
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
@@ -141,8 +144,13 @@
 
     async function load() {
       const available = path => fetch(path, { method: 'HEAD', cache: 'no-store' }).then(response => response.ok).catch(() => false);
-      const [coverageReady, beatReady, heldoutReady] = await Promise.all([available('./vocal-lada-coverage-run.json'), available('./vocal-lada-beat_v2-run.json'), available('./vocal-lada-heldout-run.json')]);
-      if ((coverageReady || beatReady) && phrase === 'training') {
+      const [coverageReady, beatReady, heldoutReady] = await Promise.all([available(dataPath('coverage', phrase)), available(dataPath('beat_v2', phrase)), available(dataPath(arm, 'heldout'))]);
+      byId('arm-combined').href = phrase === 'heldout' ? './vocal-lada.html?phrase=heldout' : './vocal-lada.html';
+      byId('arm-coverage').href = `./vocal-lada.html?arm=coverage${phrase === 'heldout' ? '&phrase=heldout' : ''}`;
+      byId('arm-beat_v2').href = `./vocal-lada.html?arm=beat_v2${phrase === 'heldout' ? '&phrase=heldout' : ''}`;
+      byId('phrase-training').href = arm === 'combined' ? './vocal-lada.html' : `./vocal-lada.html?arm=${arm}`;
+      byId('phrase-heldout').href = arm === 'combined' ? './vocal-lada.html?phrase=heldout' : `./vocal-lada.html?arm=${arm}&phrase=heldout`;
+      if (coverageReady || beatReady) {
         byId('reward-arms').hidden = false;
         byId('arm-coverage').hidden = !coverageReady;
         byId('arm-beat_v2').hidden = !beatReady;
@@ -173,14 +181,14 @@
         document.querySelector('h1').textContent = 'LaDA-Band · Coverage-only';
         byId('reward-column').textContent = 'Coverage reward';
         byId('metric-note').textContent = '本组只优化 40 ms 帧 RMS coverage；起音匹配与频带占用是未优化的诊断量。STFT coverage 与 Madmom Beat-v2 是独立离线评估。Beat V/A 分别是人声/伴奏拍点数；伴奏/人声 dB 正值表示伴奏 RMS 更高。所有客观量都不能代替主观听感。';
-        byId('boundary').textContent = '单歌手、单旋律、小片段实验；仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。';
+        byId('boundary').textContent = `${phrase === 'heldout' ? '这是同一 Emma 录音中未训练的另一乐句，不是新歌或新歌手。' : '单歌手、单旋律、小片段实验。'}仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。`;
       }
       if (arm === 'beat_v2') {
         document.title = 'LaDA-Band · Beat-v2 reward replay';
         document.querySelector('h1').textContent = 'LaDA-Band · Beat-v2';
         byId('reward-column').textContent = 'Beat-v2 reward';
         byId('metric-note').textContent = '本组直接优化原 vocal2accomp Madmom Beat-v2 F1。RMS/STFT coverage、起音匹配和频带占用仅作为独立诊断，不参与参数更新；Beat V/A 是人声/伴奏拍点数。伴奏/人声 dB 正值表示伴奏 RMS 更高。单曲分数不能代替听感。';
-        byId('boundary').textContent = '单歌手、单旋律、小片段 Beat-v2 单 reward 实验；节拍 F1 上升不自动证明伴奏音质改善。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，是单遍 GRPO-style；需配对试听与独立 coverage/响度检查。';
+        byId('boundary').textContent = `${phrase === 'heldout' ? '这是同一 Emma 录音中未训练的另一乐句，不是新歌或新歌手。' : '单歌手、单旋律、小片段 Beat-v2 单 reward 实验。'}节拍 F1 上升不自动证明伴奏音质改善。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，是单遍 GRPO-style；需配对试听与独立 coverage/响度检查。`;
       }
       for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
         const span = document.createElement('span'); const strong = document.createElement('strong'); strong.textContent = `${name}: `; span.append(strong, String(value ?? '—')); byId('facts').append(span);
