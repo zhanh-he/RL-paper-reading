@@ -63,10 +63,12 @@ are published.
   completed on lab5090. Its same-song training gain and exploratory 8-song
   short-excerpt gain cannot establish robust full-song generalization. The
   hosted-demo output is one unlabeled piano track, not SATB transcription.
-- **LaDA-Band:** the official Tencent code is cloned on lab5090. Its weights
-  are also gated (HTTP 403 to the current account). The released diffusion
-  inference/training code is not an on-policy GRPO adapter; implementing a
-  trajectory likelihood/ratio path would be required after weight access.
+- **LaDA-Band:** the official Tencent code and complete authorized 56-file
+  asset snapshot are now on lab5090 and Gadi. Both 20.7 GB main checkpoints
+  have the same verified SHA-256; see the [deployment receipt](../music-gen/vocal2accomp/models/lada-band/README.md).
+  The earlier HTTP 403 belonged to a different account. The released
+  diffusion inference/training code is not an on-policy GRPO adapter;
+  implementing trajectory likelihood/ratio replay requires separate work.
   No LaDA baseline or GRPO result is in the demo.
 - **No preset quality labels:** on the one public choral song, combined onset
   F1 is `0.133/0.195/0.306/0.123` at 0/100/300/1000 steps, whereas the
