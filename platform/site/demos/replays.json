@@ -64,7 +64,7 @@
         { "step": 25, "status": "measured", "audio": "audio/muse_shared_musecritic_000025.flac", "wave": "visuals/muse_shared_musecritic_000025_wave.png", "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json", "receipt_key": "after" },
         { "step": 50, "status": "measured", "audio": "audio/muse_shared_musecritic_000050.flac", "wave": "visuals/muse_shared_musecritic_000050_wave.png", "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json", "receipt_key": "after" },
         { "step": 100, "status": "queued", "job": "180204792.gadi-pbs" },
-        { "step": 300, "status": "pending" }
+        { "step": 300, "status": "queued", "job": "180213393.gadi-pbs", "depends_on": "180204792.gadi-pbs" }
       ]
     }
   },

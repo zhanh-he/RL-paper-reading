@@ -40,3 +40,16 @@ regenerates the one-step adapter's held-out 0/1 audio using the same style,
 lyrics and seed as the YuE2 comparison. On this one song, official SongEval
 mean changed 2.8776 to 3.1095, while peak and RMS also rose. This is a
 single-sample observation, not evidence of general quality improvement.
+
+The [shared Muse replay receipt](runs/2026-09-30-muse-shared-replay/receipt.json)
+uses one frozen baseline waveform for both SongEval and MuseCritic arms, with
+the same prompt, seed, 500-token generation and 20-step MuCodec decoding.
+Actual adapter replays exist at SongEval step 1 and MuseCritic steps 1, 25 and
+50. Each audio file has both reward scores and a SHA-256 binding in its arm
+receipt. The [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
+shows missing stages as unavailable, not as interpolated results. MuseCritic
+step 100 is queued as Gadi job `180204792.gadi-pbs`; dependent step 300 is
+`180213393.gadi-pbs`. The latter resolves the former's complete optimizer
+checkpoint at runtime through `gadi_musecritic_resume_chain.pbs`. SongEval
+steps 25/50/100/300 are not yet trained. These are one-song, one-seed
+comparisons with separate reward scales, not evidence of preference gains.

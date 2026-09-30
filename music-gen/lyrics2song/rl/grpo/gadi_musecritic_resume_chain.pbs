@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=128GB
+#PBS -l jobfs=60GB
+#PBS -l walltime=06:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N musecritic-grpo-300
+set -euo pipefail
+
+: "${LAB_ROOT:?Set LAB_ROOT}"
+: "${SOURCE_JOB_ID:?Set SOURCE_JOB_ID to the successful 100-step job ID}"
+: "${TRAIN_SCRIPT:?Set TRAIN_SCRIPT to the staged long-run PBS script}"
+
+source_dir="$LAB_ROOT/experiments/muse_grpo_pilot/outputs/$SOURCE_JOB_ID/checkpoint"
+mapfile -t candidates < <(find "$source_dir" -type d -name checkpoint-100 -print)
+if [[ ${#candidates[@]} -ne 1 ]]; then
+    printf 'Expected one 100-step checkpoint under %s, found %s\n' "$source_dir" "${#candidates[@]}" >&2
+    exit 1
+fi
+export RESUME_CHECKPOINT="${candidates[0]}"
+export MAX_STEPS=300
+export SAVE_STEPS=100
+export MAX_PROMPTS=100
+export SINGLE_GPU=true
+exec bash "$TRAIN_SCRIPT"
