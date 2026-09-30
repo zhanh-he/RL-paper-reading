@@ -51,7 +51,7 @@
         <div class="case-status">
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">事件级 GRPO 已测</span><small>16 首训练、8 首测试，5.12 秒片段；完整歌曲尚未验证</small></div>
-          <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">两个模型 baseline 已生成</span><small>LaDA-Band 权重已在 5090/Gadi 就位；本模型尚未完成推理或 GRPO</small></div>
+          <div class="status-row"><span>人声输入 → 歌曲</span><span class="state measured">LaDA-Band 在线 GRPO 运行中</span><small>独立 Emma 人声配对试听已上线；原 ACE-Step / AnyAccomp 两模型 baseline 仍单独呈现</small></div>
           <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 常规 LR 100 步 · 高 LR 25 步已测</span><small>高 LR 100 步将在共享 5090 资源释放后续跑；Muse 是独立实验</small></div>
         </div>
       </section>
@@ -165,9 +165,9 @@
         <div class="compare-grid" id="vocal-compare"></div>
         <div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>2</strong> baseline models</span><span><strong>0</strong> GRPO updates</span></div>
         <div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div>
-        <div class="evidence-note"><strong>What this does and does not prove</strong><p>两个模型都已在本地接受相同合成 vocal guide 并产出非静音音频。ACE-Step 输出 full-mix completion；AnyAccomp 单独输出伴奏，并提供 vocal + 伴奏混音以便试听。coverage 与 beat-v2 是这一个合成样本的诊断值，不等于主观听感或 GRPO 增益。尚无 richness 验证、人工偏好或 GRPO 前后对照；模型输出的任务边界不能混为一谈。</p></div>
-        <div class="evidence-note"><strong>LaDA-Band 状态</strong><p>官方代码与完整授权权重已部署在 5090 和 Gadi，主 checkpoint 双端哈希一致。推理环境与固定人声 baseline 尚待验证，扩散轨迹 GRPO 也尚未运行；本页没有 LaDA-Band 音频或训练结果。ACE-Step、AnyAccomp 的输出不能标成 LaDA-Band。</p></div>
-        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">ACE-Step receipt ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/anyaccomp" target="_blank" rel="noreferrer">AnyAccomp receipt ↗</a><a class="source-link" href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">LaDA-Band official code ↗</a></div>
+        <div class="evidence-note"><strong>What this does and does not prove</strong><p>本区原有两个模型都已在本地接受相同合成 vocal guide 并产出非静音音频。ACE-Step 输出 full-mix completion；AnyAccomp 单独输出伴奏，并提供 vocal + 伴奏混音以便试听。coverage 与 beat-v2 是这一合成样本的诊断值，不等于主观听感或 GRPO 增益；这两条基线均未做 GRPO。LaDA-Band 使用另一条 Emma 人声，前后配对在独立页面，任务边界不能混为一谈。</p></div>
+        <div class="evidence-note"><strong>LaDA-Band · 独立在线实验</strong><p>官方代码与完整授权权重已部署在 5090 和 Gadi；5090 上固定 Emma 人声推理及扩散轨迹 GRPO 已实际运行。独立页面给出同输入 baseline、已完成检查点的混音/伴奏试听、频谱和逐项指标；未完成步数明确标待运行。单首歌的代理 reward 变化不等于主观质量或跨歌曲结论。<a href="./vocal-lada.html">打开 LaDA-Band 配对试听 ↗</a></p></div>
+        <div class="model-links"><a class="source-link" href="./vocal-lada.html">LaDA-Band GRPO 试听 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/ace-step-1.5" target="_blank" rel="noreferrer">ACE-Step receipt ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/anyaccomp" target="_blank" rel="noreferrer">AnyAccomp receipt ↗</a><a class="source-link" href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">LaDA-Band official code ↗</a></div>
       </section>
 
       <footer class="lab-footer">Data are generated from versioned aggregate receipts. No private recordings, source IDs or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>

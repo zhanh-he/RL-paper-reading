@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LaDA-Band · vocal2accomp replay</title>
+  <style>
+    :root { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #e9eced; background: #13191b; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, audio { font: inherit; }
+    a { color: #9dd8d0; }
+    .shell { max-width: 1220px; margin: auto; padding: 0 24px 80px; }
+    header { border-bottom: 1px solid #344143; }
+    header .shell { padding-top: 15px; padding-bottom: 15px; display: flex; justify-content: space-between; gap: 18px; align-items: center; }
+    .brand { font-size: 16px; font-weight: 700; color: #e9eced; text-decoration: none; }
+    .nav { display: flex; gap: 20px; font-size: 13px; }
+    main { padding-top: 31px; }
+    .eyebrow { color: #81c8bf; font-size: 11px; text-transform: uppercase; font-weight: 700; }
+    h1 { font-size: clamp(26px, 4vw, 40px); line-height: 1.12; margin: 8px 0; letter-spacing: 0; }
+    h2 { font-size: 18px; margin: 0 0 18px; }
+    h3 { font-size: 15px; margin: 0 0 10px; }
+    p { line-height: 1.55; }
+    .sub { color: #bac8ca; max-width: 75ch; margin: 10px 0 20px; }
+    .facts { display: flex; gap: 10px 22px; flex-wrap: wrap; color: #b8c6c8; font-size: 12px; padding: 12px 0 24px; }
+    .facts strong { color: #e8ebeb; font-weight: 600; }
+    section { border-top: 1px solid #344143; padding-top: 24px; margin-top: 28px; }
+    .source { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+    .source > div { min-width: 0; }
+    .source-spectrum { width: 100%; max-height: 180px; object-fit: contain; display: block; margin-top: 12px; background: #0f1516; }
+    .label { color: #91a8aa; font-size: 11px; text-transform: uppercase; font-weight: 700; }
+    audio { display: block; width: 100%; height: 38px; margin-top: 10px; }
+    .muted { color: #91a8aa; font-size: 13px; }
+    .listen { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .listen audio { width: min(480px, 100%); margin: 0; }
+    .listen button { background: #213032; color: #edf0f0; border: 1px solid #486163; border-radius: 4px; padding: 8px 12px; cursor: pointer; }
+    .listen button[aria-pressed="true"] { background: #176c63; border-color: #69c9bb; }
+    .listen button:disabled { opacity: .4; cursor: not-allowed; }
+    .listen select { min-height: 36px; padding: 0 8px; color: #edf0f0; background: #213032; border: 1px solid #486163; border-radius: 4px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: 12px; }
+    .card { border: 1px solid #344143; background: #1b2426; border-radius: 6px; padding: 15px; min-width: 0; }
+    .card.done { border-top: 3px solid #63bbaa; }
+    .card.pending { border-top: 3px solid #786759; }
+    .card .step { color: #abd5d0; font-size: 12px; font-weight: 700; }
+    .card .score { font-size: 20px; font-weight: 700; margin: 7px 0; }
+    .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #101718; border: 1px solid #303d3f; margin: 12px 0 0; }
+    .card audio { margin-top: 12px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; font-size: 13px; }
+    th, td { padding: 11px 12px; text-align: right; border-bottom: 1px solid #344143; font-variant-numeric: tabular-nums; }
+    th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: #13191b; border-right: 1px solid #344143; z-index: 1; }
+    th { color: #a8babc; font-size: 11px; font-weight: 700; }
+    canvas { width: 100%; height: 230px; background: #1b2426; border: 1px solid #344143; border-radius: 6px; }
+    .legend { display: flex; gap: 18px; flex-wrap: wrap; color: #b8c6c8; font-size: 12px; margin-top: 10px; }
+    .legend span::before { content: ""; display: inline-block; width: 9px; height: 9px; background: var(--color); margin-right: 6px; }
+    .note { color: #b1bec0; font-size: 13px; max-width: 90ch; }
+    @media (max-width: 650px) { .shell { padding-left: 15px; padding-right: 15px; } .source { grid-template-columns: 1fr; } .nav { gap: 10px; } }
+  </style>
+</head>
+<body>
+  <header><div class="shell"><a class="brand" href="./#vocal">Music Post-Training Lab</a><nav class="nav"><a href="./#vocal">全部实验</a><a href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/rl/grpo">代码与记录</a></nav></div></header>
+  <main class="shell">
+    <div class="eyebrow">Vocal to accompaniment · controlled replay</div>
+    <h1>LaDA-Band · GRPO</h1>
+    <p class="sub">固定同一条 Emma 独唱、相同文本提示与评估随机种子，比较冻结基线和在线后训练检查点。先听配对，再看各项分数。</p>
+    <div id="facts" class="facts" aria-label="Run configuration"></div>
+
+    <section class="source" aria-label="Source and reference">
+      <div><span class="label">Input · fixed vocal</span><h2>Emma · 原创旋律</h2><audio controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><img class="source-spectrum" src="./visuals/ace_emma_vocal_12s_spectrum.png" alt="Emma 独唱输入频谱"><p class="muted">ACE Studio Vocal Synth；同一歌手、无伴奏、无效果。</p></div>
+      <div><span class="label">Ground truth accompaniment</span><h2>无唯一参考</h2><p class="muted">开放式伴奏生成没有单一标准音频。所有阶段使用完全相同的人声输入和提示；训练用前 6 秒，试听评估用前 12 秒。</p></div>
+    </section>
+
+    <section aria-label="A/B listening"><h2>配对试听 · 人声 + 伴奏</h2><div class="listen"><button id="play-a" type="button" aria-pressed="true">A · baseline</button><button id="play-b" type="button" aria-pressed="false">B · selected step</button><select id="step-select" aria-label="Choose comparison step"></select><audio id="ab-audio" controls preload="metadata"></audio></div><p id="listen-state" class="muted"></p></section>
+
+    <section aria-label="Training checkpoints"><h2>检查点</h2><div id="cards" class="cards"></div></section>
+
+    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th>组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。立体声峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
+
+    <section aria-label="Training trajectory"><h2>训练采样轨迹</h2><canvas id="curve" width="1100" height="230" role="img" aria-label="Candidate reward and coverage versus GRPO step"></canvas><div class="legend"><span style="--color:#62c8b7">Reward 均值</span><span style="--color:#e1ac79">Coverage 均值</span></div></section>
+
+    <section aria-label="Evidence boundary"><h2>证据边界</h2><p class="note" id="boundary">单歌手、单旋律、小片段实验；这个页面是同输入 A/B 听感展示，不是跨歌曲显著性结论。LoRA 仅更新离散扩散模型的输出投影；主干、CLaMP3、MuCodec 冻结。组合代理 reward 不等同人工偏好。</p></section>
+  </main>
+  <script type="module">
+    const files = './vocal-lada-run.json';
+    const byId = id => document.getElementById(id);
+    const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
+    const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
+    const stages = [0, 5, 50, 100, 300];
+    const select = byId('step-select');
+    const player = byId('ab-audio');
+    let data;
+    let activeSide = 'a';
+
+    function setSide(side) {
+      activeSide = side;
+      byId('play-a').setAttribute('aria-pressed', String(side === 'a'));
+      byId('play-b').setAttribute('aria-pressed', String(side === 'b'));
+      const stage = data.stages.find(item => item.step === (side === 'a' ? 0 : Number(select.value)));
+      if (!stage?.audio) return;
+      const time = player.currentTime;
+      const playing = !player.paused;
+      player.src = stage.audio;
+      player.addEventListener('loadedmetadata', () => { player.currentTime = Math.min(time, player.duration || 0); if (playing) player.play(); }, { once: true });
+      byId('listen-state').textContent = label(stage.step);
+    }
+
+    function drawCurve(points) {
+      const canvas = byId('curve');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = '#445557'; ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) { const y = 20 + i * (h - 42) / 4; ctx.beginPath(); ctx.moveTo(38, y); ctx.lineTo(w - 12, y); ctx.stroke(); }
+      if (!points?.length) return;
+      const maxStep = Math.max(1, ...points.map(p => p.step));
+      for (const [key, color] of [['reward', '#62c8b7'], ['rms_coverage', '#e1ac79']]) {
+        ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+        points.forEach((p, i) => { const x = 38 + p.step / maxStep * (w - 52); const y = h - 22 - Math.max(0, Math.min(1, p[key])) * (h - 42); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#9eafb1'; ctx.font = '12px sans-serif'; ctx.fillText('0', 14, h - 18); ctx.fillText('1', 14, 23); ctx.fillText(`${maxStep} steps`, w - 75, h - 6);
+    }
+
+    async function load() {
+      try { const response = await fetch(files, { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); data = await response.json(); }
+      catch { byId('cards').textContent = '运行记录尚未发布。'; return; }
+      const config = data.config || {};
+      for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
+        const span = document.createElement('span'); const strong = document.createElement('strong'); strong.textContent = `${name}: `; span.append(strong, String(value ?? '—')); byId('facts').append(span);
+      }
+      const cards = byId('cards'); const table = byId('metrics');
+      for (const step of stages) {
+        const item = data.stages.find(value => value.step === step);
+        const done = Boolean(item?.audio);
+        const card = document.createElement('article'); card.className = `card ${done ? 'done' : 'pending'}`;
+        const title = document.createElement('div'); title.className = 'step'; title.textContent = label(step); card.append(title);
+        const score = document.createElement('div'); score.className = 'score'; score.textContent = done ? fmt(item.reward) : '待运行'; card.append(score);
+        if (done) {
+          const mixLabel = document.createElement('div'); mixLabel.className = 'label'; mixLabel.textContent = '人声 + 伴奏'; mixLabel.style.marginTop = '12px'; card.append(mixLabel);
+          const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = item.audio; card.append(audio);
+          const accLabel = document.createElement('div'); accLabel.className = 'label'; accLabel.textContent = '伴奏独听'; accLabel.style.marginTop = '12px'; card.append(accLabel);
+          const accAudio = document.createElement('audio'); accAudio.controls = true; accAudio.preload = 'metadata'; accAudio.src = item.accomp_audio; card.append(accAudio);
+          if (item.same_as_baseline) { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '与 baseline 音频逐字节相同'; card.append(note); }
+          if (item.spectrum) { const imageLabel = document.createElement('div'); imageLabel.className = 'label'; imageLabel.style.marginTop = '12px'; imageLabel.textContent = '伴奏频谱'; card.append(imageLabel); const img = document.createElement('img'); img.src = item.spectrum; img.alt = `${label(step)} 伴奏频谱`; img.loading = 'lazy'; card.append(img); }
+          const row = document.createElement('tr');
+          [label(step), fmt(item.reward), fmt(item.rms_coverage), fmt(item.beat_v2?.coverage_stft), fmt(item.onset_fit_proxy), fmt(item.beat_v2?.score), item.beat_v2 ? `${item.beat_v2.reference_beats}/${item.beat_v2.accompaniment_beats}` : '—', fmt(item.band_occupancy_proxy), fmt(item.spectral_flatness), fmt(item.beat_v2?.stereo_peak), fmt(item.beat_v2?.stereo_clipping_fraction, 5)].forEach(value => { const td = document.createElement('td'); td.textContent = value; row.append(td); });
+          table.append(row);
+        } else { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '没有可验证的音频或分数'; card.append(note); }
+        cards.append(card);
+        if (step > 0 && done) { const option = document.createElement('option'); option.value = String(step); option.textContent = label(step); select.append(option); }
+      }
+      byId('play-b').disabled = !select.options.length;
+      const baseline = data.stages.find(item => item.step === 0);
+      const latest = [...data.stages].reverse().find(item => item.step > 0 && item.beat_v2);
+      if (baseline?.beat_v2 && latest?.beat_v2) {
+        byId('finding').textContent = `${latest.step} 步：组合代理 ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；但 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}。单条音频上的指标分歧，需配对试听判断。`;
+      }
+      byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);
+      if (select.options.length) select.value = select.options[select.options.length - 1].value;
+      if (!byId('play-a').disabled) setSide('a');
+      byId('play-a').addEventListener('click', () => setSide('a'));
+      byId('play-b').addEventListener('click', () => setSide('b'));
+      select.addEventListener('change', () => { if (activeSide === 'b') setSide('b'); });
+      drawCurve(data.train_curve);
+    }
+    load();
+  </script>
+</body>
+</html>
