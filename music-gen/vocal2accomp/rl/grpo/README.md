@@ -25,6 +25,8 @@ The step-5 WAV is byte-identical to baseline. By step 100, the optimized proxy *
 
 The sampled training-candidate mean reward was 0.517 for steps 1-10 and 0.489 for steps 91-100. Those windows use different sampled trajectories and are not a fixed-seed comparison; they do show that this tiny run has no monotonic on-policy reward increase. The improvement above refers only to the fixed replay.
 
+For that same fixed replay, the fraction of 40 ms frames above the reward's 0.01 RMS threshold rises from about 52.7% to 56.0%, while mean RMS *within those active frames* falls from 0.0214 to 0.0152. Spreading thinner energy across more frames is a plausible threshold-reward failure mode, but the measured waveform and listener judgment are needed before calling it harmful reward hacking.
+
 ## Reproduce on lab5090
 
 The official code and gated assets remain outside Git at the paths in [the model note](../../models/lada-band/README.md). Use the isolated `.env` created inside the code checkout. The run should be given exclusive use of the 5090; YuE2 and LaDA peak allocations cannot coexist safely.
