@@ -28,3 +28,13 @@ The combined proxy is therefore a partial guardrail, **not** a validated music-q
 Separately, a **real online LaDA rollout**, step 80 candidate 2 of the Beat-v2 arm, was captured with [`capture_beat_candidates.py`](../rl/grpo/capture_beat_candidates.py). The [WAV and independent-rescoring receipt](beat_v2_online_candidate_step80_2026-09-30.json) confirm six-second Beat-v2 F1 `0.308`, 40 ms RMS coverage `0.026`, original STFT coverage `0.000`, stereo RMS `0.0052`, and no clipping. The captured WAV's SHA-256 matches the receipt. The [demo](../../../platform/site/demos/vocal-lada.html?arm=beat_v2) provides raw playback and a clearly labeled +18 dB diagnostic copy. This is one stochastic training candidate, not a fixed checkpoint; without a matched frozen-policy rollout it cannot establish that training caused the sparse output.
 
 The separate [`beat_v2_worker.py`](beat_v2_worker.py) exposes the original Madmom Beat-v2 scorer to LaDA training through a persistent CPU process. It passed six- and twelve-second baseline preflights and completed a 100-step online arm. The coverage-only arm is complete: 23/100 rollout groups had equal reward for both candidates, including 22 where both reached the maximum 1.0; Beat-v2 had only four tied pairs. Richness still lacks a validated implementation here; the spectral-band proxy must not be renamed to richness.
+
+## Presentation interpretation
+
+| Arm | Directly observed weakness | What remains unproven |
+| --- | --- | --- |
+| RMS coverage-only | Constructed drone/noise score 1.0; 23/100 training groups tie; fixed step 50 accompaniment is +3.4 dB over vocal before receding at 100 | Whether listeners prefer or reject step 50, or the model learned the constructed signals |
+| Original Beat-v2-only | Oracle-aligned clicks score 1.0 with STFT coverage 0.091; one saved step-80 rollout has F1 0.308 with STFT coverage 0; fixed replay F1 dips at 50 then rises at 100 | Whether training caused the sparse rollout, or whether higher F1 implies better arrangement |
+| Combined fast proxy | Constructed white-noise score falls to 0.148; fixed step 200 onset proxy rises while actual Beat-v2 F1 falls; step 300 accompaniment is +2.5 dB over vocal | Whether the combination generally prevents reward hacking; the band-occupancy proxy is constant across the seven fixed replays |
+
+A next calibrated combination should use the **actual** Beat-v2 scorer, a non-saturated activity term, a validated musical-richness measure, and explicit vocal-relative loudness/peak guardrails. Each component needs its own held-out and listening checks; this is a design direction, not a claimed trained result.
