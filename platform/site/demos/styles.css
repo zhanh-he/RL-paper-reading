@@ -58,6 +58,14 @@
 .lab-table th, .lab-table td { padding: 10px 12px; white-space: normal; overflow-wrap: anywhere; }
 .lab-table td:not(:first-child) { font-variant-numeric: tabular-nums; }
 .lab-table tbody tr:hover { background: var(--surface-muted); }
+.event-table table { min-width: 930px; }
+.event-replay-table table { min-width: 610px; }
+.reward-counterexamples table { min-width: 850px; }
+.actual-arm-table table { min-width: 790px; }
+.paper-table table { min-width: 1700px; }
+.paper-table th, .paper-table td { padding: 8px; white-space: nowrap; overflow-wrap: normal; }
+.paper-table th:first-child, .paper-table td:first-child { width: 170px; position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.paper-table thead th:first-child { z-index: 11; }
 .evidence-note { margin: 19px 0 15px; padding: 13px 16px; background: var(--blue-soft); border-left: 3px solid var(--blue); font-size: .83rem; line-height: 1.6; }
 .evidence-note p { margin: 3px 0 0; }
 .audit-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
@@ -68,6 +76,7 @@
 .midi-figure { margin: 0 0 18px; }
 .midi-canvas-scroll { width: 100%; overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
 .midi-canvas-scroll canvas { display: block; width: 1100px; height: 370px; }
+.midi-canvas-scroll #choral-event-piano-roll, .midi-canvas-scroll #actual-arm-piano-roll { height: 390px; }
 .midi-figure figcaption { margin-top: 6px; color: var(--ink-muted); font-size: .74rem; line-height: 1.5; }
 .audio-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .choral-listen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -131,6 +140,7 @@
 .midi-empty strong { color: var(--ink); font-size: .84rem; }
 .midi-empty p { margin: 3px 0 0; font-size: .76rem; line-height: 1.5; }
 .model-links { display: flex; gap: 24px; flex-wrap: wrap; }
+#choral-event-compare + .model-links { margin: 11px 0 15px; }
 .lab-footer { margin-top: 42px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: .75rem; line-height: 1.5; }
 .lab-footer a { color: var(--blue); }
 @media (max-width: 800px) { .lab-heading { align-items: flex-start; flex-direction: column; } .finding-grid { grid-template-columns: 1fr; } .finding p { min-height: 0; } .audit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .choral-listen { grid-template-columns: 1fr; } .status-row { grid-template-columns: 1fr 1fr; padding: 10px 0; } .status-row small { grid-column: 1 / -1; } }

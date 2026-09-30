@@ -1,5 +1,14 @@
 # Choral singing GRPO
 
+**Current event-level run:** [16-song/8-song GRPO pilot with 0/100/300/1000
+checkpoints](runs/2026-09-30-event-head/README.md). This trains ChoralStream's
+MIDI event heads and changes decoded notes. The [SATB reward design and
+counterexamples](../../rewards/README.md) separate actual policy ablations
+from constructed failure cases. A fixed-singer ACE Studio listening replay is
+on the [demo page](../../../../platform/site/demos/).
+
+## Earlier diagnostic run
+
 The [frame-head experiment](runs/2026-09-29-frame-head/README.md) trained
 ChoralStream for 1,152 optimizer updates using 96 original training songs and
 evaluated on 30 held-out songs. Its frame-head F1 rose from 0.1378 to 0.3033;
@@ -14,8 +23,6 @@ SATB-track-aware F1 is 0.0661 and 0.0145. The [original synthetic SATB
 demo](runs/2026-09-30-public-synthetic/receipt.json) publishes input,
 reference, baseline and post-training audio/MIDI for that exact comparison.
 
-The next GRPO policy must control event decoding itself. Use reference-backed
-50 ms onset and onset+offset F1 as primary rewards; inspect voice-aware scores,
-continuity and occupancy as guardrails. Four-track occupancy alone can reward
-spurious notes. Record grouped candidate rewards, variance, KL and weak-voice
-F1 before claiming a new experiment.
+The event-level pilot above addresses the decoder boundary. The frame-head
+experiment remains useful as a negative control: optimizing a metric in a head
+that the MIDI decoder does not use cannot change the final transcription.

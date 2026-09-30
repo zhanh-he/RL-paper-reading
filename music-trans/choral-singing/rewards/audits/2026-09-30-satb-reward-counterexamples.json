@@ -1,0 +1,1488 @@
+{
+  "kind": "constructed_reward_counterexamples_not_grpo_outputs",
+  "reference_note_count": 32,
+  "reward_weights": {
+    "onset": 0.25,
+    "onset_offset": 0.25,
+    "frame": 0.15,
+    "coverage": 0.1,
+    "weak_voice": 0.1,
+    "precision": 0.1,
+    "continuity": 0.05
+  },
+  "caveat": "These controlled edits expose reward loopholes; they do not prove an optimizer will discover them or that a weighted sum prevents all hacking.",
+  "variants": {
+    "oracle": {
+      "components": {
+        "onset": 1.0,
+        "onset_offset": 1.0,
+        "frame": 1.0,
+        "coverage": 1.0,
+        "weak_voice": 1.0,
+        "precision": 1.0,
+        "continuity": 1.0
+      },
+      "combined": 1.0,
+      "metrics": {
+        "onset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "offset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_onset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_note": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "frame": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3584,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_frame": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3584,
+          "fp": 0,
+          "fn": 0
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "macro": {
+          "frame": 1.0,
+          "onset": 1.0,
+          "onset_offset": 1.0
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 80,
+          "fp": 0,
+          "fn": 0
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 32
+      }
+    },
+    "silence": {
+      "components": {
+        "onset": 0.0,
+        "onset_offset": 0.0,
+        "frame": 0.0,
+        "coverage": 0.0,
+        "weak_voice": 0.0,
+        "precision": 0.0,
+        "continuity": 1.0
+      },
+      "combined": 0.05,
+      "metrics": {
+        "onset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 32
+        },
+        "offset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 32
+        },
+        "track_onset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 32
+        },
+        "track_note": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 32
+        },
+        "frame": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 3584
+        },
+        "track_frame": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 3584
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.0,
+          "onset": 0.0,
+          "onset_offset": 0.0
+        },
+        "active_voice": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 80
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 0
+      }
+    },
+    "drop_bass": {
+      "components": {
+        "onset": 0.75,
+        "onset_offset": 0.75,
+        "frame": 0.75,
+        "coverage": 0.8571428571428571,
+        "weak_voice": 0.0,
+        "precision": 1.0,
+        "continuity": 1.0
+      },
+      "combined": 0.7232142857142857,
+      "metrics": {
+        "onset": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 24,
+          "fp": 0,
+          "fn": 8
+        },
+        "offset": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 24,
+          "fp": 0,
+          "fn": 8
+        },
+        "track_onset": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 24,
+          "fp": 0,
+          "fn": 8
+        },
+        "track_note": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 24,
+          "fp": 0,
+          "fn": 8
+        },
+        "frame": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 2688,
+          "fp": 0,
+          "fn": 896
+        },
+        "track_frame": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 2688,
+          "fp": 0,
+          "fn": 896
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 0,
+              "fn": 8
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.75,
+          "onset": 0.75,
+          "onset_offset": 0.75
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "tp": 60,
+          "fp": 0,
+          "fn": 20
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 24
+      }
+    },
+    "swap_soprano_alto": {
+      "components": {
+        "onset": 0.5,
+        "onset_offset": 0.5,
+        "frame": 0.5,
+        "coverage": 1.0,
+        "weak_voice": 0.0,
+        "precision": 0.5,
+        "continuity": 1.0
+      },
+      "combined": 0.525,
+      "metrics": {
+        "onset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "offset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_onset": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "tp": 16,
+          "fp": 16,
+          "fn": 16
+        },
+        "track_note": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "tp": 16,
+          "fp": 16,
+          "fn": 16
+        },
+        "frame": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 3584,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_frame": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "tp": 1792,
+          "fp": 1792,
+          "fn": 1792
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 896,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 896,
+              "fn": 896
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 896,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.5,
+          "onset": 0.5,
+          "onset_offset": 0.5
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 80,
+          "fp": 0,
+          "fn": 0
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 32
+      }
+    },
+    "shift_onset_100ms": {
+      "components": {
+        "onset": 0.0,
+        "onset_offset": 0.0,
+        "frame": 0.9107142857142857,
+        "coverage": 1.0,
+        "weak_voice": 0.0,
+        "precision": 0.0,
+        "continuity": 1.0
+      },
+      "combined": 0.28660714285714284,
+      "metrics": {
+        "onset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "offset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "track_onset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "track_note": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "frame": {
+          "precision": 0.9107142857142857,
+          "recall": 0.9107142857142857,
+          "f1": 0.9107142857142857,
+          "tp": 3264,
+          "fp": 320,
+          "fn": 320
+        },
+        "track_frame": {
+          "precision": 0.9107142857142857,
+          "recall": 0.9107142857142857,
+          "f1": 0.9107142857142857,
+          "tp": 3264,
+          "fp": 320,
+          "fn": 320
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 0.9107142857142857,
+              "recall": 0.9107142857142857,
+              "f1": 0.9107142857142857,
+              "tp": 816,
+              "fp": 80,
+              "fn": 80
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 0.9107142857142857,
+              "recall": 0.9107142857142857,
+              "f1": 0.9107142857142857,
+              "tp": 816,
+              "fp": 80,
+              "fn": 80
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 0.9107142857142857,
+              "recall": 0.9107142857142857,
+              "f1": 0.9107142857142857,
+              "tp": 816,
+              "fp": 80,
+              "fn": 80
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 0.9107142857142857,
+              "recall": 0.9107142857142857,
+              "f1": 0.9107142857142857,
+              "tp": 816,
+              "fp": 80,
+              "fn": 80
+            },
+            "onset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.9107142857142857,
+          "onset": 0.0,
+          "onset_offset": 0.0
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 80,
+          "fp": 0,
+          "fn": 0
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 32
+      }
+    },
+    "fragment_sustained": {
+      "components": {
+        "onset": 0.6666666666666666,
+        "onset_offset": 0.0,
+        "frame": 0.9818181818181818,
+        "coverage": 1.0,
+        "weak_voice": 0.0,
+        "precision": 0.0,
+        "continuity": 0.0
+      },
+      "combined": 0.41393939393939394,
+      "metrics": {
+        "onset": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "offset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 64,
+          "fn": 32
+        },
+        "track_onset": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "track_note": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 64,
+          "fn": 32
+        },
+        "frame": {
+          "precision": 1.0,
+          "recall": 0.9642857142857143,
+          "f1": 0.9818181818181818,
+          "tp": 3456,
+          "fp": 0,
+          "fn": 128
+        },
+        "track_frame": {
+          "precision": 1.0,
+          "recall": 0.9642857142857143,
+          "f1": 0.9818181818181818,
+          "tp": 3456,
+          "fp": 0,
+          "fn": 128
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.9642857142857143,
+              "f1": 0.9818181818181818,
+              "tp": 864,
+              "fp": 0,
+              "fn": 32
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 16,
+              "fn": 8
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.9642857142857143,
+              "f1": 0.9818181818181818,
+              "tp": 864,
+              "fp": 0,
+              "fn": 32
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 16,
+              "fn": 8
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.9642857142857143,
+              "f1": 0.9818181818181818,
+              "tp": 864,
+              "fp": 0,
+              "fn": 32
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 16,
+              "fn": 8
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.9642857142857143,
+              "f1": 0.9818181818181818,
+              "tp": 864,
+              "fp": 0,
+              "fn": 32
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 16,
+              "fn": 8
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.9818181818181818,
+          "onset": 0.6666666666666666,
+          "onset_offset": 0.0
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 80,
+          "fp": 0,
+          "fn": 0
+        },
+        "fragmentation_rate": 1.0,
+        "n_reference": 32,
+        "n_estimate": 64
+      }
+    },
+    "onset_only_short_notes": {
+      "components": {
+        "onset": 1.0,
+        "onset_offset": 0.0,
+        "frame": 0.13333333333333333,
+        "coverage": 0.5714285714285714,
+        "weak_voice": 0.0,
+        "precision": 0.0,
+        "continuity": 1.0
+      },
+      "combined": 0.37714285714285717,
+      "metrics": {
+        "onset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "offset": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "track_onset": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 32,
+          "fp": 0,
+          "fn": 0
+        },
+        "track_note": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "tp": 0,
+          "fp": 32,
+          "fn": 32
+        },
+        "frame": {
+          "precision": 1.0,
+          "recall": 0.07142857142857142,
+          "f1": 0.13333333333333333,
+          "tp": 256,
+          "fp": 0,
+          "fn": 3328
+        },
+        "track_frame": {
+          "precision": 1.0,
+          "recall": 0.07142857142857142,
+          "f1": 0.13333333333333333,
+          "tp": 256,
+          "fp": 0,
+          "fn": 3328
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.07142857142857142,
+              "f1": 0.13333333333333333,
+              "tp": 64,
+              "fp": 0,
+              "fn": 832
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.07142857142857142,
+              "f1": 0.13333333333333333,
+              "tp": 64,
+              "fp": 0,
+              "fn": 832
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.07142857142857142,
+              "f1": 0.13333333333333333,
+              "tp": 64,
+              "fp": 0,
+              "fn": 832
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 1.0,
+              "recall": 0.07142857142857142,
+              "f1": 0.13333333333333333,
+              "tp": 64,
+              "fp": 0,
+              "fn": 832
+            },
+            "onset": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "tp": 8,
+              "fp": 0,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0,
+              "tp": 0,
+              "fp": 8,
+              "fn": 8
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.13333333333333333,
+          "onset": 1.0,
+          "onset_offset": 0.0
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714285714285714,
+          "tp": 32,
+          "fp": 0,
+          "fn": 48
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 32
+      }
+    },
+    "overfill_octave": {
+      "components": {
+        "onset": 0.6666666666666666,
+        "onset_offset": 0.6666666666666666,
+        "frame": 0.6666666666666666,
+        "coverage": 1.0,
+        "weak_voice": 0.6666666666666666,
+        "precision": 0.5,
+        "continuity": 1.0
+      },
+      "combined": 0.7,
+      "metrics": {
+        "onset": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "offset": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "track_onset": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "track_note": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 32,
+          "fp": 32,
+          "fn": 0
+        },
+        "frame": {
+          "precision": 0.6530612244897959,
+          "recall": 1.0,
+          "f1": 0.7901234567901234,
+          "tp": 3584,
+          "fp": 1904,
+          "fn": 0
+        },
+        "track_frame": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666,
+          "tp": 3584,
+          "fp": 3584,
+          "fn": 0
+        },
+        "per_voice": {
+          "S": {
+            "frame": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 896,
+              "fp": 896,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            }
+          },
+          "A": {
+            "frame": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 896,
+              "fp": 896,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            }
+          },
+          "T": {
+            "frame": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 896,
+              "fp": 896,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            }
+          },
+          "B": {
+            "frame": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 896,
+              "fp": 896,
+              "fn": 0
+            },
+            "onset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            },
+            "onset_offset": {
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1": 0.6666666666666666,
+              "tp": 8,
+              "fp": 8,
+              "fn": 0
+            }
+          }
+        },
+        "macro": {
+          "frame": 0.6666666666666666,
+          "onset": 0.6666666666666666,
+          "onset_offset": 0.6666666666666666
+        },
+        "active_voice": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 80,
+          "fp": 0,
+          "fn": 0
+        },
+        "fragmentation_rate": 0.0,
+        "n_reference": 32,
+        "n_estimate": 64
+      }
+    }
+  }
+}

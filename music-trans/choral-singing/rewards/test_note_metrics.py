@@ -24,6 +24,7 @@ class NoteMetricsTest(unittest.TestCase):
         oracle = MODULE.score(self.reference, self.reference)
         duplicated = MODULE.score(self.reference, self.reference + self.reference)
         self.assertEqual(oracle["track_note"]["f1"], 1)
+        self.assertEqual(oracle["macro"], {"frame": 1, "onset": 1, "onset_offset": 1})
         self.assertLess(duplicated["track_note"]["precision"], 1)
 
     def test_track_and_presence_penalize_voice_swap(self):
@@ -41,6 +42,14 @@ class NoteMetricsTest(unittest.TestCase):
     def test_fragmentation_detected(self):
         fragments = MODULE.controlled_variants(self.reference)["fragment_sustained"]
         self.assertGreater(MODULE.fragmentation_rate(self.reference, fragments), 0)
+        self.assertLess(MODULE.score(self.reference, fragments)["macro"]["onset_offset"], 1)
+
+    def test_frame_uses_10ms_centers_and_track_identity(self):
+        shifted = [MODULE.Note(note.pitch, 0.01, 1.01, note.voice) for note in self.reference]
+        self.assertAlmostEqual(MODULE.frame_prf(self.reference, shifted)["f1"], 0.99)
+        swapped = MODULE.controlled_variants(self.reference)["swap_soprano_alto"]
+        self.assertEqual(MODULE.frame_prf(self.reference, swapped)["f1"], 1)
+        self.assertEqual(MODULE.frame_prf(self.reference, swapped, track_aware=True)["f1"], 0.5)
 
 
 if __name__ == "__main__":

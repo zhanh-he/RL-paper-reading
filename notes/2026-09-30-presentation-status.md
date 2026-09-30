@@ -1,72 +1,77 @@
 # Presentation status: 30 September 2026
 
-Use the [experiment replay](../platform/site/demos/index.html) to play the
-public, original/synthetic samples. The labels below describe what was
-actually run; a blank GRPO stage is not an implied positive result.
+[Open the experiment replay](../platform/site/demos/index.html). Playable
+choral examples use an original synthetic SATB song and are separate from the
+8-song held-out measurement. No company audio, weights or training receipts
+are published.
 
-## Five-minute walk-through
+## Five-minute walkthrough
 
-1. **Choral is the central result.** On 30 held-out songs, ChoralStream's
-   frame-head GRPO raised its *frame-head* F1 from 0.1378 to 0.3033 after
-   1,152 optimizer updates. A supervised BCE comparison reached 0.4541.
-   Critically, the full-song event decoder does not use this head: the
-   independently decoded MIDI is identical before/after. Its pooled 50 ms
-   pitch-only onset F1 is 0.1063 and onset+offset F1 is 0.0234 on both sides;
-   SATB-track-aware values are 0.0661 and 0.0145. Do not present the frame-head
-   result as a transcription improvement. See the [event receipt](../music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json)
-   and [public synthetic replay](../music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/receipt.json).
-2. **MuScriptor is a baseline, not GRPO.** Its official online demo converted
-   the same original 10.2-second SATB synthesis into 16 piano notes in one
-   unlabeled track. Against the 32-note pitch reference, 50 ms onset F1 is
-   0.6667 and onset+offset F1 is 0.5000; SATB track-aware F1 is undefined.
-   This cannot be directly equated to ChoralStream's SATB score or a local
-   post-training result. The public weights remain gated for our account.
-   [Receipt](../music-trans/multi-inst/models/muscriptor/muscriptor_receipt.json).
-3. **Lyrics-to-song has real but negative early GRPO comparisons.** YuE2-3B
-   SongEval-GRPO was measured at 0/1/5/50/100 updates on three fixed held-out
-   prompts; the corresponding SongEval means were
-   3.8403/3.6030/3.6160/3.5704/3.6063. The 100-update first held-out clip
-   has peak 0.851 and zero near-full-scale samples. Muse-0.6b SongEval one-step pilot moved one
-   held-out SongEval score 3.5585 to 3.3330. A separate online MuseCritic
-   one-step run on Gadi completed; its held-out MuseCritic mean fell 3.0781 to
-   2.5313, while peak amplitude rose 0.197 to 0.422 without full-scale
-   clipping. These are *not* quality gains or a reward-hacking finding.
-   [MuseCritic receipt](../music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json).
-   A separate 50-step MuseCritic run is active on Gadi with automatic 25/50
-   held-out replay after training; no result is claimed for those steps yet.
-4. **SongEval vulnerability is conditional.** In a controlled 47-clip
-   perturbation audit, safe gain increased mean score by 0.0430; full-scale
-   hard clipping by 0.0951 relative to normalized reference. After matching
-   RMS, hard clipping had no clear mean advantage over clean gain (-0.0020,
-   paired 95% interval [-0.0057, 0.0015]). A 6 kHz bandlimit/upsample
-   control lost 0.1828. This supports loudness sensitivity, but does not
-   establish the cause of any private model's clipping. No company samples
-   or checkpoints are in this repository. [Audit receipt](../music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json).
-5. **Vocal-to-accompaniment is inference only.** ACE-Step 1.5 returned a
-   full-mix completion and AnyAccomp returned an isolated accompaniment for
-   the same original 16-second synthetic vocal guide. AnyAccomp coverage is
-   75.9% and beat-v2 F1 is 0.368 on this single input; neither is a GRPO
-   delta. A corresponding reference accompaniment and validated richness
-   score are absent. [Receipt](../music-gen/vocal2accomp/models/anyaccomp/receipt.json).
+1. **Choral transcription is the main result.** Event-level ChoralStream GRPO
+   updates the MIDI pitch, voice, onset and duration heads. From 16 original
+   training songs, one 5.12 s segment each, the combined 1000-step run changed
+   8 disjoint test songs' SATB macro frame/onset/complete-note F1 from
+   `0.2917/0.1105/0.0269` to `0.3857/0.1434/0.0419`. The strict note score
+   remains low. At the **same 1000 requested steps**, none of seven
+   single-reward arms beats the combination on any of these three metrics.
+   [Protocol and complete ablation table](../music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/README.md).
+2. **Show why reward design matters, with qualified language.** Frame-only
+   reaches frame F1 `0.3425` but complete-note F1 falls to `0.0144`; the
+   combined run reaches `0.0419`. Coverage-only worsens onset F1 to `0.0899`.
+   Continuity-only makes 192 effective updates; weak-voice only makes 1
+   because most groups have no reward contrast. A single public song supplies
+   matched ACE Studio baseline and 300-step reward-arm audio/MIDI; frame-only
+   scores `0.749` frame F1 there but `0.000` complete-note F1. The synthetic
+   short-note, octave-fill, silence, fragmentation and voice-swap audits are
+   deliberately constructed counterexamples, **not** optimizer-discovered
+   exploits. The data support complementary rewards in this pilot, not a
+   universal anti-hacking guarantee.
+3. **Use the paper-like SATB table correctly.** The demo presents S/A/T/B
+   frame, 50 ms onset and onset+offset F1, macro averages, and VA rates next
+   to the PawCT ICASSP 2027 draft Table 2. That paper's `Note` is onset-only;
+   our extra complete-note column adds an offset tolerance of
+   `max(50 ms, 20% reference duration)`. The paper evaluates original
+   YouChorale and our pilot uses YouChorale-Pro short segments, so **do not
+   compare their numerical scores directly**. Our onset/complete-note code
+   agrees with `mir_eval` per SATB part on all public checkpoint MIDIs.
+4. **Keep the earlier negative control visible.** A 1152-update frame-head
+   GRPO raised frame-head F1 from `0.1378` to `0.3033` on 30 held-out songs,
+   but the event decoder bypasses that head: full-song MIDI was unchanged.
+   This is why the new event-head experiment is the transcription result.
+5. **Other cases are narrower.** YuE2-3B SongEval-GRPO measured 0/1/5/50/100
+   updates on three fixed prompts, with reward means
+   `3.8403/3.6030/3.6160/3.5704/3.6063`, not an improvement. Muse/SongEval
+   one-step went `3.5585 -> 3.3330` on one sample. Muse/MuseCritic 25/50-step
+   Gadi runs have paired replays, but stochastic MuCodec rendering prevents
+   attributing a single audio-pair difference solely to training. A 47-clip
+   SongEval perturbation audit found gain sensitivity, not a causal diagnosis
+   of the private Huawei clipping observation. AnyAccomp and ACE-Step 1.5 are
+   vocal-to-accompaniment inference baselines; no GRPO delta is claimed.
 
-## Next experiment, not an already observed result
+## Model gates and honest boundaries
 
-For transcription, put the trainable policy on the **event decoder** and use
-reference-backed 50 ms onset and onset+offset F1 as primary rewards; report
-pitch-only and SATB-track-aware variants, and use frame F1, note continuity,
-four-part occupancy, and voice-range violations as diagnostics or guardrails.
-Four-part occupancy alone invites note flooding. For generation, use fixed
-held-out prompts and blind A/B listening alongside each reward and clipping
-guardrail before any claim that 100/300/1000 steps are underfit/goodfit/overfit.
-The small-data hypothesis is a research question, not a result of these pilots.
+- **MuScriptor:** the author's research permission and the current Hugging
+  Face account's gated-weight access are different. Official source code and
+  hosted-demo baseline are available, but `MuScriptor/muscriptor-small`
+  returns HTTP 403 to the lab account. The sampled autoregressive token
+  policy could support GRPO; no valid local MuScriptor GRPO run can be claimed
+  until an authorized checkpoint is accessible. Hosted-demo output is one
+  unlabeled piano track, not SATB transcription.
+- **LaDA-Band:** the official Tencent code is cloned on lab5090. Its weights
+  are also gated (HTTP 403 to the current account). The released diffusion
+  inference/training code is not an on-policy GRPO adapter; implementing a
+  trajectory likelihood/ratio path would be required after weight access.
+  No LaDA baseline or GRPO result is in the demo.
+- **No preset quality labels:** on the one public choral song, combined onset
+  F1 is `0.133/0.195/0.306/0.123` at 0/100/300/1000 steps, whereas the
+  held-out 8-song macro onset F1 peaks at 1000. The one-song 1000-step
+  regression is a listening case, not proof of overfit or reward hacking.
 
-## Demo checklist
+## Demo order
 
-- In each view, play input/reference where available, then baseline and GRPO.
-- In Lyrics replay, switch experiments; SongEval and MuseCritic score scales
-  are separate. Switch A/B at matched playback position, then inspect the
-  waveform, spectrogram, score dimensions and local listening form.
-- In Choral GRPO, switch piano rolls among reference, ChoralStream baseline,
-  ChoralStream frame-head GRPO and MuScriptor baseline. The identical
-  ChoralStream MIDI is the finding, not a demo failure.
-- If embedded audio controls fail, use the adjacent direct audio link.
+Open Choral: play input and reference, then baseline versus 100/300/1000 ACE
+renders with fixed singers. Inspect piano roll and 8-song held-out macro table;
+switch single rewards at 300 and 1000 attempts. Open Rewards: listen to the
+300-step single-arm outputs, then inspect the separately labeled constructed
+counterexamples. Finish with YuE2/Muse and vocal baselines. If an embedded
+player fails, use its direct audio link.

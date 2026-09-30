@@ -222,6 +222,218 @@ function renderChoralNotes(data) {
   ]));
 }
 
+function renderAceChoral() {
+  const media = (name) => ({
+    audio: `audio/${name}.wav`,
+    wave: `visuals/${name}_wave.png`,
+    spectrum: `visuals/${name}_spectrum.png`,
+  });
+  $('#choral-ace-compare').replaceChildren(
+    createMediaPanel({ label: 'REFERENCE / SAME SINGERS', title: 'Reference SATB MIDI · ACE Studio', asset: media('choral_ace_reference_short'), details: 'Elirah / Emma / Julian / Mangus · la · 11 s' }),
+    createMediaPanel({ label: 'BASELINE / SAME SINGERS', title: 'ChoralStream baseline MIDI · ACE Studio', asset: media('choral_ace_baseline'), details: '同一四位歌手 · frame-head GRPO MIDI 完全相同' }),
+  );
+}
+
+function drawSatbComparison(canvas, noteSets, stage, label) {
+  const voices = ['Soprano', 'Alto', 'Tenor', 'Bass'];
+  const ctx = canvas.getContext('2d');
+  const allNotes = Object.values(noteSets).flat();
+  const ranges = voices.map((_, voice) => {
+    const pitches = allNotes.filter((note) => note.voice === voice).map((note) => note.pitch);
+    return [Math.min(...pitches) - 1, Math.max(...pitches) + 1];
+  });
+  const left = 145, right = 1080, top = 25, lane = 86, duration = 10.2;
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (let voice = 0; voice < 4; voice++) {
+    const y = top + voice * lane;
+    ctx.fillStyle = voice % 2 ? '#f4f7f6' : '#fbfcfb'; ctx.fillRect(0, y, canvas.width, lane);
+    ctx.fillStyle = '#17211e'; ctx.font = 'bold 13px system-ui, sans-serif'; ctx.fillText(voices[voice], 12, y + 25);
+    ctx.fillStyle = '#63716b'; ctx.font = '11px system-ui, sans-serif';
+    ctx.fillText('reference', 78, y + 29); ctx.fillText(label, 78, y + 64);
+    ctx.strokeStyle = '#d7ddd9'; ctx.beginPath(); ctx.moveTo(0, y + lane); ctx.lineTo(canvas.width, y + lane); ctx.stroke();
+  }
+  for (let second = 0; second <= 10; second += 2) {
+    const x = left + second / duration * (right - left);
+    ctx.strokeStyle = '#ccd5cf'; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, top + 4 * lane); ctx.stroke();
+    ctx.fillStyle = '#5f6b66'; ctx.font = '11px system-ui, sans-serif'; ctx.fillText(`${second}s`, x + 4, 381);
+  }
+  for (const [notes, color, yOffset] of [[noteSets.reference, '#176b57', 8], [noteSets[stage], '#b2473c', 43]]) {
+    for (const note of notes) {
+      const [low, high] = ranges[note.voice];
+      const x = left + note.start / duration * (right - left);
+      const width = Math.max(2, (note.end - note.start) / duration * (right - left) - 2);
+      const y = top + note.voice * lane + yOffset + 23 - 20 * (note.pitch - low) / (high - low);
+      ctx.fillStyle = color; ctx.fillRect(x, y, width, 7);
+    }
+  }
+}
+
+function renderEventReplay(data) {
+  const steps = [0, 100, 300, 1000];
+  const asset = (step) => {
+    const id = String(step).padStart(4, '0');
+    return { audio: `audio/choral_event_${id}.wav`,
+      wave: `visuals/choral_event_${id}_wave.png`,
+      spectrum: `visuals/choral_event_${id}_spectrum.png` };
+  };
+  function select(step) {
+    const before = data.receipt.steps['0'];
+    const after = data.receipt.steps[String(step)];
+    const rail = $('#choral-event-rail');
+    rail.replaceChildren(...steps.map((candidate) => {
+      const button = document.createElement('button'); button.type = 'button';
+      button.className = 'stage-item available'; button.setAttribute('aria-pressed', String(candidate === step));
+      const title = document.createElement('strong'); title.textContent = `${candidate} updates`;
+      const state = document.createElement('span'); state.className = 'state measured';
+      state.textContent = candidate === 0 ? '冻结起点' : '可试听';
+      button.append(title, state); button.addEventListener('click', () => select(candidate));
+      return button;
+    }));
+    $('#choral-event-compare').replaceChildren(
+      createMediaPanel({ label: 'A / 0 UPDATES', title: 'Frozen ChoralStream', asset: asset(0),
+        details: `${before.note_count} notes · fixed singers` }),
+      createMediaPanel({ label: `B / ${step} UPDATES`, title: `Combined-reward GRPO · ${step}`, asset: asset(step),
+        details: `${after.note_count} notes · same input, singers and export settings` }),
+    );
+    $('#choral-event-stage-head').textContent = `${step} 步`;
+    const stageMidi = $('#choral-event-stage-midi');
+    stageMidi.href = `./midi/choral_event_${String(step).padStart(4, '0')}.mid`;
+    stageMidi.textContent = `${step} 步 MIDI ↓`;
+    const metrics = [
+      ['Frame F1', 'frame_f1'], ['Onset F1 · 50 ms', 'onset_f1'],
+      ['Onset + offset F1', 'onset_offset_f1'],
+      ['SATB onset F1', 'track_onset_f1'], ['SATB complete-note F1', 'track_note_f1'],
+    ];
+    appendCells($('#choral-event-replay-metrics'), metrics.map(([label, key]) => [
+      label, fmt(before[key], 3), fmt(after[key], 3), signed(after[key] - before[key], 3),
+    ]));
+    drawSatbComparison($('#choral-event-piano-roll'), data.notes, String(step), `${step} steps`);
+  }
+  select(300);
+}
+
+function renderEventPilot(data) {
+  const summary = [['Frozen · 0', 0, data.baseline], ...[100, 300, 1000].map((step) => {
+    const stage = data.arms.combined.milestones[String(step)];
+    return [`Combined · ${step}`, stage.updated_steps, stage.metrics];
+  })];
+  appendCells($('#choral-event-summary'), summary.map(([label, updates, metrics]) => [
+    label, String(updates), ...['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.macro[metric], 3)),
+  ]));
+  const combinedRows = [['Frozen · 0', data.baseline, 0]];
+  for (const step of [100, 300, 1000]) {
+    const stage = data.arms.combined?.milestones?.[String(step)];
+    if (stage) combinedRows.push([`Combined · ${step}`, stage.metrics, stage.updated_steps]);
+  }
+  function renderRows(step) {
+    const rows = [...combinedRows];
+    for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'weak_voice', 'precision']) {
+      const stage = data.arms[arm]?.milestones?.[String(step)];
+      if (stage) rows.push([`${arm} only · ${step}`, stage.metrics, stage.updated_steps]);
+    }
+    appendCells($('#choral-event-table'), rows.map(([label, metrics, updates]) => [
+      label, String(updates), fmt(metrics.macro.frame), fmt(metrics.macro.onset), fmt(metrics.macro.onset_offset),
+      fmt(metrics.track_onset.f1), fmt(metrics.track_note.f1),
+    ]));
+    for (const button of document.querySelectorAll('[data-event-arm-step]')) {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.eventArmStep) === step));
+    }
+  }
+  for (const button of document.querySelectorAll('[data-event-arm-step]')) {
+    button.addEventListener('click', () => renderRows(Number(button.dataset.eventArmStep)));
+  }
+  renderRows(1000);
+  const partRows = [combinedRows[0], ...combinedRows.filter(([label]) => label === 'Combined · 1000' || label === 'Combined · 300')];
+  appendCells($('#choral-event-parts-table'), partRows.map(([label, metrics]) => [
+    label,
+    ...['S', 'A', 'T', 'B'].flatMap((voice) => ['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.per_voice[voice][metric].f1, 3))),
+    ...['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.macro[metric], 3)),
+    fmt(metrics.va_rate_percent.frame, 2), fmt(metrics.va_rate_percent.onset, 2),
+  ]));
+}
+
+function renderActualArmReplays(replay, pilot) {
+  const names = { combined: 'Combined', onset: 'Onset only', onset_offset: 'Onset + offset only',
+    frame: 'Frame only', coverage: 'Coverage only', continuity: 'Continuity only',
+    weak_voice: 'Weak-voice only', precision: 'Precision only' };
+  const stageKey = (arm) => arm === 'combined' ? '300' : `arm_${arm}_300`;
+  const assetName = (arm) => arm === 'combined' ? 'choral_event_0300' :
+    arm === 'weak_voice' ? 'choral_event_0000' : `choral_event_arm_${arm}_300`;
+  const asset = (name) => ({ audio: `audio/${name}.wav`,
+    wave: `visuals/${name}_wave.png`, spectrum: `visuals/${name}_spectrum.png` });
+  const rows = [['Frozen', 0, replay.receipt.steps['0']],
+    ...Object.keys(names).map((arm) => [names[arm],
+      pilot.arms[arm].milestones['300'].updated_steps,
+      replay.receipt.steps[stageKey(arm)]])];
+  appendCells($('#actual-arm-table'), rows.map(([label, updates, metrics]) => [
+    label, String(updates), String(metrics.note_count), fmt(metrics.frame_f1, 3),
+    fmt(metrics.onset_f1, 3), fmt(metrics.onset_offset_f1, 3),
+  ]));
+  const select = $('#actual-arm-select');
+  function render() {
+    const arm = select.value;
+    const key = stageKey(arm);
+    const result = replay.receipt.steps[key];
+    const name = assetName(arm);
+    $('#actual-arm-midi').href = `./midi/${arm === 'weak_voice' ? 'choral_event_arm_weak_voice_300' : name}.mid`;
+    $('#actual-arm-audio').replaceChildren(
+      createMediaPanel({ label: 'A / FROZEN', title: 'Baseline · 0 updates',
+        asset: asset('choral_event_0000'), details: 'Same original input and fixed singers' }),
+      createMediaPanel({ label: `B / ${names[arm].toUpperCase()}`, title: `${names[arm]} · 300 attempts`,
+        asset: asset(name), details: `${result.note_count} notes · ${pilot.arms[arm].milestones['300'].updated_steps} effective updates` }),
+    );
+    drawSatbComparison($('#actual-arm-piano-roll'), replay.notes, key, names[arm]);
+  }
+  select.addEventListener('change', render);
+  render();
+}
+
+function renderPawctPaper(data) {
+  appendCells($('#pawct-paper-table'), data.rows.map((row) => [
+    row.model,
+    ...['S', 'A', 'T', 'B', 'average'].flatMap((part) => row[part].map((value) => fmt(value, 3))),
+    ...row.va_rate.map((value) => fmt(value, 2)),
+  ]));
+}
+
+function renderSatbCounterexamples(data) {
+  const cases = [
+    ['onset_only_short_notes', 'Shorten every note', 'onset'],
+    ['overfill_octave', 'Add octave duplicates', 'coverage'],
+    ['silence', 'Delete all notes', 'continuity'],
+    ['fragment_sustained', 'Split sustained notes', 'frame'],
+    ['swap_soprano_alto', 'Swap S/A', 'coverage'],
+    ['drop_bass', 'Delete Bass', 'precision'],
+  ];
+  appendCells($('#satb-counterexamples-table'), cases.map(([key, label, misleading]) => {
+    const row = data.variants[key];
+    return [label, misleading, fmt(row.components[misleading], 3), fmt(row.combined, 3),
+      fmt(row.metrics.macro.onset, 3), fmt(row.metrics.macro.onset_offset, 3)];
+  }));
+}
+
+function renderSatbBadcaseAudio() {
+  const choices = {
+    onset_only_short_notes: 'Onset-only short notes',
+    overfill_octave: 'Coverage-only octave overfill',
+    fragment_sustained: 'Frame-only fragmented notes',
+  };
+  const asset = (name) => ({ audio: `audio/${name}.wav`,
+    wave: `visuals/${name}_wave.png`, spectrum: `visuals/${name}_spectrum.png` });
+  const render = () => {
+    const key = $('#satb-badcase-select').value;
+    $('#satb-badcase-midi').href = `./midi/choral_audit_${key}.mid`;
+    $('#satb-badcase-audio').replaceChildren(
+      createMediaPanel({ label: 'A / REFERENCE', title: 'Original SATB',
+        asset: asset('choral_ace_reference_short'), details: '32 reference notes · fixed voices' }),
+      createMediaPanel({ label: 'B / CONSTRUCTED BAD CASE', title: choices[key],
+        asset: asset(`choral_audit_${key}`), details: 'Same four singers · not a GRPO output' }),
+    );
+  };
+  $('#satb-badcase-select').addEventListener('change', render);
+  render();
+}
+
 function renderStageRail(selector, stages, onSelect = null, selectedStep = null) {
   $(selector).replaceChildren(...stages.map((stage) => {
     const selectable = onSelect && stage.status === 'measured' && stage.step > 0;
@@ -296,11 +508,12 @@ function renderLyrics(data) {
     $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     document.querySelector('[data-listen="candidate"]').textContent = `B · ${step} ${step === 1 ? 'step' : 'steps'}`;
     $('#lyrics-metric-head').textContent = `${step} ${step === 1 ? 'step' : 'steps'}`;
+    const pairedBaseline = selected.paired_baseline || baseline;
     $('#lyrics-compare').replaceChildren(
-      createMediaPanel({ label: 'A / BASELINE', title: `${descriptor.name} · 0 updates`, asset: baseline, details: '48 kHz · held-out seed 5101', listenRole: 'baseline' }),
+      createMediaPanel({ label: 'A / BASELINE', title: `${descriptor.name} · 0 updates`, asset: pairedBaseline, details: '48 kHz · held-out seed 5101', listenRole: 'baseline' }),
       createMediaPanel({ label: 'B / GRPO', title: `${descriptor.name} · ${step} ${step === 1 ? 'update' : 'updates'}`, asset: selected, details: '同 prompt、同 seed · 独立留出样本', listenRole: 'candidate' }),
     );
-    const before = baseline.metrics, after = selected.metrics;
+    const before = pairedBaseline.metrics, after = selected.metrics;
     const rewardName = descriptor.reward_model || 'SongEval';
     const metrics = [
       ...['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness', 'mean'].map((key) => [`${rewardName} · ${key}`, before.reward[key], after.reward[key], 4]),
@@ -313,7 +526,7 @@ function renderLyrics(data) {
       const changed = `${receipt.heldout_generated_token_difference}/${receipt.max_new_tokens} generated tokens`;
       $('#lyrics-interpretation').textContent = `未训练重放波形完全相同；更新后 ${changed} 改变。本次留出片段 SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，两版均无满幅削波。只有 2 条训练 rollout、1 次优化与 1 条留出样本；不足以判断长程优化、听感改善或 reward hacking。`;
     } else if (model === 'musecritic') {
-      $('#lyrics-interpretation').textContent = `MuseCritic 在线 GRPO 训练 1 步后，独立留出片段均分 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}，无满幅削波。这是 1 条短片段的负向结果，不代表总体效果。`;
+      $('#lyrics-interpretation').textContent = `MuseCritic GRPO ${step} 步的单条留出音频：均分 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。两版均无满幅削波。每个阶段使用各自的 A/B 解码，MuCodec 重解码存在随机性；相同 baseline token 在 25/50 步评估中也生成不同波形，故不能把单条分差全归因于 adapter。`;
     } else if (step === 1) {
       $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {
@@ -388,11 +601,17 @@ try {
   renderChoral(data.choral);
   renderChoralNotes(data.choral_note);
   renderChoralDemo(data.choral_demo);
+  renderAceChoral();
+  renderEventReplay(data.event_replay);
+  renderEventPilot(data.event_pilot);
+  renderActualArmReplays(data.event_replay, data.event_pilot);
+  renderPawctPaper(data.pawct_paper);
+  renderSatbCounterexamples(data.satb_reward_counterexamples);
+  renderSatbBadcaseAudio();
   $('#seed-range').textContent = [data.choral.runs.frame.f1.frame, ...data.choral_seed_repeats.map((row) => row.frame_f1)].map((score) => fmt(score)).join(' / ');
   renderRewards(data.reward_audit);
   renderLyrics(data);
   renderVocal(data.replays.vocal, data.vocal_reward);
-  renderStageRail('#choral-stage-rail', data.replays.choral.stages);
   renderSongEval(data.songeval_audit);
 } catch (error) {
   $('#headline-grpo').textContent = 'Data unavailable';

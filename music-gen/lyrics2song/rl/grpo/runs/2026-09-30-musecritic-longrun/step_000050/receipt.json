@@ -1,0 +1,48 @@
+{
+  "status": "musecritic_grpo_heldout_pair",
+  "optimizer_step": 50,
+  "model": "Muse-0.6b + MuCodec",
+  "reward_model": "MuseCritic",
+  "heldout_prompt": "Please generate a song in the following style: English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM.\n[Verse][desc:Intimate melody and natural acoustic accompaniment.][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
+  "heldout_seed": 5101,
+  "generated_token_difference": 483,
+  "before": {
+    "reward": {
+      "Coherence": 3.40625,
+      "Musicality": 3.296875,
+      "Memorability": 3.265625,
+      "Clarity": 2.984375,
+      "Naturalness": 3.1875,
+      "mean": 3.228125
+    },
+    "signal": {
+      "seconds": 10.24,
+      "peak": 0.15884070098400116,
+      "rms": 0.027948622633560155,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 1.0172526041666667e-06
+    },
+    "generated_tokens": 500,
+    "audio_tokens": 493
+  },
+  "after": {
+    "reward": {
+      "Coherence": 3.75,
+      "Musicality": 3.625,
+      "Memorability": 3.640625,
+      "Clarity": 3.3125,
+      "Naturalness": 3.53125,
+      "mean": 3.571875
+    },
+    "signal": {
+      "seconds": 10.24,
+      "peak": 0.5353332161903381,
+      "rms": 0.06436061838755999,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 1.0172526041666667e-06
+    },
+    "generated_tokens": 500,
+    "audio_tokens": 493
+  },
+  "caveat": "One short held-out prompt/seed; reward and signal are not a human-quality or generalization claim."
+}

@@ -7,6 +7,7 @@ library and accept Note objects, so they can be reused by a GRPO rollout.
 import argparse
 import bisect
 import json
+import math
 from collections import defaultdict
 from dataclasses import dataclass, replace
 from pathlib import Path
@@ -127,6 +128,21 @@ def prf(tp, fp, fn):
     return {"precision": precision, "recall": recall, "f1": f1, "tp": tp, "fp": fp, "fn": fn}
 
 
+def frame_prf(reference, estimate, hop=0.01, track_aware=False):
+    def cells(notes):
+        occupied = set()
+        for note in notes:
+            first = max(0, math.ceil(note.start / hop - 0.5))
+            last = math.ceil(note.end / hop - 0.5)
+            key = (note.voice, note.pitch) if track_aware else note.pitch
+            occupied.update((index, key) for index in range(first, last))
+        return occupied
+
+    truth = cells(reference)
+    predicted = cells(estimate)
+    return prf(len(truth & predicted), len(predicted - truth), len(truth - predicted))
+
+
 def active_voice_f1(reference, estimate, hop=0.5):
     end = max((note.end for note in reference + estimate), default=0.0)
     windows = max(1, int(end / hop) + 1)
@@ -164,6 +180,22 @@ def score(reference, estimate):
         mode: prf(*_counts(reference, estimate, mode))
         for mode in ("onset", "offset", "track_onset", "track_note")
     }
+    results["frame"] = frame_prf(reference, estimate)
+    results["track_frame"] = frame_prf(reference, estimate, track_aware=True)
+    per_voice = {}
+    for voice in VOICES:
+        ref_part = [note for note in reference if note.voice == voice]
+        est_part = [note for note in estimate if note.voice == voice]
+        per_voice[voice] = {
+            "frame": frame_prf(ref_part, est_part),
+            "onset": prf(*_counts(ref_part, est_part, "onset")),
+            "onset_offset": prf(*_counts(ref_part, est_part, "offset")),
+        }
+    results["per_voice"] = per_voice
+    results["macro"] = {
+        metric: sum(per_voice[voice][metric]["f1"] for voice in VOICES) / len(VOICES)
+        for metric in ("frame", "onset", "onset_offset")
+    }
     results["active_voice"] = active_voice_f1(reference, estimate)
     results["fragmentation_rate"] = fragmentation_rate(reference, estimate)
     results["n_reference"] = len(reference)
@@ -173,6 +205,7 @@ def score(reference, estimate):
 
 def controlled_variants(reference):
     output = {"oracle": list(reference)}
+    output["silence"] = []
     output["drop_bass"] = [n for n in reference if n.voice != "B"]
     output["swap_soprano_alto"] = [
         replace(n, voice={"S": "A", "A": "S"}.get(n.voice, n.voice)) for n in reference
@@ -186,6 +219,9 @@ def controlled_variants(reference):
         else:
             split.append(note)
     output["fragment_sustained"] = split
+    output["onset_only_short_notes"] = [
+        replace(n, end=n.start + min(0.08, 0.25 * (n.end - n.start))) for n in reference
+    ]
     output["overfill_octave"] = list(reference) + [replace(n, pitch=min(n.pitch + 12, 127)) for n in reference]
     return output
 

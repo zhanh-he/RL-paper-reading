@@ -1,0 +1,15 @@
+{
+  "source": "User-provided ICASSP2027_PawCT_v2 draft PDF, Table 2",
+  "dataset": "YouChorale test set",
+  "protocol": "Part-aware SATB; per-part frame F1 and note-onset F1 (50 ms); macro average and voice-assignment rate",
+  "note": "Published here only as a paper-reference table. Not measured by this repository's GRPO runs; YouChorale-Pro pilot numbers are not directly comparable.",
+  "rows": [
+    { "model": "YourMT3+*", "S": [0.371, 0.083], "A": [0.297, 0.068], "T": [0.294, 0.073], "B": [0.371, 0.093], "average": [0.333, 0.079], "va_rate": [72.87, 62.20] },
+    { "model": "Yu et al.*", "S": [0.528, 0.183], "A": [0.451, 0.151], "T": [0.436, 0.138], "B": [0.560, 0.186], "average": [0.494, 0.165], "va_rate": [76.35, 69.62] },
+    { "model": "PagCT + Post-VA", "S": [0.501, 0.180], "A": [0.439, 0.145], "T": [0.447, 0.156], "B": [0.568, 0.219], "average": [0.489, 0.175], "va_rate": [66.26, 45.81] },
+    { "model": "PawCT w/o union loss", "S": [0.417, 0.192], "A": [0.338, 0.169], "T": [0.343, 0.178], "B": [0.419, 0.222], "average": [0.379, 0.190], "va_rate": [51.36, 49.74] },
+    { "model": "PawCT", "S": [0.530, 0.228], "A": [0.430, 0.191], "T": [0.429, 0.197], "B": [0.552, 0.252], "average": [0.485, 0.217], "va_rate": [65.72, 56.81] },
+    { "model": "PawCT-RP", "S": [0.542, 0.210], "A": [0.453, 0.185], "T": [0.458, 0.194], "B": [0.585, 0.247], "average": [0.510, 0.209], "va_rate": [69.11, 54.71] },
+    { "model": "PawCT-RP-OC", "S": [0.535, 0.231], "A": [0.447, 0.197], "T": [0.451, 0.208], "B": [0.578, 0.264], "average": [0.503, 0.225], "va_rate": [68.16, 58.90] }
+  ]
+}
