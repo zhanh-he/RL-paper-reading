@@ -24,6 +24,11 @@
     .sub { color: #bac8ca; max-width: 75ch; margin: 10px 0 20px; }
     .facts { display: flex; gap: 10px 22px; flex-wrap: wrap; color: #b8c6c8; font-size: 12px; padding: 12px 0 24px; }
     .facts strong { color: #e8ebeb; font-weight: 600; }
+    .arms { display: inline-flex; border: 1px solid #486163; border-radius: 4px; overflow: hidden; margin: 2px 0 10px; }
+    .arms[hidden] { display: none; }
+    .arms a { display: block; padding: 8px 13px; background: #213032; color: #d2e3e0; text-decoration: none; font-size: 13px; }
+    .arms a + a { border-left: 1px solid #486163; }
+    .arms a[aria-current="page"] { background: #176c63; color: #fff; }
     section { border-top: 1px solid #344143; padding-top: 24px; margin-top: 28px; }
     .source { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
     .source > div { min-width: 0; }
@@ -63,6 +68,7 @@
     <div class="eyebrow">Vocal to accompaniment · controlled replay</div>
     <h1>LaDA-Band · GRPO</h1>
     <p class="sub">固定同一条 Emma 独唱、相同文本提示与评估随机种子，比较冻结基线和在线后训练检查点。先听配对，再看各项分数。</p>
+    <div id="reward-arms" class="arms" role="group" aria-label="Reward arm" hidden><a id="arm-combined" href="./vocal-lada.html">组合 reward</a><a id="arm-coverage" href="./vocal-lada.html?arm=coverage">Coverage-only</a></div>
     <div id="facts" class="facts" aria-label="Run configuration"></div>
 
     <section class="source" aria-label="Source and reference">
@@ -74,7 +80,7 @@
 
     <section aria-label="Training checkpoints"><h2>检查点</h2><div id="cards" class="cards"></div></section>
 
-    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th>组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。整体 RMS、峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
+    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th id="reward-column">组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p id="metric-note" class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。整体 RMS、峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
 
     <section aria-label="Training trajectory"><h2>训练采样轨迹</h2><canvas id="curve" width="1100" height="230" role="img" aria-label="Candidate reward and coverage versus GRPO step"></canvas><div class="legend"><span style="--color:#62c8b7">Reward 均值</span><span style="--color:#e1ac79">Coverage 均值</span></div></section>
 
@@ -123,12 +129,19 @@
     }
 
     async function load() {
+      const coverageReady = await fetch('./vocal-lada-coverage-run.json', { method: 'HEAD', cache: 'no-store' }).then(response => response.ok).catch(() => false);
+      if (coverageReady) {
+        byId('reward-arms').hidden = false;
+        byId(`arm-${arm}`).setAttribute('aria-current', 'page');
+      }
       try { const response = await fetch(files, { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); data = await response.json(); }
       catch { byId('cards').textContent = '运行记录尚未发布。'; return; }
       const config = data.config || {};
       if (arm === 'coverage') {
         document.title = 'LaDA-Band · coverage-only replay';
         document.querySelector('h1').textContent = 'LaDA-Band · Coverage-only';
+        byId('reward-column').textContent = 'Coverage reward';
+        byId('metric-note').textContent = '本组只优化 40 ms 帧 RMS coverage；起音匹配与频带占用是未优化的诊断量。STFT coverage 与 Madmom Beat-v2 是独立离线评估。Beat V/A 分别是人声/伴奏拍点数；整体 RMS、峰值和削波占比来自原始伴奏两声道。所有客观量都不能代替主观听感。';
         byId('boundary').textContent = '单歌手、单旋律、小片段实验；仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。';
       }
       for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
