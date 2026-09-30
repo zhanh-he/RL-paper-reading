@@ -1,18 +1,21 @@
 # Replay visuals
 
 These images are generated from the adjacent public audio assets. Each waveform
-uses a linear peak envelope; each spectrogram uses the same 40 Hz-16 kHz log
-frequency range and 80 dB display range so a paired image is comparable.
+uses a linear peak envelope. The spectrograms are mel-frequency power spectra,
+not CQT or log-Hz FFT plots. They extend to 24 kHz for 48 kHz audio, or the
+source Nyquist frequency when lower (22.05 kHz for 44.1 kHz audio). All use a
+fixed viridis palette and -80 to 0 dB display limits for paired comparison.
 
 ```sh
 ffmpeg -hide_banner -loglevel error -y -i "$INPUT" -filter_complex 'aformat=channel_layouts=mono,showwavespic=s=1200x140:colors=0x31bba6:scale=lin:filter=peak' -frames:v 1 "${STEM}_wave.png"
-ffmpeg -hide_banner -loglevel error -y -i "$INPUT" -filter_complex 'aformat=channel_layouts=mono,showspectrumpic=s=1200x320:legend=0:scale=log:fscale=log:start=40:stop=16000:color=viridis:drange=80:limit=0' -frames:v 1 "${STEM}_spectrum.png"
+uv run --with librosa --with matplotlib --with pillow python platform/scripts/render-mel-visuals.py
+```
 
 All lyrics-to-song images can be regenerated together with
 `node platform/scripts/render-lyrics-visuals.mjs`. The waveform filter uses
-linear full-scale amplitude (same -1 to +1 bounds for every clip), while the
-spectrogram uses one fixed viridis palette and -80 to 0 dBFS range.
-```
+linear full-scale amplitude (same -1 to +1 bounds for every clip). The mel
+spectrogram is labeled with frequency ticks; its dB values are relative to a
+full-scale PCM sinusoid and are not reward scores.
 
 The figures are visual aids, not additional reward measurements. The synthetic
 SATB piano roll on the MIDI reward page is drawn in `lab.js`; it is deliberately

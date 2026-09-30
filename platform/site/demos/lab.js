@@ -588,8 +588,8 @@ function createMediaPanel({ label, title, asset, details, listenRole }) {
   const waveCaption = document.createElement('div'); waveCaption.className = 'visual-caption';
   waveCaption.textContent = 'Waveform · amplitude -1 to +1 (fixed)';
   const spectrum = document.createElement('figure'); spectrum.className = 'spectrum-visual';
-  const spectrumImage = document.createElement('img'); spectrumImage.src = `./${asset.spectrum}`; spectrumImage.alt = `${title} spectrogram on a logarithmic frequency scale`; spectrumImage.loading = 'lazy';
-  const caption = document.createElement('figcaption'); caption.textContent = 'Log frequency 40 Hz–16 kHz · viridis -80 to 0 dBFS (fixed)';
+  const spectrumImage = document.createElement('img'); spectrumImage.src = `./${asset.spectrum}`; spectrumImage.alt = `${title} mel spectrogram with frequency ticks`; spectrumImage.loading = 'lazy';
+  const caption = document.createElement('figcaption'); caption.textContent = 'Mel frequency · up to 24 kHz (source Nyquist if lower) · viridis -80 to 0 dB (fixed)';
   spectrum.append(spectrumImage, caption);
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./${asset.audio}`;
   const playingLabel = () => listenRole === 'baseline' ? 'A · Baseline' : document.querySelector('[data-listen="candidate"]').textContent;

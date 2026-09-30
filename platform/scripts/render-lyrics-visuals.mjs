@@ -16,10 +16,9 @@ for (const model of Object.values(replays.lyrics)) {
 
 const filters = {
   wave: 'aformat=channel_layouts=mono,showwavespic=s=1200x140:colors=0x31bba6:scale=lin:filter=peak',
-  spectrum: 'aformat=channel_layouts=mono,showspectrumpic=s=1200x320:legend=0:scale=log:fscale=log:start=40:stop=16000:color=viridis:drange=80:limit=0',
 };
 for (const asset of assets.values()) {
-  for (const kind of ['wave', 'spectrum']) {
+  for (const kind of ['wave']) {
     const result = spawnSync('ffmpeg', [
       '-hide_banner', '-loglevel', 'error', '-y', '-i', resolve(demos, asset.audio),
       '-filter_complex', filters[kind], '-frames:v', '1', resolve(demos, asset[kind]),
@@ -28,3 +27,9 @@ for (const asset of assets.values()) {
   }
   process.stdout.write(`${asset.audio}\n`);
 }
+const spectra = spawnSync('uv', [
+  'run', '--with', 'librosa', '--with', 'matplotlib', '--with', 'pillow',
+  'python', resolve(import.meta.dirname, 'render-mel-visuals.py'),
+  ...[...assets.values()].map(asset => resolve(demos, asset.audio)),
+], { stdio: 'inherit' });
+if (spectra.status !== 0) throw new Error('mel spectrogram rendering failed');
