@@ -59,6 +59,11 @@ of the framework. Sampling also masks to codec tokens while the current
 policy loss normalizes over the full vocabulary. The offline KL probe measures
 codec-constrained fixed-reference divergence and allowed-vocabulary mass to
 test whether that mismatch matters. This probe is **not** training-time KL.
+With a group of two, non-tied standardized rewards always give advantages
+`+1` and `-1`, regardless of the reward gap. In the 2e-5 run, 28 of the 99
+updates from step 2 through 100 had an absolute pair gap below 0.1 yet still
+received full-strength advantages. This could amplify near-ties or scorer
+noise; it has not been isolated as the cause of stagnation.
 
 The [high-learning-rate stress test](runs/2026-09-30-yue2-high-lr/README.md)
 completed step 100 at both 1e-3 and 1e-2 on the 5090. Both finished below
