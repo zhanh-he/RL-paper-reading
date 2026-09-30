@@ -75,7 +75,15 @@ On this phrase, 200 to 300 steps is non-monotonic for all three scores, despite 
 
 ## Coverage-only ablation
 
-Start a new adapter from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. The single reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. Keep Beat-v2, STFT coverage, loudness, clipping and listening as independent checks. This run is in progress on lab5090; no result is claimed yet:
+The separate adapter starts from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. Its only reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. At the saved 50-step interim, the measured [coverage-only replay](../../../../platform/site/demos/vocal-lada.html?arm=coverage) and original offline checks are:
+
+| Arm / step | Optimized RMS coverage | Beat-v2 F1 (offline) | STFT coverage (offline) | Acc/vocal RMS dB | Clipped samples |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Frozen baseline / 0 | 0.528 | 0.296 | 0.296 | -7.2 | 0 |
+| Combined proxy / 50 | 0.535 | 0.357 | 0.250 | -8.1 | 0 |
+| Coverage-only / 50 | 0.944 | 0.500 | 0.802 | +3.4 | 0 |
+
+The coverage-only arm has much more accompaniment energy than the fixed vocal at 50, but independent beat and STFT-coverage scores also rise, so these metrics alone do not establish poor music or reward hacking. The combined arm is quieter at the same step, but its own step-300 loudness drift shows only partial restraint. The coverage-only run continues to step 100; no final or listener-preference result is claimed yet.
 
 ```bash
 .env/bin/python train_lada_band_v2.py \
