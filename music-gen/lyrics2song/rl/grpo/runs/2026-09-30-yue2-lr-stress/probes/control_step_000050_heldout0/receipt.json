@@ -1,0 +1,44 @@
+{
+  "status": "same_seed_vae_clamp_to_pcm24_export_probe",
+  "optimizer_adapter": "outputs/songeval_grpo_longrun_20260930/checkpoints/step_000050/adapter",
+  "yue2_version": "0.1.6",
+  "yue2_runtime_sha256": "1bf196869d122908bb18bc79009c1a918700c0bbb915d643e00cb5cad66357e5",
+  "heldout_index": 0,
+  "seed": 5101,
+  "sample_rate": 48000,
+  "truncated": {
+    "abc": false,
+    "semantic": true
+  },
+  "vae_preclamp_float": {
+    "peak": 1.061305284500122,
+    "rms": 0.1427363185239743,
+    "near_full_scale_count": 6,
+    "at_or_above_one_count": 6,
+    "above_one_count": 6,
+    "longest_near_full_scale_run": 6
+  },
+  "pipeline_float": {
+    "peak": 1.0,
+    "rms": 0.14273572097763057,
+    "near_full_scale_count": 6,
+    "at_or_above_one_count": 6,
+    "above_one_count": 0,
+    "longest_near_full_scale_run": 6
+  },
+  "pcm24_flac": {
+    "peak": 0.9999998807907104,
+    "rms": 0.14273572095769463,
+    "near_full_scale_count": 6,
+    "at_or_above_one_count": 0,
+    "above_one_count": 0,
+    "longest_near_full_scale_run": 6
+  },
+  "pipeline_matches_clamped_vae": true,
+  "samples_changed_by_pipeline_clamp": 6,
+  "reference_flac_sha256": "a7e51fb9ad8102ff6c16fe7e1a9735987f401eb06a7bc08e587c896f6ed7e9bb",
+  "rerendered_flac_sha256": "a7e51fb9ad8102ff6c16fe7e1a9735987f401eb06a7bc08e587c896f6ed7e9bb",
+  "identical_to_reference_flac": true,
+  "decoded_audio_identical_to_reference": true,
+  "decoded_audio_max_abs_difference": 0.0
+}

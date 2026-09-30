@@ -9,9 +9,9 @@ adapter, learning rate `2e-5`, fixed held-out seeds 5101/5102/5103, and a
 receipt records truncation. The AdamW state was reset when this run resumed
 from the previous day's one-step LoRA.
 
-| Optimizer update | 0 | 1 | 5 | 50 | 100 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Mean SongEval, 3 held-out prompts | 3.8403 | 3.6030 | 3.6160 | 3.5704 | 3.6063 |
+| Optimizer update | 0 | 1 | 5 | 25 | 50 | 100 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Mean SongEval, 3 held-out prompts | 3.8403 | 3.6030 | 3.6160 | 3.5629 | 3.5704 | 3.6063 |
 
 At 100 updates, all three individual held-out SongEval means fell relative
 to the frozen base (changes `-0.2861`, `-0.0199`, `-0.3962`). This is a
@@ -22,7 +22,7 @@ The 1-update stage replays the **source adapter** (SHA-256
 `8dee8838d2c565bc6ffe777b8c95471e5e00cf3ca754e86d88cb1155242bd597`);
 updates 2-100 continue from it. The update-100 adapter SHA-256 is
 `0e51b6f470bb7b3fb129735f23861fa735dceec2d831dab876d357ec5f819983`.
-The five milestone receipts are in `step_*/receipt.json`;
+The six milestone receipts are in `step_*/receipt.json`;
 the [public replay](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
 offers one matched held-out audio example per milestone with waveform,
 spectrogram and signal diagnostics.
@@ -34,3 +34,10 @@ with zero samples at or above 0.999. The held-out mean remains below the
 0-update baseline, so this run provides neither a quality-gain claim nor an
 example of pervasive clipping. The three prompts and one training seed are
 too small to infer general behavior; independent listening is still needed.
+
+The [training log](steps.jsonl) records contiguous updates 2-109. Updates
+101-109 belong to an abandoned continuation, with no held-out evaluation;
+all reported results above refer to saved checkpoints at or before 100.
+The [same-seed VAE probe](../2026-09-30-yue2-lr-stress/probes/control_step_000050_heldout0/receipt.json)
+shows six pre-clamp samples above unit amplitude on control prompt 0 at
+step 50. Its rerendered FLAC is byte-identical to the published replay.

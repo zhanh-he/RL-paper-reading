@@ -6,9 +6,9 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20260930-mixed-roll" />
+    <link rel="stylesheet" href="./styles.css?v=20260930-yue2-100" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-mixed-roll"></script>
+    <script type="module" src="./lab.js?v=20260930-yue2-100"></script>
   </head>
   <body>
     <header class="app-header">
@@ -132,6 +132,7 @@
         <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Switch audio at the same position"><button type="button" data-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-listen="candidate" aria-pressed="false">B · 1 step</button></div><span id="listen-status" aria-live="polite">选择 A 或 B 开始播放</span></div>
         <div class="compare-grid" id="lyrics-compare"></div>
         <section id="lyrics-heldout-section" class="lyrics-heldout-section"><h3 class="subsection-heading">YuE2 · learning-rate comparison · 3 held-out prompts</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>LR</th><th>Updates</th><th>SongEval mean (Δ vs 0)</th><th>Largest peak</th><th>Near full-scale clips</th><th>Truncated</th></tr></thead><tbody id="lyrics-heldout-table"></tbody></table></div><p class="stage-context">固定种子 5101–5103；600 semantic-token 上限可能截断歌曲。0/1 步两臂输出逐文件一致。峰值只作信号诊断，不能替代主观听感。</p></section>
+        <details id="lyrics-100-pairs" class="lyrics-pairs" hidden><summary>100 步 · 三首留出 A/B 试听</summary><div id="lyrics-100-pair-list"></div></details>
         <h3 class="subsection-heading">Objective checks</h3>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Metric</th><th>Baseline</th><th id="lyrics-metric-head">1 step</th><th>Δ</th></tr></thead><tbody id="lyrics-metric-table"></tbody></table></div>
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lyrics-interpretation"></p></div>

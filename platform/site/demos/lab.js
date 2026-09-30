@@ -584,8 +584,33 @@ function createMediaPanel({ label, title, asset, details, listenRole }) {
   return panel;
 }
 
+function renderYuE2Pairs(pairs) {
+  $('#lyrics-100-pair-list').replaceChildren(...pairs.map((pair) => {
+    const row = document.createElement('section'); row.className = 'lyrics-pair-row';
+    const heading = document.createElement('h4'); heading.textContent = `留出 ${pair.index + 1} · ${pair.prompt.style}`;
+    const lyrics = document.createElement('pre'); lyrics.textContent = pair.prompt.lyrics;
+    const score = document.createElement('p'); score.className = 'lyrics-pair-score';
+    score.textContent = `SongEval Mean5 · ${fmt(pair.baseline_score, 4)} → ${fmt(pair.after_score, 4)} (${signed(pair.after_score - pair.baseline_score, 4)}) · seed ${pair.seed}`;
+    const audioRow = document.createElement('div'); audioRow.className = 'lyrics-pair-audio';
+    for (const [label, path] of [['A · 0 步', pair.baseline], ['B · 100 步', pair.after]]) {
+      const item = document.createElement('div');
+      const title = document.createElement('strong'); title.textContent = label;
+      const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./${path}`;
+      audio.addEventListener('play', () => {
+        for (const other of document.querySelectorAll('audio')) if (other !== audio) other.pause();
+      });
+      const link = document.createElement('a'); link.href = `./${path}`; link.target = '_blank';
+      link.rel = 'noopener'; link.textContent = '单独打开 ↗';
+      item.append(title, audio, link); audioRow.append(item);
+    }
+    row.append(heading, lyrics, score, audioRow);
+    return row;
+  }));
+}
+
 function renderLyrics(data) {
   const models = data.replays.lyrics;
+  renderYuE2Pairs(models.yue2_stress.pairs_100);
   let currentModel = 'yue2';
   let currentStep = 1;
   function renderModel(model, step = 1) {
@@ -605,6 +630,7 @@ function renderLyrics(data) {
     $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     const isYuE2 = model.startsWith('yue2');
     $('#lyrics-heldout-section').hidden = !isYuE2;
+    $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
     $('#lyrics-reward-title').textContent = isYuE2 ? '优化目标 · SongEval 五维均值' :
       model === 'musecritic' ? '优化目标 · MuseCritic Mean5' : '优化目标 · SongEval 五维均值';
     $('#lyrics-reward-definition').textContent = isYuE2 || model === 'muse'
@@ -651,6 +677,8 @@ function renderLyrics(data) {
       $('#lyrics-interpretation').textContent = `高 LR 第 5 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，低于常规 LR 同步数。试听样本有 12 个近满幅采样（最长连续 4 个），其余两条没有。这是稀疏峰值异常；reward 没有上升，尚不能称为 reward hacking。`;
     } else if (model === 'yue2_stress' && step === 25) {
       $('#lyrics-interpretation').textContent = `高 LR 第 25 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，仍低于冻结基线。试听样本有 37 个近满幅采样（最长连续 17 个），其余两条没有。较第 5 步峰值异常更明显，但音频内容也改变；没有证据证明 SongEval 在奖励削波。`;
+    } else if (model === 'yue2_stress' && step === 100) {
+      $('#lyrics-interpretation').textContent = `高 LR 第 100 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，且三首各自都低于起点；常规 LR 第 100 步为 ${fmt(models.yue2.stages.find((stage) => stage.step === 100).mean_reward)}。试听样本的 VAE 原始峰值 ${fmt(selected.probe.vae_preclamp_peak)}、${selected.probe.clamped_samples} 个样本越界，YuE2 管线将其钳到 1；重渲染 FLAC 与公开试听逐文件一致。分数并未升高，这不是已证实的 reward hacking。`;
     } else if (step === 1 && isYuE2) {
       $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {

@@ -10,7 +10,7 @@ import torch
 import yue2
 from peft import PeftModel
 
-from yue2 import YuE2Pipeline
+from yue2 import YuE2Pipeline, YuE2VAE
 from yue2_songeval_longrun import HELDOUT, write_json
 
 
@@ -45,12 +45,13 @@ def signal_stats(audio):
 
 
 def decode_before_pipeline_clamp(pipe, latents):
-    z = torch.as_tensor(latents, dtype=torch.float32)
+    z = torch.as_tensor(latents, dtype=torch.float32).clone()
     if z.ndim == 2 and z.shape[1] == 64:
         z = z.T.unsqueeze(0)
     if z.ndim != 3 or z.shape[0] != 1 or z.shape[1] != 64:
         raise ValueError("Unexpected YuE2 latent shape")
-    model = pipe._vae.to(pipe.device)
+    model = YuE2VAE.from_pretrained(pipe.vae_dir, decoder_only=True,
+                                    device="cpu", local_files_only=True).to(pipe.device)
     try:
         with torch.inference_mode():
             audio = model.decode_tiled(z, core_frames=pipe.vae_core_frames,

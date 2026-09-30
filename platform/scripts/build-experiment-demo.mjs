@@ -132,10 +132,47 @@ for (const entry of Object.values(replays.lyrics)) {
     replayReceipts.add(stage.receipt);
   }
 }
+const yue2Baseline = replays.lyrics.yue2.stages.find((stage) => stage.step === 0);
+const yue2Stress100 = replays.lyrics.yue2_stress.stages.find((stage) => stage.step === 100);
+const baselineHeldout = (await readJson(yue2Baseline.receipt)).heldout;
+const stressHeldout = (await readJson(yue2Stress100.receipt)).heldout;
+const pairs100 = replays.lyrics.yue2_stress.pairs_100;
+if (pairs100?.length !== 3 || pairs100.some((pair, index) => pair.index !== index)) {
+  throw new Error('YuE2 100-step A/B needs exactly three ordered held-out pairs');
+}
+for (const pair of pairs100) {
+  for (const key of ['baseline', 'after']) {
+    if (!/^audio\/[a-z0-9_-]+\.flac$/.test(pair[key])) throw new Error(`Invalid YuE2 pair audio: ${pair[key]}`);
+    await access(resolve(root, 'platform/site/demos', pair[key]));
+  }
+  const before = baselineHeldout[pair.index];
+  const after = stressHeldout[pair.index];
+  if (before.index !== pair.index || after.index !== pair.index ||
+      before.seed !== after.seed || JSON.stringify(before.prompt) !== JSON.stringify(after.prompt) ||
+      !Number.isFinite(before.reward.mean) || !Number.isFinite(after.reward.mean)) {
+    throw new Error(`YuE2 held-out pair ${pair.index} is not a matched replay`);
+  }
+  pair.seed = before.seed;
+  pair.prompt = before.prompt;
+  pair.baseline_score = before.reward.mean;
+  pair.after_score = after.reward.mean;
+}
+const yue2ProbePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/probes/step_000100_heldout0/receipt.json';
+const yue2Probe = await readJson(yue2ProbePath);
+if (!yue2Probe.identical_to_reference_flac || !yue2Probe.pipeline_matches_clamped_vae ||
+    yue2Probe.heldout_index !== 0 || !Number.isFinite(yue2Probe.vae_preclamp_float?.peak) ||
+    !Number.isInteger(yue2Probe.samples_changed_by_pipeline_clamp)) {
+  throw new Error('YuE2 100-step VAE probe is incomplete or does not match the public audio');
+}
+yue2Stress100.probe = {
+  vae_preclamp_peak: yue2Probe.vae_preclamp_float.peak,
+  clamped_samples: yue2Probe.samples_changed_by_pipeline_clamp,
+};
 
 const result = {
   generated_from: [...new Set([
     replaysPath,
+    yue2ProbePath,
     `${choralDemoPath}/notes.json`,
     `${choralDemoPath}/receipt.json`,
     'music-trans/multi-inst/models/muscriptor/muscriptor_receipt.json',
