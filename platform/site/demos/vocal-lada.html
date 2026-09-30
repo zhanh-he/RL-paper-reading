@@ -79,7 +79,7 @@
       <div><span class="label">Ground truth accompaniment</span><h2>无唯一参考</h2><p id="reference-desc" class="muted">开放式伴奏生成没有单一标准音频。所有阶段使用完全相同的人声输入和提示；训练用前 6 秒，试听评估用前 12 秒。</p></div>
     </section>
 
-    <section aria-label="A/B listening"><h2>配对试听 · 人声 + 伴奏</h2><div class="listen"><button id="play-a" type="button" aria-pressed="true">A · baseline</button><button id="play-b" type="button" aria-pressed="false">B · selected step</button><select id="step-select" aria-label="Choose comparison step"></select><audio id="ab-audio" controls preload="metadata"></audio></div><p id="listen-state" class="muted"></p></section>
+    <section aria-label="A/B listening"><h2>配对试听 · 人声 + 伴奏</h2><div class="listen"><button id="play-a" type="button" aria-pressed="true">A · baseline</button><button id="play-b" type="button" aria-pressed="false">B · selected step</button><select id="step-select" aria-label="Choose comparison step"></select><audio id="ab-audio" controls preload="metadata"></audio></div><p id="listen-state" class="muted"></p><p class="note">混音保留原始生成电平；响度变化是结果的一部分。只判断音质偏好时，仍需另做同响度盲听。</p></section>
 
     <section aria-label="Training checkpoints"><h2>检查点</h2><div id="cards" class="cards"></div></section>
 
@@ -298,6 +298,13 @@
         }
         if (at100?.beat_v2 && at300?.beat_v2) {
           byId('interim-finding').textContent = `终点回落：固定 12 秒 Beat-v2 F1 在 baseline / 100 / 300 步是 ${fmt(baseline.reward)} / ${fmt(at100.reward)} / ${fmt(at300.reward)}，STFT coverage 是 ${fmt(baseline.beat_v2.coverage_stft)} / ${fmt(at100.beat_v2.coverage_stft)} / ${fmt(at300.beat_v2.coverage_stft)}。150/200 步虽有拍点与高覆盖率，F1 均为 0；这些客观分歧需要配对试听判断。`;
+        }
+      }
+      if (arm === 'guarded' && phrase === 'training') {
+        const at100 = data.stages.find(item => item.step === 100);
+        const at150 = data.stages.find(item => item.step === 150);
+        if (at100?.beat_v2 && at150?.beat_v2) {
+          byId('interim-finding').textContent = `组合组仍有失配：100 → 150 步，RMS coverage ${fmt(at100.rms_coverage)} → ${fmt(at150.rms_coverage)}，原 Beat-v2 F1 ${fmt(at100.beat_v2.score)} → ${fmt(at150.beat_v2.score)}，伴奏/人声 ${fmt(at100.beat_v2.acc_to_vocal_rms_db, 1)} → ${fmt(at150.beat_v2.acc_to_vocal_rms_db, 1)} dB；综合 reward 因约束降为 ${fmt(at150.reward)}。不是满幅削波，也不是已经证明主观音质下降。`;
         }
       }
       if (phrase === 'heldout') {
