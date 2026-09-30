@@ -1,6 +1,7 @@
 {
   "generated_from": [
     "platform/site/demos/replays.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/probes/step_000100_heldout0/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/notes.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/receipt.json",
@@ -16,10 +17,10 @@
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000100/receipt.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000025/receipt.json",
-    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000050/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/bootstrap_test.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed30.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/frame_grpo_seed31.json",
@@ -17948,16 +17949,13 @@
     "post_update_audio_rms_difference": 0.12982665997751866
   },
   "muse": {
-    "status": "muse_songeval_yue2_matched_heldout_pair",
+    "status": "measured_shared_prompt_muse_pair",
     "model": "Muse-0.6b + MuCodec",
     "reward_model": "SongEval",
     "optimizer_step": 1,
     "heldout_prompt": "Please generate a song in the following style: English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM.\n[Verse][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
-    "heldout_style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
-    "heldout_lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
     "heldout_seed": 5101,
-    "max_new_tokens": 500,
-    "force_length": true,
+    "shared_replay_receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json",
     "before": {
       "reward": {
         "Coherence": 2.944,
@@ -17965,17 +17963,17 @@
         "Memorability": 2.9134,
         "Clarity": 2.903,
         "Naturalness": 2.6803,
-        "mean": 2.8775800000000005
+        "mean": 2.87758
       },
       "signal": {
         "seconds": 19.76,
+        "sample_rate": 48000,
         "peak": 0.47467041015625,
         "rms": 0.05396487027538554,
         "near_full_scale_fraction": 0,
         "flat_top_fraction": 5.271592442645074e-7
       },
-      "generated_tokens": 500,
-      "audio_tokens": 494
+      "audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c"
     },
     "after": {
       "reward": {
@@ -17988,62 +17986,99 @@
       },
       "signal": {
         "seconds": 19.76,
+        "sample_rate": 48000,
         "peak": 0.971527099609375,
         "rms": 0.09412100271230384,
         "near_full_scale_fraction": 0,
         "flat_top_fraction": 5.271592442645074e-7
       },
-      "generated_tokens": 500,
-      "audio_tokens": 494
+      "audio_sha256": "0fa95a186893499252978e856bd279d082aa04c56a2cddcb8368de2cb1d8ee26"
     },
-    "caveat": "One short held-out prompt/seed; score changes are not a human-quality claim."
+    "cross_reward": {
+      "before": {
+        "Coherence": 3.09375,
+        "Musicality": 2.9375,
+        "Memorability": 3.015625,
+        "Clarity": 2.6875,
+        "Naturalness": 2.890625,
+        "mean": 2.925
+      },
+      "after": {
+        "Coherence": 3.53125,
+        "Musicality": 1.765625,
+        "Memorability": 3.828125,
+        "Clarity": 3.125,
+        "Naturalness": 3.21875,
+        "mean": 3.09375
+      }
+    },
+    "caveat": "One prompt and seed; the two reward scales are separate and these scores are not human preference judgments."
   },
   "musecritic": {
-    "status": "one_step_musecritic_grpo_heldout_pair",
+    "status": "measured_shared_prompt_muse_pair",
     "model": "Muse-0.6b + MuCodec",
     "reward_model": "MuseCritic",
-    "heldout_prompt": "Please generate a song in the following style: English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM.\n[Verse][desc:Intimate melody and natural acoustic accompaniment.][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
+    "optimizer_step": 1,
+    "heldout_prompt": "Please generate a song in the following style: English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM.\n[Verse][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
     "heldout_seed": 5101,
-    "generated_token_difference": 479,
+    "shared_replay_receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json",
     "before": {
       "reward": {
-        "Coherence": 3.21875,
-        "Musicality": 3.171875,
-        "Memorability": 3.125,
-        "Clarity": 2.8125,
-        "Naturalness": 3.0625,
-        "mean": 3.078125
+        "Coherence": 3.09375,
+        "Musicality": 2.9375,
+        "Memorability": 3.015625,
+        "Clarity": 2.6875,
+        "Naturalness": 2.890625,
+        "mean": 2.925
       },
       "signal": {
-        "seconds": 10.24,
-        "peak": 0.19693364202976227,
-        "rms": 0.028642967365519766,
+        "seconds": 19.76,
+        "sample_rate": 48000,
+        "peak": 0.47467041015625,
+        "rms": 0.05396487027538554,
         "near_full_scale_fraction": 0,
-        "flat_top_fraction": 0.0000010172526041666667
+        "flat_top_fraction": 5.271592442645074e-7
       },
-      "generated_tokens": 500,
-      "audio_tokens": 493
+      "audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c"
     },
     "after": {
       "reward": {
-        "Coherence": 3.265625,
-        "Musicality": 1.796875,
-        "Memorability": 2.21875,
-        "Clarity": 2.09375,
-        "Naturalness": 3.28125,
-        "mean": 2.53125
+        "Coherence": 2.1875,
+        "Musicality": 1.7890625,
+        "Memorability": 2.625,
+        "Clarity": 2.140625,
+        "Naturalness": 2.828125,
+        "mean": 2.3140625
       },
       "signal": {
-        "seconds": 10.24,
-        "peak": 0.42237982153892517,
-        "rms": 0.05936361807949647,
+        "seconds": 19.76,
+        "sample_rate": 48000,
+        "peak": 0.977020263671875,
+        "rms": 0.10044456312186838,
         "near_full_scale_fraction": 0,
-        "flat_top_fraction": 0.0000010172526041666667
+        "flat_top_fraction": 5.271592442645074e-7
       },
-      "generated_tokens": 500,
-      "audio_tokens": 489
+      "audio_sha256": "1aad67359efa4595b6819bf7d60f0507e013e75004454d16b25d8df7ffeb8031"
     },
-    "caveat": "One short held-out prompt/seed after one small online GRPO update; reward and signal are not a human-quality or generalization claim."
+    "cross_reward": {
+      "before": {
+        "Coherence": 2.944,
+        "Musicality": 2.9472,
+        "Memorability": 2.9134,
+        "Clarity": 2.903,
+        "Naturalness": 2.6803,
+        "mean": 2.87758
+      },
+      "after": {
+        "Coherence": 2.376,
+        "Musicality": 2.481,
+        "Memorability": 2.2261,
+        "Clarity": 2.2652,
+        "Naturalness": 2.2278,
+        "mean": 2.31522
+      }
+    },
+    "caveat": "One prompt and seed; the two reward scales are separate and these scores are not human preference judgments."
   },
   "replays": {
     "lyrics": {
@@ -18763,7 +18798,7 @@
             "audio": "audio/muse_songeval_matched_before.flac",
             "wave": "visuals/muse_songeval_matched_before_wave.png",
             "spectrum": "visuals/muse_songeval_matched_before_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
             "receipt_key": "before",
             "metrics": {
               "reward": {
@@ -18772,17 +18807,35 @@
                 "Memorability": 2.9134,
                 "Clarity": 2.903,
                 "Naturalness": 2.6803,
-                "mean": 2.8775800000000005
+                "mean": 2.87758
               },
               "signal": {
                 "seconds": 19.76,
+                "sample_rate": 48000,
                 "peak": 0.47467041015625,
                 "rms": 0.05396487027538554,
                 "near_full_scale_fraction": 0,
                 "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 494
+              "audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 3.09375,
+                "Musicality": 2.9375,
+                "Memorability": 3.015625,
+                "Clarity": 2.6875,
+                "Naturalness": 2.890625,
+                "mean": 2.925
+              },
+              "after": {
+                "Coherence": 3.53125,
+                "Musicality": 1.765625,
+                "Memorability": 3.828125,
+                "Clarity": 3.125,
+                "Naturalness": 3.21875,
+                "mean": 3.09375
+              }
             }
           },
           {
@@ -18791,7 +18844,7 @@
             "audio": "audio/muse_songeval_matched_after.flac",
             "wave": "visuals/muse_songeval_matched_after_wave.png",
             "spectrum": "visuals/muse_songeval_matched_after_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
             "receipt_key": "after",
             "metrics": {
               "reward": {
@@ -18804,14 +18857,40 @@
               },
               "signal": {
                 "seconds": 19.76,
+                "sample_rate": 48000,
                 "peak": 0.971527099609375,
                 "rms": 0.09412100271230384,
                 "near_full_scale_fraction": 0,
                 "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 494
+              "audio_sha256": "0fa95a186893499252978e856bd279d082aa04c56a2cddcb8368de2cb1d8ee26"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 3.09375,
+                "Musicality": 2.9375,
+                "Memorability": 3.015625,
+                "Clarity": 2.6875,
+                "Naturalness": 2.890625,
+                "mean": 2.925
+              },
+              "after": {
+                "Coherence": 3.53125,
+                "Musicality": 1.765625,
+                "Memorability": 3.828125,
+                "Clarity": 3.125,
+                "Naturalness": 3.21875,
+                "mean": 3.09375
+              }
             }
+          },
+          {
+            "step": 25,
+            "status": "pending"
+          },
+          {
+            "step": 50,
+            "status": "pending"
           },
           {
             "step": 100,
@@ -18825,7 +18904,7 @@
       },
       "musecritic": {
         "name": "Muse-0.6b + MuCodec · MuseCritic GRPO",
-        "style": "English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM; intimate melody and natural accompaniment",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
         "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
         "seed": 5101,
         "reference": null,
@@ -18834,161 +18913,185 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/muse_musecritic_before.wav",
-            "wave": "visuals/muse_musecritic_before_wave.png",
-            "spectrum": "visuals/muse_musecritic_before_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
+            "audio": "audio/muse_songeval_matched_before.flac",
+            "wave": "visuals/muse_songeval_matched_before_wave.png",
+            "spectrum": "visuals/muse_songeval_matched_before_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
             "receipt_key": "before",
             "metrics": {
               "reward": {
-                "Coherence": 3.21875,
-                "Musicality": 3.171875,
-                "Memorability": 3.125,
-                "Clarity": 2.8125,
-                "Naturalness": 3.0625,
-                "mean": 3.078125
+                "Coherence": 3.09375,
+                "Musicality": 2.9375,
+                "Memorability": 3.015625,
+                "Clarity": 2.6875,
+                "Naturalness": 2.890625,
+                "mean": 2.925
               },
               "signal": {
-                "seconds": 10.24,
-                "peak": 0.19693364202976227,
-                "rms": 0.028642967365519766,
+                "seconds": 19.76,
+                "sample_rate": 48000,
+                "peak": 0.47467041015625,
+                "rms": 0.05396487027538554,
                 "near_full_scale_fraction": 0,
-                "flat_top_fraction": 0.0000010172526041666667
+                "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 493
+              "audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 2.944,
+                "Musicality": 2.9472,
+                "Memorability": 2.9134,
+                "Clarity": 2.903,
+                "Naturalness": 2.6803,
+                "mean": 2.87758
+              },
+              "after": {
+                "Coherence": 2.376,
+                "Musicality": 2.481,
+                "Memorability": 2.2261,
+                "Clarity": 2.2652,
+                "Naturalness": 2.2278,
+                "mean": 2.31522
+              }
             }
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/muse_musecritic_after.wav",
-            "wave": "visuals/muse_musecritic_after_wave.png",
-            "spectrum": "visuals/muse_musecritic_after_spectrum.png",
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
+            "audio": "audio/muse_shared_musecritic_000001.flac",
+            "wave": "visuals/muse_shared_musecritic_000001_wave.png",
+            "spectrum": "visuals/muse_shared_musecritic_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
             "receipt_key": "after",
             "metrics": {
               "reward": {
-                "Coherence": 3.265625,
-                "Musicality": 1.796875,
-                "Memorability": 2.21875,
-                "Clarity": 2.09375,
-                "Naturalness": 3.28125,
-                "mean": 2.53125
+                "Coherence": 2.1875,
+                "Musicality": 1.7890625,
+                "Memorability": 2.625,
+                "Clarity": 2.140625,
+                "Naturalness": 2.828125,
+                "mean": 2.3140625
               },
               "signal": {
-                "seconds": 10.24,
-                "peak": 0.42237982153892517,
-                "rms": 0.05936361807949647,
+                "seconds": 19.76,
+                "sample_rate": 48000,
+                "peak": 0.977020263671875,
+                "rms": 0.10044456312186838,
                 "near_full_scale_fraction": 0,
-                "flat_top_fraction": 0.0000010172526041666667
+                "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 489
+              "audio_sha256": "1aad67359efa4595b6819bf7d60f0507e013e75004454d16b25d8df7ffeb8031"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 2.944,
+                "Musicality": 2.9472,
+                "Memorability": 2.9134,
+                "Clarity": 2.903,
+                "Naturalness": 2.6803,
+                "mean": 2.87758
+              },
+              "after": {
+                "Coherence": 2.376,
+                "Musicality": 2.481,
+                "Memorability": 2.2261,
+                "Clarity": 2.2652,
+                "Naturalness": 2.2278,
+                "mean": 2.31522
+              }
             }
           },
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/muse_musecritic_000025.wav",
-            "wave": "visuals/muse_musecritic_000025_wave.png",
-            "spectrum": "visuals/muse_musecritic_000025_spectrum.png",
-            "paired_baseline": {
-              "audio": "audio/muse_musecritic_000025_before.wav",
-              "wave": "visuals/muse_musecritic_000025_before_wave.png",
-              "spectrum": "visuals/muse_musecritic_000025_before_spectrum.png",
-              "metrics": {
-                "reward": {
-                  "Coherence": 2.46875,
-                  "Musicality": 2.609375,
-                  "Memorability": 2.890625,
-                  "Clarity": 2.625,
-                  "Naturalness": 2.65625,
-                  "mean": 2.65
-                },
-                "signal": {
-                  "seconds": 10.24,
-                  "peak": 0.14160650968551636,
-                  "rms": 0.027316806633556037,
-                  "near_full_scale_fraction": 0,
-                  "flat_top_fraction": 0.0000010172526041666667
-                },
-                "generated_tokens": 500,
-                "audio_tokens": 493
-              }
-            },
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000025/receipt.json",
+            "audio": "audio/muse_shared_musecritic_000025.flac",
+            "wave": "visuals/muse_shared_musecritic_000025_wave.png",
+            "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json",
             "receipt_key": "after",
             "metrics": {
               "reward": {
-                "Coherence": 2.09375,
-                "Musicality": 1.484375,
-                "Memorability": 1.640625,
-                "Clarity": 2.53125,
-                "Naturalness": 3.03125,
-                "mean": 2.15625
+                "Coherence": 3.171875,
+                "Musicality": 3.078125,
+                "Memorability": 3.046875,
+                "Clarity": 2.8125,
+                "Naturalness": 2.90625,
+                "mean": 3.003125
               },
               "signal": {
-                "seconds": 10.24,
-                "peak": 0.91062992811203,
-                "rms": 0.09598892755547636,
+                "seconds": 19.76,
+                "sample_rate": 48000,
+                "peak": 0.8580322265625,
+                "rms": 0.1073106442253027,
                 "near_full_scale_fraction": 0,
-                "flat_top_fraction": 0.0000010172526041666667
+                "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 491
+              "audio_sha256": "6b9bdc93767a33f970c540c2594dd205d8e6783fb71ca3d909181bec24dadfcd"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 2.944,
+                "Musicality": 2.9472,
+                "Memorability": 2.9134,
+                "Clarity": 2.903,
+                "Naturalness": 2.6803,
+                "mean": 2.87758
+              },
+              "after": {
+                "Coherence": 3.3459,
+                "Musicality": 3.2019,
+                "Memorability": 3.3227,
+                "Clarity": 3.1844,
+                "Naturalness": 3.0625,
+                "mean": 3.22348
+              }
             }
           },
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/muse_musecritic_000050.wav",
-            "wave": "visuals/muse_musecritic_000050_wave.png",
-            "spectrum": "visuals/muse_musecritic_000050_spectrum.png",
-            "paired_baseline": {
-              "audio": "audio/muse_musecritic_000050_before.wav",
-              "wave": "visuals/muse_musecritic_000050_before_wave.png",
-              "spectrum": "visuals/muse_musecritic_000050_before_spectrum.png",
-              "metrics": {
-                "reward": {
-                  "Coherence": 3.40625,
-                  "Musicality": 3.296875,
-                  "Memorability": 3.265625,
-                  "Clarity": 2.984375,
-                  "Naturalness": 3.1875,
-                  "mean": 3.228125
-                },
-                "signal": {
-                  "seconds": 10.24,
-                  "peak": 0.15884070098400116,
-                  "rms": 0.027948622633560155,
-                  "near_full_scale_fraction": 0,
-                  "flat_top_fraction": 0.0000010172526041666667
-                },
-                "generated_tokens": 500,
-                "audio_tokens": 493
-              }
-            },
-            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000050/receipt.json",
+            "audio": "audio/muse_shared_musecritic_000050.flac",
+            "wave": "visuals/muse_shared_musecritic_000050_wave.png",
+            "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json",
             "receipt_key": "after",
             "metrics": {
               "reward": {
-                "Coherence": 3.75,
-                "Musicality": 3.625,
-                "Memorability": 3.640625,
-                "Clarity": 3.3125,
-                "Naturalness": 3.53125,
-                "mean": 3.571875
+                "Coherence": 2.625,
+                "Musicality": 2.875,
+                "Memorability": 2.90625,
+                "Clarity": 2.578125,
+                "Naturalness": 3,
+                "mean": 2.796875
               },
               "signal": {
-                "seconds": 10.24,
-                "peak": 0.5353332161903381,
-                "rms": 0.06436061838755999,
+                "seconds": 19.76,
+                "sample_rate": 48000,
+                "peak": 0.97021484375,
+                "rms": 0.09937204028155179,
                 "near_full_scale_fraction": 0,
-                "flat_top_fraction": 0.0000010172526041666667
+                "flat_top_fraction": 5.271592442645074e-7
               },
-              "generated_tokens": 500,
-              "audio_tokens": 493
+              "audio_sha256": "67a55931eb0931fb7e98a445a9a3446842b8ba43b9d2003a75f4acb8f9760fcc"
+            },
+            "cross_reward": {
+              "before": {
+                "Coherence": 2.944,
+                "Musicality": 2.9472,
+                "Memorability": 2.9134,
+                "Clarity": 2.903,
+                "Naturalness": 2.6803,
+                "mean": 2.87758
+              },
+              "after": {
+                "Coherence": 3.4051,
+                "Musicality": 3.3893,
+                "Memorability": 3.219,
+                "Clarity": 3.2341,
+                "Naturalness": 3.1067,
+                "mean": 3.2708399999999997
+              }
             }
           },
           {

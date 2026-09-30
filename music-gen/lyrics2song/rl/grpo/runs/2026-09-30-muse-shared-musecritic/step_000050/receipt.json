@@ -1,0 +1,66 @@
+{
+  "status": "measured_shared_prompt_muse_pair",
+  "model": "Muse-0.6b + MuCodec",
+  "reward_model": "MuseCritic",
+  "optimizer_step": 50,
+  "heldout_prompt": "Please generate a song in the following style: English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM.\n[Verse][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
+  "heldout_seed": 5101,
+  "shared_replay_receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json",
+  "before": {
+    "reward": {
+      "Coherence": 3.09375,
+      "Musicality": 2.9375,
+      "Memorability": 3.015625,
+      "Clarity": 2.6875,
+      "Naturalness": 2.890625,
+      "mean": 2.925
+    },
+    "signal": {
+      "seconds": 19.76,
+      "sample_rate": 48000,
+      "peak": 0.47467041015625,
+      "rms": 0.05396487027538554,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 5.271592442645074e-07
+    },
+    "audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c"
+  },
+  "after": {
+    "reward": {
+      "Coherence": 2.625,
+      "Musicality": 2.875,
+      "Memorability": 2.90625,
+      "Clarity": 2.578125,
+      "Naturalness": 3.0,
+      "mean": 2.796875
+    },
+    "signal": {
+      "seconds": 19.76,
+      "sample_rate": 48000,
+      "peak": 0.97021484375,
+      "rms": 0.09937204028155179,
+      "near_full_scale_fraction": 0.0,
+      "flat_top_fraction": 5.271592442645074e-07
+    },
+    "audio_sha256": "67a55931eb0931fb7e98a445a9a3446842b8ba43b9d2003a75f4acb8f9760fcc"
+  },
+  "cross_reward": {
+    "before": {
+      "Coherence": 2.944,
+      "Musicality": 2.9472,
+      "Memorability": 2.9134,
+      "Clarity": 2.903,
+      "Naturalness": 2.6803,
+      "mean": 2.87758
+    },
+    "after": {
+      "Coherence": 3.4051,
+      "Musicality": 3.3893,
+      "Memorability": 3.219,
+      "Clarity": 3.2341,
+      "Naturalness": 3.1067,
+      "mean": 3.2708399999999997
+    }
+  },
+  "caveat": "One prompt and seed; the two reward scales are separate and these scores are not human preference judgments."
+}

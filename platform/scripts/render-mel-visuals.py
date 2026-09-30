@@ -10,12 +10,22 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 import numpy as np
 from PIL import Image
 
 
 DEMOS = Path(__file__).resolve().parents[1] / "site" / "demos"
 AUDIO_EXTENSIONS = (".wav", ".flac", ".mp3")
+viridis = plt.get_cmap("viridis")
+black = np.array([0.0, 0.0, 0.0, 1.0])
+colors = np.vstack([
+    np.tile(black, (24, 1)),
+    np.array([(1 - amount) * black + amount * np.asarray(viridis(0.0))
+              for amount in np.linspace(0, 1, 16)]),
+    viridis(np.linspace(0, 1, 216)),
+])
+BLACK_FLOOR_VIRIDIS = ListedColormap(colors, name="black_floor_viridis")
 
 
 def audio_for_spectrum(spectrum: Path) -> Path:
@@ -43,12 +53,12 @@ def render(audio: Path, output: Path) -> None:
     db = 10 * np.log10(np.maximum(mel_power, 1e-12))
 
     width, height = Image.open(output).size if output.exists() else (1200, 320)
-    fig = plt.figure(figsize=(width / 100, height / 100), dpi=100, facecolor="#080d13")
-    ax = fig.add_axes([0.075, 0.055, 0.915, 0.925], facecolor="#080d13")
+    fig = plt.figure(figsize=(width / 100, height / 100), dpi=100, facecolor="#000000")
+    ax = fig.add_axes([0.075, 0.055, 0.915, 0.925], facecolor="#000000")
     mel_max = float(librosa.hz_to_mel(upper_hz))
     ax.imshow(db, origin="lower", aspect="auto", interpolation="nearest",
               extent=(0, len(samples) / sample_rate, 0, mel_max),
-              cmap="viridis", vmin=-80, vmax=0)
+              cmap=BLACK_FLOOR_VIRIDIS, vmin=-80, vmax=0)
     ticks_hz = [0, 1000, 4000, 8000, 12000, 16000, 20000, 24000]
     ticks_hz = [frequency for frequency in ticks_hz if frequency <= upper_hz]
     if upper_hz not in ticks_hz:

@@ -13,18 +13,23 @@ def main():
     parser.add_argument("--mucodec", type=Path, required=True)
     parser.add_argument("--token-file", type=Path, nargs="+", required=True)
     parser.add_argument("--steps", type=int, default=20)
+    parser.add_argument("--device", default="cuda:0")
     args = parser.parse_args()
     sys.path.insert(0, str(args.mucodec.resolve()))
     from generate import MuCodec
 
-    decoder = MuCodec(str(args.mucodec / "ckpt/mucodec.pt"), layer_num=7, load_main_model=True)
+    weights = args.mucodec / "ckpt/mucodec.pt"
+    if not weights.is_file():
+        weights = args.mucodec / "weights/mucodec.pt"
+    decoder = MuCodec(str(weights), layer_num=7, load_main_model=True, device=args.device)
     for path in args.token_file:
         row = json.loads(path.read_text())
         tokens = row["audio_tokens"]
         if len(tokens) < 32:
             raise ValueError(f"Too few audio tokens in {path}: {len(tokens)}")
         torch.manual_seed(20260929)
-        torch.cuda.manual_seed_all(20260929)
+        if args.device.startswith("cuda"):
+            torch.cuda.manual_seed_all(20260929)
         codes = torch.tensor(tokens, dtype=torch.long).view(1, 1, -1)
         with torch.inference_mode():
             wave = decoder.code2sound(codes, prompt=None, duration=40.96,

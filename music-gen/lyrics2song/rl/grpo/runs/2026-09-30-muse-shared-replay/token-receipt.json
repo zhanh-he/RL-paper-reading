@@ -1,0 +1,56 @@
+{
+  "status": "shared_muse_prompt_token_replay",
+  "model": "/home/mengh/research/vocal2accomp-muse/models/Muse-0.6b",
+  "prompt": "Please generate a song in the following style: English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM.\n[Verse][lyrics:\nUnder open skies we roam\nEvery little road leads home]",
+  "seed": 5101,
+  "max_new_tokens": 500,
+  "force_length": true,
+  "sampling": {
+    "temperature": 0.9,
+    "top_p": 0.9,
+    "repetition_penalty": 1.3
+  },
+  "stages": {
+    "baseline": {
+      "adapter": null,
+      "adapter_sha256": null,
+      "token_file": "baseline_tokens.json",
+      "generated_tokens": 500,
+      "audio_tokens": 494,
+      "changed_tokens_vs_baseline": 0
+    },
+    "songeval-1": {
+      "adapter": "/home/mengh/research/Muse-posttrain/outputs/2026-09-30-crossreward-fixed/adapters/songeval-1",
+      "adapter_sha256": "9a8ffba3558d7abcd948b6658a7ce8f0cc6ed980d471d2d4df27c1c15fc70c91",
+      "token_file": "songeval-1_tokens.json",
+      "generated_tokens": 500,
+      "audio_tokens": 494,
+      "changed_tokens_vs_baseline": 465
+    },
+    "musecritic-1": {
+      "adapter": "/home/mengh/research/Muse-posttrain/outputs/2026-09-30-crossreward-fixed/adapters/musecritic-1",
+      "adapter_sha256": "1b0fa83e8e207350520e07e1437aef247d491fdee79347093a58f49b50a53044",
+      "token_file": "musecritic-1_tokens.json",
+      "generated_tokens": 500,
+      "audio_tokens": 494,
+      "changed_tokens_vs_baseline": 445
+    },
+    "musecritic-25": {
+      "adapter": "/home/mengh/research/Muse-posttrain/outputs/2026-09-30-crossreward-fixed/adapters/checkpoint-25",
+      "adapter_sha256": "7010f1eda10a91aa278f9266ff8a23fae491f51753446ef7087d05f6416b1146",
+      "token_file": "musecritic-25_tokens.json",
+      "generated_tokens": 500,
+      "audio_tokens": 494,
+      "changed_tokens_vs_baseline": 435
+    },
+    "musecritic-50": {
+      "adapter": "/home/mengh/research/Muse-posttrain/outputs/2026-09-30-crossreward-fixed/adapters/checkpoint-50",
+      "adapter_sha256": "cfdda7ab2ffbb2d2c491d663f5f49ed947e4648c14a8b6280ce9423f003f97c7",
+      "token_file": "musecritic-50_tokens.json",
+      "generated_tokens": 500,
+      "audio_tokens": 494,
+      "changed_tokens_vs_baseline": 445
+    }
+  },
+  "note": "Tokens only; decoded audio and reward scores require separate verification."
+}

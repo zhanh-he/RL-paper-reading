@@ -1,0 +1,42 @@
+{
+  "baseline": {
+    "Coherence": 3.09375,
+    "Musicality": 2.9375,
+    "Memorability": 3.015625,
+    "Clarity": 2.6875,
+    "Naturalness": 2.890625,
+    "mean": 2.925
+  },
+  "songeval-1": {
+    "Coherence": 3.53125,
+    "Musicality": 1.765625,
+    "Memorability": 3.828125,
+    "Clarity": 3.125,
+    "Naturalness": 3.21875,
+    "mean": 3.09375
+  },
+  "musecritic-1": {
+    "Coherence": 2.1875,
+    "Musicality": 1.7890625,
+    "Memorability": 2.625,
+    "Clarity": 2.140625,
+    "Naturalness": 2.828125,
+    "mean": 2.3140625
+  },
+  "musecritic-25": {
+    "Coherence": 3.171875,
+    "Musicality": 3.078125,
+    "Memorability": 3.046875,
+    "Clarity": 2.8125,
+    "Naturalness": 2.90625,
+    "mean": 3.003125
+  },
+  "musecritic-50": {
+    "Coherence": 2.625,
+    "Musicality": 2.875,
+    "Memorability": 2.90625,
+    "Clarity": 2.578125,
+    "Naturalness": 3.0,
+    "mean": 2.796875
+  }
+}

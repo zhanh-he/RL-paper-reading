@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=64GB
+#PBS -l jobfs=30GB
+#PBS -l walltime=00:45:00
+#PBS -l storage=gdata/wa66+scratch/iv96+scratch/wa66
+#PBS -l wd
+#PBS -N muse-shared-decode
+set -euo pipefail
+
+module purge
+module load python3/3.11.7
+module load cuda/12.8.0
+: "${LAB_ROOT:?Set LAB_ROOT to the Muse checkout}"
+: "${REPLAY:?Set REPLAY to the shared token replay directory}"
+: "${CODEC_PY:?Set CODEC_PY to the MuCodec environment Python}"
+
+export LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}"
+cd "$LAB_ROOT/src/MuCodec"
+"$CODEC_PY" "$REPLAY/decode_muse_tokens.py" \
+  --mucodec "$LAB_ROOT/src/MuCodec" --steps 20 \
+  --token-file "$REPLAY/baseline_tokens.json" \
+    "$REPLAY/songeval-1_tokens.json" \
+    "$REPLAY/musecritic-1_tokens.json" \
+    "$REPLAY/musecritic-25_tokens.json" \
+    "$REPLAY/musecritic-50_tokens.json"

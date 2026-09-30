@@ -4,7 +4,8 @@ These images are generated from the adjacent public audio assets. Each waveform
 uses a linear peak envelope. The spectrograms are mel-frequency power spectra,
 not CQT or log-Hz FFT plots. They extend to 24 kHz for 48 kHz audio, or the
 source Nyquist frequency when lower (22.05 kHz for 44.1 kHz audio). All use a
-fixed viridis palette and -80 to 0 dB display limits for paired comparison.
+fixed black-floor viridis palette and -80 to 0 dB display limits for paired
+comparison. The quietest bins and the image background are pure black.
 
 ```sh
 ffmpeg -hide_banner -loglevel error -y -i "$INPUT" -filter_complex 'aformat=channel_layouts=mono,showwavespic=s=1200x140:colors=0x31bba6:scale=lin:filter=peak' -frames:v 1 "${STEM}_wave.png"

@@ -43,24 +43,26 @@
       "seed": 5101,
       "reference": null,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.flac", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json", "receipt_key": "before" },
-        { "step": 1, "status": "measured", "audio": "audio/muse_songeval_matched_after.flac", "wave": "visuals/muse_songeval_matched_after_wave.png", "spectrum": "visuals/muse_songeval_matched_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json", "receipt_key": "after" },
+        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.flac", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "before" },
+        { "step": 1, "status": "measured", "audio": "audio/muse_songeval_matched_after.flac", "wave": "visuals/muse_songeval_matched_after_wave.png", "spectrum": "visuals/muse_songeval_matched_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "after" },
+        { "step": 25, "status": "pending" },
+        { "step": 50, "status": "pending" },
         { "step": 100, "status": "pending" },
         { "step": 300, "status": "pending" }
       ]
     },
     "musecritic": {
       "name": "Muse-0.6b + MuCodec · MuseCritic GRPO",
-      "style": "English acoustic folk, fingerpicked guitar, soft percussion, male vocal, 92 BPM; intimate melody and natural accompaniment",
+      "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
       "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
       "seed": 5101,
       "reference": null,
       "reward_model": "MuseCritic",
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/muse_musecritic_before.wav", "wave": "visuals/muse_musecritic_before_wave.png", "spectrum": "visuals/muse_musecritic_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "before" },
-        { "step": 1, "status": "measured", "audio": "audio/muse_musecritic_after.wav", "wave": "visuals/muse_musecritic_after_wave.png", "spectrum": "visuals/muse_musecritic_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json", "receipt_key": "after" },
-        { "step": 25, "status": "measured", "audio": "audio/muse_musecritic_000025.wav", "wave": "visuals/muse_musecritic_000025_wave.png", "spectrum": "visuals/muse_musecritic_000025_spectrum.png", "paired_baseline": { "audio": "audio/muse_musecritic_000025_before.wav", "wave": "visuals/muse_musecritic_000025_before_wave.png", "spectrum": "visuals/muse_musecritic_000025_before_spectrum.png" }, "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000025/receipt.json", "receipt_key": "after" },
-        { "step": 50, "status": "measured", "audio": "audio/muse_musecritic_000050.wav", "wave": "visuals/muse_musecritic_000050_wave.png", "spectrum": "visuals/muse_musecritic_000050_spectrum.png", "paired_baseline": { "audio": "audio/muse_musecritic_000050_before.wav", "wave": "visuals/muse_musecritic_000050_before_wave.png", "spectrum": "visuals/muse_musecritic_000050_before_spectrum.png" }, "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000050/receipt.json", "receipt_key": "after" },
+        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.flac", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "before" },
+        { "step": 1, "status": "measured", "audio": "audio/muse_shared_musecritic_000001.flac", "wave": "visuals/muse_shared_musecritic_000001_wave.png", "spectrum": "visuals/muse_shared_musecritic_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "after" },
+        { "step": 25, "status": "measured", "audio": "audio/muse_shared_musecritic_000025.flac", "wave": "visuals/muse_shared_musecritic_000025_wave.png", "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json", "receipt_key": "after" },
+        { "step": 50, "status": "measured", "audio": "audio/muse_shared_musecritic_000050.flac", "wave": "visuals/muse_shared_musecritic_000050_wave.png", "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json", "receipt_key": "after" },
         { "step": 100, "status": "queued", "job": "180204792.gadi-pbs" },
         { "step": 300, "status": "pending" }
       ]

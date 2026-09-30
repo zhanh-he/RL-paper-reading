@@ -1,20 +1,26 @@
 import { access, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
 const output = resolve(root, 'platform/site/demos/results.json');
-const musePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-matched/receipt.json';
+const musePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json';
 const muse = await readJson(musePath);
+const sharedMusePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json';
+const sharedMuse = await readJson(sharedMusePath);
 const replaysPath = 'platform/site/demos/replays.json';
 const replays = await readJson(replaysPath);
 if (replays.lyrics.muse.style !== replays.lyrics.yue2.style ||
     replays.lyrics.muse.lyrics !== replays.lyrics.yue2.lyrics ||
     replays.lyrics.muse.seed !== replays.lyrics.yue2.seed ||
-    muse.heldout_style !== replays.lyrics.yue2.style ||
-    muse.heldout_lyrics !== replays.lyrics.yue2.lyrics ||
-    muse.heldout_seed !== replays.lyrics.yue2.seed) {
-  throw new Error('Muse SongEval public replay must use the YuE2 held-out style, lyrics and seed');
+    replays.lyrics.musecritic.style !== replays.lyrics.yue2.style ||
+    replays.lyrics.musecritic.lyrics !== replays.lyrics.yue2.lyrics ||
+    replays.lyrics.musecritic.seed !== replays.lyrics.yue2.seed ||
+    muse.heldout_prompt !== sharedMuse.prompt ||
+    muse.heldout_seed !== sharedMuse.seed ||
+    replays.lyrics.muse.stages[0].audio !== replays.lyrics.musecritic.stages[0].audio) {
+  throw new Error('Muse arms must share YuE2 prompt metadata and the same frozen Muse replay');
 }
 const choralDemoPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic';
 const eventPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head';
@@ -117,6 +123,12 @@ for (const entry of Object.values(replays.lyrics)) {
       throw new Error(`Measured lyrics step ${stage.step} has incomplete reward or signal metrics`);
     }
     stage.metrics = metrics;
+    if (receipt.cross_reward) stage.cross_reward = receipt.cross_reward;
+    if (receipt.shared_replay_receipt === sharedMusePath) {
+      const expectedHash = receipt[stage.receipt_key]?.audio_sha256;
+      const actualHash = createHash('sha256').update(await readFile(resolve(root, 'platform/site/demos', stage.audio))).digest('hex');
+      if (actualHash !== expectedHash) throw new Error(`Muse ${stage.step} audio differs from scored receipt`);
+    }
     if (stage.paired_baseline) {
       const paired = receipt.before;
       if (!['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness', 'mean'].every((key) => Number.isFinite(paired?.reward?.[key])) ||
@@ -189,6 +201,7 @@ yue2Stress100.probe = {
 const result = {
   generated_from: [...new Set([
     replaysPath,
+    sharedMusePath,
     yue2ProbePath,
     `${choralDemoPath}/notes.json`,
     `${choralDemoPath}/receipt.json`,
@@ -254,7 +267,7 @@ const result = {
   yue2: await readJson('music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json'),
   yue2_verification: await readJson('music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/verification.json'),
   muse,
-  musecritic: await readJson('music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json'),
+  musecritic: await readJson('music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json'),
   replays,
 };
 const serialized = `${JSON.stringify(result, null, 2)}\n`;
