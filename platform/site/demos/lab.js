@@ -595,6 +595,29 @@ function renderLyrics(data) {
     const pending = descriptor.stages.filter((stage) => stage.status === 'pending').map((stage) => stage.step);
     const running = descriptor.stages.filter((stage) => stage.status === 'running').map((stage) => stage.step);
     $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
+    const isYuE2 = model.startsWith('yue2');
+    $('#lyrics-heldout-section').hidden = !isYuE2;
+    $('#lyrics-reward-title').textContent = isYuE2 ? '优化目标 · SongEval 五维均值' :
+      model === 'musecritic' ? '优化目标 · MuseCritic Mean5' : '优化目标 · SongEval 五维均值';
+    $('#lyrics-reward-definition').textContent = isYuE2 || model === 'muse'
+      ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。它评估音频审美；coverage、乐器 richness、beat 和歌词匹配都没有作为独立 reward，完整时长或削波也没有显式约束。'
+      : 'MuseCritic 的五项审美分数取均值，与 SongEval 不是同一量表；词句准确度和音频故障仍需独立检查。';
+    $('#lyrics-train-protocol').textContent = isYuE2
+      ? `YuE2：8 条原创训练提示，每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${model === 'yue2_stress' ? '1e-4（压力测试）' : '2e-5（常规对照）'}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；本轮无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。`
+      : model === 'musecritic' ? 'MuseCritic：独立的 Muse + MuCodec 在线训练；25/50 步实验从 100 条公开提示采样。解码有随机性，单条 A/B 不能直接归因于参数更新。' :
+        'Muse：两条训练 rollout 的一步工程试验；单条留出试听只验证流程，不构成质量改善证据。';
+    if (isYuE2) {
+      const baseMean = baseline.mean_reward;
+      const armRows = [
+        ...models.yue2.stages.filter((stage) => stage.status === 'measured').map((stage) => ({ stage, arm: stage.step < 2 ? 'shared' : '2e-5' })),
+        ...models.yue2_stress.stages.filter((stage) => stage.status === 'measured' && stage.step >= 2).map((stage) => ({ stage, arm: '1e-4' })),
+      ].sort((a, b) => a.stage.step - b.stage.step || (a.arm === '2e-5' ? -1 : 1));
+      appendCells($('#lyrics-heldout-table'), armRows.map(({ stage, arm }) => [
+        arm, String(stage.step), `${fmt(stage.mean_reward)} (${signed(stage.mean_reward - baseMean, 4)})`,
+        fmt(stage.heldout_summary.max_peak, 4), `${stage.heldout_summary.near_full_scale_clips} / ${stage.heldout_summary.n}`,
+        `${stage.heldout_summary.truncated} / ${stage.heldout_summary.n}`,
+      ]));
+    }
     document.querySelector('[data-listen="candidate"]').textContent = `B · ${step} ${step === 1 ? 'step' : 'steps'}`;
     $('#lyrics-metric-head').textContent = `${step} ${step === 1 ? 'step' : 'steps'}`;
     const pairedBaseline = selected.paired_baseline || baseline;
@@ -616,7 +639,9 @@ function renderLyrics(data) {
       $('#lyrics-interpretation').textContent = `未训练重放波形完全相同；更新后 ${changed} 改变。本次留出片段 SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，两版均无满幅削波。只有 2 条训练 rollout、1 次优化与 1 条留出样本；不足以判断长程优化、听感改善或 reward hacking。`;
     } else if (model === 'musecritic') {
       $('#lyrics-interpretation').textContent = `MuseCritic GRPO ${step} 步的单条留出音频：均分 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。两版均无满幅削波。每个阶段使用各自的 A/B 解码，MuCodec 重解码存在随机性；相同 baseline token 在 25/50 步评估中也生成不同波形，故不能把单条分差全归因于 adapter。`;
-    } else if (step === 1) {
+    } else if (model === 'yue2_stress' && step === 5) {
+      $('#lyrics-interpretation').textContent = `高 LR 第 5 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，低于常规 LR 同步数。试听样本有 12 个近满幅采样（最长连续 4 个），其余两条没有。这是稀疏峰值异常；reward 没有上升，尚不能称为 reward hacking。`;
+    } else if (step === 1 && isYuE2) {
       $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {
       $('#lyrics-interpretation').textContent = `YuE2 ${step} 步：三条固定留出提示的 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前试听样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。主观偏好仍需独立核对，不能只凭 reward 认定改善。`;
@@ -684,7 +709,7 @@ window.addEventListener('hashchange', () => setView(location.hash.slice(1)));
 setView(location.hash.slice(1) || 'lyrics');
 if (window.lucide) window.lucide.createIcons();
 try {
-  const response = await fetch('./results.json');
+  const response = await fetch('./results.json', { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
   renderChoral(data.choral);

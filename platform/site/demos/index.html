@@ -6,9 +6,9 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20260930-midi" />
+    <link rel="stylesheet" href="./styles.css?v=20260930-lyrics-lr" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-midi"></script>
+    <script type="module" src="./lab.js?v=20260930-lyrics-stress"></script>
   </head>
   <body>
     <header class="app-header">
@@ -52,7 +52,7 @@
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">事件级 GRPO 已测</span><small>16 首训练、8 首测试，5.12 秒片段；完整歌曲尚未验证</small></div>
           <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">两个模型 baseline 已生成</span><small>LaDA-Band 权重已在 5090/Gadi 就位；本模型尚未完成推理或 GRPO</small></div>
-          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 100 步 GRPO 已测</span><small>Muse 与 MuseCritic 是独立实验；看配对与队列状态</small></div>
+          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 100 步已测 · 高 LR 对照运行中</span><small>Muse 与 MuseCritic 是独立实验；看配对与队列状态</small></div>
         </div>
       </section>
 
@@ -109,18 +109,20 @@
 
       <section class="lab-view" id="view-lyrics">
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Same prompt, same seed</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · lab5090</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
-        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · SongEval</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span>held-out seed 5101</span></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · LR 2e-5</button><button type="button" data-replay-model="yue2_stress" aria-pressed="false">YuE2 · LR 1e-4</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span>held-out seed 5101</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
+        <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
         <h3 class="subsection-heading">Checkpoint timeline</h3>
         <div class="stage-rail" id="lyrics-stage-rail" aria-label="Lyrics training stages"></div>
         <p class="stage-context" id="lyrics-stage-context"></p>
         <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Switch audio at the same position"><button type="button" data-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-listen="candidate" aria-pressed="false">B · 1 step</button></div><span id="listen-status" aria-live="polite">选择 A 或 B 开始播放</span></div>
         <div class="compare-grid" id="lyrics-compare"></div>
+        <section id="lyrics-heldout-section" class="lyrics-heldout-section"><h3 class="subsection-heading">YuE2 · learning-rate comparison · 3 held-out prompts</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>LR</th><th>Updates</th><th>SongEval mean (Δ vs 0)</th><th>Largest peak</th><th>Near full-scale clips</th><th>Truncated</th></tr></thead><tbody id="lyrics-heldout-table"></tbody></table></div><p class="stage-context">固定种子 5101–5103；600 semantic-token 上限可能截断歌曲。0/1 步两臂输出逐文件一致。峰值只作信号诊断，不能替代主观听感。</p></section>
         <h3 class="subsection-heading">Objective checks</h3>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Metric</th><th>Baseline</th><th id="lyrics-metric-head">1 step</th><th>Δ</th></tr></thead><tbody id="lyrics-metric-table"></tbody></table></div>
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lyrics-interpretation"></p></div>
         <form class="review-form" id="listening-review"><div><span class="source-label">Human listening review</span><h3>这段音频你更愿意保留哪版？</h3></div><label>Preference<select name="preference"><option value="">未选择</option><option value="baseline">A · Baseline</option><option value="candidate">B · 1 step</option><option value="tie">差不多</option></select></label><label>听感备注<input name="note" type="text" maxlength="240" placeholder="如：人声清晰度、杂音、旋律连续性" /></label><button class="button button-primary" type="submit"><i data-lucide="save" aria-hidden="true"></i>保存</button><span id="review-status" aria-live="polite"></span></form>
-        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rewards/songeval-grpo-protocol.md" target="_blank" rel="noreferrer">Reward and optimizer protocol ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
       </section>
 
       <section class="lab-view" id="view-songeval" hidden>

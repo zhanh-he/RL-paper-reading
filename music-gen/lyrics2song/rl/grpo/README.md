@@ -23,11 +23,13 @@ improvement or full-scale clipping.
 
 A separate [MuseCritic one-step online GRPO](runs/2026-09-30-musecritic-smoke/receipt.json)
 completed on Gadi. Its [held-out pair](runs/2026-09-30-musecritic-heldout/receipt.json)
-fell from 3.0781 to 2.5313 on MuseCritic's own scale. Another Gadi job is
-training 50 steps from about 100 public MuseCritic prompts, with dependent
-held-out evaluation at 25 and 50; those are not results yet. `gadi_musecritic_smoke.pbs`
-is parameterized for that run. Do not compare SongEval and MuseCritic numbers
-as if they were the same reward.
+fell from 3.0781 to 2.5313 on MuseCritic's own scale. A 100-prompt Gadi run
+also completed 25 and 50 steps, with [paired 25-step](runs/2026-09-30-musecritic-longrun/step_000025/receipt.json)
+and [50-step](runs/2026-09-30-musecritic-longrun/step_000050/receipt.json)
+held-out replays. MuCodec decoding is stochastic, so those one-song audio
+differences cannot be attributed solely to the adapter. `gadi_musecritic_smoke.pbs`
+is the job template. Do not compare SongEval and MuseCritic numbers as if
+they were the same reward.
 
 These are still small pilot experiments, not adequately powered music-quality
 claims. Longer-run GRPO needs blind listening, duration/loudness controls,

@@ -108,7 +108,27 @@ for (const entry of Object.values(replays.lyrics)) {
       }
       stage.paired_baseline.metrics = paired;
     }
-    if (Number.isFinite(receipt.mean_reward)) stage.mean_reward = receipt.mean_reward;
+    if (stage.receipt_key === 'heldout:0') {
+      if (receipt.optimizer_step !== stage.step || receipt.heldout?.length !== 3) {
+        throw new Error(`YuE2 stage ${stage.step} needs three matching held-out prompts`);
+      }
+      const mean = (values) => values.reduce((sum, value) => sum + value, 0) / values.length;
+      const dimensions = ['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness'];
+      const scores = Object.fromEntries(dimensions.map((key) =>
+        [key, mean(receipt.heldout.map((item) => item.reward[key]))]));
+      const recomputed = mean(receipt.heldout.map((item) => item.reward.mean));
+      if (!Number.isFinite(receipt.mean_reward) || Math.abs(recomputed - receipt.mean_reward) > 1e-6) {
+        throw new Error(`YuE2 stage ${stage.step} has an inconsistent held-out mean`);
+      }
+      stage.mean_reward = recomputed;
+      stage.heldout_summary = {
+        n: 3,
+        scores,
+        max_peak: Math.max(...receipt.heldout.map((item) => item.signal.peak)),
+        near_full_scale_clips: receipt.heldout.filter((item) => item.signal.near_full_scale_fraction > 0).length,
+        truncated: receipt.heldout.filter((item) => item.truncated?.semantic).length,
+      };
+    } else if (Number.isFinite(receipt.mean_reward)) stage.mean_reward = receipt.mean_reward;
     replayReceipts.add(stage.receipt);
   }
 }

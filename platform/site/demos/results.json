@@ -10,6 +10,7 @@
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-muse/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-heldout/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-musecritic-longrun/step_000025/receipt.json",
@@ -11576,7 +11577,20 @@
                 "semantic": true
               }
             },
-            "mean_reward": 3.84034
+            "mean_reward": 3.84034,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.958833333333333,
+                "Musicality": 3.8735666666666666,
+                "Memorability": 3.961866666666667,
+                "Clarity": 3.7848666666666664,
+                "Naturalness": 3.6225666666666663
+              },
+              "max_peak": 0.9242455959320068,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
           },
           {
             "step": 1,
@@ -11616,7 +11630,20 @@
                 "semantic": true
               }
             },
-            "mean_reward": 3.60298
+            "mean_reward": 3.60298,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7067,
+                "Musicality": 3.6257333333333333,
+                "Memorability": 3.6352333333333333,
+                "Clarity": 3.6155333333333335,
+                "Naturalness": 3.4316999999999998
+              },
+              "max_peak": 0.816169023513794,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
           },
           {
             "step": 5,
@@ -11656,7 +11683,20 @@
                 "semantic": true
               }
             },
-            "mean_reward": 3.616006666666666
+            "mean_reward": 3.616006666666666,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.685233333333333,
+                "Musicality": 3.6828000000000003,
+                "Memorability": 3.6825666666666663,
+                "Clarity": 3.5867333333333336,
+                "Naturalness": 3.4427
+              },
+              "max_peak": 0.8399021625518799,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
           },
           {
             "step": 50,
@@ -11696,7 +11736,20 @@
                 "semantic": true
               }
             },
-            "mean_reward": 3.570413333333333
+            "mean_reward": 3.570413333333333,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7038999999999995,
+                "Musicality": 3.6156,
+                "Memorability": 3.666733333333333,
+                "Clarity": 3.501466666666667,
+                "Naturalness": 3.3643666666666667
+              },
+              "max_peak": 0.9999998807907104,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            }
           },
           {
             "step": 100,
@@ -11736,15 +11789,197 @@
                 "semantic": true
               }
             },
-            "mean_reward": 3.6062666666666665
+            "mean_reward": 3.6062666666666665,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7386,
+                "Musicality": 3.6912000000000003,
+                "Memorability": 3.686133333333333,
+                "Clarity": 3.5334333333333334,
+                "Naturalness": 3.3819666666666666
+              },
+              "max_peak": 0.8511906862258911,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
+          }
+        ]
+      },
+      "yue2_stress": {
+        "name": "YuE2-3B · LR 1e-4",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "learning_rate": 0.0001,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000000.flac",
+            "wave": "visuals/yue2_longrun_000000_wave.png",
+            "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000000/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.8722,
+                "Musicality": 3.6763,
+                "Memorability": 3.9212,
+                "Clarity": 3.7496,
+                "Naturalness": 3.6249,
+                "mean": 3.76884
+              },
+              "signal": {
+                "peak": 0.9242455959320068,
+                "rms": 0.14428411252608547,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.84034,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.958833333333333,
+                "Musicality": 3.8735666666666666,
+                "Memorability": 3.961866666666667,
+                "Clarity": 3.7848666666666664,
+                "Naturalness": 3.6225666666666663
+              },
+              "max_peak": 0.9242455959320068,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
           },
           {
-            "step": 300,
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000001.flac",
+            "wave": "visuals/yue2_longrun_000001_wave.png",
+            "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000001/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.7008,
+                "Musicality": 3.7127,
+                "Memorability": 3.7244,
+                "Clarity": 3.6547,
+                "Naturalness": 3.5993,
+                "mean": 3.6783799999999998
+              },
+              "signal": {
+                "peak": 0.8074740171432495,
+                "rms": 0.13242658278818117,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.60298,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7067,
+                "Musicality": 3.6257333333333333,
+                "Memorability": 3.6352333333333333,
+                "Clarity": 3.6155333333333335,
+                "Naturalness": 3.4316999999999998
+              },
+              "max_peak": 0.816169023513794,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            }
+          },
+          {
+            "step": 5,
+            "status": "measured",
+            "audio": "audio/yue2_highlr_000005.flac",
+            "wave": "visuals/yue2_highlr_000005_wave.png",
+            "spectrum": "visuals/yue2_highlr_000005_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000005/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.4708,
+                "Musicality": 3.4686,
+                "Memorability": 3.2927,
+                "Clarity": 3.1093,
+                "Naturalness": 3.1391,
+                "mean": 3.2961
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.13543419199708207,
+                "near_full_scale_fraction": 0.000005208622701261181,
+                "flat_top_fraction": 0.000004774570809489416
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.4284733333333333,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.5940666666666665,
+                "Musicality": 3.5269,
+                "Memorability": 3.4649,
+                "Clarity": 3.322833333333333,
+                "Naturalness": 3.2336666666666667
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            }
+          },
+          {
+            "step": 50,
             "status": "pending"
           },
           {
-            "step": 1000,
-            "status": "pending"
+            "step": 100,
+            "status": "running"
           }
         ]
       },
@@ -11813,10 +12048,6 @@
           },
           {
             "step": 300,
-            "status": "pending"
-          },
-          {
-            "step": 1000,
             "status": "pending"
           }
         ]
@@ -11995,10 +12226,6 @@
           },
           {
             "step": 300,
-            "status": "pending"
-          },
-          {
-            "step": 1000,
             "status": "pending"
           }
         ]

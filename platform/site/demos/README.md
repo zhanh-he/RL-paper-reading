@@ -8,10 +8,15 @@ media file and rejects a `pending` stage that claims public media.
 
 Each case follows input, reference output (when a legitimate reference exists),
 baseline, then checkpoints ordered by **optimizer updates**. YuE2/SongEval has
-0/1/5/50/100 measured updates; its 100-step held-out reward is still below
-baseline. Muse has one-step SongEval and MuseCritic GRPO experiments, each with
-a same-prompt/same-seed held-out audio pair. A separate MuseCritic 25/50-step
-run is in progress; its stages are not marked measured yet. The ACE-Step 50-step
+0/1/5/50/100 measured updates at LR `2e-5`; its 100-step held-out reward is
+still below baseline. A separate LR `1e-4` stress arm starts from the same
+one-step LoRA and targets 100 total updates; its pending milestones must not
+be treated as results. The reward and optimization boundaries are in
+[`songeval-grpo-protocol.md`](../../../music-gen/lyrics2song/rewards/songeval-grpo-protocol.md).
+Muse has one-step SongEval and MuseCritic GRPO experiments, each with a
+same-prompt/same-seed held-out audio pair. A separate MuseCritic 25/50-step
+run has paired replays, but stochastic MuCodec decode limits attribution of
+one pair to the adapter. The ACE-Step 50-step
 *diffusion inference* output and AnyAccomp output are baselines, not GRPO
 checkpoints. ChoralStream has a public synthetic audio/MIDI comparison, but its
 frame-head GRPO has unchanged full-song note decoding. The separate MuScriptor

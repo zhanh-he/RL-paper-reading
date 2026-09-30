@@ -13,6 +13,10 @@ from the previous day's one-step LoRA.
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Mean SongEval, 3 held-out prompts | 3.8403 | 3.6030 | 3.6160 | 3.5704 | 3.6063 |
 
+At 100 updates, all three individual held-out SongEval means fell relative
+to the frozen base (changes `-0.2861`, `-0.0199`, `-0.3962`). This is a
+consistent negative result on these three prompts, not a population estimate.
+
 The 0-update output is the frozen YuE2 base in this evaluation configuration.
 The 1-update stage replays the **source adapter** (SHA-256
 `8dee8838d2c565bc6ffe777b8c95471e5e00cf3ca754e86d88cb1155242bd597`);
@@ -23,7 +27,9 @@ the [public replay](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
 offers one matched held-out audio example per milestone with waveform,
 spectrogram and signal diagnostics.
 
-At 100 updates, the three held-out peaks were 0.8512, 0.8165 and 0.8167,
+At 50 updates, one held-out audio had a peak near 1.0 but only about
+`0.00026%` of its samples were at or above 0.999. At 100 updates, the three
+held-out peaks were 0.8512, 0.8165 and 0.8167,
 with zero samples at or above 0.999. The held-out mean remains below the
 0-update baseline, so this run provides neither a quality-gain claim nor an
 example of pervasive clipping. The three prompts and one training seed are
