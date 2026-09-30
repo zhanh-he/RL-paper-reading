@@ -74,7 +74,7 @@
 
     <section aria-label="Training checkpoints"><h2>检查点</h2><div id="cards" class="cards"></div></section>
 
-    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th>组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。立体声峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
+    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th>组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。整体 RMS、峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
 
     <section aria-label="Training trajectory"><h2>训练采样轨迹</h2><canvas id="curve" width="1100" height="230" role="img" aria-label="Candidate reward and coverage versus GRPO step"></canvas><div class="legend"><span style="--color:#62c8b7">Reward 均值</span><span style="--color:#e1ac79">Coverage 均值</span></div></section>
 
@@ -143,7 +143,7 @@
           if (item.same_as_baseline) { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '与 baseline 音频逐字节相同'; card.append(note); }
           if (item.spectrum) { const imageLabel = document.createElement('div'); imageLabel.className = 'label'; imageLabel.style.marginTop = '12px'; imageLabel.textContent = '伴奏频谱'; card.append(imageLabel); const img = document.createElement('img'); img.src = item.spectrum; img.alt = `${label(step)} 伴奏频谱`; img.loading = 'lazy'; card.append(img); }
           const row = document.createElement('tr');
-          [label(step), fmt(item.reward), fmt(item.rms_coverage), fmt(item.beat_v2?.coverage_stft), fmt(item.onset_fit_proxy), fmt(item.beat_v2?.score), item.beat_v2 ? `${item.beat_v2.reference_beats}/${item.beat_v2.accompaniment_beats}` : '—', fmt(item.band_occupancy_proxy), fmt(item.spectral_flatness), fmt(item.beat_v2?.stereo_peak), fmt(item.beat_v2?.stereo_clipping_fraction, 5)].forEach(value => { const td = document.createElement('td'); td.textContent = value; row.append(td); });
+          [label(step), fmt(item.reward), fmt(item.rms_coverage), fmt(item.beat_v2?.coverage_stft), fmt(item.onset_fit_proxy), fmt(item.beat_v2?.score), item.beat_v2 ? `${item.beat_v2.reference_beats}/${item.beat_v2.accompaniment_beats}` : '—', fmt(item.band_occupancy_proxy), fmt(item.spectral_flatness), fmt(item.beat_v2?.stereo_rms, 4), fmt(item.beat_v2?.stereo_peak), fmt(item.beat_v2?.stereo_clipping_fraction, 5)].forEach(value => { const td = document.createElement('td'); td.textContent = value; row.append(td); });
           table.append(row);
         } else { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '没有可验证的音频或分数'; card.append(note); }
         cards.append(card);
@@ -153,7 +153,7 @@
       const baseline = data.stages.find(item => item.step === 0);
       const latest = [...data.stages].reverse().find(item => item.step > 0 && item.beat_v2);
       if (baseline?.beat_v2 && latest?.beat_v2) {
-        byId('finding').textContent = `${latest.step} 步：组合代理 ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；但 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}。单条音频上的指标分歧，需配对试听判断。`;
+        byId('finding').textContent = `${latest.step} 步：组合代理 ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；但 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
       }
       byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);
       if (select.options.length) select.value = select.options[select.options.length - 1].value;

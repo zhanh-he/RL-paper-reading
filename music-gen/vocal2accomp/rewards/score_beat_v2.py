@@ -37,6 +37,7 @@ def main() -> None:
             "accompaniment_beats": result.accompaniment_beats,
             "scorable": result.scorable,
             "coverage_stft": accompaniment_coverage_path(audio),
+            "stereo_rms": float(np.sqrt(np.mean(np.square(waveform, dtype=np.float64)))),
             "stereo_peak": float(np.max(np.abs(waveform))),
             "stereo_clipping_fraction": float(np.mean(np.abs(waveform) >= 0.98)),
         }
