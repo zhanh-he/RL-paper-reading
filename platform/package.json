@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/sync-catalog.mjs && node scripts/build-experiment-demo.mjs",
-    "check": "node scripts/sync-catalog.mjs --check && node scripts/build-experiment-demo.mjs --check",
+    "build": "node scripts/sync-catalog.mjs && node scripts/sync-choral-curves.mjs && node scripts/build-experiment-demo.mjs",
+    "check": "node scripts/sync-catalog.mjs --check && node scripts/sync-choral-curves.mjs --check && node scripts/build-experiment-demo.mjs --check",
     "serve": "python3 -m http.server 4173 --directory site"
   }
 }

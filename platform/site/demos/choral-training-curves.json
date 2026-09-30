@@ -1,0 +1,1485 @@
+{
+  "status": "measured_training_trace_window_means",
+  "bin_size": 25,
+  "scope": "training rollouts, not held-out evaluation",
+  "reward_definition": "mean reward for non-skipped GRPO updates in each window",
+  "kl_definition": "mean logged KL estimate for non-skipped GRPO updates in each window",
+  "runs": {
+    "combined": {
+      "steps": 1000,
+      "updated_steps": 1000,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.177043,
+          "kl": 0.007917,
+          "updates": 25
+        },
+        {
+          "step": 50,
+          "reward": 0.176482,
+          "kl": 0.039828,
+          "updates": 25
+        },
+        {
+          "step": 75,
+          "reward": 0.177263,
+          "kl": 0.095562,
+          "updates": 25
+        },
+        {
+          "step": 100,
+          "reward": 0.172124,
+          "kl": 0.109133,
+          "updates": 25
+        },
+        {
+          "step": 125,
+          "reward": 0.175081,
+          "kl": 0.197397,
+          "updates": 25
+        },
+        {
+          "step": 150,
+          "reward": 0.184431,
+          "kl": 0.255928,
+          "updates": 25
+        },
+        {
+          "step": 175,
+          "reward": 0.164565,
+          "kl": 0.286513,
+          "updates": 25
+        },
+        {
+          "step": 200,
+          "reward": 0.174743,
+          "kl": 0.32929,
+          "updates": 25
+        },
+        {
+          "step": 225,
+          "reward": 0.170002,
+          "kl": 0.192612,
+          "updates": 25
+        },
+        {
+          "step": 250,
+          "reward": 0.177566,
+          "kl": 0.335511,
+          "updates": 25
+        },
+        {
+          "step": 275,
+          "reward": 0.180225,
+          "kl": 0.281445,
+          "updates": 25
+        },
+        {
+          "step": 300,
+          "reward": 0.174358,
+          "kl": 0.338954,
+          "updates": 25
+        },
+        {
+          "step": 325,
+          "reward": 0.177325,
+          "kl": 0.331451,
+          "updates": 25
+        },
+        {
+          "step": 350,
+          "reward": 0.1799,
+          "kl": 0.367879,
+          "updates": 25
+        },
+        {
+          "step": 375,
+          "reward": 0.182028,
+          "kl": 0.270702,
+          "updates": 25
+        },
+        {
+          "step": 400,
+          "reward": 0.174227,
+          "kl": 0.277233,
+          "updates": 25
+        },
+        {
+          "step": 425,
+          "reward": 0.189336,
+          "kl": 0.292507,
+          "updates": 25
+        },
+        {
+          "step": 450,
+          "reward": 0.179266,
+          "kl": 0.320488,
+          "updates": 25
+        },
+        {
+          "step": 475,
+          "reward": 0.186786,
+          "kl": 0.472414,
+          "updates": 25
+        },
+        {
+          "step": 500,
+          "reward": 0.182273,
+          "kl": 0.450141,
+          "updates": 25
+        },
+        {
+          "step": 525,
+          "reward": 0.185262,
+          "kl": 0.351028,
+          "updates": 25
+        },
+        {
+          "step": 550,
+          "reward": 0.182034,
+          "kl": 0.370604,
+          "updates": 25
+        },
+        {
+          "step": 575,
+          "reward": 0.179858,
+          "kl": 0.242537,
+          "updates": 25
+        },
+        {
+          "step": 600,
+          "reward": 0.193502,
+          "kl": 0.247617,
+          "updates": 25
+        },
+        {
+          "step": 625,
+          "reward": 0.182529,
+          "kl": 0.286293,
+          "updates": 25
+        },
+        {
+          "step": 650,
+          "reward": 0.183936,
+          "kl": 0.315161,
+          "updates": 25
+        },
+        {
+          "step": 675,
+          "reward": 0.180551,
+          "kl": 0.369443,
+          "updates": 25
+        },
+        {
+          "step": 700,
+          "reward": 0.185807,
+          "kl": 0.331291,
+          "updates": 25
+        },
+        {
+          "step": 725,
+          "reward": 0.181771,
+          "kl": 0.304562,
+          "updates": 25
+        },
+        {
+          "step": 750,
+          "reward": 0.186301,
+          "kl": 0.329786,
+          "updates": 25
+        },
+        {
+          "step": 775,
+          "reward": 0.19389,
+          "kl": 0.404048,
+          "updates": 25
+        },
+        {
+          "step": 800,
+          "reward": 0.179523,
+          "kl": 0.345902,
+          "updates": 25
+        },
+        {
+          "step": 825,
+          "reward": 0.190482,
+          "kl": 0.404159,
+          "updates": 25
+        },
+        {
+          "step": 850,
+          "reward": 0.193866,
+          "kl": 0.257729,
+          "updates": 25
+        },
+        {
+          "step": 875,
+          "reward": 0.185527,
+          "kl": 0.389389,
+          "updates": 25
+        },
+        {
+          "step": 900,
+          "reward": 0.178834,
+          "kl": 0.411266,
+          "updates": 25
+        },
+        {
+          "step": 925,
+          "reward": 0.188812,
+          "kl": 0.473653,
+          "updates": 25
+        },
+        {
+          "step": 950,
+          "reward": 0.180982,
+          "kl": 0.468714,
+          "updates": 25
+        },
+        {
+          "step": 975,
+          "reward": 0.188566,
+          "kl": 0.475079,
+          "updates": 25
+        },
+        {
+          "step": 1000,
+          "reward": 0.189198,
+          "kl": 0.492514,
+          "updates": 25
+        }
+      ]
+    },
+    "onset": {
+      "steps": 1000,
+      "updated_steps": 958,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.071316,
+          "kl": 0.004503,
+          "updates": 22
+        },
+        {
+          "step": 50,
+          "reward": 0.080764,
+          "kl": 0.024412,
+          "updates": 22
+        },
+        {
+          "step": 75,
+          "reward": 0.070242,
+          "kl": 0.096933,
+          "updates": 25
+        },
+        {
+          "step": 100,
+          "reward": 0.06713,
+          "kl": 0.094513,
+          "updates": 24
+        },
+        {
+          "step": 125,
+          "reward": 0.079525,
+          "kl": 0.095629,
+          "updates": 22
+        },
+        {
+          "step": 150,
+          "reward": 0.061595,
+          "kl": 0.142149,
+          "updates": 25
+        },
+        {
+          "step": 175,
+          "reward": 0.074285,
+          "kl": 0.154524,
+          "updates": 21
+        },
+        {
+          "step": 200,
+          "reward": 0.083793,
+          "kl": 0.143405,
+          "updates": 22
+        },
+        {
+          "step": 225,
+          "reward": 0.060325,
+          "kl": 0.182114,
+          "updates": 23
+        },
+        {
+          "step": 250,
+          "reward": 0.065134,
+          "kl": 0.143425,
+          "updates": 24
+        },
+        {
+          "step": 275,
+          "reward": 0.07576,
+          "kl": 0.173604,
+          "updates": 23
+        },
+        {
+          "step": 300,
+          "reward": 0.083261,
+          "kl": 0.182309,
+          "updates": 24
+        },
+        {
+          "step": 325,
+          "reward": 0.059694,
+          "kl": 0.151674,
+          "updates": 25
+        },
+        {
+          "step": 350,
+          "reward": 0.078576,
+          "kl": 0.202936,
+          "updates": 23
+        },
+        {
+          "step": 375,
+          "reward": 0.074624,
+          "kl": 0.201623,
+          "updates": 25
+        },
+        {
+          "step": 400,
+          "reward": 0.058451,
+          "kl": 0.135467,
+          "updates": 24
+        },
+        {
+          "step": 425,
+          "reward": 0.074451,
+          "kl": 0.102381,
+          "updates": 25
+        },
+        {
+          "step": 450,
+          "reward": 0.074588,
+          "kl": 0.116076,
+          "updates": 25
+        },
+        {
+          "step": 475,
+          "reward": 0.070229,
+          "kl": 0.136457,
+          "updates": 24
+        },
+        {
+          "step": 500,
+          "reward": 0.092019,
+          "kl": 0.126904,
+          "updates": 23
+        },
+        {
+          "step": 525,
+          "reward": 0.067929,
+          "kl": 0.152843,
+          "updates": 25
+        },
+        {
+          "step": 550,
+          "reward": 0.072196,
+          "kl": 0.175549,
+          "updates": 25
+        },
+        {
+          "step": 575,
+          "reward": 0.075693,
+          "kl": 0.155277,
+          "updates": 23
+        },
+        {
+          "step": 600,
+          "reward": 0.083747,
+          "kl": 0.151046,
+          "updates": 25
+        },
+        {
+          "step": 625,
+          "reward": 0.060564,
+          "kl": 0.154498,
+          "updates": 24
+        },
+        {
+          "step": 650,
+          "reward": 0.088341,
+          "kl": 0.176172,
+          "updates": 24
+        },
+        {
+          "step": 675,
+          "reward": 0.072834,
+          "kl": 0.164283,
+          "updates": 24
+        },
+        {
+          "step": 700,
+          "reward": 0.078472,
+          "kl": 0.201156,
+          "updates": 24
+        },
+        {
+          "step": 725,
+          "reward": 0.071614,
+          "kl": 0.215149,
+          "updates": 25
+        },
+        {
+          "step": 750,
+          "reward": 0.079229,
+          "kl": 0.256569,
+          "updates": 23
+        },
+        {
+          "step": 775,
+          "reward": 0.07982,
+          "kl": 0.219077,
+          "updates": 24
+        },
+        {
+          "step": 800,
+          "reward": 0.076933,
+          "kl": 0.241108,
+          "updates": 25
+        },
+        {
+          "step": 825,
+          "reward": 0.084601,
+          "kl": 0.312196,
+          "updates": 25
+        },
+        {
+          "step": 850,
+          "reward": 0.076204,
+          "kl": 0.222654,
+          "updates": 25
+        },
+        {
+          "step": 875,
+          "reward": 0.067809,
+          "kl": 0.254751,
+          "updates": 24
+        },
+        {
+          "step": 900,
+          "reward": 0.079284,
+          "kl": 0.228166,
+          "updates": 25
+        },
+        {
+          "step": 925,
+          "reward": 0.076945,
+          "kl": 0.204703,
+          "updates": 25
+        },
+        {
+          "step": 950,
+          "reward": 0.082465,
+          "kl": 0.208941,
+          "updates": 22
+        },
+        {
+          "step": 975,
+          "reward": 0.066338,
+          "kl": 0.260564,
+          "updates": 25
+        },
+        {
+          "step": 1000,
+          "reward": 0.084281,
+          "kl": 0.31123,
+          "updates": 25
+        }
+      ]
+    },
+    "onset_offset": {
+      "steps": 1000,
+      "updated_steps": 606,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.025823,
+          "kl": 0.002683,
+          "updates": 16
+        },
+        {
+          "step": 50,
+          "reward": 0.026059,
+          "kl": 0.005249,
+          "updates": 11
+        },
+        {
+          "step": 75,
+          "reward": 0.023409,
+          "kl": 0.020569,
+          "updates": 13
+        },
+        {
+          "step": 100,
+          "reward": 0.034519,
+          "kl": 0.025026,
+          "updates": 16
+        },
+        {
+          "step": 125,
+          "reward": 0.023858,
+          "kl": 0.034219,
+          "updates": 19
+        },
+        {
+          "step": 150,
+          "reward": 0.030575,
+          "kl": 0.038714,
+          "updates": 12
+        },
+        {
+          "step": 175,
+          "reward": 0.023035,
+          "kl": 0.066502,
+          "updates": 13
+        },
+        {
+          "step": 200,
+          "reward": 0.02822,
+          "kl": 0.043834,
+          "updates": 16
+        },
+        {
+          "step": 225,
+          "reward": 0.027428,
+          "kl": 0.021596,
+          "updates": 16
+        },
+        {
+          "step": 250,
+          "reward": 0.032404,
+          "kl": 0.035298,
+          "updates": 11
+        },
+        {
+          "step": 275,
+          "reward": 0.021788,
+          "kl": 0.045702,
+          "updates": 18
+        },
+        {
+          "step": 300,
+          "reward": 0.021575,
+          "kl": 0.066488,
+          "updates": 14
+        },
+        {
+          "step": 325,
+          "reward": 0.034005,
+          "kl": 0.056563,
+          "updates": 16
+        },
+        {
+          "step": 350,
+          "reward": 0.039651,
+          "kl": 0.074016,
+          "updates": 17
+        },
+        {
+          "step": 375,
+          "reward": 0.036497,
+          "kl": 0.129775,
+          "updates": 16
+        },
+        {
+          "step": 400,
+          "reward": 0.037638,
+          "kl": 0.165425,
+          "updates": 12
+        },
+        {
+          "step": 425,
+          "reward": 0.04485,
+          "kl": 0.229991,
+          "updates": 18
+        },
+        {
+          "step": 450,
+          "reward": 0.029373,
+          "kl": 0.121907,
+          "updates": 18
+        },
+        {
+          "step": 475,
+          "reward": 0.035074,
+          "kl": 0.232681,
+          "updates": 15
+        },
+        {
+          "step": 500,
+          "reward": 0.035587,
+          "kl": 0.213287,
+          "updates": 12
+        },
+        {
+          "step": 525,
+          "reward": 0.029729,
+          "kl": 0.250981,
+          "updates": 13
+        },
+        {
+          "step": 550,
+          "reward": 0.03646,
+          "kl": 0.192783,
+          "updates": 14
+        },
+        {
+          "step": 575,
+          "reward": 0.027686,
+          "kl": 0.148079,
+          "updates": 13
+        },
+        {
+          "step": 600,
+          "reward": 0.029409,
+          "kl": 0.21933,
+          "updates": 15
+        },
+        {
+          "step": 625,
+          "reward": 0.035846,
+          "kl": 0.246861,
+          "updates": 15
+        },
+        {
+          "step": 650,
+          "reward": 0.036786,
+          "kl": 0.20233,
+          "updates": 17
+        },
+        {
+          "step": 675,
+          "reward": 0.045529,
+          "kl": 0.278788,
+          "updates": 13
+        },
+        {
+          "step": 700,
+          "reward": 0.038466,
+          "kl": 0.204848,
+          "updates": 17
+        },
+        {
+          "step": 725,
+          "reward": 0.025169,
+          "kl": 0.168888,
+          "updates": 18
+        },
+        {
+          "step": 750,
+          "reward": 0.045082,
+          "kl": 0.287409,
+          "updates": 14
+        },
+        {
+          "step": 775,
+          "reward": 0.028446,
+          "kl": 0.255774,
+          "updates": 18
+        },
+        {
+          "step": 800,
+          "reward": 0.02893,
+          "kl": 0.215087,
+          "updates": 12
+        },
+        {
+          "step": 825,
+          "reward": 0.034964,
+          "kl": 0.300369,
+          "updates": 15
+        },
+        {
+          "step": 850,
+          "reward": 0.030074,
+          "kl": 0.200387,
+          "updates": 14
+        },
+        {
+          "step": 875,
+          "reward": 0.037603,
+          "kl": 0.217296,
+          "updates": 14
+        },
+        {
+          "step": 900,
+          "reward": 0.035559,
+          "kl": 0.189548,
+          "updates": 16
+        },
+        {
+          "step": 925,
+          "reward": 0.031769,
+          "kl": 0.305706,
+          "updates": 18
+        },
+        {
+          "step": 950,
+          "reward": 0.036847,
+          "kl": 0.834688,
+          "updates": 14
+        },
+        {
+          "step": 975,
+          "reward": 0.032888,
+          "kl": 0.272528,
+          "updates": 17
+        },
+        {
+          "step": 1000,
+          "reward": 0.038604,
+          "kl": 0.294701,
+          "updates": 20
+        }
+      ]
+    },
+    "frame": {
+      "steps": 1000,
+      "updated_steps": 1000,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.214516,
+          "kl": 0.016086,
+          "updates": 25
+        },
+        {
+          "step": 50,
+          "reward": 0.188197,
+          "kl": 0.056417,
+          "updates": 25
+        },
+        {
+          "step": 75,
+          "reward": 0.199728,
+          "kl": 0.113151,
+          "updates": 25
+        },
+        {
+          "step": 100,
+          "reward": 0.198564,
+          "kl": 0.098238,
+          "updates": 25
+        },
+        {
+          "step": 125,
+          "reward": 0.212015,
+          "kl": 0.088354,
+          "updates": 25
+        },
+        {
+          "step": 150,
+          "reward": 0.201962,
+          "kl": 0.145996,
+          "updates": 25
+        },
+        {
+          "step": 175,
+          "reward": 0.21157,
+          "kl": 0.170011,
+          "updates": 25
+        },
+        {
+          "step": 200,
+          "reward": 0.242868,
+          "kl": 0.122775,
+          "updates": 25
+        },
+        {
+          "step": 225,
+          "reward": 0.221214,
+          "kl": 0.119877,
+          "updates": 25
+        },
+        {
+          "step": 250,
+          "reward": 0.240737,
+          "kl": 0.136717,
+          "updates": 25
+        },
+        {
+          "step": 275,
+          "reward": 0.212939,
+          "kl": 0.125616,
+          "updates": 25
+        },
+        {
+          "step": 300,
+          "reward": 0.220143,
+          "kl": 0.196903,
+          "updates": 25
+        },
+        {
+          "step": 325,
+          "reward": 0.224459,
+          "kl": 0.165868,
+          "updates": 25
+        },
+        {
+          "step": 350,
+          "reward": 0.226944,
+          "kl": 0.189271,
+          "updates": 25
+        },
+        {
+          "step": 375,
+          "reward": 0.231021,
+          "kl": 0.20016,
+          "updates": 25
+        },
+        {
+          "step": 400,
+          "reward": 0.193936,
+          "kl": 0.185369,
+          "updates": 25
+        },
+        {
+          "step": 425,
+          "reward": 0.223293,
+          "kl": 0.19292,
+          "updates": 25
+        },
+        {
+          "step": 450,
+          "reward": 0.204232,
+          "kl": 0.179775,
+          "updates": 25
+        },
+        {
+          "step": 475,
+          "reward": 0.233851,
+          "kl": 0.186226,
+          "updates": 25
+        },
+        {
+          "step": 500,
+          "reward": 0.23733,
+          "kl": 0.155402,
+          "updates": 25
+        },
+        {
+          "step": 525,
+          "reward": 0.228356,
+          "kl": 0.223734,
+          "updates": 25
+        },
+        {
+          "step": 550,
+          "reward": 0.207459,
+          "kl": 0.271643,
+          "updates": 25
+        },
+        {
+          "step": 575,
+          "reward": 0.248497,
+          "kl": 0.260674,
+          "updates": 25
+        },
+        {
+          "step": 600,
+          "reward": 0.247877,
+          "kl": 0.347266,
+          "updates": 25
+        },
+        {
+          "step": 625,
+          "reward": 0.222277,
+          "kl": 0.336616,
+          "updates": 25
+        },
+        {
+          "step": 650,
+          "reward": 0.24256,
+          "kl": 0.391551,
+          "updates": 25
+        },
+        {
+          "step": 675,
+          "reward": 0.218629,
+          "kl": 0.325215,
+          "updates": 25
+        },
+        {
+          "step": 700,
+          "reward": 0.240886,
+          "kl": 0.381974,
+          "updates": 25
+        },
+        {
+          "step": 725,
+          "reward": 0.233341,
+          "kl": 0.414161,
+          "updates": 25
+        },
+        {
+          "step": 750,
+          "reward": 0.240466,
+          "kl": 0.385674,
+          "updates": 25
+        },
+        {
+          "step": 775,
+          "reward": 0.215789,
+          "kl": 0.405226,
+          "updates": 25
+        },
+        {
+          "step": 800,
+          "reward": 0.243928,
+          "kl": 0.381853,
+          "updates": 25
+        },
+        {
+          "step": 825,
+          "reward": 0.241627,
+          "kl": 0.492349,
+          "updates": 25
+        },
+        {
+          "step": 850,
+          "reward": 0.218214,
+          "kl": 0.533835,
+          "updates": 25
+        },
+        {
+          "step": 875,
+          "reward": 0.262744,
+          "kl": 0.54778,
+          "updates": 25
+        },
+        {
+          "step": 900,
+          "reward": 0.223856,
+          "kl": 0.588134,
+          "updates": 25
+        },
+        {
+          "step": 925,
+          "reward": 0.250989,
+          "kl": 0.577733,
+          "updates": 25
+        },
+        {
+          "step": 950,
+          "reward": 0.251901,
+          "kl": 0.473745,
+          "updates": 25
+        },
+        {
+          "step": 975,
+          "reward": 0.234692,
+          "kl": 0.366965,
+          "updates": 25
+        },
+        {
+          "step": 1000,
+          "reward": 0.263711,
+          "kl": 0.475685,
+          "updates": 25
+        }
+      ]
+    },
+    "coverage": {
+      "steps": 1000,
+      "updated_steps": 1000,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.732591,
+          "kl": 0.004197,
+          "updates": 25
+        },
+        {
+          "step": 50,
+          "reward": 0.720596,
+          "kl": 0.01497,
+          "updates": 25
+        },
+        {
+          "step": 75,
+          "reward": 0.735593,
+          "kl": 0.032224,
+          "updates": 25
+        },
+        {
+          "step": 100,
+          "reward": 0.745573,
+          "kl": 0.044536,
+          "updates": 25
+        },
+        {
+          "step": 125,
+          "reward": 0.736746,
+          "kl": 0.058166,
+          "updates": 25
+        },
+        {
+          "step": 150,
+          "reward": 0.725394,
+          "kl": 0.084923,
+          "updates": 25
+        },
+        {
+          "step": 175,
+          "reward": 0.734444,
+          "kl": 0.137541,
+          "updates": 25
+        },
+        {
+          "step": 200,
+          "reward": 0.772633,
+          "kl": 0.129139,
+          "updates": 25
+        },
+        {
+          "step": 225,
+          "reward": 0.727484,
+          "kl": 0.166477,
+          "updates": 25
+        },
+        {
+          "step": 250,
+          "reward": 0.755914,
+          "kl": 0.185017,
+          "updates": 25
+        },
+        {
+          "step": 275,
+          "reward": 0.767134,
+          "kl": 0.194301,
+          "updates": 25
+        },
+        {
+          "step": 300,
+          "reward": 0.754268,
+          "kl": 0.185352,
+          "updates": 25
+        },
+        {
+          "step": 325,
+          "reward": 0.761305,
+          "kl": 0.166631,
+          "updates": 25
+        },
+        {
+          "step": 350,
+          "reward": 0.760052,
+          "kl": 0.285529,
+          "updates": 25
+        },
+        {
+          "step": 375,
+          "reward": 0.782716,
+          "kl": 0.226714,
+          "updates": 25
+        },
+        {
+          "step": 400,
+          "reward": 0.765299,
+          "kl": 0.1884,
+          "updates": 25
+        },
+        {
+          "step": 425,
+          "reward": 0.782598,
+          "kl": 0.219508,
+          "updates": 25
+        },
+        {
+          "step": 450,
+          "reward": 0.782419,
+          "kl": 0.186481,
+          "updates": 25
+        },
+        {
+          "step": 475,
+          "reward": 0.777537,
+          "kl": 0.264543,
+          "updates": 25
+        },
+        {
+          "step": 500,
+          "reward": 0.788632,
+          "kl": 0.285576,
+          "updates": 25
+        },
+        {
+          "step": 525,
+          "reward": 0.804007,
+          "kl": 0.591761,
+          "updates": 25
+        },
+        {
+          "step": 550,
+          "reward": 0.812006,
+          "kl": 0.402422,
+          "updates": 25
+        },
+        {
+          "step": 575,
+          "reward": 0.814514,
+          "kl": 0.339531,
+          "updates": 25
+        },
+        {
+          "step": 600,
+          "reward": 0.826983,
+          "kl": 0.392851,
+          "updates": 25
+        },
+        {
+          "step": 625,
+          "reward": 0.813117,
+          "kl": 0.394331,
+          "updates": 25
+        },
+        {
+          "step": 650,
+          "reward": 0.795899,
+          "kl": 0.500021,
+          "updates": 25
+        },
+        {
+          "step": 675,
+          "reward": 0.832686,
+          "kl": 0.496233,
+          "updates": 25
+        },
+        {
+          "step": 700,
+          "reward": 0.821362,
+          "kl": 0.529741,
+          "updates": 25
+        },
+        {
+          "step": 725,
+          "reward": 0.841652,
+          "kl": 0.400743,
+          "updates": 25
+        },
+        {
+          "step": 750,
+          "reward": 0.826507,
+          "kl": 0.492289,
+          "updates": 25
+        },
+        {
+          "step": 775,
+          "reward": 0.829397,
+          "kl": 0.484383,
+          "updates": 25
+        },
+        {
+          "step": 800,
+          "reward": 0.818667,
+          "kl": 0.391662,
+          "updates": 25
+        },
+        {
+          "step": 825,
+          "reward": 0.800106,
+          "kl": 0.533671,
+          "updates": 25
+        },
+        {
+          "step": 850,
+          "reward": 0.815747,
+          "kl": 0.423543,
+          "updates": 25
+        },
+        {
+          "step": 875,
+          "reward": 0.824469,
+          "kl": 0.517328,
+          "updates": 25
+        },
+        {
+          "step": 900,
+          "reward": 0.838803,
+          "kl": 0.450805,
+          "updates": 25
+        },
+        {
+          "step": 925,
+          "reward": 0.843268,
+          "kl": 0.48454,
+          "updates": 25
+        },
+        {
+          "step": 950,
+          "reward": 0.839515,
+          "kl": 0.472905,
+          "updates": 25
+        },
+        {
+          "step": 975,
+          "reward": 0.815516,
+          "kl": 0.534679,
+          "updates": 25
+        },
+        {
+          "step": 1000,
+          "reward": 0.848184,
+          "kl": 0.600423,
+          "updates": 25
+        }
+      ]
+    },
+    "continuity": {
+      "steps": 1000,
+      "updated_steps": 192,
+      "points": [
+        {
+          "step": 25,
+          "reward": 0.956482,
+          "kl": 0.001468,
+          "updates": 9
+        },
+        {
+          "step": 50,
+          "reward": 0.954569,
+          "kl": 0.005145,
+          "updates": 9
+        },
+        {
+          "step": 75,
+          "reward": 0.963224,
+          "kl": 0.021075,
+          "updates": 9
+        },
+        {
+          "step": 100,
+          "reward": 0.971834,
+          "kl": 0.022539,
+          "updates": 7
+        },
+        {
+          "step": 125,
+          "reward": 0.965879,
+          "kl": 0.022356,
+          "updates": 6
+        },
+        {
+          "step": 150,
+          "reward": 0.966792,
+          "kl": 0.026151,
+          "updates": 7
+        },
+        {
+          "step": 175,
+          "reward": 0.958327,
+          "kl": 0.042246,
+          "updates": 7
+        },
+        {
+          "step": 200,
+          "reward": 0.981881,
+          "kl": 0.050256,
+          "updates": 7
+        },
+        {
+          "step": 225,
+          "reward": 0.964447,
+          "kl": 0.052468,
+          "updates": 5
+        },
+        {
+          "step": 250,
+          "reward": 0.965992,
+          "kl": 0.03444,
+          "updates": 6
+        },
+        {
+          "step": 275,
+          "reward": 0.970749,
+          "kl": 0.050504,
+          "updates": 5
+        },
+        {
+          "step": 300,
+          "reward": 0.959897,
+          "kl": 0.067948,
+          "updates": 6
+        },
+        {
+          "step": 325,
+          "reward": 0.978271,
+          "kl": 0.094239,
+          "updates": 7
+        },
+        {
+          "step": 350,
+          "reward": 0.970589,
+          "kl": 0.119497,
+          "updates": 5
+        },
+        {
+          "step": 375,
+          "reward": 0.984524,
+          "kl": 0.307498,
+          "updates": 3
+        },
+        {
+          "step": 400,
+          "reward": 0.972441,
+          "kl": 0.120124,
+          "updates": 4
+        },
+        {
+          "step": 425,
+          "reward": 0.974294,
+          "kl": 0.072314,
+          "updates": 6
+        },
+        {
+          "step": 450,
+          "reward": 0.967458,
+          "kl": 0.168484,
+          "updates": 6
+        },
+        {
+          "step": 475,
+          "reward": 0.965179,
+          "kl": 0.107047,
+          "updates": 2
+        },
+        {
+          "step": 500,
+          "reward": 0.972567,
+          "kl": 0.199297,
+          "updates": 6
+        },
+        {
+          "step": 525,
+          "reward": 0.975461,
+          "kl": 0.157999,
+          "updates": 5
+        },
+        {
+          "step": 550,
+          "reward": 0.977248,
+          "kl": 0.242688,
+          "updates": 5
+        },
+        {
+          "step": 575,
+          "reward": 0.963235,
+          "kl": 0.194445,
+          "updates": 2
+        },
+        {
+          "step": 600,
+          "reward": 0.973389,
+          "kl": 0.122193,
+          "updates": 3
+        },
+        {
+          "step": 625,
+          "reward": 0.96399,
+          "kl": 0.30026,
+          "updates": 6
+        },
+        {
+          "step": 650,
+          "reward": 0.988095,
+          "kl": 0.161132,
+          "updates": 3
+        },
+        {
+          "step": 675,
+          "reward": 0.984521,
+          "kl": 0.372964,
+          "updates": 3
+        },
+        {
+          "step": 700,
+          "reward": 0.986169,
+          "kl": 0.215457,
+          "updates": 3
+        },
+        {
+          "step": 725,
+          "reward": 0.991071,
+          "kl": 0.193328,
+          "updates": 1
+        },
+        {
+          "step": 750,
+          "reward": 0.973389,
+          "kl": 0.245923,
+          "updates": 3
+        },
+        {
+          "step": 775,
+          "reward": 0.970958,
+          "kl": 0.199719,
+          "updates": 3
+        },
+        {
+          "step": 800,
+          "reward": 0.941177,
+          "kl": 0.239414,
+          "updates": 2
+        },
+        {
+          "step": 825,
+          "reward": 0.97533,
+          "kl": 0.259549,
+          "updates": 4
+        },
+        {
+          "step": 850,
+          "reward": 0.982274,
+          "kl": 0.215786,
+          "updates": 4
+        },
+        {
+          "step": 875,
+          "reward": 0.976725,
+          "kl": 0.492095,
+          "updates": 3
+        },
+        {
+          "step": 900,
+          "reward": 0.977828,
+          "kl": 0.502715,
+          "updates": 6
+        },
+        {
+          "step": 925,
+          "reward": 0.980484,
+          "kl": 0.328053,
+          "updates": 6
+        },
+        {
+          "step": 950,
+          "reward": 0.988183,
+          "kl": 0.339507,
+          "updates": 2
+        },
+        {
+          "step": 975,
+          "reward": 0.966737,
+          "kl": 0.329923,
+          "updates": 4
+        },
+        {
+          "step": 1000,
+          "reward": 0.989286,
+          "kl": 0.554564,
+          "updates": 2
+        }
+      ]
+    }
+  }
+}

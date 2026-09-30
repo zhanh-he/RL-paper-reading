@@ -72,6 +72,15 @@ human review are needed.
 
 ## Public listening replay
 
+The [training curves](training-curves.json) contain only 25-step window means
+from the six 1000-step training traces. Skipped updates are excluded; the
+export includes the number of effective updates in each window. The combined
+reward and KL panels show training-rollout values, not held-out F1. The five
+single-reward plots come from separate ablation runs, not a decomposition of
+the combined run. The export script is
+[`export_training_curves.py`](../../export_training_curves.py); source song
+identifiers and raw traces remain off the public site.
+
 The [one-song receipt](public-synthetic-replay.json) and
 [piano-roll notes](public-synthetic-notes.json) belong to an original 10.2 s
 synthetic SATB example, not to the held-out test. The same audio input is

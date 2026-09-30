@@ -7,8 +7,10 @@
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-muse-black" />
+    <link rel="stylesheet" href="./choral-curves.css?v=20260930" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20260930-muse-shared"></script>
+    <script type="module" src="./choral-curves.js?v=20260930"></script>
   </head>
   <body>
     <header class="app-header">
@@ -59,6 +61,20 @@
       <section class="lab-view" id="view-choral" hidden>
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral singing transcription: GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Event-head held-out test</span><strong>16 首训练、8 首未见原曲</strong><p>每首一段 5.12 秒 YouChorale-Pro；每次消融同一模型起点与划分。只公开聚合指标，不公开原始音频、逐首 ID 或权重。</p></div><div class="source-block"><span class="source-label">Public replay</span><strong>原创 10.2 秒 SATB 合成歌曲</strong><p>同一输入解出冻结起点及六种 reward 的 1/100/300/1000 步 MIDI；ACE Studio 用同样四位歌手回放。此歌不计入 8 首测试指标。</p></div></div>
+        <section class="choral-training" aria-label="ChoralGRPO training traces">
+          <div class="choral-training-heading"><h3>训练过程 · Combined reward / KL</h3><span>1–1000 步 · 25 步均值</span></div>
+          <div class="choral-training-plots">
+            <figure><figcaption>综合 reward <strong id="choral-combined-reward-value"></strong></figcaption><canvas id="choral-combined-reward-chart" role="img" aria-label="综合 reward 随训练步数变化的曲线"></canvas></figure>
+            <figure><figcaption>KL <strong id="choral-combined-kl-value"></strong></figcaption><canvas id="choral-combined-kl-chart" role="img" aria-label="KL 随训练步数变化的曲线"></canvas></figure>
+          </div>
+          <p class="choral-training-note">训练 rollout 的窗口均值，不是未见歌曲上的 F1；KL 为训练日志的估计值。横轴为优化器步数，纵轴各自独立缩放。</p>
+          <div class="choral-training-foldouts" id="choral-training-foldouts">
+            <details class="choral-deep-dive"><summary>五个单项 reward 的训练曲线</summary>
+              <p class="section-copy">每条曲线来自各自独立的单项 reward GRPO，不是 Combined 运行的内部逐项分数。每点为 25 步内有效更新的训练 reward 均值；跳过的更新不参与均值。</p>
+              <div class="choral-small-plots" id="choral-small-plots"></div>
+            </details>
+          </div>
+        </section>
         <h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3>
         <div class="choral-input-band"><div><span class="source-label">MODEL INPUT / ORIGINAL SYNTHESIS</span><p>原始合成音频是所有模型输出共用的输入。四个 SATB 声部叠在同一音高轴；下方所有 piano roll 共用音高与时间轴。</p></div><audio controls preload="metadata" src="./audio/choral_synth_input.wav" aria-label="原始合成模型输入音频"></audio></div>
         <div class="choral-midi-legend" aria-label="SATB MIDI colors"><span><i class="voice-s"></i>Soprano</span><span><i class="voice-a"></i>Alto</span><span><i class="voice-t"></i>Tenor</span><span><i class="voice-b"></i>Bass</span></div>
