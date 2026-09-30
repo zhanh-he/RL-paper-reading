@@ -21,7 +21,9 @@ All rows use the same Emma input, prompt, eight-step sampler and evaluation seed
 | 50 | 0.4241 | 0.5349 | 0.3571 | 0.2498 | 0.0173 | 0.2230 | 0 |
 | 100 | 0.4410 | 0.5615 | 0.5000 | 0.1364 | 0.0140 | 0.1301 | 0 |
 
-The step-5 WAV is byte-identical to baseline. By step 100, the optimized proxy and independent Beat-v2 metric improve, but independent STFT coverage falls by more than half and overall RMS falls by about 28%. This is evidence of a metric trade-off on one replay, **not** proof that the policy generalizes or that listeners prefer it. The 12-second evaluation includes the six seconds used for training, so it is not a held-out-song test. The lower peak and zero clipping also rule out full-scale clipping as the explanation for this particular output. Listen to the [paired demo](../../../../platform/site/demos/vocal-lada.html) before judging quality. The 300-step checkpoint is pending GPU rotation with YuE2.
+The step-5 WAV is byte-identical to baseline. By step 100, the optimized proxy **on the fixed replay** and independent Beat-v2 metric improve, but independent STFT coverage falls by more than half and overall RMS falls by about 28%. This is evidence of a metric trade-off on one replay, **not** proof that the policy generalizes or that listeners prefer it. The 12-second evaluation includes the six seconds used for training, so it is not a held-out-song test. The lower peak and zero clipping also rule out full-scale clipping as the explanation for this particular output. Listen to the [paired demo](../../../../platform/site/demos/vocal-lada.html) before judging quality. The 300-step checkpoint is pending GPU rotation with YuE2.
+
+The sampled training-candidate mean reward was 0.517 for steps 1-10 and 0.489 for steps 91-100. Those windows use different sampled trajectories and are not a fixed-seed comparison; they do show that this tiny run has no monotonic on-policy reward increase. The improvement above refers only to the fixed replay.
 
 ## Reproduce on lab5090
 
