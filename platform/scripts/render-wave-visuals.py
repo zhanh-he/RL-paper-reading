@@ -37,7 +37,8 @@ def render(audio: Path, output: Path) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, default=DEMOS / "visuals")
     parser.add_argument("audio", type=Path, nargs="+")
     args = parser.parse_args()
     for path in args.audio:
-        render(path, DEMOS / "visuals" / f"{path.stem}_wave.png")
+        render(path, args.output_dir / f"{path.stem}_wave.png")

@@ -53,6 +53,7 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
         raise FileNotFoundError(f"fixed vocal not found: {vocal}")
     vocal_spectrum = visual_dir / ("ace_emma_vocal_heldout_6s_spectrum.png" if heldout_dir else "ace_emma_vocal_12s_spectrum.png")
     visual_audio = [vocal]
+    wave_audio = [vocal]
     stages = []
     baseline_audio = audio_run_dir / "step_0000.wav"
     if heldout_dir is not None and not baseline_audio.is_file():
@@ -77,6 +78,7 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
             "-filter_complex", "[0:a][1:a]amix=inputs=2:duration=first:normalize=0[m]",
             "-map", "[m]", "-ac", "2", "-ar", "48000", "-c:a", "pcm_s16le", str(mixture),
         ], check=True)
+        wave_audio.append(mixture)
         metrics = {key: item[key] for key in METRIC_FIELDS if key in item}
         if heldout_dir is not None and slug in {"beat_v2", "guarded"}:
             if str(step) not in beat_scores:
@@ -130,6 +132,12 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
         "python", str(Path(__file__).with_name("render-mel-visuals.py")),
         "--output-dir", str(visual_dir),
         *(str(audio) for audio in visual_audio),
+    ], check=True)
+    subprocess.run([
+        "uv", "run", "--with", "numpy", "--with", "soundfile", "--with", "pillow",
+        "python", str(Path(__file__).with_name("render-wave-visuals.py")),
+        "--output-dir", str(visual_dir),
+        *(str(audio) for audio in wave_audio),
     ], check=True)
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     return output
