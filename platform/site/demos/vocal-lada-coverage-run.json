@@ -95,6 +95,33 @@
       "peak": 0.659270167350769,
       "clipping_fraction": 0.0,
       "quality_penalty": 0.0
+    },
+    {
+      "step": 100,
+      "audio": "./audio/lada_emma_coverage_step_0100_mix.wav",
+      "accomp_audio": "./audio/lada_emma_coverage_step_0100.wav",
+      "spectrum": "./visuals/lada_emma_coverage_step_0100_spectrum.png",
+      "same_as_baseline": false,
+      "beat_v2": {
+        "score": 0.3571428571428571,
+        "reference_beats": 15,
+        "accompaniment_beats": 13,
+        "scorable": true,
+        "coverage_stft": 0.43844109831709477,
+        "stereo_rms": 0.02120169103759515,
+        "vocal_rms": 0.04426657475499414,
+        "acc_to_vocal_rms_db": -6.39410834260043,
+        "stereo_peak": 0.2264404296875,
+        "stereo_clipping_fraction": 0.0
+      },
+      "reward": 0.6677740863787376,
+      "rms_coverage": 0.6677740863787376,
+      "onset_fit_proxy": 0.17355234920978546,
+      "band_occupancy_proxy": 0.7142857142857143,
+      "spectral_flatness": 0.1610742062330246,
+      "peak": 0.2100483775138855,
+      "clipping_fraction": 0.0,
+      "quality_penalty": 0.0
     }
   ],
   "train_curve": [
@@ -372,6 +399,231 @@
       "step": 55,
       "reward": 0.9834437086092715,
       "rms_coverage": 0.9834437086092715
+    },
+    {
+      "step": 56,
+      "reward": 0.6357615894039735,
+      "rms_coverage": 0.6357615894039735
+    },
+    {
+      "step": 57,
+      "reward": 0.9072847682119205,
+      "rms_coverage": 0.9072847682119205
+    },
+    {
+      "step": 58,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 59,
+      "reward": 0.9172185430463576,
+      "rms_coverage": 0.9172185430463576
+    },
+    {
+      "step": 60,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 61,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 62,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 63,
+      "reward": 0.8774834437086092,
+      "rms_coverage": 0.8774834437086092
+    },
+    {
+      "step": 64,
+      "reward": 0.6788079470198676,
+      "rms_coverage": 0.6788079470198676
+    },
+    {
+      "step": 65,
+      "reward": 0.5,
+      "rms_coverage": 0.5
+    },
+    {
+      "step": 66,
+      "reward": 0.7913907284768211,
+      "rms_coverage": 0.7913907284768211
+    },
+    {
+      "step": 67,
+      "reward": 0.9635761589403973,
+      "rms_coverage": 0.9635761589403973
+    },
+    {
+      "step": 68,
+      "reward": 0.9966887417218543,
+      "rms_coverage": 0.9966887417218543
+    },
+    {
+      "step": 69,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 70,
+      "reward": 0.990066225165563,
+      "rms_coverage": 0.990066225165563
+    },
+    {
+      "step": 71,
+      "reward": 0.7152317880794702,
+      "rms_coverage": 0.7152317880794702
+    },
+    {
+      "step": 72,
+      "reward": 0.5033112582781457,
+      "rms_coverage": 0.5033112582781457
+    },
+    {
+      "step": 73,
+      "reward": 0.9966887417218543,
+      "rms_coverage": 0.9966887417218543
+    },
+    {
+      "step": 74,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 75,
+      "reward": 0.6423841059602649,
+      "rms_coverage": 0.6423841059602649
+    },
+    {
+      "step": 76,
+      "reward": 0.9039735099337749,
+      "rms_coverage": 0.9039735099337749
+    },
+    {
+      "step": 77,
+      "reward": 0.9105960264900662,
+      "rms_coverage": 0.9105960264900662
+    },
+    {
+      "step": 78,
+      "reward": 0.9933774834437086,
+      "rms_coverage": 0.9933774834437086
+    },
+    {
+      "step": 79,
+      "reward": 0.5364238410596026,
+      "rms_coverage": 0.5364238410596026
+    },
+    {
+      "step": 80,
+      "reward": 0.5,
+      "rms_coverage": 0.5
+    },
+    {
+      "step": 81,
+      "reward": 0.3741721854304636,
+      "rms_coverage": 0.3741721854304636
+    },
+    {
+      "step": 82,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 83,
+      "reward": 0.9966887417218543,
+      "rms_coverage": 0.9966887417218543
+    },
+    {
+      "step": 84,
+      "reward": 0.9801324503311258,
+      "rms_coverage": 0.9801324503311258
+    },
+    {
+      "step": 85,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 86,
+      "reward": 0.9966887417218543,
+      "rms_coverage": 0.9966887417218543
+    },
+    {
+      "step": 87,
+      "reward": 0.7814569536423841,
+      "rms_coverage": 0.7814569536423841
+    },
+    {
+      "step": 88,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 89,
+      "reward": 0.8874172185430463,
+      "rms_coverage": 0.8874172185430463
+    },
+    {
+      "step": 90,
+      "reward": 0.9635761589403973,
+      "rms_coverage": 0.9635761589403973
+    },
+    {
+      "step": 91,
+      "reward": 0.7317880794701986,
+      "rms_coverage": 0.7317880794701986
+    },
+    {
+      "step": 92,
+      "reward": 0.7781456953642384,
+      "rms_coverage": 0.7781456953642384
+    },
+    {
+      "step": 93,
+      "reward": 0.9966887417218543,
+      "rms_coverage": 0.9966887417218543
+    },
+    {
+      "step": 94,
+      "reward": 0.5298013245033113,
+      "rms_coverage": 0.5298013245033113
+    },
+    {
+      "step": 95,
+      "reward": 0.9403973509933774,
+      "rms_coverage": 0.9403973509933774
+    },
+    {
+      "step": 96,
+      "reward": 0.8708609271523179,
+      "rms_coverage": 0.8708609271523179
+    },
+    {
+      "step": 97,
+      "reward": 0.7185430463576159,
+      "rms_coverage": 0.7185430463576159
+    },
+    {
+      "step": 98,
+      "reward": 1.0,
+      "rms_coverage": 1.0
+    },
+    {
+      "step": 99,
+      "reward": 0.8774834437086092,
+      "rms_coverage": 0.8774834437086092
+    },
+    {
+      "step": 100,
+      "reward": 0.5,
+      "rms_coverage": 0.5
     }
   ],
   "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",

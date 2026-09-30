@@ -217,6 +217,13 @@
           byId('interim-finding').textContent = `中间诊断：100 步 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(at100.beat_v2.coverage_stft)}；200 步起音代理 ${fmt(baseline.onset_fit_proxy)} → ${fmt(at200.onset_fit_proxy)}，原 Beat-v2 F1 却 ${fmt(baseline.beat_v2.score)} → ${fmt(at200.beat_v2.score)}。这是代理失配信号，不是主观劣化判决。`;
         }
       }
+      if (arm === 'coverage') {
+        const at50 = data.stages.find(item => item.step === 50);
+        const at100 = data.stages.find(item => item.step === 100);
+        if (at50?.beat_v2 && at100?.beat_v2) {
+          byId('interim-finding').textContent = `非单调提示：50 → 100 步，训练目标 RMS coverage ${fmt(at50.reward)} → ${fmt(at100.reward)}，独立 Beat-v2 F1 ${fmt(at50.beat_v2.score)} → ${fmt(at100.beat_v2.score)}，伴奏/人声 ${fmt(at50.beat_v2.acc_to_vocal_rms_db, 1)} → ${fmt(at100.beat_v2.acc_to_vocal_rms_db, 1)} dB。单条固定重放不足以证明一般过拟合。`;
+        }
+      }
       if (phrase === 'heldout') {
         const at200 = data.stages.find(item => item.step === 200);
         const at300 = data.stages.find(item => item.step === 300);

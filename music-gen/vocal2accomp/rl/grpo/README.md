@@ -75,15 +75,17 @@ On this phrase, 200 to 300 steps is non-monotonic for all three scores, despite 
 
 ## Coverage-only ablation
 
-The separate adapter starts from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. Its only reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. At the saved 50-step interim, the measured [coverage-only replay](../../../../platform/site/demos/vocal-lada.html?arm=coverage) and original offline checks are:
+The separate adapter starts from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. Its only reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. The completed [coverage-only replay](../../../../platform/site/demos/vocal-lada.html?arm=coverage) and original offline checks are:
 
 | Arm / step | Optimized RMS coverage | Beat-v2 F1 (offline) | STFT coverage (offline) | Acc/vocal RMS dB | Clipped samples |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Frozen baseline / 0 | 0.528 | 0.296 | 0.296 | -7.2 | 0 |
 | Combined proxy / 50 | 0.535 | 0.357 | 0.250 | -8.1 | 0 |
 | Coverage-only / 50 | 0.944 | 0.500 | 0.802 | +3.4 | 0 |
+| Combined proxy / 100 | 0.562 | 0.500 | 0.136 | -10.0 | 0 |
+| Coverage-only / 100 | 0.668 | 0.357 | 0.438 | -6.4 | 0 |
 
-The coverage-only arm has much more accompaniment energy than the fixed vocal at 50, but independent beat and STFT-coverage scores also rise, so these metrics alone do not establish poor music or reward hacking. The combined arm is quieter at the same step, but its own step-300 loudness drift shows only partial restraint. The coverage-only run continues to step 100; no final or listener-preference result is claimed yet.
+The coverage-only arm has much more accompaniment energy than the fixed vocal at 50, but independent beat and STFT-coverage scores also rise, so these metrics alone do not establish poor music or reward hacking. On the same fixed replay, coverage-only falls from 0.944 to 0.668 between steps 50 and 100; Beat-v2 falls 0.500 to 0.357 and STFT coverage 0.802 to 0.438. In 23 of 100 online groups, the two candidates had equal coverage reward; 22 pairs were both at the maximum 1.0. This reward saturation removes the group-relative learning signal for those pairs. The combined arm is quieter at step 50, but its own step-300 loudness drift shows only partial restraint. No listener-preference result is claimed.
 
 ```bash
 .env/bin/python train_lada_band_v2.py \
@@ -94,9 +96,9 @@ The coverage-only arm has much more accompaniment energy than the fixed vocal at
   --reward coverage --lr 5e-4 --steps 100 --save-steps 5 50 100
 ```
 
-## Optional original Beat-v2 reward arm
+## Original Beat-v2 reward arm
 
-The trainer also accepts `--reward beat_v2`, which sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This is an **available but not yet trained** arm; do not label the combined proxy run as Beat-v2 GRPO.
+The `--reward beat_v2` arm sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This online arm is running on lab5090; its post-training checkpoints must not be inferred from the combined proxy arm.
 
 ```bash
 .env/bin/python train_lada_band_v2.py \
@@ -104,7 +106,7 @@ The trainer also accepts `--reward beat_v2`, which sends each generated candidat
   --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
   --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_beat_v2_6s \
   --seconds 6 --eval-seconds 12 --denoise-steps 8 --group 2 \
-  --reward beat_v2 --lr 5e-4 --steps 50 --save-steps 5 50 \
+  --reward beat_v2 --lr 5e-4 --steps 100 --save-steps 5 50 100 \
   --beat-worker-python /home/mengh/miniconda3/envs/auto-beat-reward/bin/python \
   --beat-worker-script beat_v2_worker.py \
   --beat-reward-root /home/mengh/research/vocal2accomp-muse
