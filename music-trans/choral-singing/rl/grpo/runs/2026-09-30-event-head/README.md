@@ -76,7 +76,7 @@ The [one-song receipt](public-synthetic-replay.json) and
 [piano-roll notes](public-synthetic-notes.json) belong to an original 10.2 s
 synthetic SATB example, not to the held-out test. The same audio input is
 decoded with the frozen model, combined 1/100/300/1000-step heads, and the five
-displayed single-reward 1/100/300-step heads;
+displayed single-reward 1/100/300/1000-step heads;
 predicted notes are clipped to the input duration. Its MIDI files and ACE
 Studio renders are on the [demo page](../../../../../../platform/site/demos/).
 All ACE renders use the same Elirah / Emma / Julian / Mangus singer assignment,

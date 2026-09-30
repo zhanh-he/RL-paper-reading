@@ -34,7 +34,7 @@ if (muscriptorTrain.status !== 'single_public_song_muscriptor_medium_grpo_smoke_
 }
 const activeChoralArms = ['onset', 'onset_offset', 'frame', 'coverage', 'continuity'];
 for (const key of ['0', '1', '100', '300', '1000',
-  ...activeChoralArms.flatMap((arm) => [1, 100, 300].map((step) => `arm_${arm}_${step}`)),
+  ...activeChoralArms.flatMap((arm) => [1, 100, 300, 1000].map((step) => `arm_${arm}_${step}`)),
   'arm_weak_voice_300', 'arm_precision_300']) {
   if (!Number.isInteger(eventReceipt.steps[key]?.note_count) || eventReceipt.steps[key].note_count !== eventNotes[key]?.length) {
     throw new Error(`Public event MIDI note count mismatch at ${key}`);
@@ -74,7 +74,7 @@ for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity', '
   }
 }
 for (const arm of activeChoralArms) {
-  for (const step of [1, 100]) {
+  for (const step of [1, 100, 1000]) {
     const name = `choral_event_arm_${arm}_${step}`;
     await access(resolve(root, `platform/site/demos/midi/${name}.mid`));
     await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
@@ -207,7 +207,9 @@ const result = {
       `${eventPath}/early-steps/arm_${arm}_${step}.json`)),
     `${eventPath}/early-steps/public-synthetic-replay-1.json`,
     `${eventPath}/early-steps/public-synthetic-replay-100.json`,
+    `${eventPath}/early-steps/public-synthetic-replay-1000.json`,
     `${eventPath}/early-steps/public-synthetic-notes.json`,
+    `${eventPath}/early-steps/public-synthetic-notes-1000.json`,
     `${eventPath}/public-synthetic-replay.json`,
     `${eventPath}/public-synthetic-notes.json`,
     `${muscriptorSmokePath}/receipt.json`,

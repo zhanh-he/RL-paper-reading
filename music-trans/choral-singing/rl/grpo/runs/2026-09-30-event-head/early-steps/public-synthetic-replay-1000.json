@@ -1,0 +1,81 @@
+{
+  "status": "public_synthetic_event_head_replay",
+  "input": "original synthetic SATB audio, not held-out benchmark",
+  "steps": {
+    "arm_onset_1000": {
+      "midi": "choral_event_arm_onset_1000.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 54,
+      "frame_f1": 0.7210493441599001,
+      "onset_f1": 0.20930232558139536,
+      "onset_offset_f1": 0.09302325581395349,
+      "track_onset_f1": 0.20930232558139536,
+      "track_note_f1": 0.09302325581395349
+    },
+    "arm_onset_offset_1000": {
+      "midi": "choral_event_arm_onset_offset_1000.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 42,
+      "frame_f1": 0.7061214122428244,
+      "onset_f1": 0.10810810810810811,
+      "onset_offset_f1": 0.08108108108108109,
+      "track_onset_f1": 0.10810810810810811,
+      "track_note_f1": 0.08108108108108109
+    },
+    "arm_frame_1000": {
+      "midi": "choral_event_arm_frame_1000.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 49,
+      "frame_f1": 0.717078568793803,
+      "onset_f1": 0.32098765432098764,
+      "onset_offset_f1": 0.19753086419753085,
+      "track_onset_f1": 0.32098765432098764,
+      "track_note_f1": 0.19753086419753085
+    },
+    "arm_coverage_1000": {
+      "midi": "choral_event_arm_coverage_1000.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 51,
+      "frame_f1": 0.5547995394117031,
+      "onset_f1": 0.14457831325301204,
+      "onset_offset_f1": 0.024096385542168676,
+      "track_onset_f1": 0.12048192771084337,
+      "track_note_f1": 0.024096385542168676
+    },
+    "arm_continuity_1000": {
+      "midi": "choral_event_arm_continuity_1000.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 41,
+      "frame_f1": 0.6482774674115456,
+      "onset_f1": 0.2191780821917808,
+      "onset_offset_f1": 0.0821917808219178,
+      "track_onset_f1": 0.1917808219178082,
+      "track_note_f1": 0.0821917808219178
+    }
+  }
+}

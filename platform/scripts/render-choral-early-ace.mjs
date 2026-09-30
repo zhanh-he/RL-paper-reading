@@ -31,7 +31,7 @@ function singingNotes(stage, voice) {
 }
 
 for (const stage of stages) {
-  if (!/^arm_(onset|onset_offset|frame|coverage|continuity)_(1|100)$/.test(stage) || !notes[stage]) {
+  if (!/^arm_(onset|onset_offset|frame|coverage|continuity)_(1|100|1000)$/.test(stage) || !notes[stage]) {
     throw new Error(`Unknown early Choral stage: ${stage}`);
   }
   call('project', 'open', template);

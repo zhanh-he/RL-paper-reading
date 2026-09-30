@@ -14,6 +14,8 @@ const notes = read(notesPath);
 const earlyReplays = Object.fromEntries([1, 100].map((step) =>
   [step, read(resolve(base, `early-steps/public-synthetic-replay-${step}.json`))]));
 const earlyNotes = read(resolve(base, 'early-steps/public-synthetic-notes.json'));
+const lastReplay = read(resolve(base, 'early-steps/public-synthetic-replay-1000.json'));
+const lastNotes = read(resolve(base, 'early-steps/public-synthetic-notes-1000.json'));
 
 for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity']) {
   for (const step of [1, 100]) {
@@ -34,6 +36,18 @@ for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity']) 
     replay.steps[key] = publicResult;
     notes[key] = publicNotes;
   }
+  const key = `arm_${arm}_1000`;
+  const publicResult = lastReplay.steps[key];
+  const publicNotes = lastNotes[key];
+  if (!aggregate.arms[arm].milestones['1000'] ||
+      publicResult?.midi !== `choral_event_${key}.mid` ||
+      publicResult.note_count !== publicNotes?.length ||
+      publicNotes.some((note) => ![0, 1, 2, 3].includes(note.voice) ||
+        !Number.isInteger(note.pitch) || note.start < 0 || note.end <= note.start || note.end > 10.3)) {
+    throw new Error(`Invalid 1000-step Choral replay: ${key}`);
+  }
+  replay.steps[key] = publicResult;
+  notes[key] = publicNotes;
 }
 
 write(aggregatePath, aggregate);
