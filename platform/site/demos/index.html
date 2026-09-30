@@ -7,7 +7,7 @@
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-yue2-three-songs" />
-    <link rel="stylesheet" href="./choral-curves.css?v=20260930-yue2" />
+    <link rel="stylesheet" href="./choral-curves.css?v=20260930-yue2-reward" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20260930-reward-copy"></script>
     <script type="module" src="./choral-curves.js?v=20260930"></script>
@@ -149,12 +149,17 @@
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
         <section class="choral-training" id="yue2-training" aria-label="YuE2 training traces">
-          <div class="choral-training-heading"><h3>训练过程 · Reward / KL</h3><span id="yue2-curve-window">2–100 步 · 5 步均值</span></div>
+          <div class="choral-training-heading"><h3>训练过程 · SongEval reward</h3><span>2–100 步 · 5 步均值</span></div>
           <div class="choral-training-plots">
             <figure><figcaption><span>SongEval mean · 训练 rollout</span><strong id="yue2-reward-value">加载中</strong></figcaption><canvas id="yue2-reward-chart" role="img" aria-label="YuE2 SongEval 训练 reward 随步数变化"></canvas></figure>
-            <figure><figcaption><span>KL · reference policy</span><strong>未记录</strong></figcaption><div class="training-unavailable" role="note">本轮没有 reference-policy KL 日志</div></figure>
           </div>
-          <p class="choral-training-note">左图为每步两条训练采样的 SongEval 五维均分，再取 5 步窗口均值；不是留出提示分数。右图保留与 Choral 一致的位置，但 YuE2 本轮未计算 KL，不能补画或由 gradient norm 推算。两条 LR 臂分别显示。</p>
+          <div class="choral-training-foldouts">
+            <details class="choral-deep-dive"><summary>曲线口径、KL 记录与训练框架</summary>
+              <p class="section-copy">每点是每步两条训练采样的 SongEval 五维均分，再取 5 步窗口均值；切换 LR 会显示各自的训练轨迹。这不是固定留出提示的分数，也不能单凭训练曲线判断音质提升。</p>
+              <p class="section-copy">本轮没有 TensorBoard KL 曲线，也未计算或保存 reference-policy KL。梯度范数不是 KL，不能用它补画。</p>
+              <p class="section-copy">YuE2 的 GRPO 由项目内 PyTorch 循环实现，用 PEFT/LoRA 和本地 YuE2 pipeline；未使用 TRL、MILES、verl 或 verl-omni 的训练器。</p>
+            </details>
+          </div>
         </section>
         <h3 class="subsection-heading">Checkpoint timeline</h3>
         <div class="stage-rail" id="lyrics-stage-rail" aria-label="Lyrics training stages"></div>
@@ -169,6 +174,7 @@
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lyrics-interpretation"></p></div>
         <form class="review-form" id="listening-review"><div><span class="source-label">Human listening review</span><h3>这段音频你更愿意保留哪版？</h3></div><label>Preference<select name="preference"><option value="">未选择</option><option value="baseline">A · Baseline</option><option value="candidate">B · 1 step</option><option value="tie">差不多</option></select></label><label>听感备注<input name="note" type="text" maxlength="240" placeholder="如：人声清晰度、杂音、旋律连续性" /></label><button class="button button-primary" type="submit"><i data-lucide="save" aria-hidden="true"></i>保存</button><span id="review-status" aria-live="polite"></span></form>
         <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rewards/songeval-grpo-protocol.md" target="_blank" rel="noreferrer">Reward and optimizer protocol ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
+        <p class="stage-context" id="lyrics-framework-note"></p>
       </section>
 
       <section class="lab-view" id="view-songeval" hidden>

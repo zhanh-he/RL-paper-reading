@@ -678,6 +678,9 @@ function renderLyrics(data) {
     $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 已提交 Gadi 排队。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     $('#lyrics-heldout-section').hidden = !isYuE2;
     $('#lyrics-muse-section').hidden = isYuE2;
+    $('#lyrics-framework-note').textContent = isYuE2
+      ? '训练实现：项目内 PyTorch GRPO 循环 + PEFT/LoRA + YuE2 pipeline；未使用 TRL、MILES、verl 或 verl-omni。'
+      : '训练实现：项目内 PyTorch GRPO 循环 + Transformers + PEFT/LoRA；Muse 音频经 MuCodec 解码，未使用 TRL、MILES、verl 或 verl-omni。';
     $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
     $('#lyrics-reward-title').textContent = model === 'musecritic' ? '优化目标 · MuseCritic 五维均值' : '优化目标 · SongEval 五维均值';
     $('#lyrics-reward-definition').textContent = model === 'musecritic'
