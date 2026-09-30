@@ -8,9 +8,11 @@ adapter on the output projection; the backbone, codec, and CLaMP3 stay frozen.
 from __future__ import annotations
 
 import argparse
+import atexit
 import json
 import logging
 import math
+import subprocess
 import sys
 import time
 from dataclasses import dataclass
@@ -30,6 +32,38 @@ class Action:
     token: torch.Tensor
     active: torch.Tensor
     old_logp: torch.Tensor
+
+
+class BeatV2Client:
+    def __init__(self, python: str, script: Path, reward_root: Path, vocal: Path, log: Path):
+        self.stderr = log.open("w")
+        self.process = subprocess.Popen(
+            [python, str(script), "--reward-root", str(reward_root), "--vocal", str(vocal)],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=self.stderr,
+            text=True,
+            bufsize=1,
+        )
+        atexit.register(self.close)
+
+    def score(self, audio: Path, seconds: float) -> dict:
+        self.process.stdin.write(json.dumps({"audio": str(audio), "seconds": seconds}) + "\n")
+        self.process.stdin.flush()
+        line = self.process.stdout.readline()
+        if not line:
+            raise RuntimeError(f"Beat-v2 worker exited with code {self.process.poll()}")
+        result = json.loads(line)
+        if "error" in result:
+            raise RuntimeError(f"Beat-v2 worker: {result['error']}")
+        return result
+
+    def close(self) -> None:
+        if self.process.poll() is None:
+            self.process.stdin.close()
+            self.process.wait(timeout=10)
+        if not self.stderr.closed:
+            self.stderr.close()
 
 
 class OutputLoRA(nn.Module):
@@ -268,6 +302,33 @@ def run(cfg):
     eval_vocal, eval_mono = read_vocal(Path(cfg.vocal), cfg.eval_seconds, torch.device("cuda"))
     eval_vocal_rms = frame_rms(eval_mono, sf.info(cfg.vocal).samplerate)
     eval_voc_ids, eval_condition = encode_condition(module, eval_vocal, cfg.text)
+    beat_client = None
+    if cfg.reward == "beat_v2":
+        if not (cfg.beat_worker_python and cfg.beat_worker_script and cfg.beat_reward_root):
+            raise ValueError("beat_v2 requires --beat-worker-python, --beat-worker-script and --beat-reward-root")
+        beat_client = BeatV2Client(
+            cfg.beat_worker_python,
+            Path(cfg.beat_worker_script).resolve(),
+            Path(cfg.beat_reward_root).resolve(),
+            Path(cfg.vocal).resolve(),
+            out / "beat_v2_worker.log",
+        )
+
+    def score_rollout(audio: np.ndarray, reference_rms: np.ndarray, seconds: float, path: Path | None = None):
+        if beat_client is None:
+            return score_audio(audio, reference_rms, 48000, cfg.reward)
+        metrics = score_audio(audio, reference_rms, 48000, "combined")
+        if path is None:
+            path = out / "beat_v2_candidate.wav"
+            sf.write(path, audio, 48000)
+        beat = beat_client.score(path, seconds)
+        metrics["proxy_reward"] = metrics["reward"]
+        metrics["reward"] = float(beat["score"]) if beat["scorable"] else 0.0
+        metrics["beat_v2_score"] = beat["score"]
+        metrics["beat_v2_reference_beats"] = beat["reference_beats"]
+        metrics["beat_v2_accompaniment_beats"] = beat["accompaniment_beats"]
+        return metrics
+
     print(json.dumps({"event": "ready", "load_seconds": round(time.monotonic() - start, 2), "tokens": voc_ids.shape[1], "vram_gb": round(torch.cuda.max_memory_allocated() / 2**30, 2)}), flush=True)
     evaluation_log = out / "evaluations.jsonl"
     if start_step == 0:
@@ -279,7 +340,7 @@ def run(cfg):
         audio = decode(module, tokens)
         path = out / f"step_{step:04d}.wav"
         sf.write(path, audio, 48000)
-        metrics = score_audio(audio, eval_vocal_rms, 48000, cfg.reward)
+        metrics = score_rollout(audio, eval_vocal_rms, cfg.eval_seconds, path)
         record = {"event": "evaluation", "step": step, "audio": str(path), **metrics}
         with evaluation_log.open("a") as log:
             log.write(json.dumps(record) + "\n")
@@ -297,7 +358,7 @@ def run(cfg):
             for candidate in range(cfg.group):
                 tokens, actions = sample_trajectory(model, voc_ids, condition, cfg, cfg.seed + step * cfg.group + candidate)
                 audio = decode(module, tokens)
-                scores.append(score_audio(audio, vocal_rms, 48000, cfg.reward))
+                scores.append(score_rollout(audio, vocal_rms, cfg.seconds))
                 groups.append(actions)
             rewards = np.asarray([s["reward"] for s in scores])
             advantages = (rewards - rewards.mean()) / (rewards.std() + 1e-6)
@@ -315,6 +376,8 @@ def run(cfg):
                     "args": vars(cfg),
                 }, out / f"step_{step:04d}.pt")
                 evaluation(step)
+    if beat_client is not None:
+        beat_client.close()
 
 
 def parse_args():
@@ -338,7 +401,10 @@ def parse_args():
     parser.add_argument("--top-p", type=float, default=0.9)
     parser.add_argument("--support-mix", type=float, default=1e-4)
     parser.add_argument("--schedule", default="cosine")
-    parser.add_argument("--reward", choices=["coverage", "combined"], default="coverage")
+    parser.add_argument("--reward", choices=["coverage", "combined", "beat_v2"], default="coverage")
+    parser.add_argument("--beat-worker-python")
+    parser.add_argument("--beat-worker-script")
+    parser.add_argument("--beat-reward-root")
     parser.add_argument("--seed", type=int, default=13)
     parser.add_argument("--eval-seed", type=int, default=777)
     parser.add_argument("--save-steps", type=int, nargs="+", default=[5, 50, 100, 300])

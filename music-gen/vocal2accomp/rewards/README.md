@@ -22,3 +22,5 @@ Do not create these `.py` files as empty stubs. Migrate the actual, tested vocal
 | Vocal-gated three-tone chord | 1.000 | 0.797 | The combination can still reward a trivial envelope follower. |
 
 The combined proxy is therefore a partial guardrail, **not** a validated music-quality reward. The separate coverage-only GRPO arm is needed to test whether the model actually discovers these or other failures; synthetic attack scores alone cannot establish model reward hacking. Beat-v2 and perceptual richness are not optimized in this proxy run.
+
+The separate [`beat_v2_worker.py`](beat_v2_worker.py) exposes the original Madmom Beat-v2 scorer to LaDA training through a persistent CPU process. It has passed six- and twelve-second baseline preflights but has not yet produced an online Beat-v2 checkpoint. Richness still lacks a validated implementation here; the spectral-band proxy must not be renamed to richness.

@@ -57,3 +57,21 @@ After the 300-step checkpoint exists, `evaluate_lada_band.py` can replay all sav
 ```
 
 This is a held-out *phrase*, not a held-out song or singer; it cannot establish broad generalization.
+
+## Optional original Beat-v2 reward arm
+
+The trainer also accepts `--reward beat_v2`, which sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This is an **available but not yet trained** arm; do not label the combined proxy run as Beat-v2 GRPO.
+
+```bash
+.env/bin/python train_lada_band.py \
+  --code-root codes \
+  --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
+  --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_beat_v2_6s \
+  --seconds 6 --eval-seconds 12 --denoise-steps 8 --group 2 \
+  --reward beat_v2 --lr 5e-4 --steps 50 --save-steps 5 50 \
+  --beat-worker-python /home/mengh/miniconda3/envs/auto-beat-reward/bin/python \
+  --beat-worker-script beat_v2_worker.py \
+  --beat-reward-root /home/mengh/research/vocal2accomp-muse
+```
+
+The persistent worker scores actual generated audio, not the fast onset-fit proxy. An unscorable vocal reference yields zero reward, and the record keeps reference/accompaniment beat counts. This is still a single-pass group-relative update with the same limited LoRA scope and one fixed training vocal.
