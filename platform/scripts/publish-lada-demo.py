@@ -21,6 +21,18 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
+def guarded_reward(metrics: dict, beat_score: dict) -> float:
+    coverage = metrics["rms_coverage"]
+    loudness_db = beat_score["acc_to_vocal_rms_db"]
+    return (
+        0.65 * beat_score["score"] * min(1.0, coverage / 0.4)
+        + 0.35 * min(1.0, coverage / 0.7)
+        - metrics["quality_penalty"]
+        - 0.025 * (max(0.0, loudness_db + 3) + max(0.0, -18 - loudness_db))
+        - 0.5 * max(0.0, metrics["spectral_flatness"] - 0.3)
+    )
+
+
 def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: Path | None = None) -> Path:
     if slug not in {"combined", "coverage", "beat_v2", "guarded"}:
         raise ValueError(f"unsupported reward arm: {slug}")
@@ -66,10 +78,10 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
             "-map", "[m]", "-ac", "2", "-ar", "48000", "-c:a", "pcm_s16le", str(mixture),
         ], check=True)
         metrics = {key: item[key] for key in METRIC_FIELDS if key in item}
-        if heldout_dir is not None and slug == "beat_v2":
+        if heldout_dir is not None and slug in {"beat_v2", "guarded"}:
             if str(step) not in beat_scores:
                 raise ValueError(f"held-out Beat-v2 score missing for step {step}")
-            metrics["reward"] = beat_scores[str(step)]["score"]
+            metrics["reward"] = beat_scores[str(step)]["score"] if slug == "beat_v2" else guarded_reward(metrics, beat_scores[str(step)])
         stages.append({
             "step": step,
             "audio": f"./audio/{mixture.name}",

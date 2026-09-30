@@ -87,6 +87,28 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(output.name, "vocal-lada-guarded-run.json")
             self.assertEqual(json.loads(output.read_text())["stages"][0]["reward"], 0.2)
 
+    def test_heldout_guarded_reward_is_recomputed_from_original_beat_score(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run, heldout, site = (root / name for name in ("run", "heldout", "site"))
+            for path in (run, heldout, site / "audio"):
+                path.mkdir(parents=True)
+            (run / "run.json").write_text(json.dumps({"args": {"reward": "beat_v2_coverage_guard"}}))
+            (heldout / "source.wav").write_bytes(b"vocal")
+            (heldout / "step_0000.wav").write_bytes(b"accompaniment")
+            (heldout / "evaluations.json").write_text(json.dumps([{
+                "step": 0, "duration_seconds": 6, "reward": None, "proxy_reward": 0.8,
+                "rms_coverage": 0.8, "quality_penalty": 0.0, "spectral_flatness": 0.2,
+            }]))
+            (heldout / "beat_v2.json").write_text(json.dumps({"0": {"score": 0.5, "acc_to_vocal_rms_db": -5}}))
+
+            with patch.object(MODULE.subprocess, "run"):
+                output = MODULE.publish(run, site, slug="guarded", heldout_dir=heldout)
+
+            data = json.loads(output.read_text())
+            self.assertAlmostEqual(data["stages"][0]["reward"], 0.675)
+            self.assertNotEqual(data["stages"][0]["reward"], 0.8)
+
 
 if __name__ == "__main__":
     unittest.main()
