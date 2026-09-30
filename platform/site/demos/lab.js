@@ -291,12 +291,13 @@ function createChoralMidiPanel(letter) {
   heading.append(titleBlock);
   const canvas = document.createElement('canvas'); canvas.width = 1120; canvas.height = 620;
   canvas.setAttribute('role', 'img');
+  const pending = document.createElement('div'); pending.className = 'choral-midi-pending'; pending.hidden = true;
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata';
   const links = document.createElement('div'); links.className = 'choral-midi-links';
   const midi = document.createElement('a'); midi.className = 'source-link'; midi.download = '';
   const direct = document.createElement('a'); direct.className = 'source-link'; direct.target = '_blank'; direct.rel = 'noreferrer'; direct.textContent = '音频直链 ↗';
-  links.append(midi, direct); panel.append(heading, canvas, audio, links);
-  return { panel, title, detail, canvas, audio, midi, direct };
+  links.append(midi, direct); panel.append(heading, canvas, pending, audio, links);
+  return { panel, title, detail, canvas, pending, audio, links, midi, direct };
 }
 
 function drawSatbComparison(canvas, noteSets, stage, label) {
@@ -336,7 +337,7 @@ function drawSatbComparison(canvas, noteSets, stage, label) {
 function renderEventReplay(data, pilot) {
   const steps = [1, 100, 300, 1000];
   const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
-    coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
+    coverage: 'Coverage only', continuity: 'Continuity only' };
   const allNotes = Object.values(data.notes).flat();
   const pitchRange = [Math.min(...allNotes.map((note) => note.pitch)) - 2,
     Math.max(...allNotes.map((note) => note.pitch)) + 2];
@@ -345,12 +346,16 @@ function renderEventReplay(data, pilot) {
   const singlePanels = Object.fromEntries(singleArms.map((arm, index) =>
     [arm, createChoralMidiPanel(String.fromCharCode(66 + index))]));
   $('#choral-baseline-panel').replaceChildren(panels.baseline.panel);
-  $('#choral-grpo-grid').replaceChildren(panels.combined.panel,
+  $('#choral-grpo-grid').append(panels.combined.panel,
     ...singleArms.map((arm) => singlePanels[arm].panel));
   drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, pitchRange);
   const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
     panel.title.textContent = title;
     panel.detail.textContent = detail;
+    panel.canvas.hidden = false;
+    panel.pending.hidden = true;
+    panel.audio.hidden = false;
+    panel.links.hidden = false;
     panel.canvas.setAttribute('aria-label', `${title} SATB MIDI piano roll`);
     drawVoiceMidi(panel.canvas, notes, pitchRange);
     const audioPath = `./audio/${stem}.wav`;
@@ -359,13 +364,39 @@ function renderEventReplay(data, pilot) {
     panel.midi.href = `./midi/${midiStem}.mid`;
     panel.midi.textContent = '下载 MIDI ↓';
   };
+  const clearPanel = (panel, title, step, metricsAvailable) => {
+    panel.title.textContent = title;
+    panel.detail.textContent = metricsAvailable ? `${step} 步 · 测试集指标已测` : `${step} 步 · 尚无回放`;
+    panel.canvas.hidden = true;
+    panel.pending.hidden = false;
+    panel.pending.textContent = metricsAvailable ? '该步尚无公开样本 MIDI / 音频' : '该步尚无 MIDI / 音频';
+    panel.audio.pause();
+    panel.audio.removeAttribute('src');
+    panel.audio.load();
+    panel.audio.hidden = true;
+    panel.links.hidden = true;
+    panel.direct.removeAttribute('href');
+    panel.midi.removeAttribute('href');
+  };
   updatePanel(panels.baseline, 'Frozen ChoralStream · baseline', `${data.receipt.steps['0'].note_count} notes · 0 步`,
     data.notes['0'], 'choral_event_0000', 'choral_event_0000');
   const selectStep = (step) => {
     const id = String(step).padStart(4, '0');
     const result = data.receipt.steps[String(step)];
-    updatePanel(panels.combined, 'Combined reward', `${result.note_count} notes · ${step} 步`,
+    updatePanel(panels.combined, 'Combined rewards', `${result.note_count} notes · ${step} 步`,
       data.notes[String(step)], `choral_event_${id}`, `choral_event_${id}`);
+    for (const arm of singleArms) {
+      const key = `arm_${arm}_${step}`;
+      const replay = data.receipt.steps[key];
+      const notes = data.notes[key];
+      if (replay && notes) {
+        const updates = pilot.arms[arm].milestones[String(step)].updated_steps;
+        updatePanel(singlePanels[arm], armNames[arm], `${replay.note_count} notes · ${updates}/${step} 有效更新`,
+          notes, `choral_event_arm_${arm}_${step}`, `choral_event_arm_${arm}_${step}`);
+      } else {
+        clearPanel(singlePanels[arm], armNames[arm], step, Boolean(pilot.arms[arm].milestones[String(step)]));
+      }
+    }
     for (const button of document.querySelectorAll('#choral-event-rail button')) {
       button.setAttribute('aria-pressed', String(Number(button.dataset.step) === step));
     }
@@ -375,19 +406,10 @@ function renderEventReplay(data, pilot) {
     button.className = 'stage-item available'; button.dataset.step = String(step);
     const title = document.createElement('strong'); title.textContent = `${step} 步`;
     const state = document.createElement('span'); state.className = 'state measured';
-    state.textContent = step === 1 ? '首次更新' : '组合 reward';
+    state.textContent = step === 300 ? 'A–F 可试听' : 'A 可试听';
     button.append(title, state); button.addEventListener('click', () => selectStep(step));
     return button;
   }));
-  for (const arm of singleArms) {
-    const key = `arm_${arm}_300`;
-    const audioStem = arm === 'weak_voice' ? 'choral_event_0000' : `choral_event_arm_${arm}_300`;
-    const midiStem = `choral_event_arm_${arm}_300`;
-    const result = data.receipt.steps[key];
-    const updates = pilot.arms[arm].milestones['300'].updated_steps;
-    updatePanel(singlePanels[arm], armNames[arm], `${result.note_count} notes · ${updates}/300 有效更新`,
-      data.notes[key], audioStem, midiStem);
-  }
   $('#view-choral').addEventListener('play', (event) => {
     if (event.target.tagName !== 'AUDIO') return;
     for (const audio of document.querySelectorAll('#view-choral audio')) {
@@ -404,7 +426,7 @@ function renderEventPilot(data) {
     if (stage) rows.push({ label: 'Combined', step, updates: stage.updated_steps, metrics: stage.metrics, kind: 'combined' });
   }
   const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
-    coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
+    coverage: 'Coverage only', continuity: 'Continuity only' };
   for (const [arm, label] of Object.entries(armNames)) {
     for (const step of [300, 1000]) {
       const stage = data.arms[arm]?.milestones?.[String(step)];
@@ -446,11 +468,10 @@ function renderEventPilot(data) {
 
 function renderActualArmReplays(replay, pilot) {
   const names = { combined: 'Combined', onset: 'Onset only', onset_offset: 'Onset + offset only',
-    frame: 'Frame only', coverage: 'Coverage only', continuity: 'Continuity only',
-    weak_voice: 'Weak-voice only', precision: 'Precision only' };
+    frame: 'Frame only', coverage: 'Coverage only', continuity: 'Continuity only' };
   const stageKey = (arm) => arm === 'combined' ? '300' : `arm_${arm}_300`;
   const assetName = (arm) => arm === 'combined' ? 'choral_event_0300' :
-    arm === 'weak_voice' ? 'choral_event_0000' : `choral_event_arm_${arm}_300`;
+    `choral_event_arm_${arm}_300`;
   const asset = (name) => ({ audio: `audio/${name}.wav`,
     wave: `visuals/${name}_wave.png`, spectrum: `visuals/${name}_spectrum.png` });
   const rows = [['Frozen', 0, replay.receipt.steps['0']],
@@ -467,7 +488,7 @@ function renderActualArmReplays(replay, pilot) {
     const key = stageKey(arm);
     const result = replay.receipt.steps[key];
     const name = assetName(arm);
-    $('#actual-arm-midi').href = `./midi/${arm === 'weak_voice' ? 'choral_event_arm_weak_voice_300' : name}.mid`;
+    $('#actual-arm-midi').href = `./midi/${name}.mid`;
     $('#actual-arm-audio').replaceChildren(
       createMediaPanel({ label: 'A / FROZEN', title: 'Baseline · 0 updates',
         asset: asset('choral_event_0000'), details: 'Same original input and fixed singers' }),
@@ -481,10 +502,12 @@ function renderActualArmReplays(replay, pilot) {
 }
 
 function renderPawctPaper(data) {
+  const percent = (value, digits = 1) => `${fmt(value * 100, digits)}%`;
+  const paired = ([frame, onset], digits = 1) => `${percent(frame, digits)} (${percent(onset, digits)})`;
   appendCells($('#pawct-paper-table'), data.rows.map((row) => [
     row.model,
-    ...['S', 'A', 'T', 'B', 'average'].flatMap((part) => row[part].map((value) => fmt(value, 3))),
-    ...row.va_rate.map((value) => fmt(value, 2)),
+    ...['S', 'A', 'T', 'B', 'average'].flatMap((part) => [paired(row[part]), '—']),
+    `${fmt(row.va_rate[0], 2)}% (${fmt(row.va_rate[1], 2)}%)`,
   ]));
 }
 
