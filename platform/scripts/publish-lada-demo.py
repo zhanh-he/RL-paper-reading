@@ -10,7 +10,7 @@ import subprocess
 from pathlib import Path
 
 
-STEPS = (0, 5, 50, 100, 300)
+STEPS = (0, 5, 50, 100, 150, 200, 300)
 CONFIG_FIELDS = ("reward", "group", "seconds", "eval_seconds", "denoise_steps", "lr", "top_k", "top_p", "support_mix", "eval_seed", "schedule", "text")
 METRIC_FIELDS = ("reward", "rms_coverage", "onset_fit_proxy", "band_occupancy_proxy", "spectral_flatness", "peak", "clipping_fraction", "quality_penalty")
 

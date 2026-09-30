@@ -97,7 +97,7 @@
     const byId = id => document.getElementById(id);
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
-    const stages = [0, 5, 50, 100, 300];
+    const stages = [0, 5, 50, 100, 150, 200, 300];
     const select = byId('step-select');
     const player = byId('ab-audio');
     let data;
