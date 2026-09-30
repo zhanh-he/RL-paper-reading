@@ -166,6 +166,25 @@ def score_audio(audio: np.ndarray, vocal_rms: np.ndarray, sr: int, arm: str) -> 
     }
 
 
+def beat_coverage_guard_reward(beat: float, metrics: dict[str, float], audio: np.ndarray, vocal_rms: np.ndarray) -> dict[str, float]:
+    coverage = metrics["rms_coverage"]
+    beat_gate = min(1.0, coverage / 0.4)
+    coverage_term = min(1.0, coverage / 0.7)
+    acc_rms = float(np.sqrt(np.mean(np.square(audio, dtype=np.float64))))
+    ref_rms = float(np.sqrt(np.mean(np.square(vocal_rms, dtype=np.float64))))
+    loudness_db = float(20 * np.log10(max(acc_rms, 1e-6) / max(ref_rms, 1e-6)))
+    loudness_penalty = 0.025 * (max(0.0, loudness_db + 3) + max(0.0, -18 - loudness_db))
+    flatness_penalty = 0.5 * max(0.0, metrics["spectral_flatness"] - 0.3)
+    return {
+        "reward": 0.65 * beat * beat_gate + 0.35 * coverage_term - metrics["quality_penalty"] - loudness_penalty - flatness_penalty,
+        "beat_gate": beat_gate,
+        "coverage_saturated": coverage_term,
+        "acc_to_vocal_rms_db": loudness_db,
+        "loudness_guard_penalty": loudness_penalty,
+        "flatness_guard_penalty": flatness_penalty,
+    }
+
+
 def encode_condition(module, vocal: torch.Tensor, text: str) -> tuple[torch.Tensor, torch.Tensor]:
     with torch.inference_mode():
         module.codec.device = vocal.device
@@ -303,7 +322,7 @@ def run(cfg):
     eval_vocal_rms = frame_rms(eval_mono, sf.info(cfg.vocal).samplerate)
     eval_voc_ids, eval_condition = encode_condition(module, eval_vocal, cfg.text)
     beat_client = None
-    if cfg.reward == "beat_v2":
+    if cfg.reward in {"beat_v2", "beat_v2_coverage_guard"}:
         if not (cfg.beat_worker_python and cfg.beat_worker_script and cfg.beat_reward_root):
             raise ValueError("beat_v2 requires --beat-worker-python, --beat-worker-script and --beat-reward-root")
         beat_client = BeatV2Client(
@@ -323,7 +342,11 @@ def run(cfg):
             sf.write(path, audio, 48000)
         beat = beat_client.score(path, seconds)
         metrics["proxy_reward"] = metrics["reward"]
-        metrics["reward"] = float(beat["score"]) if beat["scorable"] else 0.0
+        beat_score = float(beat["score"]) if beat["scorable"] else 0.0
+        if cfg.reward == "beat_v2_coverage_guard":
+            metrics.update(beat_coverage_guard_reward(beat_score, metrics, audio, reference_rms))
+        else:
+            metrics["reward"] = beat_score
         metrics["beat_v2_score"] = beat["score"]
         metrics["beat_v2_reference_beats"] = beat["reference_beats"]
         metrics["beat_v2_accompaniment_beats"] = beat["accompaniment_beats"]
@@ -401,7 +424,7 @@ def parse_args():
     parser.add_argument("--top-p", type=float, default=0.9)
     parser.add_argument("--support-mix", type=float, default=1e-4)
     parser.add_argument("--schedule", default="cosine")
-    parser.add_argument("--reward", choices=["coverage", "combined", "beat_v2"], default="coverage")
+    parser.add_argument("--reward", choices=["coverage", "combined", "beat_v2", "beat_v2_coverage_guard"], default="coverage")
     parser.add_argument("--beat-worker-python")
     parser.add_argument("--beat-worker-script")
     parser.add_argument("--beat-reward-root")

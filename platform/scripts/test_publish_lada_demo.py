@@ -70,6 +70,23 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(data["stages"][0]["beat_v2"]["score"], 0.25)
             self.assertEqual((site / "audio/lada_emma_beat_v2_heldout_step_0000.wav").read_bytes(), b"heldout accompaniment")
 
+    def test_guarded_training_arm_has_its_own_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run, site = root / "run", root / "site"
+            run.mkdir()
+            (site / "audio").mkdir(parents=True)
+            (site / "audio/ace_emma_vocal_12s.wav").write_bytes(b"vocal")
+            (run / "run.json").write_text(json.dumps({"args": {"reward": "beat_v2_coverage_guard"}}))
+            (run / "evaluations.jsonl").write_text(json.dumps({"step": 0, "reward": 0.2}) + "\n")
+            (run / "step_0000.wav").write_bytes(b"accompaniment")
+
+            with patch.object(MODULE.subprocess, "run"):
+                output = MODULE.publish(run, site, slug="guarded")
+
+            self.assertEqual(output.name, "vocal-lada-guarded-run.json")
+            self.assertEqual(json.loads(output.read_text())["stages"][0]["reward"], 0.2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from torch import nn
 
-from train_lada_band import OutputLoRA, frame_rms, score_audio
+from train_lada_band import OutputLoRA, beat_coverage_guard_reward, frame_rms, score_audio
 
 
 class RewardTests(unittest.TestCase):
@@ -32,6 +32,29 @@ class RewardTests(unittest.TestCase):
         self.assertEqual(coverage["rms_coverage"], 1.0)
         self.assertGreater(combined["quality_penalty"], 0.0)
         self.assertLess(combined["reward"], coverage["reward"])
+
+    def test_beat_coverage_guard_rejects_sparse_clicks_and_loudness(self):
+        vocal_rms = np.full(150, 0.04, dtype=np.float32)
+        quiet = np.full((48000, 2), 0.02, dtype=np.float32)
+        loud = np.full((48000, 2), 0.08, dtype=np.float32)
+        sparse = {"rms_coverage": 0.09, "spectral_flatness": 0.15, "quality_penalty": 0.0}
+        active = {"rms_coverage": 0.7, "spectral_flatness": 0.15, "quality_penalty": 0.0}
+        click = beat_coverage_guard_reward(1.0, sparse, quiet, vocal_rms)
+        balanced = beat_coverage_guard_reward(0.5, active, quiet, vocal_rms)
+        too_loud = beat_coverage_guard_reward(0.5, active, loud, vocal_rms)
+        self.assertLess(click["reward"], 0.25)
+        self.assertGreater(balanced["reward"], click["reward"])
+        self.assertLess(too_loud["reward"], balanced["reward"])
+
+    def test_beat_coverage_guard_penalizes_flat_noise(self):
+        vocal_rms = np.full(150, 0.04, dtype=np.float32)
+        audio = np.full((48000, 2), 0.02, dtype=np.float32)
+        tonal = {"rms_coverage": 0.7, "spectral_flatness": 0.15, "quality_penalty": 0.0}
+        noisy = {"rms_coverage": 0.7, "spectral_flatness": 0.85, "quality_penalty": 0.0}
+        self.assertLess(
+            beat_coverage_guard_reward(0.5, noisy, audio, vocal_rms)["reward"],
+            beat_coverage_guard_reward(0.5, tonal, audio, vocal_rms)["reward"],
+        )
 
 
 class AdapterTests(unittest.TestCase):

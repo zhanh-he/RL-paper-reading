@@ -123,3 +123,25 @@ The step-5 WAV is byte-identical to baseline. Mean six-second training-candidate
 ```
 
 The persistent worker scores actual generated audio, not the fast onset-fit proxy. An unscorable vocal reference yields zero reward, and the record keeps reference/accompaniment beat counts. This is still a single-pass group-relative update with the same limited LoRA scope and one fixed training vocal.
+
+## Calibrated two-component guard arm (prepared, not yet measured)
+
+The additional `beat_v2_coverage_guard` option uses **actual** Madmom Beat-v2 F1 `B` and 40 ms RMS coverage `C`, with a coverage gate on beat credit and a coverage term that stops growing after 0.7:
+
+`R = 0.65 B min(1, C/0.4) + 0.35 min(1, C/0.7) - Q - 0.025 D - 0.5 max(0, flatness-0.3)`
+
+Here `Q` is the existing peak/clipping/flatness quality penalty and `D` is the sum of dB distance outside an accompaniment-to-vocal RMS window of `[-18, -3] dB`. The gate is designed to suppress beat-rich near-silence; saturation removes the incentive to increase loudness once coverage is adequate. This remains a **partial** combination: there is no validated richness reward, and no claim that the guard prevents all gaming. The pure function passed six unit tests on lab5090; for the oracle-aligned 6-second click track with Beat-v2 F1 `1.0`, it returns `-0.561` instead of a high score. That is a function stress test, not a trained-model result.
+
+The matched 100-step GPU arm is prepared with the same frozen baseline, input, prompt, sampler, group size, learning rate and seeds. Run it only after the Beat-v2 300-step continuation releases the shared 5090:
+
+```bash
+.env/bin/python train_lada_band_guarded.py \
+  --code-root codes \
+  --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
+  --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_guarded_6s \
+  --seconds 6 --eval-seconds 12 --denoise-steps 8 --group 2 \
+  --reward beat_v2_coverage_guard --lr 5e-4 --steps 100 --save-steps 5 50 100 \
+  --beat-worker-python /home/mengh/miniconda3/envs/auto-beat-reward/bin/python \
+  --beat-worker-script beat_v2_worker.py \
+  --beat-reward-root /home/mengh/research/vocal2accomp-muse
+```
