@@ -1,0 +1,81 @@
+{
+  "training_data_origin": "eight original hand-written English two-line lyrics prompts",
+  "heldout_data_origin": "three separate original hand-written English two-line lyrics prompts",
+  "train_prompts": [
+    {
+      "style": "English, bright indie pop, piano, bass, drums, female vocal, 105 BPM",
+      "lyrics": "[Verse]\nMorning paints the window gold\nWe let the quiet story unfold",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, warm acoustic pop, guitar, bass, light drums, male vocal, 98 BPM",
+      "lyrics": "[Verse]\nThe river carries yesterday\nAnd leaves a clearer sky today",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, reflective folk, fingerpicked guitar, soft percussion, female vocal, 86 BPM",
+      "lyrics": "[Verse]\nA paper moon above the town\nKeeps every wandering thought around",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, upbeat synth pop, pulsing bass, drums, female vocal, 118 BPM",
+      "lyrics": "[Verse]\nThe city wakes in shades of blue\nI find a little light in you",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, mellow soul, electric piano, bass, brushed drums, male vocal, 92 BPM",
+      "lyrics": "[Verse]\nThe last train turns the corner slow\nI hear the midnight breezes blow",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, gentle country pop, acoustic guitar, fiddle, drums, female vocal, 104 BPM",
+      "lyrics": "[Verse]\nA winding road can lead us far\nWe navigate by one bright star",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, soft rock, clean guitar, bass, drums, male vocal, 110 BPM",
+      "lyrics": "[Verse]\nThe open door invites the sun\nAnother day has just begun",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, dreamy chamber pop, piano, strings, soft drums, female vocal, 90 BPM",
+      "lyrics": "[Verse]\nThe evening settles on the shore\nI hear the waves and ask for more",
+      "cot": "off",
+      "cfg_scale": 1.0
+    }
+  ],
+  "heldout_prompts": [
+    {
+      "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+      "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+      "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+      "cot": "off",
+      "cfg_scale": 1.0
+    },
+    {
+      "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+      "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+      "cot": "off",
+      "cfg_scale": 1.0
+    }
+  ],
+  "reward_backend": "musecritic",
+  "learning_rate": 2e-05,
+  "reward_audio_format": "PCM_24 FLAC",
+  "max_tokens": 600,
+  "start_adapter": "/home/mengh/research/YuE2-posttrain/outputs/songeval_grpo_pilot_20260929/adapter",
+  "musecritic_model": "/home/mengh/research/musecritic_beat_eval/models/MuseCritic",
+  "musecritic_max_new_tokens": 512
+}

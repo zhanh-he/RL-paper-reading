@@ -78,8 +78,12 @@ source LoRA to 2.5583, on MuseCritic's own scale. A subsequent
 [reward-format audit](runs/2026-10-01-yue2-musecritic-format-audit/README.md)
 found a large MuseCritic score difference between practically identical
 float-WAV and PCM24-FLAC versions of one song. The old run scored temporary
-WAVs but archived FLACs, so a corrected run now scores the archived FLAC
-itself. The [cross-reward audit](runs/2026-09-30-yue2-cross-reward/README.md)
+WAVs but archived FLACs. The [corrected PCM24-FLAC run](runs/2026-10-01-yue2-musecritic-pcm24/README.md)
+scored the exact archived bytes and completed 100 steps. On three fixed
+held-out clips, its mean rose from 2.5385 at the shared step-1 LoRA to
+3.1146 at step 50, then fell to 2.2443 at step 100. This is too small and
+short a sample for a music-quality claim. The
+[cross-reward audit](runs/2026-09-30-yue2-cross-reward/README.md)
 records MuseCritic scores for the SongEval arms' exact FLACs.
 
 The [Muse SongEval prompt-matched replay](runs/2026-09-30-muse-matched/README.md)
