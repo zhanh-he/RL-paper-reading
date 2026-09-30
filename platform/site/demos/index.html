@@ -6,7 +6,7 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20260930-lyrics-matched" />
+    <link rel="stylesheet" href="./styles.css?v=20260930-choral-input" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20260930-lyrics-matched"></script>
   </head>
@@ -60,13 +60,14 @@
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral singing transcription: GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Event-head held-out test</span><strong>16 首训练、8 首未见原曲</strong><p>每首一段 5.12 秒 YouChorale-Pro；每次消融同一模型起点与划分。只公开聚合指标，不公开原始音频、逐首 ID 或权重。</p></div><div class="source-block"><span class="source-label">Public replay</span><strong>原创 10.2 秒 SATB 合成歌曲</strong><p>同一输入、固定模型推理设置，解出冻结起点及 1/100/300/1000 步 MIDI；ACE Studio 用同样四位歌手回放。此歌不计入 8 首测试指标。</p></div></div>
         <h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3>
+        <div class="choral-input-band"><div><span class="source-label">MODEL INPUT / ORIGINAL SYNTHESIS</span><p>原始合成音频是所有模型输出共用的输入。四个 SATB 声部叠在同一音高轴；下方所有 piano roll 共用音高与时间轴。</p></div><audio controls preload="metadata" src="./audio/choral_synth_input.wav" aria-label="原始合成模型输入音频"></audio></div>
         <div class="choral-midi-legend" aria-label="SATB MIDI colors"><span><i class="voice-s"></i>Soprano</span><span><i class="voice-a"></i>Alto</span><span><i class="voice-t"></i>Tenor</span><span><i class="voice-b"></i>Bass</span></div>
         <div class="stage-rail" id="choral-event-rail" aria-label="GRPO replay stages"></div>
         <div class="choral-grpo-grid" id="choral-grpo-grid">
           <article class="choral-midi-panel choral-reference-panel">
-            <div class="choral-midi-heading"><div><h4>GT · 参考 SATB</h4><small>模型输入 · 同一原始合成歌曲</small></div></div>
-            <figure class="choral-reference-roll"><canvas id="choral-reference-midi" width="1120" height="620" role="img" aria-label="Ground-truth SATB MIDI on one shared piano roll, colored by voice"></canvas><figcaption>四个声部叠在同一音高轴；所有输出共用音高与时间轴。</figcaption></figure>
-            <div class="choral-reference-audios"><div><span class="audio-index">INPUT / ORIGINAL SYNTHESIS</span><audio controls preload="metadata" src="./audio/choral_synth_input.wav" aria-label="模型输入音频"></audio></div><div><span class="audio-index">GROUND TRUTH / ACE STUDIO</span><audio controls preload="metadata" src="./audio/choral_ace_reference_short.wav" aria-label="参考 SATB 音频"></audio></div></div>
+            <div class="choral-midi-heading"><h4>GT · 参考 SATB</h4></div>
+            <canvas id="choral-reference-midi" width="1120" height="620" role="img" aria-label="Ground-truth SATB MIDI on one shared piano roll, colored by voice"></canvas>
+            <audio controls preload="metadata" src="./audio/choral_ace_reference_short.wav" aria-label="ACE Studio 参考 SATB 音频"></audio>
             <div class="choral-midi-links"><a class="source-link" href="./midi/choral_synth_reference.mid" download>下载参考 MIDI ↓</a></div>
           </article>
           <div id="choral-baseline-panel"></div>
