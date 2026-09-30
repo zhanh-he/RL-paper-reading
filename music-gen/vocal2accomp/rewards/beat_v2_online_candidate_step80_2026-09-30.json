@@ -26,5 +26,13 @@
     "stereo_rms": 0.00523938381714918,
     "stereo_peak": 0.034332275390625
   },
+  "guarded_counterfactual_of_saved_wav": {
+    "reward": -0.015150611784156054,
+    "beat_gate": 0.0662251655629139,
+    "rms_coverage": 0.026490066225165563,
+    "acc_to_vocal_rms_db": -19.665627120372864,
+    "loudness_guard_penalty": 0.04164067800932161,
+    "note": "Same saved PCM WAV rescored with guarded formula and independently confirmed Beat-v2 F1; not an output of the guarded trained policy."
+  },
   "source": "online Beat-v2 rollout; not a fixed-seed checkpoint replay or causal evidence of learned reward hacking"
 }
