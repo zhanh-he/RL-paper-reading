@@ -1,6 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
 const fmt = (value, digits = 4) => Number(value).toFixed(digits);
 const signed = (value, digits = 3) => `${value >= 0 ? '+' : ''}${fmt(value, digits)}`;
+const satbColors = ['#e3484f', '#ea8b27', '#00a4ad', '#315fd2'];
 const armLabels = {
   baseline: 'Frozen checkpoint',
   onset: 'GRPO · onset only',
@@ -79,7 +80,7 @@ function renderChoralDemo(data) {
   const ctx = canvas.getContext('2d');
   const notes = data.notes;
   const voices = ['Soprano', 'Alto', 'Tenor', 'Bass'];
-  const colors = { reference: '#176b57', baseline: '#b2473c', grpo: '#2869a3', muscriptor: '#805c25' };
+  const muscriptorColor = '#805c25';
   const all = Object.values(notes).flat();
   const limits = voices.map((_, voice) => {
     const values = all.filter((note) => note.voice === voice).map((note) => note.pitch);
@@ -101,7 +102,7 @@ function renderChoralDemo(data) {
         const x = left + note.start / duration * (right - left);
         const width = Math.max(3, (note.end - note.start) / duration * (right - left) - 2);
         const y = 350 - (note.pitch - 48) / 28 * 290;
-        ctx.fillStyle = colors.muscriptor; ctx.fillRect(x, y - 4, width, 9);
+        ctx.fillStyle = muscriptorColor; ctx.fillRect(x, y - 4, width, 9);
       }
       $('#choral-example-score').textContent = `${data.muscriptor.predicted_notes} piano-track notes · onset F1 ${fmt(data.muscriptor.note_onset_50ms.f1, 3)} · onset+offset F1 ${fmt(data.muscriptor.note_onset_offset_50ms.f1, 3)} · pitch-only`;
       for (const button of document.querySelectorAll('[data-choral-roll]')) button.setAttribute('aria-pressed', String(button.dataset.choralRoll === mode));
@@ -124,7 +125,7 @@ function renderChoralDemo(data) {
       const x = left + note.start / duration * (right - left);
       const width = Math.max(3, (note.end - note.start) / duration * (right - left) - 2);
       const y = top + note.voice * lane + 68 - (note.pitch - low) / (high - low) * 52;
-      ctx.fillStyle = colors[mode]; ctx.fillRect(x, y, width, 8);
+      ctx.fillStyle = satbColors[note.voice]; ctx.fillRect(x, y, width, 8);
     }
     const score = data.receipt.metrics[mode];
     $('#choral-example-score').textContent = mode === 'reference'
@@ -223,15 +224,67 @@ function renderChoralNotes(data) {
 }
 
 function renderAceChoral() {
-  const media = (name) => ({
-    audio: `audio/${name}.wav`,
-    wave: `visuals/${name}_wave.png`,
-    spectrum: `visuals/${name}_spectrum.png`,
-  });
+  const makeItem = (label, title, file, detail) => {
+    const panel = document.createElement('article'); panel.className = 'audio-item';
+    const index = document.createElement('span'); index.className = 'audio-index'; index.textContent = label;
+    const heading = document.createElement('h3'); heading.textContent = title;
+    const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./audio/${file}.wav`;
+    const note = document.createElement('small'); note.textContent = detail;
+    panel.append(index, heading, audio, note);
+    return panel;
+  };
   $('#choral-ace-compare').replaceChildren(
-    createMediaPanel({ label: 'REFERENCE / SAME SINGERS', title: 'Reference SATB MIDI · ACE Studio', asset: media('choral_ace_reference_short'), details: 'Elirah / Emma / Julian / Mangus · la · 11 s' }),
-    createMediaPanel({ label: 'BASELINE / SAME SINGERS', title: 'ChoralStream baseline MIDI · ACE Studio', asset: media('choral_ace_baseline'), details: '同一四位歌手 · frame-head GRPO MIDI 完全相同' }),
+    makeItem('REFERENCE / SAME SINGERS', 'Reference SATB MIDI · ACE Studio', 'choral_ace_reference_short', 'Elirah / Emma / Julian / Mangus · la'),
+    makeItem('BASELINE / SAME SINGERS', 'ChoralStream baseline MIDI · ACE Studio', 'choral_ace_baseline', 'Frame-head GRPO MIDI 与此相同'),
   );
+}
+
+function drawVoiceMidi(canvas, notes, ranges) {
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(2, 0, 0, 2, 0, 0);
+  const width = 560, height = 310, left = 88, right = 542, top = 24, lane = 66, duration = 10.2;
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, width, height);
+  for (let voice = 0; voice < 4; voice++) {
+    const y = top + voice * lane;
+    ctx.fillStyle = voice % 2 ? '#f5f8f7' : '#fcfdfc'; ctx.fillRect(0, y, width, lane);
+    ctx.fillStyle = satbColors[voice]; ctx.fillRect(10, y + 15, 7, 31);
+    ctx.fillStyle = '#17211e'; ctx.font = '700 12px system-ui, sans-serif';
+    ctx.fillText(['Soprano', 'Alto', 'Tenor', 'Bass'][voice], 24, y + 25);
+    ctx.fillStyle = '#63716b'; ctx.font = '10px system-ui, sans-serif';
+    ctx.fillText(`${ranges[voice][0]}–${ranges[voice][1]}`, 24, y + 44);
+    ctx.strokeStyle = '#dce3df'; ctx.beginPath(); ctx.moveTo(0, y + lane); ctx.lineTo(width, y + lane); ctx.stroke();
+  }
+  for (let second = 0; second <= 10; second += 2) {
+    const x = left + second / duration * (right - left);
+    ctx.strokeStyle = '#dbe3df'; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, top + 4 * lane); ctx.stroke();
+    ctx.fillStyle = '#5f6b66'; ctx.font = '10px system-ui, sans-serif'; ctx.fillText(`${second}s`, x + 2, height - 8);
+  }
+  for (const note of notes) {
+    if (!Number.isInteger(note.voice) || note.voice < 0 || note.voice > 3) continue;
+    const [low, high] = ranges[note.voice];
+    const x = left + note.start / duration * (right - left);
+    const noteWidth = Math.max(2, (note.end - note.start) / duration * (right - left) - 1);
+    const y = top + note.voice * lane + 51 - (note.pitch - low) / (high - low) * 39;
+    ctx.fillStyle = satbColors[note.voice]; ctx.fillRect(x, y - 3, noteWidth, 7);
+  }
+}
+
+function createChoralMidiPanel(letter) {
+  const panel = document.createElement('article'); panel.className = 'choral-midi-panel';
+  const heading = document.createElement('div'); heading.className = 'choral-midi-heading';
+  const badge = document.createElement('span'); badge.className = 'choral-panel-letter'; badge.textContent = letter;
+  const titleBlock = document.createElement('div');
+  const title = document.createElement('h4');
+  const detail = document.createElement('small');
+  titleBlock.append(title, detail); heading.append(badge, titleBlock);
+  const canvas = document.createElement('canvas'); canvas.width = 1120; canvas.height = 620;
+  canvas.setAttribute('role', 'img');
+  const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata';
+  const links = document.createElement('div'); links.className = 'choral-midi-links';
+  const midi = document.createElement('a'); midi.className = 'source-link'; midi.download = '';
+  const direct = document.createElement('a'); direct.className = 'source-link'; direct.target = '_blank'; direct.rel = 'noreferrer'; direct.textContent = '音频直链 ↗';
+  links.append(midi, direct); panel.append(heading, canvas, audio, links);
+  return { panel, title, detail, canvas, audio, midi, direct };
 }
 
 function drawSatbComparison(canvas, noteSets, stage, label) {
@@ -268,84 +321,109 @@ function drawSatbComparison(canvas, noteSets, stage, label) {
   }
 }
 
-function renderEventReplay(data) {
+function renderEventReplay(data, pilot) {
   const steps = [0, 100, 300, 1000];
-  const asset = (step) => {
-    const id = String(step).padStart(4, '0');
-    return { audio: `audio/choral_event_${id}.wav`,
-      wave: `visuals/choral_event_${id}_wave.png`,
-      spectrum: `visuals/choral_event_${id}_spectrum.png` };
+  const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
+    coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
+  const allNotes = Object.values(data.notes).flat();
+  const ranges = [0, 1, 2, 3].map((voice) => {
+    const values = allNotes.filter((note) => note.voice === voice).map((note) => note.pitch);
+    return [Math.min(...values) - 1, Math.max(...values) + 1];
+  });
+  const panels = { A: createChoralMidiPanel('A'), B: createChoralMidiPanel('B'), C: createChoralMidiPanel('C') };
+  $('#choral-midi-grid').replaceChildren(...Object.values(panels).map(({ panel }) => panel));
+  drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, ranges);
+  const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
+    panel.title.textContent = title;
+    panel.detail.textContent = detail;
+    panel.canvas.setAttribute('aria-label', `${title} SATB MIDI piano roll`);
+    drawVoiceMidi(panel.canvas, notes, ranges);
+    const audioPath = `./audio/${stem}.wav`;
+    if (!panel.audio.src.endsWith(`/${stem}.wav`)) panel.audio.src = audioPath;
+    panel.direct.href = audioPath;
+    panel.midi.href = `./midi/${midiStem}.mid`;
+    panel.midi.textContent = '下载 MIDI ↓';
   };
-  function select(step) {
-    const before = data.receipt.steps['0'];
-    const after = data.receipt.steps[String(step)];
-    const rail = $('#choral-event-rail');
-    rail.replaceChildren(...steps.map((candidate) => {
-      const button = document.createElement('button'); button.type = 'button';
-      button.className = 'stage-item available'; button.setAttribute('aria-pressed', String(candidate === step));
-      const title = document.createElement('strong'); title.textContent = `${candidate} updates`;
-      const state = document.createElement('span'); state.className = 'state measured';
-      state.textContent = candidate === 0 ? '冻结起点' : '可试听';
-      button.append(title, state); button.addEventListener('click', () => select(candidate));
-      return button;
-    }));
-    $('#choral-event-compare').replaceChildren(
-      createMediaPanel({ label: 'A / 0 UPDATES', title: 'Frozen ChoralStream', asset: asset(0),
-        details: `${before.note_count} notes · fixed singers` }),
-      createMediaPanel({ label: `B / ${step} UPDATES`, title: `Combined-reward GRPO · ${step}`, asset: asset(step),
-        details: `${after.note_count} notes · same input, singers and export settings` }),
-    );
-    $('#choral-event-stage-head').textContent = `${step} 步`;
-    const stageMidi = $('#choral-event-stage-midi');
-    stageMidi.href = `./midi/choral_event_${String(step).padStart(4, '0')}.mid`;
-    stageMidi.textContent = `${step} 步 MIDI ↓`;
-    const metrics = [
-      ['Frame F1', 'frame_f1'], ['Onset F1 · 50 ms', 'onset_f1'],
-      ['Onset + offset F1', 'onset_offset_f1'],
-      ['SATB onset F1', 'track_onset_f1'], ['SATB complete-note F1', 'track_note_f1'],
-    ];
-    appendCells($('#choral-event-replay-metrics'), metrics.map(([label, key]) => [
-      label, fmt(before[key], 3), fmt(after[key], 3), signed(after[key] - before[key], 3),
-    ]));
-    drawSatbComparison($('#choral-event-piano-roll'), data.notes, String(step), `${step} steps`);
+  updatePanel(panels.A, 'Frozen ChoralStream', `${data.receipt.steps['0'].note_count} notes · 0 步`,
+    data.notes['0'], 'choral_event_0000', 'choral_event_0000');
+  const selectStep = (step) => {
+    const id = String(step).padStart(4, '0');
+    const result = data.receipt.steps[String(step)];
+    updatePanel(panels.B, 'Combined reward', `${result.note_count} notes · ${step} 步`,
+      data.notes[String(step)], `choral_event_${id}`, `choral_event_${id}`);
+    for (const button of document.querySelectorAll('#choral-event-rail button')) {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.step) === step));
+    }
+  };
+  $('#choral-event-rail').replaceChildren(...steps.map((step) => {
+    const button = document.createElement('button'); button.type = 'button';
+    button.className = 'stage-item available'; button.dataset.step = String(step);
+    const title = document.createElement('strong'); title.textContent = `${step} 步`;
+    const state = document.createElement('span'); state.className = 'state measured';
+    state.textContent = step === 0 ? '冻结起点' : '组合 reward';
+    button.append(title, state); button.addEventListener('click', () => selectStep(step));
+    return button;
+  }));
+  const selectArm = (arm) => {
+    const key = `arm_${arm}_300`;
+    const audioStem = arm === 'weak_voice' ? 'choral_event_0000' : `choral_event_arm_${arm}_300`;
+    const midiStem = `choral_event_arm_${arm}_300`;
+    const result = data.receipt.steps[key];
+    const updates = pilot.arms[arm].milestones['300'].updated_steps;
+    updatePanel(panels.C, armNames[arm], `${result.note_count} notes · ${updates}/300 有效更新`,
+      data.notes[key], audioStem, midiStem);
+    for (const button of document.querySelectorAll('[data-choral-arm]')) {
+      button.setAttribute('aria-pressed', String(button.dataset.choralArm === arm));
+    }
+  };
+  for (const button of document.querySelectorAll('[data-choral-arm]')) {
+    button.addEventListener('click', () => selectArm(button.dataset.choralArm));
   }
-  select(300);
+  $('#view-choral').addEventListener('play', (event) => {
+    if (event.target.tagName !== 'AUDIO') return;
+    for (const audio of document.querySelectorAll('#view-choral audio')) {
+      if (audio !== event.target) audio.pause();
+    }
+  }, true);
+  selectStep(300);
+  selectArm('onset');
 }
 
 function renderEventPilot(data) {
-  const summary = [['Frozen · 0', 0, data.baseline], ...[100, 300, 1000].map((step) => {
-    const stage = data.arms.combined.milestones[String(step)];
-    return [`Combined · ${step}`, stage.updated_steps, stage.metrics];
-  })];
-  appendCells($('#choral-event-summary'), summary.map(([label, updates, metrics]) => [
-    label, String(updates), ...['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.macro[metric], 3)),
-  ]));
-  const combinedRows = [['Frozen · 0', data.baseline, 0]];
+  const rows = [{ label: 'Frozen', step: 0, updates: 0, metrics: data.baseline, kind: 'baseline' }];
   for (const step of [100, 300, 1000]) {
     const stage = data.arms.combined?.milestones?.[String(step)];
-    if (stage) combinedRows.push([`Combined · ${step}`, stage.metrics, stage.updated_steps]);
+    if (stage) rows.push({ label: 'Combined', step, updates: stage.updated_steps, metrics: stage.metrics, kind: 'combined' });
   }
-  function renderRows(step) {
-    const rows = [...combinedRows];
-    for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'weak_voice', 'precision']) {
+  const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
+    coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
+  for (const [arm, label] of Object.entries(armNames)) {
+    for (const step of [300, 1000]) {
       const stage = data.arms[arm]?.milestones?.[String(step)];
-      if (stage) rows.push([`${arm} only · ${step}`, stage.metrics, stage.updated_steps]);
-    }
-    appendCells($('#choral-event-table'), rows.map(([label, metrics, updates]) => [
-      label, String(updates), fmt(metrics.macro.frame), fmt(metrics.macro.onset), fmt(metrics.macro.onset_offset),
-      fmt(metrics.track_onset.f1), fmt(metrics.track_note.f1),
-    ]));
-    for (const button of document.querySelectorAll('[data-event-arm-step]')) {
-      button.setAttribute('aria-pressed', String(Number(button.dataset.eventArmStep) === step));
+      if (stage) rows.push({ label, step, updates: stage.updated_steps, metrics: stage.metrics, kind: 'single' });
     }
   }
-  for (const button of document.querySelectorAll('[data-event-arm-step]')) {
-    button.addEventListener('click', () => renderRows(Number(button.dataset.eventArmStep)));
-  }
-  renderRows(1000);
-  const partRows = [combinedRows[0], ...combinedRows.filter(([label]) => label === 'Combined · 1000' || label === 'Combined · 300')];
-  appendCells($('#choral-event-parts-table'), partRows.map(([label, metrics]) => [
-    label,
+  const baseline = data.baseline.macro;
+  $('#choral-event-total').replaceChildren(...rows.map(({ label, step, updates, metrics, kind }) => {
+    const tr = document.createElement('tr'); tr.className = `choral-result-${kind}`;
+    if (kind === 'single' && label === 'Onset only' && step === 300) tr.classList.add('choral-result-group-start');
+    for (const value of [label, String(step), String(updates)]) {
+      const td = document.createElement('td'); td.textContent = value; tr.append(td);
+    }
+    for (const metric of ['frame', 'onset', 'onset_offset']) {
+      const value = metrics.macro[metric];
+      const delta = value - baseline[metric];
+      const td = document.createElement('td'); td.className = 'choral-score-cell';
+      const number = document.createElement('strong'); number.textContent = fmt(value, 4);
+      const change = document.createElement('small'); change.className = delta > 0.00005 ? 'positive' : delta < -0.00005 ? 'negative' : 'neutral';
+      change.textContent = `(${signed(delta, 4)})`;
+      td.append(number, change); tr.append(td);
+    }
+    return tr;
+  }));
+  const partRows = [rows[0], ...rows.filter((row) => row.kind === 'combined' && [300, 1000].includes(row.step))];
+  appendCells($('#choral-event-parts-table'), partRows.map(({ label, step, metrics }) => [
+    `${label} · ${step}`,
     ...['S', 'A', 'T', 'B'].flatMap((voice) => ['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.per_voice[voice][metric].f1, 3))),
     ...['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.macro[metric], 3)),
     fmt(metrics.va_rate_percent.frame, 2), fmt(metrics.va_rate_percent.onset, 2),
@@ -613,7 +691,7 @@ try {
   renderChoralNotes(data.choral_note);
   renderChoralDemo(data.choral_demo);
   renderAceChoral();
-  renderEventReplay(data.event_replay);
+  renderEventReplay(data.event_replay, data.event_pilot);
   renderEventPilot(data.event_pilot);
   renderActualArmReplays(data.event_replay, data.event_pilot);
   renderPawctPaper(data.pawct_paper);

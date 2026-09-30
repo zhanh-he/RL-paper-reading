@@ -75,10 +75,13 @@ are published.
 
 ## Demo order
 
-Open Choral: play input and reference, then baseline versus 100/300/1000 ACE
-renders with fixed singers. Inspect piano roll and 8-song held-out macro table;
-switch single rewards at 300 and 1000 attempts. Open Rewards: listen to the
-300-step single-arm outputs, then inspect the separately labeled constructed
-counterexamples. The separate MuScriptor-medium table at the bottom of Choral
-shows what the 50-step GRPO smoke can and cannot claim. Finish with YuE2/Muse
-and vocal baselines. If an embedded player fails, use its direct audio link.
+Open Choral: play input and reference, then use the four-color SATB MIDI panels.
+A is the frozen baseline, B switches among combined 0/100/300/1000, and C
+switches among seven single-reward 300-step audio/MIDI replays. All use the
+same ACE singers. The single held-out table contains combined 0/100/300/1000
+and single-reward 300/1000 scores, with each F1 immediately followed by its
+delta from frozen. The older frame-head control, per-part and PawCT tables,
+and MuScriptor pilot are in the collapsed detail section. Open Rewards for
+constructed counterexamples, then finish with YuE2/Muse and vocal baselines.
+Do not label 100/300/1000 as underfit/goodfit/overfit without independent
+listening and further splits. If an embedded player fails, use its direct link.
