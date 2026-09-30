@@ -25,10 +25,8 @@ def main() -> None:
 
     scorer = MadmomBeatV2Scorer(BeatV2Config(segment_seconds=args.seconds, madmom_workers=1))
     output = {}
-    for step in (0, 5, 50, 100, 300):
-        audio = args.run_dir / f"step_{step:04d}.wav"
-        if not audio.is_file():
-            continue
+    for audio in sorted(args.run_dir.glob("step_*.wav")):
+        step = int(audio.stem.split("_")[-1])
         result = scorer.score_paths(args.vocal, audio)
         waveform, _ = sf.read(audio, dtype="float32", always_2d=True)
         output[str(step)] = {
