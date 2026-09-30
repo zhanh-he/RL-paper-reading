@@ -60,12 +60,15 @@ policy loss normalizes over the full vocabulary. The offline KL probe measures
 codec-constrained fixed-reference divergence and allowed-vocabulary mass to
 test whether that mismatch matters. This probe is **not** training-time KL.
 
-The queued `run_yue2_songeval_lr_sweep.sh` runs 1e-3 then 1e-2 for up to 100
-updates on the 5090 after it becomes idle. `run_yue2_post_sweep.sh` then
-probes the existing 2e-5 and 1e-4 checkpoints and trains YuE2 with the
-official MuseCritic model, first as a two-step smoke test and then to 100
-updates if the smoke test succeeds. The larger learning rates are stress
-tests for instability or reward exploitation, not recommended settings.
+The [high-learning-rate stress test](runs/2026-09-30-yue2-high-lr/README.md)
+completed step 100 at both 1e-3 and 1e-2 on the 5090. Both finished below
+their shared step-1 source LoRA on three fixed held-out prompts. These are
+instability probes, not recommended settings. The first KL probe incorrectly
+multiplied zero reference probability by an undefined `-inf - -inf` difference
+for the forbidden end token; its `null` KL values are invalid. The corrected
+`probe_yue2_reference_kl.py` masks that token and is queued to rerun after
+`run_yue2_post_sweep.sh` finishes. MuseCritic's two-step smoke test passed;
+its YuE2 run is now continuing toward step 100.
 
 The [Muse SongEval prompt-matched replay](runs/2026-09-30-muse-matched/README.md)
 regenerates the one-step adapter's held-out 0/1 audio using the same style,

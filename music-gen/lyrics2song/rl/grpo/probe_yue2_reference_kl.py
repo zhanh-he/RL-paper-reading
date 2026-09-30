@@ -95,7 +95,11 @@ def main():
             allowed_mass = []
             for rollout, (ref_logp, _) in zip(rollouts, references):
                 checkpoint_logp, mass = constrained_log_probs(policy, rollout)
-                kl = (ref_logp.exp() * (ref_logp - checkpoint_logp)).sum(-1).mean().item()
+                valid = torch.isfinite(ref_logp)
+                delta = torch.where(valid, ref_logp - checkpoint_logp, 0.0)
+                kl = (ref_logp.exp() * delta).sum(-1).mean().item()
+                if not torch.isfinite(torch.tensor(kl)):
+                    raise FloatingPointError(f"Nonfinite KL for {name} step {step}")
                 values.append(kl)
                 allowed_mass.append(mass)
             report["arms"][name][str(step)] = {
