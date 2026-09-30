@@ -24,8 +24,10 @@ updates 2-100 continue from it. The update-100 adapter SHA-256 is
 `0e51b6f470bb7b3fb129735f23861fa735dceec2d831dab876d357ec5f819983`.
 The six milestone receipts are in `step_*/receipt.json`;
 the [public replay](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
-offers one matched held-out audio example per milestone with waveform,
-spectrogram and signal diagnostics.
+offers all three matched held-out audio examples per milestone with waveform,
+spectrogram and signal diagnostics. The second and third songs were already
+inferred and scored during the original run; publishing them did not require
+new training, rescoring or GPU inference.
 
 At 50 updates, one held-out audio had a peak near 1.0 but only about
 `0.00026%` of its samples were at or above 0.999. At 100 updates, the three

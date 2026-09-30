@@ -138,6 +138,9 @@
 .segmented button:hover { background: var(--surface-muted); }
 .replay-model-controls { margin: 0 0 19px; }
 .replay-model-controls .segmented button { min-width: 0; white-space: nowrap; }
+.lyrics-example-controls { margin: -7px 0 16px; }
+.lyrics-example-controls[hidden] { display: none; }
+.lyrics-example-controls .segmented button { min-width: 112px; }
 .control-label { color: var(--ink); font-weight: 750; }
 .source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
 .source-block { min-width: 0; min-height: 118px; padding: 18px 22px 17px 0; }
@@ -211,4 +214,5 @@
 @media (max-width: 650px) { .source-grid, .compare-grid, .choral-grpo-grid, .choral-input-band { grid-template-columns: 1fr; } .source-block + .source-block { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); } .source-block { min-height: 0; padding: 14px 0; } }
 @media (max-width: 650px) { .lyrics-pair-audio { grid-template-columns: 1fr; } }
 @media (max-width: 550px) { .app-header { align-items: flex-start; } .brand small { white-space: normal; } .header-actions { flex-wrap: wrap; justify-content: flex-end; } .header-actions .button-secondary { display: inline-flex; } .header-actions .button { font-size: 0; min-width: 38px; padding: 0; } .section-intro { align-items: flex-start; flex-direction: column; } .metric-controls { flex-wrap: wrap; } .metric-controls > span { flex-basis: 100%; } .bar-row { grid-template-columns: 115px minmax(0, 1fr) 48px; gap: 7px; font-size: .7rem; } .audit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .audio-grid { grid-template-columns: 1fr; } .lab-table table { min-width: 560px; } .stage-item { flex-basis: 125px; } .listen-bar { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 550px) { .lyrics-example-controls .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; } .lyrics-example-controls .segmented button { min-width: 0; padding-inline: 4px; font-size: .7rem; } }
 @media (max-width: 900px) { .replay-model-controls { display: grid; grid-template-columns: minmax(0, 1fr); } .replay-model-controls .segmented { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; } .replay-model-controls .segmented button { min-width: 0; min-height: 42px; white-space: normal; border-bottom: 1px solid var(--line); } .replay-model-controls .segmented button:nth-last-child(-n+2) { border-bottom: 0; } }

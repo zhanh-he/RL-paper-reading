@@ -111,7 +111,7 @@ for (const entry of cases) {
     }
   }
 }
-for (const entry of Object.values(replays.lyrics)) {
+for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
   for (const stage of entry.stages.filter((item) => item.status === 'measured')) {
     if (!/^music-gen\/lyrics2song\/rl\/grpo\/runs\/[a-z0-9-]+\/(?:step_[0-9]{6}\/)?receipt\.json$/.test(stage.receipt) || !['before', 'after', 'heldout:0'].includes(stage.receipt_key)) {
       throw new Error(`Measured lyrics step ${stage.step} needs a valid receipt and before/after key`);
@@ -157,6 +157,28 @@ for (const entry of Object.values(replays.lyrics)) {
         near_full_scale_clips: receipt.heldout.filter((item) => item.signal.near_full_scale_fraction > 0).length,
         truncated: receipt.heldout.filter((item) => item.truncated?.semantic).length,
       };
+      const baseline = replays.lyrics.yue2.stages[0];
+      stage.examples = [];
+      for (const [index, item] of receipt.heldout.entries()) {
+        const stem = index === 0 ? stage.audio.replace(/^audio\//, '').replace(/\.flac$/, '') :
+          stage.step === 0 ? `yue2_baseline_heldout${index}` :
+            `${stage.audio.replace(/^audio\//, '').replace(/\.flac$/, '')}_heldout${index}`;
+        const example = {
+          index, seed: item.seed, prompt: item.prompt, metrics: item,
+          audio: index === 0 ? stage.audio : `audio/${stem}.flac`,
+          wave: index === 0 ? stage.wave : `visuals/${stem}_wave.png`,
+          spectrum: index === 0 ? stage.spectrum : `visuals/${stem}_spectrum.png`,
+        };
+        const reference = (await readJson(baseline.receipt)).heldout[index];
+        if (item.index !== index || item.seed !== reference.seed ||
+            JSON.stringify(item.prompt) !== JSON.stringify(reference.prompt)) {
+          throw new Error(`${modelKey} step ${stage.step} example ${index} does not match the frozen prompt and seed`);
+        }
+        for (const key of ['audio', 'wave', 'spectrum']) {
+          await access(resolve(root, 'platform/site/demos', example[key]));
+        }
+        stage.examples.push(example);
+      }
     } else if (Number.isFinite(receipt.mean_reward)) stage.mean_reward = receipt.mean_reward;
     replayReceipts.add(stage.receipt);
   }

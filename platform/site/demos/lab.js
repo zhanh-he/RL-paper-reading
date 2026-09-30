@@ -644,34 +644,49 @@ function renderLyrics(data) {
   renderYuE2Pairs(models.yue2_stress.pairs_100);
   let currentModel = 'yue2';
   let currentStep = 1;
-  function renderModel(model, step = 1) {
+  let currentExample = 0;
+  function renderModel(model, step = 1, exampleIndex = currentExample) {
     currentModel = model;
     currentStep = step;
     const descriptor = models[model];
     const baseline = descriptor.stages[0];
     const selected = descriptor.stages.find((stage) => stage.step === step && stage.status === 'measured');
     if (!selected) throw new Error(`No measured stage ${step} for ${model}`);
-    $('#lyrics-style').textContent = descriptor.style;
-    $('#lyrics-text').textContent = descriptor.lyrics;
+    const isYuE2 = model.startsWith('yue2');
+    currentExample = isYuE2 ? exampleIndex : 0;
+    const baselineAsset = isYuE2 ? baseline.examples[currentExample] : baseline;
+    const selectedAsset = isYuE2 ? selected.examples[currentExample] : selected;
+    $('#lyrics-style').textContent = isYuE2 ? selectedAsset.prompt.style : descriptor.style;
+    $('#lyrics-text').textContent = isYuE2 ? selectedAsset.prompt.lyrics : descriptor.lyrics;
+    $('#lyrics-seed-label').textContent = `held-out seed ${isYuE2 ? selectedAsset.seed : descriptor.seed}`;
+    $('#lyrics-example-controls').hidden = !isYuE2;
+    if (isYuE2) {
+      $('#lyrics-example-buttons').replaceChildren(...baseline.examples.map((example) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = `Song ${example.index + 1} · ${example.seed}`;
+        button.setAttribute('aria-pressed', String(example.index === currentExample));
+        button.addEventListener('click', () => renderModel(model, step, example.index));
+        return button;
+      }));
+    }
     for (const button of document.querySelectorAll('[data-replay-model]')) button.setAttribute('aria-pressed', String(button.dataset.replayModel === model));
     renderStageRail('#lyrics-stage-rail', descriptor.stages, (stage) => renderModel(model, stage.step), step);
     const pending = descriptor.stages.filter((stage) => stage.status === 'pending').map((stage) => stage.step);
     const queued = descriptor.stages.filter((stage) => stage.status === 'queued').map((stage) => stage.step);
     const running = descriptor.stages.filter((stage) => stage.status === 'running').map((stage) => stage.step);
     $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 已提交 Gadi 排队。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
-    const isYuE2 = model.startsWith('yue2');
     $('#lyrics-heldout-section').hidden = !isYuE2;
     $('#lyrics-muse-section').hidden = isYuE2;
     $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
-    $('#lyrics-reward-title').textContent = isYuE2 ? '优化目标 · SongEval 五维均值' :
-      model === 'musecritic' ? '优化目标 · MuseCritic Mean5' : '优化目标 · SongEval 五维均值';
-    $('#lyrics-reward-definition').textContent = isYuE2 || model === 'muse'
-      ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。它评估音频审美；coverage、乐器 richness、beat 和歌词匹配都没有作为独立 reward，完整时长或削波也没有显式约束。'
-      : 'MuseCritic 的五项审美分数取均值，与 SongEval 不是同一量表；词句准确度和音频故障仍需独立检查。';
+    $('#lyrics-reward-title').textContent = model === 'musecritic' ? '优化目标 · MuseCritic 五维均值' : '优化目标 · SongEval 五维均值';
+    $('#lyrics-reward-definition').textContent = model === 'musecritic'
+      ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5，分数来自 MuseCritic 的音频审美评估，与 SongEval 不是同一量表。coverage、乐器 richness、beat 和歌词匹配没有作为独立 reward；完整时长、响度与削波也没有显式约束。'
+      : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。它评估音频审美；coverage、乐器 richness、beat 和歌词匹配都没有作为独立 reward，完整时长或削波也没有显式约束。';
     $('#lyrics-train-protocol').textContent = isYuE2
       ? `YuE2：8 条原创训练提示，每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${model === 'yue2_stress' ? '1e-4（压力测试）' : '2e-5（常规对照）'}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；本轮无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。`
-      : model === 'musecritic' ? 'MuseCritic：Muse + MuCodec 在线 GRPO；第 1 步是短 pilot，25/50 步实验从 100 条公开提示采样。两臂的留出生成均固定 500 tokens、seed 5101、MuCodec 20 步，使用同一个冻结基线。' :
-        'Muse：SongEval-GRPO 第 1 步 pilot 有独立适配器与同一留出输入；25/50/100/300 尚无可验证输出。两臂的留出生成均固定 500 tokens、seed 5101、MuCodec 20 步，使用同一个冻结基线。';
+      : model === 'musecritic' ? 'MuseCritic 臂：Muse + MuCodec 在线 GRPO；每组 2 次采样、组内相对优势，LoRA rank 8、AdamW 1e-6。第 1 步是 2 条 rollout 的短 pilot，25/50 步实验使用 100 条公开训练提示；留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，两臂共用同一冻结基线。本轮没有显式歌词匹配、响度或削波约束。' :
+        'SongEval 臂：Muse + MuCodec 使用同一训练提示的 2 条 rollout，做 1 次组内相对优势更新；LoRA rank 8、AdamW 2e-5。留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，与 MuseCritic 臂共用同一冻结基线。25/50/100/300 步尚未完成，不能据此推断趋势；没有显式歌词匹配、响度或削波约束。';
     if (isYuE2) {
       const baseMean = baseline.mean_reward;
       const armRows = [
@@ -706,10 +721,10 @@ function renderLyrics(data) {
     document.querySelector('[data-listen="candidate"]').textContent = `B · ${step} ${step === 1 ? 'step' : 'steps'}`;
     $('#lyrics-metric-head').textContent = `${step} ${step === 1 ? 'step' : 'steps'}`;
     $('#lyrics-compare').replaceChildren(
-      createMediaPanel({ label: 'A / FROZEN BASELINE', title: `${descriptor.name} · 0 updates`, asset: baseline, details: '固定音频 · 所有训练阶段共用 · held-out seed 5101', listenRole: 'baseline' }),
-      createMediaPanel({ label: 'B / GRPO', title: `${descriptor.name} · ${step} ${step === 1 ? 'update' : 'updates'}`, asset: selected, details: '同 prompt、同 seed · 独立留出样本', listenRole: 'candidate' }),
+      createMediaPanel({ label: 'A / FROZEN BASELINE', title: `${descriptor.name} · 0 updates`, asset: baselineAsset, details: `固定音频 · 所有训练阶段共用 · held-out seed ${isYuE2 ? baselineAsset.seed : descriptor.seed}`, listenRole: 'baseline' }),
+      createMediaPanel({ label: 'B / GRPO', title: `${descriptor.name} · ${step} ${step === 1 ? 'update' : 'updates'}`, asset: selectedAsset, details: '同 prompt、同 seed · 独立留出样本', listenRole: 'candidate' }),
     );
-    const before = baseline.metrics, after = selected.metrics;
+    const before = baselineAsset.metrics, after = selectedAsset.metrics;
     const rewardName = descriptor.reward_model || 'SongEval';
     const metrics = [
       ...['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness', 'mean'].map((key) => [`${rewardName} · ${key}`, before.reward[key], after.reward[key], 4]),
@@ -723,14 +738,11 @@ function renderLyrics(data) {
       $('#lyrics-interpretation').textContent = `同一冻结基线下，SongEval ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，MuseCritic ${fmt(selected.cross_reward.before.mean)} → ${fmt(selected.cross_reward.after.mean)}。这是两条训练 rollout 的一步 pilot；单首固定 seed 的分数不能证明泛化或主观改善。`;
     } else if (model === 'musecritic') {
       $('#lyrics-interpretation').textContent = `固定 A 的 MuseCritic ${fmt(before.reward.mean)} → B 的 ${fmt(after.reward.mean)}；SongEval 交叉评分 ${fmt(selected.cross_reward.before.mean)} → ${fmt(selected.cross_reward.after.mean)}。所有阶段共用完全相同的 A 文件；B 的内容和 RMS 均可能变化，单首歌不足以证明改进或 reward hacking。`;
-    } else if (model === 'yue2_stress' && step === 5) {
-      $('#lyrics-interpretation').textContent = `高 LR 第 5 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，低于常规 LR 同步数。试听样本有 12 个近满幅采样（最长连续 4 个），其余两条没有。这是稀疏峰值异常；reward 没有上升，尚不能称为 reward hacking。`;
-    } else if (model === 'yue2_stress' && step === 25) {
-      $('#lyrics-interpretation').textContent = `高 LR 第 25 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，仍低于冻结基线。试听样本有 37 个近满幅采样（最长连续 17 个），其余两条没有。较第 5 步峰值异常更明显，但音频内容也改变；没有证据证明 SongEval 在奖励削波。`;
-    } else if (model === 'yue2_stress' && step === 100) {
-      $('#lyrics-interpretation').textContent = `高 LR 第 100 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，且三首各自都低于起点；常规 LR 第 100 步为 ${fmt(models.yue2.stages.find((stage) => stage.step === 100).mean_reward)}。试听样本的 VAE 原始峰值 ${fmt(selected.probe.vae_preclamp_peak)}、${selected.probe.clamped_samples} 个样本越界，YuE2 管线将其钳到 1；重渲染 FLAC 与公开试听逐文件一致。分数并未升高，这不是已证实的 reward hacking。`;
+    } else if (model === 'yue2_stress' && step >= 5) {
+      const probe = step === 100 && currentExample === 0 ? `本样本的 VAE 原始峰值 ${fmt(selected.probe.vae_preclamp_peak)}、${selected.probe.clamped_samples} 个样本越界，公开音频已由管线钳位。` : '';
+      $('#lyrics-interpretation').textContent = `高 LR 第 ${step} 步：三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前第 ${currentExample + 1} 首 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。${probe}奖励和听感需要分别核查，不能仅凭峰值或单首分数认定 reward hacking。`;
     } else if (step === 1 && isYuE2) {
-      $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
+      $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第 ${currentExample + 1} 首 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {
       $('#lyrics-interpretation').textContent = `YuE2 ${step} 步：三条固定留出提示的 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前试听样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。主观偏好仍需独立核对，不能只凭 reward 认定改善。`;
     }
@@ -738,8 +750,9 @@ function renderLyrics(data) {
     for (const button of document.querySelectorAll('[data-listen]')) button.setAttribute('aria-pressed', 'false');
     const form = $('#listening-review');
     form.reset();
+    form.elements.preference.querySelector('[value="candidate"]').textContent = `B · ${step} ${step === 1 ? 'step' : 'steps'}`;
     try {
-      const review = JSON.parse(localStorage.getItem(`music-review-${model}-step${step}`) || 'null');
+      const review = JSON.parse(localStorage.getItem(`music-review-${model}-step${step}-song${currentExample}`) || 'null');
       if (review) { form.elements.preference.value = review.preference; form.elements.note.value = review.note; }
       $('#review-status').textContent = review ? '本机已保存' : '';
     } catch { $('#review-status').textContent = ''; }
@@ -757,7 +770,7 @@ function renderLyrics(data) {
     event.preventDefault();
     const form = event.currentTarget;
     try {
-      localStorage.setItem(`music-review-${currentModel}-step${currentStep}`, JSON.stringify({ preference: form.elements.preference.value, note: form.elements.note.value.trim() }));
+      localStorage.setItem(`music-review-${currentModel}-step${currentStep}-song${currentExample}`, JSON.stringify({ preference: form.elements.preference.value, note: form.elements.note.value.trim() }));
       $('#review-status').textContent = '已保存于本机浏览器';
     } catch { $('#review-status').textContent = '浏览器未允许本机保存'; }
   });
