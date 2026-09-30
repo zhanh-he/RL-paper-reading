@@ -28,6 +28,7 @@
     .arms[hidden] { display: none; }
     .arms a { display: block; padding: 8px 13px; background: #213032; color: #d2e3e0; text-decoration: none; font-size: 13px; }
     .arms a + a { border-left: 1px solid #486163; }
+    .arms a[hidden] { display: none; }
     .arms a[aria-current="page"] { background: #176c63; color: #fff; }
     section { border-top: 1px solid #344143; padding-top: 24px; margin-top: 28px; }
     .source { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
@@ -68,7 +69,7 @@
     <div class="eyebrow">Vocal to accompaniment · controlled replay</div>
     <h1>LaDA-Band · GRPO</h1>
     <p id="subtitle" class="sub">固定同一条 Emma 独唱、相同文本提示与评估随机种子，比较冻结基线和在线后训练检查点。先听配对，再看各项分数。</p>
-    <div id="reward-arms" class="arms" role="group" aria-label="Reward arm" hidden><a id="arm-combined" href="./vocal-lada.html">组合 reward</a><a id="arm-coverage" href="./vocal-lada.html?arm=coverage">Coverage-only</a></div>
+    <div id="reward-arms" class="arms" role="group" aria-label="Reward arm" hidden><a id="arm-combined" href="./vocal-lada.html">组合 reward</a><a id="arm-coverage" href="./vocal-lada.html?arm=coverage" hidden>Coverage-only</a><a id="arm-beat_v2" href="./vocal-lada.html?arm=beat_v2" hidden>Beat-v2</a></div>
     <div id="phrase-tabs" class="arms" role="group" aria-label="Vocal phrase" hidden><a id="phrase-training" href="./vocal-lada.html">训练片段</a><a id="phrase-heldout" href="./vocal-lada.html?phrase=heldout">未训练乐句</a></div>
     <div id="facts" class="facts" aria-label="Run configuration"></div>
 
@@ -90,8 +91,9 @@
   <script type="module">
     const params = new URLSearchParams(location.search);
     const phrase = params.get('phrase') === 'heldout' ? 'heldout' : 'training';
-    const arm = phrase === 'heldout' ? 'combined' : params.get('arm') === 'coverage' ? 'coverage' : 'combined';
-    const files = phrase === 'heldout' ? './vocal-lada-heldout-run.json' : arm === 'coverage' ? './vocal-lada-coverage-run.json' : './vocal-lada-run.json';
+    const requestedArm = params.get('arm');
+    const arm = phrase === 'heldout' ? 'combined' : ['coverage', 'beat_v2'].includes(requestedArm) ? requestedArm : 'combined';
+    const files = phrase === 'heldout' ? './vocal-lada-heldout-run.json' : arm === 'combined' ? './vocal-lada-run.json' : `./vocal-lada-${arm}-run.json`;
     const byId = id => document.getElementById(id);
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
@@ -133,9 +135,11 @@
 
     async function load() {
       const available = path => fetch(path, { method: 'HEAD', cache: 'no-store' }).then(response => response.ok).catch(() => false);
-      const [coverageReady, heldoutReady] = await Promise.all([available('./vocal-lada-coverage-run.json'), available('./vocal-lada-heldout-run.json')]);
-      if (coverageReady && phrase === 'training') {
+      const [coverageReady, beatReady, heldoutReady] = await Promise.all([available('./vocal-lada-coverage-run.json'), available('./vocal-lada-beat_v2-run.json'), available('./vocal-lada-heldout-run.json')]);
+      if ((coverageReady || beatReady) && phrase === 'training') {
         byId('reward-arms').hidden = false;
+        byId('arm-coverage').hidden = !coverageReady;
+        byId('arm-beat_v2').hidden = !beatReady;
         byId(`arm-${arm}`).setAttribute('aria-current', 'page');
       }
       if (heldoutReady) {
@@ -165,6 +169,13 @@
         byId('metric-note').textContent = '本组只优化 40 ms 帧 RMS coverage；起音匹配与频带占用是未优化的诊断量。STFT coverage 与 Madmom Beat-v2 是独立离线评估。Beat V/A 分别是人声/伴奏拍点数；整体 RMS、峰值和削波占比来自原始伴奏两声道。所有客观量都不能代替主观听感。';
         byId('boundary').textContent = '单歌手、单旋律、小片段实验；仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。';
       }
+      if (arm === 'beat_v2') {
+        document.title = 'LaDA-Band · Beat-v2 reward replay';
+        document.querySelector('h1').textContent = 'LaDA-Band · Beat-v2';
+        byId('reward-column').textContent = 'Beat-v2 reward';
+        byId('metric-note').textContent = '本组直接优化原 vocal2accomp Madmom Beat-v2 F1。RMS/STFT coverage、起音匹配和频带占用仅作为独立诊断，不参与参数更新；Beat V/A 是人声/伴奏拍点数。整体 RMS、峰值和削波占比来自原始伴奏两声道。单曲分数不能代替听感。';
+        byId('boundary').textContent = '单歌手、单旋律、小片段 Beat-v2 单 reward 实验；节拍 F1 上升不自动证明伴奏音质改善。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，是单遍 GRPO-style；需配对试听与独立 coverage/响度检查。';
+      }
       for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
         const span = document.createElement('span'); const strong = document.createElement('strong'); strong.textContent = `${name}: `; span.append(strong, String(value ?? '—')); byId('facts').append(span);
       }
@@ -193,8 +204,9 @@
       const baseline = data.stages.find(item => item.step === 0);
       const latest = [...data.stages].reverse().find(item => item.step > 0 && item.beat_v2);
       if (baseline?.beat_v2 && latest?.beat_v2) {
-        const rewardName = arm === 'coverage' ? 'RMS coverage reward' : '组合代理';
-        byId('finding').textContent = `${latest.step} 步：${rewardName} ${fmt(baseline.reward)} → ${fmt(latest.reward)}，Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}；STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
+        const rewardName = arm === 'coverage' ? 'RMS coverage reward' : arm === 'beat_v2' ? 'Beat-v2 reward' : '组合代理';
+        const independentBeat = arm === 'beat_v2' ? '' : `，独立 Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}`;
+        byId('finding').textContent = `${latest.step} 步：${rewardName} ${fmt(baseline.reward)} → ${fmt(latest.reward)}${independentBeat}；STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
       }
       byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);
       if (select.options.length) select.value = select.options[select.options.length - 1].value;

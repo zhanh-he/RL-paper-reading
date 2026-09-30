@@ -22,7 +22,7 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: Path | None = None) -> Path:
-    if slug not in {"combined", "coverage"}:
+    if slug not in {"combined", "coverage", "beat_v2"}:
         raise ValueError(f"unsupported reward arm: {slug}")
     if heldout_dir is not None and slug != "combined":
         raise ValueError("held-out phrase replay is only defined for the combined run")
@@ -125,7 +125,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--site-dir", type=Path, required=True)
-    parser.add_argument("--slug", choices=["combined", "coverage"], default="combined")
+    parser.add_argument("--slug", choices=["combined", "coverage", "beat_v2"], default="combined")
     parser.add_argument("--heldout-dir", type=Path)
     args = parser.parse_args()
     print(publish(args.run_dir, args.site_dir, args.slug, args.heldout_dir))
