@@ -98,7 +98,7 @@ The coverage-only arm has much more accompaniment energy than the fixed vocal at
 
 ## Original Beat-v2 reward arm
 
-The `--reward beat_v2` arm sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This online arm is running on lab5090; its post-training checkpoints must not be inferred from the combined proxy arm.
+The `--reward beat_v2` arm sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. Online rewards use six seconds, while fixed checkpoint replays use twelve seconds, so those F1 values are not interchangeable. This online arm is running on lab5090; its post-training checkpoints must not be inferred from the combined proxy arm.
 
 ```bash
 .env/bin/python train_lada_band_v2.py \
