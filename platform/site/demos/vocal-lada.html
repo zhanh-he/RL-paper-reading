@@ -82,7 +82,7 @@
 
     <section aria-label="Training checkpoints"><h2>检查点</h2><div id="cards" class="cards"></div></section>
 
-    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><p id="interim-finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th id="reward-column">组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p id="metric-note" class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。整体 RMS、峰值和削波占比从原始伴奏两声道离线统计，不能代替主观听感。</p></section>
+    <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><p id="interim-finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th id="reward-column">组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>伴奏/人声 dB</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p id="metric-note" class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。伴奏/人声 dB 为原始伴奏两声道 RMS 相对固定人声 RMS，正值表示伴奏更响；峰值和削波占比亦从原始伴奏统计，不能代替主观听感。</p></section>
 
     <section aria-label="Training trajectory"><h2>训练采样轨迹</h2><canvas id="curve" width="1100" height="230" role="img" aria-label="Candidate reward and coverage versus GRPO step"></canvas><div class="legend"><span style="--color:#62c8b7">Reward 均值</span><span style="--color:#e1ac79">Coverage 均值</span></div></section>
 
@@ -159,21 +159,21 @@
         byId('source-desc').textContent = 'ACE Studio Vocal Synth；同一歌手、不同乐句、无伴奏、无效果。';
         byId('source-spectrum').alt = 'Emma 第 2 乐句独唱频谱';
         byId('reference-desc').textContent = '开放式伴奏没有唯一标准音频；所有阶段使用同一段未训练乐句和提示。这不是新歌曲或新歌手的泛化测试。';
-        byId('metric-note').textContent = '同一第 6–12 秒乐句上的固定种子回放；训练只使用原录音前 6 秒。STFT coverage 与 Madmom Beat-v2 是独立离线指标，未用于组合代理更新。起音匹配与频带占用是训练代理；整体 RMS、峰值和削波占比来自原始伴奏两声道。';
+        byId('metric-note').textContent = '同一第 6–12 秒乐句上的固定种子回放；训练只使用原录音前 6 秒。STFT coverage 与 Madmom Beat-v2 是独立离线指标，未用于组合代理更新。起音匹配与频带占用是训练代理；伴奏/人声 dB 正值表示伴奏 RMS 更高。';
         byId('boundary').textContent = '该乐句没有参与参数更新，但来自同一段 Emma 录音，不是跨歌曲显著性结论。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结；每组仅一次更新，是单遍 GRPO-style。所有阶段请以配对试听结合指标判断。';
       }
       if (arm === 'coverage') {
         document.title = 'LaDA-Band · coverage-only replay';
         document.querySelector('h1').textContent = 'LaDA-Band · Coverage-only';
         byId('reward-column').textContent = 'Coverage reward';
-        byId('metric-note').textContent = '本组只优化 40 ms 帧 RMS coverage；起音匹配与频带占用是未优化的诊断量。STFT coverage 与 Madmom Beat-v2 是独立离线评估。Beat V/A 分别是人声/伴奏拍点数；整体 RMS、峰值和削波占比来自原始伴奏两声道。所有客观量都不能代替主观听感。';
+        byId('metric-note').textContent = '本组只优化 40 ms 帧 RMS coverage；起音匹配与频带占用是未优化的诊断量。STFT coverage 与 Madmom Beat-v2 是独立离线评估。Beat V/A 分别是人声/伴奏拍点数；伴奏/人声 dB 正值表示伴奏 RMS 更高。所有客观量都不能代替主观听感。';
         byId('boundary').textContent = '单歌手、单旋律、小片段实验；仅优化 40 ms RMS coverage，不能把覆盖率上升等同音乐质量改善。每组仅一次参数更新，是单遍 GRPO-style。人声、主干、CLaMP3、MuCodec 冻结；需配对试听并检查独立 Beat-v2、STFT coverage、响度和削波。';
       }
       if (arm === 'beat_v2') {
         document.title = 'LaDA-Band · Beat-v2 reward replay';
         document.querySelector('h1').textContent = 'LaDA-Band · Beat-v2';
         byId('reward-column').textContent = 'Beat-v2 reward';
-        byId('metric-note').textContent = '本组直接优化原 vocal2accomp Madmom Beat-v2 F1。RMS/STFT coverage、起音匹配和频带占用仅作为独立诊断，不参与参数更新；Beat V/A 是人声/伴奏拍点数。整体 RMS、峰值和削波占比来自原始伴奏两声道。单曲分数不能代替听感。';
+        byId('metric-note').textContent = '本组直接优化原 vocal2accomp Madmom Beat-v2 F1。RMS/STFT coverage、起音匹配和频带占用仅作为独立诊断，不参与参数更新；Beat V/A 是人声/伴奏拍点数。伴奏/人声 dB 正值表示伴奏 RMS 更高。单曲分数不能代替听感。';
         byId('boundary').textContent = '单歌手、单旋律、小片段 Beat-v2 单 reward 实验；节拍 F1 上升不自动证明伴奏音质改善。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，是单遍 GRPO-style；需配对试听与独立 coverage/响度检查。';
       }
       for (const [name, value] of [['Model', 'LaDA-Band 1B / total 3B'], ['Reward', config.reward || 'pending'], ['Group', config.group], ['Train clip', `${config.seconds || '—'} s`], ['Replay clip', `${config.eval_seconds || '—'} s`], ['Denoise', config.denoise_steps], ['LR', config.lr], ['Eval seed', config.eval_seed], ['Sampler', `random remask · top ${config.top_k}/${config.top_p}`], ['Prompt', config.text]]) {
@@ -194,7 +194,7 @@
           if (item.same_as_baseline) { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '与 baseline 音频逐字节相同'; card.append(note); }
           if (item.spectrum) { const imageLabel = document.createElement('div'); imageLabel.className = 'label'; imageLabel.style.marginTop = '12px'; imageLabel.textContent = '伴奏频谱'; card.append(imageLabel); const img = document.createElement('img'); img.src = item.spectrum; img.alt = `${label(step)} 伴奏频谱`; card.append(img); }
           const row = document.createElement('tr');
-          [label(step), fmt(item.reward), fmt(item.rms_coverage), fmt(item.beat_v2?.coverage_stft), fmt(item.onset_fit_proxy), fmt(item.beat_v2?.score), item.beat_v2 ? `${item.beat_v2.reference_beats}/${item.beat_v2.accompaniment_beats}` : '—', fmt(item.band_occupancy_proxy), fmt(item.spectral_flatness), fmt(item.beat_v2?.stereo_rms, 4), fmt(item.beat_v2?.stereo_peak), fmt(item.beat_v2?.stereo_clipping_fraction, 5)].forEach(value => { const td = document.createElement('td'); td.textContent = value; row.append(td); });
+          [label(step), fmt(item.reward), fmt(item.rms_coverage), fmt(item.beat_v2?.coverage_stft), fmt(item.onset_fit_proxy), fmt(item.beat_v2?.score), item.beat_v2 ? `${item.beat_v2.reference_beats}/${item.beat_v2.accompaniment_beats}` : '—', fmt(item.band_occupancy_proxy), fmt(item.spectral_flatness), fmt(item.beat_v2?.stereo_rms, 4), fmt(item.beat_v2?.acc_to_vocal_rms_db, 1), fmt(item.beat_v2?.stereo_peak), fmt(item.beat_v2?.stereo_clipping_fraction, 5)].forEach(value => { const td = document.createElement('td'); td.textContent = value; row.append(td); });
           table.append(row);
         } else { const note = document.createElement('p'); note.className = 'muted'; note.textContent = '没有可验证的音频或分数'; card.append(note); }
         cards.append(card);
@@ -206,13 +206,20 @@
       if (baseline?.beat_v2 && latest?.beat_v2) {
         const rewardName = arm === 'coverage' ? 'RMS coverage reward' : arm === 'beat_v2' ? 'Beat-v2 reward' : '组合代理';
         const independentBeat = arm === 'beat_v2' ? '' : `，独立 Beat-v2 F1 ${fmt(baseline.beat_v2.score)} → ${fmt(latest.beat_v2.score)}`;
-        byId('finding').textContent = `${latest.step} 步：${rewardName} ${fmt(baseline.reward)} → ${fmt(latest.reward)}${independentBeat}；STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，整体 RMS ${fmt(baseline.beat_v2.stereo_rms, 4)} → ${fmt(latest.beat_v2.stereo_rms, 4)}。单条音频上的指标分歧，需配对试听判断。`;
+        byId('finding').textContent = `${latest.step} 步：${rewardName} ${fmt(baseline.reward)} → ${fmt(latest.reward)}${independentBeat}；STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(latest.beat_v2.coverage_stft)}，伴奏/人声 ${fmt(baseline.beat_v2.acc_to_vocal_rms_db, 1)} → ${fmt(latest.beat_v2.acc_to_vocal_rms_db, 1)} dB。单条音频上的指标分歧，需配对试听判断。`;
       }
       if (arm === 'combined' && phrase === 'training') {
         const at100 = data.stages.find(item => item.step === 100);
         const at200 = data.stages.find(item => item.step === 200);
         if (at100?.beat_v2 && at200?.beat_v2 && baseline?.beat_v2) {
           byId('interim-finding').textContent = `中间诊断：100 步 STFT coverage ${fmt(baseline.beat_v2.coverage_stft)} → ${fmt(at100.beat_v2.coverage_stft)}；200 步起音代理 ${fmt(baseline.onset_fit_proxy)} → ${fmt(at200.onset_fit_proxy)}，原 Beat-v2 F1 却 ${fmt(baseline.beat_v2.score)} → ${fmt(at200.beat_v2.score)}。这是代理失配信号，不是主观劣化判决。`;
+        }
+      }
+      if (phrase === 'heldout') {
+        const at200 = data.stages.find(item => item.step === 200);
+        const at300 = data.stages.find(item => item.step === 300);
+        if (at200?.beat_v2 && at300?.beat_v2) {
+          byId('interim-finding').textContent = `非单调提示：200 → 300 步，代理分 ${fmt(at200.reward)} → ${fmt(at300.reward)}，Beat-v2 F1 ${fmt(at200.beat_v2.score)} → ${fmt(at300.beat_v2.score)}，STFT coverage ${fmt(at200.beat_v2.coverage_stft)} → ${fmt(at300.beat_v2.coverage_stft)}。同一录音的未训练乐句不足以证明跨歌曲泛化。`;
         }
       }
       byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);

@@ -24,18 +24,25 @@ def main() -> None:
     from mir.reward_function.coverage import accompaniment_coverage_path
 
     scorer = MadmomBeatV2Scorer(BeatV2Config(segment_seconds=args.seconds, madmom_workers=1))
+    vocal_info = sf.info(args.vocal)
+    vocal_waveform, _ = sf.read(args.vocal, frames=round(args.seconds * vocal_info.samplerate), dtype="float32", always_2d=True)
+    vocal_mono = vocal_waveform.mean(axis=1)
+    vocal_rms = float(np.sqrt(np.mean(np.square(vocal_mono, dtype=np.float64))))
     output = {}
     for audio in sorted(args.run_dir.glob("step_*.wav")):
         step = int(audio.stem.split("_")[-1])
         result = scorer.score_paths(args.vocal, audio)
         waveform, _ = sf.read(audio, dtype="float32", always_2d=True)
+        stereo_rms = float(np.sqrt(np.mean(np.square(waveform, dtype=np.float64))))
         output[str(step)] = {
             "score": result.score,
             "reference_beats": result.reference_beats,
             "accompaniment_beats": result.accompaniment_beats,
             "scorable": result.scorable,
             "coverage_stft": accompaniment_coverage_path(audio),
-            "stereo_rms": float(np.sqrt(np.mean(np.square(waveform, dtype=np.float64)))),
+            "stereo_rms": stereo_rms,
+            "vocal_rms": vocal_rms,
+            "acc_to_vocal_rms_db": float(20 * np.log10(max(stereo_rms, 1e-12) / max(vocal_rms, 1e-12))),
             "stereo_peak": float(np.max(np.abs(waveform))),
             "stereo_clipping_fraction": float(np.mean(np.abs(waveform) >= 0.98)),
         }

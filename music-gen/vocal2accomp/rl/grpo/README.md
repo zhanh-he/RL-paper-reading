@@ -14,16 +14,17 @@ The main presentation run uses one ACE Studio Emma vocal: six seconds for online
 
 All rows use the same Emma input, prompt, eight-step sampler and evaluation seed 777. Beat-v2 and STFT coverage are the original vocal2accomp offline reward implementations, not the proxies optimized by this run.
 
-| Step | Combined proxy | RMS coverage | Beat-v2 F1 | STFT coverage | Stereo RMS | Stereo peak | Clipped samples |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 0.4067 | 0.5282 | 0.2963 | 0.2958 | 0.0194 | 0.2235 | 0 |
-| 5 | 0.4067 | 0.5282 | 0.2963 | 0.2958 | 0.0194 | 0.2235 | 0 |
-| 50 | 0.4241 | 0.5349 | 0.3571 | 0.2498 | 0.0173 | 0.2230 | 0 |
-| 100 | 0.4410 | 0.5615 | 0.5000 | 0.1364 | 0.0140 | 0.1301 | 0 |
-| 150 | 0.5964 | 0.8738 | 0.4286 | 0.6484 | 0.0328 | 0.3351 | 0 |
-| 200 | 0.5737 | 0.7841 | 0.2069 | 0.4296 | 0.0221 | 0.1952 | 0 |
+| Step | Combined proxy | RMS coverage | Beat-v2 F1 | STFT coverage | Stereo RMS | Acc/vocal RMS dB | Stereo peak | Clipped samples |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 0.4067 | 0.5282 | 0.2963 | 0.2958 | 0.0194 | -7.2 | 0.2235 | 0 |
+| 5 | 0.4067 | 0.5282 | 0.2963 | 0.2958 | 0.0194 | -7.2 | 0.2235 | 0 |
+| 50 | 0.4241 | 0.5349 | 0.3571 | 0.2498 | 0.0173 | -8.1 | 0.2230 | 0 |
+| 100 | 0.4410 | 0.5615 | 0.5000 | 0.1364 | 0.0140 | -10.0 | 0.1301 | 0 |
+| 150 | 0.5964 | 0.8738 | 0.4286 | 0.6484 | 0.0328 | -2.6 | 0.3351 | 0 |
+| 200 | 0.5737 | 0.7841 | 0.2069 | 0.4296 | 0.0221 | -6.0 | 0.1952 | 0 |
+| 300 | 0.6240 | 0.9169 | 0.5714 | 0.7653 | 0.0587 | +2.5 | 0.6361 | 0 |
 
-The step-5 WAV is byte-identical to baseline. By step 100, the optimized proxy **on the fixed replay** and independent Beat-v2 metric improve, but independent STFT coverage falls by more than half and overall RMS falls by about 28%. At step 200, the onset-fit proxy reaches 0.223 (baseline 0.075), yet the original Beat-v2 F1 falls to 0.207 (baseline 0.296). These are metric disagreements on one replay, **not** proof that the policy generalizes or that listeners prefer it. The 12-second evaluation includes the six seconds used for training, so it is not a held-out-song test. All measured checkpoints have zero clipped samples; full-scale clipping is not the explanation for these outputs. Listen to the [paired demo](../../../../platform/site/demos/vocal-lada.html) before judging quality. The 300-step continuation is running on the 5090.
+The step-5 WAV is byte-identical to baseline. By step 100, the optimized proxy **on the fixed replay** and independent Beat-v2 metric improve, but independent STFT coverage falls by more than half and overall RMS falls by about 28%. At step 200, the onset-fit proxy reaches 0.223 (baseline 0.075), yet the original Beat-v2 F1 falls to 0.207 (baseline 0.296). At step 300, all three listed scores rise, but accompaniment RMS moves from 7.2 dB below the fixed vocal to 2.5 dB above it, a mix-balance warning rather than a listening verdict. These are metric disagreements on one replay, **not** proof that the policy generalizes or that listeners prefer it. The 12-second evaluation includes the six seconds used for training, so it is not a held-out-song test. All measured checkpoints have zero clipped samples; full-scale clipping is not the explanation for these outputs. Listen to the [paired demo](../../../../platform/site/demos/vocal-lada.html) before judging quality.
 
 The sampled training-candidate mean reward was 0.517 for steps 1-10 and 0.489 for steps 91-100. Those windows use different sampled trajectories and are not a fixed-seed comparison; they do show that this tiny run has no monotonic on-policy reward increase. The improvement above refers only to the fixed replay.
 
@@ -47,25 +48,35 @@ cd /home/mengh/research/LaDA-Band-posttrain
   --reward combined --lr 5e-4 --steps 100 --save-steps 5 50 100
 ```
 
-Resume to 300 with the same arguments, `--steps 300 --save-steps 300 --resume outputs/grpo_emma_combined_6s/step_0100.pt`. The checkpoint includes both adapter and optimizer state. `metrics.jsonl` holds per-group scores; `evaluations.jsonl` contains only fixed-seed replay measurements. The public demo exporter copies WAV/PNG/metric data only, never gated weights.
+The completed continuation used the same arguments with `--steps 300 --save-steps 150 200 300 --resume outputs/grpo_emma_combined_6s/step_0100.pt`. The checkpoint includes both adapter and optimizer state. `metrics.jsonl` holds per-group scores; `evaluations.jsonl` contains only fixed-seed replay measurements. The public demo exporter copies WAV/PNG/metric data only, never gated weights.
 
-After the 300-step checkpoint exists, `evaluate_lada_band.py` can replay all saved adapters on seconds 6-12 of the **same** Emma recording, which were excluded from online updates. It saves a separate source WAV, checkpoint WAVs and metrics without changing weights:
+`evaluate_lada_band.py` replayed all saved adapters on seconds 6-12 of the **same** Emma recording, which were excluded from online updates. It saved a separate source WAV, checkpoint WAVs and metrics without changing weights:
 
 ```bash
 .env/bin/python evaluate_lada_band.py \
   --run-dir outputs/grpo_emma_combined_6s \
   --output outputs/grpo_emma_combined_6s_heldout_phrase \
-  --start-seconds 6 --duration-seconds 6 --steps 0 5 50 100 300
+  --start-seconds 6 --duration-seconds 6 --steps 0 5 50 100 150 200 300
 ```
 
-This is a held-out *phrase*, not a held-out song or singer; it cannot establish broad generalization.
+| Step | Combined proxy | Beat-v2 F1 | STFT coverage | Acc/vocal RMS dB | Clipped samples |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 0.234 | 0.000 | 0.012 | -18.1 | 0 |
+| 5 | 0.234 | 0.000 | 0.012 | -18.1 | 0 |
+| 50 | 0.234 | 0.000 | 0.012 | -18.1 | 0 |
+| 100 | 0.352 | 0.167 | 0.157 | -8.4 | 0 |
+| 150 | 0.352 | 0.167 | 0.157 | -8.4 | 0 |
+| 200 | 0.552 | 0.333 | 0.847 | -1.4 | 0 |
+| 300 | 0.351 | 0.154 | 0.095 | -10.2 | 0 |
+
+On this phrase, 200 to 300 steps is non-monotonic for all three scores, despite an increase on the overlapping 12-second replay. The beat reference contains only six beats, so these F1 values are high-variance. This is a held-out *phrase*, not a held-out song or singer; it cannot establish broad generalization or prove overfitting. The [held-out paired audio](../../../../platform/site/demos/vocal-lada.html?phrase=heldout) is available for listening.
 
 ## Coverage-only ablation
 
-Start a new adapter from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. The single reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. Keep Beat-v2, STFT coverage, loudness, clipping and listening as independent checks. This command is registered before any coverage-only result exists:
+Start a new adapter from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. The single reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. Keep Beat-v2, STFT coverage, loudness, clipping and listening as independent checks. This run is in progress on lab5090; no result is claimed yet:
 
 ```bash
-.env/bin/python train_lada_band.py \
+.env/bin/python train_lada_band_v2.py \
   --code-root codes \
   --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
   --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_coverage_6s \
@@ -78,7 +89,7 @@ Start a new adapter from the same frozen checkpoint, vocal, prompt, sampler, see
 The trainer also accepts `--reward beat_v2`, which sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This is an **available but not yet trained** arm; do not label the combined proxy run as Beat-v2 GRPO.
 
 ```bash
-.env/bin/python train_lada_band.py \
+.env/bin/python train_lada_band_v2.py \
   --code-root codes \
   --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
   --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_beat_v2_6s \
