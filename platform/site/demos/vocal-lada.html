@@ -112,6 +112,7 @@
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
     const stages = [0, 5, 50, 100, 150, 200, 300];
+    const requestedStep = stages.includes(Number(params.get('step'))) ? Number(params.get('step')) : null;
     const select = byId('step-select');
     const player = byId('ab-audio');
     let data;
@@ -164,9 +165,11 @@
           const row = document.createElement('tr');
           const nameCell = document.createElement('td');
           const link = document.createElement('a');
-          link.href = rewardArm === 'combined'
-            ? `./vocal-lada.html${phrase === 'heldout' ? '?phrase=heldout' : ''}`
-            : `./vocal-lada.html?arm=${rewardArm}${phrase === 'heldout' ? '&phrase=heldout' : ''}`;
+          const target = new URL('./vocal-lada.html', location.href);
+          if (rewardArm !== 'combined') target.searchParams.set('arm', rewardArm);
+          if (phrase === 'heldout') target.searchParams.set('phrase', 'heldout');
+          target.searchParams.set('step', String(step));
+          link.href = target.href;
           link.textContent = names[rewardArm];
           nameCell.append(link);
           row.append(nameCell);
@@ -315,8 +318,9 @@
         }
       }
       byId('play-a').disabled = !data.stages.some(item => item.step === 0 && item.audio);
-      if (select.options.length) select.value = select.options[select.options.length - 1].value;
-      if (!byId('play-a').disabled) setSide('a');
+      if (select.options.length) select.value = [...select.options].some(option => Number(option.value) === requestedStep)
+        ? String(requestedStep) : select.options[select.options.length - 1].value;
+      if (!byId('play-a').disabled) setSide(requestedStep > 0 && Number(select.value) === requestedStep ? 'b' : 'a');
       byId('play-a').addEventListener('click', () => setSide('a'));
       byId('play-b').addEventListener('click', () => setSide('b'));
       select.addEventListener('change', () => { if (activeSide === 'b') setSide('b'); });

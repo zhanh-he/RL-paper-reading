@@ -148,6 +148,8 @@ At step 50, the combined training objective rises but Beat-v2 F1 falls below bas
 
 The step-50 failure is algebraic, not just noisy plotting: the weighted Beat term drops from about `0.192` at baseline to `0.140`, while the coverage term rises from `0.264` to its cap `0.350`, leaving a higher aggregate. At step 100, the `+0.6 dB` mix triggers about `0.090` of loudness penalty. A future non-compensating variant could use `min(B, C/0.7)` with only a small coverage tie-breaker, but this formula has **not** been trained or validated; the current arm must retain its original objective throughout the 300-step continuation.
 
+Because group size is two and advantages are standardized within the group, the higher-scoring candidate is reinforced even when both absolute rewards are poor. This arm has no absolute acceptance gate or frozen-policy anchor. A future guard should test a baseline-calibrated quality floor or skip updates when an entire group fails independent quality checks; fixed thresholds chosen without calibration could instead stop learning on a weak starting model.
+
 ```bash
 .env/bin/python train_lada_band_guarded.py \
   --code-root codes \
