@@ -126,7 +126,7 @@ The step-5 WAV is byte-identical to baseline. Mean six-second training-candidate
 
 The persistent worker scores actual generated audio, not the fast onset-fit proxy. An unscorable vocal reference yields zero reward, and the record keeps reference/accompaniment beat counts. This is still a single-pass group-relative update with the same limited LoRA scope and one fixed training vocal.
 
-## Calibrated two-component guard arm (50-step interim)
+## Calibrated two-component guard arm (100-step interim)
 
 The additional `beat_v2_coverage_guard` option uses **actual** Madmom Beat-v2 F1 `B` and 40 ms RMS coverage `C`, with a coverage gate on beat credit and a coverage term that stops growing after 0.7:
 
@@ -134,15 +134,16 @@ The additional `beat_v2_coverage_guard` option uses **actual** Madmom Beat-v2 F1
 
 Here `Q` is the existing peak/clipping/flatness quality penalty and `D` is the sum of dB distance outside an accompaniment-to-vocal RMS window of `[-18, -3] dB`. The gate is designed to suppress beat-rich near-silence; saturation removes the incentive to increase loudness once coverage is adequate. This remains a **partial** combination: there is no validated richness reward, and no claim that the guard prevents all gaming. The pure function passed six unit tests on lab5090; for the oracle-aligned 6-second click track with Beat-v2 F1 `1.0`, it returns `-0.561` instead of a high score. That is a function stress test, not a trained-model result.
 
-The matched GPU arm is running with the same frozen baseline, input, prompt, sampler, group size, learning rate and seeds. Its step-0 WAV has the same SHA-256 across all four arms. The 0/5/50-step [interim paired replay](../../../../platform/site/demos/vocal-lada.html?arm=guarded) is independently scored:
+The matched GPU arm is running with the same frozen baseline, input, prompt, sampler, group size, learning rate and seeds. Its step-0 WAV has the same SHA-256 across all four arms. The 0/5/50/100-step [interim paired replay](../../../../platform/site/demos/vocal-lada.html?arm=guarded) is independently scored:
 
 | Step | Guarded reward | Beat-v2 F1 | RMS coverage | STFT coverage | Acc/vocal RMS dB | Clipped samples |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 0.457 | 0.296 | 0.528 | 0.296 | -7.2 | 0 |
 | 5 | 0.457 | 0.296 | 0.528 | 0.296 | -7.2 | 0 |
 | 50 | 0.491 | 0.216 | 0.947 | 0.730 | -3.9 | 0 |
+| 100 | 0.400 | 0.214 | 0.834 | 0.601 | +0.6 | 0 |
 
-At step 50, the combined training objective rises but Beat-v2 F1 falls below baseline. Higher coverage and STFT coverage are not proof of better arrangement, and this interim result **does not establish that combination prevents reward hacking**. The 100-step checkpoint and held-out phrase remain pending. Run command:
+At step 50, the combined training objective rises but Beat-v2 F1 falls below baseline. At step 100, even the guarded objective falls below its frozen baseline; the accompaniment is 0.6 dB louder than the vocal, so the relative-loudness penalty is active. Higher coverage and STFT coverage are not proof of better arrangement. These interim results **do not establish that combination prevents reward hacking**. The run has resumed toward 300 steps; held-out evaluation remains pending. Initial run command:
 
 ```bash
 .env/bin/python train_lada_band_guarded.py \
@@ -155,3 +156,5 @@ At step 50, the combined training objective rises but Beat-v2 F1 falls below bas
   --beat-worker-script beat_v2_worker.py \
   --beat-reward-root /home/mengh/research/vocal2accomp-muse
 ```
+
+The continuation uses `--steps 300 --save-steps 150 200 300 --resume outputs/grpo_emma_guarded_6s/step_0100.pt` with the same remaining arguments.
