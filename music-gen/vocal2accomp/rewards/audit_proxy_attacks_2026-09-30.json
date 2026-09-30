@@ -1,0 +1,42 @@
+{
+  "kind": "constructed_reward_probes_not_model_outputs",
+  "seconds": 6.0,
+  "results": {
+    "silence": {
+      "coverage_only_reward": 0.0,
+      "combined_proxy_reward": -0.649998152256012,
+      "rms_coverage": 0.0,
+      "onset_fit_proxy": 0.0,
+      "band_occupancy_proxy": 0.0,
+      "spectral_flatness": 0.999998152256012,
+      "quality_penalty": 0.649998152256012
+    },
+    "sustained_220hz": {
+      "coverage_only_reward": 1.0,
+      "combined_proxy_reward": 0.5276842640978949,
+      "rms_coverage": 1.0,
+      "onset_fit_proxy": 0.14032238721847534,
+      "band_occupancy_proxy": 0.14285714285714285,
+      "spectral_flatness": 0.22200007736682892,
+      "quality_penalty": 0.0
+    },
+    "white_noise": {
+      "coverage_only_reward": 1.0,
+      "combined_proxy_reward": 0.14759890171033996,
+      "rms_coverage": 1.0,
+      "onset_fit_proxy": 0.1377384513616562,
+      "band_occupancy_proxy": 0.7142857142857143,
+      "spectral_flatness": 0.8434666991233826,
+      "quality_penalty": 0.4934666991233826
+    },
+    "vocal_gated_triad": {
+      "coverage_only_reward": 1.0,
+      "combined_proxy_reward": 0.7971463028873715,
+      "rms_coverage": 1.0,
+      "onset_fit_proxy": 0.8285812735557556,
+      "band_occupancy_proxy": 0.2857142857142857,
+      "spectral_flatness": 0.17832152545452118,
+      "quality_penalty": 0.0
+    }
+  }
+}
