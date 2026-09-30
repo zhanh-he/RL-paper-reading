@@ -35,6 +35,38 @@ These are still small pilot experiments, not adequately powered music-quality
 claims. Longer-run GRPO needs blind listening, duration/loudness controls,
 multiple seeds and explicit KL monitoring alongside held-out rewards.
 
+## YuE2 data and objective audit
+
+`yue2_songeval_longrun.py` contains the complete training and evaluation
+requests: eight hand-written English style/two-line-lyrics prompts for training
+and three separate hand-written prompts for held-out checks. No audio or
+prompts from SongEval, WildSongBench, or CMI-RewardBench are training examples.
+SongEval supplies the audio reward only. New runs write `experiment.json` with
+the exact prompt lists, source adapter, reward backend, learning rate, and
+semantic-token cap. The eight prompts cycle every eight updates, so data
+diversity is a plausible limitation, not an established sole cause of reward
+stagnation.
+
+The current custom PyTorch update takes two on-policy rollouts per prompt,
+normalizes their scalar rewards within that pair, and makes one optimizer
+update on the same rollouts. Its `old` and `current` action log probabilities
+are computed by the same policy before the update, making the ratio one at
+gradient evaluation; the nominal PPO clip therefore provides no effective
+trust region in this implementation. There is no reference-model KL penalty
+or explicit duration, clipping, or lyric-fidelity guardrail. PyTorch supports
+these constraints; their absence is a property of this training script, not
+of the framework. Sampling also masks to codec tokens while the current
+policy loss normalizes over the full vocabulary. The offline KL probe measures
+codec-constrained fixed-reference divergence and allowed-vocabulary mass to
+test whether that mismatch matters. This probe is **not** training-time KL.
+
+The queued `run_yue2_songeval_lr_sweep.sh` runs 1e-3 then 1e-2 for up to 100
+updates on the 5090 after it becomes idle. `run_yue2_post_sweep.sh` then
+probes the existing 2e-5 and 1e-4 checkpoints and trains YuE2 with the
+official MuseCritic model, first as a two-step smoke test and then to 100
+updates if the smoke test succeeds. The larger learning rates are stress
+tests for instability or reward exploitation, not recommended settings.
+
 The [Muse SongEval prompt-matched replay](runs/2026-09-30-muse-matched/README.md)
 regenerates the one-step adapter's held-out 0/1 audio using the same style,
 lyrics and seed as the YuE2 comparison. On this one song, official SongEval
