@@ -253,11 +253,15 @@
         const at50 = data.stages.find(item => item.step === 50);
         const at100 = data.stages.find(item => item.step === 100);
         const at150 = data.stages.find(item => item.step === 150);
+        const at200 = data.stages.find(item => item.step === 200);
         if (at50?.beat_v2 && at100?.beat_v2 && baseline?.beat_v2) {
           byId('interim-finding').textContent = `非单调提示：固定 12 秒 Beat-v2 F1 在 0/50/100 步为 ${fmt(baseline.reward)} / ${fmt(at50.reward)} / ${fmt(at100.reward)}，STFT coverage 为 ${fmt(baseline.beat_v2.coverage_stft)} / ${fmt(at50.beat_v2.coverage_stft)} / ${fmt(at100.beat_v2.coverage_stft)}。在线更新用 6 秒随机候选，不能与固定 12 秒回放逐点等同。`;
         }
         if (at150?.beat_v2) {
           byId('interim-finding').textContent = `关键分歧：150 步固定回放检测到 ${at150.beat_v2.accompaniment_beats} 个伴奏拍点，Beat-v2 F1 却为 ${fmt(at150.reward)}；RMS/STFT coverage 为 ${fmt(at150.rms_coverage)} / ${fmt(at150.beat_v2.coverage_stft)}。音频活动很高但拍点未对齐，仍需听原音判断编曲。`;
+        }
+        if (at150?.beat_v2 && at200?.beat_v2) {
+          byId('interim-finding').textContent = `关键分歧：150/200 步固定回放都检测到 ${at150.beat_v2.accompaniment_beats} 个伴奏拍点，Beat-v2 F1 均为 ${fmt(at150.reward)} / ${fmt(at200.reward)}；STFT coverage 却为 ${fmt(at150.beat_v2.coverage_stft)} / ${fmt(at200.beat_v2.coverage_stft)}。这是节拍匹配失败，不是静音；仍需听原音判断编曲。`;
         }
       }
       if (phrase === 'heldout') {
