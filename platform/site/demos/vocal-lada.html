@@ -67,13 +67,14 @@
   <main class="shell">
     <div class="eyebrow">Vocal to accompaniment · controlled replay</div>
     <h1>LaDA-Band · GRPO</h1>
-    <p class="sub">固定同一条 Emma 独唱、相同文本提示与评估随机种子，比较冻结基线和在线后训练检查点。先听配对，再看各项分数。</p>
+    <p id="subtitle" class="sub">固定同一条 Emma 独唱、相同文本提示与评估随机种子，比较冻结基线和在线后训练检查点。先听配对，再看各项分数。</p>
     <div id="reward-arms" class="arms" role="group" aria-label="Reward arm" hidden><a id="arm-combined" href="./vocal-lada.html">组合 reward</a><a id="arm-coverage" href="./vocal-lada.html?arm=coverage">Coverage-only</a></div>
+    <div id="phrase-tabs" class="arms" role="group" aria-label="Vocal phrase" hidden><a id="phrase-training" href="./vocal-lada.html">训练片段</a><a id="phrase-heldout" href="./vocal-lada.html?phrase=heldout">未训练乐句</a></div>
     <div id="facts" class="facts" aria-label="Run configuration"></div>
 
     <section class="source" aria-label="Source and reference">
-      <div><span class="label">Input · fixed vocal</span><h2>Emma · 原创旋律</h2><audio controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><img class="source-spectrum" src="./visuals/ace_emma_vocal_12s_spectrum.png" alt="Emma 独唱输入频谱"><p class="muted">ACE Studio Vocal Synth；同一歌手、无伴奏、无效果。</p></div>
-      <div><span class="label">Ground truth accompaniment</span><h2>无唯一参考</h2><p class="muted">开放式伴奏生成没有单一标准音频。所有阶段使用完全相同的人声输入和提示；训练用前 6 秒，试听评估用前 12 秒。</p></div>
+      <div><span class="label">Input · fixed vocal</span><h2 id="source-heading">Emma · 原创旋律</h2><audio id="source-audio" controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><img id="source-spectrum" class="source-spectrum" src="./visuals/ace_emma_vocal_12s_spectrum.png" alt="Emma 独唱输入频谱"><p id="source-desc" class="muted">ACE Studio Vocal Synth；同一歌手、无伴奏、无效果。</p></div>
+      <div><span class="label">Ground truth accompaniment</span><h2>无唯一参考</h2><p id="reference-desc" class="muted">开放式伴奏生成没有单一标准音频。所有阶段使用完全相同的人声输入和提示；训练用前 6 秒，试听评估用前 12 秒。</p></div>
     </section>
 
     <section aria-label="A/B listening"><h2>配对试听 · 人声 + 伴奏</h2><div class="listen"><button id="play-a" type="button" aria-pressed="true">A · baseline</button><button id="play-b" type="button" aria-pressed="false">B · selected step</button><select id="step-select" aria-label="Choose comparison step"></select><audio id="ab-audio" controls preload="metadata"></audio></div><p id="listen-state" class="muted"></p></section>
@@ -87,8 +88,10 @@
     <section aria-label="Evidence boundary"><h2>证据边界</h2><p class="note" id="boundary">单歌手、单旋律、小片段实验；这个页面是同输入 A/B 听感展示，不是跨歌曲显著性结论。LoRA 仅更新离散扩散模型的输出投影；主干、CLaMP3、MuCodec 冻结。每组仅一次参数更新，裁剪项实际上不提供多轮 PPO 约束；这是单遍 GRPO-style 实验。组合代理 reward 不等同人工偏好。</p></section>
   </main>
   <script type="module">
-    const arm = new URLSearchParams(location.search).get('arm') === 'coverage' ? 'coverage' : 'combined';
-    const files = arm === 'coverage' ? './vocal-lada-coverage-run.json' : './vocal-lada-run.json';
+    const params = new URLSearchParams(location.search);
+    const phrase = params.get('phrase') === 'heldout' ? 'heldout' : 'training';
+    const arm = phrase === 'heldout' ? 'combined' : params.get('arm') === 'coverage' ? 'coverage' : 'combined';
+    const files = phrase === 'heldout' ? './vocal-lada-heldout-run.json' : arm === 'coverage' ? './vocal-lada-coverage-run.json' : './vocal-lada-run.json';
     const byId = id => document.getElementById(id);
     const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
     const label = step => step === 0 ? 'Baseline · 0' : `GRPO · ${step}`;
@@ -129,14 +132,32 @@
     }
 
     async function load() {
-      const coverageReady = await fetch('./vocal-lada-coverage-run.json', { method: 'HEAD', cache: 'no-store' }).then(response => response.ok).catch(() => false);
-      if (coverageReady) {
+      const available = path => fetch(path, { method: 'HEAD', cache: 'no-store' }).then(response => response.ok).catch(() => false);
+      const [coverageReady, heldoutReady] = await Promise.all([available('./vocal-lada-coverage-run.json'), available('./vocal-lada-heldout-run.json')]);
+      if (coverageReady && phrase === 'training') {
         byId('reward-arms').hidden = false;
         byId(`arm-${arm}`).setAttribute('aria-current', 'page');
+      }
+      if (heldoutReady) {
+        byId('phrase-tabs').hidden = false;
+        byId(`phrase-${phrase}`).setAttribute('aria-current', 'page');
       }
       try { const response = await fetch(files, { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); data = await response.json(); }
       catch { byId('cards').textContent = '运行记录尚未发布。'; return; }
       const config = data.config || {};
+      if (data.source_audio) byId('source-audio').src = data.source_audio;
+      if (data.source_spectrum) byId('source-spectrum').src = data.source_spectrum;
+      if (phrase === 'heldout') {
+        document.title = 'LaDA-Band · held-out phrase replay';
+        document.querySelector('h1').textContent = 'LaDA-Band · 未训练乐句';
+        byId('subtitle').textContent = '同一位 Emma 歌手、同一文本提示和固定随机种子；这次输入是原录音第 6–12 秒，未参与前 6 秒的在线更新。先听配对，再看指标。';
+        byId('source-heading').textContent = 'Emma · 第 2 乐句';
+        byId('source-desc').textContent = 'ACE Studio Vocal Synth；同一歌手、不同乐句、无伴奏、无效果。';
+        byId('source-spectrum').alt = 'Emma 第 2 乐句独唱频谱';
+        byId('reference-desc').textContent = '开放式伴奏没有唯一标准音频；所有阶段使用同一段未训练乐句和提示。这不是新歌曲或新歌手的泛化测试。';
+        byId('metric-note').textContent = '同一第 6–12 秒乐句上的固定种子回放；训练只使用原录音前 6 秒。STFT coverage 与 Madmom Beat-v2 是独立离线指标，未用于组合代理更新。起音匹配与频带占用是训练代理；整体 RMS、峰值和削波占比来自原始伴奏两声道。';
+        byId('boundary').textContent = '该乐句没有参与参数更新，但来自同一段 Emma 录音，不是跨歌曲显著性结论。LoRA 仅更新输出投影，主干、CLaMP3、MuCodec 冻结；每组仅一次更新，是单遍 GRPO-style。所有阶段请以配对试听结合指标判断。';
+      }
       if (arm === 'coverage') {
         document.title = 'LaDA-Band · coverage-only replay';
         document.querySelector('h1').textContent = 'LaDA-Band · Coverage-only';

@@ -21,29 +21,45 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
-def publish(run_dir: Path, site_dir: Path, slug: str = "combined") -> Path:
+def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: Path | None = None) -> Path:
     if slug not in {"combined", "coverage"}:
         raise ValueError(f"unsupported reward arm: {slug}")
+    if heldout_dir is not None and slug != "combined":
+        raise ValueError("held-out phrase replay is only defined for the combined run")
     run = json.loads((run_dir / "run.json").read_text())
-    evaluations = {int(item["step"]): item for item in read_jsonl(run_dir / "evaluations.jsonl")}
+    audio_run_dir = heldout_dir or run_dir
+    if heldout_dir is None:
+        evaluations = {int(item["step"]): item for item in read_jsonl(run_dir / "evaluations.jsonl")}
+    else:
+        evaluations = {int(item["step"]): item for item in json.loads((heldout_dir / "evaluations.json").read_text())}
     audio_dir = site_dir / "audio"
     visual_dir = site_dir / "visuals"
     audio_dir.mkdir(parents=True, exist_ok=True)
     visual_dir.mkdir(parents=True, exist_ok=True)
-    vocal = audio_dir / "ace_emma_vocal_12s.wav"
+    vocal = audio_dir / ("ace_emma_vocal_heldout_6s.wav" if heldout_dir else "ace_emma_vocal_12s.wav")
+    if heldout_dir is not None:
+        shutil.copy2(heldout_dir / "source.wav", vocal)
     if not vocal.is_file():
         raise FileNotFoundError(f"fixed vocal not found: {vocal}")
+    vocal_spectrum = visual_dir / ("ace_emma_vocal_heldout_6s_spectrum.png" if heldout_dir else "ace_emma_vocal_12s_spectrum.png")
+    if heldout_dir is not None:
+        subprocess.run([
+            "ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(vocal),
+            "-lavfi", "showspectrumpic=s=960x540:legend=disabled", "-frames:v", "1", str(vocal_spectrum),
+        ], check=True)
     stages = []
-    baseline_audio = run_dir / "step_0000.wav"
+    baseline_audio = audio_run_dir / "step_0000.wav"
+    if heldout_dir is not None and not baseline_audio.is_file():
+        raise FileNotFoundError(f"held-out baseline not found: {baseline_audio}")
     baseline_hash = hashlib.sha256(baseline_audio.read_bytes()).digest() if baseline_audio.is_file() else None
-    beat_path = run_dir / "beat_v2.json"
+    beat_path = audio_run_dir / "beat_v2.json"
     beat_scores = json.loads(beat_path.read_text()) if beat_path.is_file() else {}
     for step in STEPS:
         item = evaluations.get(step)
-        source = run_dir / f"step_{step:04d}.wav"
+        source = audio_run_dir / f"step_{step:04d}.wav"
         if item is None or not source.is_file():
             continue
-        name = f"lada_emma_{slug}_step_{step:04d}"
+        name = f"lada_emma_{slug}_{'heldout_' if heldout_dir else ''}step_{step:04d}"
         audio = audio_dir / f"{name}.wav"
         mixture = audio_dir / f"{name}_mix.wav"
         spectrum = visual_dir / f"{name}_spectrum.png"
@@ -80,15 +96,27 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined") -> Path:
         })
 
     args = run["args"]
+    config = {key: args[key] for key in CONFIG_FIELDS if key in args}
+    if heldout_dir is not None and evaluations:
+        config["eval_seconds"] = next(iter(evaluations.values()))["duration_seconds"]
     payload = {
         "status": "measured" if stages else "pending",
-        "config": {key: args[key] for key in CONFIG_FIELDS if key in args},
+        "config": config,
         "stages": stages,
         "train_curve": curve,
         "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",
-        "note": "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim.",
+        "source_audio": f"./audio/{vocal.name}",
+        "source_spectrum": f"./visuals/{vocal_spectrum.name}",
+        "phrase": "heldout" if heldout_dir else "training_excerpt",
+        "note": "Same-singer held-out phrase, not a held-out song." if heldout_dir else "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim.",
     }
-    output = site_dir / ("vocal-lada-run.json" if slug == "combined" else f"vocal-lada-{slug}-run.json")
+    if heldout_dir is not None:
+        output_name = "vocal-lada-heldout-run.json"
+    elif slug == "combined":
+        output_name = "vocal-lada-run.json"
+    else:
+        output_name = f"vocal-lada-{slug}-run.json"
+    output = site_dir / output_name
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     return output
 
@@ -98,5 +126,6 @@ if __name__ == "__main__":
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--site-dir", type=Path, required=True)
     parser.add_argument("--slug", choices=["combined", "coverage"], default="combined")
+    parser.add_argument("--heldout-dir", type=Path)
     args = parser.parse_args()
-    print(publish(args.run_dir, args.site_dir, args.slug))
+    print(publish(args.run_dir, args.site_dir, args.slug, args.heldout_dir))

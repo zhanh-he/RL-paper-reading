@@ -619,5 +619,8 @@
     }
   ],
   "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",
+  "source_audio": "./audio/ace_emma_vocal_12s.wav",
+  "source_spectrum": "./visuals/ace_emma_vocal_12s_spectrum.png",
+  "phrase": "training_excerpt",
   "note": "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim."
 }
