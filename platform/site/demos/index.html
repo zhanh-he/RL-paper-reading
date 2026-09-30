@@ -7,10 +7,11 @@
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-yue2-three-songs" />
-    <link rel="stylesheet" href="./choral-curves.css?v=20260930" />
+    <link rel="stylesheet" href="./choral-curves.css?v=20260930-yue2" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-yue2-three-songs"></script>
+    <script type="module" src="./lab.js?v=20260930-reward-copy"></script>
     <script type="module" src="./choral-curves.js?v=20260930"></script>
+    <script type="module" src="./yue2-curves.js?v=20260930"></script>
   </head>
   <body>
     <header class="app-header">
@@ -147,6 +148,14 @@
         <div class="metric-controls lyrics-example-controls" id="lyrics-example-controls"><span class="control-label">Held-out song</span><div class="segmented" id="lyrics-example-buttons" role="group" aria-label="Held-out song"></div></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
+        <section class="choral-training" id="yue2-training" aria-label="YuE2 training traces">
+          <div class="choral-training-heading"><h3>训练过程 · Reward / KL</h3><span id="yue2-curve-window">2–100 步 · 5 步均值</span></div>
+          <div class="choral-training-plots">
+            <figure><figcaption><span>SongEval mean · 训练 rollout</span><strong id="yue2-reward-value">加载中</strong></figcaption><canvas id="yue2-reward-chart" role="img" aria-label="YuE2 SongEval 训练 reward 随步数变化"></canvas></figure>
+            <figure><figcaption><span>KL · reference policy</span><strong>未记录</strong></figcaption><div class="training-unavailable" role="note">本轮没有 reference-policy KL 日志</div></figure>
+          </div>
+          <p class="choral-training-note">左图为每步两条训练采样的 SongEval 五维均分，再取 5 步窗口均值；不是留出提示分数。右图保留与 Choral 一致的位置，但 YuE2 本轮未计算 KL，不能补画或由 gradient norm 推算。两条 LR 臂分别显示。</p>
+        </section>
         <h3 class="subsection-heading">Checkpoint timeline</h3>
         <div class="stage-rail" id="lyrics-stage-rail" aria-label="Lyrics training stages"></div>
         <p class="stage-context" id="lyrics-stage-context"></p>

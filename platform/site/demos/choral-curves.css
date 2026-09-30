@@ -8,6 +8,7 @@
 .choral-training figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: .77rem; font-weight: 750; }
 .choral-training figcaption strong { font-size: .78rem; font-variant-numeric: tabular-nums; }
 .choral-training canvas { display: block; width: 100%; height: 154px; }
+.training-unavailable { height: 154px; display: grid; place-items: center; border: 1px dashed var(--line); color: var(--ink-muted); font-size: .78rem; text-align: center; padding: 12px; }
 .choral-training-note { margin: 5px 0 10px; line-height: 1.5; }
 .choral-training-foldouts > details { margin: 0; }
 .choral-training-foldouts > details + details { border-top: 0; }

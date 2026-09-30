@@ -681,8 +681,8 @@ function renderLyrics(data) {
     $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
     $('#lyrics-reward-title').textContent = model === 'musecritic' ? '优化目标 · MuseCritic 五维均值' : '优化目标 · SongEval 五维均值';
     $('#lyrics-reward-definition').textContent = model === 'musecritic'
-      ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5，分数来自 MuseCritic 的音频审美评估，与 SongEval 不是同一量表。coverage、乐器 richness、beat 和歌词匹配没有作为独立 reward；完整时长、响度与削波也没有显式约束。'
-      : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。它评估音频审美；coverage、乐器 richness、beat 和歌词匹配都没有作为独立 reward，完整时长或削波也没有显式约束。';
+      ? 'R_MC = 五项 MuseCritic 预测分数的均值（每项 1–5 分）。MuseCritic 先对连贯性、音乐性、记忆性、结构清晰度及人声自然度生成文字 critique，再据此预测连续分数。它沿用 SongEval 的五项 rubric，但不是调用 SongEval 打分；两种模型的数值不能当作同一量表直接比较。coverage、beat、歌词匹配、时长及削波均未单独约束。'
+      : 'R_SE = (Coherence + Musicality + Memorability + Structural Clarity + Vocal Naturalness) / 5。SongEval 直接对音频输出五项审美分数；没有 MuseCritic 的“先写 critique、再预测分数”阶段。coverage、beat、歌词匹配、时长及削波均未单独约束。';
     $('#lyrics-train-protocol').textContent = isYuE2
       ? `YuE2：8 条原创训练提示，每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${model === 'yue2_stress' ? '1e-4（压力测试）' : '2e-5（常规对照）'}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；本轮无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。`
       : model === 'musecritic' ? 'MuseCritic 臂：Muse + MuCodec 在线 GRPO；每组 2 次采样、组内相对优势，LoRA rank 8、AdamW 1e-6。第 1 步是 2 条 rollout 的短 pilot，25/50 步实验使用 100 条公开训练提示；留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，两臂共用同一冻结基线。本轮没有显式歌词匹配、响度或削波约束。' :

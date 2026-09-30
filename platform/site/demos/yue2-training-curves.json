@@ -1,0 +1,218 @@
+{
+  "status": "measured_training_reward_only",
+  "bin_size": 5,
+  "runs": {
+    "yue2": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 3.8178575336933136,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 3.7757519721984862,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 3.7424819707870483,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 3.6885460138320925,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 3.778723955154419,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 3.7589200019836424,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 3.7879340171813967,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 3.753778004646301,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 3.93192400932312,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 3.725610041618347,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 3.6967139720916746,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 3.803662061691284,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 3.6477519989013674,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 3.769215989112854,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 3.8246059894561766,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 3.7486260175704955,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 3.8861379623413086,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 3.718276023864746,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 3.689344048500061,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 3.792142057418823,
+          "updates": 5
+        }
+      ],
+      "updates": 99,
+      "kl_status": "not_recorded"
+    },
+    "yue2_stress": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 3.8861649930477142,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 3.6714399814605714,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 3.8034460306167603,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 3.668831968307495,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 3.7059059619903563,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 3.7371679544448853,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 3.778520035743713,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 3.6413559675216676,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 3.884909987449646,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 3.7213359832763673,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 3.797275972366333,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 3.8588520288467407,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 3.77538800239563,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 3.7319199800491334,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 3.797009992599487,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 3.7755940198898315,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 3.8522639513015746,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 3.7036619663238524,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 3.6386879682540894,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 3.7374160528182983,
+          "updates": 5
+        }
+      ],
+      "updates": 99,
+      "kl_status": "not_recorded"
+    }
+  }
+}
