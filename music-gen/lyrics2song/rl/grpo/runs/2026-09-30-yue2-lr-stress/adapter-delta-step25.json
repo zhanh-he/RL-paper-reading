@@ -1,0 +1,26 @@
+{
+  "status": "local_checkpoint_parameter_verification",
+  "source": {
+    "optimizer_step": 1,
+    "sha256": "8dee8838d2c565bc6ffe777b8c95471e5e00cf3ca754e86d88cb1155242bd597"
+  },
+  "control": {
+    "optimizer_step": 25,
+    "learning_rate": 0.00002,
+    "sha256": "bb1d03cdb2da38f7216cc5a8b57c682854f11f4f261c68831a82024278b13970",
+    "l2_delta_from_source": 0.09852533042430878,
+    "max_abs_delta_from_source": 0.00041576186777092516
+  },
+  "stress": {
+    "optimizer_step": 25,
+    "learning_rate": 0.0001,
+    "sha256": "657f08d65797c648f9c121ac514b08e6c9b7c392b8018f0ac3e36bec51ec6504",
+    "l2_delta_from_source": 0.49373388290405273,
+    "max_abs_delta_from_source": 0.0020856093615293503
+  },
+  "tensor_count": 224,
+  "identical_tensor_keys": true,
+  "l2_ratio_stress_to_control": 5.011238031658868,
+  "method": "CPU safetensors.load_file; concatenate per-key float32 stress/control minus the same source adapter; torch.linalg.vector_norm",
+  "scope": "adapter update verification, not music quality or reward-hacking evidence; model weights remain on lab5090"
+}

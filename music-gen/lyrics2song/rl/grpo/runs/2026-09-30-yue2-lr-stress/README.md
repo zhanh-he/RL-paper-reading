@@ -19,6 +19,16 @@ reference KL safeguard.
 | LR 1e-4: SongEval Mean5, 3 held-out prompts | 3.8403 | 3.6030 | 3.4285 | 3.6296 |
 | LR 2e-5 control, same prompts | 3.8403 | 3.6030 | 3.6160 | not evaluated |
 
+| Held-out prompt | Frozen mean | High-LR step 5 | High-LR step 25 | Near-full-scale samples, step 5 / 25 |
+| --- | ---: | ---: | ---: | ---: |
+| 0 (public A/B audio) | 3.7688 | 3.2961 | 3.7539 | 12 / 37 |
+| 1 | 3.7869 | 3.6036 | 3.4847 | 0 / 0 |
+| 2 | 3.9653 | 3.3857 | 3.6503 | 0 / 0 |
+
+Each prompt's step-25 reward remains below its own frozen baseline. Audio
+content and RMS also change, so the increasing near-full-scale count on
+prompt 0 is an observation, not a controlled clipping effect.
+
 At update 5, all three held-out clips hit the semantic token cap. The first
 clip has 12 samples at or above 0.999 absolute amplitude, including 3 at
 full scale; its longest consecutive run is 4 samples in one channel. The
@@ -35,6 +45,18 @@ The [update-5](step_000005/receipt.json) and
 [update-25](step_000025/receipt.json) receipts include five dimensions and
 signal diagnostics for every held-out clip. The first clip of each is replayable in the
 [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics).
+
+The [checkpoint comparison](adapter-delta-step25.json) verifies that both
+step-25 adapters contain the same 224 LoRA tensor keys. Relative to the shared
+step-1 adapter, their concatenated float32 parameter-delta L2 norms are
+`0.0985` (control) and `0.4937` (stress), a 5.01x ratio. This verifies a
+larger policy update, not better music. The control step-25 adapter has no
+held-out audio evaluation and is not used as a score comparator above.
+The stress run's `steps.jsonl` contains exactly the contiguous optimizer
+updates 2-25, with finite rewards and gradient norms throughout. The
+[float-to-FLAC probe](../../probe_yue2_float_path.py) can determine whether
+the full-scale samples originate in raw generation or PCM-24 export; that
+attribution is still pending shared-GPU access.
 
 Two initial launches OOMed when another legitimate 5090 experiment grew its
 GPU allocation; neither produced a public post-update-3 evaluation. The
