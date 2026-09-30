@@ -35,5 +35,7 @@ fraction (0.063%) on one step-25 song and none at step 100.
 The method has no reference KL constraint, and its single-update ratio clip
 does not bound the policy update. These stress tests cannot isolate whether
 that omission, the eight-prompt data regime, scorer limitations, or another
-factor caused the low-LR reward stagnation. A separate fixed-reference KL
-probe is being corrected and should not be confused with training-time KL.
+factor caused the low-LR reward stagnation. The separate
+[fixed-reference KL audit](../2026-09-30-yue2-kl-audit/README.md) found
+large policy drift at these high learning rates, but should not be confused
+with training-time KL.

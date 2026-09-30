@@ -6,6 +6,7 @@ steps before listening and measuring them.
 """
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
@@ -75,6 +76,12 @@ def score_many(pipe, args, items):
     if args.reward_backend == "songeval":
         return [score_file(args.songeval, args.scorer_python, wav, folder)
                 for wav, folder in items]
+    canonical_items = []
+    for wav, folder in items:
+        audio, sr = sf.read(wav, dtype="float32")
+        canonical = wav.with_suffix(".flac")
+        sf.write(canonical, audio, sr, subtype="PCM_24")
+        canonical_items.append((canonical, folder))
     if pipe._model is not None:
         pipe._model.to("cpu")
     if pipe._vae is not None:
@@ -83,12 +90,12 @@ def score_many(pipe, args, items):
     command = [str(args.musecritic_python), str(Path(__file__).with_name("score_musecritic_batch.py")),
                "--repo", str(args.musecritic_repo), "--model", str(args.musecritic_model),
                "--max-new-tokens", str(args.musecritic_max_new_tokens)]
-    for wav, folder in items:
-        command.extend(["--pair", str(wav), str(folder)])
+    for canonical, folder in canonical_items:
+        command.extend(["--pair", str(canonical), str(folder)])
     subprocess.run(command, check=True)
     rewards = []
-    for wav, folder in items:
-        scores = json.loads((folder / "result.json").read_text())[wav.stem]
+    for canonical, folder in canonical_items:
+        scores = json.loads((folder / "result.json").read_text())[canonical.stem]
         rewards.append({**scores, "mean": float(np.mean(list(scores.values())))})
     return rewards
 
@@ -110,11 +117,14 @@ def evaluate(pipe, step, args):
     rewards = score_many(pipe, args, pending)
     for entry, (wav, _), reward in zip(entries, pending, rewards):
         folder = wav.parent
-        audio, sr = sf.read(wav, dtype="float32")
-        sf.write(folder / "audio.flac", audio, sr, subtype="PCM_24")
-        signal = stats(folder / "audio.flac")
+        canonical = folder / "audio.flac"
+        if args.reward_backend == "songeval":
+            audio, sr = sf.read(wav, dtype="float32")
+            sf.write(canonical, audio, sr, subtype="PCM_24")
+        signal = stats(canonical)
         wav.unlink()
-        entry.update({"reward": reward, "signal": signal})
+        entry.update({"reward": reward, "signal": signal,
+                      "audio_sha256": hashlib.sha256(canonical.read_bytes()).hexdigest()})
         print(f"evaluation step={step} heldout={entry['index']} reward={reward['mean']:.4f}", flush=True)
     write_json(root / "receipt.json", {"optimizer_step": step, "heldout": entries,
                                      "mean_reward": float(np.mean([row["reward"]["mean"] for row in entries]))})
@@ -175,6 +185,7 @@ def main():
         "heldout_data_origin": "three separate original hand-written English two-line lyrics prompts",
         "train_prompts": TRAIN, "heldout_prompts": HELDOUT,
         "reward_backend": args.reward_backend, "learning_rate": args.learning_rate,
+        "reward_audio_format": "PCM_24 FLAC" if args.reward_backend == "musecritic" else "FLOAT WAV",
         "max_tokens": args.max_tokens, "start_adapter": str(args.start_adapter),
         "musecritic_model": str(args.musecritic_model) if args.musecritic_model else None,
         "musecritic_max_new_tokens": args.musecritic_max_new_tokens if args.reward_backend == "musecritic" else None,

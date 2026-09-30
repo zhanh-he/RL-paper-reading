@@ -29,6 +29,15 @@ def constrained_log_probs(model, rollout):
     return torch.log_softmax(allowed, dim=-1).squeeze(0).cpu(), allowed_mass
 
 
+def conditional_kl(reference, comparison):
+    valid = torch.isfinite(reference)
+    delta = torch.where(valid, reference - comparison, 0.0)
+    value = (reference.exp() * delta).sum(-1).mean().item()
+    if not torch.isfinite(torch.tensor(value)):
+        raise FloatingPointError("Nonfinite conditional KL")
+    return value
+
+
 def reference_rollouts(pipe, output, max_tokens):
     path = output / "reference_tokens.json"
     if path.exists():
@@ -72,13 +81,28 @@ def main():
     if pipe._vae is not None:
         pipe._vae.to("cpu")
     policy.to("cuda")
+    policy.load_adapter(args.reference_adapter, adapter_name="probe")
+    policy.set_adapter("probe")
+    policy.eval()
     references = [constrained_log_probs(policy, rollout) for rollout in rollouts]
+    policy.set_adapter("default")
+    policy.delete_adapter("probe")
+    policy.load_adapter(args.reference_adapter, adapter_name="probe")
+    policy.set_adapter("probe")
+    policy.eval()
+    identity_kl = [conditional_kl(reference, constrained_log_probs(policy, rollout)[0])
+                   for rollout, (reference, _) in zip(rollouts, references)]
+    if max(abs(value) for value in identity_kl) > 1e-5:
+        raise AssertionError(f"Same-weight adapter identity KL is nonzero: {identity_kl}")
+    policy.set_adapter("default")
+    policy.delete_adapter("probe")
     report = {
         "status": "offline_fixed_reference_conditional_kl",
         "reference": "YuE2 one-step source LoRA, not the frozen zero-step base",
         "definition": "mean token D_KL(reference || checkpoint) on three reference-generated held-out trajectories; codec vocabulary plus permitted end token, before top-k/top-p/repetition filtering",
         "not_training_kl": True,
         "seeds": [row["seed"] for row in rollouts],
+        "identity_kl": identity_kl,
         "reference_allowed_vocab_mass": [mass for _, mass in references],
         "arms": {},
     }
@@ -91,15 +115,12 @@ def main():
                 raise FileNotFoundError(adapter)
             policy.load_adapter(adapter, adapter_name="probe")
             policy.set_adapter("probe")
+            policy.eval()
             values = []
             allowed_mass = []
             for rollout, (ref_logp, _) in zip(rollouts, references):
                 checkpoint_logp, mass = constrained_log_probs(policy, rollout)
-                valid = torch.isfinite(ref_logp)
-                delta = torch.where(valid, ref_logp - checkpoint_logp, 0.0)
-                kl = (ref_logp.exp() * delta).sum(-1).mean().item()
-                if not torch.isfinite(torch.tensor(kl)):
-                    raise FloatingPointError(f"Nonfinite KL for {name} step {step}")
+                kl = conditional_kl(ref_logp, checkpoint_logp)
                 values.append(kl)
                 allowed_mass.append(mass)
             report["arms"][name][str(step)] = {

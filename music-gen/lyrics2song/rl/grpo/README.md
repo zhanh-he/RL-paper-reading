@@ -68,12 +68,19 @@ noise; it has not been isolated as the cause of stagnation.
 The [high-learning-rate stress test](runs/2026-09-30-yue2-high-lr/README.md)
 completed step 100 at both 1e-3 and 1e-2 on the 5090. Both finished below
 their shared step-1 source LoRA on three fixed held-out prompts. These are
-instability probes, not recommended settings. The first KL probe incorrectly
-multiplied zero reference probability by an undefined `-inf - -inf` difference
-for the forbidden end token; its `null` KL values are invalid. The corrected
-`probe_yue2_reference_kl.py` masks that token and is queued to rerun after
-`run_yue2_post_sweep.sh` finishes. MuseCritic's two-step smoke test passed;
-its YuE2 run is now continuing toward step 100.
+instability probes, not recommended settings. The [validated offline KL audit](runs/2026-09-30-yue2-kl-audit/README.md)
+shows step-100 conditional KL from the shared source LoRA of about 0.00079
+at 2e-5, 0.00087 at 1e-4, 0.50 at 1e-3, and 21.0 at 1e-2. Its same-weight
+identity check is exactly zero, but it is not training-time KL. The
+[YuE2 MuseCritic run](runs/2026-09-30-yue2-musecritic/README.md) also
+completed step 100; its three-song held-out mean fell from 2.8396 at the
+source LoRA to 2.5583, on MuseCritic's own scale. A subsequent
+[reward-format audit](runs/2026-10-01-yue2-musecritic-format-audit/README.md)
+found a large MuseCritic score difference between practically identical
+float-WAV and PCM24-FLAC versions of one song. The old run scored temporary
+WAVs but archived FLACs, so a corrected run now scores the archived FLAC
+itself. The [cross-reward audit](runs/2026-09-30-yue2-cross-reward/README.md)
+records MuseCritic scores for the SongEval arms' exact FLACs.
 
 The [Muse SongEval prompt-matched replay](runs/2026-09-30-muse-matched/README.md)
 regenerates the one-step adapter's held-out 0/1 audio using the same style,
