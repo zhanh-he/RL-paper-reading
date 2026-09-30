@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-lyrics-lr" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-lyrics-stress"></script>
+    <script type="module" src="./lab.js?v=20260930-lyrics-25"></script>
   </head>
   <body>
     <header class="app-header">
@@ -52,7 +52,7 @@
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">事件级 GRPO 已测</span><small>16 首训练、8 首测试，5.12 秒片段；完整歌曲尚未验证</small></div>
           <div class="status-row"><span>人声输入 → 歌曲</span><span class="state inference">两个模型 baseline 已生成</span><small>LaDA-Band 权重已在 5090/Gadi 就位；本模型尚未完成推理或 GRPO</small></div>
-          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 100 步已测 · 高 LR 对照运行中</span><small>Muse 与 MuseCritic 是独立实验；看配对与队列状态</small></div>
+          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 常规 LR 100 步 · 高 LR 25 步已测</span><small>高 LR 100 步将在共享 5090 资源释放后续跑；Muse 是独立实验</small></div>
         </div>
       </section>
 

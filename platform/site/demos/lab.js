@@ -641,6 +641,8 @@ function renderLyrics(data) {
       $('#lyrics-interpretation').textContent = `MuseCritic GRPO ${step} 步的单条留出音频：均分 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}；峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。两版均无满幅削波。每个阶段使用各自的 A/B 解码，MuCodec 重解码存在随机性；相同 baseline token 在 25/50 步评估中也生成不同波形，故不能把单条分差全归因于 adapter。`;
     } else if (model === 'yue2_stress' && step === 5) {
       $('#lyrics-interpretation').textContent = `高 LR 第 5 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，低于常规 LR 同步数。试听样本有 12 个近满幅采样（最长连续 4 个），其余两条没有。这是稀疏峰值异常；reward 没有上升，尚不能称为 reward hacking。`;
+    } else if (model === 'yue2_stress' && step === 25) {
+      $('#lyrics-interpretation').textContent = `高 LR 第 25 步三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}，仍低于冻结基线。试听样本有 37 个近满幅采样（最长连续 17 个），其余两条没有。较第 5 步峰值异常更明显，但音频内容也改变；没有证据证明 SongEval 在奖励削波。`;
     } else if (step === 1 && isYuE2) {
       $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第一个样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
     } else {
