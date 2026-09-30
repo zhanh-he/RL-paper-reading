@@ -60,6 +60,19 @@ After the 300-step checkpoint exists, `evaluate_lada_band.py` can replay all sav
 
 This is a held-out *phrase*, not a held-out song or singer; it cannot establish broad generalization.
 
+## Coverage-only ablation
+
+Start a new adapter from the same frozen checkpoint, vocal, prompt, sampler, seeds, group size and learning rate as the combined run. The single reward is the trainer's **40 ms frame RMS coverage**, not the original vocal2accomp STFT coverage. Keep Beat-v2, STFT coverage, loudness, clipping and listening as independent checks. This command is registered before any coverage-only result exists:
+
+```bash
+.env/bin/python train_lada_band.py \
+  --code-root codes \
+  --checkpoint /home/mengh/research/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
+  --vocal ace_emma_vocal_16s.wav --output outputs/grpo_emma_coverage_6s \
+  --seconds 6 --eval-seconds 12 --denoise-steps 8 --group 2 \
+  --reward coverage --lr 5e-4 --steps 100 --save-steps 5 50 100
+```
+
 ## Optional original Beat-v2 reward arm
 
 The trainer also accepts `--reward beat_v2`, which sends each generated candidate WAV to the persistent [`beat_v2_worker.py`](../../rewards/beat_v2_worker.py) process in the existing `auto-beat-reward` environment. That worker calls the original vocal2accomp `MadmomBeatV2Scorer`, with the same fixed vocal and duration-specific reference cache. A CPU preflight returned Beat-v2 F1 `0.1429` for the first six seconds of the frozen baseline and `0.2963` for twelve seconds; the latter matches the independent offline receipt. This is an **available but not yet trained** arm; do not label the combined proxy run as Beat-v2 GRPO.
