@@ -42,3 +42,14 @@ cd /home/mengh/research/LaDA-Band-posttrain
 ```
 
 Resume to 300 with the same arguments, `--steps 300 --save-steps 300 --resume outputs/grpo_emma_combined_6s/step_0100.pt`. The checkpoint includes both adapter and optimizer state. `metrics.jsonl` holds per-group scores; `evaluations.jsonl` contains only fixed-seed replay measurements. The public demo exporter copies WAV/PNG/metric data only, never gated weights.
+
+After the 300-step checkpoint exists, `evaluate_lada_band.py` can replay all saved adapters on seconds 6-12 of the **same** Emma recording, which were excluded from online updates. It saves a separate source WAV, checkpoint WAVs and metrics without changing weights:
+
+```bash
+.env/bin/python evaluate_lada_band.py \
+  --run-dir outputs/grpo_emma_combined_6s \
+  --output outputs/grpo_emma_combined_6s_heldout_phrase \
+  --start-seconds 6 --duration-seconds 6 --steps 0 5 50 100 300
+```
+
+This is a held-out *phrase*, not a held-out song or singer; it cannot establish broad generalization.
