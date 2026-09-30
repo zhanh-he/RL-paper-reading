@@ -280,11 +280,15 @@ function drawVoiceMidi(canvas, notes, pitchRange) {
 function createChoralMidiPanel(letter) {
   const panel = document.createElement('article'); panel.className = 'choral-midi-panel';
   const heading = document.createElement('div'); heading.className = 'choral-midi-heading';
-  const badge = document.createElement('span'); badge.className = 'choral-panel-letter'; badge.textContent = letter;
   const titleBlock = document.createElement('div');
   const title = document.createElement('h4');
   const detail = document.createElement('small');
-  titleBlock.append(title, detail); heading.append(badge, titleBlock);
+  titleBlock.append(title, detail);
+  if (letter) {
+    const badge = document.createElement('span'); badge.className = 'choral-panel-letter'; badge.textContent = letter;
+    heading.append(badge);
+  }
+  heading.append(titleBlock);
   const canvas = document.createElement('canvas'); canvas.width = 1120; canvas.height = 620;
   canvas.setAttribute('role', 'img');
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata';
@@ -330,18 +334,19 @@ function drawSatbComparison(canvas, noteSets, stage, label) {
 }
 
 function renderEventReplay(data, pilot) {
-  const steps = [0, 100, 300, 1000];
+  const steps = [1, 100, 300, 1000];
   const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
     coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
   const allNotes = Object.values(data.notes).flat();
   const pitchRange = [Math.min(...allNotes.map((note) => note.pitch)) - 2,
     Math.max(...allNotes.map((note) => note.pitch)) + 2];
-  const panels = { A: createChoralMidiPanel('A'), B: createChoralMidiPanel('B') };
+  const panels = { baseline: createChoralMidiPanel(null), combined: createChoralMidiPanel('A') };
   const singleArms = Object.keys(armNames);
   const singlePanels = Object.fromEntries(singleArms.map((arm, index) =>
-    [arm, createChoralMidiPanel(String.fromCharCode(67 + index))]));
-  $('#choral-midi-grid').replaceChildren(panels.A.panel, panels.B.panel);
-  $('#choral-single-grid').replaceChildren(...singleArms.map((arm) => singlePanels[arm].panel));
+    [arm, createChoralMidiPanel(String.fromCharCode(66 + index))]));
+  $('#choral-baseline-panel').replaceChildren(panels.baseline.panel);
+  $('#choral-grpo-grid').replaceChildren(panels.combined.panel,
+    ...singleArms.map((arm) => singlePanels[arm].panel));
   drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, pitchRange);
   const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
     panel.title.textContent = title;
@@ -354,12 +359,12 @@ function renderEventReplay(data, pilot) {
     panel.midi.href = `./midi/${midiStem}.mid`;
     panel.midi.textContent = '下载 MIDI ↓';
   };
-  updatePanel(panels.A, 'Frozen ChoralStream', `${data.receipt.steps['0'].note_count} notes · 0 步`,
+  updatePanel(panels.baseline, 'Frozen ChoralStream · baseline', `${data.receipt.steps['0'].note_count} notes · 0 步`,
     data.notes['0'], 'choral_event_0000', 'choral_event_0000');
   const selectStep = (step) => {
     const id = String(step).padStart(4, '0');
     const result = data.receipt.steps[String(step)];
-    updatePanel(panels.B, 'Combined reward', `${result.note_count} notes · ${step} 步`,
+    updatePanel(panels.combined, 'Combined reward', `${result.note_count} notes · ${step} 步`,
       data.notes[String(step)], `choral_event_${id}`, `choral_event_${id}`);
     for (const button of document.querySelectorAll('#choral-event-rail button')) {
       button.setAttribute('aria-pressed', String(Number(button.dataset.step) === step));
@@ -370,7 +375,7 @@ function renderEventReplay(data, pilot) {
     button.className = 'stage-item available'; button.dataset.step = String(step);
     const title = document.createElement('strong'); title.textContent = `${step} 步`;
     const state = document.createElement('span'); state.className = 'state measured';
-    state.textContent = step === 0 ? '冻结起点' : '组合 reward';
+    state.textContent = step === 1 ? '首次更新' : '组合 reward';
     button.append(title, state); button.addEventListener('click', () => selectStep(step));
     return button;
   }));
@@ -394,7 +399,7 @@ function renderEventReplay(data, pilot) {
 
 function renderEventPilot(data) {
   const rows = [{ label: 'Frozen', step: 0, updates: 0, metrics: data.baseline, kind: 'baseline' }];
-  for (const step of [100, 300, 1000]) {
+  for (const step of [1, 100, 300, 1000]) {
     const stage = data.arms.combined?.milestones?.[String(step)];
     if (stage) rows.push({ label: 'Combined', step, updates: stage.updated_steps, metrics: stage.metrics, kind: 'combined' });
   }
@@ -416,10 +421,11 @@ function renderEventPilot(data) {
     for (const metric of ['frame', 'onset', 'onset_offset']) {
       const value = metrics.macro[metric];
       const delta = value - baseline[metric];
+      const roundedDelta = Math.round(delta * 1000) / 10;
       const td = document.createElement('td'); td.className = 'choral-score-cell';
       const number = document.createElement('strong'); number.textContent = `${fmt(value * 100, 1)}%`;
-      const change = document.createElement('small'); change.className = delta > 0.00005 ? 'positive' : delta < -0.00005 ? 'negative' : 'neutral';
-      change.textContent = `(${signed(delta * 100, 1)} pp)`;
+      const change = document.createElement('small'); change.className = roundedDelta > 0 ? 'positive' : roundedDelta < 0 ? 'negative' : 'neutral';
+      change.textContent = `(${roundedDelta === 0 ? '0.0' : signed(roundedDelta, 1)} pp)`;
       td.append(number, change); tr.append(td);
     }
     return tr;

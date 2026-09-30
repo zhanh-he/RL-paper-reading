@@ -22,6 +22,11 @@ reference-backed reward is in [satb_reward.py](../../../../rewards/satb_reward.p
   All seven single-reward arms use the same start, seed, split and 1000
   requested steps, with checkpoints at 300 and 1000. Effective optimizer
   updates vary because zero-variance rollout groups cannot supply an advantage.
+- A later [one-step rerun](step_000001/receipt.json) used the same starting
+  checkpoint SHA-256, seed, 16/8-song split and optimizer settings, then
+  stopped after one effective combined-reward update. Its pre-update
+  aggregate is identical to the original baseline. This is a separate run,
+  not an extracted checkpoint from the 1000-step run.
 - Held-out MIDI is deterministically re-decoded. Frame F1 is computed on a
   10 ms grid; note onset matching uses 50 ms; complete-note matching also
   requires offset within `max(50 ms, 20% reference duration)`. We report
@@ -64,7 +69,7 @@ human review are needed.
 The [one-song receipt](public-synthetic-replay.json) and
 [piano-roll notes](public-synthetic-notes.json) belong to an original 10.2 s
 synthetic SATB example, not to the held-out test. The same audio input is
-decoded with the frozen model, combined 100/300/1000-step heads and all seven
+decoded with the frozen model, combined 1/100/300/1000-step heads and all seven
 single-reward 300-step heads;
 predicted notes are clipped to the input duration. Its MIDI files and ACE
 Studio renders are on the [demo page](../../../../../../platform/site/demos/).
@@ -74,9 +79,12 @@ and ACE-rendered reference are different audio realizations of the same
 reference MIDI; objective scores come from the MIDI, not from ACE audio. The
 weak-voice 300-step head has zero effective updates and its MIDI is
 byte-identical to baseline, so the demo reuses the baseline render.
+ACE singing tracks are monophonic, so overlapping notes within one predicted
+voice are shortened to the next onset for listening only; the downloadable
+MIDI and objective scores retain the original decoder output.
 
-On this **one** example, pitch-only onset F1 is `0.133` at baseline, `0.195`
-at 100, `0.306` at 300 and `0.123` at 1000 steps. The 1000-step decline is a
+On this **one** example, pitch-only onset F1 is `0.133` at baseline, `0.103`
+at 1, `0.195` at 100, `0.306` at 300 and `0.123` at 1000 steps. The 1000-step decline is a
 listening case worth discussing, but not proof of overfitting or reward
 hacking. Repeated seeds, more held-out songs and human listening ratings are
 still needed. No Huawei training asset or proprietary recording appears here.

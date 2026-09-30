@@ -17,6 +17,21 @@
       "track_onset_f1": 0.13333333333333333,
       "track_note_f1": 0.08
     },
+    "1": {
+      "midi": "choral_event_0001.mid",
+      "active_voices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "note_count": 46,
+      "frame_f1": 0.6776007497656982,
+      "onset_f1": 0.10256410256410256,
+      "onset_offset_f1": 0.07692307692307693,
+      "track_onset_f1": 0.10256410256410256,
+      "track_note_f1": 0.07692307692307693
+    },
     "100": {
       "midi": "choral_event_0100.mid",
       "active_voices": [
@@ -28,9 +43,9 @@
       "note_count": 50,
       "frame_f1": 0.6752228163992869,
       "onset_f1": 0.1951219512195122,
-      "onset_offset_f1": 0.0,
+      "onset_offset_f1": 0,
       "track_onset_f1": 0.1951219512195122,
-      "track_note_f1": 0.0
+      "track_note_f1": 0
     },
     "300": {
       "midi": "choral_event_0300.mid",
@@ -103,9 +118,9 @@
       "note_count": 47,
       "frame_f1": 0.7491052696532149,
       "onset_f1": 0.17721518987341772,
-      "onset_offset_f1": 0.0,
+      "onset_offset_f1": 0,
       "track_onset_f1": 0.17721518987341772,
-      "track_note_f1": 0.0
+      "track_note_f1": 0
     },
     "arm_coverage_300": {
       "midi": "choral_event_arm_coverage_300.mid",

@@ -24,7 +24,7 @@ if (muscriptorTrain.status !== 'single_public_song_muscriptor_medium_grpo_smoke_
     ['frame', 'onset', 'offset'].every((name) => Number.isFinite(metrics?.[name])))) {
   throw new Error('MuScriptor medium smoke receipts are incomplete');
 }
-for (const key of ['0', '100', '300', '1000',
+for (const key of ['0', '1', '100', '300', '1000',
   ...['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'weak_voice', 'precision'].map((arm) => `arm_${arm}_300`)]) {
   if (!Number.isInteger(eventReceipt.steps[key]?.note_count) || eventReceipt.steps[key].note_count !== eventNotes[key]?.length) {
     throw new Error(`Public event MIDI note count mismatch at ${key}`);
@@ -47,11 +47,11 @@ for (const name of ['choral_ace_reference_short', 'choral_ace_baseline',
     await access(resolve(root, `platform/site/demos/midi/${name}.mid`));
   }
 }
-for (const step of [0, 100, 300, 1000]) {
+for (const step of [0, 1, 100, 300, 1000]) {
   const id = String(step).padStart(4, '0');
   await access(resolve(root, `platform/site/demos/midi/choral_event_${id}.mid`));
   await access(resolve(root, `platform/site/demos/audio/choral_event_${id}.wav`));
-  for (const kind of ['wave', 'spectrum']) {
+  for (const kind of step === 1 ? [] : ['wave', 'spectrum']) {
     await access(resolve(root, `platform/site/demos/visuals/choral_event_${id}_${kind}.png`));
   }
 }
@@ -185,6 +185,7 @@ const result = {
     'music-trans/choral-singing/rewards/audits/2026-09-30-satb-reward-counterexamples.json',
     'music-trans/choral-singing/benchmarks/icaspp2027_pawct_table2.json',
     `${eventPath}/aggregate.json`,
+    `${eventPath}/step_000001/receipt.json`,
     `${eventPath}/public-synthetic-replay.json`,
     `${eventPath}/public-synthetic-notes.json`,
     `${muscriptorSmokePath}/receipt.json`,

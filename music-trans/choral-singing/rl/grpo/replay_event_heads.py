@@ -23,6 +23,7 @@ def main():
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--reference", type=Path, required=True)
     parser.add_argument("--head-run", type=Path, required=True)
+    parser.add_argument("--extra-stage", action="append", default=[], metavar="STEP=HEAD_PT")
     parser.add_argument("--arm-run", action="append", default=[], metavar="ARM=RUN_DIR")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
@@ -48,10 +49,16 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     reference = load_satb_midi(args.reference)
 
-    stages = {"0": None, **{
+    stages = {"0": None}
+    for item in args.extra_stage:
+        step, sep, path = item.partition("=")
+        if not sep or not step.isdecimal() or int(step) <= 0 or step in stages:
+            parser.error("--extra-stage needs a positive STEP=HEAD_PT")
+        stages[step] = Path(path)
+    stages.update({
         str(step): args.head_run / f"step_{step:06d}" / "event_heads.pt"
         for step in (100, 300, 1000)
-    }}
+    })
     for item in args.arm_run:
         arm, sep, run_dir = item.partition("=")
         if not sep or not arm.replace("_", "").isalpha():

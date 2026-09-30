@@ -11,6 +11,7 @@ def main():
     parser.add_argument("--midi-dir", type=Path, required=True)
     parser.add_argument("--reference", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--extra-step", type=int, action="append", default=[])
     args = parser.parse_args()
     sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "rewards"))
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -18,7 +19,7 @@ def main():
 
     paths = {"reference": args.reference, **{
         str(step): args.midi_dir / f"choral_event_{step:04d}.mid"
-        for step in (0, 100, 300, 1000)
+        for step in (0, 100, 300, 1000, *args.extra_step)
     }}
     paths.update({path.stem.removeprefix("choral_event_"): path
                   for path in args.midi_dir.glob("choral_event_arm_*.mid")})

@@ -26,6 +26,7 @@
     "music-trans/choral-singing/rewards/audits/2026-09-30-satb-reward-counterexamples.json",
     "music-trans/choral-singing/benchmarks/icaspp2027_pawct_table2.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/aggregate.json",
+    "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/step_000001/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/public-synthetic-replay.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/public-synthetic-notes.json",
     "music-trans/multi-inst/rl/grpo/runs/2026-09-30-muscriptor-medium-smoke/receipt.json",
@@ -2268,6 +2269,175 @@
         "steps_requested": 1000,
         "steps_updated": 1000,
         "milestones": {
+          "1": {
+            "optimizer_step": 1,
+            "updated_steps": 1,
+            "metrics": {
+              "frame": {
+                "precision": 0.4912238129903745,
+                "recall": 0.5405429461504228,
+                "f1": 0.5147046359861005,
+                "tp": 6073,
+                "fp": 6290,
+                "fn": 5162
+              },
+              "track_frame": {
+                "precision": 0.26848923030576893,
+                "recall": 0.30624516794089857,
+                "f1": 0.28612705164733737,
+                "tp": 3565,
+                "fp": 9713,
+                "fn": 8076
+              },
+              "onset": {
+                "precision": 0.1935483870967742,
+                "recall": 0.12,
+                "f1": 0.14814814814814814,
+                "tp": 30,
+                "fp": 125,
+                "fn": 220
+              },
+              "offset": {
+                "precision": 0.03225806451612903,
+                "recall": 0.02,
+                "f1": 0.024691358024691357,
+                "tp": 5,
+                "fp": 150,
+                "fn": 245
+              },
+              "track_onset": {
+                "precision": 0.14838709677419354,
+                "recall": 0.092,
+                "f1": 0.11358024691358025,
+                "tp": 23,
+                "fp": 132,
+                "fn": 227
+              },
+              "track_note": {
+                "precision": 0.03225806451612903,
+                "recall": 0.02,
+                "f1": 0.024691358024691357,
+                "tp": 5,
+                "fp": 150,
+                "fn": 245
+              },
+              "per_voice": {
+                "S": {
+                  "frame": {
+                    "precision": 0.32124352331606215,
+                    "recall": 0.3379667484328155,
+                    "f1": 0.32939301368043566,
+                    "tp": 1240,
+                    "fp": 2620,
+                    "fn": 2429
+                  },
+                  "onset": {
+                    "precision": 0.19047619047619047,
+                    "recall": 0.09876543209876543,
+                    "f1": 0.13008130081300814,
+                    "tp": 8,
+                    "fp": 34,
+                    "fn": 73
+                  },
+                  "onset_offset": {
+                    "precision": 0.047619047619047616,
+                    "recall": 0.024691358024691357,
+                    "f1": 0.032520325203252036,
+                    "tp": 2,
+                    "fp": 40,
+                    "fn": 79
+                  }
+                },
+                "A": {
+                  "frame": {
+                    "precision": 0.16493471889155342,
+                    "recall": 0.22765722692166238,
+                    "f1": 0.19128553770086526,
+                    "tp": 619,
+                    "fp": 3134,
+                    "fn": 2100
+                  },
+                  "onset": {
+                    "precision": 0.15384615384615385,
+                    "recall": 0.09523809523809523,
+                    "f1": 0.11764705882352941,
+                    "tp": 6,
+                    "fp": 33,
+                    "fn": 57
+                  },
+                  "onset_offset": {
+                    "precision": 0.02564102564102564,
+                    "recall": 0.015873015873015872,
+                    "f1": 0.0196078431372549,
+                    "tp": 1,
+                    "fp": 38,
+                    "fn": 62
+                  }
+                },
+                "T": {
+                  "frame": {
+                    "precision": 0.32943201376936315,
+                    "recall": 0.3288659793814433,
+                    "f1": 0.3291487532244196,
+                    "tp": 957,
+                    "fp": 1948,
+                    "fn": 1953
+                  },
+                  "onset": {
+                    "precision": 0.13636363636363635,
+                    "recall": 0.09523809523809523,
+                    "f1": 0.11214953271028037,
+                    "tp": 6,
+                    "fp": 38,
+                    "fn": 57
+                  },
+                  "onset_offset": {
+                    "precision": 0,
+                    "recall": 0,
+                    "f1": 0,
+                    "tp": 0,
+                    "fp": 44,
+                    "fn": 63
+                  }
+                },
+                "B": {
+                  "frame": {
+                    "precision": 0.2713768115942029,
+                    "recall": 0.31967562953478446,
+                    "f1": 0.2935528120713306,
+                    "tp": 749,
+                    "fp": 2011,
+                    "fn": 1594
+                  },
+                  "onset": {
+                    "precision": 0.1,
+                    "recall": 0.06976744186046512,
+                    "f1": 0.0821917808219178,
+                    "tp": 3,
+                    "fp": 27,
+                    "fn": 40
+                  },
+                  "onset_offset": {
+                    "precision": 0.06666666666666667,
+                    "recall": 0.046511627906976744,
+                    "f1": 0.0547945205479452,
+                    "tp": 2,
+                    "fp": 28,
+                    "fn": 41
+                  }
+                }
+              },
+              "macro": {
+                "frame": 0.2858450291692628,
+                "onset": 0.11051741829218394,
+                "onset_offset": 0.026730672222113033
+              },
+              "va_rate_percent": {
+                "frame": 55.535740147672186,
+                "onset": 74.59925734722415
+              }
+            }
+          },
           "100": {
             "optimizer_step": 100,
             "updated_steps": 100,
@@ -6542,6 +6712,21 @@
           "track_onset_f1": 0.13333333333333333,
           "track_note_f1": 0.08
         },
+        "1": {
+          "midi": "choral_event_0001.mid",
+          "active_voices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "note_count": 46,
+          "frame_f1": 0.6776007497656982,
+          "onset_f1": 0.10256410256410256,
+          "onset_offset_f1": 0.07692307692307693,
+          "track_onset_f1": 0.10256410256410256,
+          "track_note_f1": 0.07692307692307693
+        },
         "100": {
           "midi": "choral_event_0100.mid",
           "active_voices": [
@@ -6952,6 +7137,284 @@
           "voice": 0,
           "pitch": 77,
           "start": 9.00682,
+          "end": 10.2
+        }
+      ],
+      "1": [
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 0,
+          "end": 0.95455
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 0,
+          "end": 0.92273
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 0,
+          "end": 0.70227
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 0,
+          "end": 0.96364
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 0.78864,
+          "end": 2.37727
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 0.80455,
+          "end": 2.42273
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 0.82273,
+          "end": 2.32955
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 0.825,
+          "end": 2.89091
+        },
+        {
+          "voice": 3,
+          "pitch": 52,
+          "start": 2.11818,
+          "end": 3.61364
+        },
+        {
+          "voice": 2,
+          "pitch": 64,
+          "start": 2.11818,
+          "end": 3.47273
+        },
+        {
+          "voice": 1,
+          "pitch": 71,
+          "start": 2.12955,
+          "end": 3.50227
+        },
+        {
+          "voice": 0,
+          "pitch": 76,
+          "start": 2.16136,
+          "end": 3.35
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.36818,
+          "end": 4.48864
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.37273,
+          "end": 4.53864
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.375,
+          "end": 4.55682
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.38182,
+          "end": 4.50909
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 3.84091,
+          "end": 4.91136
+        },
+        {
+          "voice": 3,
+          "pitch": 55,
+          "start": 3.84091,
+          "end": 4.84773
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 3.84091,
+          "end": 4.87273
+        },
+        {
+          "voice": 2,
+          "pitch": 62,
+          "start": 3.84091,
+          "end": 4.91591
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.33409,
+          "end": 5.04545
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.41364,
+          "end": 5.12955
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 4.45,
+          "end": 5.12955
+        },
+        {
+          "voice": 3,
+          "pitch": 53,
+          "start": 4.47045,
+          "end": 5.13409
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 4.58409,
+          "end": 6.33182
+        },
+        {
+          "voice": 3,
+          "pitch": 71,
+          "start": 4.85455,
+          "end": 6.65909
+        },
+        {
+          "voice": 3,
+          "pitch": 60,
+          "start": 4.88636,
+          "end": 6.675
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 4.91591,
+          "end": 6.91591
+        },
+        {
+          "voice": 1,
+          "pitch": 72,
+          "start": 4.94091,
+          "end": 7.54318
+        },
+        {
+          "voice": 1,
+          "pitch": 59,
+          "start": 6.75227,
+          "end": 8.43636
+        },
+        {
+          "voice": 0,
+          "pitch": 71,
+          "start": 6.75227,
+          "end": 8.33409
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 7.58182,
+          "end": 8.45
+        },
+        {
+          "voice": 1,
+          "pitch": 65,
+          "start": 7.67955,
+          "end": 8.475
+        },
+        {
+          "voice": 3,
+          "pitch": 50,
+          "start": 7.67955,
+          "end": 8.83182
+        },
+        {
+          "voice": 0,
+          "pitch": 69,
+          "start": 7.67955,
+          "end": 8.46364
+        },
+        {
+          "voice": 2,
+          "pitch": 57,
+          "start": 7.67955,
+          "end": 8.825
+        },
+        {
+          "voice": 0,
+          "pitch": 74,
+          "start": 7.71364,
+          "end": 8.94318
+        },
+        {
+          "voice": 1,
+          "pitch": 69,
+          "start": 7.74318,
+          "end": 8.84091
+        },
+        {
+          "voice": 0,
+          "pitch": 77,
+          "start": 7.75909,
+          "end": 10.2
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.39773,
+          "end": 8.90455
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 8.45909,
+          "end": 8.97727
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.47273,
+          "end": 8.97727
+        },
+        {
+          "voice": 3,
+          "pitch": 48,
+          "start": 8.83182,
+          "end": 10.2
+        },
+        {
+          "voice": 2,
+          "pitch": 60,
+          "start": 8.9,
+          "end": 10.2
+        },
+        {
+          "voice": 1,
+          "pitch": 67,
+          "start": 8.93409,
+          "end": 10.2
+        },
+        {
+          "voice": 0,
+          "pitch": 72,
+          "start": 8.97727,
           "end": 10.2
         }
       ],
