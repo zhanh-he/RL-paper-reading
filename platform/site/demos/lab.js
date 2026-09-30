@@ -396,6 +396,17 @@ function renderPawctPaper(data) {
   ]));
 }
 
+function renderMuscriptorSmoke(data) {
+  const rows = [
+    ['训练同歌 · 5 s', data.train.before.metrics, data.train.after.metrics],
+    ['异歌 8 首 · 每首 5 s', data.disjoint.before_macro, data.disjoint.after_macro],
+  ];
+  appendCells($('#muscriptor-smoke-table'), rows.map(([scope, before, after]) => [
+    scope,
+    ...['frame', 'onset', 'offset'].flatMap((key) => [fmt(before[key], 3), fmt(after[key], 3)]),
+  ]));
+}
+
 function renderSatbCounterexamples(data) {
   const cases = [
     ['onset_only_short_notes', 'Shorten every note', 'onset'],
@@ -606,6 +617,7 @@ try {
   renderEventPilot(data.event_pilot);
   renderActualArmReplays(data.event_replay, data.event_pilot);
   renderPawctPaper(data.pawct_paper);
+  renderMuscriptorSmoke(data.muscriptor_medium_smoke);
   renderSatbCounterexamples(data.satb_reward_counterexamples);
   renderSatbBadcaseAudio();
   $('#seed-range').textContent = [data.choral.runs.frame.f1.frame, ...data.choral_seed_repeats.map((row) => row.frame_f1)].map((score) => fmt(score)).join(' / ');

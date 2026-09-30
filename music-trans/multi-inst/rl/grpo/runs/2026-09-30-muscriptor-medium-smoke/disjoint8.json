@@ -1,0 +1,149 @@
+{
+  "status": "exploratory_disjoint_muscriptor_medium_5s_paired_evaluation",
+  "scope": "First 5 seconds of sorted YouChorale benchmark recordings, excluding the one-song GRPO training example",
+  "recording_count": 8,
+  "model": "MuScriptor-medium, frozen base vs 50-step token-head GRPO smoke",
+  "decoding": "greedy, voice instrument constraint, max 384 tokens",
+  "metric": "pitch-only 50 ms onset; complete note adds offset max(50 ms, 20% reference duration)",
+  "before_macro": {
+    "frame": 0.6326244685602009,
+    "onset": 0.043209876543209874,
+    "offset": 0.037037037037037035
+  },
+  "after_macro": {
+    "frame": 0.6368624810677767,
+    "onset": 0.10876804034081029,
+    "offset": 0.10259520083463745
+  },
+  "paired_anonymous": [
+    {
+      "index": 1,
+      "reference_notes": 11,
+      "before": {
+        "frame": 0.7467320261437909,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.7473426001635323,
+        "onset": 0.2,
+        "offset": 0.2
+      },
+      "before_tokens": 32,
+      "after_tokens": 32
+    },
+    {
+      "index": 2,
+      "reference_notes": 7,
+      "before": {
+        "frame": 0.8374760994263862,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.8374760994263862,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "before_tokens": 18,
+      "after_tokens": 18
+    },
+    {
+      "index": 3,
+      "reference_notes": 6,
+      "before": {
+        "frame": 0.6479146459747818,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.6466602129719264,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "before_tokens": 16,
+      "after_tokens": 16
+    },
+    {
+      "index": 4,
+      "reference_notes": 28,
+      "before": {
+        "frame": 0.8555891238670695,
+        "onset": 0.1111111111111111,
+        "offset": 0.1111111111111111
+      },
+      "after": {
+        "frame": 0.9032258064516129,
+        "onset": 0.4074074074074074,
+        "offset": 0.4074074074074074
+      },
+      "before_tokens": 72,
+      "after_tokens": 73
+    },
+    {
+      "index": 5,
+      "reference_notes": 100,
+      "before": {
+        "frame": 0.5902353966870096,
+        "onset": 0.2345679012345679,
+        "offset": 0.18518518518518517
+      },
+      "after": {
+        "frame": 0.5902353966870096,
+        "onset": 0.2345679012345679,
+        "offset": 0.18518518518518517
+      },
+      "before_tokens": 199,
+      "after_tokens": 199
+    },
+    {
+      "index": 6,
+      "reference_notes": 37,
+      "before": {
+        "frame": 0.5458070770722249,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.5303176130895092,
+        "onset": 0.028169014084507043,
+        "offset": 0.028169014084507043
+      },
+      "before_tokens": 119,
+      "after_tokens": 119
+    },
+    {
+      "index": 7,
+      "reference_notes": 6,
+      "before": {
+        "frame": 0.8372413793103448,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.8396421197522368,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "before_tokens": 30,
+      "after_tokens": 30
+    },
+    {
+      "index": 8,
+      "reference_notes": 0,
+      "before": {
+        "frame": 0.0,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "after": {
+        "frame": 0.0,
+        "onset": 0.0,
+        "offset": 0.0
+      },
+      "before_tokens": 2,
+      "after_tokens": 2
+    }
+  ],
+  "caveat": "One training song, one selected seed and 8 short test excerpts. Not full-song or SATB-track-aware evidence."
+}

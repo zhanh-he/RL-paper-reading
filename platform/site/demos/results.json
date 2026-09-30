@@ -23,6 +23,8 @@
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/aggregate.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/public-synthetic-replay.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/public-synthetic-notes.json",
+    "music-trans/multi-inst/rl/grpo/runs/2026-09-30-muscriptor-medium-smoke/receipt.json",
+    "music-trans/multi-inst/rl/grpo/runs/2026-09-30-muscriptor-medium-smoke/disjoint8.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json",
     "music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json",
@@ -9922,6 +9924,41 @@
           "end": 10.2
         }
       ]
+    }
+  },
+  "muscriptor_medium_smoke": {
+    "train": {
+      "steps_requested": 50,
+      "steps_updated": 50,
+      "before": {
+        "metrics": {
+          "frame": 0.48247809762202754,
+          "onset": 0.1787709497206704,
+          "offset": 0.12290502793296089
+        },
+        "token_count": 237
+      },
+      "after": {
+        "metrics": {
+          "frame": 0.4902143522833178,
+          "onset": 0.29213483146067415,
+          "offset": 0.21348314606741572
+        },
+        "token_count": 235
+      }
+    },
+    "disjoint": {
+      "recording_count": 8,
+      "before_macro": {
+        "frame": 0.6326244685602009,
+        "onset": 0.043209876543209874,
+        "offset": 0.037037037037037035
+      },
+      "after_macro": {
+        "frame": 0.6368624810677767,
+        "onset": 0.10876804034081029,
+        "offset": 0.10259520083463745
+      }
     }
   },
   "choral_note": {

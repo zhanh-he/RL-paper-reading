@@ -6,4 +6,9 @@
 - [Rewards](rewards/README.md): GT-backed note/boundary rewards first; audio consistency is an auxiliary check.
 - [RL](rl/README.md): DPO and GRPO runs kept separate with matched base checkpoints and data splits.
 
-Do not call a model's published RL improvement a result from this repo. Public synthetic paired audio/MIDI can validate the pipeline, while real-audio generalization needs a separate held-out set with usable rights. No local run is published here yet.
+Do not call a model's published RL improvement a result from this repo. Public
+synthetic paired audio/MIDI can validate the pipeline. A local
+[MuScriptor-medium GRPO smoke](rl/grpo/runs/2026-09-30-muscriptor-medium-smoke/README.md)
+and anonymous 8-song short-excerpt audit now exist, but neither measures
+instrument-aware full-song generalization. That needs a disjoint train/test
+study with usable rights and track-labelled ground truth.

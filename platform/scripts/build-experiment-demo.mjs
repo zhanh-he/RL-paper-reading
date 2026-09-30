@@ -10,8 +10,20 @@ const replaysPath = 'platform/site/demos/replays.json';
 const replays = await readJson(replaysPath);
 const choralDemoPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic';
 const eventPath = 'music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head';
+const muscriptorSmokePath = 'music-trans/multi-inst/rl/grpo/runs/2026-09-30-muscriptor-medium-smoke';
 const eventReceipt = await readJson(`${eventPath}/public-synthetic-replay.json`);
 const eventNotes = await readJson(`${eventPath}/public-synthetic-notes.json`);
+const muscriptorTrain = await readJson(`${muscriptorSmokePath}/receipt.json`);
+const muscriptorDisjoint = await readJson(`${muscriptorSmokePath}/disjoint8.json`);
+if (muscriptorTrain.status !== 'single_public_song_muscriptor_medium_grpo_smoke_not_heldout' ||
+  muscriptorTrain.steps_requested !== 50 || muscriptorTrain.steps_updated !== 50 ||
+  muscriptorDisjoint.status !== 'exploratory_disjoint_muscriptor_medium_5s_paired_evaluation' ||
+  muscriptorDisjoint.recording_count !== 8 || muscriptorDisjoint.paired_anonymous?.length !== 8 ||
+  ![muscriptorTrain.before.metrics, muscriptorTrain.after.metrics,
+    muscriptorDisjoint.before_macro, muscriptorDisjoint.after_macro].every((metrics) =>
+    ['frame', 'onset', 'offset'].every((name) => Number.isFinite(metrics?.[name])))) {
+  throw new Error('MuScriptor medium smoke receipts are incomplete');
+}
 for (const key of ['0', '100', '300', '1000',
   ...['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'weak_voice', 'precision'].map((arm) => `arm_${arm}_300`)]) {
   if (!Number.isInteger(eventReceipt.steps[key]?.note_count) || eventReceipt.steps[key].note_count !== eventNotes[key]?.length) {
@@ -118,6 +130,8 @@ const result = {
     `${eventPath}/aggregate.json`,
     `${eventPath}/public-synthetic-replay.json`,
     `${eventPath}/public-synthetic-notes.json`,
+    `${muscriptorSmokePath}/receipt.json`,
+    `${muscriptorSmokePath}/disjoint8.json`,
     'music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json',
     'music-gen/lyrics2song/rewards/audits/2026-09-29/perturbation_47clips.json',
     'music-gen/lyrics2song/rl/grpo/runs/2026-09-29-yue2/receipt.json',
@@ -133,6 +147,19 @@ const result = {
   event_replay: {
     receipt: eventReceipt,
     notes: eventNotes,
+  },
+  muscriptor_medium_smoke: {
+    train: {
+      steps_requested: muscriptorTrain.steps_requested,
+      steps_updated: muscriptorTrain.steps_updated,
+      before: muscriptorTrain.before,
+      after: muscriptorTrain.after,
+    },
+    disjoint: {
+      recording_count: muscriptorDisjoint.recording_count,
+      before_macro: muscriptorDisjoint.before_macro,
+      after_macro: muscriptorDisjoint.after_macro,
+    },
   },
   choral_note: await readJson('music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/note_metrics_50ms.json'),
   choral_demo: {

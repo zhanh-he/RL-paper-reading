@@ -41,7 +41,12 @@ are published.
 5. **Other cases are narrower.** YuE2-3B SongEval-GRPO measured 0/1/5/50/100
    updates on three fixed prompts, with reward means
    `3.8403/3.6030/3.6160/3.5704/3.6063`, not an improvement. Muse/SongEval
-   one-step went `3.5585 -> 3.3330` on one sample. Muse/MuseCritic 25/50-step
+   one-step went `3.5585 -> 3.3330` on one sample. MuScriptor-medium's local
+   50-step token-head GRPO smoke moved one 5 s training song's pitch-only
+   onset/complete-note F1 `0.179/0.123 -> 0.292/0.213`; a later anonymous
+   8-song disjoint short-excerpt audit moved macro `0.043/0.037 ->
+   0.109/0.103`. The audit was added after the smoke and lacks SATB labels;
+   it is not a full-song benchmark. Muse/MuseCritic 25/50-step
    Gadi runs have paired replays, but stochastic MuCodec rendering prevents
    attributing a single audio-pair difference solely to training. A 47-clip
    SongEval perturbation audit found gain sensitivity, not a causal diagnosis
@@ -51,12 +56,13 @@ are published.
 ## Model gates and honest boundaries
 
 - **MuScriptor:** the author's research permission and the current Hugging
-  Face account's gated-weight access are different. Official source code and
-  hosted-demo baseline are available, but `MuScriptor/muscriptor-small`
-  returns HTTP 403 to the lab account. The sampled autoregressive token
-  policy could support GRPO; no valid local MuScriptor GRPO run can be claimed
-  until an authorized checkpoint is accessible. Hosted-demo output is one
-  unlabeled piano track, not SATB transcription.
+  Face account's gated-weight access are different. Official small still
+  returns HTTP 403, but an older authorized **medium** checkpoint was found
+  and loaded from the team's offline benchmark cache. A 50-step token-head
+  GRPO smoke with sampled MIDI, clipped ratios and frozen-reference KL
+  completed on lab5090. Its same-song training gain and exploratory 8-song
+  short-excerpt gain cannot establish robust full-song generalization. The
+  hosted-demo output is one unlabeled piano track, not SATB transcription.
 - **LaDA-Band:** the official Tencent code is cloned on lab5090. Its weights
   are also gated (HTTP 403 to the current account). The released diffusion
   inference/training code is not an on-policy GRPO adapter; implementing a
@@ -73,5 +79,6 @@ Open Choral: play input and reference, then baseline versus 100/300/1000 ACE
 renders with fixed singers. Inspect piano roll and 8-song held-out macro table;
 switch single rewards at 300 and 1000 attempts. Open Rewards: listen to the
 300-step single-arm outputs, then inspect the separately labeled constructed
-counterexamples. Finish with YuE2/Muse and vocal baselines. If an embedded
-player fails, use its direct audio link.
+counterexamples. The separate MuScriptor-medium table at the bottom of Choral
+shows what the 50-step GRPO smoke can and cannot claim. Finish with YuE2/Muse
+and vocal baselines. If an embedded player fails, use its direct audio link.
