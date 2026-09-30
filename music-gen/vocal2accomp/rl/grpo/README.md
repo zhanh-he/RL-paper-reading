@@ -145,6 +145,8 @@ The matched GPU arm is running with the same frozen baseline, input, prompt, sam
 
 At step 50, the combined training objective rises but Beat-v2 F1 falls below baseline. At step 100, even the guarded objective falls below its frozen baseline; the accompaniment is 0.6 dB louder than the vocal, so the relative-loudness penalty is active. Higher coverage and STFT coverage are not proof of better arrangement. These interim results **do not establish that combination prevents reward hacking**. The run has resumed toward 300 steps; held-out evaluation remains pending. Initial run command:
 
+The step-50 failure is algebraic, not just noisy plotting: the weighted Beat term drops from about `0.192` at baseline to `0.140`, while the coverage term rises from `0.264` to its cap `0.350`, leaving a higher aggregate. At step 100, the `+0.6 dB` mix triggers about `0.090` of loudness penalty. A future non-compensating variant could use `min(B, C/0.7)` with only a small coverage tie-breaker, but this formula has **not** been trained or validated; the current arm must retain its original objective throughout the 300-step continuation.
+
 ```bash
 .env/bin/python train_lada_band_guarded.py \
   --code-root codes \
