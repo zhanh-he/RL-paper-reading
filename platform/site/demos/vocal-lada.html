@@ -85,6 +85,8 @@
 
     <section aria-label="Measured evaluation"><h2>同一评估输入 · 客观指标</h2><p id="finding" class="note"></p><p id="interim-finding" class="note"></p><div class="table-wrap"><table><thead><tr><th>Step</th><th id="reward-column">组合 reward</th><th>RMS coverage</th><th>STFT coverage</th><th>起音匹配代理</th><th>Beat-v2 F1</th><th>Beat V/A</th><th>频带占用代理</th><th>频谱平坦度</th><th>整体 RMS</th><th>伴奏/人声 dB</th><th>立体声峰值</th><th>削波占比</th></tr></thead><tbody id="metrics"></tbody></table></div><p id="metric-note" class="note">训练使用 40 ms 帧 RMS coverage；STFT coverage 与 Madmom Beat-v2 是独立离线评估，未用于这次 GRPO 更新。Beat V/A 分别是检测到的人声/伴奏拍点数。起音匹配与频带占用仅是训练代理，不等同已验证的 Beat-v2 或 richness。伴奏/人声 dB 为原始伴奏两声道 RMS 相对固定人声 RMS，正值表示伴奏更响；峰值和削波占比亦从原始伴奏统计，不能代替主观听感。</p></section>
 
+    <section aria-label="Reward ablation comparison"><h2>同一检查点 · Reward 消融</h2><div class="table-wrap"><table><thead><tr><th>训练目标</th><th>Step</th><th>RMS coverage</th><th>Beat-v2 F1</th><th>STFT coverage</th><th>伴奏/人声 dB</th><th>削波占比</th></tr></thead><tbody id="ablation"></tbody></table></div><p class="note">每行都是同一输入、提示、采样器和固定种子的独立模型重放；不要横向比较不同 reward 的原始训练分数。可点击训练目标切换到配对试听。未训练乐句来自同一首录音，并非跨歌曲泛化。</p></section>
+
     <section id="beat-alignment" aria-label="Beat alignment diagnostic" hidden><h2>拍点检测时间轴</h2><img class="alignment-plot" src="./visuals/lada_emma_beat_v2_alignment_0_100_150.png" alt="原始 Beat-v2 评分器检测的人声拍点，以及 baseline、100 步和 150 步伴奏拍点"><p class="note">同一固定 12 秒输入；竖线是原始 Madmom 检测并经人声活跃区掩码后的拍点。150 步虽然检测到 13 个伴奏拍点，但没有落入 Beat-v2 的匹配窗口，F1 为 0。<a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rewards/beat_v2_alignment_0_100_150_2026-09-30.json">原始拍点时间</a>可核查。</p></section>
 
     <section aria-label="Training trajectory"><h2>训练采样轨迹</h2><canvas id="curve" width="1100" height="230" role="img" aria-label="Candidate reward and coverage versus GRPO step"></canvas><div class="legend"><span style="--color:#62c8b7">Reward 均值</span><span style="--color:#e1ac79">Coverage 均值</span></div><p class="note">曲线按每步两条不同随机候选的 6 秒训练片段计算；上表是固定种子的检查点重放，输入时长见上方配置。两者不是同一条音频序列。</p></section>
@@ -143,6 +145,36 @@
         ctx.stroke();
       }
       ctx.fillStyle = '#9eafb1'; ctx.font = '12px sans-serif'; ctx.fillText('0', 14, h - 18); ctx.fillText('1', 14, 23); ctx.fillText(`${maxStep} steps`, w - 75, h - 6);
+    }
+
+    async function drawAblation() {
+      const names = { combined: '组合代理', coverage: 'Coverage-only', beat_v2: 'Beat-v2', guarded: 'Beat + Coverage' };
+      const body = byId('ablation');
+      for (const rewardArm of ['combined', 'coverage', 'beat_v2', 'guarded']) {
+        let run;
+        try {
+          const response = await fetch(dataPath(rewardArm, phrase), { cache: 'no-store' });
+          if (!response.ok) continue;
+          run = await response.json();
+        } catch { continue; }
+        for (const step of [0, 50, 100, 300]) {
+          if (step === 0 && rewardArm !== 'combined') continue;
+          const item = run.stages?.find(stage => stage.step === step && stage.audio && stage.beat_v2);
+          if (!item) continue;
+          const row = document.createElement('tr');
+          const nameCell = document.createElement('td');
+          const link = document.createElement('a');
+          link.href = rewardArm === 'combined'
+            ? `./vocal-lada.html${phrase === 'heldout' ? '?phrase=heldout' : ''}`
+            : `./vocal-lada.html?arm=${rewardArm}${phrase === 'heldout' ? '&phrase=heldout' : ''}`;
+          link.textContent = names[rewardArm];
+          nameCell.append(link);
+          row.append(nameCell);
+          [step, fmt(item.rms_coverage), fmt(item.beat_v2.score), fmt(item.beat_v2.coverage_stft), fmt(item.beat_v2.acc_to_vocal_rms_db, 1), fmt(item.beat_v2.stereo_clipping_fraction, 5)]
+            .forEach(value => { const cell = document.createElement('td'); cell.textContent = value; row.append(cell); });
+          body.append(row);
+        }
+      }
     }
 
     async function load() {
@@ -278,6 +310,7 @@
       byId('play-b').addEventListener('click', () => setSide('b'));
       select.addEventListener('change', () => { if (activeSide === 'b') setSide('b'); });
       drawCurve(data.train_curve);
+      drawAblation();
     }
     load();
   </script>
