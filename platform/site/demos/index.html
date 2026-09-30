@@ -6,9 +6,9 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20260930-lyrics-lr" />
+    <link rel="stylesheet" href="./styles.css?v=20260930-mixed-roll" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20260930-lyrics-25"></script>
+    <script type="module" src="./lab.js?v=20260930-mixed-roll"></script>
   </head>
   <body>
     <header class="app-header">
@@ -62,14 +62,28 @@
         <h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3>
         <div class="audio-grid choral-listen"><div class="audio-item"><span class="audio-index">INPUT / ORIGINAL SYNTHESIS</span><h3>模型输入</h3><audio controls preload="metadata" src="./audio/choral_synth_input.wav"></audio></div><div class="audio-item"><span class="audio-index">GROUND TRUTH / ACE STUDIO</span><h3>参考 SATB</h3><audio controls preload="metadata" src="./audio/choral_ace_reference_short.wav"></audio><a class="source-link" href="./midi/choral_synth_reference.mid" download>参考 MIDI ↓</a></div></div>
         <div class="choral-midi-legend" aria-label="SATB MIDI colors"><span><i class="voice-s"></i>Soprano</span><span><i class="voice-a"></i>Alto</span><span><i class="voice-t"></i>Tenor</span><span><i class="voice-b"></i>Bass</span></div>
-        <figure class="choral-reference-roll"><canvas id="choral-reference-midi" width="1120" height="620" role="img" aria-label="Ground-truth SATB MIDI with one color per voice"></canvas><figcaption>参考 MIDI · 四个声部各占一轨；下方所有输出共用音高与时间轴。</figcaption></figure>
+        <figure class="choral-reference-roll"><canvas id="choral-reference-midi" width="1120" height="620" role="img" aria-label="Ground-truth SATB MIDI on one shared piano roll, colored by voice"></canvas><figcaption>参考 MIDI · 四个声部叠在同一音高轴；下方所有输出共用音高与时间轴。</figcaption></figure>
         <div class="stage-rail" id="choral-event-rail" aria-label="Combined GRPO replay stages"></div>
-        <div class="choral-arm-controls"><span class="control-label">C · 单项 reward</span><div class="choral-arm-tabs" role="group" aria-label="Choose a single-reward GRPO replay"><button type="button" data-choral-arm="onset" aria-pressed="true">Onset</button><button type="button" data-choral-arm="onset_offset" aria-pressed="false">Onset + offset</button><button type="button" data-choral-arm="frame" aria-pressed="false">Frame</button><button type="button" data-choral-arm="coverage" aria-pressed="false">Coverage</button><button type="button" data-choral-arm="continuity" aria-pressed="false">Continuity</button><button type="button" data-choral-arm="weak_voice" aria-pressed="false">Weak voice</button><button type="button" data-choral-arm="precision" aria-pressed="false">Precision</button></div></div>
         <div class="choral-midi-grid" id="choral-midi-grid"></div>
-        <p class="stage-context">A 始终为 0 步；B 随上方 0/100/300/1000 切换；C 展示所选单项 reward 的 300 步可试听 checkpoint。均来自同一原始合成输入，ACE Studio 固定 Elirah、Emma、Julian、Mangus 与 la 歌词。客观 F1 只按 MIDI 计算；这首公开样本不在下表的 8 首测试歌中。</p>
+        <h3 class="subsection-heading">七个单项 reward · 300 步试听</h3>
+        <div class="choral-midi-grid choral-single-grid" id="choral-single-grid"></div>
+        <p class="stage-context">A 始终为 0 步；B 随上方 0/100/300/1000 切换；C–I 分别是七个单项 reward 的 300 步检查点。均来自同一原始合成输入，ACE Studio 固定 Elirah、Emma、Julian、Mangus 与 la 歌词。客观 F1 只按 MIDI 计算；这首公开样本不在下表的 8 首测试歌中。</p>
+        <details class="choral-deep-dive choral-reward-details"><summary>单项 reward 定义、各自的盲点与组合权重</summary>
+          <p class="section-copy">所有分数都对带 S/A/T/B 标签的参考 MIDI 计算。单项 GRPO 每次只优化一项；Combined 是加权和，不能保证杜绝 reward hacking。下列盲点来自构造的 MIDI 反例，不等于训练策略必然学会利用它们。</p>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward</th><th>定义</th><th>单独优化时的典型盲点</th><th>Combined 权重</th></tr></thead><tbody>
+            <tr><td>Onset</td><td>按声部和音高一对一匹配，起点容差 50 ms 的宏平均 F1。</td><td>音符可以很短，起音准但持续时长不对。</td><td>0.25</td></tr>
+            <tr><td>Onset + offset</td><td>再要求终点误差不超过 max(50 ms, 参考音长 20%) 的完整音符宏平均 F1。</td><td>可能只保留少量容易匹配的音符，漏掉弱声部。</td><td>0.25</td></tr>
+            <tr><td>Frame</td><td>10 ms 网格上的逐声部音高占用宏平均 F1。</td><td>长音被拆成碎音符时，帧占用仍可能较高。</td><td>0.15</td></tr>
+            <tr><td>Coverage</td><td>0.5 秒窗口内，哪些声部正在发声的 active-voice F1。</td><td>同一声部内乱加八度音，声部覆盖仍不变。</td><td>0.10</td></tr>
+            <tr><td>Continuity</td><td>1 − 持续音碎裂率。</td><td>安静或空白输出也能取得很高连续性分数。</td><td>0.05</td></tr>
+            <tr><td>Weak voice</td><td>四个声部完整音符 F1 的最小值。</td><td>可能过度优化少数弱声部音符；本次 300 步实际有效更新为 0。</td><td>0.10</td></tr>
+            <tr><td>Precision</td><td>带声部标签的完整音符 precision。</td><td>删掉 Bass 能保留较高 precision，却丧失召回。</td><td>0.10</td></tr>
+          </tbody></table></div>
+          <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rewards" target="_blank" rel="noreferrer">实现、测试与反例审计 ↗</a>
+        </details>
         <h3 class="subsection-heading">8 首未见歌曲 · SATB 声部宏平均 F1</h3>
         <div class="table-shell lab-table choral-master-table" tabindex="0"><table><thead><tr><th>Reward</th><th>步骤</th><th>有效更新</th><th>Frame F1</th><th>Onset F1 · 50 ms</th><th>完整音符 F1</th></tr></thead><tbody id="choral-event-total"></tbody></table></div>
-        <p class="stage-context">每格先是 F1，括号内是相对同一冻结起点的差值；8 首 YouChorale-Pro 测试歌各取 5.12 秒片段。完整音符还要求 offset 在 max(50 ms, 参考音长 20%) 内。C 的试听只提供 300 步，1000 步单项结果在总表中为 MIDI 指标。</p>
+        <p class="stage-context">每格先是 F1 百分比，括号内是相对同一冻结起点的百分点变化；8 首 YouChorale-Pro 测试歌各取 5.12 秒片段。完整音符还要求 offset 在 max(50 ms, 参考音长 20%) 内。单项试听只提供 300 步，1000 步结果在总表中为 MIDI 指标。</p>
         <details class="choral-deep-dive"><summary>详细证据：旧 frame-head 对照、逐声部指标与 PawCT 表格</summary>
         <h3 class="subsection-heading">早期 frame-head GRPO：为什么事件级更新必要</h3>
         <div class="source-grid"><div class="source-block"><span class="source-label">Separate held-out benchmark</span><strong>30 首 YouChorale-Pro 测试歌曲</strong><p>原始音频、参考 SATB MIDI 与逐首 ID 不公开。下方保留完整歌曲的汇总指标，不把公开合成例算进测试集。</p></div><div class="source-block"><span class="source-label">Separate public example</span><strong>原创 4 声部合成片段</strong><p>同一输入下对比 ChoralStream baseline、frame-head GRPO 和 MuScriptor 在线 baseline；示范例不属于 held-out benchmark。</p></div></div>
@@ -94,8 +108,8 @@
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Match criterion</th><th>Pitch F1</th><th>Pitch + SATB F1</th><th>GRPO 前后</th></tr></thead><tbody id="choral-note-table"></tbody></table></div>
         <div class="evidence-note"><strong>Evaluation boundary</strong><p>同一批 30 首测试歌、完整歌曲解码。音符 onset 容差 50 ms；offset 容差 max(50 ms, 参考音长的 20%)。参数比对和同歌重放均确认 frame-head 更新没有进入 AR MIDI 解码器，所以上表前后相同；不能把 frame-head 的提升写作完整转录提升。公开合成例也验证了这个边界，但它不参与 30 首歌的指标。</p></div>
         <h3 class="subsection-heading">与 PawCT 论文一致的逐声部排版</h3>
-        <p class="section-copy">先看本次 GRPO 的 S/A/T/B、宏平均与声部分配保留率；完整音符列是新增的更严格检验。下方附 ICASSP 2027 PawCT 草稿 Table 2 的原始 YouChorale 数值作为格式和量级参考，不能与本次 YouChorale-Pro 片段实验直接比较。</p>
-        <div class="table-shell lab-table paper-table" tabindex="0"><table><thead><tr><th rowspan="2">Our run</th><th colspan="3">Soprano</th><th colspan="3">Alto</th><th colspan="3">Tenor</th><th colspan="3">Bass</th><th colspan="3">Macro avg.</th><th colspan="2">VA Rate (%)</th></tr><tr><th>Frame</th><th>Onset</th><th>Note</th><th>Frame</th><th>Onset</th><th>Note</th><th>Frame</th><th>Onset</th><th>Note</th><th>Frame</th><th>Onset</th><th>Note</th><th>Frame</th><th>Onset</th><th>Note</th><th>Frame</th><th>Onset</th></tr></thead><tbody id="choral-event-parts-table"></tbody></table></div>
+        <p class="section-copy">每个 Frame 格按 Frame% (Onset%) 显示，Note 是更严格的 onset+offset F1；VA Rate 同样按 Frame% (Onset%) 显示。下方附 ICASSP 2027 PawCT 草稿 Table 2 的原始 YouChorale 数值作为格式和量级参考，不能与本次 YouChorale-Pro 片段实验直接比较。</p>
+        <div class="table-shell lab-table paper-table" tabindex="0"><table><thead><tr><th rowspan="2">Our run</th><th colspan="2">Soprano</th><th colspan="2">Alto</th><th colspan="2">Tenor</th><th colspan="2">Bass</th><th colspan="2">Macro avg.</th><th>VA Rate (%)</th></tr><tr><th>Frame (&amp; Onset)</th><th>Note</th><th>Frame (&amp; Onset)</th><th>Note</th><th>Frame (&amp; Onset)</th><th>Note</th><th>Frame (&amp; Onset)</th><th>Note</th><th>Frame (&amp; Onset)</th><th>Note</th><th>Frame (&amp; Onset)</th></tr></thead><tbody id="choral-event-parts-table"></tbody></table></div>
         <div class="table-shell lab-table paper-table" tabindex="0"><table><thead><tr><th rowspan="2">PawCT draft · Table 2</th><th colspan="2">Soprano</th><th colspan="2">Alto</th><th colspan="2">Tenor</th><th colspan="2">Bass</th><th colspan="2">Average</th><th colspan="2">VA Rate (%)</th></tr><tr><th>Frame</th><th>Note</th><th>Frame</th><th>Note</th><th>Frame</th><th>Note</th><th>Frame</th><th>Note</th><th>Frame</th><th>Note</th><th>Frame</th><th>Note</th></tr></thead><tbody id="pawct-paper-table"></tbody></table></div>
         <p class="stage-context">论文列的 Note 是 50 ms onset-only F1；它没有把 onset+offset 放在 Table 2 中。* 为论文中的适配 baseline。论文草稿与本页独立实验分开标注。</p>
         <h3 class="subsection-heading">MuScriptor-medium · 独立可训练性测试</h3>

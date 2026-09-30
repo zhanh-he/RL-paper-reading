@@ -239,33 +239,41 @@ function renderAceChoral() {
   );
 }
 
-function drawVoiceMidi(canvas, notes, ranges) {
+function drawVoiceMidi(canvas, notes, pitchRange) {
   const ctx = canvas.getContext('2d');
   ctx.setTransform(2, 0, 0, 2, 0, 0);
-  const width = 560, height = 310, left = 88, right = 542, top = 24, lane = 66, duration = 10.2;
+  const width = 560, height = 310, left = 54, right = 548, top = 12, bottom = 284, duration = 10.2;
+  const [low, high] = pitchRange;
+  const pitchHeight = (bottom - top) / (high - low + 1);
   ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, width, height);
-  for (let voice = 0; voice < 4; voice++) {
-    const y = top + voice * lane;
-    ctx.fillStyle = voice % 2 ? '#f5f8f7' : '#fcfdfc'; ctx.fillRect(0, y, width, lane);
-    ctx.fillStyle = satbColors[voice]; ctx.fillRect(10, y + 15, 7, 31);
-    ctx.fillStyle = '#17211e'; ctx.font = '700 12px system-ui, sans-serif';
-    ctx.fillText(['Soprano', 'Alto', 'Tenor', 'Bass'][voice], 24, y + 25);
-    ctx.fillStyle = '#63716b'; ctx.font = '10px system-ui, sans-serif';
-    ctx.fillText(`${ranges[voice][0]}–${ranges[voice][1]}`, 24, y + 44);
-    ctx.strokeStyle = '#dce3df'; ctx.beginPath(); ctx.moveTo(0, y + lane); ctx.lineTo(width, y + lane); ctx.stroke();
+  for (let pitch = low; pitch <= high; pitch++) {
+    const y = top + (high - pitch) * pitchHeight;
+    const blackKey = [1, 3, 6, 8, 10].includes(pitch % 12);
+    ctx.fillStyle = pitch % 12 === 0 ? '#edf3f0' : blackKey ? '#f5f7f6' : '#fff';
+    ctx.fillRect(left, y, right - left, pitchHeight);
+    ctx.fillStyle = blackKey ? '#c6d0cb' : '#fff';
+    ctx.fillRect(0, y, left - 3, pitchHeight);
+    ctx.strokeStyle = pitch % 12 === 0 ? '#aabbb3' : '#e5ebe8';
+    ctx.beginPath(); ctx.moveTo(0, y + pitchHeight); ctx.lineTo(right, y + pitchHeight); ctx.stroke();
+    if (pitch % 12 === 0) {
+      ctx.fillStyle = '#374840'; ctx.font = '700 10px system-ui, sans-serif';
+      ctx.fillText(`C${Math.floor(pitch / 12) - 1}`, 7, y + pitchHeight / 2 + 3);
+    }
   }
   for (let second = 0; second <= 10; second += 2) {
     const x = left + second / duration * (right - left);
-    ctx.strokeStyle = '#dbe3df'; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, top + 4 * lane); ctx.stroke();
+    ctx.strokeStyle = '#c8d4ce'; ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke();
     ctx.fillStyle = '#5f6b66'; ctx.font = '10px system-ui, sans-serif'; ctx.fillText(`${second}s`, x + 2, height - 8);
   }
   for (const note of notes) {
     if (!Number.isInteger(note.voice) || note.voice < 0 || note.voice > 3) continue;
-    const [low, high] = ranges[note.voice];
     const x = left + note.start / duration * (right - left);
     const noteWidth = Math.max(2, (note.end - note.start) / duration * (right - left) - 1);
-    const y = top + note.voice * lane + 51 - (note.pitch - low) / (high - low) * 39;
-    ctx.fillStyle = satbColors[note.voice]; ctx.fillRect(x, y - 3, noteWidth, 7);
+    const y = top + (high - note.pitch + 0.5) * pitchHeight;
+    const barHeight = Math.max(4, pitchHeight - 2);
+    ctx.fillStyle = satbColors[note.voice]; ctx.fillRect(x, y - barHeight / 2, noteWidth, barHeight);
+    ctx.strokeStyle = '#20312a'; ctx.lineWidth = 0.6;
+    ctx.strokeRect(x + 0.3, y - barHeight / 2 + 0.3, noteWidth - 0.6, barHeight - 0.6);
   }
 }
 
@@ -326,18 +334,20 @@ function renderEventReplay(data, pilot) {
   const armNames = { onset: 'Onset only', onset_offset: 'Onset + offset only', frame: 'Frame only',
     coverage: 'Coverage only', continuity: 'Continuity only', weak_voice: 'Weak voice only', precision: 'Precision only' };
   const allNotes = Object.values(data.notes).flat();
-  const ranges = [0, 1, 2, 3].map((voice) => {
-    const values = allNotes.filter((note) => note.voice === voice).map((note) => note.pitch);
-    return [Math.min(...values) - 1, Math.max(...values) + 1];
-  });
-  const panels = { A: createChoralMidiPanel('A'), B: createChoralMidiPanel('B'), C: createChoralMidiPanel('C') };
-  $('#choral-midi-grid').replaceChildren(...Object.values(panels).map(({ panel }) => panel));
-  drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, ranges);
+  const pitchRange = [Math.min(...allNotes.map((note) => note.pitch)) - 2,
+    Math.max(...allNotes.map((note) => note.pitch)) + 2];
+  const panels = { A: createChoralMidiPanel('A'), B: createChoralMidiPanel('B') };
+  const singleArms = Object.keys(armNames);
+  const singlePanels = Object.fromEntries(singleArms.map((arm, index) =>
+    [arm, createChoralMidiPanel(String.fromCharCode(67 + index))]));
+  $('#choral-midi-grid').replaceChildren(panels.A.panel, panels.B.panel);
+  $('#choral-single-grid').replaceChildren(...singleArms.map((arm) => singlePanels[arm].panel));
+  drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, pitchRange);
   const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
     panel.title.textContent = title;
     panel.detail.textContent = detail;
     panel.canvas.setAttribute('aria-label', `${title} SATB MIDI piano roll`);
-    drawVoiceMidi(panel.canvas, notes, ranges);
+    drawVoiceMidi(panel.canvas, notes, pitchRange);
     const audioPath = `./audio/${stem}.wav`;
     if (!panel.audio.src.endsWith(`/${stem}.wav`)) panel.audio.src = audioPath;
     panel.direct.href = audioPath;
@@ -364,20 +374,14 @@ function renderEventReplay(data, pilot) {
     button.append(title, state); button.addEventListener('click', () => selectStep(step));
     return button;
   }));
-  const selectArm = (arm) => {
+  for (const arm of singleArms) {
     const key = `arm_${arm}_300`;
     const audioStem = arm === 'weak_voice' ? 'choral_event_0000' : `choral_event_arm_${arm}_300`;
     const midiStem = `choral_event_arm_${arm}_300`;
     const result = data.receipt.steps[key];
     const updates = pilot.arms[arm].milestones['300'].updated_steps;
-    updatePanel(panels.C, armNames[arm], `${result.note_count} notes · ${updates}/300 有效更新`,
+    updatePanel(singlePanels[arm], armNames[arm], `${result.note_count} notes · ${updates}/300 有效更新`,
       data.notes[key], audioStem, midiStem);
-    for (const button of document.querySelectorAll('[data-choral-arm]')) {
-      button.setAttribute('aria-pressed', String(button.dataset.choralArm === arm));
-    }
-  };
-  for (const button of document.querySelectorAll('[data-choral-arm]')) {
-    button.addEventListener('click', () => selectArm(button.dataset.choralArm));
   }
   $('#view-choral').addEventListener('play', (event) => {
     if (event.target.tagName !== 'AUDIO') return;
@@ -386,7 +390,6 @@ function renderEventReplay(data, pilot) {
     }
   }, true);
   selectStep(300);
-  selectArm('onset');
 }
 
 function renderEventPilot(data) {
@@ -414,19 +417,24 @@ function renderEventPilot(data) {
       const value = metrics.macro[metric];
       const delta = value - baseline[metric];
       const td = document.createElement('td'); td.className = 'choral-score-cell';
-      const number = document.createElement('strong'); number.textContent = fmt(value, 4);
+      const number = document.createElement('strong'); number.textContent = `${fmt(value * 100, 1)}%`;
       const change = document.createElement('small'); change.className = delta > 0.00005 ? 'positive' : delta < -0.00005 ? 'negative' : 'neutral';
-      change.textContent = `(${signed(delta, 4)})`;
+      change.textContent = `(${signed(delta * 100, 1)} pp)`;
       td.append(number, change); tr.append(td);
     }
     return tr;
   }));
   const partRows = [rows[0], ...rows.filter((row) => row.kind === 'combined' && [300, 1000].includes(row.step))];
+  const percent = (value) => `${fmt(value * 100, 1)}%`;
+  const frameOnset = (frame, onset) => `${percent(frame)} (${percent(onset)})`;
   appendCells($('#choral-event-parts-table'), partRows.map(({ label, step, metrics }) => [
     `${label} · ${step}`,
-    ...['S', 'A', 'T', 'B'].flatMap((voice) => ['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.per_voice[voice][metric].f1, 3))),
-    ...['frame', 'onset', 'onset_offset'].map((metric) => fmt(metrics.macro[metric], 3)),
-    fmt(metrics.va_rate_percent.frame, 2), fmt(metrics.va_rate_percent.onset, 2),
+    ...['S', 'A', 'T', 'B'].flatMap((voice) => [
+      frameOnset(metrics.per_voice[voice].frame.f1, metrics.per_voice[voice].onset.f1),
+      percent(metrics.per_voice[voice].onset_offset.f1),
+    ]),
+    frameOnset(metrics.macro.frame, metrics.macro.onset), percent(metrics.macro.onset_offset),
+    `${fmt(metrics.va_rate_percent.frame, 1)}% (${fmt(metrics.va_rate_percent.onset, 1)}%)`,
   ]));
 }
 
