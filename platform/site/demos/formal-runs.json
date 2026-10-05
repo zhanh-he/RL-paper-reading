@@ -1,0 +1,46 @@
+{
+  "protocol": "cmi-pref-lyrics-no-ref-decontaminated-v1",
+  "dataset_sha256": "c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b",
+  "checkpoint_steps": [0, 1, 25, 50, 100],
+  "arms": {
+    "songeval_lr2e5": {
+      "label": "YuE2 · SongEval · 2e-5",
+      "reward_name": "SongEval",
+      "host": "Gadi",
+      "compute_dtype": "bf16",
+      "smoke_job": "180532793.gadi-pbs",
+      "train_job": "180532807.gadi-pbs",
+      "status": "submitted-unverified",
+      "train_conditions": 234,
+      "valid_conditions": 59,
+      "train_curve": [],
+      "validation": {}
+    },
+    "songeval_lr1e4": {
+      "label": "YuE2 · SongEval · 1e-4 · FP16",
+      "reward_name": "SongEval",
+      "host": "Kaya",
+      "compute_dtype": "fp16",
+      "smoke_job": "75797",
+      "train_job": "75800",
+      "status": "submitted-unverified",
+      "train_conditions": 234,
+      "valid_conditions": 59,
+      "train_curve": [],
+      "validation": {}
+    },
+    "musecritic_lr2e5": {
+      "label": "YuE2 · MuseCritic · 2e-5",
+      "reward_name": "MuseCritic",
+      "host": "Gadi",
+      "compute_dtype": "bf16",
+      "smoke_job": "180533336.gadi-pbs",
+      "train_job": "180533343.gadi-pbs",
+      "status": "submitted-unverified",
+      "train_conditions": 234,
+      "valid_conditions": 59,
+      "train_curve": [],
+      "validation": {}
+    }
+  }
+}

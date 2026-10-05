@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#PBS -P wa66
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=128GB
+#PBS -l jobfs=40GB
+#PBS -l walltime=24:00:00
+#PBS -l storage=gdata/wa66+gdata/iv96
+#PBS -l wd
+#PBS -N yue2-cmi-formal
+set -euo pipefail
+
+root=/g/data/wa66/hanyu/YuE2-posttrain
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export HF_HUB_OFFLINE=1
+export TOKENIZERS_PARALLELISM=false
+mode=${FORMAL_MODE:?Set FORMAL_MODE=smoke or train}
+case "$mode" in
+  smoke) steps=2; output="$root/outputs/cmi_pref_songeval_smoke_20261005"; extra=(--smoke) ;;
+  train) steps=100; output="$root/outputs/cmi_pref_songeval_formal_20261005"; extra=() ;;
+  *) printf 'Unknown FORMAL_MODE=%s\n' "$mode" >&2; exit 2 ;;
+esac
+
+cd "$root"
+exec .venv/bin/python -u examples/yue2_songeval_longrun.py \
+  --model "$root/models/YuE2-3B" \
+  --vae "$root/models/YuE2-Vae" \
+  --songeval /g/data/wa66/hanyu/SongEval-formal \
+  --scorer-python "$root/.venv/bin/python" \
+  --dataset-manifest "$root/examples/formal-lyrics2song-v1.json" \
+  --expected-dataset-sha256 c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b \
+  --reward-backend songeval \
+  --output "$output" \
+  --max-steps "$steps" \
+  --max-tokens 600 \
+  --learning-rate 2e-5 \
+  --kl-beta 0.01 \
+  --checkpoint-every 25 \
+  "${extra[@]}"

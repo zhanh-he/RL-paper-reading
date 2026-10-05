@@ -14,6 +14,12 @@
 .lab-tab[aria-selected="true"] { color: var(--green-dark); border-color: var(--green-dark); }
 .lab-view { padding-top: 27px; }
 .lab-view[hidden] { display: none; }
+#lyrics-formal[hidden], #lyrics-mock[hidden] { display: none; }
+.dataset-hashes { max-width: 100%; overflow-x: auto; padding: 14px 0; border-block: 1px solid var(--line); color: var(--ink-muted); font-size: .72rem; line-height: 1.7; }
+#lyrics-formal .section-intro { margin-top: 22px; }
+#lyrics-formal .section-intro h3, #lyrics-mock .section-intro h3 { margin: 0; font-size: 1rem; }
+#lyrics-formal .choral-training canvas { height: 190px; }
+#lyrics-formal .lab-table table { min-width: 820px; }
 .section-intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 22px; }
 .section-intro h2 { margin: 0; font-size: 1.28rem; line-height: 1.25; }
 .section-intro > p, .section-copy { margin: 0; color: var(--ink-muted); font-size: .85rem; line-height: 1.6; }

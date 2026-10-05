@@ -1,5 +1,11 @@
 # Lyrics-to-song GRPO
 
+The [CMI-Pref formal rerun](FORMAL-CMI-PREF.md) uses 234 train and 59
+validation conditions, reserves all 192 WildSongBench prompts for final test,
+and logs online reward plus frozen-base sampled KL. Its cluster jobs are
+submitted but their results are not yet verified. Everything below documents
+earlier pilot/mock experiments and must not be merged into the formal curves.
+
 The [YuE2 SongEval pilot](runs/2026-09-29-yue2/README.md) is an on-policy,
 two-rollout, one-step LoRA update with a deterministic held-out before/after
 audio pair. Its held-out SongEval mean fell; it did not produce clipping. See

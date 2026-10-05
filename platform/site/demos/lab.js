@@ -138,7 +138,7 @@ function renderChoralDemo(data) {
 }
 
 function setView(view) {
-  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal'].includes(view) ? view : 'lyrics';
+  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets'].includes(view) ? view : 'lyrics';
   for (const section of document.querySelectorAll('.lab-view')) section.hidden = section.id !== `view-${chosen}`;
   for (const tab of document.querySelectorAll('.lab-tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === chosen));
   document.querySelector(`.lab-tab[data-view="${chosen}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
@@ -675,7 +675,7 @@ function renderLyrics(data) {
     const pending = descriptor.stages.filter((stage) => stage.status === 'pending').map((stage) => stage.step);
     const queued = descriptor.stages.filter((stage) => stage.status === 'queued').map((stage) => stage.step);
     const running = descriptor.stages.filter((stage) => stage.status === 'running').map((stage) => stage.step);
-    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 排队中。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}${model === 'yue2_musecritic_lr1e2' ? '0/1 步仅展示各臂共用的冻结起点，尚非本臂训练结果。' : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
+    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 在旧记录中标为运行中，正式实验重做后已停止。` : ''}${queued.length ? `${queued.join(' / ')} steps 在旧记录中标为排队中，尚未取得结果。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}${model === 'yue2_musecritic_lr1e2' ? '0/1 步仅展示各臂共用的冻结起点，尚非本臂训练结果。' : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     $('#lyrics-heldout-section').hidden = !isYuE2;
     $('#lyrics-muse-section').hidden = isYuE2;
     $('#lyrics-framework-note').textContent = isYuE2
@@ -813,6 +813,14 @@ function renderSongEval(data) {
 }
 
 for (const tab of document.querySelectorAll('.lab-tab')) tab.addEventListener('click', () => setView(tab.dataset.view));
+let replayData = null;
+for (const button of document.querySelectorAll('[data-lyrics-track]')) button.addEventListener('click', () => {
+  const mock = button.dataset.lyricsTrack === 'mock';
+  $('#lyrics-formal').hidden = mock;
+  $('#lyrics-mock').hidden = !mock;
+  for (const control of document.querySelectorAll('[data-lyrics-track]')) control.setAttribute('aria-pressed', String(control === button));
+  if (mock && replayData) requestAnimationFrame(() => renderLyrics(replayData));
+});
 for (const button of document.querySelectorAll('[data-jump]')) button.addEventListener('click', () => document.getElementById(button.dataset.jump).scrollIntoView({ behavior: 'smooth', block: 'start' }));
 for (const link of document.querySelectorAll('[data-open-view]')) link.addEventListener('click', (event) => { event.preventDefault(); setView(link.dataset.openView); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 window.addEventListener('hashchange', () => setView(location.hash.slice(1)));
@@ -822,6 +830,7 @@ try {
   const response = await fetch('./results.json', { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
+  replayData = data;
   renderChoral(data.choral);
   renderChoralNotes(data.choral_note);
   renderChoralDemo(data.choral_demo);
@@ -843,4 +852,27 @@ try {
   $('#headline-bce').textContent = 'Data unavailable';
   $('#headline-swap').textContent = 'Data unavailable';
   console.error('Could not load experiment receipts', error);
+}
+try {
+  const response = await fetch('./formal-data-summary.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const summary = await response.json();
+  const counts = summary.counts;
+  $('#formal-counts').textContent = `${counts.train_conditions} train / ${counts.validation_conditions} validation`;
+  appendCells($('#dataset-audit-table'), [
+    ['CMI-Pref 官方 train votes', counts.cmi_pref_train_votes, '全部读取；不是全部与歌词输入兼容'],
+    ['无歌词', counts.no_lyrics, '不能作为 lyrics-to-song 条件'],
+    ['需要参考音频', counts.requires_reference_audio, '此 case 没有 reference-audio 输入'],
+    ['兼容的投票记录', counts.compatible_votes, '包含重复条件和潜在 test 重叠'],
+    ['与官方 test 歌词重叠', counts.test_lyrics_overlap_votes, '按歌词剔除，避免 prompt ID 不同造成泄漏'],
+    ['与 WildSongBench 歌词重叠', counts.wildsongbench_lyrics_overlap_votes, '全量 192 条做精确正规化歌词交叉检查'],
+    ['重复条件投票', counts.duplicate_condition_votes, '相同风格+歌词只保留一条条件'],
+    ['最终独立条件', counts.unique_eligible_conditions, '按固定 SHA 排序划分'],
+    ['训练 / 验证', `${counts.train_conditions} / ${counts.validation_conditions}`, '均来自 CMI-Pref train；test 500 条封存'],
+    ['WildSongBench 最终 test', counts.wildsongbench_test_prompts_sealed, '全量封存，不参与训练或调参'],
+  ]);
+  $('#dataset-hashes').textContent = `CMI-Pref revision  ${summary.source_revisions.cmi_pref}\nWildSongBench revision  ${summary.source_revisions.wildsongbench}\nCMI train SHA256  ${summary.source_sha256.cmi_train}\nCMI test SHA256  ${summary.source_sha256.cmi_test}\nWSB manifest SHA256  ${summary.source_sha256.wildsongbench}\nFormal split SHA256  ${summary.manifest_sha256}`;
+} catch (error) {
+  $('#dataset-hashes').textContent = 'Dataset audit unavailable';
+  console.error('Could not load formal data summary', error);
 }
