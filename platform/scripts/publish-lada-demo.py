@@ -103,6 +103,7 @@ def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: 
             "step": int(item["step"]),
             "reward": sum(score["reward"] for score in scores) / len(scores),
             "rms_coverage": sum(score["rms_coverage"] for score in scores) / len(scores),
+            "sampled_kl": item.get("sampled_kl"),
         })
 
     args = run["args"]

@@ -1,0 +1,7 @@
+#view-vocal .choral-training-plots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#view-vocal .choral-training canvas { height: 190px; }
+#view-vocal .choral-training-foldouts { margin-top: 8px; }
+
+@media (max-width: 700px) {
+  #view-vocal .choral-training-plots { grid-template-columns: minmax(0, 1fr); }
+}

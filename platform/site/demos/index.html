@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
     <link rel="stylesheet" href="./styles.css?v=20260930-yue2-three-songs" />
     <link rel="stylesheet" href="./choral-curves.css?v=20260930-milestones" />
+    <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20260930-reward-copy"></script>
     <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
     <script type="module" src="./yue2-curves.js?v=20260930-milestones"></script>
-    <script type="module" src="./vocal-lada-inline.js?v=20260930-demo"></script>
+    <script type="module" src="./vocal-lada-inline.js?v=20261005-reward-kl"></script>
   </head>
   <body>
     <header class="app-header">
@@ -220,7 +221,26 @@
         <div class="metric-controls replay-model-controls"><span class="control-label">Reward arm</span><div class="segmented" id="lada-arms" role="group" aria-label="LaDA reward arm"></div><span>固定 Emma 人声 · seed 777</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · vocal</span><strong>ACE Studio Emma · 原创独唱旋律</strong><audio id="lada-source" controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><p>训练用前 6 秒；固定种子重放前 12 秒。所有 reward 组使用相同输入。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一参考伴奏</strong><p>开放式伴奏任务没有单一正确音频；评价靠同输入 A/B、拍点、活动覆盖、响度和主观听感共同判断。</p></div></div>
         <div class="lyrics-protocol"><strong id="lada-protocol-title">LaDA-Band · online GRPO</strong><p id="lada-protocol"></p></div>
-        <section class="choral-training" aria-label="LaDA training traces"><div class="choral-training-heading"><h3>训练过程 · 候选 reward</h3><span>每步两条 6 秒采样</span></div><div class="choral-training-plots"><figure><figcaption><span>Reward / RMS coverage · 在线 rollout</span><strong id="lada-curve-value">—</strong></figcaption><canvas id="lada-curve" width="1100" height="220" role="img" aria-label="LaDA 训练候选 reward 曲线"></canvas></figure></div><p class="stage-context">绿色是训练 reward，橙色是 RMS coverage。曲线是每步不同随机候选的均值；下方是固定 seed 的检查点重放，不是同一条音频的连续改善。</p></section>
+        <section class="choral-training" id="lada-training" aria-label="LaDA training traces">
+          <div class="choral-training-heading"><h3>训练过程 · <span id="lada-training-arm">Beat-v2</span> reward / KL</h3><span id="lada-training-extent">每步 2 条 6 秒采样</span></div>
+          <div class="choral-training-plots">
+            <figure><figcaption><span>本臂 reward · 训练 rollout</span><strong id="lada-reward-value">—</strong></figcaption><canvas id="lada-reward-chart" role="img" aria-label="LaDA 训练 reward 随步数变化"></canvas></figure>
+            <figure><figcaption><span>KL · 采样估计 vs 冻结底座</span><strong id="lada-kl-value">—</strong></figcaption><canvas id="lada-kl-chart" role="img" aria-label="LaDA 训练采样 KL 随步数变化"></canvas></figure>
+          </div>
+          <p class="choral-training-note" id="lada-training-note">每步两条训练候选先求均分，再画 10 步滑动均值；KL 来自训练日志中的 sampled_kl，独立纵轴。圆点标记有固定重放的 checkpoint。下方 A/B 和指标来自同一 seed 的 12 秒重放，不是曲线中的训练候选。</p>
+          <div class="choral-training-foldouts">
+            <details class="choral-deep-dive"><summary>Reward 定义、单项盲点与组合约束</summary>
+              <p class="section-copy">四臂从相同冻结 LaDA-Band 起点训练。设 B 为原 Madmom Beat-v2 F1，C 为 40 ms 帧中 RMS &gt; 0.01 的比例，Q 为峰值/削波/频谱平坦度惩罚。各臂 reward 量表不同，不可直接比较曲线高度。</p>
+              <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>训练 arm</th><th>实际目标</th><th>单独优化的盲点 / 约束的局限</th></tr></thead><tbody>
+                <tr><td>Coverage only</td><td>C</td><td>持续发声即可升分；不看拍点、和声和音质，接近满分后丧失区分度。</td></tr>
+                <tr><td>Beat-v2 only</td><td>B</td><td>稀疏但对齐的敲击可骗到高分；不约束连续伴奏、响度或音色。</td></tr>
+                <tr><td>Combined proxy</td><td>0.45 C + 0.35 起音能量相似度 + 0.20 频带占用 − Q</td><td>起音和频带是代理指标，不是原 Beat-v2 或主观丰富度；仍可发生响度漂移。</td></tr>
+                <tr><td>Beat + Coverage guard</td><td>0.65 B × min(1, C/0.4) + 0.35 min(1, C/0.7) − Q − L − F</td><td>L 惩罚伴奏/人声 RMS 比超出 −18 至 −3 dB，F 惩罚过高平坦度；覆盖项仍可抵消拍点退化，不保证杜绝 reward hacking。</td></tr>
+              </tbody></table></div>
+              <p class="section-copy">这是训练目标，不是听感评分。固定 12 秒重放的目标值列在下方指标表；在线训练只看前 6 秒。KL 是更新前采样动作上的近似估计，以冻结底座为参考，训练损失中的系数 β = 0.01；它不是固定重放的离线 KL 或音频质量分数，图中大尖峰应单独检查。</p>
+            </details>
+          </div>
+        </section>
         <h3 class="subsection-heading">Checkpoint timeline</h3><div class="stage-rail" id="lada-stage-rail" aria-label="LaDA training stages"></div><p class="stage-context" id="lada-stage-context"></p>
         <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Switch LaDA audio at the same position"><button type="button" id="lada-listen-a">A · Baseline</button><button type="button" id="lada-listen-b">B · GRPO</button></div><span id="lada-listen-status" aria-live="polite">保留原始混音电平</span></div>
         <div class="compare-grid" id="lada-compare"></div>

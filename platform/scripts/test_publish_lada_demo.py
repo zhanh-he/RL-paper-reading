@@ -25,6 +25,11 @@ class PublisherTests(unittest.TestCase):
                 path.mkdir(parents=True)
             (run / "run.json").write_text(json.dumps({"args": {"reward": "combined", "seconds": 6, "eval_seconds": 12}}))
             (run / "evaluations.jsonl").write_text(json.dumps({"step": 0, "reward": 0.4}) + "\n")
+            (run / "metrics.jsonl").write_text(json.dumps({
+                "step": 1,
+                "scores": [{"reward": 0.3, "rms_coverage": 0.5}, {"reward": 0.7, "rms_coverage": 0.9}],
+                "sampled_kl": 0.125,
+            }) + "\n")
             (run / "step_0000.wav").write_bytes(b"training accompaniment")
             (site / "audio/ace_emma_vocal_12s.wav").write_bytes(b"training vocal")
 
@@ -43,6 +48,7 @@ class PublisherTests(unittest.TestCase):
             training_data = json.loads(training.read_text())
             heldout_data = json.loads(heldout_result.read_text())
             self.assertEqual(training_data["phrase"], "training_excerpt")
+            self.assertEqual(training_data["train_curve"], [{"step": 1, "reward": 0.5, "rms_coverage": 0.7, "sampled_kl": 0.125}])
             self.assertEqual(heldout_data["phrase"], "heldout")
             self.assertEqual(heldout_data["config"]["eval_seconds"], 6)
             self.assertEqual((site / "audio/ace_emma_vocal_heldout_6s.wav").read_bytes(), b"heldout vocal")

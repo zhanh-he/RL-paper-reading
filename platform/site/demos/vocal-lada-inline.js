@@ -61,39 +61,128 @@ function panel(stage, side) {
   return node;
 }
 
-function drawCurve(points) {
-  const canvas = el('#lada-curve');
-  const context = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  context.clearRect(0, 0, width, height);
-  context.strokeStyle = '#b9c9c0';
-  for (let i = 0; i <= 4; i++) {
-    const y = 18 + i * (height - 40) / 4;
-    context.beginPath();
-    context.moveTo(34, y);
-    context.lineTo(width - 12, y);
-    context.stroke();
+function trainingChart(selector, key, color) {
+  const canvas = el(selector);
+  const tooltip = textNode('div', 'training-chart-tooltip', '');
+  tooltip.hidden = true;
+  canvas.parentElement.append(tooltip);
+  let points = [];
+  let checkpoint = 0;
+  const height = 190;
+  const margin = { left: 47, right: 13, top: 15, bottom: 26 };
+  const transform = key === 'sampled_kl' ? (value) => Math.asinh(value / 0.05) : (value) => value;
+
+  function draw() {
+    const width = canvas.getBoundingClientRect().width;
+    if (width < 80 || !points.length) return;
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    const context = canvas.getContext('2d');
+    context.scale(ratio, ratio);
+    const plotWidth = width - margin.left - margin.right;
+    const plotHeight = height - margin.top - margin.bottom;
+    const maxStep = points.at(-1).step;
+    const values = points.map((point) => point[key]).filter(Number.isFinite);
+    if (!values.length) return;
+    const low = Math.min(...values);
+    const high = Math.max(...values);
+    const pad = Math.max((high - low) * 0.12, 0.015);
+    const bottom = key === 'sampled_kl' ? 0 : low - pad;
+    const top = key === 'sampled_kl'
+      ? ([0.03, 0.1, 0.3, 1, 3, 10, 30, 100].find((tick) => tick >= high * 1.05) || high * 1.1)
+      : high + pad;
+    const x = (step) => margin.left + plotWidth * step / maxStep;
+    const y = (value) => margin.top + plotHeight * (transform(top) - transform(value)) / (transform(top) - transform(bottom));
+    const ticks = key === 'sampled_kl'
+      ? [0, 0.03, 0.1, 0.3, 1, 3, 10, 30, 100].filter((tick) => tick <= top)
+      : [bottom, (bottom + top) / 2, top];
+    context.font = '11px system-ui, sans-serif';
+    context.fillStyle = '#68726d';
+    context.textAlign = 'right';
+    let previousTickY = Infinity;
+    for (const tick of ticks) {
+      const tickY = y(tick);
+      if (previousTickY - tickY < 18) continue;
+      previousTickY = tickY;
+      context.strokeStyle = '#dbe2dd';
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(margin.left, tickY);
+      context.lineTo(width - margin.right, tickY);
+      context.stroke();
+      context.fillText(Math.abs(tick) < 1 ? tick.toFixed(tick === 0 ? 0 : 2) : tick.toFixed(1), margin.left - 6, tickY + 4);
+    }
+    context.textAlign = 'center';
+    for (const step of [0, Math.round(maxStep / 2), maxStep]) context.fillText(String(step), x(step), height - 5);
+    const trace = (field, alpha, lineWidth) => {
+      context.beginPath();
+      context.strokeStyle = color;
+      context.globalAlpha = alpha;
+      context.lineWidth = lineWidth;
+      context.lineJoin = 'round';
+      points.forEach((point, index) => {
+        const pointY = y(point[field]);
+        if (index) context.lineTo(x(point.step), pointY); else context.moveTo(x(point.step), pointY);
+      });
+      context.stroke();
+      context.globalAlpha = 1;
+    };
+    trace(key, 0.18, 1);
+    trace('window', 1, 2.5);
+    for (const stage of run.stages) {
+      if (stage.step === 0 || stage.step > maxStep) continue;
+      const point = points.find((item) => item.step === stage.step);
+      if (!point) continue;
+      context.beginPath();
+      context.arc(x(stage.step), y(point.window), stage.step === checkpoint ? 5 : 3.5, 0, Math.PI * 2);
+      context.fillStyle = '#fff';
+      context.fill();
+      context.strokeStyle = color;
+      context.lineWidth = 2;
+      context.stroke();
+    }
+    if (checkpoint > 0 && checkpoint <= maxStep) {
+      context.beginPath();
+      context.setLineDash([3, 4]);
+      context.strokeStyle = '#63716a';
+      context.moveTo(x(checkpoint), margin.top);
+      context.lineTo(x(checkpoint), height - margin.bottom);
+      context.stroke();
+      context.setLineDash([]);
+    }
   }
-  if (!points?.length) return;
-  const maxStep = Math.max(...points.map((point) => point.step), 1);
-  for (const [key, color] of [['reward', '#16876d'], ['rms_coverage', '#bf7950']]) {
-    context.beginPath();
-    context.strokeStyle = color;
-    context.lineWidth = 2;
-    points.forEach((point, index) => {
-      const x = 34 + point.step / maxStep * (width - 50);
-      const y = height - 20 - Math.max(0, Math.min(1, point[key])) * (height - 40);
-      if (index) context.lineTo(x, y); else context.moveTo(x, y);
-    });
-    context.stroke();
-  }
-  context.fillStyle = '#566a60';
-  context.font = '12px sans-serif';
-  context.fillText('0', 12, height - 15);
-  context.fillText('1', 12, 22);
-  context.fillText(`${maxStep} steps`, width - 80, height - 5);
+
+  canvas.addEventListener('pointermove', (event) => {
+    const bounds = canvas.getBoundingClientRect();
+    const plotWidth = bounds.width - margin.left - margin.right;
+    if (!points.length || plotWidth <= 0) return;
+    const step = Math.round(Math.max(0, Math.min(1, (event.clientX - bounds.left - margin.left) / plotWidth)) * points.at(-1).step);
+    const point = points.reduce((nearest, item) => Math.abs(item.step - step) < Math.abs(nearest.step - step) ? item : nearest);
+    tooltip.textContent = `${point.step} 步 · 10 步均值 ${fmt(point.window, 4)}\n本步原始值 ${fmt(point[key], 4)}`;
+    tooltip.style.left = `${Math.max(80, Math.min(bounds.width - 80, event.clientX - bounds.left))}px`;
+    tooltip.style.top = `${canvas.offsetTop + 8}px`;
+    tooltip.hidden = false;
+  });
+  canvas.addEventListener('pointerleave', () => { tooltip.hidden = true; });
+  new ResizeObserver(draw).observe(canvas.parentElement);
+  return {
+    set(raw, selected) {
+      const valid = raw.filter((point) => Number.isFinite(point[key]));
+      points = valid.map((point, index) => ({
+        ...point,
+        window: valid.slice(Math.max(0, index - 9), index + 1).reduce((sum, entry) => sum + entry[key], 0) / Math.min(index + 1, 10),
+      }));
+      checkpoint = selected;
+      tooltip.hidden = true;
+      draw();
+      return points;
+    },
+  };
 }
+
+const rewardChart = trainingChart('#lada-reward-chart', 'reward', '#08745d');
+const klChart = trainingChart('#lada-kl-chart', 'sampled_kl', '#b36b24');
 
 function render() {
   const baseline = run.stages.find((stage) => stage.step === 0);
@@ -102,8 +191,14 @@ function render() {
   el('#lada-source').src = run.source_audio;
   el('#lada-protocol-title').textContent = `LaDA-Band · ${names[arm]}`;
   el('#lada-protocol').textContent = `相同 Emma 人声、提示、8 步去噪、group 2、LR ${run.config.lr}、固定评估 seed ${run.config.eval_seed}。仅 LoRA 输出投影更新；${arm === 'beat_v2' ? '训练直接使用原 Madmom Beat-v2 F1。' : arm === 'coverage' ? '训练仅优化 40 ms RMS coverage。' : arm === 'guarded' ? '训练使用原 Beat-v2 + 饱和 coverage + 响度/平坦度约束。' : '训练使用 coverage、能量起音和频带占用代理；并非原 Beat-v2。'}`;
-  el('#lada-curve-value').textContent = fmt(run.train_curve.at(-1)?.reward);
-  drawCurve(run.train_curve);
+  el('#lada-training-arm').textContent = names[arm];
+  el('#lada-training-extent').textContent = `1–${run.train_curve.at(-1)?.step || 0} 步 · 每步 2 条 6 秒采样`;
+  const rewardPoints = rewardChart.set(run.train_curve, selectedStep);
+  const klPoints = klChart.set(run.train_curve, selectedStep);
+  el('#lada-reward-value').textContent = rewardPoints.length ? `${fmt(rewardPoints[9]?.window ?? rewardPoints.at(-1).window)} → ${fmt(rewardPoints.at(-1).window)}` : '无记录';
+  el('#lada-kl-value').textContent = klPoints.length ? `${fmt(klPoints[9]?.window ?? klPoints.at(-1).window)} → ${fmt(klPoints.at(-1).window)}` : '无记录';
+  const klPeak = klPoints.reduce((peak, point) => !peak || point.sampled_kl > peak.sampled_kl ? point : peak, null);
+  el('#lada-training-note').textContent = `细线为每步原始值，粗线为过去最多 10 步的滑动均值；圆点是有固定重放的 checkpoint，虚线是当前试听步数。KL 纵轴为 asinh 非线性刻度，单步峰值 ${klPeak ? `${fmt(klPeak.sampled_kl, 3)}（${klPeak.step} 步）` : '未记录'}；每图刻度独立。训练候选只取前 6 秒，下方 A/B 是固定 seed 的 12 秒重放。`;
   const rail = el('#lada-stage-rail');
   rail.replaceChildren();
   for (const step of steps) {
@@ -125,6 +220,7 @@ function render() {
   el('#lada-compare').replaceChildren(panel(baseline, 'a'), panel(selected, 'b'));
   el('#lada-metric-head').textContent = `${selected.step} steps`;
   const metrics = [
+    ['本臂目标 · 固定 12 s', baseline.reward, selected.reward, 3],
     ['Beat-v2 F1', baseline.beat_v2?.score, selected.beat_v2?.score, 3],
     ['RMS coverage', baseline.rms_coverage, selected.rms_coverage, 3],
     ['STFT coverage', baseline.beat_v2?.coverage_stft, selected.beat_v2?.coverage_stft, 3],
