@@ -1,0 +1,85 @@
+{
+  "status": "offline_fixed_reference_conditional_kl",
+  "reference": "YuE2 one-step source LoRA, not the frozen zero-step base",
+  "definition": "mean token D_KL(reference || checkpoint) on three reference-generated held-out trajectories; codec vocabulary plus permitted end token, before top-k/top-p/repetition filtering",
+  "not_training_kl": true,
+  "seeds": [
+    5101,
+    5102,
+    5103
+  ],
+  "identity_kl": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "reference_allowed_vocab_mass": [
+    0.999953031539917,
+    0.9999004602432251,
+    0.999964714050293
+  ],
+  "arms": {
+    "MuseCritic": {
+      "1": {
+        "kl": 0.0,
+        "per_prompt": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "5": {
+        "kl": 0.0007921967771835625,
+        "per_prompt": [
+          0.00078169209882617,
+          0.0008110500639304519,
+          0.0007838481687940657
+        ],
+        "checkpoint_allowed_vocab_mass": [
+          0.999953031539917,
+          0.999900758266449,
+          0.9999650120735168
+        ]
+      },
+      "25": {
+        "kl": 0.0008016196079552174,
+        "per_prompt": [
+          0.0007761845481581986,
+          0.0008289131801575422,
+          0.0007997610955499113
+        ],
+        "checkpoint_allowed_vocab_mass": [
+          0.9999532103538513,
+          0.9999005198478699,
+          0.9999649524688721
+        ]
+      },
+      "50": {
+        "kl": 0.0007966358486252526,
+        "per_prompt": [
+          0.0007938097696751356,
+          0.0008158570853993297,
+          0.0007802406908012927
+        ],
+        "checkpoint_allowed_vocab_mass": [
+          0.9999531507492065,
+          0.9999008178710938,
+          0.9999648332595825
+        ]
+      },
+      "100": {
+        "kl": 0.000794740937029322,
+        "per_prompt": [
+          0.0008084091241471469,
+          0.0008278543828055263,
+          0.0007479593041352928
+        ],
+        "checkpoint_allowed_vocab_mass": [
+          0.9999531507492065,
+          0.9999004602432251,
+          0.9999650120735168
+        ]
+      }
+    }
+  }
+}

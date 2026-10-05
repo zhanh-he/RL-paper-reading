@@ -41,3 +41,11 @@ The scorer's severe [WAV/FLAC sensitivity](../2026-10-01-yue2-musecritic-format-
 small prompt set, group-two rank-only advantages, absent reference KL, and
 short output cap remain important limitations. Blind listening and more
 held-out samples are needed before any music-quality claim.
+
+An additional 2026-10-05 fixed-reference audit is in `kl.json`. Its
+same-weight adapter identity check returned `[0, 0, 0]`. Conditional KL
+against the shared step-1 LoRA was 0.000792, 0.000802, 0.000797, and
+0.000795 at steps 5/25/50/100. It uses the same three reference-generated
+semantic trajectories and codec-constrained definition as the SongEval
+[KL audit](../2026-09-30-yue2-kl-audit/README.md). These are **offline**
+measurements, not an optimizer KL penalty or logged on-policy training KL.

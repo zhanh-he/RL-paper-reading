@@ -11,6 +11,11 @@ const sharedMusePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-share
 const sharedMuse = await readJson(sharedMusePath);
 const replaysPath = 'platform/site/demos/replays.json';
 const replays = await readJson(replaysPath);
+const yue2KlPath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-kl-audit/kl.json';
+const criticKlPath = 'music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/kl.json';
+const yue2Kl = await readJson(yue2KlPath);
+const criticKl = await readJson(criticKlPath);
+const klArms = { yue2: '2e-5', yue2_stress: '1e-4', yue2_lr1e3: '1e-3', yue2_lr1e2: '1e-2', yue2_musecritic: 'MuseCritic' };
 if (replays.lyrics.muse.style !== replays.lyrics.yue2.style ||
     replays.lyrics.muse.lyrics !== replays.lyrics.yue2.lyrics ||
     replays.lyrics.muse.seed !== replays.lyrics.yue2.seed ||
@@ -113,7 +118,7 @@ for (const entry of cases) {
 }
 for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
   for (const stage of entry.stages.filter((item) => item.status === 'measured')) {
-    if (!/^music-gen\/lyrics2song\/rl\/grpo\/runs\/[a-z0-9-]+\/(?:step_[0-9]{6}\/)?receipt\.json$/.test(stage.receipt) || !['before', 'after', 'heldout:0'].includes(stage.receipt_key)) {
+    if (!/^music-gen\/lyrics2song\/rl\/grpo\/runs\/[a-z0-9-]+\/(?:lr1e-[23]\/)?(?:step_[0-9]{6}\/)?receipt\.json$/.test(stage.receipt) || !['before', 'after', 'heldout:0'].includes(stage.receipt_key)) {
       throw new Error(`Measured lyrics step ${stage.step} needs a valid receipt and before/after key`);
     }
     const receipt = await readJson(stage.receipt);
@@ -138,6 +143,11 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
       stage.paired_baseline.metrics = paired;
     }
     if (stage.receipt_key === 'heldout:0') {
+      const klAudit = modelKey === 'yue2_musecritic' ? criticKl : yue2Kl;
+      if (stage.step > 0) {
+        stage.offline_kl = klAudit.arms[klArms[modelKey]]?.[String(stage.step)]?.kl;
+        if (!Number.isFinite(stage.offline_kl)) throw new Error(`Missing audited offline KL for ${modelKey} step ${stage.step}`);
+      }
       if (receipt.optimizer_step !== stage.step || receipt.heldout?.length !== 3) {
         throw new Error(`YuE2 stage ${stage.step} needs three matching held-out prompts`);
       }
@@ -176,6 +186,10 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
         }
         for (const key of ['audio', 'wave', 'spectrum']) {
           await access(resolve(root, 'platform/site/demos', example[key]));
+        }
+        if (item.audio_sha256) {
+          const actualHash = createHash('sha256').update(await readFile(resolve(root, 'platform/site/demos', example.audio))).digest('hex');
+          if (actualHash !== item.audio_sha256) throw new Error(`${modelKey} step ${stage.step} example ${index} differs from scored FLAC`);
         }
         stage.examples.push(example);
       }
@@ -223,6 +237,8 @@ yue2Stress100.probe = {
 const result = {
   generated_from: [...new Set([
     replaysPath,
+    yue2KlPath,
+    criticKlPath,
     sharedMusePath,
     yue2ProbePath,
     `${choralDemoPath}/notes.json`,

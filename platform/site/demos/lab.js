@@ -682,22 +682,25 @@ function renderLyrics(data) {
       ? '训练实现：项目内 PyTorch GRPO 循环 + PEFT/LoRA + YuE2 pipeline；未使用 TRL、MILES、verl 或 verl-omni。'
       : '训练实现：项目内 PyTorch GRPO 循环 + Transformers + PEFT/LoRA；Muse 音频经 MuCodec 解码，未使用 TRL、MILES、verl 或 verl-omni。';
     $('#lyrics-100-pairs').hidden = model !== 'yue2_stress';
-    $('#lyrics-reward-title').textContent = model === 'musecritic' ? '优化目标 · MuseCritic 五维均值' : '优化目标 · SongEval 五维均值';
-    $('#lyrics-reward-definition').textContent = model === 'musecritic'
+    const rewardName = descriptor.reward_model || (model === 'musecritic' ? 'MuseCritic' : 'SongEval');
+    $('#lyrics-reward-title').textContent = `优化目标 · ${rewardName} 五维均值`;
+    $('#lyrics-reward-definition').textContent = rewardName === 'MuseCritic'
       ? 'R_MC = 五项 MuseCritic 预测分数的均值（每项 1–5 分）。MuseCritic 先对连贯性、音乐性、记忆性、结构清晰度及人声自然度生成文字 critique，再据此预测连续分数。它沿用 SongEval 的五项 rubric，但不是调用 SongEval 打分；两种模型的数值不能当作同一量表直接比较。coverage、beat、歌词匹配、时长及削波均未单独约束。'
       : 'R_SE = (Coherence + Musicality + Memorability + Structural Clarity + Vocal Naturalness) / 5。SongEval 直接对音频输出五项审美分数；没有 MuseCritic 的“先写 critique、再预测分数”阶段。coverage、beat、歌词匹配、时长及削波均未单独约束。';
+    const learningRate = { yue2: '2e-5', yue2_stress: '1e-4', yue2_lr1e3: '1e-3', yue2_lr1e2: '1e-2', yue2_musecritic: '2e-5' }[model];
     $('#lyrics-train-protocol').textContent = isYuE2
-      ? `YuE2：8 条原创训练提示，每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${model === 'yue2_stress' ? '1e-4（压力测试）' : '2e-5（常规对照）'}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；本轮无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。`
+      ? `YuE2：8 条原创训练提示（非 SongEval/WildSongBench/CMI 训练集），每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${learningRate}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；训练中无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。${rewardName === 'MuseCritic' ? 'MuseCritic 对与存档一致的 PCM24-FLAC 评分。' : ''}`
       : model === 'musecritic' ? 'MuseCritic 臂：Muse + MuCodec 在线 GRPO；每组 2 次采样、组内相对优势，LoRA rank 8、AdamW 1e-6。第 1 步是 2 条 rollout 的短 pilot，25/50 步实验使用 100 条公开训练提示；留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，两臂共用同一冻结基线。本轮没有显式歌词匹配、响度或削波约束。' :
         'SongEval 臂：Muse + MuCodec 使用同一训练提示的 2 条 rollout，做 1 次组内相对优势更新；LoRA rank 8、AdamW 2e-5。留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，与 MuseCritic 臂共用同一冻结基线。25/50/100/300 步尚未完成，不能据此推断趋势；没有显式歌词匹配、响度或削波约束。';
     if (isYuE2) {
-      const baseMean = baseline.mean_reward;
-      const armRows = [
-        ...models.yue2.stages.filter((stage) => stage.status === 'measured').map((stage) => ({ stage, arm: stage.step < 2 ? 'shared' : '2e-5' })),
-        ...models.yue2_stress.stages.filter((stage) => stage.status === 'measured' && stage.step >= 2).map((stage) => ({ stage, arm: '1e-4' })),
-      ].sort((a, b) => a.stage.step - b.stage.step || (a.arm === '2e-5' ? -1 : 1));
-      appendCells($('#lyrics-heldout-table'), armRows.map(({ stage, arm }) => [
-        arm, String(stage.step), `${fmt(stage.mean_reward)} (${signed(stage.mean_reward - baseMean, 4)})`,
+      const armRows = Object.entries({ yue2: 'SongEval · 2e-5', yue2_stress: 'SongEval · 1e-4',
+        yue2_lr1e3: 'SongEval · 1e-3', yue2_lr1e2: 'SongEval · 1e-2',
+        yue2_musecritic: 'MuseCritic · 2e-5' }).flatMap(([key, arm]) =>
+        models[key].stages.filter((item) => item.status === 'measured').map((item) =>
+          ({ stage: item, arm, baseMean: models[key].stages[0].mean_reward, key })));
+      appendCells($('#lyrics-heldout-table'), armRows.map(({ stage, arm, baseMean, key }) => [
+        key === model ? `● ${arm}` : arm, String(stage.step), `${fmt(stage.mean_reward)} (${signed(stage.mean_reward - baseMean, 4)})`,
+        Number.isFinite(stage.offline_kl) ? stage.offline_kl.toFixed(stage.offline_kl >= 0.01 ? 3 : 6) : '—',
         fmt(stage.heldout_summary.max_peak, 4), `${stage.heldout_summary.near_full_scale_clips} / ${stage.heldout_summary.n}`,
         `${stage.heldout_summary.truncated} / ${stage.heldout_summary.n}`,
       ]));
@@ -728,7 +731,6 @@ function renderLyrics(data) {
       createMediaPanel({ label: 'B / GRPO', title: `${descriptor.name} · ${step} ${step === 1 ? 'update' : 'updates'}`, asset: selectedAsset, details: '同 prompt、同 seed · 独立留出样本', listenRole: 'candidate' }),
     );
     const before = baselineAsset.metrics, after = selectedAsset.metrics;
-    const rewardName = descriptor.reward_model || 'SongEval';
     const metrics = [
       ...['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness', 'mean'].map((key) => [`${rewardName} · ${key}`, before.reward[key], after.reward[key], 4]),
       ...(!isYuE2 && selected.cross_reward ? [[`${model === 'muse' ? 'MuseCritic' : 'SongEval'} · mean (cross-check)`, selected.cross_reward.before.mean, selected.cross_reward.after.mean, 4]] : []),
@@ -744,10 +746,8 @@ function renderLyrics(data) {
     } else if (model === 'yue2_stress' && step >= 5) {
       const probe = step === 100 && currentExample === 0 ? `本样本的 VAE 原始峰值 ${fmt(selected.probe.vae_preclamp_peak)}、${selected.probe.clamped_samples} 个样本越界，公开音频已由管线钳位。` : '';
       $('#lyrics-interpretation').textContent = `高 LR 第 ${step} 步：三条留出 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前第 ${currentExample + 1} 首 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}，峰值 ${fmt(before.signal.peak, 3)} → ${fmt(after.signal.peak, 3)}。${probe}奖励和听感需要分别核查，不能仅凭峰值或单首分数认定 reward hacking。`;
-    } else if (step === 1 && isYuE2) {
-      $('#lyrics-interpretation').textContent = `YuE2 本轮从前一日的一步 LoRA 继续训练；0/1 步音频在同一新推理配置下重放。三条固定留出提示的 SongEval 均分 ${fmt(data.replays.lyrics.yue2.stages[0].mean_reward)} → ${fmt(selected.mean_reward)}；第 ${currentExample + 1} 首 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。不是泛化改善证据。`;
-    } else {
-      $('#lyrics-interpretation').textContent = `YuE2 ${step} 步：三条固定留出提示的 SongEval 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前试听样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。主观偏好仍需独立核对，不能只凭 reward 认定改善。`;
+    } else if (isYuE2) {
+      $('#lyrics-interpretation').textContent = `YuE2 · ${rewardName} · ${learningRate}，第 ${step} 步：三条固定留出提示的本臂 reward 均分 ${fmt(baseline.mean_reward)} → ${fmt(selected.mean_reward)}；当前试听样本 ${fmt(before.reward.mean)} → ${fmt(after.reward.mean)}。${step === 1 ? '各臂从同一步 LoRA 出发。' : ''}小样本分数不等于主观改善；请用上方 A/B 盲听检查音质、歌词与截断。`;
     }
     $('#listen-status').textContent = '选择 A 或 B 开始播放';
     for (const button of document.querySelectorAll('[data-listen]')) button.setAttribute('aria-pressed', 'false');

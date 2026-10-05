@@ -4,9 +4,20 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '../..');
 const runs = {};
 const dimensions = ['Coherence', 'Musicality', 'Memorability', 'Clarity', 'Naturalness'];
-for (const [arm, directory] of [
-  ['yue2', '2026-09-30-yue2-longrun'],
-  ['yue2_stress', '2026-09-30-yue2-lr-stress'],
+const oldKl = JSON.parse(await readFile(resolve(root,
+  'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-kl-audit/kl.json'), 'utf8'));
+const criticKl = JSON.parse(await readFile(resolve(root,
+  'music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/kl.json'), 'utf8'));
+if ([oldKl, criticKl].some((audit) => audit.status !== 'offline_fixed_reference_conditional_kl' ||
+  audit.not_training_kl !== true || audit.identity_kl.some((value) => Math.abs(value) > 1e-5))) {
+  throw new Error('YuE2 fixed-reference KL audit failed identity or provenance checks');
+}
+for (const [arm, directory, klAudit, klArm, baselineDirectory] of [
+  ['yue2', '2026-09-30-yue2-longrun', oldKl, '2e-5', '2026-09-30-yue2-longrun'],
+  ['yue2_stress', '2026-09-30-yue2-lr-stress', oldKl, '1e-4', '2026-09-30-yue2-longrun'],
+  ['yue2_lr1e3', '2026-09-30-yue2-high-lr/lr1e-3', oldKl, '1e-3', '2026-09-30-yue2-longrun'],
+  ['yue2_lr1e2', '2026-09-30-yue2-high-lr/lr1e-2', oldKl, '1e-2', '2026-09-30-yue2-longrun'],
+  ['yue2_musecritic', '2026-10-01-yue2-musecritic-pcm24', criticKl, 'MuseCritic', '2026-10-01-yue2-musecritic-pcm24'],
 ]) {
   const source = resolve(root, `music-gen/lyrics2song/rl/grpo/runs/${directory}/steps.jsonl`);
   const rows = (await readFile(source, 'utf8')).trim().split('\n').map((line) => JSON.parse(line))
@@ -24,7 +35,7 @@ for (const [arm, directory] of [
   }
   const heldout = [];
   for (const step of [0, 1, 5, 25, 50, 100]) {
-    const receiptDirectory = step <= 1 ? '2026-09-30-yue2-longrun' : directory;
+    const receiptDirectory = step <= 1 ? baselineDirectory : directory;
     const receipt = JSON.parse(await readFile(resolve(root,
       `music-gen/lyrics2song/rl/grpo/runs/${receiptDirectory}/step_${String(step).padStart(6, '0')}/receipt.json`), 'utf8'));
     const songs = receipt.heldout;
@@ -41,10 +52,14 @@ for (const [arm, directory] of [
     }
     heldout.push({ step, mean, ...scores });
   }
-  runs[arm] = { points, heldout, updates: 99, kl_status: 'not_recorded' };
+  const kl = [1, 5, 25, 50, 100].map((step) => ({ step, kl: klAudit.arms[klArm]?.[String(step)]?.kl }));
+  if (kl.some((point) => !Number.isFinite(point.kl))) throw new Error(`Missing audited KL: ${arm}`);
+  runs[arm] = { points, heldout, kl, updates: 99,
+    reward_model: arm === 'yue2_musecritic' ? 'MuseCritic' : 'SongEval',
+    kl_status: 'offline_fixed_reference_conditional_kl' };
 }
 const output = resolve(root, 'platform/site/demos/yue2-training-curves.json');
-const contents = `${JSON.stringify({ status: 'measured_training_reward_only', bin_size: 5, runs }, null, 2)}\n`;
+const contents = `${JSON.stringify({ status: 'measured_training_reward_and_offline_kl', bin_size: 5, runs }, null, 2)}\n`;
 if (process.argv.includes('--check')) {
   if (await readFile(output, 'utf8') !== contents) throw new Error('YuE2 public curve data is stale');
 } else {

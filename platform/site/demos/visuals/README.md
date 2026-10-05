@@ -18,6 +18,12 @@ linear full-scale amplitude (same -1 to +1 bounds for every clip). The mel
 spectrogram is labeled with frequency ticks; its dB values are relative to a
 full-scale PCM sinusoid and are not reward scores.
 
+The added YuE2 high-LR and canonical MuseCritic waveforms were rendered with
+`platform/scripts/render-wave-visuals.py`, which also uses fixed -1 to +1
+amplitude bounds and a black background. Their mel images use the same
+`render-mel-visuals.py` palette, frequency axis, and dB limits as the earlier
+replays.
+
 The figures are visual aids, not additional reward measurements. The synthetic
 SATB piano roll on the MIDI reward page is drawn in `lab.js`; it is deliberately
 not an experimental prediction.

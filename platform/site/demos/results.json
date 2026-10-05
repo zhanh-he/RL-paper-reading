@@ -1,6 +1,8 @@
 {
   "generated_from": [
     "platform/site/demos/replays.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-kl-audit/kl.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/kl.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-replay/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/probes/step_000100_heldout0/receipt.json",
     "music-trans/choral-singing/rl/grpo/runs/2026-09-30-public-synthetic/notes.json",
@@ -17,6 +19,20 @@
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000100/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000005/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000025/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000050/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000100/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000005/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000025/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000050/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000100/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000005/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000025/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000050/receipt.json",
+    "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
     "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json",
@@ -18311,6 +18327,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0,
             "mean_reward": 3.60298,
             "heldout_summary": {
               "n": 3,
@@ -18495,6 +18512,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0007898637365239362,
             "mean_reward": 3.616006666666666,
             "heldout_summary": {
               "n": 3,
@@ -18679,6 +18697,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0007909990381449461,
             "mean_reward": 3.56286,
             "heldout_summary": {
               "n": 3,
@@ -18863,6 +18882,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0007969711441546679,
             "mean_reward": 3.570413333333333,
             "heldout_summary": {
               "n": 3,
@@ -19047,6 +19067,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0007909993485858043,
             "mean_reward": 3.6062666666666665,
             "heldout_summary": {
               "n": 3,
@@ -19425,6 +19446,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0,
             "mean_reward": 3.60298,
             "heldout_summary": {
               "n": 3,
@@ -19609,6 +19631,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0008007628687967857,
             "mean_reward": 3.4284733333333333,
             "heldout_summary": {
               "n": 3,
@@ -19793,6 +19816,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0007994614037064215,
             "mean_reward": 3.629646666666666,
             "heldout_summary": {
               "n": 3,
@@ -19977,6 +20001,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0008263606966162721,
             "mean_reward": 3.7639,
             "heldout_summary": {
               "n": 3,
@@ -20161,6 +20186,7 @@
                 "semantic": true
               }
             },
+            "offline_kl": 0.0008735080870489279,
             "mean_reward": 3.4296333333333333,
             "heldout_summary": {
               "n": 3,
@@ -20354,6 +20380,3390 @@
             },
             "baseline_score": 3.96528,
             "after_score": 3.59322
+          }
+        ]
+      },
+      "yue2_lr1e3": {
+        "name": "YuE2-3B · SongEval · LR 1e-3",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "reward_model": "SongEval",
+        "learning_rate": 0.001,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000000.flac",
+            "wave": "visuals/yue2_longrun_000000_wave.png",
+            "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000000/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.8722,
+                "Musicality": 3.6763,
+                "Memorability": 3.9212,
+                "Clarity": 3.7496,
+                "Naturalness": 3.6249,
+                "mean": 3.76884
+              },
+              "signal": {
+                "peak": 0.9242455959320068,
+                "rms": 0.14428411252608547,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.84034,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.958833333333333,
+                "Musicality": 3.8735666666666666,
+                "Memorability": 3.961866666666667,
+                "Clarity": 3.7848666666666664,
+                "Naturalness": 3.6225666666666663
+              },
+              "max_peak": 0.9242455959320068,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000000/heldout_0/audio.flac",
+                  "reward": {
+                    "Coherence": 3.8722,
+                    "Musicality": 3.6763,
+                    "Memorability": 3.9212,
+                    "Clarity": 3.7496,
+                    "Naturalness": 3.6249,
+                    "mean": 3.76884
+                  },
+                  "signal": {
+                    "peak": 0.9242455959320068,
+                    "rms": 0.14428411252608547,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000000.flac",
+                "wave": "visuals/yue2_longrun_000000_wave.png",
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000000/heldout_1/audio.flac",
+                  "reward": {
+                    "Coherence": 3.9026,
+                    "Musicality": 3.8335,
+                    "Memorability": 3.9286,
+                    "Clarity": 3.7706,
+                    "Naturalness": 3.4992,
+                    "mean": 3.7869
+                  },
+                  "signal": {
+                    "peak": 0.8432437181472778,
+                    "rms": 0.1074021387211646,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_baseline_heldout1.flac",
+                "wave": "visuals/yue2_baseline_heldout1_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000000/heldout_2/audio.flac",
+                  "reward": {
+                    "Coherence": 4.1017,
+                    "Musicality": 4.1109,
+                    "Memorability": 4.0358,
+                    "Clarity": 3.8344,
+                    "Naturalness": 3.7436,
+                    "mean": 3.96528
+                  },
+                  "signal": {
+                    "peak": 0.8407101631164551,
+                    "rms": 0.1531039315693459,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_baseline_heldout2.flac",
+                "wave": "visuals/yue2_baseline_heldout2_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000001.flac",
+            "wave": "visuals/yue2_longrun_000001_wave.png",
+            "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000001/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.7008,
+                "Musicality": 3.7127,
+                "Memorability": 3.7244,
+                "Clarity": 3.6547,
+                "Naturalness": 3.5993,
+                "mean": 3.6783799999999998
+              },
+              "signal": {
+                "peak": 0.8074740171432495,
+                "rms": 0.13242658278818117,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "offline_kl": 0,
+            "mean_reward": 3.60298,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7067,
+                "Musicality": 3.6257333333333333,
+                "Memorability": 3.6352333333333333,
+                "Clarity": 3.6155333333333335,
+                "Naturalness": 3.4316999999999998
+              },
+              "max_peak": 0.816169023513794,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000001/heldout_0/audio.flac",
+                  "reward": {
+                    "Coherence": 3.7008,
+                    "Musicality": 3.7127,
+                    "Memorability": 3.7244,
+                    "Clarity": 3.6547,
+                    "Naturalness": 3.5993,
+                    "mean": 3.6783799999999998
+                  },
+                  "signal": {
+                    "peak": 0.8074740171432495,
+                    "rms": 0.13242658278818117,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001.flac",
+                "wave": "visuals/yue2_longrun_000001_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000001/heldout_1/audio.flac",
+                  "reward": {
+                    "Coherence": 3.6644,
+                    "Musicality": 3.5951,
+                    "Memorability": 3.667,
+                    "Clarity": 3.615,
+                    "Naturalness": 3.3758,
+                    "mean": 3.58346
+                  },
+                  "signal": {
+                    "peak": 0.413724422454834,
+                    "rms": 0.06861127364934543,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000001/heldout_2/audio.flac",
+                  "reward": {
+                    "Coherence": 3.7549,
+                    "Musicality": 3.5694,
+                    "Memorability": 3.5143,
+                    "Clarity": 3.5769,
+                    "Naturalness": 3.32,
+                    "mean": 3.5470999999999995
+                  },
+                  "signal": {
+                    "peak": 0.816169023513794,
+                    "rms": 0.15496073030211063,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 5,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e3_000005.flac",
+            "wave": "visuals/yue2_lr1e3_000005_wave.png",
+            "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000005/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000005/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.58,
+                "Musicality": 3.6247,
+                "Memorability": 3.7108,
+                "Clarity": 3.6393,
+                "Naturalness": 3.3671,
+                "mean": 3.5843800000000003
+              },
+              "signal": {
+                "peak": 0.8656338453292847,
+                "rms": 0.14258864310178834,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              }
+            },
+            "offline_kl": 0.0011612506350502372,
+            "mean_reward": 3.6504266666666667,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7464666666666666,
+                "Musicality": 3.7185,
+                "Memorability": 3.7576,
+                "Clarity": 3.607366666666666,
+                "Naturalness": 3.4222
+              },
+              "max_peak": 0.8656338453292847,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000005/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.58,
+                    "Musicality": 3.6247,
+                    "Memorability": 3.7108,
+                    "Clarity": 3.6393,
+                    "Naturalness": 3.3671,
+                    "mean": 3.5843800000000003
+                  },
+                  "signal": {
+                    "peak": 0.8656338453292847,
+                    "rms": 0.14258864310178834,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000005.flac",
+                "wave": "visuals/yue2_lr1e3_000005_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000005/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.7257,
+                    "Musicality": 3.582,
+                    "Memorability": 3.7487,
+                    "Clarity": 3.4988,
+                    "Naturalness": 3.2767,
+                    "mean": 3.5663799999999997
+                  },
+                  "signal": {
+                    "peak": 0.7140295505523682,
+                    "rms": 0.09541825557535134,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000005_heldout1.flac",
+                "wave": "visuals/yue2_lr1e3_000005_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000005_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000005/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.9337,
+                    "Musicality": 3.9488,
+                    "Memorability": 3.8133,
+                    "Clarity": 3.684,
+                    "Naturalness": 3.6228,
+                    "mean": 3.80052
+                  },
+                  "signal": {
+                    "peak": 0.7260299921035767,
+                    "rms": 0.14741703554440697,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000005_heldout2.flac",
+                "wave": "visuals/yue2_lr1e3_000005_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000005_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 25,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e3_000025.flac",
+            "wave": "visuals/yue2_lr1e3_000025_wave.png",
+            "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000025/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000025/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.8483,
+                "Musicality": 3.8228,
+                "Memorability": 3.8771,
+                "Clarity": 3.7831,
+                "Naturalness": 3.6686,
+                "mean": 3.79998
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.20277177034671737,
+                "near_full_scale_fraction": 0.0006254687760431135,
+                "flat_top_fraction": 0.000618957997666537
+              }
+            },
+            "offline_kl": 0.009951833790789047,
+            "mean_reward": 3.71878,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.822233333333333,
+                "Musicality": 3.7596666666666665,
+                "Memorability": 3.7962000000000002,
+                "Clarity": 3.664066666666667,
+                "Naturalness": 3.5517333333333334
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000025/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.8483,
+                    "Musicality": 3.8228,
+                    "Memorability": 3.8771,
+                    "Clarity": 3.7831,
+                    "Naturalness": 3.6686,
+                    "mean": 3.79998
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.20277177034671737,
+                    "near_full_scale_fraction": 0.0006254687760431135,
+                    "flat_top_fraction": 0.000618957997666537
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000025.flac",
+                "wave": "visuals/yue2_lr1e3_000025_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000025/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.4515,
+                    "Musicality": 3.4104,
+                    "Memorability": 3.5172,
+                    "Clarity": 3.2992,
+                    "Naturalness": 3.1241,
+                    "mean": 3.36048
+                  },
+                  "signal": {
+                    "peak": 0.6487705707550049,
+                    "rms": 0.07701177443962068,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000025_heldout1.flac",
+                "wave": "visuals/yue2_lr1e3_000025_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000025_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000025/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 4.1669,
+                    "Musicality": 4.0458,
+                    "Memorability": 3.9943,
+                    "Clarity": 3.9099,
+                    "Naturalness": 3.8625,
+                    "mean": 3.9958800000000005
+                  },
+                  "signal": {
+                    "peak": 0.7318525314331055,
+                    "rms": 0.1283248092434578,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000025_heldout2.flac",
+                "wave": "visuals/yue2_lr1e3_000025_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000025_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 50,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e3_000050.flac",
+            "wave": "visuals/yue2_lr1e3_000050_wave.png",
+            "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000050/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000050/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.6355,
+                "Musicality": 3.7933,
+                "Memorability": 3.7682,
+                "Clarity": 3.5992,
+                "Naturalness": 3.4944,
+                "mean": 3.6581199999999994
+              },
+              "signal": {
+                "peak": 0.869077205657959,
+                "rms": 0.16588281785612716,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              }
+            },
+            "offline_kl": 0.11871581276257832,
+            "mean_reward": 3.6722266666666665,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7619333333333334,
+                "Musicality": 3.7625000000000006,
+                "Memorability": 3.7895333333333334,
+                "Clarity": 3.5961666666666665,
+                "Naturalness": 3.451
+              },
+              "max_peak": 0.869077205657959,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000050/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.6355,
+                    "Musicality": 3.7933,
+                    "Memorability": 3.7682,
+                    "Clarity": 3.5992,
+                    "Naturalness": 3.4944,
+                    "mean": 3.6581199999999994
+                  },
+                  "signal": {
+                    "peak": 0.869077205657959,
+                    "rms": 0.16588281785612716,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000050.flac",
+                "wave": "visuals/yue2_lr1e3_000050_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000050/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.4815,
+                    "Musicality": 3.3993,
+                    "Memorability": 3.4947,
+                    "Clarity": 3.2371,
+                    "Naturalness": 3.0349,
+                    "mean": 3.3295000000000003
+                  },
+                  "signal": {
+                    "peak": 0.753941535949707,
+                    "rms": 0.13305911064333756,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000050_heldout1.flac",
+                "wave": "visuals/yue2_lr1e3_000050_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000050_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000050/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 4.1688,
+                    "Musicality": 4.0949,
+                    "Memorability": 4.1057,
+                    "Clarity": 3.9522,
+                    "Naturalness": 3.8237,
+                    "mean": 4.029059999999999
+                  },
+                  "signal": {
+                    "peak": 0.740692138671875,
+                    "rms": 0.12421007136345465,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000050_heldout2.flac",
+                "wave": "visuals/yue2_lr1e3_000050_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000050_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 100,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e3_000100.flac",
+            "wave": "visuals/yue2_lr1e3_000100_wave.png",
+            "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000100/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000100/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 2.6461,
+                "Musicality": 2.7794,
+                "Memorability": 2.617,
+                "Clarity": 2.4232,
+                "Naturalness": 2.3871,
+                "mean": 2.57056
+              },
+              "signal": {
+                "peak": 0.8023667335510254,
+                "rms": 0.18120661579676337,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              }
+            },
+            "offline_kl": 0.4977046449979146,
+            "mean_reward": 3.0909266666666664,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.1260999999999997,
+                "Musicality": 3.252366666666667,
+                "Memorability": 3.193566666666667,
+                "Clarity": 2.9525666666666663,
+                "Naturalness": 2.930033333333333
+              },
+              "max_peak": 0.935645341873169,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000100/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.6461,
+                    "Musicality": 2.7794,
+                    "Memorability": 2.617,
+                    "Clarity": 2.4232,
+                    "Naturalness": 2.3871,
+                    "mean": 2.57056
+                  },
+                  "signal": {
+                    "peak": 0.8023667335510254,
+                    "rms": 0.18120661579676337,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000100.flac",
+                "wave": "visuals/yue2_lr1e3_000100_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000100/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.0151,
+                    "Musicality": 3.1122,
+                    "Memorability": 3.1392,
+                    "Clarity": 2.8063,
+                    "Naturalness": 2.7425,
+                    "mean": 2.96306
+                  },
+                  "signal": {
+                    "peak": 0.9192736148834229,
+                    "rms": 0.08132166525954607,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000100_heldout1.flac",
+                "wave": "visuals/yue2_lr1e3_000100_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000100_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000100/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.7171,
+                    "Musicality": 3.8655,
+                    "Memorability": 3.8245,
+                    "Clarity": 3.6282,
+                    "Naturalness": 3.6605,
+                    "mean": 3.7391599999999996
+                  },
+                  "signal": {
+                    "peak": 0.935645341873169,
+                    "rms": 0.11737312029134322,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e3_000100_heldout2.flac",
+                "wave": "visuals/yue2_lr1e3_000100_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e3_000100_heldout2_spectrum.png"
+              }
+            ]
+          }
+        ]
+      },
+      "yue2_lr1e2": {
+        "name": "YuE2-3B · SongEval · LR 1e-2",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "reward_model": "SongEval",
+        "learning_rate": 0.01,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000000.flac",
+            "wave": "visuals/yue2_longrun_000000_wave.png",
+            "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000000/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.8722,
+                "Musicality": 3.6763,
+                "Memorability": 3.9212,
+                "Clarity": 3.7496,
+                "Naturalness": 3.6249,
+                "mean": 3.76884
+              },
+              "signal": {
+                "peak": 0.9242455959320068,
+                "rms": 0.14428411252608547,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "mean_reward": 3.84034,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.958833333333333,
+                "Musicality": 3.8735666666666666,
+                "Memorability": 3.961866666666667,
+                "Clarity": 3.7848666666666664,
+                "Naturalness": 3.6225666666666663
+              },
+              "max_peak": 0.9242455959320068,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000000/heldout_0/audio.flac",
+                  "reward": {
+                    "Coherence": 3.8722,
+                    "Musicality": 3.6763,
+                    "Memorability": 3.9212,
+                    "Clarity": 3.7496,
+                    "Naturalness": 3.6249,
+                    "mean": 3.76884
+                  },
+                  "signal": {
+                    "peak": 0.9242455959320068,
+                    "rms": 0.14428411252608547,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000000.flac",
+                "wave": "visuals/yue2_longrun_000000_wave.png",
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000000/heldout_1/audio.flac",
+                  "reward": {
+                    "Coherence": 3.9026,
+                    "Musicality": 3.8335,
+                    "Memorability": 3.9286,
+                    "Clarity": 3.7706,
+                    "Naturalness": 3.4992,
+                    "mean": 3.7869
+                  },
+                  "signal": {
+                    "peak": 0.8432437181472778,
+                    "rms": 0.1074021387211646,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_baseline_heldout1.flac",
+                "wave": "visuals/yue2_baseline_heldout1_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000000/heldout_2/audio.flac",
+                  "reward": {
+                    "Coherence": 4.1017,
+                    "Musicality": 4.1109,
+                    "Memorability": 4.0358,
+                    "Clarity": 3.8344,
+                    "Naturalness": 3.7436,
+                    "mean": 3.96528
+                  },
+                  "signal": {
+                    "peak": 0.8407101631164551,
+                    "rms": 0.1531039315693459,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_baseline_heldout2.flac",
+                "wave": "visuals/yue2_baseline_heldout2_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000001.flac",
+            "wave": "visuals/yue2_longrun_000001_wave.png",
+            "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000001/heldout_0/audio.flac",
+              "reward": {
+                "Coherence": 3.7008,
+                "Musicality": 3.7127,
+                "Memorability": 3.7244,
+                "Clarity": 3.6547,
+                "Naturalness": 3.5993,
+                "mean": 3.6783799999999998
+              },
+              "signal": {
+                "peak": 0.8074740171432495,
+                "rms": 0.13242658278818117,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              }
+            },
+            "offline_kl": 0,
+            "mean_reward": 3.60298,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.7067,
+                "Musicality": 3.6257333333333333,
+                "Memorability": 3.6352333333333333,
+                "Clarity": 3.6155333333333335,
+                "Naturalness": 3.4316999999999998
+              },
+              "max_peak": 0.816169023513794,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000001/heldout_0/audio.flac",
+                  "reward": {
+                    "Coherence": 3.7008,
+                    "Musicality": 3.7127,
+                    "Memorability": 3.7244,
+                    "Clarity": 3.6547,
+                    "Naturalness": 3.5993,
+                    "mean": 3.6783799999999998
+                  },
+                  "signal": {
+                    "peak": 0.8074740171432495,
+                    "rms": 0.13242658278818117,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001.flac",
+                "wave": "visuals/yue2_longrun_000001_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000001/heldout_1/audio.flac",
+                  "reward": {
+                    "Coherence": 3.6644,
+                    "Musicality": 3.5951,
+                    "Memorability": 3.667,
+                    "Clarity": 3.615,
+                    "Naturalness": 3.3758,
+                    "mean": 3.58346
+                  },
+                  "signal": {
+                    "peak": 0.413724422454834,
+                    "rms": 0.06861127364934543,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000001/heldout_2/audio.flac",
+                  "reward": {
+                    "Coherence": 3.7549,
+                    "Musicality": 3.5694,
+                    "Memorability": 3.5143,
+                    "Clarity": 3.5769,
+                    "Naturalness": 3.32,
+                    "mean": 3.5470999999999995
+                  },
+                  "signal": {
+                    "peak": 0.816169023513794,
+                    "rms": 0.15496073030211063,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  }
+                },
+                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 5,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e2_000005.flac",
+            "wave": "visuals/yue2_lr1e2_000005_wave.png",
+            "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000005/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000005/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 4.2081,
+                "Musicality": 4.3056,
+                "Memorability": 4.2223,
+                "Clarity": 4.1297,
+                "Naturalness": 3.8191,
+                "mean": 4.13696
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.22526752275647688,
+                "near_full_scale_fraction": 0.00004731165620312239,
+                "flat_top_fraction": 0.000046877604311350633
+              }
+            },
+            "offline_kl": 0.38707664608955383,
+            "mean_reward": 4.05326,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 4.163833333333334,
+                "Musicality": 4.1382666666666665,
+                "Memorability": 4.1499999999999995,
+                "Clarity": 3.978733333333333,
+                "Naturalness": 3.8354666666666666
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 2,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000005/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 4.2081,
+                    "Musicality": 4.3056,
+                    "Memorability": 4.2223,
+                    "Clarity": 4.1297,
+                    "Naturalness": 3.8191,
+                    "mean": 4.13696
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.22526752275647688,
+                    "near_full_scale_fraction": 0.00004731165620312239,
+                    "flat_top_fraction": 0.000046877604311350633
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000005.flac",
+                "wave": "visuals/yue2_lr1e2_000005_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000005/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 4.3705,
+                    "Musicality": 4.2735,
+                    "Memorability": 4.428,
+                    "Clarity": 4.0632,
+                    "Naturalness": 4.0011,
+                    "mean": 4.227259999999999
+                  },
+                  "signal": {
+                    "peak": 0.8444044589996338,
+                    "rms": 0.14400351590550448,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000005_heldout1.flac",
+                "wave": "visuals/yue2_lr1e2_000005_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000005_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000005/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.9129,
+                    "Musicality": 3.8357,
+                    "Memorability": 3.7997,
+                    "Clarity": 3.7433,
+                    "Naturalness": 3.6862,
+                    "mean": 3.7955599999999996
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.206893306828944,
+                    "near_full_scale_fraction": 0.00007812934051891772,
+                    "flat_top_fraction": 0.00007769528862714595
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000005_heldout2.flac",
+                "wave": "visuals/yue2_lr1e2_000005_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000005_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 25,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e2_000025.flac",
+            "wave": "visuals/yue2_lr1e2_000025_wave.png",
+            "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000025/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000025/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 1.6613,
+                "Musicality": 1.6451,
+                "Memorability": 1.4371,
+                "Clarity": 1.4658,
+                "Naturalness": 1.5725,
+                "mean": 1.55636
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.37887996076265296,
+                "near_full_scale_fraction": 0.001474474276348686,
+                "flat_top_fraction": 0.0014249923606867048
+              }
+            },
+            "offline_kl": 7.0751644770304365,
+            "mean_reward": 1.5803399999999999,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 1.6997666666666664,
+                "Musicality": 1.6538000000000002,
+                "Memorability": 1.4581666666666668,
+                "Clarity": 1.4873666666666665,
+                "Naturalness": 1.6026
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 3,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000025/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.6613,
+                    "Musicality": 1.6451,
+                    "Memorability": 1.4371,
+                    "Clarity": 1.4658,
+                    "Naturalness": 1.5725,
+                    "mean": 1.55636
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.37887996076265296,
+                    "near_full_scale_fraction": 0.001474474276348686,
+                    "flat_top_fraction": 0.0014249923606867048
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000025.flac",
+                "wave": "visuals/yue2_lr1e2_000025_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000025/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.7038,
+                    "Musicality": 1.6651,
+                    "Memorability": 1.4764,
+                    "Clarity": 1.4822,
+                    "Naturalness": 1.5949,
+                    "mean": 1.5844799999999999
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.3861328019036222,
+                    "near_full_scale_fraction": 0.0016324691649536086,
+                    "flat_top_fraction": 0.001589063975776432
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000025_heldout1.flac",
+                "wave": "visuals/yue2_lr1e2_000025_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000025_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000025/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.7342,
+                    "Musicality": 1.6512,
+                    "Memorability": 1.461,
+                    "Clarity": 1.5141,
+                    "Naturalness": 1.6404,
+                    "mean": 1.60018
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.3930104082952878,
+                    "near_full_scale_fraction": 0.0019380416967609312,
+                    "flat_top_fraction": 0.0018842192621812324
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000025_heldout2.flac",
+                "wave": "visuals/yue2_lr1e2_000025_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000025_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 50,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e2_000050.flac",
+            "wave": "visuals/yue2_lr1e2_000050_wave.png",
+            "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000050/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000050/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 1.6598,
+                "Musicality": 1.6148,
+                "Memorability": 1.4946,
+                "Clarity": 1.4037,
+                "Naturalness": 1.5142,
+                "mean": 1.5374199999999998
+              },
+              "signal": {
+                "peak": 0.7931703329086304,
+                "rms": 0.1703762136065691,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              }
+            },
+            "offline_kl": 12.792230923970541,
+            "mean_reward": 1.5033866666666666,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 1.6387,
+                "Musicality": 1.5650333333333333,
+                "Memorability": 1.4798333333333333,
+                "Clarity": 1.3738333333333335,
+                "Naturalness": 1.4595333333333336
+              },
+              "max_peak": 0.8584164381027222,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000050/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.6598,
+                    "Musicality": 1.6148,
+                    "Memorability": 1.4946,
+                    "Clarity": 1.4037,
+                    "Naturalness": 1.5142,
+                    "mean": 1.5374199999999998
+                  },
+                  "signal": {
+                    "peak": 0.7931703329086304,
+                    "rms": 0.1703762136065691,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000050.flac",
+                "wave": "visuals/yue2_lr1e2_000050_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000050/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.6052,
+                    "Musicality": 1.5165,
+                    "Memorability": 1.4509,
+                    "Clarity": 1.3203,
+                    "Naturalness": 1.4274,
+                    "mean": 1.46406
+                  },
+                  "signal": {
+                    "peak": 0.7825393676757812,
+                    "rms": 0.16570805983025794,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000050_heldout1.flac",
+                "wave": "visuals/yue2_lr1e2_000050_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000050_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000050/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.6511,
+                    "Musicality": 1.5638,
+                    "Memorability": 1.494,
+                    "Clarity": 1.3975,
+                    "Naturalness": 1.437,
+                    "mean": 1.50868
+                  },
+                  "signal": {
+                    "peak": 0.8584164381027222,
+                    "rms": 0.1699269090878168,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000050_heldout2.flac",
+                "wave": "visuals/yue2_lr1e2_000050_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000050_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 100,
+            "status": "measured",
+            "audio": "audio/yue2_lr1e2_000100.flac",
+            "wave": "visuals/yue2_lr1e2_000100_wave.png",
+            "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000100/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000100/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 2.179,
+                "Musicality": 1.917,
+                "Memorability": 1.7924,
+                "Clarity": 1.7392,
+                "Naturalness": 1.8162,
+                "mean": 1.88876
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.2223792724358039,
+                "near_full_scale_fraction": 0.000029081476748708262,
+                "flat_top_fraction": 0.000028647424856936496
+              }
+            },
+            "offline_kl": 21.022778193155926,
+            "mean_reward": 1.7783,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 2.0343666666666667,
+                "Musicality": 1.8013000000000001,
+                "Memorability": 1.7093999999999998,
+                "Clarity": 1.6468666666666667,
+                "Naturalness": 1.6995666666666667
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 3,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000100/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.179,
+                    "Musicality": 1.917,
+                    "Memorability": 1.7924,
+                    "Clarity": 1.7392,
+                    "Naturalness": 1.8162,
+                    "mean": 1.88876
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.2223792724358039,
+                    "near_full_scale_fraction": 0.000029081476748708262,
+                    "flat_top_fraction": 0.000028647424856936496
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000100.flac",
+                "wave": "visuals/yue2_lr1e2_000100_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000100/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.9999,
+                    "Musicality": 1.81,
+                    "Memorability": 1.6818,
+                    "Clarity": 1.6162,
+                    "Naturalness": 1.7408,
+                    "mean": 1.7697399999999999
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.22381540484807488,
+                    "near_full_scale_fraction": 0.00003776251458414356,
+                    "flat_top_fraction": 0.00003646035890882827
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000100_heldout1.flac",
+                "wave": "visuals/yue2_lr1e2_000100_heldout1_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000100_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000100/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.9242,
+                    "Musicality": 1.6769,
+                    "Memorability": 1.654,
+                    "Clarity": 1.5852,
+                    "Naturalness": 1.5417,
+                    "mean": 1.6764
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.22574047030467412,
+                    "near_full_scale_fraction": 0.000024306905939218846,
+                    "flat_top_fraction": 0.000023438802155675317
+                  }
+                },
+                "audio": "audio/yue2_lr1e2_000100_heldout2.flac",
+                "wave": "visuals/yue2_lr1e2_000100_heldout2_wave.png",
+                "spectrum": "visuals/yue2_lr1e2_000100_heldout2_spectrum.png"
+              }
+            ]
+          }
+        ]
+      },
+      "yue2_musecritic": {
+        "name": "YuE2-3B · MuseCritic · LR 2e-5",
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "seed": 5101,
+        "reference": null,
+        "reward_model": "MuseCritic",
+        "learning_rate": 0.00002,
+        "stages": [
+          {
+            "step": 0,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000000.flac",
+            "wave": "visuals/yue2_longrun_000000_wave.png",
+            "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000000/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.609375,
+                "Musicality": 3.421875,
+                "Memorability": 3.59375,
+                "Clarity": 3.296875,
+                "Naturalness": 3.328125,
+                "mean": 3.45
+              },
+              "signal": {
+                "peak": 0.9242455959320068,
+                "rms": 0.14428411252608547,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
+            },
+            "mean_reward": 2.967708333333333,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.1197916666666665,
+                "Musicality": 2.8333333333333335,
+                "Memorability": 3.109375,
+                "Clarity": 2.8697916666666665,
+                "Naturalness": 2.90625
+              },
+              "max_peak": 0.9242455959320068,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000000/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.609375,
+                    "Musicality": 3.421875,
+                    "Memorability": 3.59375,
+                    "Clarity": 3.296875,
+                    "Naturalness": 3.328125,
+                    "mean": 3.45
+                  },
+                  "signal": {
+                    "peak": 0.9242455959320068,
+                    "rms": 0.14428411252608547,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
+                },
+                "audio": "audio/yue2_longrun_000000.flac",
+                "wave": "visuals/yue2_longrun_000000_wave.png",
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000000/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.3125,
+                    "Musicality": 3.109375,
+                    "Memorability": 3.203125,
+                    "Clarity": 2.90625,
+                    "Naturalness": 3.0625,
+                    "mean": 3.11875
+                  },
+                  "signal": {
+                    "peak": 0.8432437181472778,
+                    "rms": 0.1074021387211646,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b"
+                },
+                "audio": "audio/yue2_baseline_heldout1.flac",
+                "wave": "visuals/yue2_baseline_heldout1_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000000/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.4375,
+                    "Musicality": 1.96875,
+                    "Memorability": 2.53125,
+                    "Clarity": 2.40625,
+                    "Naturalness": 2.328125,
+                    "mean": 2.334375
+                  },
+                  "signal": {
+                    "peak": 0.8407101631164551,
+                    "rms": 0.1531039315693459,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a"
+                },
+                "audio": "audio/yue2_baseline_heldout2.flac",
+                "wave": "visuals/yue2_baseline_heldout2_wave.png",
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 1,
+            "status": "measured",
+            "audio": "audio/yue2_longrun_000001.flac",
+            "wave": "visuals/yue2_longrun_000001_wave.png",
+            "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000001/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 1.890625,
+                "Musicality": 1.890625,
+                "Memorability": 2.875,
+                "Clarity": 3.421875,
+                "Naturalness": 2.65625,
+                "mean": 2.546875
+              },
+              "signal": {
+                "peak": 0.8074740171432495,
+                "rms": 0.13242658278818117,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
+            },
+            "offline_kl": 0,
+            "mean_reward": 2.5385416666666667,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 2.4322916666666665,
+                "Musicality": 1.9635416666666667,
+                "Memorability": 2.5833333333333335,
+                "Clarity": 3.1197916666666665,
+                "Naturalness": 2.59375
+              },
+              "max_peak": 0.816169023513794,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000001/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.890625,
+                    "Musicality": 1.890625,
+                    "Memorability": 2.875,
+                    "Clarity": 3.421875,
+                    "Naturalness": 2.65625,
+                    "mean": 2.546875
+                  },
+                  "signal": {
+                    "peak": 0.8074740171432495,
+                    "rms": 0.13242658278818117,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
+                },
+                "audio": "audio/yue2_longrun_000001.flac",
+                "wave": "visuals/yue2_longrun_000001_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000001/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.65625,
+                    "Musicality": 2,
+                    "Memorability": 2.75,
+                    "Clarity": 3.328125,
+                    "Naturalness": 2.875,
+                    "mean": 2.721875
+                  },
+                  "signal": {
+                    "peak": 0.413724422454834,
+                    "rms": 0.06861127364934543,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0"
+                },
+                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000001/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.75,
+                    "Musicality": 2,
+                    "Memorability": 2.125,
+                    "Clarity": 2.609375,
+                    "Naturalness": 2.25,
+                    "mean": 2.346875
+                  },
+                  "signal": {
+                    "peak": 0.816169023513794,
+                    "rms": 0.15496073030211063,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393"
+                },
+                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 5,
+            "status": "measured",
+            "audio": "audio/yue2_musecritic_pcm24_000005.flac",
+            "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png",
+            "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000005/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000005/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 2.125,
+                "Musicality": 2,
+                "Memorability": 2.71875,
+                "Clarity": 2.65625,
+                "Naturalness": 2.140625,
+                "mean": 2.328125
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.16038336266265388,
+                "near_full_scale_fraction": 0.000005642674593032946,
+                "flat_top_fraction": 0.000004774570809489416
+              },
+              "audio_sha256": "fd3d94abb4b534925802eafe5e5ebb1ae7052f4130d80f577937dee77eeb537c"
+            },
+            "offline_kl": 0.0007921967771835625,
+            "mean_reward": 2.6416666666666666,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 2.6354166666666665,
+                "Musicality": 2.3020833333333335,
+                "Memorability": 2.9635416666666665,
+                "Clarity": 2.7552083333333335,
+                "Naturalness": 2.5520833333333335
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 2,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000005/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.125,
+                    "Musicality": 2,
+                    "Memorability": 2.71875,
+                    "Clarity": 2.65625,
+                    "Naturalness": 2.140625,
+                    "mean": 2.328125
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.16038336266265388,
+                    "near_full_scale_fraction": 0.000005642674593032946,
+                    "flat_top_fraction": 0.000004774570809489416
+                  },
+                  "audio_sha256": "fd3d94abb4b534925802eafe5e5ebb1ae7052f4130d80f577937dee77eeb537c"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000005.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000005/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.96875,
+                    "Musicality": 2.875,
+                    "Memorability": 2.875,
+                    "Clarity": 2.5625,
+                    "Naturalness": 2.734375,
+                    "mean": 2.803125
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.0951956994578399,
+                    "near_full_scale_fraction": 8.681037835435302e-7,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "eadbda65bf50b8b148b393e5e5bcc11146db2edc0caf56bb42486797db8b2e2d"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000005_heldout1.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000005_heldout1_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000005/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.8125,
+                    "Musicality": 2.03125,
+                    "Memorability": 3.296875,
+                    "Clarity": 3.046875,
+                    "Naturalness": 2.78125,
+                    "mean": 2.79375
+                  },
+                  "signal": {
+                    "peak": 0.7341823577880859,
+                    "rms": 0.12635417894941134,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "fb0186be1a20bd19efe4b4d052f6b6c18365bf00dd062a0d6d0c58710cb2e9b5"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000005_heldout2.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000005_heldout2_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 25,
+            "status": "measured",
+            "audio": "audio/yue2_musecritic_pcm24_000025.flac",
+            "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png",
+            "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000025/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000025/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.796875,
+                "Musicality": 3.5625,
+                "Memorability": 3.71875,
+                "Clarity": 3.46875,
+                "Naturalness": 3.46875,
+                "mean": 3.603125
+              },
+              "signal": {
+                "peak": 0.926416277885437,
+                "rms": 0.13385930595116916,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "audio_sha256": "812e7ae8683397f9318ec4a9b885b77157dd61932adc5cf5da269354e37d1fd1"
+            },
+            "offline_kl": 0.0008016196079552174,
+            "mean_reward": 3.017708333333333,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 2.8177083333333335,
+                "Musicality": 2.625,
+                "Memorability": 3.625,
+                "Clarity": 3.1354166666666665,
+                "Naturalness": 2.8854166666666665
+              },
+              "max_peak": 0.926416277885437,
+              "near_full_scale_clips": 0,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000025/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.796875,
+                    "Musicality": 3.5625,
+                    "Memorability": 3.71875,
+                    "Clarity": 3.46875,
+                    "Naturalness": 3.46875,
+                    "mean": 3.603125
+                  },
+                  "signal": {
+                    "peak": 0.926416277885437,
+                    "rms": 0.13385930595116916,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "812e7ae8683397f9318ec4a9b885b77157dd61932adc5cf5da269354e37d1fd1"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000025.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000025/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.09375,
+                    "Musicality": 1.734375,
+                    "Memorability": 3.421875,
+                    "Clarity": 2.4375,
+                    "Naturalness": 2.515625,
+                    "mean": 2.440625
+                  },
+                  "signal": {
+                    "peak": 0.5818791389465332,
+                    "rms": 0.06978946765601546,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "aaec89e25252cfea45702c58b25406d143f04c406ce77718384c17e55105e184"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000025_heldout1.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000025_heldout1_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000025/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.5625,
+                    "Musicality": 2.578125,
+                    "Memorability": 3.734375,
+                    "Clarity": 3.5,
+                    "Naturalness": 2.671875,
+                    "mean": 3.009375
+                  },
+                  "signal": {
+                    "peak": 0.870729923248291,
+                    "rms": 0.15298697488942684,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "a35eb685ed9a2b3d292bc71957e91a532818254c9de941d0e7f07c8596bf2689"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000025_heldout2.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000025_heldout2_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 50,
+            "status": "measured",
+            "audio": "audio/yue2_musecritic_pcm24_000050.flac",
+            "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png",
+            "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000050/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000050/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 3.703125,
+                "Musicality": 3.96875,
+                "Memorability": 3.890625,
+                "Clarity": 3.734375,
+                "Naturalness": 3.34375,
+                "mean": 3.728125
+              },
+              "signal": {
+                "peak": 1,
+                "rms": 0.14783213985747656,
+                "near_full_scale_fraction": 0.0000017362075670870604,
+                "flat_top_fraction": 0.0000017362075670870604
+              },
+              "audio_sha256": "13a79cea30357b3569365d3d6d2bd28c42b933ef43c0aa8509f0dab86098ac17"
+            },
+            "offline_kl": 0.0007966358486252526,
+            "mean_reward": 3.1145833333333335,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 3.3072916666666665,
+                "Musicality": 3.015625,
+                "Memorability": 3.3229166666666665,
+                "Clarity": 3.0520833333333335,
+                "Naturalness": 2.875
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000050/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.703125,
+                    "Musicality": 3.96875,
+                    "Memorability": 3.890625,
+                    "Clarity": 3.734375,
+                    "Naturalness": 3.34375,
+                    "mean": 3.728125
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.14783213985747656,
+                    "near_full_scale_fraction": 0.0000017362075670870604,
+                    "flat_top_fraction": 0.0000017362075670870604
+                  },
+                  "audio_sha256": "13a79cea30357b3569365d3d6d2bd28c42b933ef43c0aa8509f0dab86098ac17"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000050.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000050/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 3.515625,
+                    "Musicality": 3.28125,
+                    "Memorability": 3.453125,
+                    "Clarity": 3.078125,
+                    "Naturalness": 3.296875,
+                    "mean": 3.325
+                  },
+                  "signal": {
+                    "peak": 0.5622310638427734,
+                    "rms": 0.08270979133304415,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "8f5c91969db4b32c5e649243dc034c6ad44d0958cc13ef731e8c430a361a7011"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000050_heldout1.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000050_heldout1_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000050/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.703125,
+                    "Musicality": 1.796875,
+                    "Memorability": 2.625,
+                    "Clarity": 2.34375,
+                    "Naturalness": 1.984375,
+                    "mean": 2.290625
+                  },
+                  "signal": {
+                    "peak": 0.745707631111145,
+                    "rms": 0.1461111558515487,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "6fc986353a97e9afa17e67aec1119b5346a4f89d9d9f8ee54bc1ca1a390e140b"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000050_heldout2.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000050_heldout2_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout2_spectrum.png"
+              }
+            ]
+          },
+          {
+            "step": 100,
+            "status": "measured",
+            "audio": "audio/yue2_musecritic_pcm24_000100.flac",
+            "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png",
+            "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png",
+            "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json",
+            "receipt_key": "heldout:0",
+            "metrics": {
+              "index": 0,
+              "prompt": {
+                "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                "cot": "off",
+                "cfg_scale": 1
+              },
+              "seed": 5101,
+              "audio": "step_000100/heldout_0/audio.flac",
+              "seconds": 23.998666666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "reward": {
+                "Coherence": 1.734375,
+                "Musicality": 1.859375,
+                "Memorability": 2.15625,
+                "Clarity": 1.734375,
+                "Naturalness": 2.375,
+                "mean": 1.971875
+              },
+              "signal": {
+                "peak": 0.743811845779419,
+                "rms": 0.11728752515623406,
+                "near_full_scale_fraction": 0,
+                "flat_top_fraction": 4.340518917717651e-7
+              },
+              "audio_sha256": "def13e97501a81c5cbbdc4292779d3f43d0b9dc20673a33faeefba2d94ed155f"
+            },
+            "offline_kl": 0.000794740937029322,
+            "mean_reward": 2.244270833333333,
+            "heldout_summary": {
+              "n": 3,
+              "scores": {
+                "Coherence": 2.1614583333333335,
+                "Musicality": 1.7578125,
+                "Memorability": 2.109375,
+                "Clarity": 2.2135416666666665,
+                "Naturalness": 2.9791666666666665
+              },
+              "max_peak": 1,
+              "near_full_scale_clips": 1,
+              "truncated": 3
+            },
+            "examples": [
+              {
+                "index": 0,
+                "seed": 5101,
+                "prompt": {
+                  "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                  "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 0,
+                  "prompt": {
+                    "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+                    "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5101,
+                  "audio": "step_000100/heldout_0/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 1.734375,
+                    "Musicality": 1.859375,
+                    "Memorability": 2.15625,
+                    "Clarity": 1.734375,
+                    "Naturalness": 2.375,
+                    "mean": 1.971875
+                  },
+                  "signal": {
+                    "peak": 0.743811845779419,
+                    "rms": 0.11728752515623406,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "def13e97501a81c5cbbdc4292779d3f43d0b9dc20673a33faeefba2d94ed155f"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000100.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png"
+              },
+              {
+                "index": 1,
+                "seed": 5102,
+                "prompt": {
+                  "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                  "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 1,
+                  "prompt": {
+                    "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+                    "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5102,
+                  "audio": "step_000100/heldout_1/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.46875,
+                    "Musicality": 1.625,
+                    "Memorability": 2.109375,
+                    "Clarity": 2.3125,
+                    "Naturalness": 3.5625,
+                    "mean": 2.415625
+                  },
+                  "signal": {
+                    "peak": 1,
+                    "rms": 0.14786730378034046,
+                    "near_full_scale_fraction": 0.000004340518917717651,
+                    "flat_top_fraction": 0.000004340518917717651
+                  },
+                  "audio_sha256": "bf991ad83b49e6eba007491614fee7d87a9bca2ea2c3de0b1e7dd84209ba81c4"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000100_heldout1.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000100_heldout1_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout1_spectrum.png"
+              },
+              {
+                "index": 2,
+                "seed": 5103,
+                "prompt": {
+                  "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                  "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                  "cot": "off",
+                  "cfg_scale": 1
+                },
+                "metrics": {
+                  "index": 2,
+                  "prompt": {
+                    "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+                    "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+                    "cot": "off",
+                    "cfg_scale": 1
+                  },
+                  "seed": 5103,
+                  "audio": "step_000100/heldout_2/audio.flac",
+                  "seconds": 23.998666666666665,
+                  "truncated": {
+                    "abc": false,
+                    "semantic": true
+                  },
+                  "reward": {
+                    "Coherence": 2.28125,
+                    "Musicality": 1.7890625,
+                    "Memorability": 2.0625,
+                    "Clarity": 2.59375,
+                    "Naturalness": 3,
+                    "mean": 2.3453125
+                  },
+                  "signal": {
+                    "peak": 0.5462427139282227,
+                    "rms": 0.13214314141794462,
+                    "near_full_scale_fraction": 0,
+                    "flat_top_fraction": 4.340518917717651e-7
+                  },
+                  "audio_sha256": "48dc8f2998a4df244cb4289011b28d1dc387f7d5989ef76fea6771d1e333de91"
+                },
+                "audio": "audio/yue2_musecritic_pcm24_000100_heldout2.flac",
+                "wave": "visuals/yue2_musecritic_pcm24_000100_heldout2_wave.png",
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout2_spectrum.png"
+              }
+            ]
           }
         ]
       },

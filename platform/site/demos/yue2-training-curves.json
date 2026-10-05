@@ -1,5 +1,5 @@
 {
-  "status": "measured_training_reward_only",
+  "status": "measured_training_reward_and_offline_kl",
   "bin_size": 5,
   "runs": {
     "yue2": {
@@ -161,8 +161,31 @@
           "Naturalness": 3.3819666666666666
         }
       ],
+      "kl": [
+        {
+          "step": 1,
+          "kl": 0
+        },
+        {
+          "step": 5,
+          "kl": 0.0007898637365239362
+        },
+        {
+          "step": 25,
+          "kl": 0.0007909990381449461
+        },
+        {
+          "step": 50,
+          "kl": 0.0007969711441546679
+        },
+        {
+          "step": 100,
+          "kl": 0.0007909993485858043
+        }
+      ],
       "updates": 99,
-      "kl_status": "not_recorded"
+      "reward_model": "SongEval",
+      "kl_status": "offline_fixed_reference_conditional_kl"
     },
     "yue2_stress": {
       "points": [
@@ -323,8 +346,586 @@
           "Naturalness": 3.1941666666666664
         }
       ],
+      "kl": [
+        {
+          "step": 1,
+          "kl": 0
+        },
+        {
+          "step": 5,
+          "kl": 0.0008007628687967857
+        },
+        {
+          "step": 25,
+          "kl": 0.0007994614037064215
+        },
+        {
+          "step": 50,
+          "kl": 0.0008263606966162721
+        },
+        {
+          "step": 100,
+          "kl": 0.0008735080870489279
+        }
+      ],
       "updates": 99,
-      "kl_status": "not_recorded"
+      "reward_model": "SongEval",
+      "kl_status": "offline_fixed_reference_conditional_kl"
+    },
+    "yue2_lr1e3": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 3.965162456035614,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 3.86819806098938,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 3.7828999757766724,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 3.7815380573272703,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 3.753387975692749,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 3.7162840366363525,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 3.771294045448303,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 3.481141972541809,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 3.6770920515060426,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 3.707954001426697,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 3.8780460119247437,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 3.6815120458602903,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 3.5478339910507204,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 3.66385395526886,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 3.536393976211548,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 3.2950259923934935,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 3.482740020751953,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 3.626085948944092,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 3.5616320371627808,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 3.5621519804000856,
+          "updates": 5
+        }
+      ],
+      "heldout": [
+        {
+          "step": 0,
+          "mean": 3.84034,
+          "Coherence": 3.958833333333333,
+          "Musicality": 3.8735666666666666,
+          "Memorability": 3.961866666666667,
+          "Clarity": 3.7848666666666664,
+          "Naturalness": 3.6225666666666663
+        },
+        {
+          "step": 1,
+          "mean": 3.60298,
+          "Coherence": 3.7067,
+          "Musicality": 3.6257333333333333,
+          "Memorability": 3.6352333333333333,
+          "Clarity": 3.6155333333333335,
+          "Naturalness": 3.4316999999999998
+        },
+        {
+          "step": 5,
+          "mean": 3.6504266666666667,
+          "Coherence": 3.7464666666666666,
+          "Musicality": 3.7185,
+          "Memorability": 3.7576,
+          "Clarity": 3.607366666666666,
+          "Naturalness": 3.4222
+        },
+        {
+          "step": 25,
+          "mean": 3.71878,
+          "Coherence": 3.822233333333333,
+          "Musicality": 3.7596666666666665,
+          "Memorability": 3.7962000000000002,
+          "Clarity": 3.664066666666667,
+          "Naturalness": 3.5517333333333334
+        },
+        {
+          "step": 50,
+          "mean": 3.672226666666667,
+          "Coherence": 3.7619333333333334,
+          "Musicality": 3.7625000000000006,
+          "Memorability": 3.7895333333333334,
+          "Clarity": 3.5961666666666665,
+          "Naturalness": 3.451
+        },
+        {
+          "step": 100,
+          "mean": 3.0909266666666664,
+          "Coherence": 3.1260999999999997,
+          "Musicality": 3.252366666666667,
+          "Memorability": 3.193566666666667,
+          "Clarity": 2.9525666666666663,
+          "Naturalness": 2.930033333333333
+        }
+      ],
+      "kl": [
+        {
+          "step": 1,
+          "kl": 0
+        },
+        {
+          "step": 5,
+          "kl": 0.0011612506350502372
+        },
+        {
+          "step": 25,
+          "kl": 0.009951833790789047
+        },
+        {
+          "step": 50,
+          "kl": 0.11871581276257832
+        },
+        {
+          "step": 100,
+          "kl": 0.4977046449979146
+        }
+      ],
+      "updates": 99,
+      "reward_model": "SongEval",
+      "kl_status": "offline_fixed_reference_conditional_kl"
+    },
+    "yue2_lr1e2": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 3.9881750345230103,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 2.4447320103645325,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 1.3827640056610107,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 1.3925959944725037,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 1.3412840008735656,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 1.510596013069153,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 1.5344539880752563,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 1.5604420065879823,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 1.6906660079956055,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 1.5522340178489684,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 1.4950000047683716,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 1.4591059803962707,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 1.634250009059906,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 1.7520539879798889,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 1.5652060031890869,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 1.6846880078315736,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 1.6466820120811463,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 1.6237380027770996,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 1.6312020063400268,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 1.720680010318756,
+          "updates": 5
+        }
+      ],
+      "heldout": [
+        {
+          "step": 0,
+          "mean": 3.84034,
+          "Coherence": 3.958833333333333,
+          "Musicality": 3.8735666666666666,
+          "Memorability": 3.961866666666667,
+          "Clarity": 3.7848666666666664,
+          "Naturalness": 3.6225666666666663
+        },
+        {
+          "step": 1,
+          "mean": 3.60298,
+          "Coherence": 3.7067,
+          "Musicality": 3.6257333333333333,
+          "Memorability": 3.6352333333333333,
+          "Clarity": 3.6155333333333335,
+          "Naturalness": 3.4316999999999998
+        },
+        {
+          "step": 5,
+          "mean": 4.05326,
+          "Coherence": 4.163833333333334,
+          "Musicality": 4.1382666666666665,
+          "Memorability": 4.1499999999999995,
+          "Clarity": 3.978733333333333,
+          "Naturalness": 3.8354666666666666
+        },
+        {
+          "step": 25,
+          "mean": 1.58034,
+          "Coherence": 1.6997666666666664,
+          "Musicality": 1.6538000000000002,
+          "Memorability": 1.4581666666666668,
+          "Clarity": 1.4873666666666665,
+          "Naturalness": 1.6026
+        },
+        {
+          "step": 50,
+          "mean": 1.5033866666666669,
+          "Coherence": 1.6387,
+          "Musicality": 1.5650333333333333,
+          "Memorability": 1.4798333333333333,
+          "Clarity": 1.3738333333333335,
+          "Naturalness": 1.4595333333333336
+        },
+        {
+          "step": 100,
+          "mean": 1.7783000000000002,
+          "Coherence": 2.0343666666666667,
+          "Musicality": 1.8013000000000001,
+          "Memorability": 1.7093999999999998,
+          "Clarity": 1.6468666666666667,
+          "Naturalness": 1.6995666666666667
+        }
+      ],
+      "kl": [
+        {
+          "step": 1,
+          "kl": 0
+        },
+        {
+          "step": 5,
+          "kl": 0.38707664608955383
+        },
+        {
+          "step": 25,
+          "kl": 7.0751644770304365
+        },
+        {
+          "step": 50,
+          "kl": 12.792230923970541
+        },
+        {
+          "step": 100,
+          "kl": 21.022778193155926
+        }
+      ],
+      "updates": 99,
+      "reward_model": "SongEval",
+      "kl_status": "offline_fixed_reference_conditional_kl"
+    },
+    "yue2_musecritic": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 2.490234375,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 2.750781273841858,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 2.807812452316284,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 2.6056249856948854,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 2.560312509536743,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 2.6807812213897706,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 2.506406235694885,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 2.807656264305115,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 2.580781269073486,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 2.8667187213897707,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 2.7015625,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 2.731406259536743,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 2.652968716621399,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 2.7125,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 2.7112500190734865,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 2.8950000047683715,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 2.6768749952316284,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 2.4728125095367433,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 2.7129687309265136,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 2.6729687690734862,
+          "updates": 5
+        }
+      ],
+      "heldout": [
+        {
+          "step": 0,
+          "mean": 2.9677083333333334,
+          "Coherence": 3.1197916666666665,
+          "Musicality": 2.8333333333333335,
+          "Memorability": 3.109375,
+          "Clarity": 2.8697916666666665,
+          "Naturalness": 2.90625
+        },
+        {
+          "step": 1,
+          "mean": 2.5385416666666663,
+          "Coherence": 2.4322916666666665,
+          "Musicality": 1.9635416666666667,
+          "Memorability": 2.5833333333333335,
+          "Clarity": 3.1197916666666665,
+          "Naturalness": 2.59375
+        },
+        {
+          "step": 5,
+          "mean": 2.6416666666666666,
+          "Coherence": 2.6354166666666665,
+          "Musicality": 2.3020833333333335,
+          "Memorability": 2.9635416666666665,
+          "Clarity": 2.7552083333333335,
+          "Naturalness": 2.5520833333333335
+        },
+        {
+          "step": 25,
+          "mean": 3.017708333333333,
+          "Coherence": 2.8177083333333335,
+          "Musicality": 2.625,
+          "Memorability": 3.625,
+          "Clarity": 3.1354166666666665,
+          "Naturalness": 2.8854166666666665
+        },
+        {
+          "step": 50,
+          "mean": 3.114583333333333,
+          "Coherence": 3.3072916666666665,
+          "Musicality": 3.015625,
+          "Memorability": 3.3229166666666665,
+          "Clarity": 3.0520833333333335,
+          "Naturalness": 2.875
+        },
+        {
+          "step": 100,
+          "mean": 2.244270833333333,
+          "Coherence": 2.1614583333333335,
+          "Musicality": 1.7578125,
+          "Memorability": 2.109375,
+          "Clarity": 2.2135416666666665,
+          "Naturalness": 2.9791666666666665
+        }
+      ],
+      "kl": [
+        {
+          "step": 1,
+          "kl": 0
+        },
+        {
+          "step": 5,
+          "kl": 0.0007921967771835625
+        },
+        {
+          "step": 25,
+          "kl": 0.0008016196079552174
+        },
+        {
+          "step": 50,
+          "kl": 0.0007966358486252526
+        },
+        {
+          "step": 100,
+          "kl": 0.000794740937029322
+        }
+      ],
+      "updates": 99,
+      "reward_model": "MuseCritic",
+      "kl_status": "offline_fixed_reference_conditional_kl"
     }
   }
 }

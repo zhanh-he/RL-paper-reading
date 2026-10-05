@@ -7,11 +7,15 @@ is the curated, public case/stage manifest. The build validates each referenced
 media file and rejects a `pending` stage that claims public media.
 
 Each case follows input, reference output (when a legitimate reference exists),
-baseline, then checkpoints ordered by **optimizer updates**. YuE2/SongEval has
-0/1/5/50/100 measured updates at LR `2e-5`; its 100-step held-out reward is
-still below baseline. A separate LR `1e-4` stress arm starts from the same
-one-step LoRA and targets 100 total updates; its pending milestones must not
-be treated as results. The reward and optimization boundaries are in
+baseline, then checkpoints ordered by **optimizer updates**. Five YuE2 arms
+have 0/1/5/25/50/100 measured stages: SongEval at `2e-5`, `1e-4`, `1e-3`,
+and `1e-2`, plus canonical PCM24-FLAC MuseCritic at `2e-5`. All share the
+same 0/1-step audio, but MuseCritic scores it on its own scale. The left
+training chart is a five-step rolling mean of sampled reward; the right chart
+is a sparse, **offline** fixed-reference conditional KL audit against the
+one-step LoRA, not training-time KL. The result summary and caveats are in
+[`2026-10-05-yue2-demo-recovery`](../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-demo-recovery/README.md).
+The reward and optimization boundaries are in
 [`songeval-grpo-protocol.md`](../../../music-gen/lyrics2song/rewards/songeval-grpo-protocol.md).
 Muse has one-step SongEval and MuseCritic GRPO experiments, each with a
 same-prompt/same-seed held-out audio pair. A separate MuseCritic 25/50-step
@@ -29,7 +33,7 @@ a same-scale spectrogram under `audio/` and `visuals/`, and add their relative
 paths to the stage in `replays.json`. Add a receipt with SongEval dimensions,
 signal peak/RMS/near-full-scale fraction, training step, model/checkpoint hash,
 sample provenance, and any human listening ratings. Set the stage's repository-
-relative `receipt` and `receipt_key` (`before` or `after`) when changing its
+relative `receipt` and `receipt_key` (`before`, `after`, or `heldout:0`) when changing its
 status to `measured`; the build checks the metrics and the UI then makes the
 stage selectable for A/B replay. Keep the reward name attached to each score:
 SongEval and MuseCritic values are not interchangeable. For MIDI

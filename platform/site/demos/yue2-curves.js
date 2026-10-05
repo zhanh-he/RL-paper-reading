@@ -4,6 +4,9 @@ const section = document.querySelector('#yue2-training');
 const canvas = document.querySelector('#yue2-reward-chart');
 const milestones = createMilestones(canvas, 100);
 const value = document.querySelector('#yue2-reward-value');
+const klCanvas = document.querySelector('#yue2-kl-chart');
+const klMilestones = createMilestones(klCanvas, 100);
+const klValue = document.querySelector('#yue2-kl-value');
 const details = document.querySelector('#yue2-dimensions-details');
 const dimensionList = document.querySelector('#yue2-dimension-plots');
 const dimensions = [
@@ -30,7 +33,7 @@ function drawChart(canvas, points, key, color, compact = false, marks = null) {
   const scores = points.map((point) => point[key]);
   const low = Math.min(...scores);
   const high = Math.max(...scores);
-  const pad = Math.max((high - low) * 0.13, 0.004);
+  const pad = Math.max((high - low) * 0.13, key === 'kl' ? 0.000005 : 0.004);
   const minimum = Math.max(0, low - pad);
   const maximum = high + pad;
   const x = (step) => margin.left + plotWidth * step / 100;
@@ -47,7 +50,7 @@ function drawChart(canvas, points, key, color, compact = false, marks = null) {
     context.lineTo(width - margin.right, position);
     context.stroke();
     context.textAlign = 'right';
-    context.fillText(score.toFixed(compact ? 2 : 3), margin.left - 5, position + 4);
+    context.fillText(key === 'kl' && maximum < 0.01 ? score.toFixed(4) : score.toFixed(compact ? 2 : 3), margin.left - 5, position + 4);
   }
   context.textAlign = 'center';
   for (const step of [0, 50, 100]) context.fillText(String(step), x(step), height - 4);
@@ -59,7 +62,7 @@ function drawChart(canvas, points, key, color, compact = false, marks = null) {
   points.forEach((point, index) => index ? context.lineTo(x(point.step), y(point[key])) :
     context.moveTo(x(point.step), y(point[key])));
   context.stroke();
-  if (compact) {
+  if (compact || key === 'kl') {
     context.fillStyle = color;
     for (const point of points) {
       context.beginPath();
@@ -76,12 +79,20 @@ function draw() {
   const run = runs[arm];
   if (!run) return;
   const points = run.points;
+  const rewardName = run.reward_model;
+  document.querySelector('#yue2-training-reward-name').textContent = rewardName;
+  document.querySelector('#yue2-reward-label').textContent = rewardName;
+  document.querySelector('#yue2-dimensions-name').textContent = rewardName;
   milestones.set(run.heldout.filter((point) => point.step > 0).map((point) => {
     const training = points.find((candidate) => candidate.step === point.step);
-    return { step: point.step, label: `第 ${point.step} 步 · 留出 SongEval 均分 ${point.mean.toFixed(4)}${training ? `\n训练 rollout 5 步窗口均值 ${training.reward.toFixed(4)}` : '\n训练 rollout reward 未记录'}` };
+    return { step: point.step, label: `第 ${point.step} 步 · 留出 ${rewardName} 均分 ${point.mean.toFixed(4)}${training ? `\n训练 rollout 5 步窗口均值 ${training.reward.toFixed(4)}` : '\n训练 rollout reward 未记录'}` };
   }));
   drawChart(canvas, points, 'reward', '#08745d', false, milestones);
   value.textContent = `${points[0].reward.toFixed(3)} → ${points.at(-1).reward.toFixed(3)}`;
+  klMilestones.set(run.kl.map((point) => ({ step: point.step,
+    label: `第 ${point.step} 步 · 离线固定参考条件 KL ${point.kl.toPrecision(5)}\n不是训练时记录的 KL` })));
+  drawChart(klCanvas, run.kl, 'kl', '#b36b24', false, klMilestones);
+  klValue.textContent = `step 1: 0 → step 100: ${run.kl.at(-1).kl.toPrecision(4)}`;
   if (!details.open) return;
   for (const [key, color] of dimensions) {
     const plot = dimensionList.querySelector(`[data-dimension="${key}"]`);
