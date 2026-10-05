@@ -65,7 +65,7 @@ improvements. Human listening is still needed before a quality claim.
 | Host | Arm | Smoke | Dependent 100-step job | Priority |
 | --- | --- | --- | --- | --- |
 | Gadi H100 | SongEval, LR 2e-5 | `180532793.gadi-pbs` | `180532807.gadi-pbs` | PBS `-p -100` |
-| Kaya V100-32GB | SongEval, LR 1e-4, FP16 | `75797` | `75800` | Slurm `--nice=10000` |
+| Kaya V100-32GB | SongEval, LR 1e-4, FP16 | `75964` | `75965` | Slurm `--nice=10000`, after CASM `75204` |
 | Gadi H100 | MuseCritic PCM24, LR 2e-5 | `180533336.gadi-pbs` | `180533343.gadi-pbs` | PBS `-p -100` |
 
 These are **submitted jobs, not completed results**. Each 100-step job has an
@@ -76,6 +76,10 @@ first verify numerical stability. Its difference from Gadi BF16 **cannot** be
 attributed to LR alone. The official MuseCritic server also hard-codes BF16,
 which the V100 does not support; no scorer-precision change is hidden behind
 a comparable MuseCritic score. CASM beat work retains scheduling priority.
+Kaya's smoke also has an `afterany:75204` dependency on the already queued
+CASM continuation, so it cannot start ahead of that beat experiment. The
+original general-`gpu` YuE2 queue pair was cancelled after the new pair was
+accepted; no duplicate GPU jobs remain.
 
 The source scripts are `gadi_yue2_formal.pbs`,
 `gadi_yue2_musecritic_formal.pbs`, and `kaya_yue2_formal.sbatch`. The Gadi

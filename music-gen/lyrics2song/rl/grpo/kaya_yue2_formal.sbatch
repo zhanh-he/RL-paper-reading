@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=yue2-cmi-formal
 #SBATCH --account=ems011
-#SBATCH --partition=gpu
+#SBATCH --partition=ondemand-gpu
 #SBATCH --gres=gpu:v100-32gb:1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=96G
