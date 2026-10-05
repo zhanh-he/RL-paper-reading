@@ -144,7 +144,7 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
     }
     if (stage.receipt_key === 'heldout:0') {
       const klAudit = modelKey === 'yue2_musecritic' ? criticKl : yue2Kl;
-      if (stage.step > 0) {
+      if (stage.step > 0 && klArms[modelKey]) {
         stage.offline_kl = klAudit.arms[klArms[modelKey]]?.[String(stage.step)]?.kl;
         if (!Number.isFinite(stage.offline_kl)) throw new Error(`Missing audited offline KL for ${modelKey} step ${stage.step}`);
       }

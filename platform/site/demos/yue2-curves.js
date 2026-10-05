@@ -73,6 +73,20 @@ function drawChart(canvas, points, key, color, compact = false, marks = null) {
   marks?.draw(context, width, height - margin.bottom, color);
 }
 
+function drawPending(target, label) {
+  const width = target.getBoundingClientRect().width;
+  if (width < 20) return;
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  target.width = Math.round(width * ratio);
+  target.height = Math.round(154 * ratio);
+  const context = target.getContext('2d');
+  context.scale(ratio, ratio);
+  context.fillStyle = '#68726d';
+  context.font = '13px system-ui, sans-serif';
+  context.textAlign = 'center';
+  context.fillText(label, width / 2, 80);
+}
+
 function draw() {
   if (!runs || section.hidden) return;
   const arm = document.querySelector('[data-replay-model][aria-pressed="true"]')?.dataset.replayModel;
@@ -87,13 +101,24 @@ function draw() {
     const training = points.find((candidate) => candidate.step === point.step);
     return { step: point.step, label: `第 ${point.step} 步 · 留出 ${rewardName} 均分 ${point.mean.toFixed(4)}${training ? `\n训练 rollout 5 步窗口均值 ${training.reward.toFixed(4)}` : '\n训练 rollout reward 未记录'}` };
   }));
-  drawChart(canvas, points, 'reward', '#08745d', false, milestones);
-  value.textContent = `${points[0].reward.toFixed(3)} → ${points.at(-1).reward.toFixed(3)}`;
+  if (points.length) {
+    drawChart(canvas, points, 'reward', '#08745d', false, milestones);
+    value.textContent = `${points[0].reward.toFixed(3)} → ${points.at(-1).reward.toFixed(3)}`;
+  } else {
+    drawPending(canvas, run.run_status === 'queued' ? '训练排队中' : '训练进行中 · 曲线待回收');
+    value.textContent = run.run_status === 'queued' ? '排队中' : '回收中';
+  }
   klMilestones.set(run.kl.map((point) => ({ step: point.step,
     label: `第 ${point.step} 步 · 离线固定参考条件 KL ${point.kl.toPrecision(5)}\n不是训练时记录的 KL` })));
-  drawChart(klCanvas, run.kl, 'kl', '#b36b24', false, klMilestones);
-  klValue.textContent = `step 1: 0 → step 100: ${run.kl.at(-1).kl.toPrecision(4)}`;
-  if (!details.open) return;
+  if (run.kl.length) {
+    drawChart(klCanvas, run.kl, 'kl', '#b36b24', false, klMilestones);
+    klValue.textContent = `step 1: 0 → step 100: ${run.kl.at(-1).kl.toPrecision(4)}`;
+  } else {
+    drawPending(klCanvas, '离线 KL 待测');
+    klValue.textContent = '待测';
+  }
+  dimensionList.hidden = !run.heldout.length;
+  if (!details.open || !run.heldout.length) return;
   for (const [key, color] of dimensions) {
     const plot = dimensionList.querySelector(`[data-dimension="${key}"]`);
     const before = run.heldout[0][key];

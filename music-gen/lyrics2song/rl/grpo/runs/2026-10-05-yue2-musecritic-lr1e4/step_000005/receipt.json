@@ -1,0 +1,99 @@
+{
+  "optimizer_step": 5,
+  "heldout": [
+    {
+      "index": 0,
+      "prompt": {
+        "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+        "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5101,
+      "audio": "step_000005/heldout_0/audio.flac",
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "reward": {
+        "Coherence": 2.671875,
+        "Musicality": 1.84375,
+        "Memorability": 2.65625,
+        "Clarity": 2.234375,
+        "Naturalness": 2.15625,
+        "mean": 2.3125
+      },
+      "signal": {
+        "peak": 0.9107761383056641,
+        "rms": 0.13549353517818916,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "audio_sha256": "ce2883dd0e86a4c2e9911bf5d9d5e496793348407c0187475a8f0289a0259b8b"
+    },
+    {
+      "index": 1,
+      "prompt": {
+        "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
+        "lyrics": "[Verse]\nThe cafe lights begin to glow\nA gentle rhythm starts to flow",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5102,
+      "audio": "step_000005/heldout_1/audio.flac",
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "reward": {
+        "Coherence": 2.53125,
+        "Musicality": 2.421875,
+        "Memorability": 2.46875,
+        "Clarity": 2.125,
+        "Naturalness": 2.34375,
+        "mean": 2.378125
+      },
+      "signal": {
+        "peak": 0.6650235652923584,
+        "rms": 0.08411894771959844,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "audio_sha256": "326b4f32c27c1beafe3bb4a6f50116ed649ad1792fcdc4bbb753de5612a718c8"
+    },
+    {
+      "index": 2,
+      "prompt": {
+        "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
+        "lyrics": "[Verse]\nBeyond the glass the colors rise\nA silver cloud across the skies",
+        "cot": "off",
+        "cfg_scale": 1.0
+      },
+      "seed": 5103,
+      "audio": "step_000005/heldout_2/audio.flac",
+      "seconds": 23.998666666666665,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "reward": {
+        "Coherence": 2.625,
+        "Musicality": 1.84375,
+        "Memorability": 2.96875,
+        "Clarity": 2.515625,
+        "Naturalness": 2.796875,
+        "mean": 2.55
+      },
+      "signal": {
+        "peak": 0.6140323877334595,
+        "rms": 0.12441682293503441,
+        "near_full_scale_fraction": 0.0,
+        "flat_top_fraction": 4.340518917717651e-07
+      },
+      "audio_sha256": "60058d4862ae7601fae5b9735fed5dd440f1f17f1fedc224eb5ff80dab5b111e"
+    }
+  ],
+  "mean_reward": 2.4135416666666667
+}

@@ -926,6 +926,188 @@
       "updates": 99,
       "reward_model": "MuseCritic",
       "kl_status": "offline_fixed_reference_conditional_kl"
+    },
+    "yue2_musecritic_lr1e4": {
+      "points": [
+        {
+          "step": 5,
+          "reward": 2.6769531071186066,
+          "updates": 4
+        },
+        {
+          "step": 10,
+          "reward": 2.5682812213897703,
+          "updates": 5
+        },
+        {
+          "step": 15,
+          "reward": 2.8456250190734864,
+          "updates": 5
+        },
+        {
+          "step": 20,
+          "reward": 2.645937514305115,
+          "updates": 5
+        },
+        {
+          "step": 25,
+          "reward": 2.8365625143051147,
+          "updates": 5
+        },
+        {
+          "step": 30,
+          "reward": 2.6637499809265135,
+          "updates": 5
+        },
+        {
+          "step": 35,
+          "reward": 3.010781264305115,
+          "updates": 5
+        },
+        {
+          "step": 40,
+          "reward": 2.8479687690734865,
+          "updates": 5
+        },
+        {
+          "step": 45,
+          "reward": 2.5349999904632567,
+          "updates": 5
+        },
+        {
+          "step": 50,
+          "reward": 2.6087499856948853,
+          "updates": 5
+        },
+        {
+          "step": 55,
+          "reward": 2.6920312643051147,
+          "updates": 5
+        },
+        {
+          "step": 60,
+          "reward": 2.5910937786102295,
+          "updates": 5
+        },
+        {
+          "step": 65,
+          "reward": 2.944062519073486,
+          "updates": 5
+        },
+        {
+          "step": 70,
+          "reward": 2.6417187213897706,
+          "updates": 5
+        },
+        {
+          "step": 75,
+          "reward": 2.65,
+          "updates": 5
+        },
+        {
+          "step": 80,
+          "reward": 2.6293750286102293,
+          "updates": 5
+        },
+        {
+          "step": 85,
+          "reward": 2.8253125190734862,
+          "updates": 5
+        },
+        {
+          "step": 90,
+          "reward": 2.559062492847443,
+          "updates": 5
+        },
+        {
+          "step": 95,
+          "reward": 2.6621875286102297,
+          "updates": 5
+        },
+        {
+          "step": 100,
+          "reward": 2.637343716621399,
+          "updates": 5
+        }
+      ],
+      "heldout": [
+        {
+          "step": 0,
+          "mean": 2.9677083333333334,
+          "Coherence": 3.1197916666666665,
+          "Musicality": 2.8333333333333335,
+          "Memorability": 3.109375,
+          "Clarity": 2.8697916666666665,
+          "Naturalness": 2.90625
+        },
+        {
+          "step": 1,
+          "mean": 2.5385416666666663,
+          "Coherence": 2.4322916666666665,
+          "Musicality": 1.9635416666666667,
+          "Memorability": 2.5833333333333335,
+          "Clarity": 3.1197916666666665,
+          "Naturalness": 2.59375
+        },
+        {
+          "step": 5,
+          "mean": 2.4135416666666663,
+          "Coherence": 2.609375,
+          "Musicality": 2.0364583333333335,
+          "Memorability": 2.6979166666666665,
+          "Clarity": 2.2916666666666665,
+          "Naturalness": 2.4322916666666665
+        },
+        {
+          "step": 25,
+          "mean": 2.8484375,
+          "Coherence": 2.8958333333333335,
+          "Musicality": 2.6015625,
+          "Memorability": 2.9375,
+          "Clarity": 3.015625,
+          "Naturalness": 2.7916666666666665
+        },
+        {
+          "step": 50,
+          "mean": 2.659375,
+          "Coherence": 2.8802083333333335,
+          "Musicality": 2.6041666666666665,
+          "Memorability": 2.6145833333333335,
+          "Clarity": 2.7135416666666665,
+          "Naturalness": 2.484375
+        },
+        {
+          "step": 100,
+          "mean": 2.732291666666667,
+          "Coherence": 2.6770833333333335,
+          "Musicality": 2.2291666666666665,
+          "Memorability": 3.0833333333333335,
+          "Clarity": 2.8177083333333335,
+          "Naturalness": 2.8541666666666665
+        }
+      ],
+      "kl": [],
+      "updates": 99,
+      "reward_model": "MuseCritic",
+      "kl_status": "pending_offline_probe"
+    },
+    "yue2_musecritic_lr1e3": {
+      "points": [],
+      "heldout": [],
+      "kl": [],
+      "updates": null,
+      "reward_model": "MuseCritic",
+      "run_status": "running",
+      "kl_status": "pending_offline_probe"
+    },
+    "yue2_musecritic_lr1e2": {
+      "points": [],
+      "heldout": [],
+      "kl": [],
+      "updates": null,
+      "reward_model": "MuseCritic",
+      "run_status": "queued",
+      "kl_status": "pending_offline_probe"
     }
   }
 }

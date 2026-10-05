@@ -675,7 +675,7 @@ function renderLyrics(data) {
     const pending = descriptor.stages.filter((stage) => stage.status === 'pending').map((stage) => stage.step);
     const queued = descriptor.stages.filter((stage) => stage.status === 'queued').map((stage) => stage.step);
     const running = descriptor.stages.filter((stage) => stage.status === 'running').map((stage) => stage.step);
-    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 已提交 Gadi 排队。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
+    $('#lyrics-stage-context').textContent = `${running.length ? `${running.join(' / ')} steps 正在训练。` : ''}${queued.length ? `${queued.join(' / ')} steps 排队中。` : ''}${pending.length ? `${pending.join(' / ')} steps 待运行。` : ''}${model === 'yue2_musecritic_lr1e2' ? '0/1 步仅展示各臂共用的冻结起点，尚非本臂训练结果。' : ''}欠拟合、改善或 reward hacking 必须由留出音频与指标共同判断，不能按步数预设。`;
     $('#lyrics-heldout-section').hidden = !isYuE2;
     $('#lyrics-muse-section').hidden = isYuE2;
     $('#lyrics-framework-note').textContent = isYuE2
@@ -687,22 +687,28 @@ function renderLyrics(data) {
     $('#lyrics-reward-definition').textContent = rewardName === 'MuseCritic'
       ? 'R_MC = 五项 MuseCritic 预测分数的均值（每项 1–5 分）。MuseCritic 先对连贯性、音乐性、记忆性、结构清晰度及人声自然度生成文字 critique，再据此预测连续分数。它沿用 SongEval 的五项 rubric，但不是调用 SongEval 打分；两种模型的数值不能当作同一量表直接比较。coverage、beat、歌词匹配、时长及削波均未单独约束。'
       : 'R_SE = (Coherence + Musicality + Memorability + Structural Clarity + Vocal Naturalness) / 5。SongEval 直接对音频输出五项审美分数；没有 MuseCritic 的“先写 critique、再预测分数”阶段。coverage、beat、歌词匹配、时长及削波均未单独约束。';
-    const learningRate = { yue2: '2e-5', yue2_stress: '1e-4', yue2_lr1e3: '1e-3', yue2_lr1e2: '1e-2', yue2_musecritic: '2e-5' }[model];
+    const learningRate = { yue2: '2e-5', yue2_stress: '1e-4', yue2_lr1e3: '1e-3', yue2_lr1e2: '1e-2',
+      yue2_musecritic: '2e-5', yue2_musecritic_lr1e4: '1e-4', yue2_musecritic_lr1e3: '1e-3', yue2_musecritic_lr1e2: '1e-2' }[model];
     $('#lyrics-train-protocol').textContent = isYuE2
       ? `YuE2：8 条原创训练提示（非 SongEval/WildSongBench/CMI 训练集），每步同提示采样 2 首并按组内均值/标准差求优势；LoRA、AdamW ${learningRate}、600 semantic tokens。每组只更新一次，因此 ratio 裁剪在该次梯度中不起作用；训练中无显式 KL、歌词匹配或响度约束。另有 3 条不参与训练的固定提示。${rewardName === 'MuseCritic' ? 'MuseCritic 对与存档一致的 PCM24-FLAC 评分。' : ''}`
       : model === 'musecritic' ? 'MuseCritic 臂：Muse + MuCodec 在线 GRPO；每组 2 次采样、组内相对优势，LoRA rank 8、AdamW 1e-6。第 1 步是 2 条 rollout 的短 pilot，25/50 步实验使用 100 条公开训练提示；留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，两臂共用同一冻结基线。本轮没有显式歌词匹配、响度或削波约束。' :
         'SongEval 臂：Muse + MuCodec 使用同一训练提示的 2 条 rollout，做 1 次组内相对优势更新；LoRA rank 8、AdamW 2e-5。留出生成固定 500 tokens、seed 5101 和 MuCodec 20 步，与 MuseCritic 臂共用同一冻结基线。25/50/100/300 步尚未完成，不能据此推断趋势；没有显式歌词匹配、响度或削波约束。';
     if (isYuE2) {
-      const armRows = Object.entries({ yue2: 'SongEval · 2e-5', yue2_stress: 'SongEval · 1e-4',
-        yue2_lr1e3: 'SongEval · 1e-3', yue2_lr1e2: 'SongEval · 1e-2',
-        yue2_musecritic: 'MuseCritic · 2e-5' }).flatMap(([key, arm]) =>
-        models[key].stages.filter((item) => item.status === 'measured').map((item) =>
-          ({ stage: item, arm, baseMean: models[key].stages[0].mean_reward, key })));
+      $('#lyrics-heldout-title').textContent = `YuE2 · ${rewardName} · 3 首固定留出歌曲 · 检查点总表`;
+      const arms = rewardName === 'MuseCritic'
+        ? { yue2_musecritic: '2e-5', yue2_musecritic_lr1e4: '1e-4',
+          yue2_musecritic_lr1e3: '1e-3', yue2_musecritic_lr1e2: '1e-2' }
+        : { yue2: '2e-5', yue2_stress: '1e-4', yue2_lr1e3: '1e-3', yue2_lr1e2: '1e-2' };
+      const armRows = Object.entries(arms).flatMap(([key, arm]) => models[key].stages.map((stage) =>
+        ({ stage, arm, baseMean: models[key].stages[0].mean_reward, key })));
       appendCells($('#lyrics-heldout-table'), armRows.map(({ stage, arm, baseMean, key }) => [
-        key === model ? `● ${arm}` : arm, String(stage.step), `${fmt(stage.mean_reward)} (${signed(stage.mean_reward - baseMean, 4)})`,
-        Number.isFinite(stage.offline_kl) ? stage.offline_kl.toFixed(stage.offline_kl >= 0.01 ? 3 : 6) : '—',
-        fmt(stage.heldout_summary.max_peak, 4), `${stage.heldout_summary.near_full_scale_clips} / ${stage.heldout_summary.n}`,
-        `${stage.heldout_summary.truncated} / ${stage.heldout_summary.n}`,
+        key === model ? `● ${arm}` : arm, String(stage.step),
+        stage.status === 'measured' ? `${fmt(stage.mean_reward)} (${signed(stage.mean_reward - baseMean, 4)})` :
+          stage.status === 'running' ? '运行中' : stage.status === 'queued' ? '排队中' : '待测',
+        Number.isFinite(stage.offline_kl) ? stage.offline_kl.toFixed(stage.offline_kl >= 0.01 ? 3 : 6) : '待测',
+        stage.heldout_summary ? fmt(stage.heldout_summary.max_peak, 4) : '—',
+        stage.heldout_summary ? `${stage.heldout_summary.near_full_scale_clips} / ${stage.heldout_summary.n}` : '—',
+        stage.heldout_summary ? `${stage.heldout_summary.truncated} / ${stage.heldout_summary.n}` : '—',
       ]));
     } else {
       const museBase = models.muse.stages[0];

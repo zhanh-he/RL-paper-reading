@@ -18,6 +18,7 @@ for (const [arm, directory, klAudit, klArm, baselineDirectory] of [
   ['yue2_lr1e3', '2026-09-30-yue2-high-lr/lr1e-3', oldKl, '1e-3', '2026-09-30-yue2-longrun'],
   ['yue2_lr1e2', '2026-09-30-yue2-high-lr/lr1e-2', oldKl, '1e-2', '2026-09-30-yue2-longrun'],
   ['yue2_musecritic', '2026-10-01-yue2-musecritic-pcm24', criticKl, 'MuseCritic', '2026-10-01-yue2-musecritic-pcm24'],
+  ['yue2_musecritic_lr1e4', '2026-10-05-yue2-musecritic-lr1e4', null, null, '2026-10-05-yue2-musecritic-lr1e4'],
 ]) {
   const source = resolve(root, `music-gen/lyrics2song/rl/grpo/runs/${directory}/steps.jsonl`);
   const rows = (await readFile(source, 'utf8')).trim().split('\n').map((line) => JSON.parse(line))
@@ -52,11 +53,15 @@ for (const [arm, directory, klAudit, klArm, baselineDirectory] of [
     }
     heldout.push({ step, mean, ...scores });
   }
-  const kl = [1, 5, 25, 50, 100].map((step) => ({ step, kl: klAudit.arms[klArm]?.[String(step)]?.kl }));
-  if (kl.some((point) => !Number.isFinite(point.kl))) throw new Error(`Missing audited KL: ${arm}`);
+  const kl = klAudit ? [1, 5, 25, 50, 100].map((step) => ({ step, kl: klAudit.arms[klArm]?.[String(step)]?.kl })) : [];
+  if (klAudit && kl.some((point) => !Number.isFinite(point.kl))) throw new Error(`Missing audited KL: ${arm}`);
   runs[arm] = { points, heldout, kl, updates: 99,
-    reward_model: arm === 'yue2_musecritic' ? 'MuseCritic' : 'SongEval',
-    kl_status: 'offline_fixed_reference_conditional_kl' };
+    reward_model: arm.startsWith('yue2_musecritic') ? 'MuseCritic' : 'SongEval',
+    kl_status: klAudit ? 'offline_fixed_reference_conditional_kl' : 'pending_offline_probe' };
+}
+for (const [arm, status] of [['yue2_musecritic_lr1e3', 'running'], ['yue2_musecritic_lr1e2', 'queued']]) {
+  runs[arm] = { points: [], heldout: [], kl: [], updates: null, reward_model: 'MuseCritic',
+    run_status: status, kl_status: 'pending_offline_probe' };
 }
 const output = resolve(root, 'platform/site/demos/yue2-training-curves.json');
 const contents = `${JSON.stringify({ status: 'measured_training_reward_and_offline_kl', bin_size: 5, runs }, null, 2)}\n`;

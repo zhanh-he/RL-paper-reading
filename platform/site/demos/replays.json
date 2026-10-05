@@ -87,6 +87,57 @@
         { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000100.flac", "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
+    "yue2_musecritic_lr1e4": {
+      "name": "YuE2-3B · MuseCritic · LR 1e-4",
+      "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+      "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+      "seed": 5101,
+      "reference": null,
+      "reward_model": "MuseCritic",
+      "learning_rate": 0.0001,
+      "stages": [
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000005.flac", "wave": "visuals/yue2_musecritic_lr1e4_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000025.flac", "wave": "visuals/yue2_musecritic_lr1e4_000025_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000050.flac", "wave": "visuals/yue2_musecritic_lr1e4_000050_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000100.flac", "wave": "visuals/yue2_musecritic_lr1e4_000100_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000100/receipt.json", "receipt_key": "heldout:0" }
+      ]
+    },
+    "yue2_musecritic_lr1e3": {
+      "name": "YuE2-3B · MuseCritic · LR 1e-3",
+      "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+      "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+      "seed": 5101,
+      "reference": null,
+      "reward_model": "MuseCritic",
+      "learning_rate": 0.001,
+      "stages": [
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e3_000005.flac", "wave": "visuals/yue2_musecritic_lr1e3_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "running" },
+        { "step": 50, "status": "running" },
+        { "step": 100, "status": "running" }
+      ]
+    },
+    "yue2_musecritic_lr1e2": {
+      "name": "YuE2-3B · MuseCritic · LR 1e-2",
+      "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
+      "lyrics": "[Verse]\nUnder open skies we roam\nEvery little road leads home",
+      "seed": 5101,
+      "reference": null,
+      "reward_model": "MuseCritic",
+      "learning_rate": 0.01,
+      "stages": [
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "queued" },
+        { "step": 25, "status": "queued" },
+        { "step": 50, "status": "queued" },
+        { "step": 100, "status": "queued" }
+      ]
+    },
     "muse": {
       "name": "Muse-0.6b + MuCodec · SongEval GRPO",
       "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",

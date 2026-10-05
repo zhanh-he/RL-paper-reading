@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261005-yue2-recovery"></script>
+    <script type="module" src="./lab.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
-    <script type="module" src="./yue2-curves.js?v=20261005-kl"></script>
+    <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261005-reward-kl"></script>
   </head>
   <body>
@@ -146,7 +146,7 @@
 
       <section class="lab-view" id="view-lyrics">
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Matched held-out replay</p><h2>Lyrics → song</h2></div><div class="section-actions"><span class="state measured">实测 · 5090 / Gadi</span><button class="button button-secondary" type="button" data-jump="lyrics-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
-        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · SongEval · 2e-5</button><button type="button" data-replay-model="yue2_stress" aria-pressed="false">YuE2 · SongEval · 1e-4</button><button type="button" data-replay-model="yue2_lr1e3" aria-pressed="false">YuE2 · SongEval · 1e-3</button><button type="button" data-replay-model="yue2_lr1e2" aria-pressed="false">YuE2 · SongEval · 1e-2</button><button type="button" data-replay-model="yue2_musecritic" aria-pressed="false">YuE2 · MuseCritic · 2e-5</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span id="lyrics-seed-label">held-out seed 5101</span></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" role="group" aria-label="Experiment"><button type="button" data-replay-model="yue2" aria-pressed="true">YuE2 · SongEval · 2e-5</button><button type="button" data-replay-model="yue2_stress" aria-pressed="false">YuE2 · SongEval · 1e-4</button><button type="button" data-replay-model="yue2_lr1e3" aria-pressed="false">YuE2 · SongEval · 1e-3</button><button type="button" data-replay-model="yue2_lr1e2" aria-pressed="false">YuE2 · SongEval · 1e-2</button><button type="button" data-replay-model="yue2_musecritic" aria-pressed="false">YuE2 · MuseCritic · 2e-5</button><button type="button" data-replay-model="yue2_musecritic_lr1e4" aria-pressed="false">YuE2 · MuseCritic · 1e-4</button><button type="button" data-replay-model="yue2_musecritic_lr1e3" aria-pressed="false">YuE2 · MuseCritic · 1e-3 · 运行中</button><button type="button" data-replay-model="yue2_musecritic_lr1e2" aria-pressed="false">YuE2 · MuseCritic · 1e-2 · 排队中</button><button type="button" data-replay-model="muse" aria-pressed="false">Muse · SongEval</button><button type="button" data-replay-model="musecritic" aria-pressed="false">Muse · MuseCritic</button></div><span id="lyrics-seed-label">held-out seed 5101</span></div>
         <div class="metric-controls lyrics-example-controls" id="lyrics-example-controls"><span class="control-label">Held-out song</span><div class="segmented" id="lyrics-example-buttons" role="group" aria-label="Held-out song"></div></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
@@ -163,7 +163,7 @@
             </details>
             <details class="choral-deep-dive"><summary>曲线口径、KL 记录与训练框架</summary>
               <p class="section-copy">左图每点是两条训练采样的五维均分，再取 5 步窗口均值；圆点对应固定留出评测步骤。训练 rollout 与三首固定留出歌曲是不同口径，留出分数未画入左图。</p>
-              <p class="section-copy">右图是事后计算的固定参考条件 KL：以第 1 步 LoRA 为参考，在三条参考策略生成的留出 token 轨迹上计算 mean token D_KL(reference || checkpoint)，只测 1/5/25/50/100 步。不是训练时记录的 KL，也没有作为优化约束；线段仅连接离散测点。第 0 步是另一权重，不能在这张图上标成零 KL。</p>
+              <p class="section-copy">右图是事后计算的固定参考条件 KL：以第 1 步 LoRA 为参考，在三条参考策略生成的留出 token 轨迹上计算 mean token D_KL(reference || checkpoint)，只测 1/5/25/50/100 步。不是训练时记录的 KL，也没有作为优化约束；线段仅连接离散测点。第 0 步是另一权重，不能在这张图上标成零 KL。新 MuseCritic 学习率臂尚无离线探针，明确显示待测。</p>
               <p class="section-copy">YuE2 的 GRPO 由项目内 PyTorch 循环实现，用 PEFT/LoRA 和本地 YuE2 pipeline；未使用 TRL、MILES、verl 或 verl-omni 的训练器。</p>
             </details>
           </div>
@@ -173,7 +173,7 @@
         <p class="stage-context" id="lyrics-stage-context"></p>
         <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Switch audio at the same position"><button type="button" data-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-listen="candidate" aria-pressed="false">B · 1 step</button></div><span id="listen-status" aria-live="polite">选择 A 或 B 开始播放</span></div>
         <div class="compare-grid" id="lyrics-compare"></div>
-        <section id="lyrics-heldout-section" class="lyrics-heldout-section"><h3 class="subsection-heading">YuE2 · 3 首固定留出歌曲 · 检查点总表</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward / LR</th><th>Updates</th><th>同臂 reward 均分 (Δ vs 0)</th><th>离线 KL vs step 1</th><th>最高峰值</th><th>近满幅削波</th><th>截断</th></tr></thead><tbody id="lyrics-heldout-table"></tbody></table></div><p class="stage-context">固定提示与种子 5101–5103；每格 reward 是三首均分，括号是相对本臂 0 步的差值。SongEval 与 MuseCritic 不能跨量表比较；MuseCritic 使用评分与存档一致的 PCM24-FLAC。KL 是事后固定参考探针，不是在线训练记录。600 semantic-token 上限可能截断歌曲；峰值与削波仅作信号诊断，不能代替盲听。</p></section>
+        <section id="lyrics-heldout-section" class="lyrics-heldout-section"><h3 class="subsection-heading" id="lyrics-heldout-title">YuE2 · 3 首固定留出歌曲 · 检查点总表</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward / LR</th><th>Updates</th><th>同臂 reward 均分 (Δ vs 0)</th><th>离线 KL vs step 1</th><th>最高峰值</th><th>近满幅削波</th><th>截断</th></tr></thead><tbody id="lyrics-heldout-table"></tbody></table></div><p class="stage-context">固定提示与种子 5101–5103；每格 reward 是三首均分，括号是相对本臂 0 步的差值。SongEval 与 MuseCritic 分表展示，不能跨量表比较；MuseCritic 使用评分与存档一致的 PCM24-FLAC。未完成的检查点留出坑位，不填分数；KL 是事后固定参考探针，未完成者标待测。600 semantic-token 上限可能截断歌曲；峰值与削波仅作信号诊断，不能代替盲听。</p></section>
         <section id="lyrics-muse-section" class="lyrics-heldout-section" hidden><h3 class="subsection-heading">Muse · shared held-out replay · seed 5101</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward arm</th><th>Updates</th><th>SongEval Mean5 (Δ vs 0)</th><th>MuseCritic Mean5 (Δ vs 0)</th><th>Replay</th></tr></thead><tbody id="lyrics-muse-table"></tbody></table></div><p class="stage-context">两臂共用同一冻结基线音频、歌词、seed 与 MuCodec 解码配置。单首歌的分数不可代替盲听或泛化评估；未产出音频的阶段不填分数。</p></section>
         <details id="lyrics-100-pairs" class="lyrics-pairs" hidden><summary>100 步 · 三首留出 A/B 试听</summary><div id="lyrics-100-pair-list"></div></details>
         <h3 class="subsection-heading">Objective checks</h3>
