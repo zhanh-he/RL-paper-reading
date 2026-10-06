@@ -6,11 +6,11 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20261006-cmi-triple" />
+    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-research" />
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261005-musecritic-sweep"></script>
+    <script type="module" src="./lab.js?v=20261006-vocal-research"></script>
     <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261005-reward-kl"></script>
@@ -212,7 +212,7 @@
 
       <section class="lab-view" id="view-datasets" hidden>
         <div class="section-intro"><div><p class="eyebrow">Pre-registered experimental data</p><h2>Dataset Protocol</h2></div><span class="state diagnostic">SHA-pinned · split audit</span></div>
-        <div class="metric-controls dataset-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Dataset protocol task"><button type="button" data-dataset-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-dataset-task="vocal" aria-pressed="false">Vocal2song</button><button type="button" data-dataset-task="choral" aria-pressed="false">ChoralTranscription</button></div></div>
+        <div class="metric-controls dataset-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Dataset protocol task"><button type="button" data-dataset-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-dataset-task="vocal" aria-pressed="false">Vocal2song</button><button type="button" data-dataset-task="choral" aria-pressed="false">Choral</button></div></div>
         <div data-dataset-panel="lyrics">
         <p class="section-copy">这里使用的是 CMI-Pref 偏好数据，不是名字相近的 CMI-Bench 音乐理解数据。生成条件、A/B 偏好音频、reward 训练素材和最终 benchmark 用途不同；SongEval 音频评分集不是歌词提示集，WildSongBench 的公开 test 提示不能再拿来训练或调参。</p>
         <h3 class="subsection-heading">Source roles</h3>
@@ -235,10 +235,20 @@
         <div class="model-links"><a class="source-link" href="https://huggingface.co/datasets/HaiwenXia/cmi-pref" target="_blank" rel="noreferrer">CMI-Pref ↗</a><a class="source-link" href="https://arxiv.org/html/2603.00610v3" target="_blank" rel="noreferrer">CMI paper ↗</a><a class="source-link" href="https://huggingface.co/datasets/m-a-p/WildSongBench" target="_blank" rel="noreferrer">WildSongBench ↗</a><a class="source-link" href="https://huggingface.co/datasets/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval ↗</a><a class="source-link" href="https://github.com/Haiwen-Xia/CMI-RewardBench" target="_blank" rel="noreferrer">CMI-RewardBench ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_formal_data.py" target="_blank" rel="noreferrer">Reproduce split ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/DATA-MODALITY-AUDIT.md" target="_blank" rel="noreferrer">Modality audit ↗</a></div>
         </div>
         <div data-dataset-panel="vocal" hidden>
-          <p class="section-copy">当前 LaDA-Band 是固定人声片段上的在线 reward 消融，不与 Lyrics2song 的 CMI-Pref 划分共用数据。</p>
+          <p class="section-copy">任务口径：输入固定原人声，生成独立伴奏，再与原人声混音；不能把重新生成歌声的 cover 模型或纯歌词提示集当作同一任务。当前 LaDA-Band 是单条人声上的在线 reward 消融，不与 Lyrics2song 的 CMI-Pref 划分共用数据。</p>
+          <h3 class="subsection-heading">当前展示：实际使用的数据</h3>
           <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Scope</th><th>Input</th><th>Use and boundary</th></tr></thead><tbody><tr><td>Train</td><td>ACE Studio Emma 原创独唱，前 6 秒</td><td>同一人声条件上采样两条候选并做 GRPO；不是多歌曲训练集。</td></tr><tr><td>Fixed replay</td><td>同一人声，前 12 秒</td><td>固定 seed 的 A/B 试听与客观指标；包含训练用的前 6 秒，不是 held-out song。</td></tr><tr><td>Held-out phrase</td><td>同一来源人声的另一乐句</td><td>仅作早期诊断；不是未见歌曲或未见歌手的 test。</td></tr><tr><td>Independent test</td><td>尚无</td><td>不能据此报告跨歌曲泛化或主观偏好提升。</td></tr></tbody></table></div>
-          <p class="stage-context">ACE-Step / AnyAccomp 的另一条合成元音输入只用于推理接通，不属于上述 LaDA 对照。所有消融保持同一 Emma 输入和冻结起点。</p>
-          <div class="model-links"><a class="source-link" href="./vocal-lada.html">配对试听与留出乐句 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rl/grpo/README.md" target="_blank" rel="noreferrer">LaDA 实验记录 ↗</a></div>
+          <h3 class="subsection-heading">公开数据：按用途分层</h3>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Dataset</th><th>可用信息</th><th>Vocal → accompaniment 用途</th><th>限制</th></tr></thead><tbody>
+            <tr><td><a href="https://sigsep.github.io/datasets/musdb.html" target="_blank" rel="noreferrer">MUSDB18-HQ</a></td><td>150 首无损分轨；官方 100 train / 50 test</td><td>真实人声 + 非人声轨配对；优先做小规模后训练与封存测试</td><td>train 内按整首歌再划验证；学术访问需申请；不要让同歌片段跨划分</td></tr>
+            <tr><td><a href="https://github.com/moises-ai/moises-db" target="_blank" rel="noreferrer">MoisesDB</a></td><td>240 首细粒度分轨</td><td>筛出有人声的曲目，补充编制与风格；可检验不同乐器组合</td><td>并非 240 首都自动是有效 V2A 对；按艺人/歌曲防泄漏</td></tr>
+            <tr><td><a href="https://medleydb.weebly.com/description.html" target="_blank" rel="noreferrer">MedleyDB</a></td><td>v1+v2 共 196 首多轨，包含纯器乐</td><td>筛选 vocal stem 后扩充真实录音域</td><td>与 MUSDB18 有曲目重叠，须去重；全量音频需申请</td></tr>
+            <tr><td><a href="https://huggingface.co/datasets/lsfhuihuiff/suno70k" target="_blank" rel="noreferrer">Suno70k</a></td><td>约 69,469 首的元数据、歌词、音频链接</td><td>大规模伪配对的候选来源</td><td>不是现成分轨；需取得音频、分离、核查来源与伪影</td></tr>
+            <tr><td><a href="https://huggingface.co/datasets/HaiwenXia/cmi-pref" target="_blank" rel="noreferrer">CMI-Pref</a></td><td>参考音频条件 + 两个生成结果的人类偏好票</td><td>偏好模型研究；不作直接 V2A 监督配对</td><td>参考音频未核验为干人声；候选输出不是真值伴奏</td></tr>
+            <tr><td><a href="https://huggingface.co/datasets/m-a-p/WildSongBench" target="_blank" rel="noreferrer">WildSongBench</a></td><td>192 条风格/歌词生成提示</td><td>Lyrics2song 外部测试；非原生 V2A 数据</td><td>无输入人声或伴奏真值；额外配人声将改变官方协议</td></tr>
+          </tbody></table></div>
+          <p class="stage-context">建议的下一轮正式协议：MUSDB18-HQ 仅在 100 首 train 中按歌曲划训练/验证，官方 50 首 test 封存；MoisesDB 作为独立补充来源，再留一组真实干声做域外测试。固定人声、提示、长度和种子，分别报告短片段及整歌。当前展示尚未执行此协议，不能把建议写成已完成实验。ACE-Step / AnyAccomp 的另一条合成元音输入仅用于推理接通，不属于 Emma / LaDA 对照。</p>
+          <div class="model-links"><a class="source-link" href="./vocal-lada.html">配对试听与留出乐句 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rl/grpo/README.md" target="_blank" rel="noreferrer">LaDA 实验记录 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/DATA-MODALITY-AUDIT.md" target="_blank" rel="noreferrer">CMI 模态审计 ↗</a></div>
         </div>
         <div data-dataset-panel="choral" hidden>
           <p class="section-copy">ChoralStream frame-head pilot 与 event-head reward 消融是两套独立实验，不能混用分母或把公开合成试听算入测试集。</p>
@@ -286,6 +296,7 @@
         <div class="metric-controls replay-model-controls"><span class="control-label">Reward arm</span><div class="segmented" id="lada-arms" role="group" aria-label="LaDA reward arm"></div><span>固定 Emma 人声 · seed 777</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · vocal</span><strong>ACE Studio Emma · 原创独唱旋律</strong><audio id="lada-source" controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><p>训练用前 6 秒；固定种子重放前 12 秒。所有 reward 组使用相同输入。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一参考伴奏</strong><p>开放式伴奏任务没有单一正确音频；评价靠同输入 A/B、拍点、活动覆盖、响度和主观听感共同判断。</p></div></div>
         <div class="lyrics-protocol"><strong id="lada-protocol-title">LaDA-Band · online GRPO</strong><p id="lada-protocol"></p></div>
+        <div class="model-links"><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="vocal">Dataset Protocol ↗</a><button class="source-link" type="button" data-jump="vocal-models">SOTA Models ↓</button><button class="source-link" type="button" data-jump="vocal-rewards">Rewards ↓</button></div>
         <section class="choral-training" id="lada-training" aria-label="LaDA training traces">
           <div class="choral-training-heading"><h3>训练过程 · <span id="lada-training-arm">Beat-v2</span> reward / KL</h3><span id="lada-training-extent">每步 2 条 6 秒采样</span></div>
           <div class="choral-training-plots">
@@ -313,6 +324,27 @@
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lada-interpretation">单歌手、单旋律、固定重放；没有未见歌曲的统计结论。听感还需要人工判断。</p></div>
         <div class="model-links"><a class="source-link" href="./vocal-lada.html">完整消融、伴奏独听与留出乐句 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/rl/grpo" target="_blank" rel="noreferrer">训练代码与记录 ↗</a><a class="source-link" href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">LaDA-Band 官方代码 ↗</a></div>
         <details class="choral-deep-dive"><summary>其他模型的推理基线 · 无 GRPO</summary><p class="section-copy">以下 ACE-Step / AnyAccomp 使用另一条合成元音引导声，只是模型接通测试；不能和上方 Emma / LaDA 实验作同输入提升比较。</p><div class="stage-rail" id="vocal-stage-rail" aria-label="Other vocal model baselines"></div><div class="compare-grid" id="vocal-compare"></div><div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>0</strong> GRPO updates</span></div><div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div></details>
+        <h3 class="subsection-heading" id="vocal-models">SOTA Models · 同任务优先</h3>
+        <p class="section-copy">只把“保留原人声、生成独立伴奏”的模型放在直接比较组。不同论文的输入条件、片段长度、训练数据和重训版本不同；下表不是跨论文总排行榜。</p>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Model</th><th>任务和可用性</th><th>当前实验角色</th></tr></thead><tbody>
+          <tr><td><a href="https://arxiv.org/html/2604.11052" target="_blank" rel="noreferrer">LaDA-Band</a></td><td>直接 V2A，支持长歌；<a href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">代码</a>与受控访问权重</td><td>主模型：本站展示相同 Emma 人声的 GRPO 配对回放</td></tr>
+          <tr><td><a href="https://arxiv.org/html/2509.14052" target="_blank" rel="noreferrer">AnyAccomp</a></td><td>直接伴奏；<a href="https://github.com/AmphionTeam/AnyAccomp" target="_blank" rel="noreferrer">开源代码/权重</a>；专门测试干净人声泛化</td><td>第二模型候选；本站现有结果只是另一输入上的推理接通，非同输入 GRPO</td></tr>
+          <tr><td><a href="https://github.com/chenjianyi/fastsag" target="_blank" rel="noreferrer">FastSAG</a></td><td>短片段 singing accompaniment；代码和 checkpoint 下载说明公开</td><td>历史短片段基线，本站未跑</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2301.12662" target="_blank" rel="noreferrer">SingSong</a></td><td>早期人声条件伴奏；以大规模源分离构造成对数据</td><td>方法与分离伪影风险参照，本站未跑</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2602.19976" target="_blank" rel="noreferrer">SongEcho</a></td><td>同时生成新歌声与伴奏的 cover 任务</td><td>邻近工作，不纳入保留原人声的同口径比较</td></tr>
+        </tbody></table></div>
+        <h3 class="subsection-heading" id="vocal-rewards">Rewards · 来源与可训练性</h3>
+        <p class="section-copy">“开源”指外部公开实现；“自研”指本项目或前序 vocal2accomp 项目的评分逻辑。底层调用开源库不等于整个 reward 来自外部。训练 reward 与独立评估分开列，避免把代理指标写成已验证的音乐质量。</p>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward / metric</th><th>来源</th><th>当前状态</th><th>主要盲点</th></tr></thead><tbody>
+          <tr><td>Beat-v2 F1</td><td><strong>自研 reward</strong>；节拍检测用开源 <a href="https://github.com/CPJKU/madmom" target="_blank" rel="noreferrer">madmom</a></td><td>单项 GRPO 已跑；固定重放独立评分</td><td>对齐的稀疏 clicks 也可高分，不保证和声和编曲</td></tr>
+          <tr><td>Coverage · 40 ms RMS / STFT</td><td><strong>自研 reward / 指标</strong></td><td>RMS 单项 GRPO 已跑；STFT 作独立检查</td><td>持续音、噪声和过响可抬高覆盖</td></tr>
+          <tr><td>Richness · 有用的编曲层次</td><td><strong>拟自研</strong></td><td>尚无经验证的训练实现；频带占用只是代理，不能改称 richness</td><td>堆噪声或乱加乐器会假装“丰富”</td></tr>
+          <tr><td>Beat + Coverage + 质量约束</td><td><strong>自研组合 reward</strong></td><td>在线消融已跑；约束峰值、响度和平坦度</td><td>只挡住部分构造攻击，不能声称普遍防止 reward hacking</td></tr>
+          <tr><td><a href="https://github.com/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval</a> / <a href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic</a></td><td><strong>外部开源</strong>歌曲审美模型</td><td>候选辅助评分；本站 V2A GRPO 未用</td><td>完整歌曲分数不直接测原人声与伴奏是否合拍</td></tr>
+          <tr><td><a href="https://github.com/facebookresearch/audiobox-aesthetics" target="_blank" rel="noreferrer">Audiobox Aesthetics</a></td><td><strong>外部开源</strong>音频审美模型</td><td>音质候选，未做本站 GRPO 消融</td><td>需固定混音响度并防评分器偏好音量</td></tr>
+          <tr><td><a href="https://github.com/SonyCSLParis/audio-metrics" target="_blank" rel="noreferrer">APA</a> / FAD</td><td><strong>外部开源</strong>评估指标</td><td>成组数据集报告，不直接作为逐候选 GRPO reward</td><td>需要参考分布；不能把单样本数值冒充训练奖励</td></tr>
+        </tbody></table></div>
+        <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>
       </section>
 
       <footer class="lab-footer">Data are generated from versioned aggregate receipts. No private recordings, source IDs or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>

@@ -35,6 +35,7 @@
 .finding p { min-height: 48px; margin: 0 0 14px; color: var(--ink-muted); font-size: .82rem; line-height: 1.5; }
 .finding a, .source-link { color: var(--blue); font-size: .82rem; font-weight: 700; text-decoration: none; }
 .finding a:hover, .source-link:hover { text-decoration: underline; }
+button.source-link { padding: 0; border: 0; background: none; cursor: pointer; font-family: inherit; }
 .case-status { margin-top: 30px; border-top: 1px solid var(--line); }
 .case-status > div:first-child { padding: 18px 0 6px; }
 .case-status h3 { margin: 0 0 3px; font-size: 1rem; }

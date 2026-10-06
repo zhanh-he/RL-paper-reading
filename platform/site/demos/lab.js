@@ -829,7 +829,12 @@ for (const button of document.querySelectorAll('[data-lyrics-track]')) button.ad
   if (mock && replayData) requestAnimationFrame(() => renderLyrics(replayData));
 });
 for (const button of document.querySelectorAll('[data-jump]')) button.addEventListener('click', () => document.getElementById(button.dataset.jump).scrollIntoView({ behavior: 'smooth', block: 'start' }));
-for (const link of document.querySelectorAll('[data-open-view]')) link.addEventListener('click', (event) => { event.preventDefault(); setView(link.dataset.openView); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+for (const link of document.querySelectorAll('[data-open-view]')) link.addEventListener('click', (event) => {
+  event.preventDefault();
+  setView(link.dataset.openView);
+  if (link.dataset.datasetTarget) document.querySelector(`[data-dataset-task="${link.dataset.datasetTarget}"]`)?.click();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 window.addEventListener('hashchange', () => setView(location.hash.slice(1)));
 setView(location.hash.slice(1) || 'lyrics');
 if (window.lucide) window.lucide.createIcons();
