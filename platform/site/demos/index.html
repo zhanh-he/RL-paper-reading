@@ -6,7 +6,7 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-tracks" />
+    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-matrix" />
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
@@ -349,7 +349,7 @@
         <div class="compare-grid" id="lada-compare"></div>
         <h3 class="subsection-heading">Objective checks</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Metric</th><th>Baseline</th><th id="lada-metric-head">Selected step</th><th>Δ</th></tr></thead><tbody id="lada-metrics"></tbody></table></div>
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lada-interpretation">单歌手、单旋律、固定重放；没有未见歌曲的统计结论。听感还需要人工判断。</p></div>
-        <div class="model-links"><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="vocal">数据来源与划分 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/rl/grpo" target="_blank" rel="noreferrer">训练代码与记录 ↗</a><a class="source-link" href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">LaDA-Band 官方代码 ↗</a></div>
+        <div class="model-links"><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="vocal">数据来源与划分 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/notes/2026-10-06-vocal2accomp-task-map.md" target="_blank" rel="noreferrer">Dataset / Models / Rewards 研究笔记 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/rl/grpo" target="_blank" rel="noreferrer">训练代码与记录 ↗</a><a class="source-link" href="https://github.com/Duoluoluos/LaDA-Band" target="_blank" rel="noreferrer">LaDA-Band 官方代码 ↗</a></div>
         <details class="choral-deep-dive"><summary>其他模型的推理基线 · 无 GRPO</summary><p class="section-copy">以下 ACE-Step / AnyAccomp 使用另一条合成元音引导声，只是模型接通测试；不能和上方 Emma / LaDA 实验作同输入提升比较。</p><div class="stage-rail" id="vocal-stage-rail" aria-label="Other vocal model baselines"></div><div class="compare-grid" id="vocal-compare"></div><div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>0</strong> GRPO updates</span></div><div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div></details>
         <h3 class="subsection-heading" id="vocal-models">SOTA Models · 同任务优先</h3>
         <p class="section-copy">只把“保留原人声、生成独立伴奏”的模型放在直接比较组。不同论文的输入条件、片段长度、训练数据和重训版本不同；下表不是跨论文总排行榜。</p>
@@ -358,6 +358,7 @@
           <tr><td><a href="https://arxiv.org/html/2509.14052" target="_blank" rel="noreferrer">AnyAccomp</a></td><td>直接伴奏；<a href="https://github.com/AmphionTeam/AnyAccomp" target="_blank" rel="noreferrer">开源代码/权重</a>；专门测试干净人声泛化</td><td>第二模型候选；本站现有结果只是另一输入上的推理接通，非同输入 GRPO</td></tr>
           <tr><td><a href="https://github.com/chenjianyi/fastsag" target="_blank" rel="noreferrer">FastSAG</a></td><td>短片段 singing accompaniment；代码和 checkpoint 下载说明公开</td><td>历史短片段基线，本站未跑</td></tr>
           <tr><td><a href="https://arxiv.org/abs/2301.12662" target="_blank" rel="noreferrer">SingSong</a></td><td>早期人声条件伴奏；以大规模源分离构造成对数据</td><td>方法与分离伪影风险参照，本站未跑</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2604.09054" target="_blank" rel="noreferrer">AccompGen</a></td><td>直接人声到伴奏的层级自回归模型；本站未核验公开权重</td><td>方法参照，尚不是可立即复现的后训练目标</td></tr>
           <tr><td><a href="https://arxiv.org/abs/2602.19976" target="_blank" rel="noreferrer">SongEcho</a></td><td>同时生成新歌声与伴奏的 cover 任务</td><td>邻近工作，不纳入保留原人声的同口径比较</td></tr>
         </tbody></table></div>
         <h3 class="subsection-heading" id="vocal-rewards">Rewards · 来源与可训练性</h3>

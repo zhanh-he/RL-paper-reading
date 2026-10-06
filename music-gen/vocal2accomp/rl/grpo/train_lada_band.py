@@ -34,7 +34,7 @@ class Action:
     old_logp: torch.Tensor
 
 
-class BeatV2Client:
+class BeatWorkerClient:
     def __init__(self, python: str, script: Path, reward_root: Path, vocal: Path, log: Path):
         self.stderr = log.open("w")
         self.process = subprocess.Popen(
@@ -52,10 +52,10 @@ class BeatV2Client:
         self.process.stdin.flush()
         line = self.process.stdout.readline()
         if not line:
-            raise RuntimeError(f"Beat-v2 worker exited with code {self.process.poll()}")
+            raise RuntimeError(f"Beat worker exited with code {self.process.poll()}")
         result = json.loads(line)
         if "error" in result:
-            raise RuntimeError(f"Beat-v2 worker: {result['error']}")
+            raise RuntimeError(f"Beat worker: {result['error']}")
         return result
 
     def close(self) -> None:
@@ -123,6 +123,45 @@ def frame_rms(audio: np.ndarray, sr: int, hop_seconds: float = 0.04) -> np.ndarr
     return np.sqrt(np.mean(x[: count * hop].reshape(count, hop) ** 2, axis=1) + 1e-12)
 
 
+def richness_v0_score(audio: np.ndarray, vocal_rms: np.ndarray, sr: int, quality_penalty: float) -> dict[str, float]:
+    """An attackable spectral-layer proxy, not a perceptual arrangement judge."""
+    x = audio.mean(axis=1) if audio.ndim == 2 else audio
+    n_fft = 4096
+    if len(x) < n_fft:
+        return {"reward": -quality_penalty, "layer_activity": 0.0, "layer_movement": 0.0,
+                "tonality_gate": 0.0, "loudness_guard_penalty": 0.0}
+    chunks = x[:len(x) // n_fft * n_fft].reshape(-1, n_fft)
+    spectrum = np.abs(np.fft.rfft(chunks, axis=1)) + 1e-8
+    frequency = np.fft.rfftfreq(n_fft, 1 / sr)
+    edges = (60, 250, 700, 1800, 4500, 8000)
+    band_rms = np.stack([
+        np.sqrt(2 * np.sum(spectrum[:, (frequency >= left) & (frequency < right)] ** 2, axis=1)) / n_fft
+        for left, right in zip(edges[:-1], edges[1:])
+    ], axis=1)
+    shares = band_rms**2 / np.maximum(np.sum(band_rms**2, axis=1, keepdims=True), 1e-12)
+    active = (band_rms > 0.002) & (shares > 0.10)
+    frame_active = np.sqrt(np.mean(chunks**2, axis=1)) > 0.01
+    layer_activity = float(np.mean(np.minimum(active.sum(axis=1), 3) / 3 * frame_active))
+    movement = np.abs(np.diff(np.log1p(100 * band_rms), axis=0))
+    layer_movement = float(np.mean(np.minimum(movement / 0.7, 1))) if len(movement) else 0.0
+    region = spectrum[:, (frequency >= 90) & (frequency < 8000)]
+    flatness = float(np.mean(np.exp(np.mean(np.log(region), axis=1)) / np.mean(region, axis=1)))
+    tonality_gate = float(np.clip((0.40 - flatness) / 0.25, 0, 1))
+    acc_rms = float(np.sqrt(np.mean(np.square(x, dtype=np.float64))))
+    ref_rms = float(np.sqrt(np.mean(np.square(vocal_rms, dtype=np.float64))))
+    loudness_db = float(20 * np.log10(max(acc_rms, 1e-6) / max(ref_rms, 1e-6)))
+    loudness_penalty = 0.025 * (max(0.0, loudness_db + 3) + max(0.0, -18 - loudness_db))
+    reward = tonality_gate * (0.60 * layer_activity + 0.25 * layer_movement + 0.15 * float(frame_active.mean()))
+    return {
+        "reward": float(reward - quality_penalty - loudness_penalty),
+        "layer_activity": layer_activity,
+        "layer_movement": layer_movement,
+        "tonality_gate": tonality_gate,
+        "acc_to_vocal_rms_db": loudness_db,
+        "loudness_guard_penalty": loudness_penalty,
+    }
+
+
 def score_audio(audio: np.ndarray, vocal_rms: np.ndarray, sr: int, arm: str) -> dict[str, float]:
     rms = frame_rms(audio, sr)
     active = rms > 0.01  # -40 dBFS frame RMS; named rms_coverage, not Beat-v2.
@@ -154,7 +193,7 @@ def score_audio(audio: np.ndarray, vocal_rms: np.ndarray, sr: int, arm: str) -> 
         flatness = 0.0
     quality_penalty = max(0.0, (peak - 0.9) * 5) + 2 * clipping + max(0.0, flatness - 0.35)
     reward = coverage if arm == "coverage" else 0.45 * coverage + 0.35 * onset_fit + 0.20 * band_occupancy - quality_penalty
-    return {
+    metrics = {
         "reward": float(reward),
         "rms_coverage": coverage,
         "onset_fit_proxy": onset_fit,
@@ -164,6 +203,9 @@ def score_audio(audio: np.ndarray, vocal_rms: np.ndarray, sr: int, arm: str) -> 
         "clipping_fraction": clipping,
         "quality_penalty": quality_penalty,
     }
+    if arm == "richness_v0":
+        metrics.update(richness_v0_score(audio, vocal_rms, sr, quality_penalty))
+    return metrics
 
 
 def beat_coverage_guard_reward(beat: float, metrics: dict[str, float], audio: np.ndarray, vocal_rms: np.ndarray) -> dict[str, float]:
@@ -322,15 +364,15 @@ def run(cfg):
     eval_vocal_rms = frame_rms(eval_mono, sf.info(cfg.vocal).samplerate)
     eval_voc_ids, eval_condition = encode_condition(module, eval_vocal, cfg.text)
     beat_client = None
-    if cfg.reward in {"beat_v2", "beat_v2_coverage_guard"}:
+    if cfg.reward in {"beat_v2", "beat_v2_coverage_guard", "beat_v5"}:
         if not (cfg.beat_worker_python and cfg.beat_worker_script and cfg.beat_reward_root):
-            raise ValueError("beat_v2 requires --beat-worker-python, --beat-worker-script and --beat-reward-root")
-        beat_client = BeatV2Client(
+            raise ValueError("beat reward requires --beat-worker-python, --beat-worker-script and --beat-reward-root")
+        beat_client = BeatWorkerClient(
             cfg.beat_worker_python,
             Path(cfg.beat_worker_script).resolve(),
             Path(cfg.beat_reward_root).resolve(),
             Path(cfg.vocal).resolve(),
-            out / "beat_v2_worker.log",
+            out / f"{cfg.reward}_worker.log",
         )
 
     def score_rollout(audio: np.ndarray, reference_rms: np.ndarray, seconds: float, path: Path | None = None):
@@ -338,7 +380,7 @@ def run(cfg):
             return score_audio(audio, reference_rms, 48000, cfg.reward)
         metrics = score_audio(audio, reference_rms, 48000, "combined")
         if path is None:
-            path = out / "beat_v2_candidate.wav"
+            path = out / f"{cfg.reward}_candidate.wav"
             sf.write(path, audio, 48000)
         beat = beat_client.score(path, seconds)
         metrics["proxy_reward"] = metrics["reward"]
@@ -347,9 +389,13 @@ def run(cfg):
             metrics.update(beat_coverage_guard_reward(beat_score, metrics, audio, reference_rms))
         else:
             metrics["reward"] = beat_score
-        metrics["beat_v2_score"] = beat["score"]
-        metrics["beat_v2_reference_beats"] = beat["reference_beats"]
-        metrics["beat_v2_accompaniment_beats"] = beat["accompaniment_beats"]
+        beat_metric = "beat_v5" if cfg.reward == "beat_v5" else "beat_v2"
+        metrics[f"{beat_metric}_score"] = beat["score"]
+        metrics[f"{beat_metric}_scorable"] = bool(beat["scorable"])
+        metrics[f"{beat_metric}_reference_beats"] = beat["reference_beats"]
+        metrics[f"{beat_metric}_accompaniment_beats"] = beat["accompaniment_beats"]
+        if "confidence" in beat:
+            metrics[f"{beat_metric}_confidence"] = beat["confidence"]
         return metrics
 
     print(json.dumps({"event": "ready", "load_seconds": round(time.monotonic() - start, 2), "tokens": voc_ids.shape[1], "vram_gb": round(torch.cuda.max_memory_allocated() / 2**30, 2)}), flush=True)
@@ -424,7 +470,7 @@ def parse_args():
     parser.add_argument("--top-p", type=float, default=0.9)
     parser.add_argument("--support-mix", type=float, default=1e-4)
     parser.add_argument("--schedule", default="cosine")
-    parser.add_argument("--reward", choices=["coverage", "combined", "beat_v2", "beat_v2_coverage_guard"], default="coverage")
+    parser.add_argument("--reward", choices=["coverage", "combined", "beat_v2", "beat_v2_coverage_guard", "beat_v5", "richness_v0"], default="coverage")
     parser.add_argument("--beat-worker-python")
     parser.add_argument("--beat-worker-script")
     parser.add_argument("--beat-reward-root")

@@ -12,7 +12,12 @@ from pathlib import Path
 
 STEPS = (0, 5, 50, 100, 150, 200, 300)
 CONFIG_FIELDS = ("reward", "group", "seconds", "eval_seconds", "denoise_steps", "lr", "top_k", "top_p", "support_mix", "eval_seed", "schedule", "text")
-METRIC_FIELDS = ("reward", "rms_coverage", "onset_fit_proxy", "band_occupancy_proxy", "spectral_flatness", "peak", "clipping_fraction", "quality_penalty")
+METRIC_FIELDS = (
+    "reward", "rms_coverage", "onset_fit_proxy", "band_occupancy_proxy", "spectral_flatness",
+    "peak", "clipping_fraction", "quality_penalty", "beat_v5_score", "beat_v5_confidence",
+    "layer_activity", "layer_movement", "tonality_gate", "acc_to_vocal_rms_db",
+    "loudness_guard_penalty",
+)
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -34,7 +39,7 @@ def guarded_reward(metrics: dict, beat_score: dict) -> float:
 
 
 def publish(run_dir: Path, site_dir: Path, slug: str = "combined", heldout_dir: Path | None = None) -> Path:
-    if slug not in {"combined", "coverage", "beat_v2", "guarded"}:
+    if slug not in {"combined", "coverage", "beat_v2", "guarded", "beat_v5", "richness_v0"}:
         raise ValueError(f"unsupported reward arm: {slug}")
     run = json.loads((run_dir / "run.json").read_text())
     audio_run_dir = heldout_dir or run_dir
@@ -148,7 +153,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--site-dir", type=Path, required=True)
-    parser.add_argument("--slug", choices=["combined", "coverage", "beat_v2", "guarded"], default="combined")
+    parser.add_argument("--slug", choices=["combined", "coverage", "beat_v2", "guarded", "beat_v5", "richness_v0"], default="combined")
     parser.add_argument("--heldout-dir", type=Path)
     args = parser.parse_args()
     print(publish(args.run_dir, args.site_dir, args.slug, args.heldout_dir))
