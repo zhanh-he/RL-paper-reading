@@ -149,10 +149,15 @@ function render() {
     : `已提交 ${arm.host} smoke ${arm.smoke_job}；正式作业 ${arm.train_job} 依赖 smoke 成功。训练曲线与验证分数都尚未核验。`;
 }
 
-find('#formal-arm-select').addEventListener('change', (event) => {
-  selected = event.target.value;
-  render();
-});
+for (const button of root.querySelectorAll('[data-formal-arm]')) {
+  button.addEventListener('click', () => {
+    selected = button.dataset.formalArm;
+    for (const control of root.querySelectorAll('[data-formal-arm]')) {
+      control.setAttribute('aria-pressed', String(control === button));
+    }
+    render();
+  });
+}
 
 try {
   const response = await fetch('./formal-runs.json', { cache: 'no-store' });

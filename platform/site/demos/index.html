@@ -14,7 +14,7 @@
     <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261005-reward-kl"></script>
-    <script type="module" src="./lyrics-formal.js?v=20261006-formal-v2"></script>
+    <script type="module" src="./lyrics-formal.js?v=20261006-formal-v3"></script>
   </head>
   <body>
     <header class="app-header">
@@ -150,10 +150,10 @@
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Lyrics-conditioned post-training</p><h2>Lyrics2song GRPO</h2></div><a class="source-link" href="#datasets" data-open-view="datasets">数据与划分协议 ↗</a></div>
         <div class="metric-controls"><span class="control-label">Track</span><div class="segmented" role="group" aria-label="Lyrics experiment track"><button type="button" data-lyrics-track="formal" aria-pressed="true">CMI-Pref Experiment (Formal)</button><button type="button" data-lyrics-track="mock" aria-pressed="false">Mock Experiment</button></div></div>
         <div id="lyrics-formal">
-          <div class="section-intro"><div><p class="eyebrow">Frozen data · verified interim results</p><h3>YuE2 · CMI-Pref formal GRPO</h3></div><span id="formal-section-status" class="state pending">正在读取核验结果</span></div>
+          <div class="section-intro"><div><p class="eyebrow">Frozen data · verified 100-step results</p><h3>YuE2 · CMI-Pref formal GRPO</h3></div><span id="formal-section-status" class="state pending">正在读取核验结果</span></div>
           <p class="section-copy">训练条件来自 CMI-Pref 官方 train 的歌词+风格、无参考音频子集；按歌词排除官方 test 与 WildSongBench 重叠，再按条件去重。<strong id="formal-counts">234 train / 59 validation</strong>。SongEval 仅作在线 reward，不提供训练提示；CMI-Pref test 和 WildSongBench 全量封存。下方旧三首 A/B 仅在 Mock 中作演示，不参与正式验证曲线。</p>
           <div class="lyrics-protocol"><strong>预注册口径</strong><p>同组 2 条采样、组内标准化优势；训练时以冻结 YuE2 底座计算 sampled KL，损失系数 β=0.01。验证固定 59 条条件与预置随机种子，按检查点报告本臂 reward、音频峰值/削波/截断。左图是训练候选 reward，右图是同批候选的训练 sampled KL；验证分数另列表格，不能混为一条曲线。WildSongBench 192 条须在选模后一次性做最终测试；600 semantic tokens 短片段不能宣称达到官方 full-song 基准。</p></div>
-          <div class="metric-controls"><label for="formal-arm-select">Formal arm</label><select id="formal-arm-select"><option value="songeval_lr2e5">YuE2 · SongEval · 2e-5 · Gadi BF16</option><option value="songeval_lr1e4">YuE2 · SongEval · 1e-4 · Kaya FP16</option><option value="musecritic_lr2e5">YuE2 · MuseCritic · 2e-5 · Gadi BF16</option></select><span id="formal-arm-status" class="state pending">已提交 · 待核验</span></div>
+          <div class="metric-controls replay-model-controls"><span class="control-label">Experiments</span><div class="segmented" role="group" aria-label="Formal experiments"><button type="button" data-formal-arm="songeval_lr2e5" aria-pressed="true">YuE2 · SongEval · 2e-5 · Gadi BF16</button><button type="button" data-formal-arm="songeval_lr1e4" aria-pressed="false">YuE2 · SongEval · 1e-4 · Kaya FP16</button><button type="button" data-formal-arm="musecritic_lr2e5" aria-pressed="false">YuE2 · MuseCritic · 2e-5 · Gadi BF16</button></div><span id="formal-arm-status" class="state pending">已提交 · 待核验</span></div>
           <section class="choral-training" aria-label="Formal YuE2 training traces">
             <div class="choral-training-heading"><h3>训练过程 · Reward / KL</h3><span id="formal-training-extent">每步 2 条采样 · 100 步目标</span></div>
             <div class="choral-training-plots">
@@ -163,9 +163,9 @@
             <p class="choral-training-note" id="formal-training-note">待核验日志。细线为单步原始值，粗线为最多 10 步滑动均值；有完整 59 条验证 receipt 的 checkpoint 才打圆点。KL 是训练前采样动作的近似估计，不是固定验证音频的客观质量或事后离线 KL。两臂 reward 量表不可直接比较。</p>
             <details class="choral-deep-dive"><summary>优化目标与曲线口径</summary><p class="section-copy">SongEval：五项审美输出均值；MuseCritic：先写 critique，再预测五项分数，对评分与存档一致的 PCM24-FLAC 求均值。每个 optimizer step 使用同一训练条件生成两条候选并标准化组内优势；KL 惩罚采用 sampled k3 估计、冻结底座参考、β=0.01。单次更新的 ratio clipping 在更新前前向计算中不起作用；没有单独的歌词匹配、响度、削波或时长 reward。评测 59 条验证条件另算，与训练曲线分开。</p></details>
           </section>
-          <h3 class="subsection-heading">Formal arms</h3>
+          <h3 class="subsection-heading">Experiments · 59 条固定验证</h3>
           <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Model / reward</th><th>Train / valid</th><th>0</th><th>1</th><th>25</th><th>50</th><th>100</th><th>Latest Δ vs 0 (step)</th></tr></thead><tbody id="formal-arms"></tbody></table></div>
-          <div class="evidence-note"><strong>尚无正式结果</strong><p>此表是预留位，不是实验结果。旧 pilot 的 8 条手写训练提示与 3 条自拟留出提示不满足本协议；不能混入正式均值、KL 或泛化结论。Kaya V100 臂显式使用 FP16，Gadi 臂使用 BF16，因此 Kaya/Gadi 差异不能单独归因于学习率。两种 reward 量表也不互相比较绝对分数。</p></div>
+          <div class="evidence-note"><strong>结果边界</strong><p>已核验的数字来自 text+lyrics、无参考音频条件；旧 pilot 的手写提示不能混入正式验证。两臂 100 步的固定验证 SongEval 均分变化都很小，不能据此声称泛化改善。所有验证样本在 600 semantic tokens 上限下截断，只能作为短片段实验；Kaya FP16 与 Gadi BF16 也不能单独归因于学习率。MuseCritic 尚无已核验正式结果，不能跨 reward 量表比较绝对分数。</p></div>
           <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_formal_data.py" target="_blank" rel="noreferrer">数据冻结脚本 ↗</a>
         </div>
         <div id="lyrics-mock" hidden>
@@ -175,7 +175,7 @@
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · original prompt</span><strong id="lyrics-style"></strong><pre id="lyrics-text"></pre></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一标准音频</strong><p>开放式以词生曲不设单一参考歌曲；前后使用同一输入与随机种子。训练组与留出组分开。</p></div></div>
         <div class="lyrics-protocol"><strong id="lyrics-reward-title"></strong><p id="lyrics-reward-definition"></p><p id="lyrics-train-protocol"></p></div>
         <section class="choral-training" id="yue2-training" aria-label="YuE2 training traces">
-          <div class="choral-training-heading"><h3>训练过程 · <span id="yue2-training-reward-name">SongEval</span> reward / KL</h3><span>100 步 · 训练 reward 与离线 KL</span></div>
+          <div class="choral-training-heading"><h3>训练过程 · <span id="yue2-training-reward-name">SongEval</span> reward / 离线 KL</h3><span>100 步 · 训练 reward 与离线 KL</span></div>
           <div class="choral-training-plots">
             <figure><figcaption><span>Combined reward · <span id="yue2-reward-label">SongEval</span> mean</span><strong id="yue2-reward-value">加载中</strong></figcaption><canvas id="yue2-reward-chart" role="img" aria-label="YuE2 训练 reward 随步数变化"></canvas></figure>
             <figure><figcaption><span>KL · 离线固定参考探针</span><strong id="yue2-kl-value">加载中</strong></figcaption><canvas id="yue2-kl-chart" role="img" aria-label="YuE2 离线固定参考条件 KL 随检查点变化"></canvas></figure>
@@ -211,14 +211,15 @@
 
       <section class="lab-view" id="view-datasets" hidden>
         <div class="section-intro"><div><p class="eyebrow">Pre-registered experimental data</p><h2>Dataset Protocol</h2></div><span class="state diagnostic">SHA-pinned · split audit</span></div>
-        <p class="section-copy">生成提示、reward 训练素材和最终 benchmark 是不同用途。不能把 SongEval 音频评分集误当歌词提示集，也不能在 WildSongBench 的公开 test 提示上继续训练，然后报告它作未见测试。</p>
+        <p class="section-copy">这里使用的是 CMI-Pref 偏好数据，不是名字相近的 CMI-Bench 音乐理解数据。生成条件、A/B 偏好音频、reward 训练素材和最终 benchmark 用途不同；SongEval 音频评分集不是歌词提示集，WildSongBench 的公开 test 提示不能再拿来训练或调参。</p>
         <h3 class="subsection-heading">Source roles</h3>
-        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Source</th><th>Published split</th><th>Role here</th><th>Boundary</th></tr></thead><tbody><tr><td>CMI-Pref</td><td>3,527 train votes / 500 test votes</td><td>只取歌词+风格、无参考音频条件；去重后 234 train / 59 valid</td><td>官方 500 test 封存；不是 3,527 条全部可用</td></tr><tr><td>WildSongBench</td><td>192 test prompts</td><td>全部 192 条保留作最终外部生成 benchmark</td><td>不可用于训练或调参；短片段不同于 full-song 协议</td></tr><tr><td>SongEval</td><td>公开 train viewer 1,000 首音频</td><td>评分器及敏感性审计</td><td>无歌词+风格字段，不是 GRPO prompt train</td></tr><tr><td>CMI-RewardBench</td><td>公开 train/test 配对评价记录</td><td>reward 模型对比评估</td><td>不是 YuE2 生成条件数据</td></tr></tbody></table></div>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Source</th><th>Published split</th><th>Role here</th><th>Boundary</th></tr></thead><tbody><tr><td>CMI-Pref</td><td>3,527 train votes / 500 test votes</td><td>text+lyrics、无参考音频的 414 票；去重后 234 train / 59 valid</td><td>偏好投票不是独立提示；官方 500 test 封存</td></tr><tr><td>WildSongBench</td><td>192 test prompts</td><td>全部 192 条保留作最终 style+lyrics 生成测试</td><td>没有参考音频；短片段不同于 full-song 协议</td></tr><tr><td>SongEval</td><td>公开 train viewer 1,000 首音频</td><td>评分器及敏感性审计</td><td>无歌词+风格字段，不是 GRPO prompt train</td></tr><tr><td>CMI-RewardBench</td><td>CMI-Pref 等来源的评测集合</td><td>reward 模型的评价协议</td><td>不是额外一份 YuE2 生成提示集</td></tr></tbody></table></div>
+        <div class="evidence-note"><strong>四种输入条件不是同一个任务</strong><p>CMI-Pref 官方 train 分为 text 1,874、text+audio 770、text+lyrics 414、text+audio+lyrics 469 票；官方 test 各 125 票。<code>ref-audio-path</code> 才是输入参考音频，<code>audio-path</code> 与 <code>audio2</code> 是被比较的生成结果。当前 YuE2 / Muse 实验只用 text+lyrics；不能把含参考音频的 469 票直接丢给没有原始音频输入的模型，也不能以没有音频参考的 WildSongBench 检验音频条件遵循。</p></div>
         <h3 class="subsection-heading">Frozen CMI-Pref selection</h3>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Stage</th><th>Count</th><th>Meaning</th></tr></thead><tbody id="dataset-audit-table"></tbody></table></div>
         <p class="stage-context">按整个歌词正规化去除跨官方 test 重叠，之后以风格+歌词去重；SHA256 排序的前 20% 为 validation。准确的 source revision、文件 SHA 和生成 manifest SHA 见下方。相同主题的改写仍可能泄漏，最终结论需要人工复核。</p>
         <pre class="dataset-hashes" id="dataset-hashes"></pre>
-        <div class="model-links"><a class="source-link" href="https://huggingface.co/datasets/HaiwenXia/cmi-pref" target="_blank" rel="noreferrer">CMI-Pref ↗</a><a class="source-link" href="https://huggingface.co/datasets/m-a-p/WildSongBench" target="_blank" rel="noreferrer">WildSongBench ↗</a><a class="source-link" href="https://huggingface.co/datasets/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval ↗</a><a class="source-link" href="https://github.com/Haiwen-Xia/CMI-RewardBench" target="_blank" rel="noreferrer">CMI-RewardBench ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_formal_data.py" target="_blank" rel="noreferrer">Reproduce split ↗</a></div>
+        <div class="model-links"><a class="source-link" href="https://huggingface.co/datasets/HaiwenXia/cmi-pref" target="_blank" rel="noreferrer">CMI-Pref ↗</a><a class="source-link" href="https://arxiv.org/html/2603.00610v3" target="_blank" rel="noreferrer">CMI paper ↗</a><a class="source-link" href="https://huggingface.co/datasets/m-a-p/WildSongBench" target="_blank" rel="noreferrer">WildSongBench ↗</a><a class="source-link" href="https://huggingface.co/datasets/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval ↗</a><a class="source-link" href="https://github.com/Haiwen-Xia/CMI-RewardBench" target="_blank" rel="noreferrer">CMI-RewardBench ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_formal_data.py" target="_blank" rel="noreferrer">Reproduce split ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/DATA-MODALITY-AUDIT.md" target="_blank" rel="noreferrer">Modality audit ↗</a></div>
       </section>
 
       <section class="lab-view" id="view-songeval" hidden>

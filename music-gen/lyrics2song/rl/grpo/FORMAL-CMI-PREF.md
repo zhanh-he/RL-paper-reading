@@ -11,6 +11,8 @@ and writes `datasets/formal-lyrics2song-v1.json`. The manifest SHA256 is
 `c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b`.
 Source revisions and file hashes are in
 [`formal-data-summary.json`](../../../../platform/site/demos/formal-data-summary.json).
+The separate [modality audit](DATA-MODALITY-AUDIT.md) explains why this is a
+text+lyrics task, not a reference-audio task.
 
 - [CMI-Pref](https://huggingface.co/datasets/HaiwenXia/cmi-pref): 3,527 official
   train votes and 500 official test votes. Exactly 414 train votes contain both
@@ -68,7 +70,7 @@ improvements. Human listening is still needed before a quality claim.
 | Kaya V100-32GB | SongEval, LR 1e-4, FP16 | `75964` | `75965` | Slurm `--nice=10000`, after CASM `75204` |
 | Gadi H100 | MuseCritic PCM24, LR 2e-5 | `180533336.gadi-pbs` | `180533343.gadi-pbs` | PBS `-p -100` |
 
-These are **submitted jobs, not completed results**. Each 100-step job has an
+Each 100-step job has an
 `afterok` dependency on its own two-step smoke. Kaya is intentionally running
 a SongEval LR/FP16 feasibility arm: the official YuE2 pipeline loads BF16, so
 its independent Kaya checkout explicitly loads FP16 instead. The smoke must
@@ -86,6 +88,27 @@ The source scripts are `gadi_yue2_formal.pbs`,
 outputs live in `/g/data/wa66/hanyu/YuE2-posttrain/outputs/cmi_pref_*_20261005`;
 the Kaya outputs live in `/scratch/ems011/zhe/yue2-formal/outputs/`.
 No Codex recurring task was created.
+
+## Verified SongEval readout, 2026-10-06
+
+Both SongEval arms finished with exit status 0. `collect_formal_run.py`
+verified 100 contiguous optimizer steps, scored-audio SHA256 bindings, and
+all 59 validation entries at each of steps 0/1/25/50/100. The public
+demo contains their complete lyrics-free curves and validation receipts.
+
+| Arm | Step 0 | Step 1 | Step 25 | Step 50 | Step 100 | Step 100 minus 0 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Gadi H100, BF16, 2e-5 | 3.417 | 3.429 | 3.454 | 3.448 | 3.432 | +0.015 |
+| Kaya V100, FP16, 1e-4 | 3.469 | 3.465 | 3.440 | 3.459 | 3.484 | +0.015 |
+
+These are fixed-prompt SongEval means, not human preference or lyric-alignment
+results. Exploratory paired bootstrap 95% intervals for step 100 minus 0 are
+[-0.088, 0.121] on Gadi and [-0.053, 0.081] on Kaya; both include zero.
+All 59 validation samples at every checkpoint report semantic-token
+truncation, so these are short clips. No audible quality improvement or
+full-song generalization claim follows from this table. The FP16/BF16 change
+prevents attributing a cross-host difference solely to learning rate.
+MuseCritic remains queued and has no verified formal result in this readout.
 
 ## Final test gate
 
