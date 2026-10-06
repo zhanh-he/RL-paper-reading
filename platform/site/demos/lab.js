@@ -313,9 +313,7 @@ function setupChoralCompare(data, pitchRange, armNames, getStep) {
   const stepSelect = $('#choral-compare-step');
   const zoomInput = $('#choral-compare-zoom');
   const names = { reference: 'GT · 参考 SATB', baseline: 'Frozen ChoralStream',
-    combined: 'A · Combined rewards',
-    ...Object.fromEntries(Object.entries(armNames).map(([key, name], index) =>
-      [key, `${String.fromCharCode(66 + index)} · ${name}`])) };
+    combined: 'Combined rewards', ...armNames };
   for (const [key, name] of Object.entries(names)) {
     const option = document.createElement('option'); option.value = key; option.textContent = name;
     target.append(option);
@@ -361,10 +359,10 @@ function setupChoralCompare(data, pitchRange, armNames, getStep) {
   });
   $('#view-choral').addEventListener('click', (event) => {
     const button = event.target.closest('.choral-midi-zoom');
-    if (!button || !$('#choral-grpo-grid').contains(button)) return;
-    left = { key: button.dataset.choralCompare, step: getStep() };
+    if (!button || !button.closest('#choral-grpo-grid, #choral-fixed-grid, #choral-opt-grid')) return;
+    left = { key: button.dataset.choralCompare, step: Number(button.dataset.choralStep) || getStep() };
     target.value = left.key === 'reference' ? 'baseline' : 'reference';
-    stepSelect.value = String(getStep());
+    stepSelect.value = String(left.step || getStep());
     zoomInput.value = '1';
     updateSide('left', variant(left.key, left.step));
     updateRight();
@@ -424,22 +422,25 @@ function renderEventReplay(data, pilot) {
   const pitchRange = [Math.min(...allNotes.map((note) => note.pitch)) - 2,
     Math.max(...allNotes.map((note) => note.pitch)) + 2];
   const panels = { baseline: createChoralMidiPanel(null), combined: createChoralMidiPanel('A') };
+  const optPanels = steps.map((_, index) => createChoralMidiPanel(String.fromCharCode(65 + index)));
   const singleArms = Object.keys(armNames);
   const singlePanels = Object.fromEntries(singleArms.map((arm, index) =>
     [arm, createChoralMidiPanel(String.fromCharCode(66 + index))]));
   $('#choral-baseline-panel').replaceChildren(panels.baseline.panel);
   $('#choral-grpo-grid').append(panels.combined.panel,
     ...singleArms.map((arm) => singlePanels[arm].panel));
+  $('#choral-opt-grid').append(...optPanels.map((panel) => panel.panel));
   panels.baseline.zoom.dataset.choralCompare = 'baseline';
   panels.combined.zoom.dataset.choralCompare = 'combined';
   for (const arm of singleArms) singlePanels[arm].zoom.dataset.choralCompare = arm;
   if (window.lucide) window.lucide.createIcons();
   drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, pitchRange);
-  const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
+  const updatePanel = (panel, title, detail, notes, stem, midiStem, step = 0) => {
     panel.title.textContent = title;
     panel.detail.textContent = detail;
     panel.zoom.title = `放大并对比 ${title} MIDI`;
     panel.zoom.setAttribute('aria-label', `放大并对比 ${title} MIDI`);
+    panel.zoom.dataset.choralStep = String(step);
     panel.canvas.hidden = false;
     panel.zoom.hidden = false;
     panel.pending.hidden = true;
@@ -470,13 +471,34 @@ function renderEventReplay(data, pilot) {
   };
   updatePanel(panels.baseline, 'Frozen ChoralStream · baseline', `${data.receipt.steps['0'].note_count} notes · 0 步`,
     data.notes['0'], 'choral_event_0000', 'choral_event_0000');
+  const rewardNames = { combined: 'Combined rewards', ...armNames };
+  const updateRewardOpt = () => {
+    const arm = $('#choral-reward-select').value;
+    for (const [index, step] of steps.entries()) {
+      optPanels[index].audio.pause();
+      const key = arm === 'combined' ? String(step) : `arm_${arm}_${step}`;
+      const replay = data.receipt.steps[key];
+      const notes = data.notes[key];
+      const stem = arm === 'combined' ? `choral_event_${String(step).padStart(4, '0')}` :
+        `choral_event_arm_${arm}_${step}`;
+      optPanels[index].zoom.dataset.choralCompare = arm;
+      if (replay && notes) {
+        const updates = pilot.arms[arm].milestones[String(step)].updated_steps;
+        updatePanel(optPanels[index], `${step} 步 · ${rewardNames[arm]}`,
+          `${replay.note_count} notes · ${updates}/${step} 有效更新`, notes, stem, stem, step);
+      } else {
+        clearPanel(optPanels[index], `${step} 步 · ${rewardNames[arm]}`, step,
+          Boolean(pilot.arms[arm].milestones[String(step)]));
+      }
+    }
+  };
   let currentStep = 300;
   const selectStep = (step) => {
     currentStep = step;
     const id = String(step).padStart(4, '0');
     const result = data.receipt.steps[String(step)];
     updatePanel(panels.combined, 'Combined rewards', `${result.note_count} notes · ${step} 步`,
-      data.notes[String(step)], `choral_event_${id}`, `choral_event_${id}`);
+      data.notes[String(step)], `choral_event_${id}`, `choral_event_${id}`, step);
     for (const arm of singleArms) {
       const key = `arm_${arm}_${step}`;
       const replay = data.receipt.steps[key];
@@ -484,7 +506,7 @@ function renderEventReplay(data, pilot) {
       if (replay && notes) {
         const updates = pilot.arms[arm].milestones[String(step)].updated_steps;
         updatePanel(singlePanels[arm], armNames[arm], `${replay.note_count} notes · ${updates}/${step} 有效更新`,
-          notes, `choral_event_arm_${arm}_${step}`, `choral_event_arm_${arm}_${step}`);
+          notes, `choral_event_arm_${arm}_${step}`, `choral_event_arm_${arm}_${step}`, step);
       } else {
         clearPanel(singlePanels[arm], armNames[arm], step, Boolean(pilot.arms[arm].milestones[String(step)]));
       }
@@ -510,6 +532,39 @@ function renderEventReplay(data, pilot) {
     }
   }, true);
   setupChoralCompare(data, pitchRange, armNames, () => currentStep);
+  const stepGrid = $('#choral-grpo-grid');
+  const fixedGrid = $('#choral-fixed-grid');
+  const optGrid = $('#choral-opt-grid');
+  const referencePanel = stepGrid.querySelector('.choral-reference-panel');
+  const baselinePanel = $('#choral-baseline-panel');
+  const context = $('#choral-replay-context');
+  const commonContext = '六种 reward 的 1/100/300/1000 步均有公开 MIDI 与试听。所有回放使用同一输入，ACE Studio 固定 Elirah、Emma、Julian、Mangus 与 la 歌词；为适配单声部歌唱轨，试听时同声部重叠音符截至下一起音。客观 F1 只按原始 MIDI 计算；这首公开样本不在下表的 8 首测试歌中。';
+  const setMode = (mode) => {
+    const rewardMode = mode === 'reward';
+    for (const audio of $('#view-choral').querySelectorAll(
+      '#choral-grpo-grid audio, #choral-fixed-grid audio, #choral-opt-grid audio')) audio.pause();
+    if (rewardMode) fixedGrid.append(referencePanel, baselinePanel);
+    else stepGrid.prepend(referencePanel, baselinePanel);
+    stepGrid.hidden = rewardMode;
+    $('#choral-event-rail').hidden = rewardMode;
+    fixedGrid.hidden = !rewardMode;
+    optGrid.hidden = !rewardMode;
+    $('#choral-reward-filter').hidden = !rewardMode;
+    context.textContent = `${rewardMode
+      ? 'GT 与 Frozen baseline 固定；A–D 是当前 reward 各训练步数的输出。'
+      : 'GT 与 Frozen baseline 固定；A Combined、B Onset、C Onset + offset、D Frame、E Coverage、F Continuity 随步骤切换。'}${commonContext}`;
+    for (const button of document.querySelectorAll('[data-choral-view]')) {
+      button.setAttribute('aria-pressed', String(button.dataset.choralView === mode));
+    }
+    if (rewardMode) updateRewardOpt();
+  };
+  for (const button of document.querySelectorAll('[data-choral-view]')) {
+    button.addEventListener('click', () => setMode(button.dataset.choralView));
+  }
+  $('#choral-reward-select').addEventListener('change', updateRewardOpt);
+  $('#choral-columns').addEventListener('change', (event) => {
+    for (const grid of [stepGrid, optGrid]) grid.style.setProperty('--choral-columns', event.target.value);
+  });
   selectStep(300);
 }
 
@@ -968,27 +1023,4 @@ try {
   $('#headline-bce').textContent = 'Data unavailable';
   $('#headline-swap').textContent = 'Data unavailable';
   console.error('Could not load experiment receipts', error);
-}
-try {
-  const response = await fetch('./formal-data-summary.json', { cache: 'no-store' });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const summary = await response.json();
-  const counts = summary.counts;
-  $('#formal-counts').textContent = `${counts.train_conditions} train / ${counts.validation_conditions} validation`;
-  appendCells($('#dataset-audit-table'), [
-    ['CMI-Pref 官方 train votes', counts.cmi_pref_train_votes, '全部读取；不是全部与歌词输入兼容'],
-    ['无歌词', counts.no_lyrics, '不能作为 lyrics-to-song 条件'],
-    ['需要参考音频', counts.requires_reference_audio, '此 case 没有 reference-audio 输入'],
-    ['兼容的投票记录', counts.compatible_votes, '包含重复条件和潜在 test 重叠'],
-    ['与官方 test 歌词重叠', counts.test_lyrics_overlap_votes, '按歌词剔除，避免 prompt ID 不同造成泄漏'],
-    ['与 WildSongBench 歌词重叠', counts.wildsongbench_lyrics_overlap_votes, '全量 192 条做精确正规化歌词交叉检查'],
-    ['重复条件投票', counts.duplicate_condition_votes, '相同风格+歌词只保留一条条件'],
-    ['最终独立条件', counts.unique_eligible_conditions, '按固定 SHA 排序划分'],
-    ['训练 / 验证', `${counts.train_conditions} / ${counts.validation_conditions}`, '均来自 CMI-Pref train；test 500 条封存'],
-    ['WildSongBench 最终 test', counts.wildsongbench_test_prompts_sealed, '全量封存，不参与训练或调参'],
-  ]);
-  $('#dataset-hashes').textContent = `CMI-Pref revision  ${summary.source_revisions.cmi_pref}\nWildSongBench revision  ${summary.source_revisions.wildsongbench}\nCMI train SHA256  ${summary.source_sha256.cmi_train}\nCMI test SHA256  ${summary.source_sha256.cmi_test}\nWSB manifest SHA256  ${summary.source_sha256.wildsongbench}\nFormal split SHA256  ${summary.manifest_sha256}`;
-} catch (error) {
-  $('#dataset-hashes').textContent = 'Dataset audit unavailable';
-  console.error('Could not load formal data summary', error);
 }

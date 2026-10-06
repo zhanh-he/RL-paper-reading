@@ -6,12 +6,12 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-audit" />
+    <link rel="stylesheet" href="./styles.css?v=20261006-choral-views" />
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261006-vocal-tracks"></script>
+    <script type="module" src="./lab.js?v=20261006-choral-views"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261006-beat-v5"></script>
@@ -81,7 +81,7 @@
             </details>
           </div>
         </section>
-        <h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3>
+        <div class="choral-replay-heading"><h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3><div class="choral-replay-controls"><div class="segmented" role="group" aria-label="可视化方式"><button type="button" data-choral-view="step" aria-pressed="true">Step-by-step</button><button type="button" data-choral-view="reward" aria-pressed="false">Reward-opt</button></div><label id="choral-reward-filter" hidden>Reward <select id="choral-reward-select"><option value="combined">Combined rewards</option><option value="onset">Onset only</option><option value="onset_offset">Onset + offset only</option><option value="frame">Frame only</option><option value="coverage">Coverage only</option><option value="continuity">Continuity only</option></select></label><label>一行几个图 <select id="choral-columns"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></label></div></div>
         <div class="choral-input-band"><div><span class="source-label">MODEL INPUT / ORIGINAL SYNTHESIS</span><p>原始合成音频是所有模型输出共用的输入。四个 SATB 声部叠在同一音高轴；下方所有 piano roll 共用音高与时间轴。</p></div><audio controls preload="metadata" src="./audio/choral_synth_input.wav" aria-label="原始合成模型输入音频"></audio></div>
         <div class="choral-midi-legend" aria-label="SATB MIDI colors"><span><i class="voice-s"></i>Soprano</span><span><i class="voice-a"></i>Alto</span><span><i class="voice-t"></i>Tenor</span><span><i class="voice-b"></i>Bass</span></div>
         <div class="stage-rail" id="choral-event-rail" aria-label="GRPO replay stages"></div>
@@ -94,13 +94,15 @@
           </article>
           <div id="choral-baseline-panel"></div>
         </div>
+        <div class="choral-grpo-grid choral-fixed-grid" id="choral-fixed-grid" hidden></div>
+        <div class="choral-grpo-grid" id="choral-opt-grid" hidden></div>
         <dialog class="choral-compare-dialog" id="choral-compare-dialog" aria-labelledby="choral-compare-title">
           <div class="choral-compare-header"><h3 id="choral-compare-title">SATB MIDI · 1v1 对比</h3><button type="button" id="choral-compare-close" class="choral-compare-close" title="关闭对比" aria-label="关闭对比"><i data-lucide="x" aria-hidden="true"></i></button></div>
           <div class="choral-compare-controls"><label>右侧版本<select id="choral-compare-target"></select></label><label>右侧步数<select id="choral-compare-step"><option value="1">1 步</option><option value="100">100 步</option><option value="300">300 步</option><option value="1000">1000 步</option></select></label><label><span>放大比例</span><input id="choral-compare-zoom" type="range" min="1" max="2.5" step="0.25" value="1" /><output id="choral-compare-zoom-value">1×</output></label></div>
           <div class="choral-compare-pair"><figure><figcaption id="choral-compare-left-title"></figcaption><div class="choral-compare-roll"><canvas id="choral-compare-left" width="1120" height="620" role="img" aria-label="左侧 SATB MIDI piano roll"></canvas></div><audio id="choral-compare-left-audio" controls preload="metadata"></audio><a id="choral-compare-left-midi" class="source-link" download>下载 MIDI ↓</a></figure><figure><figcaption id="choral-compare-right-title"></figcaption><div class="choral-compare-roll"><canvas id="choral-compare-right" width="1120" height="620" role="img" aria-label="右侧 SATB MIDI piano roll"></canvas></div><audio id="choral-compare-right-audio" controls preload="metadata"></audio><a id="choral-compare-right-midi" class="source-link" download>下载 MIDI ↓</a></figure></div>
           <p class="choral-compare-note">左右共用音高与时间轴；S / A / T / B 颜色一致。试听由 ACE Studio 固定歌手渲染，客观 F1 基于原始 MIDI。</p>
         </dialog>
-        <p class="stage-context">GT 与 Frozen baseline 固定；A Combined、B Onset、C Onset + offset、D Frame、E Coverage、F Continuity 随步骤切换。六种 reward 的 1/100/300/1000 步均有公开 MIDI 与试听。所有回放使用同一输入，ACE Studio 固定 Elirah、Emma、Julian、Mangus 与 la 歌词；为适配单声部歌唱轨，试听时同声部重叠音符截至下一起音。客观 F1 只按原始 MIDI 计算；这首公开样本不在下表的 8 首测试歌中。</p>
+        <p class="stage-context" id="choral-replay-context">GT 与 Frozen baseline 固定；A Combined、B Onset、C Onset + offset、D Frame、E Coverage、F Continuity 随步骤切换。六种 reward 的 1/100/300/1000 步均有公开 MIDI 与试听。所有回放使用同一输入，ACE Studio 固定 Elirah、Emma、Julian、Mangus 与 la 歌词；为适配单声部歌唱轨，试听时同声部重叠音符截至下一起音。客观 F1 只按原始 MIDI 计算；这首公开样本不在下表的 8 首测试歌中。</p>
         <details class="choral-deep-dive choral-reward-details"><summary>单项 reward 定义、各自的盲点与组合权重</summary>
           <p class="section-copy">所有分数都对带 S/A/T/B 标签的参考 MIDI 计算。单项 GRPO 每次只优化一项；Combined 是加权和，不能保证杜绝 reward hacking。下列盲点来自构造的 MIDI 反例，不等于训练策略必然学会利用它们。</p>
           <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward</th><th>定义</th><th>单独优化时的典型盲点</th><th>Combined 权重</th></tr></thead><tbody>
