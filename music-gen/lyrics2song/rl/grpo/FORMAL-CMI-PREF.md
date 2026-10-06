@@ -4,6 +4,15 @@ This protocol supersedes the eight-handwritten-prompt pilot for any claim about
 generalization. The old pilot remains available under **Mock Experiment** in
 the [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics).
 
+**Historical text+lyrics protocol, paused 2026-10-06.** The new three-part
+candidate split is 240 train / 60 validation conditions, with the official
+125-vote, 121-condition three-part test sealed. See
+[`DATA-MODALITY-AUDIT.md`](DATA-MODALITY-AUDIT.md). The existing verified
+SongEval results below are not three-part results. Both Gadi MuseCritic jobs
+`180533336` and `180533343` were cancelled while queued/held; Kaya had no
+queued work, and lab5090 had no related training process. No new training
+is authorized by the data freeze.
+
 ## Data
 
 `prepare_formal_data.py` reads pinned public metadata into ignored `datasets/`
@@ -62,13 +71,13 @@ regularizer. The reward has no explicit lyric alignment, duration, peak, or
 clipping term, so those remain guardrail measurements rather than guaranteed
 improvements. Human listening is still needed before a quality claim.
 
-## Submitted jobs
+## Historical job record
 
 | Host | Arm | Smoke | Dependent 100-step job | Priority |
 | --- | --- | --- | --- | --- |
 | Gadi H100 | SongEval, LR 2e-5 | `180532793.gadi-pbs` | `180532807.gadi-pbs` | PBS `-p -100` |
 | Kaya V100-32GB | SongEval, LR 1e-4, FP16 | `75964` | `75965` | Slurm `--nice=10000`, after CASM `75204` |
-| Gadi H100 | MuseCritic PCM24, LR 2e-5 | `180533336.gadi-pbs` | `180533343.gadi-pbs` | PBS `-p -100` |
+| Gadi H100 | MuseCritic PCM24, LR 2e-5 | `180533336.gadi-pbs` cancelled | `180533343.gadi-pbs` cancelled | PBS `-p -100` |
 
 Each 100-step job has an
 `afterok` dependency on its own two-step smoke. Kaya is intentionally running
@@ -108,7 +117,8 @@ All 59 validation samples at every checkpoint report semantic-token
 truncation, so these are short clips. No audible quality improvement or
 full-song generalization claim follows from this table. The FP16/BF16 change
 prevents attributing a cross-host difference solely to learning rate.
-MuseCritic remains queued and has no verified formal result in this readout.
+MuseCritic was cancelled on 2026-10-06 before running and has no verified
+formal result in this readout.
 
 ## Final test gate
 

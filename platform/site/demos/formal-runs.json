@@ -1120,7 +1120,7 @@
       "compute_dtype": "bf16",
       "smoke_job": "180533336.gadi-pbs",
       "train_job": "180533343.gadi-pbs",
-      "status": "submitted-unverified",
+      "status": "cancelled-old-protocol",
       "train_conditions": 234,
       "valid_conditions": 59,
       "train_curve": [],

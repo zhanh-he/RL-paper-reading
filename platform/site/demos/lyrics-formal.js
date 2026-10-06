@@ -136,9 +136,9 @@ function render() {
   find('#formal-reward-name').textContent = arm.reward_name;
   find('#formal-arm-status').textContent = arm.status === 'verified-complete'
     ? '完整核验' : arm.status === 'partial-verified'
-      ? `部分核验 · ${arm.verified_train_steps} 步` : arm.status === 'failed'
-        ? '失败 · 见日志' : '已提交 · 待核验';
-  find('#formal-arm-status').className = `state ${arm.status.endsWith('verified') || arm.status === 'verified-complete' ? 'measured' : 'pending'}`;
+      ? `部分核验 · ${arm.verified_train_steps} 步` : arm.status === 'cancelled-old-protocol'
+        ? '旧协议 · 已取消' : arm.status === 'failed' ? '失败 · 见日志' : '已提交 · 待核验';
+  find('#formal-arm-status').className = `state ${['partial-verified', 'verified-complete'].includes(arm.status) ? 'measured' : 'pending'}`;
   find('#formal-reward-value').textContent = reward.length ? `${number(reward[0].window)} → ${number(reward.at(-1).window)}` : '待训练日志';
   find('#formal-kl-value').textContent = kl.length
     ? `${smallNumber(kl[0].window)} → ${smallNumber(kl.at(-1).window)}` : '待训练日志';
@@ -146,7 +146,9 @@ function render() {
     ? `1–${reward.at(-1).step} 步 · 每步 2 条采样` : '每步 2 条采样 · 100 步目标';
   find('#formal-training-note').textContent = reward.length
     ? `细线为单步原始值，粗线为最多 10 步滑动均值；每步训练提示不同，首末训练 reward 不构成同提示改善证据。圆点仅标记完整核验的 59 条验证 checkpoint。右图 sampled KL 针对冻结底座，β=0.01；小数值采用线性纵轴，较大数值采用 asinh 纵轴。训练日志到第 ${reward.at(-1).step} 步。`
-    : `已提交 ${arm.host} smoke ${arm.smoke_job}；正式作业 ${arm.train_job} 依赖 smoke 成功。训练曲线与验证分数都尚未核验。`;
+    : arm.status === 'cancelled-old-protocol'
+      ? `旧 text+lyrics 作业 ${arm.smoke_job} / ${arm.train_job} 已取消；没有训练曲线或验证分数。新三模态实验尚未启动。`
+      : `已提交 ${arm.host} smoke ${arm.smoke_job}；正式作业 ${arm.train_job} 依赖 smoke 成功。训练曲线与验证分数都尚未核验。`;
 }
 
 for (const button of root.querySelectorAll('[data-formal-arm]')) {
@@ -179,7 +181,8 @@ try {
     row.append(node('td', arm.label), node('td', `${arm.train_conditions} / ${arm.valid_conditions}`));
     for (const step of checkpoints) {
       const value = arm.validation[String(step)]?.mean_reward;
-      row.append(node('td', Number.isFinite(value) ? number(value) : '待核验'));
+      row.append(node('td', Number.isFinite(value) ? number(value)
+        : arm.status === 'cancelled-old-protocol' ? '已取消' : '待核验'));
     }
     row.append(node('td', Number.isFinite(baseline) && Number.isFinite(final) && latestStep > 0
       ? `${final - baseline >= 0 ? '+' : ''}${number(final - baseline)} (${latestStep})` : '—'));

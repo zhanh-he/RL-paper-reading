@@ -68,6 +68,27 @@ conditions enter a strict held-out-prompt generation protocol. The official
 song it supplies conditions and comparison material, not a unique target
 song or an automatic generation score.
 
+## Frozen three-part candidate (not yet trained)
+
+[`prepare_cmi_triple_data.py`](prepare_cmi_triple_data.py) pins the published
+train/test JSONL hashes and WildSongBench hash, removes the 34 train votes
+whose normalized lyrics occur in any official CMI-Pref test row, and collapses
+the remaining 435 votes to 300 distinct conditions. It assigns whole
+normalized-lyrics groups by SHA256 order: **240 train / 60 validation**.
+The official three-part test remains sealed at **125 votes / 121 conditions**.
+There is no normalized-lyrics or reference-path overlap among the frozen
+train, validation, and official test, and no extra WSB lyric collision. The
+private manifest stays in ignored `datasets/cmi-pref-triple-v1.json`; its
+SHA256 is
+`b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0`.
+The public, lyrics-free counts and source hashes are in
+[`cmi-triple-data-summary.json`](../../../../platform/site/demos/cmi-triple-data-summary.json).
+This is a **data freeze only**, not approval to train. The reference MP3s
+have not been downloaded or decoded, per-row reference semantics are not
+verified, and neither existing YuE2 nor Muse GRPO implementation consumes
+external reference audio. The four planned model/reward cells and a tentative
+LR grid are documented in the online demo with no fabricated results.
+
 ## Frozen text+lyrics split
 
 From the 414 eligible train votes: exclude 23 votes whose normalized lyrics
@@ -113,10 +134,10 @@ reference audio, with native-audio systems clearly separated from YuE2's
 external-transcription bridge. WSB alone cannot score track B. Do not compare
 track A and B as if they had equal information.
 
-Before track B can be frozen, specify whether the reference is a style cue,
+Before track B can be authorized for training, specify whether the reference is a style cue,
 melody/performance guide, accompaniment, or continuation prefix; whether style
 text is also supplied; the allowed reference duration; and whether the same
 recording is available to every model. The current CMI-Pref train metadata has
-469 text+audio+lyrics votes, but its reference-audio files are not staged and
+469 text+audio+lyrics votes and a frozen candidate split, but its reference-audio files are not staged and
 its role labels need a task audit. No new multimodal GRPO arm should be
 declared comparable until these questions are settled.

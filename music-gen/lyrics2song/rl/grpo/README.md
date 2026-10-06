@@ -1,10 +1,13 @@
 # Lyrics-to-song GRPO
 
-The [CMI-Pref formal rerun](FORMAL-CMI-PREF.md) uses 234 train and 59
-validation conditions, reserves all 192 WildSongBench prompts for final test,
-and logs online reward plus frozen-base sampled KL. Its cluster jobs are
-submitted but their results are not yet verified. Everything below documents
-earlier pilot/mock experiments and must not be merged into the formal curves.
+The [earlier CMI-Pref text+lyrics rerun](FORMAL-CMI-PREF.md) used 234 train and
+59 validation conditions; its two YuE2 SongEval arms have verified results.
+Its queued MuseCritic arm was cancelled on 2026-10-06. These are **not**
+reference-audio experiments. The [new three-part candidate](DATA-MODALITY-AUDIT.md)
+freezes 240 train / 60 validation conditions and reserves 125 official test
+votes (121 conditions), but its reference audio and model interfaces are not
+ready; **no new training was started**. Earlier pilot/mock results below must
+not be merged into either protocol's validation curves.
 
 The [YuE2 SongEval pilot](runs/2026-09-29-yue2/README.md) is an on-policy,
 two-rollout, one-step LoRA update with a deterministic held-out before/after

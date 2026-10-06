@@ -188,6 +188,7 @@
 .stage-item strong { font-size: .84rem; font-variant-numeric: tabular-nums; }
 .stage-item .state { font-size: .66rem; }
 .stage-context { margin: 4px 0 21px; color: var(--ink-muted); font-size: .78rem; line-height: 1.55; }
+.stage-context code { overflow-wrap: anywhere; }
 .listen-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line-strong); }
 .listen-bar > strong { margin-right: 8px; font-size: .86rem; }
 .listen-bar > span { color: var(--ink-muted); font-size: .76rem; }
