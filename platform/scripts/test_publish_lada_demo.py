@@ -115,6 +115,33 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(stage["beat_v5_confidence"], 1.0)
             self.assertEqual(stage["beat_v2"]["score"], 0.29)
 
+    def test_richness_arm_keeps_component_metrics_and_v2_check(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run, site = root / "run", root / "site"
+            run.mkdir()
+            (site / "audio").mkdir(parents=True)
+            (site / "audio/ace_emma_vocal_12s.wav").write_bytes(b"vocal")
+            (run / "run.json").write_text(json.dumps({"args": {"reward": "richness_v0"}}))
+            (run / "evaluations.jsonl").write_text(json.dumps({
+                "step": 0, "reward": 0.54, "layer_activity": 0.68,
+                "layer_movement": 0.14, "tonality_gate": 0.94,
+                "loudness_guard_penalty": 0.0,
+            }) + "\n")
+            (run / "step_0000.wav").write_bytes(b"accompaniment")
+            (run / "beat_v2.json").write_text(json.dumps({"0": {"score": 0.55}}))
+
+            with patch.object(MODULE.subprocess, "run"):
+                output = MODULE.publish(run, site, slug="richness_v0")
+
+            stage = json.loads(output.read_text())["stages"][0]
+            self.assertEqual(stage["reward"], 0.54)
+            self.assertEqual(stage["layer_activity"], 0.68)
+            self.assertEqual(stage["layer_movement"], 0.14)
+            self.assertEqual(stage["tonality_gate"], 0.94)
+            self.assertEqual(stage["loudness_guard_penalty"], 0.0)
+            self.assertEqual(stage["beat_v2"]["score"], 0.55)
+
     def test_heldout_guarded_reward_is_recomputed_from_original_beat_score(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

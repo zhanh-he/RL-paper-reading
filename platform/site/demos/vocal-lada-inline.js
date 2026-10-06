@@ -2,6 +2,7 @@ const files = {
   coverage: './vocal-lada-coverage-run.json',
   beat_v2: './vocal-lada-beat_v2-run.json',
   beat_v5: './vocal-lada-beat_v5-run.json',
+  richness_v0: './vocal-lada-richness_v0-run.json',
   combined: './vocal-lada-run.json',
   guarded: './vocal-lada-guarded-run.json',
 };
@@ -9,6 +10,7 @@ const names = {
   coverage: 'Coverage only',
   beat_v2: 'Beat-v2 only',
   beat_v5: 'Beat-v5 only',
+  richness_v0: 'Richness-v0 proxy',
   combined: 'Proxy blend (no Beat-v2)',
   guarded: 'Beat-v2 + Coverage guard',
 };
@@ -194,7 +196,7 @@ function render() {
   selectedStep = selected.step;
   el('#lada-source').src = run.source_audio;
   el('#lada-protocol-title').textContent = `LaDA-Band · ${names[arm]}`;
-  el('#lada-protocol').textContent = `相同 Emma 人声、提示、8 步去噪、group 2、LR ${run.config.lr}、固定评估 seed ${run.config.eval_seed}。仅 LoRA 输出投影更新；${arm === 'beat_v2' ? '训练直接使用原 Madmom Beat-v2 F1。' : arm === 'beat_v5' ? '训练使用原项目 Beat-v5 onset-grid 分数；低 confidence 时可 abstain，12 秒回放另算独立 Beat-v2。' : arm === 'coverage' ? '训练仅优化 40 ms RMS coverage。' : arm === 'guarded' ? '训练使用原 Beat-v2 + 饱和 coverage + 响度/平坦度约束。' : '训练使用 coverage、能量起音和频带占用代理；并非原 Beat-v2。'}`;
+  el('#lada-protocol').textContent = `相同 Emma 人声、提示、8 步去噪、group 2、LR ${run.config.lr}、固定评估 seed ${run.config.eval_seed}。仅 LoRA 输出投影更新；${arm === 'beat_v2' ? '训练直接使用原 Madmom Beat-v2 F1。' : arm === 'beat_v5' ? '训练使用原项目 Beat-v5 onset-grid 分数；低 confidence 时可 abstain，12 秒回放另算独立 Beat-v2。' : arm === 'richness_v0' ? '训练优化多频段活动与时间变化的 Richness-v0 代理，并使用音调性与人声相对响度约束；它不会判断和声是否正确。' : arm === 'coverage' ? '训练仅优化 40 ms RMS coverage。' : arm === 'guarded' ? '训练使用原 Beat-v2 + 饱和 coverage + 响度/平坦度约束。' : '训练使用 coverage、能量起音和频带占用代理；并非原 Beat-v2。'}`;
   el('#lada-training-arm').textContent = names[arm];
   el('#lada-training-extent').textContent = `1–${run.train_curve.at(-1)?.step || 0} 步 · 每步 2 条 6 秒采样`;
   const rewardPoints = rewardChart.set(run.train_curve, selectedStep);
@@ -212,7 +214,7 @@ function render() {
     item.append(textNode('strong', '', step === 0 ? 'Baseline' : `${step} steps`));
     const metric = run.train_curve.find((point) => point.step === step);
     const stageValue = step === 0 ? '冻结起点' : metric
-      ? `Reward ${stageMetric(metric.reward)} · KL ${stageMetric(metric.sampled_kl)}` : '无训练值';
+      ? `训练 R ${stageMetric(metric.reward)} · KL ${stageMetric(metric.sampled_kl)}` : '无训练值';
     item.append(textNode('span', `state ${stage ? 'measured' : 'pending'}`, stage ? stageValue : '未发布'));
     if (stage) {
       item.type = 'button';
@@ -237,6 +239,13 @@ function render() {
   ];
   if (arm === 'beat_v5') {
     metrics.splice(1, 0, ['Beat-v5 confidence', baseline.beat_v5_confidence, selected.beat_v5_confidence, 3]);
+  }
+  if (arm === 'richness_v0') {
+    metrics.splice(1, 0,
+      ['频段活动', baseline.layer_activity, selected.layer_activity, 3],
+      ['时间变化', baseline.layer_movement, selected.layer_movement, 3],
+      ['音调性门控', baseline.tonality_gate, selected.tonality_gate, 3],
+      ['响度惩罚', baseline.loudness_guard_penalty, selected.loudness_guard_penalty, 3]);
   }
   const body = el('#lada-metrics');
   body.replaceChildren();

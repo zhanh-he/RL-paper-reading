@@ -900,6 +900,130 @@
         "grid_subdivision": 2,
         "sigma_seconds": 0.055
       }
+    },
+    {
+      "arm": "richness_v0",
+      "step": 0,
+      "beat_v2_f1": 0.2962962962962963,
+      "beat_v2_scorable": true,
+      "beat_v2_reference_beats": 15,
+      "beat_v2_accompaniment_beats": 12,
+      "beat_v5_score": 0.20917152408267042,
+      "beat_v5_confidence": 1.0,
+      "beat_v5_abstain": false,
+      "beat_v5_reasons": [],
+      "beat_v5_components": {
+        "global_soft_mean": 0.20917152408267042,
+        "local_soft_mean": 0.20917152408267042,
+        "local_soft_tail": 0.20917152408267042,
+        "valid_window_fraction": 1.0,
+        "onset_support": 1.0,
+        "beat_support": 1.0
+      },
+      "beat_v5_diagnostics": {
+        "duration_seconds": 12.0,
+        "vocal_onsets": 39,
+        "accompaniment_beats": 12,
+        "grid_points": 23,
+        "median_distance_seconds": 0.129999999999999,
+        "window_count": 1,
+        "valid_window_count": 1,
+        "grid_subdivision": 2,
+        "sigma_seconds": 0.055
+      }
+    },
+    {
+      "arm": "richness_v0",
+      "step": 5,
+      "beat_v2_f1": 0.2962962962962963,
+      "beat_v2_scorable": true,
+      "beat_v2_reference_beats": 15,
+      "beat_v2_accompaniment_beats": 12,
+      "beat_v5_score": 0.20917152408267042,
+      "beat_v5_confidence": 1.0,
+      "beat_v5_abstain": false,
+      "beat_v5_reasons": [],
+      "beat_v5_components": {
+        "global_soft_mean": 0.20917152408267042,
+        "local_soft_mean": 0.20917152408267042,
+        "local_soft_tail": 0.20917152408267042,
+        "valid_window_fraction": 1.0,
+        "onset_support": 1.0,
+        "beat_support": 1.0
+      },
+      "beat_v5_diagnostics": {
+        "duration_seconds": 12.0,
+        "vocal_onsets": 39,
+        "accompaniment_beats": 12,
+        "grid_points": 23,
+        "median_distance_seconds": 0.129999999999999,
+        "window_count": 1,
+        "valid_window_count": 1,
+        "grid_subdivision": 2,
+        "sigma_seconds": 0.055
+      }
+    },
+    {
+      "arm": "richness_v0",
+      "step": 50,
+      "beat_v2_f1": 0.27027027027027023,
+      "beat_v2_scorable": true,
+      "beat_v2_reference_beats": 15,
+      "beat_v2_accompaniment_beats": 22,
+      "beat_v5_score": 0.5263719887508397,
+      "beat_v5_confidence": 1.0,
+      "beat_v5_abstain": false,
+      "beat_v5_reasons": [],
+      "beat_v5_components": {
+        "global_soft_mean": 0.5263719887508397,
+        "local_soft_mean": 0.5263719887508397,
+        "local_soft_tail": 0.5263719887508397,
+        "valid_window_fraction": 1.0,
+        "onset_support": 1.0,
+        "beat_support": 1.0
+      },
+      "beat_v5_diagnostics": {
+        "duration_seconds": 12.0,
+        "vocal_onsets": 39,
+        "accompaniment_beats": 22,
+        "grid_points": 43,
+        "median_distance_seconds": 0.05999999999999994,
+        "window_count": 1,
+        "valid_window_count": 1,
+        "grid_subdivision": 2,
+        "sigma_seconds": 0.055
+      }
+    },
+    {
+      "arm": "richness_v0",
+      "step": 100,
+      "beat_v2_f1": 0.5517241379310344,
+      "beat_v2_scorable": true,
+      "beat_v2_reference_beats": 15,
+      "beat_v2_accompaniment_beats": 14,
+      "beat_v5_score": 0.33136288494846206,
+      "beat_v5_confidence": 1.0,
+      "beat_v5_abstain": false,
+      "beat_v5_reasons": [],
+      "beat_v5_components": {
+        "global_soft_mean": 0.33136288494846206,
+        "local_soft_mean": 0.33136288494846206,
+        "local_soft_tail": 0.33136288494846206,
+        "valid_window_fraction": 1.0,
+        "onset_support": 1.0,
+        "beat_support": 1.0
+      },
+      "beat_v5_diagnostics": {
+        "duration_seconds": 12.0,
+        "vocal_onsets": 39,
+        "accompaniment_beats": 14,
+        "grid_points": 27,
+        "median_distance_seconds": 0.09999999999999964,
+        "window_count": 1,
+        "valid_window_count": 1,
+        "grid_subdivision": 2,
+        "sigma_seconds": 0.055
+      }
     }
   ]
 }
