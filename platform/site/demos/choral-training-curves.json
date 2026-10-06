@@ -8,6 +8,11 @@
     "combined": {
       "steps": 1000,
       "updated_steps": 1000,
+      "first_step": {
+        "step": 1,
+        "reward": 0.169614,
+        "kl": 0.000272
+      },
       "points": [
         {
           "step": 25,
@@ -254,6 +259,11 @@
     "onset": {
       "steps": 1000,
       "updated_steps": 958,
+      "first_step": {
+        "step": 1,
+        "reward": 0.044883,
+        "kl": 0.000195
+      },
       "points": [
         {
           "step": 25,
@@ -500,6 +510,11 @@
     "onset_offset": {
       "steps": 1000,
       "updated_steps": 606,
+      "first_step": {
+        "step": 1,
+        "reward": 0.005,
+        "kl": 0.000235
+      },
       "points": [
         {
           "step": 25,
@@ -746,6 +761,11 @@
     "frame": {
       "steps": 1000,
       "updated_steps": 1000,
+      "first_step": {
+        "step": 1,
+        "reward": 0.180451,
+        "kl": 0.000257
+      },
       "points": [
         {
           "step": 25,
@@ -992,6 +1012,11 @@
     "coverage": {
       "steps": 1000,
       "updated_steps": 1000,
+      "first_step": {
+        "step": 1,
+        "reward": 0.803111,
+        "kl": 0.000319
+      },
       "points": [
         {
           "step": 25,
@@ -1238,6 +1263,11 @@
     "continuity": {
       "steps": 1000,
       "updated_steps": 192,
+      "first_step": {
+        "step": 1,
+        "reward": 0.982143,
+        "kl": 0.000393
+      },
       "points": [
         {
           "step": 25,

@@ -39,7 +39,17 @@ def main():
                 "kl": mean([row["kl"] for row in active]) if active else None,
                 "updates": len(active),
             })
-        runs[arm] = {"steps": len(rows), "updated_steps": sum(not row["skipped"] for row in rows), "points": points}
+        first = rows[0]
+        runs[arm] = {
+            "steps": len(rows),
+            "updated_steps": sum(not row["skipped"] for row in rows),
+            "first_step": {
+                "step": 1,
+                "reward": round(first["reward_mean"], 6) if not first["skipped"] else None,
+                "kl": round(first["kl"], 6) if not first["skipped"] else None,
+            },
+            "points": points,
+        }
 
     result = {
         "status": "measured_training_trace_window_means",

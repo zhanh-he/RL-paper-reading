@@ -13,6 +13,9 @@ if (data.status !== 'measured_training_trace_window_means' || data.bin_size !== 
     Object.keys(data.runs).sort().join(',') !== [...arms].sort().join(',') ||
     arms.some((arm) => data.runs[arm].steps !== 1000 ||
       data.runs[arm].updated_steps !== aggregate.arms[arm].milestones['1000'].updated_steps ||
+      data.runs[arm].first_step?.step !== 1 ||
+      (arm === 'combined' && (!Number.isFinite(data.runs[arm].first_step.reward) ||
+        !Number.isFinite(data.runs[arm].first_step.kl))) ||
       data.runs[arm].points.length !== 40 ||
       data.runs[arm].points.reduce((sum, point) => sum + point.updates, 0) !== data.runs[arm].updated_steps ||
       data.runs[arm].points.some((point, index) => point.step !== (index + 1) * 25 ||

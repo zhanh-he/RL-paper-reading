@@ -291,13 +291,95 @@ function createChoralMidiPanel(letter) {
   heading.append(titleBlock);
   const canvas = document.createElement('canvas'); canvas.width = 1120; canvas.height = 620;
   canvas.setAttribute('role', 'img');
+  const zoom = document.createElement('button'); zoom.type = 'button';
+  zoom.className = 'choral-midi-zoom'; zoom.title = '放大并对比 SATB MIDI';
+  zoom.setAttribute('aria-label', '放大并对比 SATB MIDI');
+  const zoomIcon = document.createElement('span'); zoomIcon.className = 'choral-zoom-icon';
+  zoomIcon.setAttribute('aria-hidden', 'true');
+  const icon = document.createElement('i'); icon.dataset.lucide = 'maximize-2';
+  zoomIcon.append(icon); zoom.append(canvas, zoomIcon);
   const pending = document.createElement('div'); pending.className = 'choral-midi-pending'; pending.hidden = true;
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata';
   const links = document.createElement('div'); links.className = 'choral-midi-links';
   const midi = document.createElement('a'); midi.className = 'source-link'; midi.download = '';
   const direct = document.createElement('a'); direct.className = 'source-link'; direct.target = '_blank'; direct.rel = 'noreferrer'; direct.textContent = '音频直链 ↗';
-  links.append(midi, direct); panel.append(heading, canvas, pending, audio, links);
-  return { panel, title, detail, canvas, pending, audio, links, midi, direct };
+  links.append(midi, direct); panel.append(heading, zoom, pending, audio, links);
+  return { panel, title, detail, canvas, zoom, pending, audio, links, midi, direct };
+}
+
+function setupChoralCompare(data, pitchRange, armNames, getStep) {
+  const dialog = $('#choral-compare-dialog');
+  const target = $('#choral-compare-target');
+  const stepSelect = $('#choral-compare-step');
+  const zoomInput = $('#choral-compare-zoom');
+  const names = { reference: 'GT · 参考 SATB', baseline: 'Frozen ChoralStream',
+    combined: 'A · Combined rewards',
+    ...Object.fromEntries(Object.entries(armNames).map(([key, name], index) =>
+      [key, `${String.fromCharCode(66 + index)} · ${name}`])) };
+  for (const [key, name] of Object.entries(names)) {
+    const option = document.createElement('option'); option.value = key; option.textContent = name;
+    target.append(option);
+  }
+  let left = null;
+  const fixed = (key) => key === 'reference' || key === 'baseline';
+  const variant = (key, step) => {
+    if (key === 'reference') return { title: names[key], notes: data.notes.reference,
+      audio: './audio/choral_ace_reference_short.wav', midi: './midi/choral_synth_reference.mid' };
+    if (key === 'baseline') return { title: names[key], notes: data.notes['0'],
+      audio: './audio/choral_event_0000.wav', midi: './midi/choral_event_0000.mid' };
+    const stage = key === 'combined' ? String(step) : `arm_${key}_${step}`;
+    const stem = key === 'combined' ? `choral_event_${String(step).padStart(4, '0')}` : `choral_event_${stage}`;
+    return { title: `${names[key]} · ${step} 步`, notes: data.notes[stage],
+      audio: `./audio/${stem}.wav`, midi: `./midi/${stem}.mid` };
+  };
+  const updateSide = (side, item) => {
+    $(`#choral-compare-${side}-title`).textContent = item.title;
+    drawVoiceMidi($(`#choral-compare-${side}`), item.notes, pitchRange);
+    const audio = $(`#choral-compare-${side}-audio`);
+    if (!audio.src.endsWith(item.audio.slice(1))) { audio.pause(); audio.src = item.audio; }
+    $(`#choral-compare-${side}-midi`).href = item.midi;
+  };
+  const updateRight = () => {
+    stepSelect.disabled = fixed(target.value);
+    updateSide('right', variant(target.value, Number(stepSelect.value)));
+  };
+  const rolls = [...dialog.querySelectorAll('.choral-compare-roll')];
+  const setZoom = () => {
+    const scale = Number(zoomInput.value);
+    for (const canvas of dialog.querySelectorAll('.choral-compare-roll canvas')) canvas.style.width = `${scale * 100}%`;
+    $('#choral-compare-zoom-value').textContent = `${scale}×`;
+    for (const roll of rolls) roll.scrollLeft = 0;
+  };
+  let syncing = false;
+  for (const roll of rolls) roll.addEventListener('scroll', () => {
+    if (syncing) return;
+    syncing = true;
+    const other = rolls.find((item) => item !== roll);
+    const extent = roll.scrollWidth - roll.clientWidth;
+    other.scrollLeft = extent ? roll.scrollLeft / extent * (other.scrollWidth - other.clientWidth) : 0;
+    requestAnimationFrame(() => { syncing = false; });
+  });
+  $('#view-choral').addEventListener('click', (event) => {
+    const button = event.target.closest('.choral-midi-zoom');
+    if (!button || !$('#choral-grpo-grid').contains(button)) return;
+    left = { key: button.dataset.choralCompare, step: getStep() };
+    target.value = left.key === 'reference' ? 'baseline' : 'reference';
+    stepSelect.value = String(getStep());
+    zoomInput.value = '1';
+    updateSide('left', variant(left.key, left.step));
+    updateRight();
+    setZoom();
+    dialog.showModal();
+  });
+  target.addEventListener('change', updateRight);
+  stepSelect.addEventListener('change', updateRight);
+  zoomInput.addEventListener('input', setZoom);
+  $('#choral-compare-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    for (const audio of dialog.querySelectorAll('audio')) audio.pause();
+    left = null;
+  });
 }
 
 function drawSatbComparison(canvas, noteSets, stage, label) {
@@ -348,11 +430,18 @@ function renderEventReplay(data, pilot) {
   $('#choral-baseline-panel').replaceChildren(panels.baseline.panel);
   $('#choral-grpo-grid').append(panels.combined.panel,
     ...singleArms.map((arm) => singlePanels[arm].panel));
+  panels.baseline.zoom.dataset.choralCompare = 'baseline';
+  panels.combined.zoom.dataset.choralCompare = 'combined';
+  for (const arm of singleArms) singlePanels[arm].zoom.dataset.choralCompare = arm;
+  if (window.lucide) window.lucide.createIcons();
   drawVoiceMidi($('#choral-reference-midi'), data.notes.reference, pitchRange);
   const updatePanel = (panel, title, detail, notes, stem, midiStem) => {
     panel.title.textContent = title;
     panel.detail.textContent = detail;
+    panel.zoom.title = `放大并对比 ${title} MIDI`;
+    panel.zoom.setAttribute('aria-label', `放大并对比 ${title} MIDI`);
     panel.canvas.hidden = false;
+    panel.zoom.hidden = false;
     panel.pending.hidden = true;
     panel.audio.hidden = false;
     panel.links.hidden = false;
@@ -368,6 +457,7 @@ function renderEventReplay(data, pilot) {
     panel.title.textContent = title;
     panel.detail.textContent = metricsAvailable ? `${step} 步 · 测试集指标已测` : `${step} 步 · 尚无回放`;
     panel.canvas.hidden = true;
+    panel.zoom.hidden = true;
     panel.pending.hidden = false;
     panel.pending.textContent = metricsAvailable ? '该步尚无公开样本 MIDI / 音频' : '该步尚无 MIDI / 音频';
     panel.audio.pause();
@@ -380,7 +470,9 @@ function renderEventReplay(data, pilot) {
   };
   updatePanel(panels.baseline, 'Frozen ChoralStream · baseline', `${data.receipt.steps['0'].note_count} notes · 0 步`,
     data.notes['0'], 'choral_event_0000', 'choral_event_0000');
+  let currentStep = 300;
   const selectStep = (step) => {
+    currentStep = step;
     const id = String(step).padStart(4, '0');
     const result = data.receipt.steps[String(step)];
     updatePanel(panels.combined, 'Combined rewards', `${result.note_count} notes · ${step} 步`,
@@ -400,6 +492,7 @@ function renderEventReplay(data, pilot) {
     for (const button of document.querySelectorAll('#choral-event-rail button')) {
       button.setAttribute('aria-pressed', String(Number(button.dataset.step) === step));
     }
+    $('#view-choral').dispatchEvent(new CustomEvent('choral:stepchange', { detail: { step } }));
   };
   $('#choral-event-rail').replaceChildren(...steps.map((step) => {
     const button = document.createElement('button'); button.type = 'button';
@@ -416,6 +509,7 @@ function renderEventReplay(data, pilot) {
       if (audio !== event.target) audio.pause();
     }
   }, true);
+  setupChoralCompare(data, pitchRange, armNames, () => currentStep);
   selectStep(300);
 }
 

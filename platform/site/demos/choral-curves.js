@@ -13,6 +13,7 @@ const arms = [
 ];
 
 function chart(canvas, points, key, color, compact = false, marks = null) {
+  let selectedStep = 0;
   const draw = () => {
     const width = canvas.getBoundingClientRect().width;
     if (width < 20) return;
@@ -49,6 +50,15 @@ function chart(canvas, points, key, color, compact = false, marks = null) {
     }
     context.textAlign = 'center';
     for (const step of [0, 500, 1000]) context.fillText(String(step), x(step), height - 4);
+    if (selectedStep) {
+      context.beginPath();
+      context.setLineDash([3, 4]);
+      context.strokeStyle = '#63716a';
+      context.moveTo(x(selectedStep), margin.top);
+      context.lineTo(x(selectedStep), height - margin.bottom);
+      context.stroke();
+      context.setLineDash([]);
+    }
     context.strokeStyle = color;
     context.lineWidth = compact ? 2 : 2.5;
     context.lineJoin = 'round';
@@ -62,31 +72,51 @@ function chart(canvas, points, key, color, compact = false, marks = null) {
       connected = true;
     }
     context.stroke();
+    const selected = points.find((point) => point.step === selectedStep);
+    if (selected && Number.isFinite(selected[key])) {
+      context.beginPath();
+      context.arc(x(selectedStep), y(selected[key]), 5, 0, Math.PI * 2);
+      context.fillStyle = '#fff';
+      context.fill();
+      context.strokeStyle = color;
+      context.lineWidth = 2;
+      context.stroke();
+    }
     marks?.draw(context, width, height - margin.bottom, color);
   };
   new ResizeObserver(draw).observe(canvas.parentElement);
   draw();
+  return { select(step) { selectedStep = step; draw(); } };
 }
 
 try {
-  const response = await fetch('./choral-training-curves.json');
+  const response = await fetch('./choral-training-curves.json?v=20261006', { cache: 'no-store' });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const data = await response.json();
-  const combined = data.runs.combined.points;
-  const first = combined[0];
-  const last = combined.at(-1);
+  const binned = data.runs.combined.points;
+  const combined = [data.runs.combined.first_step, ...binned];
+  const first = binned[0];
+  const last = binned.at(-1);
   document.querySelector('#choral-combined-reward-value').textContent =
     `${first.reward.toFixed(3)} → ${last.reward.toFixed(3)}`;
   document.querySelector('#choral-combined-kl-value').textContent =
     `${first.kl.toFixed(3)} → ${last.kl.toFixed(3)}`;
-  const combinedCanvas = document.querySelector('#choral-combined-reward-chart');
-  const combinedMarks = createMilestones(combinedCanvas, 1000);
-  combinedMarks.set([1, 100, 300, 1000].map((step) => {
-    const point = combined.find((entry) => entry.step === step);
-    return { step, label: `第 ${step} 步 · ${point ? `训练 combined reward 25 步窗口均值 ${point.reward.toFixed(4)}` : '训练 combined reward 未单独记录'}` };
-  }));
-  chart(combinedCanvas, combined, 'reward', '#08745d', false, combinedMarks);
-  chart(document.querySelector('#choral-combined-kl-chart'), combined, 'kl', '#b36b24');
+  const milestones = [1, 100, 300, 1000];
+  const createMarkedChart = (selector, key, color, name) => {
+    const canvas = document.querySelector(selector);
+    const marks = createMilestones(canvas, 1000);
+    marks.set(milestones.map((step) => {
+      const point = combined.find((entry) => entry.step === step);
+      const window = step === 1 ? '单步原值' : '25 步窗口均值';
+      return { step, label: `第 ${step} 步 · 训练 ${name} ${window} ${point[key].toFixed(4)}` };
+    }));
+    return chart(canvas, combined, key, color, false, marks);
+  };
+  const rewardChart = createMarkedChart('#choral-combined-reward-chart', 'reward', '#08745d', 'combined reward');
+  const klChart = createMarkedChart('#choral-combined-kl-chart', 'kl', '#b36b24', 'KL');
+  const selectStep = (step) => { rewardChart.select(step); klChart.select(step); };
+  document.querySelector('#view-choral').addEventListener('choral:stepchange', (event) => selectStep(event.detail.step));
+  selectStep(Number(document.querySelector('#choral-event-rail button[aria-pressed="true"]')?.dataset.step) || 300);
 
   const list = document.querySelector('#choral-small-plots');
   for (const [arm, name, color] of arms) {
