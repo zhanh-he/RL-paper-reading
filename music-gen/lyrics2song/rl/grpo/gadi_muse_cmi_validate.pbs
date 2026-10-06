@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+#PBS -P wa66
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=128GB
+#PBS -l jobfs=40GB
+#PBS -l walltime=24:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66
+#PBS -l wd
+#PBS -N muse-cmi-valid
+set -euo pipefail
+
+: "${REWARD:?Set REWARD}"
+: "${LR:?Set LR}"
+: "${STEP:?Set STEP to a saved optimizer step}"
+case "$REWARD" in songeval|musecritic) ;; *) exit 2 ;; esac
+case "$LR" in 1e-6|3e-6|1e-5) ;; *) exit 2 ;; esac
+case "$STEP" in 0|25|50|100) ;; *) exit 2 ;; esac
+
+module purge
+module load python3/3.11.7
+module load cuda/12.8.0
+export PYTHONNOUSERSITE=1
+unset PYTHONHOME
+root=/g/data/wa66/hanyu/vocal2accomp-muse
+study="$root/experiments/cmi_triple_textlyrics_20261006"
+run="$study/outputs/${REWARD}_lr${LR}_train"
+train_py=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
+args=(
+  --model "$root/models/Muse-0.6b"
+  --mucodec "$root/src/MuCodec"
+  --decoder "$study/decode_muse_tokens.py"
+  --codec-python "$root/envs/mucodec-py310-cu128/bin/python"
+  --scorer-python /g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+  --reward-backend "$REWARD"
+  --valid-jsonl "$study/data/muse-cmi-triple-valid.jsonl"
+  --output "$run/validation/step_$(printf '%06d' "$STEP")"
+)
+if [[ "$STEP" != 0 ]]; then
+  adapter="$run/checkpoint/checkpoint-$STEP"
+  [[ -f "$adapter/adapter_model.safetensors" ]] || { echo "Missing adapter $adapter" >&2; exit 1; }
+  args+=(--adapter "$adapter")
+fi
+if [[ "$REWARD" == songeval ]]; then
+  args+=(--songeval /g/data/wa66/hanyu/SongEval-formal)
+else
+  args+=(--critic-script "$study/score_musecritic_batch.py"
+         --critic-repo "$root/src/MuseCritic"
+         --critic-model "$root/models/MuseCritic")
+fi
+exec "$train_py" -u "$study/evaluate_muse_cmi_baseline.py" "${args[@]}"

@@ -1,10 +1,17 @@
 # CMI-Pref triple-source, text+lyrics GRPO rerun
 
 **Submission:** 2026-10-06. Twelve two-step Gadi smokes and twelve dependent
-100-step jobs were accepted by PBS at priority `-100`; no new scores are
-verified in this receipt. A failed smoke leaves its own full run held rather
+100-step jobs were accepted by PBS at priority `-100`; no **60-condition formal
+validation** scores are verified in this receipt. A failed smoke leaves its own full run held rather
 than publishing a result. The existing 234/59 text+lyrics runs remain a
 separate historical protocol.
+
+An additional [YuE2 SongEval 2e-5 two-step lab5090 smoke](yue2-5090-smoke.json)
+completed with a fresh LoRA from this projected data. Both updates and all
+four scored training-audio SHA256 bindings verified; sampled KL was 0 at step
+1 and 0.000715 at step 2. Its **two-song** held-out SongEval mean was 3.4135
+at step 0 and 3.5031 at step 1. That is a pipeline check, not a formal
+60-song validation result or evidence of audible improvement.
 
 The source is the [frozen three-part CMI-Pref split](../../DATA-MODALITY-AUDIT.md):
 240 train and 60 validation condition IDs, plus the sealed official three-part
@@ -38,6 +45,11 @@ plugin scores PCM24-FLAC files made from decoded WAVs. Both use the same
 240-row train chat dataset and 60-row held-out dataset. Muse checkpoint
 validation and audio-listening receipts are **not yet complete**; training
 curves alone must not be presented as generalization evidence.
+[`evaluate_muse_cmi_baseline.py`](../../evaluate_muse_cmi_baseline.py) and
+[`gadi_muse_cmi_validate.pbs`](../../gadi_muse_cmi_validate.pbs) prepare a
+fixed 60-condition, same-seed evaluation at the baseline and saved
+checkpoints. These evaluation jobs are **not submitted yet**; they must run
+only after the corresponding training checkpoints pass integrity checks.
 The initial Muse PBS pair set (`180594171` through `180594196`) was cancelled
 while queued after a receipt-schema bug was found. It never ran. The table
 above identifies the corrected resubmission.

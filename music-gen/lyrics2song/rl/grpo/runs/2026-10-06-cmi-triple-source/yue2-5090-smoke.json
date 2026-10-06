@@ -1,0 +1,21 @@
+{
+  "status": "verified-two-step-smoke-only",
+  "host": "lab5090",
+  "model": "YuE2-3B",
+  "reward": "SongEval",
+  "learning_rate": 0.00002,
+  "dataset_protocol": "cmi-pref-triple-source-text-lyrics-baseline-v1",
+  "source_manifest_sha256": "b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0",
+  "projected_manifest_sha256": "b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109",
+  "actual_input_modalities": ["text", "lyrics"],
+  "reference_audio_used": false,
+  "train_conditions_used": 2,
+  "validation_conditions_used": 2,
+  "completed_optimizer_steps": 2,
+  "sampled_kl": {"1": 0.0, "2": 0.0007148729346226901},
+  "heldout_songeval_mean": {"0": 3.41351, "1": 3.5031},
+  "all_four_scored_training_audio_sha256_verified": true,
+  "step_2_adapter_present": true,
+  "remote_output": "/home/mengh/research/YuE2-posttrain/outputs/cmi_triple_textlyrics_songeval_lr2e5_5090_smoke_20261006",
+  "interpretation": "Wiring test only; two validation songs cannot support a generalization or audio-quality claim."
+}

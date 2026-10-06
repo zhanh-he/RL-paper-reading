@@ -13,6 +13,7 @@ def main():
     parser.add_argument("--mucodec", type=Path, required=True)
     parser.add_argument("--token-file", type=Path, nargs="+", required=True)
     parser.add_argument("--steps", type=int, default=20)
+    parser.add_argument("--duration", type=float, default=40.96)
     parser.add_argument("--device", default="cuda:0")
     args = parser.parse_args()
     sys.path.insert(0, str(args.mucodec.resolve()))
@@ -32,7 +33,7 @@ def main():
             torch.cuda.manual_seed_all(20260929)
         codes = torch.tensor(tokens, dtype=torch.long).view(1, 1, -1)
         with torch.inference_mode():
-            wave = decoder.code2sound(codes, prompt=None, duration=40.96,
+            wave = decoder.code2sound(codes, prompt=None, duration=args.duration,
                                       guidance_scale=1.5, num_steps=args.steps,
                                       disable_progress=True)
         output = path.with_suffix(".wav")
