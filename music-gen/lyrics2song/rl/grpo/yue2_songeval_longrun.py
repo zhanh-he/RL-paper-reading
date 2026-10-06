@@ -221,11 +221,16 @@ def main():
             parser.error(f"Dataset SHA256 changed: {actual_sha}")
         dataset = json.loads(args.dataset_manifest.read_text())
         protocol = dataset.get("protocol")
-        if protocol not in ("cmi-pref-lyrics-no-ref-decontaminated-v1",
-                            "cmi-pref-triple-source-text-lyrics-baseline-v1"):
+        triple_protocols = {
+            "cmi-pref-triple-source-text-lyrics-baseline-v1":
+                ("b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0", 240, 60),
+            "cmi-pref-triple-source-text-lyrics-baseline-9to1-v2":
+                ("2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136", 270, 30),
+        }
+        if protocol not in ("cmi-pref-lyrics-no-ref-decontaminated-v1", *triple_protocols):
             parser.error("Unrecognized formal dataset protocol")
-        if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
-            if dataset.get("source_manifest_sha256") != "b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0" \
+        if protocol in triple_protocols:
+            if dataset.get("source_manifest_sha256") != triple_protocols[protocol][0] \
                     or dataset.get("input_modalities") != ["text", "lyrics"] \
                     or dataset.get("reference_audio_used") is not False:
                 parser.error("Three-part source projection is not the audited text+lyrics baseline")
@@ -233,7 +238,7 @@ def main():
                  for row in dataset["train"]]
         heldout = [{"style": row["style"], "lyrics": row["lyrics"], "cot": "off", "cfg_scale": 1.0}
                    for row in dataset["valid"]]
-        expected_counts = (240, 60) if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1" else (234, 59)
+        expected_counts = triple_protocols[protocol][1:] if protocol in triple_protocols else (234, 59)
         if (len(train), len(heldout)) != expected_counts:
             parser.error("Formal split size changed")
         if args.smoke:
@@ -248,7 +253,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     manifest = {
         "training_data_origin": ("pinned CMI-Pref triple-source text+lyrics projection" if args.dataset_manifest
-                                  and protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1"
+                                  and protocol in triple_protocols
                                   else "pinned CMI-Pref compatible train subset" if args.dataset_manifest
                                   else "eight original hand-written English two-line lyrics prompts"),
         "heldout_data_origin": "pinned CMI-Pref train-derived validation subset" if args.dataset_manifest else "three separate original hand-written English two-line lyrics prompts",
@@ -399,9 +404,9 @@ def main():
         if not args.dataset_manifest:
             shutil.rmtree(scratch)
         print(f"step={step} rewards={record['rewards']} grad={grad_norm:.4f} seconds={record['seconds']:.1f}", flush=True)
-        if step <= 5 or step % args.checkpoint_every == 0 or step in (100, 300, 1000):
+        if step <= 5 or step % args.checkpoint_every == 0 or step in (100, 300, 1000) or (args.dataset_manifest and step == args.max_steps):
             save_checkpoint(model, optimizer, step, args.output, args.reward_backend)
-        if args.dataset_manifest and step in (1, 25, 50, 100):
+        if args.dataset_manifest and (step in (1, 25, 50, 100) or step == args.max_steps):
             evaluate(pipe, step, args, heldout)
         elif not args.dataset_manifest and step in (5, 100, 300, 1000):
             evaluate(pipe, step, args, heldout)

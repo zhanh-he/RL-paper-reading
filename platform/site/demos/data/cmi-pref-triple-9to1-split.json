@@ -1,0 +1,2584 @@
+{
+  "protocol": "cmi-pref-text-audio-lyrics-decontaminated-v1-split-270-30-test-v2",
+  "source_revisions": {
+    "cmi_pref": "5282fbe784e326014894b299cb22645cd7d56057",
+    "wildsongbench": "e361b85a8d7365d3079fa9647641a87ce3c8c5b5"
+  },
+  "source_sha256": {
+    "cmi_train": "fd157070f09ad51d807f4b447bf5a9668fd9b00890c7d646ffd1331850e7d8d0",
+    "cmi_test": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+    "wildsongbench": "859e5225d319912efb64d587d1d5eb6cf0abc9fb162cc3d5f02d1688cff2edc0"
+  },
+  "private_manifest_sha256": "2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136",
+  "unit": "unique normalized text+lyrics+reference-audio-path condition; source_prompt_ids identify public CMI-Pref votes",
+  "rule": "exclude normalized lyrics in all official CMI-Pref test and WildSongBench; dedupe normalized text+lyrics+reference path; SHA256-order lyric groups into 30 valid conditions; 270 train",
+  "model_input_modalities": [
+    "text",
+    "lyrics"
+  ],
+  "reference_audio_used_in_current_runs": false,
+  "train": [
+    {
+      "condition_id": "0089a98d356253b93f125206ca07ca4b0603db1fc29c4f7c156cfa48c811672a",
+      "source_prompt_ids": [
+        "94629"
+      ]
+    },
+    {
+      "condition_id": "00da1af506722ccbfd8c11af991a639d1a18b5b813baa8063706b528892fc5be",
+      "source_prompt_ids": [
+        "135303"
+      ]
+    },
+    {
+      "condition_id": "02c22a20eafe9a877f073fe392ce14403bc92caf9c6eaccde67e5cc2ede1c29c",
+      "source_prompt_ids": [
+        "135342"
+      ]
+    },
+    {
+      "condition_id": "0316cc6ca014e8f3cd1f6191f47b29e79c4cd76cb525ce24c69d32c6b7279429",
+      "source_prompt_ids": [
+        "91767"
+      ]
+    },
+    {
+      "condition_id": "060294d94516e3f119759287e89aa527b64a3ce3020c5f21dcbe1c75c5a71dd3",
+      "source_prompt_ids": [
+        "94125"
+      ]
+    },
+    {
+      "condition_id": "069fbf38daaf768b82b7907fb3e3b06e3c2683db7af51e9757ba3cfaa4cad2e6",
+      "source_prompt_ids": [
+        "134534",
+        "134535"
+      ]
+    },
+    {
+      "condition_id": "07c275fdf95443292aef8cb94a475893ee678d56dc08980608ab72dcd0a44f81",
+      "source_prompt_ids": [
+        "93220"
+      ]
+    },
+    {
+      "condition_id": "08ef1eaf48f9f86806b00a217bd808a0eb3b3ae4f61264689687f250268133a0",
+      "source_prompt_ids": [
+        "92513"
+      ]
+    },
+    {
+      "condition_id": "09de70f1004d7cb4fcb0f16c31a3e933140d822b1201a104baaac0ba679cc656",
+      "source_prompt_ids": [
+        "135088"
+      ]
+    },
+    {
+      "condition_id": "0a93cef92d35010d851d3301107a65f5ed79fda989eb70679acbb6df79ce51f2",
+      "source_prompt_ids": [
+        "92146"
+      ]
+    },
+    {
+      "condition_id": "0c81c27b89d9c9960781a67f3a7de9b695a660eeed504afca734ecd386ea9b16",
+      "source_prompt_ids": [
+        "94258"
+      ]
+    },
+    {
+      "condition_id": "0cbe4a664be3f41e8a9bf567624e6a0cd6f6b192701fa69db3cacc70e44faa05",
+      "source_prompt_ids": [
+        "93327"
+      ]
+    },
+    {
+      "condition_id": "0dfe29f385f13d7571a6bd4621ad128d3b2a11fd33363f12cd4098db570344b9",
+      "source_prompt_ids": [
+        "134976"
+      ]
+    },
+    {
+      "condition_id": "0f82710bf87236b9873ee598d184250fb4f4b9d08eebd6b83c9ae421717c232f",
+      "source_prompt_ids": [
+        "92330"
+      ]
+    },
+    {
+      "condition_id": "0f97ca3c6b5e3da1a6054aed4ebc49a7df9dad7ce18e0b30317d7697805e347d",
+      "source_prompt_ids": [
+        "92933"
+      ]
+    },
+    {
+      "condition_id": "10211ca851368ec4048eefa6a1075e6440afa7c14d13cf923601d4a99bbeeb21",
+      "source_prompt_ids": [
+        "134934"
+      ]
+    },
+    {
+      "condition_id": "10baa683704e36c33ae43b2488f10575c845f23679cd369a985cb24f86dc9d4a",
+      "source_prompt_ids": [
+        "94304"
+      ]
+    },
+    {
+      "condition_id": "113fde56e8b92a8a5c61a1cb4e3c49ac4e249c8eff84ab57425288c57e940134",
+      "source_prompt_ids": [
+        "135190"
+      ]
+    },
+    {
+      "condition_id": "11f40f08f01c0fadaf676c9978a55eb925961f0fd1539f1088c5ea4f35c23dd3",
+      "source_prompt_ids": [
+        "94777"
+      ]
+    },
+    {
+      "condition_id": "12ac3fceccb3b3e544feae609d70bc2c3e377b495052a5604539ffca43db1825",
+      "source_prompt_ids": [
+        "91831"
+      ]
+    },
+    {
+      "condition_id": "1324f1d8e2544f684c4daa9ec26d00b9a1e7705afac1715b6f6a236fafb7e787",
+      "source_prompt_ids": [
+        "94253"
+      ]
+    },
+    {
+      "condition_id": "1330a35ce77a2d9ef76ec889381ef0a93ca68b85176e774f829e80080a056680",
+      "source_prompt_ids": [
+        "92990"
+      ]
+    },
+    {
+      "condition_id": "1461bb7595b80d7a00541380fe76e63b1fa9554cee5bb2bf9e60fe56242a65ae",
+      "source_prompt_ids": [
+        "135256"
+      ]
+    },
+    {
+      "condition_id": "15b7e190702ed890c8cd5aa899ec8975e29ab07fe76465a1e36d0501910f3250",
+      "source_prompt_ids": [
+        "135356"
+      ]
+    },
+    {
+      "condition_id": "166f26b75c51e31eb58f3ab906b2a2beabdaf62800f74c18b649bb4c27c1e211",
+      "source_prompt_ids": [
+        "93345"
+      ]
+    },
+    {
+      "condition_id": "16cc5583474ffc368a24e1a5bf58d6b7ac686362c982ea27a62bb2a697a0f364",
+      "source_prompt_ids": [
+        "135197"
+      ]
+    },
+    {
+      "condition_id": "17126812731227d1e0b47a97dde037daae3114cf000593b85930dcbbff53cf22",
+      "source_prompt_ids": [
+        "94355"
+      ]
+    },
+    {
+      "condition_id": "17c915116e9534009dcfe42071cf86464a6524f99550692eceed136b2dd39642",
+      "source_prompt_ids": [
+        "92842"
+      ]
+    },
+    {
+      "condition_id": "19361037ffc542422f909da3c4dbe12a6d6995278d532818be9b4bfcb210031a",
+      "source_prompt_ids": [
+        "134907"
+      ]
+    },
+    {
+      "condition_id": "1a22a463bdb094de611ae22a9014e2c38eba718a78741810296e9e2e4d70fa19",
+      "source_prompt_ids": [
+        "92655"
+      ]
+    },
+    {
+      "condition_id": "1c4a4c91581bc28a7a27177df58c88c5d25478456d951341cf91e25e5438f702",
+      "source_prompt_ids": [
+        "94160"
+      ]
+    },
+    {
+      "condition_id": "1d2fc6048e478578fb5cf1512c220eae9100e0e3c497defbfb8a6e62e911bf85",
+      "source_prompt_ids": [
+        "134202",
+        "134204"
+      ]
+    },
+    {
+      "condition_id": "1dd5fa6235c9e58387fc1af65c75385375fe94f213b3a9b9cd4b1b9208fb77c1",
+      "source_prompt_ids": [
+        "93927",
+        "93928"
+      ]
+    },
+    {
+      "condition_id": "1e309e2d423b04baaddc3818531525d2c6f99e682b57a09bc52c7b7d3a805fa0",
+      "source_prompt_ids": [
+        "134487"
+      ]
+    },
+    {
+      "condition_id": "1e67317ba2b27cd954a7e8e61d7df31d6003a9a3a66734f849bf8a42a313c378",
+      "source_prompt_ids": [
+        "134953"
+      ]
+    },
+    {
+      "condition_id": "2134364240c88a0a50ceb05b0dfff602426ea6bf3a1d72157b29ba18218fad30",
+      "source_prompt_ids": [
+        "94681"
+      ]
+    },
+    {
+      "condition_id": "221e9287c71936de18b367821c827d1845879b9d0608c18d3ef5991ea0742460",
+      "source_prompt_ids": [
+        "92781"
+      ]
+    },
+    {
+      "condition_id": "240d7fb4fb556786c0f8f741c0d84f058418c28e12e66fe82ec55c3da2f273ca",
+      "source_prompt_ids": [
+        "94208"
+      ]
+    },
+    {
+      "condition_id": "247e9ebb37b8c67fd0fc4c50baa3ee554a9745cc72caba31a31fd5f733852658",
+      "source_prompt_ids": [
+        "134153"
+      ]
+    },
+    {
+      "condition_id": "266f67c1f1620d1b23f68f581c93f68bab2ab70fd04c18257fe586c0b373781e",
+      "source_prompt_ids": [
+        "94233"
+      ]
+    },
+    {
+      "condition_id": "2764058e53ce79c8c4770f467395098bafdbc86da9971865ffe79168648116e4",
+      "source_prompt_ids": [
+        "134274"
+      ]
+    },
+    {
+      "condition_id": "2909f3dcf6e28ac357b4a87fcf0fbf343f9b14d41bf32c9bd41f153e41050503",
+      "source_prompt_ids": [
+        "93029"
+      ]
+    },
+    {
+      "condition_id": "2923cbf1736c8f9f593ce7eb4917d0841e874077465e10c4f7f91bf12a24229e",
+      "source_prompt_ids": [
+        "134241"
+      ]
+    },
+    {
+      "condition_id": "2fba65d2a6fc2c3d5f9a185fcfd715039b3b148793a00ce71e086e3ac6fb2d63",
+      "source_prompt_ids": [
+        "92972"
+      ]
+    },
+    {
+      "condition_id": "2ff0a2c1de0f4d1b23421d11069b24ab67ec512ef47ea5a9e0428ab803bad73b",
+      "source_prompt_ids": [
+        "134124"
+      ]
+    },
+    {
+      "condition_id": "3098431e38e81579a9a3b6f2ff31864bc37c71bdf1f8c2463d1a0da01bde0f7b",
+      "source_prompt_ids": [
+        "135153"
+      ]
+    },
+    {
+      "condition_id": "3126df429112bc4181ce840a79b0ef35eed04506630f81836ad135b24e6c2e4a",
+      "source_prompt_ids": [
+        "93172"
+      ]
+    },
+    {
+      "condition_id": "31ce0575379dd18ff74dff8318a3a04233bc258430cb4aee2dcfb345374d254e",
+      "source_prompt_ids": [
+        "135032"
+      ]
+    },
+    {
+      "condition_id": "3265d3b7769b1f4ccf2f79b0416bf864bfd4bfb2fb62bf38c42169831f1b0974",
+      "source_prompt_ids": [
+        "134583"
+      ]
+    },
+    {
+      "condition_id": "35bf6495c3e121437c4ab3cec996817c9fc6f51dcd2145dca1f180b6699ec483",
+      "source_prompt_ids": [
+        "94687",
+        "94688"
+      ]
+    },
+    {
+      "condition_id": "35ef1ba92e04fc452e207985a8adddfc13c92e84c3b71fc7d2d532b25cb6f968",
+      "source_prompt_ids": [
+        "92308"
+      ]
+    },
+    {
+      "condition_id": "3606c2d7155d9925f9e27e2bed03c92c1d79f61324e6fb2d9843a469be8de28e",
+      "source_prompt_ids": [
+        "92764"
+      ]
+    },
+    {
+      "condition_id": "3679aa6980e0608cfb1ca9ea436c852a82321ecdc51f2c35549fe3dbb85f7612",
+      "source_prompt_ids": [
+        "134675"
+      ]
+    },
+    {
+      "condition_id": "37b82620d76fb0ee2e0deeac10367758a4f1c97fc082502edaed746aa460a485",
+      "source_prompt_ids": [
+        "134503"
+      ]
+    },
+    {
+      "condition_id": "39dec8fdb48f179616a2bc58ae319c08e3dd246d44b5e9084a9bd1e3f3db5572",
+      "source_prompt_ids": [
+        "134450"
+      ]
+    },
+    {
+      "condition_id": "3c7c352b1aa8fa1545d2800a17c5cca84be6de216a9329d8027e3a02e83e8c4b",
+      "source_prompt_ids": [
+        "93596"
+      ]
+    },
+    {
+      "condition_id": "3d895589b6d92ea86173174249802d3504fa2720b151433b1e75fecd6a318e68",
+      "source_prompt_ids": [
+        "94581"
+      ]
+    },
+    {
+      "condition_id": "3e5102e488c1b1656d8438490061e4beb1dd164bdc1e4edd4f236603f2b4b403",
+      "source_prompt_ids": [
+        "134244"
+      ]
+    },
+    {
+      "condition_id": "3edf82fcf2810bad700caf771018647443f8669ff4850e598b53948642ce52ac",
+      "source_prompt_ids": [
+        "134650"
+      ]
+    },
+    {
+      "condition_id": "3f864c34623777d9da3de844aaa01e09711df718110a3cc585ac8be262ce4b6d",
+      "source_prompt_ids": [
+        "134293"
+      ]
+    },
+    {
+      "condition_id": "400404a3eb269b27ee9cbd9405a854491536566e1d4995ebe654e108cdb1de2f",
+      "source_prompt_ids": [
+        "134390"
+      ]
+    },
+    {
+      "condition_id": "42140423085a80dcfed7eb3b86321576fe790aa4b1f2a5d9a6ae919c0a457bb3",
+      "source_prompt_ids": [
+        "134615"
+      ]
+    },
+    {
+      "condition_id": "42253c63ac72bc3d1ff503023cc8c76ef07b3362fffc4ccb0a79e9374347ab6a",
+      "source_prompt_ids": [
+        "93432",
+        "93433"
+      ]
+    },
+    {
+      "condition_id": "43e7d4c3b3010037ca3d8ba4999ae1d48cf74456d5f5283ac8ea6ac02eb8779f",
+      "source_prompt_ids": [
+        "93844"
+      ]
+    },
+    {
+      "condition_id": "47b74a4bff7839b9f486616110a8a59ebeb74714bdf723433c4a1be2813775df",
+      "source_prompt_ids": [
+        "134444"
+      ]
+    },
+    {
+      "condition_id": "47ce9f473c13877581f80af7612128a13fd51f5c04926ee5f0204226c63ae419",
+      "source_prompt_ids": [
+        "93581"
+      ]
+    },
+    {
+      "condition_id": "48e0c902c7a7bb84611c83e0b061c21754a56285ea3d208dabf579a6c6acf6f4",
+      "source_prompt_ids": [
+        "93657"
+      ]
+    },
+    {
+      "condition_id": "48f3abfcf902d733ffb8cca5b50b8cf90221c2d7f647805bd95686bf43a171a8",
+      "source_prompt_ids": [
+        "93482"
+      ]
+    },
+    {
+      "condition_id": "492fae59dcd7a80d3f695427527c9cca1274e29edd8977289a7311d9c3816a15",
+      "source_prompt_ids": [
+        "134579"
+      ]
+    },
+    {
+      "condition_id": "49c15bce1ebbd07a0bc71a058f708cdbc995f0f9a276b4d0b0652bd7da3acf49",
+      "source_prompt_ids": [
+        "92726"
+      ]
+    },
+    {
+      "condition_id": "4a307e48c37bec510d315a0d7b1a5024b7a3e7e038f69a63c81049c70c8548e6",
+      "source_prompt_ids": [
+        "134510"
+      ]
+    },
+    {
+      "condition_id": "4af298975e45380ae2bdcda52394ea10f98bc154792a9aa5be90ee1d921f612a",
+      "source_prompt_ids": [
+        "134589"
+      ]
+    },
+    {
+      "condition_id": "4bcab3b13a963e2e8a0b09b09cde0b7c47bf7ee61c182653cb21e1940a277d86",
+      "source_prompt_ids": [
+        "134648"
+      ]
+    },
+    {
+      "condition_id": "4bfe154e455cc4d652b87678e391e020db25b14129353ca9030161cf17988324",
+      "source_prompt_ids": [
+        "94748"
+      ]
+    },
+    {
+      "condition_id": "4d00615400c23d106390bccbc3c0810668dc7cb79c5b49e16bc4ba541d1eddaf",
+      "source_prompt_ids": [
+        "92315"
+      ]
+    },
+    {
+      "condition_id": "4e7e1358d11c66a074f91e07e213300cbb43b428ffd8457aa92a2227c3e2ec50",
+      "source_prompt_ids": [
+        "92834"
+      ]
+    },
+    {
+      "condition_id": "4f16d535568892c34d7a2b8b4c1444a70befc72006cf5af28ffc2d7ede3bb91a",
+      "source_prompt_ids": [
+        "91997"
+      ]
+    },
+    {
+      "condition_id": "506797f180906ac2625291db1abe601d6106343e5dc89dda3ca62fcb8c8432a4",
+      "source_prompt_ids": [
+        "94402"
+      ]
+    },
+    {
+      "condition_id": "518b15b271158fefb740a8d49d0b0dc7eb0be955211b0b9c7c2e39bc5cf540a6",
+      "source_prompt_ids": [
+        "135152"
+      ]
+    },
+    {
+      "condition_id": "51a9e46e634f91878dc54e2d3e8bb743dca734320672839971aa682be458c164",
+      "source_prompt_ids": [
+        "134676"
+      ]
+    },
+    {
+      "condition_id": "52890fd91585b01bfd07f51251081609ae43f64adb08968afc5376a47145f305",
+      "source_prompt_ids": [
+        "92299"
+      ]
+    },
+    {
+      "condition_id": "53b67d554dfd2d5c693b36c8006b080ff54f190f40d1d0ba5e931f31b7f7ebff",
+      "source_prompt_ids": [
+        "92950"
+      ]
+    },
+    {
+      "condition_id": "5450dfd1a1e065ba30662896acdbbf3864e5c3759b7d3d49f7c08922266cbe85",
+      "source_prompt_ids": [
+        "93535"
+      ]
+    },
+    {
+      "condition_id": "553780fe9ee78f2a900b04b84bdef9f347449611c60e61f92598a641383461f8",
+      "source_prompt_ids": [
+        "94505"
+      ]
+    },
+    {
+      "condition_id": "556c8dc54aaeb46612f9634684411423591a40452b0787c039b7e0f0f2809b62",
+      "source_prompt_ids": [
+        "135243"
+      ]
+    },
+    {
+      "condition_id": "5681c38c6be6e0bbb8f71a0811c99be8f638366e3417b79d3e91d884186d41c3",
+      "source_prompt_ids": [
+        "92481"
+      ]
+    },
+    {
+      "condition_id": "56c6e54de0aa030ff12c6d2cd58dc7c7166991321a184eb4cd3473048b9fddf4",
+      "source_prompt_ids": [
+        "94612"
+      ]
+    },
+    {
+      "condition_id": "56d1c7cfbd63bfe7491b7792b6800e4fd8950c64f51336260ebbb687bfe1fe2c",
+      "source_prompt_ids": [
+        "134339"
+      ]
+    },
+    {
+      "condition_id": "57df18ac28deb4318db1b40925db7b388665c97cc8246f8fd24b3999be6abb91",
+      "source_prompt_ids": [
+        "134344"
+      ]
+    },
+    {
+      "condition_id": "596299372738d93a4a403743515ac4f98c9b883b60d7b96c7cf0bc2dab5756fb",
+      "source_prompt_ids": [
+        "94094"
+      ]
+    },
+    {
+      "condition_id": "597bb30946f411b806358ba49a64c64d14dbef2c1eb9a1333b444a1714f7f4b6",
+      "source_prompt_ids": [
+        "135207"
+      ]
+    },
+    {
+      "condition_id": "59b104512e8a168b4f5658c605c9ab66f124f39df5ad44774a2d4051af0c892e",
+      "source_prompt_ids": [
+        "92760"
+      ]
+    },
+    {
+      "condition_id": "5aca86713a3f9761f5281ebb27a2722897a55b8ab4d94d327d2320b660e20a8b",
+      "source_prompt_ids": [
+        "92563"
+      ]
+    },
+    {
+      "condition_id": "5b4b600e7191901b0bb93b1122d90fd255cc330fff0963758ce1161d0bb1fb6c",
+      "source_prompt_ids": [
+        "135114"
+      ]
+    },
+    {
+      "condition_id": "5b75bf9044fcbaa3e2eac5526438d4e790fd5a016fc142d508069b01229fac6c",
+      "source_prompt_ids": [
+        "134129"
+      ]
+    },
+    {
+      "condition_id": "5b8bee564d532d5b7a3d7db2679edc2aaac62b0f78fc575d96ff2ef668ecea67",
+      "source_prompt_ids": [
+        "134536"
+      ]
+    },
+    {
+      "condition_id": "5b9def51207a8f208f915718ac40d14ebcc6ef50d91157ea37d17c71877a99eb",
+      "source_prompt_ids": [
+        "134471",
+        "134472"
+      ]
+    },
+    {
+      "condition_id": "5c7a88236104fc87afb85189e10fd18321f72d721d4a0fc7f96cb00318cff6d0",
+      "source_prompt_ids": [
+        "92533",
+        "92534"
+      ]
+    },
+    {
+      "condition_id": "5d998315694dc8451ee0f1c7c9f9066ff30bde2bda32e31a68c98fee2ef0d1d9",
+      "source_prompt_ids": [
+        "92915"
+      ]
+    },
+    {
+      "condition_id": "5de15e903304c8677c82aa10cb783238b8e03f6938132fd2dd224a5c52521b10",
+      "source_prompt_ids": [
+        "94703",
+        "94704"
+      ]
+    },
+    {
+      "condition_id": "5e155d5b2f7ec66dd8bfccd7446484ab4672049b64b2fb2106995c483d3e0b8b",
+      "source_prompt_ids": [
+        "134605"
+      ]
+    },
+    {
+      "condition_id": "5fa232d377a726ef27234f08d35d40b51230e44ba87d388e88f4033c308c2603",
+      "source_prompt_ids": [
+        "134170",
+        "134174"
+      ]
+    },
+    {
+      "condition_id": "5fa4ec1f7e35f3c1d56498a8d02ba388a22b3eb8d9228c9cc2ed60f4a15f3a2b",
+      "source_prompt_ids": [
+        "93316"
+      ]
+    },
+    {
+      "condition_id": "5ff0fe651d746eb6e10fe4e61b4585f86f6792a7e23c49c27174d66502cd0263",
+      "source_prompt_ids": [
+        "93693"
+      ]
+    },
+    {
+      "condition_id": "61d63cf1a014e1e036bcc487e79465e168ae4b02eef09fdfa01d6aa01e2766d7",
+      "source_prompt_ids": [
+        "135428",
+        "135429"
+      ]
+    },
+    {
+      "condition_id": "626fb620e515bc214e43f4230f3d6a23e03d6e4eb83f0f3f883ee7f8c5d87117",
+      "source_prompt_ids": [
+        "92608",
+        "92609"
+      ]
+    },
+    {
+      "condition_id": "63bfc2ee765324a04b40425794ca6b5b9ad85d9888b5672df2e27e4884747cfd",
+      "source_prompt_ids": [
+        "92393",
+        "92395"
+      ]
+    },
+    {
+      "condition_id": "64fec1acf3d7498ff6af2f6af4628dea6c78d886c166ddc886c082a571629132",
+      "source_prompt_ids": [
+        "92769"
+      ]
+    },
+    {
+      "condition_id": "6673da4ed866c05d866a0c02850f108b930426afb6f78f56f77b47a9af25f3ea",
+      "source_prompt_ids": [
+        "94427"
+      ]
+    },
+    {
+      "condition_id": "67be7d3a92f142c7274c3a73bea30e0e94557c70b748fbe9f034a048f65668a8",
+      "source_prompt_ids": [
+        "93405",
+        "93406"
+      ]
+    },
+    {
+      "condition_id": "692aaf9ac00940d50c2c5f6ab5697ab1b9512307ad7d621c35c59a4e237985d8",
+      "source_prompt_ids": [
+        "134149"
+      ]
+    },
+    {
+      "condition_id": "6957bff4b98b78fc4328d287c8180a3a5704d2af330e1dee0e2f66afb74c8e06",
+      "source_prompt_ids": [
+        "94530"
+      ]
+    },
+    {
+      "condition_id": "6a339bba84f34fecf7c7388a4fc4532d955546a844bd438213a9e4e9175d6d14",
+      "source_prompt_ids": [
+        "134989"
+      ]
+    },
+    {
+      "condition_id": "6b65382f5ca406d863b538181d1ea7de08ecb1eab81f228b78cdabe8dd92a0f2",
+      "source_prompt_ids": [
+        "134966"
+      ]
+    },
+    {
+      "condition_id": "6b69961cf21bc7fbeb1e007d3c395bd4e4c6bd1d001e022248a2df0e2ae2e6eb",
+      "source_prompt_ids": [
+        "135403",
+        "140598"
+      ]
+    },
+    {
+      "condition_id": "6bda17fe489f047048ddbb03d2a8e9853eb5aa9b4a52a82ce50d0af0c6318ae3",
+      "source_prompt_ids": [
+        "94282"
+      ]
+    },
+    {
+      "condition_id": "6dda22ae2b49dfe277317ac7a4853d400edddce1af652122a1b8d37423c02cc8",
+      "source_prompt_ids": [
+        "134845"
+      ]
+    },
+    {
+      "condition_id": "6ded1ceef056c7177c372d0f0f71cb2303f1ed02610042cffeff01aa91ecd218",
+      "source_prompt_ids": [
+        "92968"
+      ]
+    },
+    {
+      "condition_id": "6e6bd28fbbb124d381ee1b4205d72c1356c1c680cf3e57b779505920530f9a32",
+      "source_prompt_ids": [
+        "94573"
+      ]
+    },
+    {
+      "condition_id": "6e8a646a985afb34d9b7a810871a0f018182a49a2947914af139aaae6264968c",
+      "source_prompt_ids": [
+        "134464"
+      ]
+    },
+    {
+      "condition_id": "6ee96cde53aa4f8f4b1aa81653e094fe53bf9c3242d6f943a894d755f819ddde",
+      "source_prompt_ids": [
+        "134295"
+      ]
+    },
+    {
+      "condition_id": "6fe0054b1da9f9cf0e6de050c2d51f4f0473c55cbf48723d8f5c8ddc067dd771",
+      "source_prompt_ids": [
+        "135280"
+      ]
+    },
+    {
+      "condition_id": "6ff7e4ee26855538567079429cf406e3202e83e51dbfdeb458aa8012ed2c7038",
+      "source_prompt_ids": [
+        "93957"
+      ]
+    },
+    {
+      "condition_id": "703a7bf5a375987f607af8b86fe4e280bea95f69c740779180a141f255621e7c",
+      "source_prompt_ids": [
+        "93697"
+      ]
+    },
+    {
+      "condition_id": "7048223f273bd8b0ac2ee1ebfdfcd05373374f14e9bba9cce85703f109661dbc",
+      "source_prompt_ids": [
+        "94673"
+      ]
+    },
+    {
+      "condition_id": "711674947f9ba1c69f66ce33223339ec722809f98a314136fbe7b931818c1d1e",
+      "source_prompt_ids": [
+        "134210"
+      ]
+    },
+    {
+      "condition_id": "711d7297739251e59d8b25607f5d0beddab9d357affb336bb939e7c378896af9",
+      "source_prompt_ids": [
+        "93272"
+      ]
+    },
+    {
+      "condition_id": "71997398440fd94e5b6ba101a5c400afdfd1908568b4bdca414b6f90951f5902",
+      "source_prompt_ids": [
+        "93856"
+      ]
+    },
+    {
+      "condition_id": "77704507676d247fa13ee457a65bb7c4cc7ee1434b701dbc73ca69e751525ae4",
+      "source_prompt_ids": [
+        "94707"
+      ]
+    },
+    {
+      "condition_id": "789df63fb5cd6698534baaf368b030fd08d1e3f5829a24214bc022a01e8ed141",
+      "source_prompt_ids": [
+        "92045"
+      ]
+    },
+    {
+      "condition_id": "78ef0c4325e1297a25f802c0eaeef14901b7d7a0ae907767b2d76f1b6b1d0249",
+      "source_prompt_ids": [
+        "135434"
+      ]
+    },
+    {
+      "condition_id": "794c658fd0a9271a4e8e0b64088c430009eec6192a910c11c1be6c28bfa51d1e",
+      "source_prompt_ids": [
+        "94078"
+      ]
+    },
+    {
+      "condition_id": "79dcdd30d7f634310a280dfe206ee18c6fd28239dedd44d32ce9c25659c23adb",
+      "source_prompt_ids": [
+        "91965"
+      ]
+    },
+    {
+      "condition_id": "7a38349a57d77fd5d8675674a71cf74cd72c95b46aeadb4cb44aff4b613609ae",
+      "source_prompt_ids": [
+        "94544"
+      ]
+    },
+    {
+      "condition_id": "7a43d33d7fee0f49cf4aa2228da61636bb2b7d5a028f4ec1006e58af00bfcdc2",
+      "source_prompt_ids": [
+        "134872"
+      ]
+    },
+    {
+      "condition_id": "7a8e6163e22565409d3af2aca097ba6a57cbb6a2e6b65d83097117a75615762b",
+      "source_prompt_ids": [
+        "134576",
+        "134577"
+      ]
+    },
+    {
+      "condition_id": "7b16fc04976b3562d1bc714557e163ba0609927a3d495eca81b07b6cc558ff37",
+      "source_prompt_ids": [
+        "92642"
+      ]
+    },
+    {
+      "condition_id": "7cf3c42437e9a3747fd8950868299451e755acd665636a062cc7364979074f10",
+      "source_prompt_ids": [
+        "93052"
+      ]
+    },
+    {
+      "condition_id": "7d59ede32ee03ff138e420e237c4d9eb8a812d9f71c31a5fb85f9637ef21b962",
+      "source_prompt_ids": [
+        "94699"
+      ]
+    },
+    {
+      "condition_id": "7fadeede8e46ea46a8e8f699b1249a1659197e689e06b05a6aa2460941dd76a8",
+      "source_prompt_ids": [
+        "135139"
+      ]
+    },
+    {
+      "condition_id": "80d065ef932f54109f629480821851f22e9ffce4e60d00fce8f4b6bf5b425d87",
+      "source_prompt_ids": [
+        "135095"
+      ]
+    },
+    {
+      "condition_id": "80f42f18c614b4e6174423326c7a07a25c95c766d0612a91c4afc84c7eab6c01",
+      "source_prompt_ids": [
+        "134257"
+      ]
+    },
+    {
+      "condition_id": "814333967761a8048ea9dcedd6ffd8b020656b99835c36143d4bf2c1da8be22b",
+      "source_prompt_ids": [
+        "134399"
+      ]
+    },
+    {
+      "condition_id": "8260119f8e33118b7561f4ff2e7e2d2d0981e414aa0eef7f322d329eb0361603",
+      "source_prompt_ids": [
+        "94624"
+      ]
+    },
+    {
+      "condition_id": "831fac23797a5b5c80565be5e4ce9c86579801603229cd5f2b6bb31d0bc10a2a",
+      "source_prompt_ids": [
+        "94419"
+      ]
+    },
+    {
+      "condition_id": "849a4687da3db914caaa0b946a702b8afccffb2f4e984fcfd91d06632fafdcda",
+      "source_prompt_ids": [
+        "92684",
+        "92685"
+      ]
+    },
+    {
+      "condition_id": "8511041558f0b868ed3b57f643ad539601d7604460c4fe7dbb71e4ff9cc4a286",
+      "source_prompt_ids": [
+        "94293"
+      ]
+    },
+    {
+      "condition_id": "86a05cc9fd4f8d5c042b93145379e9400238568ea6a494f0db409a17289684d6",
+      "source_prompt_ids": [
+        "92960"
+      ]
+    },
+    {
+      "condition_id": "87752cfdb5c24bb3ec8fba5746947db549efdf2ed5dd32f39a382de318cfc929",
+      "source_prompt_ids": [
+        "91722"
+      ]
+    },
+    {
+      "condition_id": "8af252daec20f6c7a213c3c1da597b6eb77a1681eb839cd090afe3f539089b17",
+      "source_prompt_ids": [
+        "91649"
+      ]
+    },
+    {
+      "condition_id": "8b48956c69111c3d9b3099cec6efe6c6d4aa9a9e92aba8b438e78757b93083f8",
+      "source_prompt_ids": [
+        "94522"
+      ]
+    },
+    {
+      "condition_id": "8bcc256ad404725b6643a890d5ab4fd287b180e7c00e825dd40369573445e97a",
+      "source_prompt_ids": [
+        "93949"
+      ]
+    },
+    {
+      "condition_id": "8bd0c7d9565d1b23a2731a9baeba2d8ba864e21c0c0b2398a5eac8ec32eaadc1",
+      "source_prompt_ids": [
+        "134277"
+      ]
+    },
+    {
+      "condition_id": "8c1dc1b35d0fb27346b2e75bb804cabe5e9311fe04e41da524a8811947e0abb9",
+      "source_prompt_ids": [
+        "91928"
+      ]
+    },
+    {
+      "condition_id": "8cc62b6a52fa8516362d4c6834901c66d84998673d3522e139869f17fcb0aecf",
+      "source_prompt_ids": [
+        "134262"
+      ]
+    },
+    {
+      "condition_id": "8d5fc8c900236845dd81532a05af01b72c11bc4335e306064328ac70e1df353d",
+      "source_prompt_ids": [
+        "135282"
+      ]
+    },
+    {
+      "condition_id": "8d7c4f8021b1016e31b2a9862c0400b7b9284d9f3836f57ec7cd707101e452cf",
+      "source_prompt_ids": [
+        "135461",
+        "94733"
+      ]
+    },
+    {
+      "condition_id": "8f32982f705cdb9599ad5ae445abd98de597e704a0df294ec9c7a38018cbce2f",
+      "source_prompt_ids": [
+        "92327"
+      ]
+    },
+    {
+      "condition_id": "91662bfa0e941ef012a90546b3c5fb0c95810f929d5b18980e2185be8a443a3e",
+      "source_prompt_ids": [
+        "92136"
+      ]
+    },
+    {
+      "condition_id": "91af740c2c6b962130293fde6facd67afd4d86a647c6e8606050bc02e0a28b22",
+      "source_prompt_ids": [
+        "93210"
+      ]
+    },
+    {
+      "condition_id": "92e96ba82ea0c28edda892e3d8f99760a714d6bb95aa46bb2ed621d403d64196",
+      "source_prompt_ids": [
+        "92033",
+        "92034"
+      ]
+    },
+    {
+      "condition_id": "944d19570889359b0c302134433ecbf6b0bd5a79039cf324b85f934d6807fea2",
+      "source_prompt_ids": [
+        "134243"
+      ]
+    },
+    {
+      "condition_id": "94aa2d267bda0fdd5926cf90777cffaf2013eb208c209e37872ac49cf8267efc",
+      "source_prompt_ids": [
+        "93268"
+      ]
+    },
+    {
+      "condition_id": "94c88c98333856720968111bb52e46676c110639bfcaa21dc6e09c33d93d6cde",
+      "source_prompt_ids": [
+        "93824"
+      ]
+    },
+    {
+      "condition_id": "961e2437a692da1a17b400cecf5a467e3ad6b194891ee3d91bfb89631f648f39",
+      "source_prompt_ids": [
+        "93182"
+      ]
+    },
+    {
+      "condition_id": "97e639b50a64e9164b32c993543fb047817473f5194ee68fe1617870b3787ad8",
+      "source_prompt_ids": [
+        "134937",
+        "134938"
+      ]
+    },
+    {
+      "condition_id": "99feed2e6e83448353f4527388c5071d9dea4a03709ad538aec2c8c36b782e9f",
+      "source_prompt_ids": [
+        "134233"
+      ]
+    },
+    {
+      "condition_id": "9d0bc8bafa8f036e0dffbf029b25e868ecaf533052f61ff53532dce22a01f5b2",
+      "source_prompt_ids": [
+        "134571"
+      ]
+    },
+    {
+      "condition_id": "a258175d74a79c374aeb1059e46d5c31ab7bfa23f63372eb6256a285b2607f5a",
+      "source_prompt_ids": [
+        "93519"
+      ]
+    },
+    {
+      "condition_id": "a2bbc90f6ebee9e216c163cc9eb721ea59d45b91ce64541c7de3a9a543a3c474",
+      "source_prompt_ids": [
+        "92113"
+      ]
+    },
+    {
+      "condition_id": "a30e6a62915f115fd9ca48db477b2b6b48be46b57cc30aae84408f471f57b1e6",
+      "source_prompt_ids": [
+        "92072",
+        "92073"
+      ]
+    },
+    {
+      "condition_id": "a3122f7f8deb615cbfcb38c3daf0120260fbc4cdc1005ea418dedad19d5166f7",
+      "source_prompt_ids": [
+        "94193"
+      ]
+    },
+    {
+      "condition_id": "a36dd9124f3e70039da9ccfd0291e209c2c94744a71992a90e632699d38ceacb",
+      "source_prompt_ids": [
+        "135474"
+      ]
+    },
+    {
+      "condition_id": "a40f8190ce6561bde0e4c5a1b957cb2fb5d7d7b838068d93b69e5a083cc5cc05",
+      "source_prompt_ids": [
+        "135144"
+      ]
+    },
+    {
+      "condition_id": "a423068a4475293e7a85d8af237482bc4f49ae71d0039f95135da206f0e9ef16",
+      "source_prompt_ids": [
+        "94737"
+      ]
+    },
+    {
+      "condition_id": "a566ecebcdb76316418524c0363f24eaf3576e1fd995e45c2e2a72b15071ebc8",
+      "source_prompt_ids": [
+        "91778",
+        "91779"
+      ]
+    },
+    {
+      "condition_id": "a5aa41038e98eaa967b0337ac43401b543d177eb91cdc0f5c943fcfe6b6af3bd",
+      "source_prompt_ids": [
+        "93969"
+      ]
+    },
+    {
+      "condition_id": "a6c42dd546cacf96290b6b66e58904e202481019230a7b24c36d57c16f9859c6",
+      "source_prompt_ids": [
+        "94561"
+      ]
+    },
+    {
+      "condition_id": "a6eceb04307575b1b152a4d6cdab2e831fb4c7733f6dd16c76977401d3a66b1e",
+      "source_prompt_ids": [
+        "135245"
+      ]
+    },
+    {
+      "condition_id": "a76dc33887b34ef5c9b10db96ceee5a02db03eff01c3a860752343e88249820c",
+      "source_prompt_ids": [
+        "93525"
+      ]
+    },
+    {
+      "condition_id": "a7ba2ea0a5f203c14120780d3c653558ee451f8c8f90f8aa5bd67289a915ea67",
+      "source_prompt_ids": [
+        "92150"
+      ]
+    },
+    {
+      "condition_id": "a8b74c26ed0208002e20e065f2d1845e9a40b5b3014caf4b1a19f964a80e9d2e",
+      "source_prompt_ids": [
+        "92027",
+        "92028"
+      ]
+    },
+    {
+      "condition_id": "a8f6453e9406f29a19f9598f579fa8317a09639745cd318b5ae6c367e15cbc17",
+      "source_prompt_ids": [
+        "134196"
+      ]
+    },
+    {
+      "condition_id": "a91c07269e0163b54b210e118cd1a72f2aec47de993be1fb1696b5894691db49",
+      "source_prompt_ids": [
+        "92213"
+      ]
+    },
+    {
+      "condition_id": "a994554a9a62afd3278dac9a902c36c7605a55dec69a0d239581308534b7fbbb",
+      "source_prompt_ids": [
+        "94083"
+      ]
+    },
+    {
+      "condition_id": "aaa69f406a3cd87e3b659d7b12a8d4d539c18bffaf67aca60042cc740a98eb5f",
+      "source_prompt_ids": [
+        "91872"
+      ]
+    },
+    {
+      "condition_id": "aac8acf1de033c40fc2e62e0767d8c2c224359514cbba5b9a49680d6d6675443",
+      "source_prompt_ids": [
+        "91635"
+      ]
+    },
+    {
+      "condition_id": "aaf4e03a8584dd82b1a275d04346f930ec58123ee02c7ad89915acc1183c612e",
+      "source_prompt_ids": [
+        "134715"
+      ]
+    },
+    {
+      "condition_id": "ab71fd73a54a4cdaeef61da4e49548cc78bd4e2211d753bcefd629346718f84d",
+      "source_prompt_ids": [
+        "135062"
+      ]
+    },
+    {
+      "condition_id": "acb3bd20439a6017c99151253cabb006394309db8f6cdf0644b340cb79ace060",
+      "source_prompt_ids": [
+        "93024"
+      ]
+    },
+    {
+      "condition_id": "add9b814cb03ad90d316f4a7c4658cf351158a60514f63d197e58008d3ad93af",
+      "source_prompt_ids": [
+        "94327"
+      ]
+    },
+    {
+      "condition_id": "ae5ae941a9268ad93926b7cfe991d44f8c1909450f2caaa54a9c3fe2563feaa5",
+      "source_prompt_ids": [
+        "135168"
+      ]
+    },
+    {
+      "condition_id": "b152428fcfbb2315a35f6b6fcd01dc9ca9ce2f09f671e4f102c73e3941324724",
+      "source_prompt_ids": [
+        "92658"
+      ]
+    },
+    {
+      "condition_id": "b34b06f236186e3b319a672682447054fdc1d64733b8770b2ce6edc1b213b9ee",
+      "source_prompt_ids": [
+        "135220"
+      ]
+    },
+    {
+      "condition_id": "b444ed09c827065be0786a55f607147588ce607c4d577b5f56506999a2183e41",
+      "source_prompt_ids": [
+        "92530"
+      ]
+    },
+    {
+      "condition_id": "b62a9a68f448b6a61882520c24950474042b6f724c11ab8c1b3fff898c50b012",
+      "source_prompt_ids": [
+        "93909"
+      ]
+    },
+    {
+      "condition_id": "b6cdc9f07fc7e9dbf84b3caa00f43def5b4493c03e12a0d5b2d8a7619281b1ce",
+      "source_prompt_ids": [
+        "134659"
+      ]
+    },
+    {
+      "condition_id": "b6dbe15cc9126322dd1d68e8e045567b6fd292449b2d6284d3e6d45d92eaf371",
+      "source_prompt_ids": [
+        "134728"
+      ]
+    },
+    {
+      "condition_id": "b6f5ed64d6c3ed2e094430c11e54c94139ed76aec9dccf15cbd55b535eb0bb2f",
+      "source_prompt_ids": [
+        "135080",
+        "135081"
+      ]
+    },
+    {
+      "condition_id": "b74d1989ea6c21f523680ddad8112a138fd15b9dd3a4b9cf4c59530eb4e164b5",
+      "source_prompt_ids": [
+        "134403"
+      ]
+    },
+    {
+      "condition_id": "b911bdd0e22f2c5243bf3f81e2973417310c759b01e23be19ceec8be07e15eae",
+      "source_prompt_ids": [
+        "134829"
+      ]
+    },
+    {
+      "condition_id": "b94fa57c87703b1546d032dbec41da745416374699cdb1a30702abbaf15fadef",
+      "source_prompt_ids": [
+        "93158"
+      ]
+    },
+    {
+      "condition_id": "b96f7cc51c0d2facea4d2596015b42c313b1eb9d7b765351f10205bcf719b55d",
+      "source_prompt_ids": [
+        "134181"
+      ]
+    },
+    {
+      "condition_id": "b9e5d2f06577597cff327b009dbbd2968ccb36935b2936ce428e42dfd5e4e9da",
+      "source_prompt_ids": [
+        "134284"
+      ]
+    },
+    {
+      "condition_id": "bbd0a1eebeb02585e47d605fa5dc90109639cd61fa76b4a5536e6df26e5df603",
+      "source_prompt_ids": [
+        "135248"
+      ]
+    },
+    {
+      "condition_id": "bc33f9dae0138c41b81cedb6ffe7bdbc70d8e49e2f048c2fe28218b7336da61c",
+      "source_prompt_ids": [
+        "135213"
+      ]
+    },
+    {
+      "condition_id": "bea859b72a4ebccdc773c6f6e0e2c4ddc288a098d7998c1e4c92168768155e34",
+      "source_prompt_ids": [
+        "92688"
+      ]
+    },
+    {
+      "condition_id": "becebeb949a081d9828d102f18b7965e17c9fc69a59d4a401454edecf1811301",
+      "source_prompt_ids": [
+        "94433"
+      ]
+    },
+    {
+      "condition_id": "bf9a8d4b572c2cb5138e21e8b75d7afd227e81b65c3276066719e43ea86ac4ab",
+      "source_prompt_ids": [
+        "134322"
+      ]
+    },
+    {
+      "condition_id": "c075f88d57656a7c33d501fb75aca095d59a4ec8fe84aedefbe20c80cc547922",
+      "source_prompt_ids": [
+        "134899"
+      ]
+    },
+    {
+      "condition_id": "c2b4606617c8568b800d1c9ffbd8a999f071b8495e77c12ea2d4e6a60b974999",
+      "source_prompt_ids": [
+        "94275"
+      ]
+    },
+    {
+      "condition_id": "c2e3c36f72b91a2755e3dfb2ad92a8757428916c172d5efa577f605c8ba59572",
+      "source_prompt_ids": [
+        "93555"
+      ]
+    },
+    {
+      "condition_id": "c2f82cac17c3e9ff0fed1698323e79c5a72f6cc86e4d3e4f65c6511359d1de6b",
+      "source_prompt_ids": [
+        "92798"
+      ]
+    },
+    {
+      "condition_id": "c4757afe2662c1445a4497e280a47dad756697329726782df414cd66ff3908ed",
+      "source_prompt_ids": [
+        "94547"
+      ]
+    },
+    {
+      "condition_id": "c65c889b06ebc3056ef01979c77e8d3e1ee79bb60c749a68bf6e57474d4fff4d",
+      "source_prompt_ids": [
+        "91862"
+      ]
+    },
+    {
+      "condition_id": "c73a521fb6191242c3c6fedfd09ce70e2025ef9cafc654f11d07c643e7abba75",
+      "source_prompt_ids": [
+        "135208"
+      ]
+    },
+    {
+      "condition_id": "caa4587ffc465fc69cc68e74e8418a0a9dc496dcb63d1ee698e310f92bdcb68a",
+      "source_prompt_ids": [
+        "93577"
+      ]
+    },
+    {
+      "condition_id": "cb2305c0401d96a1efc968ea07ce43d1a0d736bc0a38f84a1d2fadbd5d2b3c45",
+      "source_prompt_ids": [
+        "94049"
+      ]
+    },
+    {
+      "condition_id": "ccdeb027cf768e94d4c97683af0162b633159b0c4669a908df43eba697b5937c",
+      "source_prompt_ids": [
+        "92340"
+      ]
+    },
+    {
+      "condition_id": "cdbfd33edce0a3d8ce3ed72f13c467d4b210751b5e9dc118a624686f9562d86a",
+      "source_prompt_ids": [
+        "134885"
+      ]
+    },
+    {
+      "condition_id": "ceacfb2feee318361d131c015f48005d00bbbaa93f78be4508cc5ca5ea62bccd",
+      "source_prompt_ids": [
+        "134584"
+      ]
+    },
+    {
+      "condition_id": "d04cb29699d170301f3a96d09c098af15b788cea27edc9dbb497538fd3d1f079",
+      "source_prompt_ids": [
+        "94618"
+      ]
+    },
+    {
+      "condition_id": "d1e200e8282a30ad9f1f2842e93ffc59ca3076fc692653d7f74d7c74f66f1306",
+      "source_prompt_ids": [
+        "93884"
+      ]
+    },
+    {
+      "condition_id": "d1f27e33d9fcb7ab4b5e276c08da7fc71fc80e7211a362e7efeed2dc9ff437f4",
+      "source_prompt_ids": [
+        "94229"
+      ]
+    },
+    {
+      "condition_id": "d2f9e4087cf8fc1bd30a8532b8b9a27516ae2425399707080e58ef6c11ce71a0",
+      "source_prompt_ids": [
+        "92679"
+      ]
+    },
+    {
+      "condition_id": "d475c1fe30f8f9a196b86b50f39c6e582956bd8828f591596c66ee439b79b4b1",
+      "source_prompt_ids": [
+        "94557"
+      ]
+    },
+    {
+      "condition_id": "d5ca801417e371318f78da2fe974254694644dd7600b40b9149861f2878677a2",
+      "source_prompt_ids": [
+        "93804"
+      ]
+    },
+    {
+      "condition_id": "d8d05cee414babb728e36d5eba6a7731d2d4e5d135daa3dd9f602f2d468fea75",
+      "source_prompt_ids": [
+        "94484"
+      ]
+    },
+    {
+      "condition_id": "d9c6639a23cc205c61f6062f362506927481c9d2d7448957eee2dde203f49938",
+      "source_prompt_ids": [
+        "93132"
+      ]
+    },
+    {
+      "condition_id": "d9e053096ccd7ba22da8b72f492ec74fc38bbf31d6dcfdceceb4137465f6c94c",
+      "source_prompt_ids": [
+        "94130"
+      ]
+    },
+    {
+      "condition_id": "db7d9dd65505a1c9ba1e3b921bf7d209f797af18965cfc6fd309cc1d49ff7407",
+      "source_prompt_ids": [
+        "135005"
+      ]
+    },
+    {
+      "condition_id": "dbff31633ef75c1f4ccc3e91cd1763ccd9bda542a60bb5af3b1ed8fc8bec5b97",
+      "source_prompt_ids": [
+        "134209"
+      ]
+    },
+    {
+      "condition_id": "dc6f0ce61e678c2c5b564e3ab5cf2458bcd43a5ac74dd7363efa14c7c684e61d",
+      "source_prompt_ids": [
+        "92600"
+      ]
+    },
+    {
+      "condition_id": "dc86db1bfd7861f60483f879016239f85f4a9c9e2843c91a59a6547808d89277",
+      "source_prompt_ids": [
+        "93724",
+        "93725"
+      ]
+    },
+    {
+      "condition_id": "dccd667a5510d972abc48a2fa3ac627b9930098f2527667c0cd7b271f7a647d3",
+      "source_prompt_ids": [
+        "134133",
+        "134134"
+      ]
+    },
+    {
+      "condition_id": "dd4ddf721e4dc77b08a2b92fa609072db6bcc34e699318c8d5ee20db6645ec54",
+      "source_prompt_ids": [
+        "135100"
+      ]
+    },
+    {
+      "condition_id": "dd9ff3cd805aa770be07be73878cd19b3b95eeb9dfd2b9ad517c2eeaf412d183",
+      "source_prompt_ids": [
+        "94602"
+      ]
+    },
+    {
+      "condition_id": "ddac803213322623bf57a86d1ab3ac545446355aae3fe966ca35d67b93cd7710",
+      "source_prompt_ids": [
+        "135334"
+      ]
+    },
+    {
+      "condition_id": "ddba64f8069b6c42ac8f19d83332ec59a9afd98fabe72c0e4523961155a8e5aa",
+      "source_prompt_ids": [
+        "134797"
+      ]
+    },
+    {
+      "condition_id": "de3d6005f4c1d2e501dc21a868120fb2b453ac7a8414d04e327d7d4f9eb708a9",
+      "source_prompt_ids": [
+        "92682"
+      ]
+    },
+    {
+      "condition_id": "df8698a6fcbe7551d44c36b9079194edfbee2f79f6a0fa0c9f95a8a08a5096c3",
+      "source_prompt_ids": [
+        "134278"
+      ]
+    },
+    {
+      "condition_id": "df905dea4493fd3028ab52f20d4d169945b21070a0b4b0835c72e8dfa3a5d46d",
+      "source_prompt_ids": [
+        "92014"
+      ]
+    },
+    {
+      "condition_id": "dfae87843549c80e863baa04fb30d1c83830f6220e7ce4683d35749b471f11ef",
+      "source_prompt_ids": [
+        "135058",
+        "135060"
+      ]
+    },
+    {
+      "condition_id": "e07ca9ace57ae1feaa8f33e3b1fdb56a464006cf903bef8b5d5ef6dcd67b2080",
+      "source_prompt_ids": [
+        "134414"
+      ]
+    },
+    {
+      "condition_id": "e10de2f41007e0d9ffb08c5adc45cb0b83c5e11752b8425acf8171c1c1810801",
+      "source_prompt_ids": [
+        "94175"
+      ]
+    },
+    {
+      "condition_id": "e50ddbc7c701e6aae5f7853bd953f564f07e6fdf42400aa50e8d1b6c278fb05f",
+      "source_prompt_ids": [
+        "94397"
+      ]
+    },
+    {
+      "condition_id": "e520ecbe193aadc7f910c6d48c75a56a71b00e4e04666f7bb53ae2e95000de14",
+      "source_prompt_ids": [
+        "91908"
+      ]
+    },
+    {
+      "condition_id": "e63464d520d9034ba305e5aa4ef4a953751d9fe19239196de03b3916663d0330",
+      "source_prompt_ids": [
+        "134263"
+      ]
+    },
+    {
+      "condition_id": "e75a678a746d399ad49265620555eca9dea6d6cfe27dd1e6a18f1916b048b659",
+      "source_prompt_ids": [
+        "94247"
+      ]
+    },
+    {
+      "condition_id": "ebdf1dc3c4854a634b50baf71cdae8f1461612894844cf74103f2f3e39156f7c",
+      "source_prompt_ids": [
+        "134509"
+      ]
+    },
+    {
+      "condition_id": "ec1863c503bc8cebb40447df403781fe56f8b90203a170cbd8d3568b6a1d717a",
+      "source_prompt_ids": [
+        "91680",
+        "91681"
+      ]
+    },
+    {
+      "condition_id": "eef1e8de500a3871442fa8bc47b68081a683243b3d1c135a47f7b1d00a9eca83",
+      "source_prompt_ids": [
+        "91705"
+      ]
+    },
+    {
+      "condition_id": "ef04dc5e62c6c5f8749632ca6acaa17054c03df77770deaac998587bb8183ed3",
+      "source_prompt_ids": [
+        "134713"
+      ]
+    },
+    {
+      "condition_id": "f063cd9ef4b17383f0dca2800fe207fae9565a431768b51bda2e5a97b6828f8d",
+      "source_prompt_ids": [
+        "92929"
+      ]
+    },
+    {
+      "condition_id": "f09c085f537d5a98f8835519e0c8e835182909b16fd33a3a9420b0a62dd79eee",
+      "source_prompt_ids": [
+        "134541"
+      ]
+    },
+    {
+      "condition_id": "f23fc29a704e2664978d8af24855d3c986133e851c2a89dd4d73dcc4ffdae761",
+      "source_prompt_ids": [
+        "134222"
+      ]
+    },
+    {
+      "condition_id": "f2f97b8a4bb753e08d0d8476097edbcacceee28a6c978a2dbbed1a7203cea4c0",
+      "source_prompt_ids": [
+        "135313"
+      ]
+    },
+    {
+      "condition_id": "f47c4b375d0905c4ac388154f7266d4f6c1566dbd125b667d8277d0824f98aff",
+      "source_prompt_ids": [
+        "93383"
+      ]
+    },
+    {
+      "condition_id": "f51d1cad43f898b3f99a9252d98f0fc35b0b4e33b0f8d95f86244db11d911161",
+      "source_prompt_ids": [
+        "91803"
+      ]
+    },
+    {
+      "condition_id": "f58f66abe3dd0bcb4ec9d7fc1b602a751ec5616c3768286f5acc359957b2e4d4",
+      "source_prompt_ids": [
+        "92813"
+      ]
+    },
+    {
+      "condition_id": "f64e5a63e25176d3759ac9c37d21bfbc84470eda503e3706072a1aa2fdb831bf",
+      "source_prompt_ids": [
+        "94400",
+        "94401"
+      ]
+    },
+    {
+      "condition_id": "f83d830da102ec78cf8b7d81401b23a363de751791da99457570e952094cfe53",
+      "source_prompt_ids": [
+        "93745"
+      ]
+    },
+    {
+      "condition_id": "fa4f21edc723068ebd0dd9eb4c2cddd54347bf031791456067e314fcfe86a56b",
+      "source_prompt_ids": [
+        "134802"
+      ]
+    },
+    {
+      "condition_id": "faf3613fc7428fbef3d8dbd559e3cf3371632c4516c3a184e261441b20bdfb4c",
+      "source_prompt_ids": [
+        "92748"
+      ]
+    },
+    {
+      "condition_id": "fba080b33d0275b242524cd3716a07cc15cbf7ea225bc98b49596f30dd213cef",
+      "source_prompt_ids": [
+        "134260"
+      ]
+    },
+    {
+      "condition_id": "fc88fe112424ba298e35b6325606f698a999037a5114e8e4dbea21f77263fc86",
+      "source_prompt_ids": [
+        "92447"
+      ]
+    },
+    {
+      "condition_id": "fce6f773835e531acb8eaec007dd987981f4e29bbbc480cd9f477cf452990eb8",
+      "source_prompt_ids": [
+        "135076"
+      ]
+    },
+    {
+      "condition_id": "fd7a262401f81290f24ba2f4b2c35dc66244fc620594cf9e6e46288737d4be28",
+      "source_prompt_ids": [
+        "134818"
+      ]
+    },
+    {
+      "condition_id": "feca5a86428baed4571348e9662543466981c8110c85b73eea01770d914423fd",
+      "source_prompt_ids": [
+        "92854"
+      ]
+    },
+    {
+      "condition_id": "ff0129a11bb4a4ec96c96316e7743c84fdc32d54fdf53637b6d2b0060606c288",
+      "source_prompt_ids": [
+        "93494"
+      ]
+    }
+  ],
+  "valid": [
+    {
+      "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3",
+      "source_prompt_ids": [
+        "134776"
+      ]
+    },
+    {
+      "condition_id": "03d96f25126a6e80b3d6600c32ea8ff52c2ab86fafa2a402f314102875d50d25",
+      "source_prompt_ids": [
+        "91782"
+      ]
+    },
+    {
+      "condition_id": "1b1d971d9bad5c5ddd66cf16e1a7fc1e5eab19d520c99165057d6f42377531ee",
+      "source_prompt_ids": [
+        "92916"
+      ]
+    },
+    {
+      "condition_id": "1bd60a2df2ab303cb08724133ab013a0c9099cf8ba06489dcd048ee747457c67",
+      "source_prompt_ids": [
+        "134578"
+      ]
+    },
+    {
+      "condition_id": "23e4011f26457e99583d69ba7f9f1190ea7d1488e7a0c9dacae8b13c4a1df647",
+      "source_prompt_ids": [
+        "134581"
+      ]
+    },
+    {
+      "condition_id": "2ed3299961a1020910c9dcebb2820b1faa935ba557e8d395939e2a84db53bff8",
+      "source_prompt_ids": [
+        "134852"
+      ]
+    },
+    {
+      "condition_id": "37595532da3cb930c5ac5773e3fef624c9333c179e01911e189beec37951dc0f",
+      "source_prompt_ids": [
+        "93677"
+      ]
+    },
+    {
+      "condition_id": "3853265abbb0d88c15ab3217e636536c05a424bc098434c3bcc83b3e328c2e27",
+      "source_prompt_ids": [
+        "92566"
+      ]
+    },
+    {
+      "condition_id": "45fc7f3fad9324904aaafe72909886e2e446888f00706664fb4d0d13f7c62061",
+      "source_prompt_ids": [
+        "93511"
+      ]
+    },
+    {
+      "condition_id": "5187b55b03f974563d847662922e1e190f4fc59982dab72c9e2bbba2ee7010ea",
+      "source_prompt_ids": [
+        "92118"
+      ]
+    },
+    {
+      "condition_id": "542db1f21983754388d0e781267471913643fc3824e4bbb6029d33ae4ecbb06d",
+      "source_prompt_ids": [
+        "134348"
+      ]
+    },
+    {
+      "condition_id": "553c2c5735e99ff7acab9689e4892abb0afe7c471ed75b7864beedd78ae38987",
+      "source_prompt_ids": [
+        "134524"
+      ]
+    },
+    {
+      "condition_id": "663037e06fc01406c3497a4e2c680d2eed5f435cecaefdab21ed7c1afa2592e9",
+      "source_prompt_ids": [
+        "134574"
+      ]
+    },
+    {
+      "condition_id": "715302495c23e84e8929d4d76d5bc231c094bc657d49a1a999092a3f2acb1a94",
+      "source_prompt_ids": [
+        "134655"
+      ]
+    },
+    {
+      "condition_id": "7a9d93cb840352573072c3aad219d568e34c5fe74b8175207a7a15e723f91d33",
+      "source_prompt_ids": [
+        "135011"
+      ]
+    },
+    {
+      "condition_id": "88137ad58ae3183f5561b8a0f19ca9073e0d069cec5cf6a1db5c7a0a1de511db",
+      "source_prompt_ids": [
+        "134494"
+      ]
+    },
+    {
+      "condition_id": "8c0d6877a156c34360240c9b3906f53aa6cfda48c221278690395bff212c304b",
+      "source_prompt_ids": [
+        "135091"
+      ]
+    },
+    {
+      "condition_id": "a670bc027861bf4acda973c0c7a25a89145442f5ecd1cdacce9927c0b11f85c6",
+      "source_prompt_ids": [
+        "134119"
+      ]
+    },
+    {
+      "condition_id": "adaeb1c957ed91598cd33c11e789110655aa5214ca81d94b93f1ab5afccfd055",
+      "source_prompt_ids": [
+        "135322"
+      ]
+    },
+    {
+      "condition_id": "b31fc12175251f6f57a9b938af587ba874f895ed42765d97074f2b72535f309a",
+      "source_prompt_ids": [
+        "134610"
+      ]
+    },
+    {
+      "condition_id": "baf0c81276743e0f2f44d4c89af8a5c93c698547273f9ee45ec37dfdbc0ed1d4",
+      "source_prompt_ids": [
+        "94336"
+      ]
+    },
+    {
+      "condition_id": "bbf07fa8ddc9d6c182964a788762f99c42ca638f2c3028c2925bb6e9d1f7336c",
+      "source_prompt_ids": [
+        "134603"
+      ]
+    },
+    {
+      "condition_id": "bdaee322a688c613967dc2d7df3b403c44fd77bece7b01dc0a1fa18be154e138",
+      "source_prompt_ids": [
+        "93302"
+      ]
+    },
+    {
+      "condition_id": "c878206f43d72fa5c513d8458d726211178c40d85205954462a67aeebda8b9f2",
+      "source_prompt_ids": [
+        "135074"
+      ]
+    },
+    {
+      "condition_id": "ca136457921aaa3148b8b02a101209157e27dbccd4719704969c3e656ac8247a",
+      "source_prompt_ids": [
+        "134337"
+      ]
+    },
+    {
+      "condition_id": "cabca60e4851a19ab359391e1448e930eeafc7c54b3c8568afa2d6509500e380",
+      "source_prompt_ids": [
+        "93606"
+      ]
+    },
+    {
+      "condition_id": "d680439d98329c58da912f50b5cc923443f0b872a191f987dc40ec7ecfe76ae8",
+      "source_prompt_ids": [
+        "92399"
+      ]
+    },
+    {
+      "condition_id": "dd4cfa34f3036c356c42d963dbfc6731dfc58121cf12704f938d14adade495b3",
+      "source_prompt_ids": [
+        "94271"
+      ]
+    },
+    {
+      "condition_id": "f1af01f1789683f0c78fde428b0e5ab077349bc0597b6995e49483813dd1349b",
+      "source_prompt_ids": [
+        "135448"
+      ]
+    },
+    {
+      "condition_id": "faf1cc10e9f465c7915218d3e4caaf85147b79c4438bb70f37191eab39f4ff8b",
+      "source_prompt_ids": [
+        "134388"
+      ]
+    }
+  ],
+  "test": [
+    {
+      "condition_id": "007c9f4a4b8c1294cdee44827a24214889ea796ed67bf197528f2217ce29e18e",
+      "source_prompt_ids": [
+        "135290"
+      ]
+    },
+    {
+      "condition_id": "015b17b887b3994eaa49c179b66a739095f8bb91b211f6725b89a00cf60f7135",
+      "source_prompt_ids": [
+        "93506"
+      ]
+    },
+    {
+      "condition_id": "0498b41dbc053f2fbbafed2f2af3b1c63c56d32b4a5f94ce34e983cd7af7db06",
+      "source_prompt_ids": [
+        "134458"
+      ]
+    },
+    {
+      "condition_id": "0b7744a02eed7c9ab831f216b856a05f7f70c2aecaadff146134b31cb6ac385b",
+      "source_prompt_ids": [
+        "134563"
+      ]
+    },
+    {
+      "condition_id": "0d068e34c1a2b4876e0204473aee276a1a960d152d40fe2aa488c3a552b344ea",
+      "source_prompt_ids": [
+        "135230"
+      ]
+    },
+    {
+      "condition_id": "0f61bdbaa6036d042641d86559dc3152a49ddb2b3e95b9b245693c9ef5cb6faf",
+      "source_prompt_ids": [
+        "134477"
+      ]
+    },
+    {
+      "condition_id": "16b276b8c63b5bbec16465a8246849c176fbfcc4c15798e169ca33537c5987ce",
+      "source_prompt_ids": [
+        "134280"
+      ]
+    },
+    {
+      "condition_id": "176153abf21466a7a2005c32077822947a75fe371759191432b37d8d114f08e3",
+      "source_prompt_ids": [
+        "135013"
+      ]
+    },
+    {
+      "condition_id": "179f5de641206af2451d70408db6440cd5651ae9751e6459fc923bce6fe6ccde",
+      "source_prompt_ids": [
+        "92024"
+      ]
+    },
+    {
+      "condition_id": "1da203e4232c64ef6ec8ac56e06ba0a6d1a97015e705571e9603bc0963f6c071",
+      "source_prompt_ids": [
+        "134370"
+      ]
+    },
+    {
+      "condition_id": "1ed5847557e96857d529646b441d51fc2e694de632990fb7a144295a5b7d9493",
+      "source_prompt_ids": [
+        "134619"
+      ]
+    },
+    {
+      "condition_id": "207016dfc0840afb20d451ebf639791975e05e368e4b87a7310fcccc0f2f2ec3",
+      "source_prompt_ids": [
+        "94620"
+      ]
+    },
+    {
+      "condition_id": "22c4856a3b8ec182a0691de9d581d617dc9969600ac4341224b6e9965fe6e15b",
+      "source_prompt_ids": [
+        "92199"
+      ]
+    },
+    {
+      "condition_id": "258167398a8c53badcd1b941b724b8ee4aa6ae9357bee1278611a0495213542f",
+      "source_prompt_ids": [
+        "134786"
+      ]
+    },
+    {
+      "condition_id": "261aaba033caf48ac1ce4aa324938c89087457b7cd03ccd1346602086e68d206",
+      "source_prompt_ids": [
+        "93070",
+        "93072"
+      ]
+    },
+    {
+      "condition_id": "27866f56d88d5dd119251367a5ba750505e94bc4f4d154946122fe4c79d3e3f2",
+      "source_prompt_ids": [
+        "135339"
+      ]
+    },
+    {
+      "condition_id": "2c54fbac65cbf1e2a800997111d9fb7faf0f7307302ba5077acc3f581870ab9d",
+      "source_prompt_ids": [
+        "92457"
+      ]
+    },
+    {
+      "condition_id": "3028c1ff32589ef8cf6de4518c868d11e21ae5e07a9d58a7df49299d1278a8bf",
+      "source_prompt_ids": [
+        "92188"
+      ]
+    },
+    {
+      "condition_id": "332e1d3740f825dd86a8b14838c7892d1c1e578d36519125ad03a6335c0aabac",
+      "source_prompt_ids": [
+        "94615"
+      ]
+    },
+    {
+      "condition_id": "33809f31a4b16939c7236ccd6cb1bc18ea7ce558456bee7f625fb53de93f7694",
+      "source_prompt_ids": [
+        "134160"
+      ]
+    },
+    {
+      "condition_id": "361cca0613558eb0b616bf4785e4d280c6c0c67441c99831375dd227091da334",
+      "source_prompt_ids": [
+        "134120"
+      ]
+    },
+    {
+      "condition_id": "372c80d405c646046ca0d7a4fbb3f1293fe8605a165c2ccf1df086bc7ed4dbcd",
+      "source_prompt_ids": [
+        "135366"
+      ]
+    },
+    {
+      "condition_id": "3b5c4a6b273347505e751401b5b75727d1865aa181430677d294998f0a11d77f",
+      "source_prompt_ids": [
+        "93058",
+        "93059"
+      ]
+    },
+    {
+      "condition_id": "3cae3eda9fff4cf7817c74b5dd58829f1768bcef41dd8bda3e28ce1425564f88",
+      "source_prompt_ids": [
+        "134993"
+      ]
+    },
+    {
+      "condition_id": "421f6face0e3934c044e0673679ddeb4e7f02f4ebda2c29612b019656ce712db",
+      "source_prompt_ids": [
+        "92356"
+      ]
+    },
+    {
+      "condition_id": "4340514e85d2f17b9858eec3e2f13e20cf162d3ae2b72a9365915b7fb8f9cea2",
+      "source_prompt_ids": [
+        "93127"
+      ]
+    },
+    {
+      "condition_id": "436ebb45b30172bdb8a645f5247bb225a6341278e2cc9fd372f999d89dd7ab05",
+      "source_prompt_ids": [
+        "93977"
+      ]
+    },
+    {
+      "condition_id": "44c3f7b0c654a572a1432ef15a0dd3b55e34762062dcaf083331d4a2287d74c2",
+      "source_prompt_ids": [
+        "93448"
+      ]
+    },
+    {
+      "condition_id": "46edf1b51c13822f69ce29623a7f4b35bfd3461d4be7a4388df1ef5d0af0b99a",
+      "source_prompt_ids": [
+        "93124"
+      ]
+    },
+    {
+      "condition_id": "46f103bd4e9ecb9fa8b3f01dddfc0089cbf7d30353ce631f2545bad7f38ada72",
+      "source_prompt_ids": [
+        "93643"
+      ]
+    },
+    {
+      "condition_id": "473eae8585929e5aefa7226db723f13fe49cd3aa417e4983ee32b7d293ac1075",
+      "source_prompt_ids": [
+        "94384"
+      ]
+    },
+    {
+      "condition_id": "47aef9619898f8fe3c4908142746e13828ba38343d52421011b97f1687ae6b47",
+      "source_prompt_ids": [
+        "135147"
+      ]
+    },
+    {
+      "condition_id": "48337912de447fdc7493e3294b981c8c878ff139625372593939fae99be5c6e0",
+      "source_prompt_ids": [
+        "134660"
+      ]
+    },
+    {
+      "condition_id": "49107834fc831142f2a82634f9a101bb0f13db1336a64997d56229a3d3c60b1c",
+      "source_prompt_ids": [
+        "94459"
+      ]
+    },
+    {
+      "condition_id": "4af5c4cf7efde2f1b29b8eddc896a918e7cd9b9fcd6bf3316113347c51ee425b",
+      "source_prompt_ids": [
+        "92250"
+      ]
+    },
+    {
+      "condition_id": "4f60745efa77f36fef37382ccc8e3676d5e6a58c0dbd91c2059216a8f0c8b186",
+      "source_prompt_ids": [
+        "134276"
+      ]
+    },
+    {
+      "condition_id": "516b6288c41c9e1edc09e8fa17f999354965a677129a98411e935e6b7fe7b6c0",
+      "source_prompt_ids": [
+        "134328"
+      ]
+    },
+    {
+      "condition_id": "52fdc5d42e28b83f202767f59d75e758d6735cdfac4357be109e79d611807e5c",
+      "source_prompt_ids": [
+        "134189"
+      ]
+    },
+    {
+      "condition_id": "59c0a087ac767ea933e6c89b3d86583a1edde2fbe4e23e64b59f361f8551390c",
+      "source_prompt_ids": [
+        "92647"
+      ]
+    },
+    {
+      "condition_id": "5c71e9d83a98387347c4b779c542c8d35db7ba81f2012cc6aac2a3a976d2335f",
+      "source_prompt_ids": [
+        "92324"
+      ]
+    },
+    {
+      "condition_id": "5efd56c63dfa949bf4dfc1aba83ba5e979a3e7fd022f7591c166a877eef6d974",
+      "source_prompt_ids": [
+        "135122"
+      ]
+    },
+    {
+      "condition_id": "5f3740a0f8219b3e6cf504f585dd308530e253676e809b2acf24ae22cefa312c",
+      "source_prompt_ids": [
+        "94715"
+      ]
+    },
+    {
+      "condition_id": "5fdf0d9a460332aa6faecdd6e808901794fa2ca93d8116866952cfe46a8c7c6d",
+      "source_prompt_ids": [
+        "93770"
+      ]
+    },
+    {
+      "condition_id": "5fe7a62fb8ae027da360f0acc988e486174bf5a9dfc71cf3be01ca64d3e7459d",
+      "source_prompt_ids": [
+        "134973"
+      ]
+    },
+    {
+      "condition_id": "6157d055f54eb9cd6e1dc1c3128e1f6154e023bb751a27b5aed17433c091fbbb",
+      "source_prompt_ids": [
+        "93420"
+      ]
+    },
+    {
+      "condition_id": "62fc66aacfa0170fe85d2a099734a1a43e97a93843e612834737b78fc2856055",
+      "source_prompt_ids": [
+        "94307"
+      ]
+    },
+    {
+      "condition_id": "64bb00bf0738c2dd76afbff5b39227d5dcd62a05a4f3c8a7593d80e5c0896f27",
+      "source_prompt_ids": [
+        "135077",
+        "135079"
+      ]
+    },
+    {
+      "condition_id": "65ccc4fa0bfad7810d2c4fe965e7a3b3d6f77d4863043d937aaf58a32b4a040d",
+      "source_prompt_ids": [
+        "93396"
+      ]
+    },
+    {
+      "condition_id": "685cf3821d9259967c1221192e1c844a7df730f4d67fe16643acc3d068ad6753",
+      "source_prompt_ids": [
+        "93830"
+      ]
+    },
+    {
+      "condition_id": "6b1adf0a86b52978f232d7451a4b3907a18ccc1b4f569631f9ddf18286b5a43c",
+      "source_prompt_ids": [
+        "93993"
+      ]
+    },
+    {
+      "condition_id": "6f84f4ddfe719b47ec6497115190b83805cd27d0b360aaf12a53263bb0aa8c2f",
+      "source_prompt_ids": [
+        "134641"
+      ]
+    },
+    {
+      "condition_id": "70312f4e816926fd6e58e46742b3aaa3aa2100c82868dba261021a2bb267dd43",
+      "source_prompt_ids": [
+        "92245"
+      ]
+    },
+    {
+      "condition_id": "71d6007751f4b18c6b89695ed5d4a039b481f98fe585b553b3b4849b69484b87",
+      "source_prompt_ids": [
+        "94261"
+      ]
+    },
+    {
+      "condition_id": "72ee62e7e4966a606ecb5a318c4a690ec4a77ec6ccbdf355d5f2e84c5ca53e13",
+      "source_prompt_ids": [
+        "93571"
+      ]
+    },
+    {
+      "condition_id": "73b9496b7a3c3b10f7c7295aed5feedfc974bad7cc06e76ed46ea59043518643",
+      "source_prompt_ids": [
+        "135209"
+      ]
+    },
+    {
+      "condition_id": "772628e13b6c892f12ef85a45f6094916c14d8e4127d154ab9be7760cfcbccf9",
+      "source_prompt_ids": [
+        "94515"
+      ]
+    },
+    {
+      "condition_id": "78d1fe7e2c4776f8bf8b3a55901ae0f8aad9650b9ffc40ac1b356b745253d06b",
+      "source_prompt_ids": [
+        "135133"
+      ]
+    },
+    {
+      "condition_id": "7a258c7575235a07099b86dd0a471f718e116d0261da57c9daee6fbdba17a71b",
+      "source_prompt_ids": [
+        "91672"
+      ]
+    },
+    {
+      "condition_id": "7b4b138fb118c76ce1dd2c75cb827b5f67dd2cd3e6633293d2a9883ee8181113",
+      "source_prompt_ids": [
+        "93207"
+      ]
+    },
+    {
+      "condition_id": "7b67a99210fbb4090d4eec8921cfe726e33899a14ed597ebc848302e794124af",
+      "source_prompt_ids": [
+        "134336"
+      ]
+    },
+    {
+      "condition_id": "7cb07ed7fc5924e56d66e16d2980efcc007993444cdcbe440f7a459c880e95fb",
+      "source_prompt_ids": [
+        "134942"
+      ]
+    },
+    {
+      "condition_id": "80df03f77955e2b81e4e520bc8ad6e0373a92ad7c1695bb6933cbc416a1c2cea",
+      "source_prompt_ids": [
+        "134693"
+      ]
+    },
+    {
+      "condition_id": "844a205d76bcb1e45c7b029b55434bd3377259e16b223062ab0d56b61f745d97",
+      "source_prompt_ids": [
+        "92116"
+      ]
+    },
+    {
+      "condition_id": "847c0cc6322072fcbfbb2a214e3967ca3b936fa5a2c50e522243d99faadf16a7",
+      "source_prompt_ids": [
+        "92445"
+      ]
+    },
+    {
+      "condition_id": "8535775694f50a6e026c9eb1cd77f7622acb225ca9438d2f065abd1ed626ecec",
+      "source_prompt_ids": [
+        "93363"
+      ]
+    },
+    {
+      "condition_id": "86aee49559fd7a914ab1ee201becfdf0e73757e15b9f3aec2103618cc5be7fed",
+      "source_prompt_ids": [
+        "93377"
+      ]
+    },
+    {
+      "condition_id": "88851b607ae3fc2b77be7dd17477ca0ebb3ee4d43fb307d48576c90e9e7ae0fe",
+      "source_prompt_ids": [
+        "134573"
+      ]
+    },
+    {
+      "condition_id": "8a8971d91f554435cf3fda7b4ce1343552eb642a22e053eb66a738ab67f8ba7a",
+      "source_prompt_ids": [
+        "135309"
+      ]
+    },
+    {
+      "condition_id": "8cbcc54c1f7a58fda840b0582db96f36fd8d2074f7adf3efa67963bfaba3413c",
+      "source_prompt_ids": [
+        "91852"
+      ]
+    },
+    {
+      "condition_id": "8f3efb10a9caa791cf47edf687d83bfabc97eab7083ecf9a1011a89c6901a0f1",
+      "source_prompt_ids": [
+        "92126"
+      ]
+    },
+    {
+      "condition_id": "8fb2c136017e22c2e66a68d35a47cdd5b62e21d0a0cc3fac8d4c25a4de6ae6e8",
+      "source_prompt_ids": [
+        "134853"
+      ]
+    },
+    {
+      "condition_id": "932e2a3a4278378a8aa7b2cdc89af2093f4fc6bc70a17a6918367f0038569a5e",
+      "source_prompt_ids": [
+        "134380"
+      ]
+    },
+    {
+      "condition_id": "952e02883a377a399c48eaf6ddf71c96e1fc70c2f6ab9e695e45076aefba6aed",
+      "source_prompt_ids": [
+        "134666"
+      ]
+    },
+    {
+      "condition_id": "9b5709d4dec2465f0870c91c9e64bca3c83e8a9898c8915c2e63347d52469ece",
+      "source_prompt_ids": [
+        "92966"
+      ]
+    },
+    {
+      "condition_id": "9b7c2c7a690826470336f17cea0cc5952f2551205129710a60ce85867b1b29cc",
+      "source_prompt_ids": [
+        "135131"
+      ]
+    },
+    {
+      "condition_id": "9bd84e1c4630adc47f2681f38e9cd2c1bb5a6a8a11341406f4b92815cf6b46a4",
+      "source_prompt_ids": [
+        "134283"
+      ]
+    },
+    {
+      "condition_id": "9d02f75e273c4e18fdf01fbbca5cc8a7aca561f79763f0eea0e4493ba2cf3441",
+      "source_prompt_ids": [
+        "92985"
+      ]
+    },
+    {
+      "condition_id": "9ddcce7e1dbd543262df0b548b5fc865c20ae2a2692149dd37d7c89a44872e88",
+      "source_prompt_ids": [
+        "135174"
+      ]
+    },
+    {
+      "condition_id": "9e20f9ebea844a4e13b1643cf2206f8f66943263fb10e066cb3ef2fcdf5925d7",
+      "source_prompt_ids": [
+        "134805"
+      ]
+    },
+    {
+      "condition_id": "9ed0aca51a2c20a3aeea2adab5b0d09efb273d1817134700732f692f1799a0e5",
+      "source_prompt_ids": [
+        "92558"
+      ]
+    },
+    {
+      "condition_id": "a062194ed8f7ad0baf242eeee9293da1421b2107e21cb5e5c8173df87c218ddf",
+      "source_prompt_ids": [
+        "94685"
+      ]
+    },
+    {
+      "condition_id": "a2f22f722bda2b585ed998338b626f9a03a384071682a52bb3fbb8803a5e229f",
+      "source_prompt_ids": [
+        "92037"
+      ]
+    },
+    {
+      "condition_id": "a8e9dd23b66d5e3e27ccb75f8f03ff02eb0a4791c7c987aaf0f960d28eb6659f",
+      "source_prompt_ids": [
+        "135355"
+      ]
+    },
+    {
+      "condition_id": "ac4d381289b7a8103ccfdb380ef1ea7375f29b71d5490390c06fe8e5353b0cdd",
+      "source_prompt_ids": [
+        "134809"
+      ]
+    },
+    {
+      "condition_id": "acd99cacf3985cc774f80d58f359e27181468273b9e419e4a270738289558456",
+      "source_prompt_ids": [
+        "93722"
+      ]
+    },
+    {
+      "condition_id": "b221034cdd6501c5f0a31e4c3c216d2d074574c286620ac67ff7baf0b0ade292",
+      "source_prompt_ids": [
+        "134514"
+      ]
+    },
+    {
+      "condition_id": "b2a16060963cc47d3d750fb83cc1fe244606bab38d3110593dc72730da21f0a8",
+      "source_prompt_ids": [
+        "134559"
+      ]
+    },
+    {
+      "condition_id": "b6c3f274496279de138abdc12133697f57809bcc62c9989f040e2e48dbf64678",
+      "source_prompt_ids": [
+        "93639"
+      ]
+    },
+    {
+      "condition_id": "b6c409abb5a0ff720b9c0671505c469b2ec846f13c3f55cbe003500ec930a1c8",
+      "source_prompt_ids": [
+        "92957"
+      ]
+    },
+    {
+      "condition_id": "b84e7edf630c91dad6ef67aaaaa42cfa98ab85bfbd7d865e0e43dd614941767c",
+      "source_prompt_ids": [
+        "93372"
+      ]
+    },
+    {
+      "condition_id": "b96ac4c0053ef68f75988adedf7a937df93739ac04e53e1a40569e19f1032916",
+      "source_prompt_ids": [
+        "135169"
+      ]
+    },
+    {
+      "condition_id": "bc9522fd38f313d715ba90e9c84b64bc51689b451a6caa3a325bd545ee296227",
+      "source_prompt_ids": [
+        "92875"
+      ]
+    },
+    {
+      "condition_id": "c2a2f5a1c88a252153d609b40f566515f420eabe08286b2dbfe9527fb62bec63",
+      "source_prompt_ids": [
+        "135162"
+      ]
+    },
+    {
+      "condition_id": "c3d05c6815a4583bd14fa1f7f1ae96d8574e84317aa1054c94873986c29de759",
+      "source_prompt_ids": [
+        "92828"
+      ]
+    },
+    {
+      "condition_id": "ca9a1aa4a273d8383793da14751ccdbbb6764d1963f44c79011d5370ae29c12c",
+      "source_prompt_ids": [
+        "135276"
+      ]
+    },
+    {
+      "condition_id": "cb4971ba8e4196485be19606fd00a26eee9c2e66a84b9f6b1327516715a27cd7",
+      "source_prompt_ids": [
+        "134735",
+        "134737"
+      ]
+    },
+    {
+      "condition_id": "ccc51e52393c8ea7cbbe13c4a880f8f398f02c44ab7713c5d211dadf8ec176a0",
+      "source_prompt_ids": [
+        "93498"
+      ]
+    },
+    {
+      "condition_id": "cd1cc52e107bd76e56cbff2e032707499420dd86c284df672858b2da0a9c6fd5",
+      "source_prompt_ids": [
+        "134833"
+      ]
+    },
+    {
+      "condition_id": "cebc66af3fc9b6ee7408b76bab491dd7fc4827613080f0a1b780b76bb358f1d7",
+      "source_prompt_ids": [
+        "92229"
+      ]
+    },
+    {
+      "condition_id": "cf290287b1a69cb8c594b3565748d32444072c64d45a9c3cc53f077f87483682",
+      "source_prompt_ids": [
+        "134940"
+      ]
+    },
+    {
+      "condition_id": "d1952194f4066c0566e8af185cb03f6ed265cea537fc29db2469db4452d6bf49",
+      "source_prompt_ids": [
+        "93175"
+      ]
+    },
+    {
+      "condition_id": "d478d24939b973a45276a8d7f15e2a30543f9793bd19e3da0b741f120919121c",
+      "source_prompt_ids": [
+        "93109"
+      ]
+    },
+    {
+      "condition_id": "d4df6616b2e1fa5cbf5c386bcbc768160049dc2c14ca287610df0eab57d54725",
+      "source_prompt_ids": [
+        "92043"
+      ]
+    },
+    {
+      "condition_id": "d684cbc31330cf233317f11ff4849d49242de3795ce8f5d5db312734710c9e93",
+      "source_prompt_ids": [
+        "134842"
+      ]
+    },
+    {
+      "condition_id": "d81b45d1e4c66b57c592bbf0d3a652d30c37090e0d5ee5a322f875e3b851cba0",
+      "source_prompt_ids": [
+        "94173"
+      ]
+    },
+    {
+      "condition_id": "d826f7713483a5a74a97bbb1937ec7b8c9e64117e00cae9b28bf7098ecdd5bca",
+      "source_prompt_ids": [
+        "92208"
+      ]
+    },
+    {
+      "condition_id": "d99a49852dc046d7645de40cf7678eee46341a621c051e5e43f1dc129dc87a25",
+      "source_prompt_ids": [
+        "92048"
+      ]
+    },
+    {
+      "condition_id": "dc33d953ee61669e9c23bfc0dfa36f193d7d07a9e760fd7d2670d5d5f3420382",
+      "source_prompt_ids": [
+        "135441"
+      ]
+    },
+    {
+      "condition_id": "dd4c571b2cc10e0035fb02b587b88d0416936b1381708d9b5c3c9960b34cb885",
+      "source_prompt_ids": [
+        "134402"
+      ]
+    },
+    {
+      "condition_id": "e5b0ca41861f7a166d5a1be1ade198672fae8c55f7b6be0268b50e0add97aad5",
+      "source_prompt_ids": [
+        "93741"
+      ]
+    },
+    {
+      "condition_id": "ead6233830711ebc1d77a16ae04af7218cd496173198c5553731c5a6e80c153d",
+      "source_prompt_ids": [
+        "92722"
+      ]
+    },
+    {
+      "condition_id": "ebd3d8721fd144c6288a8bc1d04e8d1fb94f99c030d2a3b523ac78558f7e55c6",
+      "source_prompt_ids": [
+        "93975"
+      ]
+    },
+    {
+      "condition_id": "f2fd2c32c3446367d042b8b891dce976c53bf1187d7cbac216f14bbb42b75cc2",
+      "source_prompt_ids": [
+        "135258"
+      ]
+    },
+    {
+      "condition_id": "f54b4da8fac202fda43cb6591e0efd59bd449f44ca5e1d1713a744d922797068",
+      "source_prompt_ids": [
+        "134698"
+      ]
+    },
+    {
+      "condition_id": "f776acd6edd1e216dcb11133d03c38780f45dc846cef2cc6267561672c42c80f",
+      "source_prompt_ids": [
+        "94533"
+      ]
+    },
+    {
+      "condition_id": "f843df5c8d2f7c530bc61e3ae382a860a08c001cf2360af2cd3cdfc8a14b0af0",
+      "source_prompt_ids": [
+        "94496"
+      ]
+    },
+    {
+      "condition_id": "f8c4a302d507c2dd6ece41eca7fd46b5163e8b98335746effecfb9bb9955b858",
+      "source_prompt_ids": [
+        "134142"
+      ]
+    },
+    {
+      "condition_id": "fa0729ec46621c17d45c170d0e5becbb93728581f4908736b317a0b9860454f0",
+      "source_prompt_ids": [
+        "94090"
+      ]
+    },
+    {
+      "condition_id": "fa7f0292e9b2b7e9296543906ef362b6549ea2383d8f64f77088cf580ea479a4",
+      "source_prompt_ids": [
+        "93529"
+      ]
+    },
+    {
+      "condition_id": "fa909805f761e1fffb65d3ed796c298b19464c09d905432983dcca83ed6de821",
+      "source_prompt_ids": [
+        "92550"
+      ]
+    },
+    {
+      "condition_id": "fab40dc63254ec1c4eb5ebc1b995c413f966a40ef05783681f41b5851f8c90f9",
+      "source_prompt_ids": [
+        "91711"
+      ]
+    }
+  ]
+}

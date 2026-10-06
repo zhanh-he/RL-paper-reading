@@ -1,0 +1,32 @@
+{
+  "protocol": "cmi-pref-text-audio-lyrics-decontaminated-v1",
+  "status": "frozen-text-lyrics-projection-audio-reserved",
+  "source_revisions": {
+    "cmi_pref": "5282fbe784e326014894b299cb22645cd7d56057",
+    "wildsongbench": "e361b85a8d7365d3079fa9647641a87ce3c8c5b5"
+  },
+  "source_sha256": {
+    "cmi_train": "fd157070f09ad51d807f4b447bf5a9668fd9b00890c7d646ffd1331850e7d8d0",
+    "cmi_test": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+    "wildsongbench": "859e5225d319912efb64d587d1d5eb6cf0abc9fb162cc3d5f02d1688cff2edc0"
+  },
+  "manifest_sha256": "2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136",
+  "counts": {
+    "official_train_votes": 469,
+    "official_test_votes": 125,
+    "official_train_conditions": 325,
+    "official_test_conditions": 121,
+    "exact_official_train_test_condition_overlap": 22,
+    "excluded_train_votes_with_sealed_lyrics": 34,
+    "decontaminated_train_votes": 435,
+    "decontaminated_train_conditions": 300,
+    "frozen_train_conditions": 270,
+    "frozen_validation_conditions": 30,
+    "wildsongbench_additional_lyric_overlap_votes": 0
+  },
+  "limits": [
+    "Metadata and official reference-audio file listing checked; MP3 payloads not downloaded or decoded.",
+    "No native external-reference-audio conditioning verified in the current YuE2 or Muse GRPO code.",
+    "Official preference test supplies conditions, not a unique target recording for new generations."
+  ]
+}

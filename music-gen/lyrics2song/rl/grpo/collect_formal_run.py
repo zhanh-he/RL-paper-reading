@@ -10,6 +10,8 @@ from pathlib import Path
 DATASET_SHA256 = "c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b"
 TRIPLE_PROJECTION_SHA256 = "b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109"
 TRIPLE_SOURCE_SHA256 = "b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0"
+TRIPLE_9TO1_PROJECTION_SHA256 = "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f"
+TRIPLE_9TO1_SOURCE_SHA256 = "2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136"
 CHECKPOINTS = (0, 1, 25, 50, 100)
 
 
@@ -37,6 +39,8 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
         dataset_sha, train_count, valid_count = DATASET_SHA256, 234, 59
     elif protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
         dataset_sha, train_count, valid_count = TRIPLE_PROJECTION_SHA256, 240, 60
+    elif protocol == "cmi-pref-triple-source-text-lyrics-baseline-9to1-v2":
+        dataset_sha, train_count, valid_count = TRIPLE_9TO1_PROJECTION_SHA256, 270, 30
     else:
         raise ValueError(f"Unrecognized formal dataset protocol: {protocol}")
     expected = {
@@ -50,8 +54,9 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
         "smoke_only": False,
         "max_tokens": 600,
     }
-    if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
-        expected.update({"source_manifest_sha256": TRIPLE_SOURCE_SHA256,
+    if protocol.startswith("cmi-pref-triple-source-text-lyrics-baseline"):
+        source_sha = (TRIPLE_9TO1_SOURCE_SHA256 if valid_count == 30 else TRIPLE_SOURCE_SHA256)
+        expected.update({"source_manifest_sha256": source_sha,
                          "input_modalities": ["text", "lyrics"],
                          "reference_audio_used": False})
     for key, value in expected.items():
@@ -82,7 +87,8 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
                 curve.append({"step": step, "reward": sum(rewards) / 2, "sampled_kl": kl})
 
     validation = {}
-    for step in CHECKPOINTS:
+    checkpoints = (*CHECKPOINTS, 270) if valid_count == 30 else CHECKPOINTS
+    for step in checkpoints:
         receipt_path = root / f"step_{step:06d}" / "receipt.json"
         if not receipt_path.is_file():
             continue
@@ -116,7 +122,8 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
             "mean_near_full_scale_fraction": sum(clips) / len(clips),
             "truncated": truncated,
         }
-    if len(curve) == 100 and all(str(step) in validation for step in CHECKPOINTS):
+    expected_steps = 270 if valid_count == 30 else 100
+    if len(curve) == expected_steps and all(str(step) in validation for step in checkpoints):
         status = "verified-complete"
     else:
         status = "partial-verified"

@@ -13,6 +13,21 @@ ROOT = Path(__file__).resolve().parents[4] / "datasets"
 
 @unittest.skipUnless((ROOT / "cmi-pref/cmi_train.jsonl").exists(), "Download pinned metadata first")
 class TripleDataTests(unittest.TestCase):
+    def test_nine_to_one_public_split_matches_private_manifest(self):
+        public_path = Path(__file__).resolve().parents[4] / "platform/site/demos/data/cmi-pref-triple-9to1-split.json"
+        summary = prepare(ROOT, validation_conditions=30,
+                          manifest_name="cmi-pref-triple-9to1-v2.json",
+                          public_split_path=public_path)
+        manifest = json.loads((ROOT / "cmi-pref-triple-9to1-v2.json").read_text())
+        public = json.loads(public_path.read_text())
+        self.assertEqual((len(public["train"]), len(public["valid"]), len(public["test"])), (270, 30, 121))
+        self.assertEqual(summary["manifest_sha256"], public["private_manifest_sha256"])
+        for split in ("train", "valid"):
+            self.assertEqual({row["condition_id"] for row in manifest[split]},
+                             {row["condition_id"] for row in public[split]})
+        ids = [{row["condition_id"] for row in public[split]} for split in ("train", "valid", "test")]
+        self.assertFalse(ids[0] & ids[1] or ids[0] & ids[2] or ids[1] & ids[2])
+
     def test_reproducible_and_disjoint(self):
         summary = prepare(ROOT)
         path = ROOT / "cmi-pref-triple-v1.json"

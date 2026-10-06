@@ -8,7 +8,7 @@
 #PBS -l walltime=24:00:00
 #PBS -l storage=gdata/wa66+scratch/wa66
 #PBS -l wd
-#PBS -N muse-cmi-triple
+#PBS -N muse-cmi-9to1
 set -euo pipefail
 
 : "${REWARD:?Set REWARD to songeval or musecritic}"
@@ -24,7 +24,7 @@ module load cuda/12.8.0
 export PYTHONNOUSERSITE=1
 unset PYTHONHOME
 root=/g/data/wa66/hanyu/vocal2accomp-muse
-study="$root/experiments/cmi_triple_textlyrics_20261006"
+study="$root/experiments/cmi_triple_9to1_20261006"
 train_py=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
 codec_py="$root/envs/mucodec-py310-cu128/bin/python"
 plugin="$study/muse_cmi_rewards.py"
@@ -63,13 +63,13 @@ path = pathlib.Path(sys.argv[1])
 reward, lr, mode = sys.argv[2:]
 dataset = pathlib.Path('/g/data/wa66/hanyu/vocal2accomp-muse/experiments/cmi_triple_textlyrics_20261006/data/muse-cmi-triple-train.jsonl')
 actual = hashlib.sha256(dataset.read_bytes()).hexdigest()
-assert actual == '37864c23487879ae21141270c0ebab046708d7f62ba66857c4c74b084c8969a8'
-manifest = {'source_split_sha256': 'b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0',
-            'projected_manifest_sha256': 'b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109',
-            'muse_train_jsonl_sha256': actual, 'train_conditions': 240, 'valid_conditions': 60,
+assert actual == 'ff437d751d62742d92daf7ac56a678010c52d6c22def5624a8324301e6699be6'
+manifest = {'source_split_sha256': '2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136',
+            'projected_manifest_sha256': 'c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f',
+            'muse_train_jsonl_sha256': actual, 'train_conditions': 270, 'valid_conditions': 30,
             'input_modalities': ['text', 'lyrics'], 'reference_audio_used': False,
             'model': 'Muse-0.6b', 'reward': reward, 'learning_rate': lr, 'mode': mode,
-            'planned_steps': 2 if mode == 'smoke' else 100}
+            'planned_steps': 2 if mode == 'smoke' else 270}
 if path.exists():
     assert json.loads(path.read_text()) == manifest, 'Existing run has different configuration'
 else:
@@ -113,7 +113,7 @@ for port in "${ports[@]}"; do
   [[ "$ready" == true ]] || { echo "Service $port did not become ready" >&2; exit 1; }
 done
 
-steps=100
+steps=270
 save_steps=25
 if [[ "$MODE" == smoke ]]; then steps=2; save_steps=1; fi
 "$(dirname "$train_py")/swift" rlhf \

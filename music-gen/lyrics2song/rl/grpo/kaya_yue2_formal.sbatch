@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=yue2-cmi-formal
+#SBATCH --job-name=yue2-cmi-9to1
 #SBATCH --account=ems011
-#SBATCH --partition=ondemand-gpu
+#SBATCH --partition=gpu
 #SBATCH --gres=gpu:v100-32gb:1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=96G
-#SBATCH --time=12:00:00
+#SBATCH --time=36:00:00
 #SBATCH --nice=10000
 #SBATCH --output=/scratch/ems011/zhe/yue2-formal/logs/%x-%j.out
 #SBATCH --error=/scratch/ems011/zhe/yue2-formal/logs/%x-%j.err
@@ -17,8 +17,8 @@ export HF_HUB_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
 mode=${FORMAL_MODE:?Set FORMAL_MODE=smoke or train}
 case "$mode" in
-  smoke) steps=2; output="$root/outputs/cmi_pref_songeval_lr1e4_smoke_20261005"; extra=(--smoke) ;;
-  train) steps=100; output="$root/outputs/cmi_pref_songeval_lr1e4_formal_20261005"; extra=() ;;
+  smoke) steps=2; output="$root/outputs/cmi_triple_9to1_songeval_lr1e4_smoke_20261006"; extra=(--smoke) ;;
+  train) steps=270; output="$root/outputs/cmi_triple_9to1_songeval_lr1e4_train_20261006"; extra=() ;;
   *) printf 'Unknown FORMAL_MODE=%s\n' "$mode" >&2; exit 2 ;;
 esac
 
@@ -28,8 +28,8 @@ exec "$root/.venv/bin/python" -u examples/yue2_songeval_longrun.py \
   --vae "$root/models/YuE2-Vae" \
   --songeval "$root/SongEval" \
   --scorer-python "$root/.venv/bin/python" \
-  --dataset-manifest "$root/YuE2-posttrain/examples/formal-lyrics2song-v1.json" \
-  --expected-dataset-sha256 c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b \
+  --dataset-manifest "$root/YuE2-posttrain/examples/cmi-pref-triple-text-lyrics-9to1-v2.json" \
+  --expected-dataset-sha256 c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f \
   --reward-backend songeval \
   --output "$output" \
   --max-steps "$steps" \

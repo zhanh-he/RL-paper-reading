@@ -1,4 +1,4 @@
-"""Fixed-seed 60-condition Muse GRPO validation; no test-set selection."""
+"""Fixed-seed Muse GRPO validation; no test-set selection."""
 
 import argparse
 import gc
@@ -16,6 +16,7 @@ from muse_songeval_pilot import load, rollout, signal
 
 
 VALID_SHA256 = "3c6ad89c4841041eb64f51536e544b5a925fd450e334f7742025a90f4f5be211"
+VALID_9TO1_SHA256 = "ed5c5f36af48ef6ce81d15c7b15b429fb250ec4a52a04a43e55d96ec3cafb59d"
 SCORE_KEYS = ("Coherence", "Musicality", "Memorability", "Clarity", "Naturalness")
 
 
@@ -24,11 +25,12 @@ def sha256(path):
 
 
 def prompts(path):
-    if sha256(path) != VALID_SHA256:
+    actual_sha = sha256(path)
+    if actual_sha not in (VALID_SHA256, VALID_9TO1_SHA256):
         raise ValueError("Frozen Muse validation JSONL changed")
     records = [json.loads(line) for line in path.read_text().split("\n") if line]
-    if len(records) != 60:
-        raise ValueError("Expected all 60 held-out conditions")
+    if len(records) != (30 if actual_sha == VALID_9TO1_SHA256 else 60):
+        raise ValueError("Unexpected held-out condition count")
     return [record["messages"][0]["content"] for record in records]
 
 

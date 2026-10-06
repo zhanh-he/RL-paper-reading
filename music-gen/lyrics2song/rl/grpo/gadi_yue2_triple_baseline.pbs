@@ -8,7 +8,7 @@
 #PBS -l walltime=24:00:00
 #PBS -l storage=gdata/wa66+gdata/iv96
 #PBS -l wd
-#PBS -N yue2-cmi-triple
+#PBS -N yue2-cmi-9to1
 set -euo pipefail
 
 : "${REWARD:?Set REWARD to songeval or musecritic}"
@@ -23,12 +23,12 @@ critic_root=/g/data/wa66/hanyu/vocal2accomp-muse
 export HF_HOME=/g/data/wa66/hanyu/hf-cache
 export HF_HUB_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
-output="$root/outputs/cmi_triple_textlyrics_${REWARD}_lr${LR}_${MODE}_20261006"
+output="$root/outputs/cmi_triple_9to1_${REWARD}_lr${LR}_${MODE}_20261006"
 args=(
   --model "$root/models/YuE2-3B"
   --vae "$root/models/YuE2-Vae"
-  --dataset-manifest "$root/examples/cmi-pref-triple-text-lyrics-baseline-v1.json"
-  --expected-dataset-sha256 b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109
+  --dataset-manifest "$root/examples/cmi-pref-triple-text-lyrics-9to1-v2.json"
+  --expected-dataset-sha256 c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f
   --reward-backend "$REWARD"
   --output "$output"
   --max-tokens 600
@@ -36,7 +36,7 @@ args=(
   --kl-beta 0.01
   --checkpoint-every 25
 )
-if [[ "$MODE" == smoke ]]; then args+=(--max-steps 2 --smoke); else args+=(--max-steps 100); fi
+if [[ "$MODE" == smoke ]]; then args+=(--max-steps 2 --smoke); else args+=(--max-steps 270); fi
 if [[ "$REWARD" == songeval ]]; then
   args+=(--songeval /g/data/wa66/hanyu/SongEval-formal --scorer-python "$root/.venv/bin/python")
 else

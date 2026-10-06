@@ -1,12 +1,16 @@
-# Formal lyrics-to-song GRPO, 2026-10-05
+# Historical 234/59 lyrics-to-song GRPO, 2026-10-05
+
+This is an archived protocol, not the current formal experiment. The current
+270/30 triple-source 9:1 protocol, downloadable split, and submitted jobs are
+in [the 2026-10-06 run record](runs/2026-10-06-cmi-triple-9to1/README.md).
 
 This protocol supersedes the eight-handwritten-prompt pilot for any claim about
-generalization. The old pilot remains available under **Mock Experiment** in
-the [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics).
+generalization. The old pilot receipts remain in the repository but are not
+displayed as current formal evidence in the online demo.
 
-**Historical text+lyrics protocol, paused 2026-10-06.** The new three-part
-source split is 240 train / 60 validation conditions, with the official
-125-vote, 121-condition three-part test sealed. See
+**Historical text+lyrics protocol, paused 2026-10-06.** A subsequent
+three-part 240/60 split was also superseded before its queued jobs ran. The
+current split is 270/30, with the official 125-vote, 121-condition test sealed. See
 [`DATA-MODALITY-AUDIT.md`](DATA-MODALITY-AUDIT.md). The verified SongEval
 results below are from the old 234/59 conditions. Both old Gadi MuseCritic
 jobs `180533336` and `180533343` were cancelled while queued/held. The user

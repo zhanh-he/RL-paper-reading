@@ -25,7 +25,10 @@ def condition_id(key):
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-def prepare(root, summary_path=None):
+def prepare(root, summary_path=None, validation_conditions=60, manifest_name="cmi-pref-triple-v1.json",
+            public_split_path=None):
+    if validation_conditions not in (30, 60):
+        raise ValueError("Only the audited 9:1 and historical 8:2 splits are supported")
     loaded = {}
     for name, (relative, expected) in SOURCES.items():
         path = root / relative
@@ -76,31 +79,51 @@ def prepare(root, summary_path=None):
     valid_groups = set()
     valid_count = 0
     for lyric in ordered_groups:
-        if valid_count + len(groups[lyric]) <= 60:
+        if valid_count + len(groups[lyric]) <= validation_conditions:
             valid_groups.add(lyric)
             valid_count += len(groups[lyric])
-    if valid_count != 60:
-        raise ValueError("Cannot make an exact 60-condition lyric-group validation split")
+    if valid_count != validation_conditions:
+        raise ValueError("Cannot make an exact lyric-group validation split")
     train = sorted((item for lyric, items in groups.items() if lyric not in valid_groups
                     for item in items), key=lambda item: item["condition_id"])
     valid = sorted((item for lyric, items in groups.items() if lyric in valid_groups
                     for item in items), key=lambda item: item["condition_id"])
-    if (len(train), len(valid)) != (240, 60):
+    if (len(train), len(valid)) != (300 - validation_conditions, validation_conditions):
         raise ValueError("Unexpected train/validation condition counts")
 
     manifest = {
         "protocol": PROTOCOL,
-        "status": "data-frozen-model-audio-interface-unverified-do-not-train",
+        "status": ("frozen-text-lyrics-projection-audio-reserved" if validation_conditions == 30
+                   else "data-frozen-model-audio-interface-unverified-do-not-train"),
         "source_revisions": REVISIONS,
         "source_sha256": {name: expected for name, (_, expected) in SOURCES.items()},
-        "split_rule": "exclude normalized lyrics in all official CMI-Pref test and WildSongBench; dedupe normalized text+lyrics+reference path; SHA256-order lyric groups into 60 valid conditions; 240 train",
+        "split_rule": f"exclude normalized lyrics in all official CMI-Pref test and WildSongBench; dedupe normalized text+lyrics+reference path; SHA256-order lyric groups into {validation_conditions} valid conditions; {300 - validation_conditions} train",
         "train": train,
         "valid": valid,
     }
-    output = root / "cmi-pref-triple-v1.json"
+    output = root / manifest_name
     output.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     test_keys = {condition_key(row) for row in test_votes}
     train_keys = {condition_key(row) for row in train_votes}
+    if public_split_path is not None:
+        test_conditions = defaultdict(list)
+        for row in test_votes:
+            test_conditions[condition_id(condition_key(row))].append(str(row["prompt id"]))
+        public = {
+            "protocol": f"{PROTOCOL}-split-{300 - validation_conditions}-{validation_conditions}-test-v2",
+            "source_revisions": REVISIONS,
+            "source_sha256": {name: expected for name, (_, expected) in SOURCES.items()},
+            "private_manifest_sha256": sha256(output),
+            "unit": "unique normalized text+lyrics+reference-audio-path condition; source_prompt_ids identify public CMI-Pref votes",
+            "rule": manifest["split_rule"],
+            "model_input_modalities": ["text", "lyrics"],
+            "reference_audio_used_in_current_runs": False,
+            "train": [{"condition_id": item["condition_id"], "source_prompt_ids": item["source_prompt_ids"]} for item in train],
+            "valid": [{"condition_id": item["condition_id"], "source_prompt_ids": item["source_prompt_ids"]} for item in valid],
+            "test": [{"condition_id": cid, "source_prompt_ids": sorted(set(ids))} for cid, ids in sorted(test_conditions.items())],
+        }
+        public_split_path.parent.mkdir(parents=True, exist_ok=True)
+        public_split_path.write_text(json.dumps(public, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     summary = {
         "protocol": PROTOCOL,
         "status": manifest["status"],
@@ -139,5 +162,10 @@ if __name__ == "__main__":
     parser.add_argument("--datasets-root", type=Path, default=Path("datasets"))
     parser.add_argument("--summary-output", type=Path,
                         default=Path("platform/site/demos/cmi-triple-data-summary.json"))
+    parser.add_argument("--validation-conditions", type=int, choices=(30, 60), default=60)
+    parser.add_argument("--manifest-name", default="cmi-pref-triple-v1.json")
+    parser.add_argument("--public-split-output", type=Path)
     arguments = parser.parse_args()
-    print(json.dumps(prepare(arguments.datasets_root, arguments.summary_output), indent=2))
+    print(json.dumps(prepare(arguments.datasets_root, arguments.summary_output,
+                             arguments.validation_conditions, arguments.manifest_name,
+                             arguments.public_split_output), indent=2))

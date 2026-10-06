@@ -13,6 +13,15 @@ ROOT = Path(__file__).resolve().parents[4] / "datasets"
 
 @unittest.skipUnless((ROOT / "cmi-pref-triple-v1.json").exists(), "Freeze three-part source first")
 class ProjectionTests(unittest.TestCase):
+    def test_nine_to_one_projection(self):
+        source_path = ROOT / "cmi-pref-triple-9to1-v2.json"
+        target_path = ROOT / "cmi-pref-triple-text-lyrics-9to1-v2.json"
+        self.assertEqual(project(source_path, target_path, 30),
+                         "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f")
+        target = json.loads(target_path.read_text())
+        self.assertEqual((len(target["train"]), len(target["valid"])), (270, 30))
+        self.assertFalse(any("audio" in row for row in target["train"] + target["valid"]))
+
     def test_projection_preserves_membership_and_drops_audio(self):
         source_path = ROOT / "cmi-pref-triple-v1.json"
         target_path = ROOT / "cmi-pref-triple-text-lyrics-baseline-v1.json"

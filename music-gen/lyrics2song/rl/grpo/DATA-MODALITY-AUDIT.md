@@ -28,8 +28,8 @@ conditions, not those human preference labels.
 | --- | ---: | ---: | --- |
 | text | 1,874 | 125 | Excluded: no supplied lyrics |
 | text + reference audio | 770 | 125 | Excluded: no lyrics or native audio-reference input |
-| text + lyrics | 414 | 125 | Source of the current prompt split |
-| text + reference audio + lyrics | 469 | 125 | Separate multimodal task; not merged |
+| text + lyrics | 414 | 125 | Historical split only |
+| text + reference audio + lyrics | 469 | 125 | Current source conditions; model input projects to text+lyrics |
 
 The official test has 500 balanced votes and stays sealed. One test row in the
 text+lyrics stratum has an empty `prompt`; all four train strata have nonempty
@@ -68,28 +68,30 @@ conditions enter a strict held-out-prompt generation protocol. The official
 song it supplies conditions and comparison material, not a unique target
 song or an automatic generation score.
 
-## Frozen three-part candidate (not yet trained)
+## Current 9:1 triple-source protocol
 
 [`prepare_cmi_triple_data.py`](prepare_cmi_triple_data.py) pins the published
 train/test JSONL hashes and WildSongBench hash, removes the 34 train votes
 whose normalized lyrics occur in any official CMI-Pref test row, and collapses
 the remaining 435 votes to 300 distinct conditions. It assigns whole
-normalized-lyrics groups by SHA256 order: **240 train / 60 validation**.
+normalized-lyrics groups by SHA256 order: **270 train / 30 validation**.
 The official three-part test remains sealed at **125 votes / 121 conditions**.
 There is no normalized-lyrics or reference-path overlap among the frozen
 train, validation, and official test, and no extra WSB lyric collision. The
-private manifest stays in ignored `datasets/cmi-pref-triple-v1.json`; its
+private manifest stays in ignored `datasets/cmi-pref-triple-9to1-v2.json`; its
 SHA256 is
-`b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0`.
+`2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136`.
 The public, lyrics-free counts and source hashes are in
-[`cmi-triple-data-summary.json`](../../../../platform/site/demos/cmi-triple-data-summary.json).
+[`cmi-triple-9to1-summary.json`](../../../../platform/site/demos/cmi-triple-9to1-summary.json).
+The [downloadable split JSON](../../../../platform/site/demos/data/cmi-pref-triple-9to1-split.json)
+contains condition hashes and official prompt IDs for train/valid/test.
 The reference MP3s have not been downloaded or decoded, per-row reference
 semantics are not verified, and neither existing YuE2 nor Muse GRPO
 implementation consumes external reference audio. On 2026-10-06 the user
 authorized **text+lyrics baselines on this exact split**: the separate
 [`project_cmi_triple_baseline.py`](project_cmi_triple_baseline.py) projects the
-same 240/60 condition IDs without the audio field (SHA256
-`b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109`).
+same 270/30 condition IDs without the audio field (SHA256
+`c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f`).
 The original three-part manifest remains unchanged for future work. Current
 GRPO must declare `reference_audio_used=false`; this authorization does not
 turn the baselines into three-input models.

@@ -1,0 +1,24 @@
+{
+  "protocol": "cmi-pref-triple-source-text-lyrics-baseline-9to1-v2",
+  "source_manifest_sha256": "2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136",
+  "projected_manifest_sha256": "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f",
+  "train_conditions": 270,
+  "valid_conditions": 30,
+  "sealed_test_conditions": 121,
+  "planned_updates": 270,
+  "arms": [
+    {"model":"YuE2","reward":"SongEval","lr":"2e-5","host":"Gadi BF16","smoke":"180635247","train":"180635248"},
+    {"model":"YuE2","reward":"SongEval","lr":"1e-4","host":"Gadi BF16","smoke":"180635249","train":"180635250"},
+    {"model":"YuE2","reward":"SongEval","lr":"3e-4","host":"Gadi BF16","smoke":"180635251","train":"180635252"},
+    {"model":"YuE2","reward":"MuseCritic","lr":"2e-5","host":"Gadi BF16","smoke":"180635253","train":"180635254"},
+    {"model":"YuE2","reward":"MuseCritic","lr":"1e-4","host":"Gadi BF16","smoke":"180635255","train":"180635256"},
+    {"model":"YuE2","reward":"MuseCritic","lr":"3e-4","host":"Gadi BF16","smoke":"180635257","train":"180635258"},
+    {"model":"Muse","reward":"SongEval","lr":"1e-6","host":"Gadi BF16","smoke":"180635265","train":"180635266"},
+    {"model":"Muse","reward":"SongEval","lr":"3e-6","host":"Gadi BF16","smoke":"180635267","train":"180635268"},
+    {"model":"Muse","reward":"SongEval","lr":"1e-5","host":"Gadi BF16","smoke":"180635269","train":"180635270"},
+    {"model":"Muse","reward":"MuseCritic","lr":"1e-6","host":"Gadi BF16","smoke":"180635271","train":"180635272"},
+    {"model":"Muse","reward":"MuseCritic","lr":"3e-6","host":"Gadi BF16","smoke":"180635273","train":"180635274"},
+    {"model":"Muse","reward":"MuseCritic","lr":"1e-5","host":"Gadi BF16","smoke":"180635275","train":"180635276"},
+    {"model":"YuE2","reward":"SongEval","lr":"1e-4","host":"Kaya FP16","smoke":"77857","train":"77858"}
+  ]
+}
