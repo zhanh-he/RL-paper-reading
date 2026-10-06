@@ -14,7 +14,7 @@
     <script type="module" src="./choral-curves.js?v=20260930-milestones"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261005-reward-kl"></script>
-    <script type="module" src="./lyrics-formal.js?v=20261005-formal-v1"></script>
+    <script type="module" src="./lyrics-formal.js?v=20261006-formal-v2"></script>
   </head>
   <body>
     <header class="app-header">
@@ -31,7 +31,7 @@
     <main class="lab-main">
       <section class="lab-heading">
         <div>
-          <p class="eyebrow">Presentation evidence · updated 05 Oct 2026</p>
+          <p class="eyebrow">Presentation evidence · updated 06 Oct 2026</p>
           <h1>Music post-training replay</h1>
           <p class="lab-subtitle">逐样本对齐输入、基线、训练阶段与客观分数。先听，再核对 MIDI 与指标。</p>
         </div>
@@ -150,7 +150,7 @@
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Lyrics-conditioned post-training</p><h2>Lyrics2song GRPO</h2></div><a class="source-link" href="#datasets" data-open-view="datasets">数据与划分协议 ↗</a></div>
         <div class="metric-controls"><span class="control-label">Track</span><div class="segmented" role="group" aria-label="Lyrics experiment track"><button type="button" data-lyrics-track="formal" aria-pressed="true">CMI-Pref Experiment (Formal)</button><button type="button" data-lyrics-track="mock" aria-pressed="false">Mock Experiment</button></div></div>
         <div id="lyrics-formal">
-          <div class="section-intro"><div><p class="eyebrow">Frozen data · measured results pending</p><h3>YuE2 · CMI-Pref formal GRPO</h3></div><span class="state pending">正式训练待核验</span></div>
+          <div class="section-intro"><div><p class="eyebrow">Frozen data · verified interim results</p><h3>YuE2 · CMI-Pref formal GRPO</h3></div><span id="formal-section-status" class="state pending">正在读取核验结果</span></div>
           <p class="section-copy">训练条件来自 CMI-Pref 官方 train 的歌词+风格、无参考音频子集；按歌词排除官方 test 与 WildSongBench 重叠，再按条件去重。<strong id="formal-counts">234 train / 59 validation</strong>。SongEval 仅作在线 reward，不提供训练提示；CMI-Pref test 和 WildSongBench 全量封存。下方旧三首 A/B 仅在 Mock 中作演示，不参与正式验证曲线。</p>
           <div class="lyrics-protocol"><strong>预注册口径</strong><p>同组 2 条采样、组内标准化优势；训练时以冻结 YuE2 底座计算 sampled KL，损失系数 β=0.01。验证固定 59 条条件与预置随机种子，按检查点报告本臂 reward、音频峰值/削波/截断。左图是训练候选 reward，右图是同批候选的训练 sampled KL；验证分数另列表格，不能混为一条曲线。WildSongBench 192 条须在选模后一次性做最终测试；600 semantic tokens 短片段不能宣称达到官方 full-song 基准。</p></div>
           <div class="metric-controls"><label for="formal-arm-select">Formal arm</label><select id="formal-arm-select"><option value="songeval_lr2e5">YuE2 · SongEval · 2e-5 · Gadi BF16</option><option value="songeval_lr1e4">YuE2 · SongEval · 1e-4 · Kaya FP16</option><option value="musecritic_lr2e5">YuE2 · MuseCritic · 2e-5 · Gadi BF16</option></select><span id="formal-arm-status" class="state pending">已提交 · 待核验</span></div>
@@ -164,7 +164,7 @@
             <details class="choral-deep-dive"><summary>优化目标与曲线口径</summary><p class="section-copy">SongEval：五项审美输出均值；MuseCritic：先写 critique，再预测五项分数，对评分与存档一致的 PCM24-FLAC 求均值。每个 optimizer step 使用同一训练条件生成两条候选并标准化组内优势；KL 惩罚采用 sampled k3 估计、冻结底座参考、β=0.01。单次更新的 ratio clipping 在更新前前向计算中不起作用；没有单独的歌词匹配、响度、削波或时长 reward。评测 59 条验证条件另算，与训练曲线分开。</p></details>
           </section>
           <h3 class="subsection-heading">Formal arms</h3>
-          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Model / reward</th><th>Train / valid</th><th>0</th><th>1</th><th>25</th><th>50</th><th>100</th><th>Validation Δ</th></tr></thead><tbody id="formal-arms"></tbody></table></div>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Model / reward</th><th>Train / valid</th><th>0</th><th>1</th><th>25</th><th>50</th><th>100</th><th>Latest Δ vs 0 (step)</th></tr></thead><tbody id="formal-arms"></tbody></table></div>
           <div class="evidence-note"><strong>尚无正式结果</strong><p>此表是预留位，不是实验结果。旧 pilot 的 8 条手写训练提示与 3 条自拟留出提示不满足本协议；不能混入正式均值、KL 或泛化结论。Kaya V100 臂显式使用 FP16，Gadi 臂使用 BF16，因此 Kaya/Gadi 差异不能单独归因于学习率。两种 reward 量表也不互相比较绝对分数。</p></div>
           <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_formal_data.py" target="_blank" rel="noreferrer">数据冻结脚本 ↗</a>
         </div>
