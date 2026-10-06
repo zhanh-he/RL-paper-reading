@@ -38,12 +38,35 @@ continuation conditions, but the released rows do not provide a verified
 per-row task label for that distinction.
 
 A provisional metadata-only audit of the 469 text+audio+lyrics train votes
-removes 34 whose normalized lyrics match the sealed CMI-Pref test or WSB, then
+removes 34 whose normalized lyrics match the sealed CMI-Pref test (zero
+additional matches with WSB), then
 finds 300 distinct `(style, lyrics, reference-audio path)` conditions among the
 remaining 435 votes. This is **not** a frozen train/validation split: the
 reference files are not staged, the task semantics have not been checked, and
 mixing it with text+lyrics would require grouping shared lyrics before any
 split. Nine lyric texts occur in both train modality strata.
+
+The raw 469 votes represent 325 distinct three-part conditions and 325
+reference-audio paths. The official three-part test has 125 votes, 121 distinct
+conditions, and 121 reference paths. Every row in these two strata has
+nonempty text, lyrics, and reference-audio path. All 325 train and 121 test
+reference paths were found in the `ref-audio` file tree at pinned CMI-Pref
+revision `5282fbe784e326014894b299cb22645cd7d56057`; the MP3 bytes have
+not yet been downloaded or decoded. This verifies the published file listing,
+not the integrity or suitability of the audio payloads.
+
+The official train/test split is vote-disjoint by `prompt id`, but not
+condition-disjoint: 22 exact `(style, lyrics, reference-audio path)` conditions,
+23 normalized lyric texts, and 22 reference-audio paths occur in both
+three-part strata. Across all official test modalities, 34 three-part train
+votes share normalized lyrics with the test; none share lyrics with WSB.
+Removing those 34 train votes also eliminates exact reference-path and
+generated-audio-path overlaps with the three-part test. This is why all 469
+can be regarded as released **training votes**, but only 435 votes / 300
+conditions enter a strict held-out-prompt generation protocol. The official
+125-vote test can assess preference models directly; for a newly generated
+song it supplies conditions and comparison material, not a unique target
+song or an automatic generation score.
 
 ## Frozen text+lyrics split
 
