@@ -13,12 +13,12 @@
     {"model":"YuE2","reward":"MuseCritic","lr":"2e-5","host":"Gadi BF16","smoke":"180635253","train":"180635254"},
     {"model":"YuE2","reward":"MuseCritic","lr":"1e-4","host":"Gadi BF16","smoke":"180635255","train":"180635256"},
     {"model":"YuE2","reward":"MuseCritic","lr":"3e-4","host":"Gadi BF16","smoke":"180635257","train":"180635258"},
-    {"model":"Muse","reward":"SongEval","lr":"1e-6","host":"Gadi BF16","smoke":"180635265","train":"180635266"},
-    {"model":"Muse","reward":"SongEval","lr":"3e-6","host":"Gadi BF16","smoke":"180635267","train":"180635268"},
-    {"model":"Muse","reward":"SongEval","lr":"1e-5","host":"Gadi BF16","smoke":"180635269","train":"180635270"},
-    {"model":"Muse","reward":"MuseCritic","lr":"1e-6","host":"Gadi BF16","smoke":"180635271","train":"180635272"},
-    {"model":"Muse","reward":"MuseCritic","lr":"3e-6","host":"Gadi BF16","smoke":"180635273","train":"180635274"},
-    {"model":"Muse","reward":"MuseCritic","lr":"1e-5","host":"Gadi BF16","smoke":"180635275","train":"180635276"},
+    {"model":"Muse","reward":"SongEval","lr":"1e-6","host":"Gadi BF16","smoke":"180635265","train":"180635266","valid0":"180636761","valid270":"180636762"},
+    {"model":"Muse","reward":"SongEval","lr":"3e-6","host":"Gadi BF16","smoke":"180635267","train":"180635268","valid0":"180636763","valid270":"180636764"},
+    {"model":"Muse","reward":"SongEval","lr":"1e-5","host":"Gadi BF16","smoke":"180635269","train":"180635270","valid0":"180636765","valid270":"180636766"},
+    {"model":"Muse","reward":"MuseCritic","lr":"1e-6","host":"Gadi BF16","smoke":"180635271","train":"180635272","valid0":"180636767","valid270":"180636768"},
+    {"model":"Muse","reward":"MuseCritic","lr":"3e-6","host":"Gadi BF16","smoke":"180635273","train":"180635274","valid0":"180636769","valid270":"180636770"},
+    {"model":"Muse","reward":"MuseCritic","lr":"1e-5","host":"Gadi BF16","smoke":"180635275","train":"180635276","valid0":"180636771","valid270":"180636772"},
     {"model":"YuE2","reward":"SongEval","lr":"1e-4","host":"Kaya FP16","smoke":"77857","train":"77858"}
   ]
 }

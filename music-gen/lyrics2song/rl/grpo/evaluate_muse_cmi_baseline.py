@@ -112,7 +112,7 @@ def evaluate(args):
         "model": "Muse-0.6b + MuCodec",
         "actual_input_modalities": ["text", "lyrics"],
         "reference_audio_used": False,
-        "validation_jsonl_sha256": VALID_SHA256,
+        "validation_jsonl_sha256": sha256(args.valid_jsonl),
         "reward_backend": args.reward_backend,
         "adapter": str(args.adapter) if args.adapter else None,
         "seed_base": args.seed_base,

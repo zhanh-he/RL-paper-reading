@@ -6,7 +6,7 @@ function showArm(arm, buttons) {
   for (const button of buttons) button.setAttribute('aria-pressed', String(button.arm === arm));
   root.querySelector('#formal-v2-status').textContent = '已提交 · 待两步 smoke';
   root.querySelector('#formal-v2-description').textContent =
-    `${arm.model} · ${arm.reward} · LR ${arm.lr} · ${arm.host}。调度器作业 ${arm.smoke}（smoke）成功后，${arm.train} 才会启动 270 步训练；当前没有经核验的正式验证分数或配对音频。`;
+    `${arm.model} · ${arm.reward} · LR ${arm.lr} · ${arm.host}。调度器作业 ${arm.smoke}（smoke）成功后，${arm.train} 才会启动 270 步训练。${arm.valid0 ? `固定验证 0/270 步已排队为 ${arm.valid0}/${arm.valid270}，依赖训练完成。` : ''}当前没有经核验的正式验证分数或配对音频。`;
   root.querySelector('#formal-v2-reward').textContent = '等待真实训练 reward 日志';
   root.querySelector('#formal-v2-kl').textContent = '等待真实训练 KL 日志';
   const rows = stages.map((step) => {

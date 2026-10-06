@@ -63,8 +63,12 @@ capacity-constrained; submission is not completion.
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
 scored-audio SHA256. Muse training records reward/KL and checkpoints; its
-separate fixed validation job is staged but will not be submitted until the
-training checkpoints and smoke pass. The official test is never used to pick
+separate fixed validation jobs for steps 0 and 270 are submitted with
+`afterok` dependencies on the corresponding full runs: SongEval 1e-6
+`180636761/762`, 3e-6 `180636763/764`, 1e-5 `180636765/766`;
+MuseCritic 1e-6 `180636767/768`, 3e-6 `180636769/770`, 1e-5
+`180636771/772`. They remain unverified until complete; intermediate Muse
+validation points are intentionally blank. The official test is never used to pick
 LR or checkpoint. SongEval and MuseCritic scores remain separate scales.
 
 The YuE2 run uses at most 600 semantic tokens, so it is a short-generation
