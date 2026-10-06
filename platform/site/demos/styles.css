@@ -142,6 +142,7 @@
 .segmented button:last-child { border-right: 0; }
 .segmented button[aria-pressed="true"] { background: var(--green-soft); color: var(--green-dark); }
 .segmented button:hover { background: var(--surface-muted); }
+.dataset-controls .segmented button { min-width: 0; white-space: nowrap; }
 .replay-model-controls { margin: 0 0 19px; }
 .replay-model-controls .segmented button { min-width: 0; white-space: nowrap; }
 .replay-model-controls { flex-wrap: wrap; }
@@ -227,4 +228,5 @@
 @media (max-width: 650px) { .lyrics-pair-audio { grid-template-columns: 1fr; } }
 @media (max-width: 550px) { .app-header { align-items: flex-start; } .brand small { white-space: normal; } .header-actions { flex-wrap: wrap; justify-content: flex-end; } .header-actions .button-secondary { display: inline-flex; } .header-actions .button { font-size: 0; min-width: 38px; padding: 0; } .section-intro { align-items: flex-start; flex-direction: column; } .metric-controls { flex-wrap: wrap; } .metric-controls > span { flex-basis: 100%; } .bar-row { grid-template-columns: 115px minmax(0, 1fr) 48px; gap: 7px; font-size: .7rem; } .audit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .audio-grid { grid-template-columns: 1fr; } .lab-table table { min-width: 560px; } .stage-item { flex-basis: 125px; } .listen-bar { align-items: flex-start; flex-direction: column; } }
 @media (max-width: 550px) { .lyrics-example-controls .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; } .lyrics-example-controls .segmented button { min-width: 0; padding-inline: 4px; font-size: .7rem; } }
+@media (max-width: 550px) { .dataset-controls .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; } .dataset-controls .segmented button { min-width: 0; white-space: normal; overflow-wrap: anywhere; padding: 7px 4px; font-size: .7rem; } }
 @media (max-width: 900px) { .replay-model-controls { display: grid; grid-template-columns: minmax(0, 1fr); } .replay-model-controls .segmented { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; } .replay-model-controls .segmented button { min-width: 0; min-height: 42px; white-space: normal; } }

@@ -813,6 +813,13 @@ function renderSongEval(data) {
 }
 
 for (const tab of document.querySelectorAll('.lab-tab')) tab.addEventListener('click', () => setView(tab.dataset.view));
+for (const button of document.querySelectorAll('[data-dataset-task]')) {
+  button.addEventListener('click', () => {
+    const task = button.dataset.datasetTask;
+    for (const option of document.querySelectorAll('[data-dataset-task]')) option.setAttribute('aria-pressed', String(option.dataset.datasetTask === task));
+    for (const panel of document.querySelectorAll('[data-dataset-panel]')) panel.hidden = panel.dataset.datasetPanel !== task;
+  });
+}
 let replayData = null;
 for (const button of document.querySelectorAll('[data-lyrics-track]')) button.addEventListener('click', () => {
   const mock = button.dataset.lyricsTrack === 'mock';
