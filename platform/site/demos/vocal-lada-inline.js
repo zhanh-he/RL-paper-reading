@@ -1,13 +1,15 @@
 const files = {
-  combined: './vocal-lada-run.json',
   coverage: './vocal-lada-coverage-run.json',
   beat_v2: './vocal-lada-beat_v2-run.json',
+  beat_v5: './vocal-lada-beat_v5-run.json',
+  combined: './vocal-lada-run.json',
   guarded: './vocal-lada-guarded-run.json',
 };
 const names = {
-  combined: 'Proxy blend (no Beat-v2)',
   coverage: 'Coverage only',
   beat_v2: 'Beat-v2 only',
+  beat_v5: 'Beat-v5 only',
+  combined: 'Proxy blend (no Beat-v2)',
   guarded: 'Beat-v2 + Coverage guard',
 };
 const steps = [0, 5, 50, 100, 150, 200, 300];
@@ -192,7 +194,7 @@ function render() {
   selectedStep = selected.step;
   el('#lada-source').src = run.source_audio;
   el('#lada-protocol-title').textContent = `LaDA-Band · ${names[arm]}`;
-  el('#lada-protocol').textContent = `相同 Emma 人声、提示、8 步去噪、group 2、LR ${run.config.lr}、固定评估 seed ${run.config.eval_seed}。仅 LoRA 输出投影更新；${arm === 'beat_v2' ? '训练直接使用原 Madmom Beat-v2 F1。' : arm === 'coverage' ? '训练仅优化 40 ms RMS coverage。' : arm === 'guarded' ? '训练使用原 Beat-v2 + 饱和 coverage + 响度/平坦度约束。' : '训练使用 coverage、能量起音和频带占用代理；并非原 Beat-v2。'}`;
+  el('#lada-protocol').textContent = `相同 Emma 人声、提示、8 步去噪、group 2、LR ${run.config.lr}、固定评估 seed ${run.config.eval_seed}。仅 LoRA 输出投影更新；${arm === 'beat_v2' ? '训练直接使用原 Madmom Beat-v2 F1。' : arm === 'beat_v5' ? '训练使用原项目 Beat-v5 onset-grid 分数；低 confidence 时可 abstain，12 秒回放另算独立 Beat-v2。' : arm === 'coverage' ? '训练仅优化 40 ms RMS coverage。' : arm === 'guarded' ? '训练使用原 Beat-v2 + 饱和 coverage + 响度/平坦度约束。' : '训练使用 coverage、能量起音和频带占用代理；并非原 Beat-v2。'}`;
   el('#lada-training-arm').textContent = names[arm];
   el('#lada-training-extent').textContent = `1–${run.train_curve.at(-1)?.step || 0} 步 · 每步 2 条 6 秒采样`;
   const rewardPoints = rewardChart.set(run.train_curve, selectedStep);
@@ -233,6 +235,9 @@ function render() {
     ['伴奏峰值', baseline.beat_v2?.stereo_peak, selected.beat_v2?.stereo_peak, 3],
     ['削波占比', baseline.beat_v2?.stereo_clipping_fraction, selected.beat_v2?.stereo_clipping_fraction, 5],
   ];
+  if (arm === 'beat_v5') {
+    metrics.splice(1, 0, ['Beat-v5 confidence', baseline.beat_v5_confidence, selected.beat_v5_confidence, 3]);
+  }
   const body = el('#lada-metrics');
   body.replaceChildren();
   for (const [name, before, after, digits] of metrics) {

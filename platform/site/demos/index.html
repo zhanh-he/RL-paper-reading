@@ -14,7 +14,7 @@
     <script type="module" src="./lab.js?v=20261006-vocal-tracks"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
-    <script type="module" src="./vocal-lada-inline.js?v=20261006-vocal-tracks"></script>
+    <script type="module" src="./vocal-lada-inline.js?v=20261006-beat-v5"></script>
     <script type="module" src="./lyrics-formal.js?v=20261006-triple-freeze"></script>
   </head>
   <body>
@@ -246,7 +246,7 @@
           <h3 class="subsection-heading">Tracks · 数据身份先于分数</h3>
           <p class="section-copy">本页的 Mock 是单录音方法演示，不是公开数据集上的正式对照。CMI-Pref（常被误写成 CMI-Perf）是生成偏好票，不提供“干人声 → 真值伴奏”训练对；WildSongBench 是提示词测试，也不提供这种配对。</p>
           <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Track</th><th>输入与数据来源</th><th>状态</th><th>能说明什么</th></tr></thead><tbody>
-            <tr><td>Mock Experiment</td><td>ACE Studio Emma 原创独唱；单条录音，前 6 秒训练</td><td>已实测：四种 reward 目标</td><td>同输入机制与失败案例；不能证明跨歌曲泛化</td></tr>
+            <tr><td>Mock Experiment</td><td>ACE Studio Emma 原创独唱；单条录音，前 6 秒训练</td><td>已实测：五种 reward 目标</td><td>同输入机制与失败案例；不能证明跨歌曲泛化</td></tr>
             <tr><td>Shanghai Experiment (Formal)</td><td>待用户确认数据来源、可展示范围和划分</td><td>仅占位；无音频、分数或曲线</td><td>正式结果只有在实验协议和发布范围确认后才能填入</td></tr>
           </tbody></table></div>
           <h3 class="subsection-heading">Mock · 当前实际使用的数据</h3>
@@ -309,17 +309,17 @@
         <div class="metric-controls vocal-track-controls"><span class="control-label">Track</span><div class="segmented" role="group" aria-label="Vocal experiment track"><button type="button" data-vocal-track="mock" aria-pressed="true">Mock Experiment</button><button type="button" data-vocal-track="formal" aria-pressed="false">Shanghai Experiment (Formal)</button></div></div>
         <div id="vocal-mock-track">
         <p class="stage-context">Mock 数据：ACE Studio Emma 原创独唱，仅一条录音；前 6 秒在线训练，固定 12 秒重放包含训练片段。后 6 秒只是同录音未训练乐句，不是未见歌曲或歌手。</p>
-        <nav class="vocal-research-brief" aria-label="Vocal task research"><a href="#datasets" data-open-view="datasets" data-dataset-target="vocal"><strong>Dataset Protocol</strong><span>Mock 用 Emma 1 条；正式候选 MUSDB18-HQ。CMI-Pref / WildSongBench 不适合作 V2A 训练对。</span></a><button type="button" data-jump="vocal-models"><strong>SOTA Models</strong><span>LaDA-Band 主实验；AnyAccomp、FastSAG 可比；cover 模型另列。</span></button><button type="button" data-jump="vocal-rewards"><strong>Rewards</strong><span>已测四臂；Beat-v5 对照运行中；Richness-v0 先做构造反例验证。</span></button></nav>
+        <nav class="vocal-research-brief" aria-label="Vocal task research"><a href="#datasets" data-open-view="datasets" data-dataset-target="vocal"><strong>Dataset Protocol</strong><span>Mock 用 Emma 1 条；正式候选 MUSDB18-HQ。CMI-Pref / WildSongBench 不适合作 V2A 训练对。</span></a><button type="button" data-jump="vocal-models"><strong>SOTA Models</strong><span>LaDA-Band 主实验；AnyAccomp、FastSAG 可比；cover 模型另列。</span></button><button type="button" data-jump="vocal-rewards"><strong>Rewards</strong><span>已测五臂含 Beat-v5；Richness-v0 在线消融运行中。</span></button></nav>
         <h3 class="subsection-heading">Experiment matrix · 同一起点的目标消融</h3>
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>实验</th><th>实际优化的目标</th><th>状态</th><th>主要漏洞</th></tr></thead><tbody>
           <tr><td>Coverage only</td><td>40 ms 帧 RMS 活动率 C</td><td>已测 · 300 步</td><td>长音 / 噪声可抬分，容易饱和</td></tr>
           <tr><td>Beat-v2 only</td><td>madmom Beat-v2 F1 B</td><td>已测 · 300 步</td><td>稀疏 clicks 可对拍但不像伴奏</td></tr>
           <tr><td>Proxy blend</td><td>0.45 C + 0.35 起音能量 + 0.20 频带占用 − Q；<strong>没有 Beat-v2 / Richness</strong></td><td>已测 · 300 步</td><td>频带项在固定回放恒定；仍有响度漂移</td></tr>
           <tr><td>Beat-v2 + Coverage guard</td><td>真实 B + 饱和 C + 响度 / 峰值 / 噪声约束</td><td>已测 · 300 步</td><td>C 仍能补偿 B 的退化，不能称防住 hacking</td></tr>
-          <tr><td>Beat-v5 only</td><td>原项目 Beat-v5 的 onset-grid 分数与 confidence</td><td>同配置 100 步运行中；无公开回放</td><td>构造 click 仍得 0.617（6 秒基线约 0.226）；confidence 不等于音乐性</td></tr>
-          <tr><td>Richness-v0 proxy</td><td>多频段活动 + 时间变化；音调性与响度护栏</td><td>构造反例通过；GRPO 未完成</td><td>和声冲突、乱加层次仍可能高分</td></tr>
+          <tr><td>Beat-v5 only</td><td>原项目 Beat-v5 的 onset-grid 分数与 confidence</td><td>已测 · 100 步，0/5/50/100 回放</td><td>构造 click 仍得 0.617（6 秒基线约 0.226）；confidence 不等于音乐性</td></tr>
+          <tr><td>Richness-v0 proxy</td><td>多频段活动 + 时间变化；音调性与响度护栏</td><td>100 步运行中；尚无公开回放</td><td>和声冲突、乱加层次仍可能高分</td></tr>
         </tbody></table></div>
-        <p class="stage-context">下方可选的四个按钮只对应已完成运行。它们使用相同 Emma 输入、冻结底座、采样设置和评估 seed；不同 reward 的原始纵轴不可直接当成“哪个更好”。</p>
+        <p class="stage-context">下方可选的五个按钮只对应已完成运行。它们使用相同 Emma 输入、冻结底座、采样设置和评估 seed；不同 reward 的原始纵轴不可直接当成“哪个更好”。</p>
         <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" id="lada-arms" role="group" aria-label="LaDA training objective"></div><span>固定 Emma 人声 · seed 777</span></div>
         <div class="source-grid"><div class="source-block"><span class="source-label">Input · vocal</span><strong>ACE Studio Emma · 原创独唱旋律</strong><audio id="lada-source" controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><p>训练用前 6 秒；固定种子重放前 12 秒。所有 reward 组使用相同输入。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一参考伴奏</strong><p>开放式伴奏任务没有单一正确音频；评价靠同输入 A/B、拍点、活动覆盖、响度和主观听感共同判断。</p></div></div>
         <div class="lyrics-protocol"><strong id="lada-protocol-title">LaDA-Band · online GRPO</strong><p id="lada-protocol"></p></div>
@@ -366,13 +366,22 @@
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Reward / metric</th><th>来源</th><th>当前状态</th><th>主要盲点</th></tr></thead><tbody>
           <tr><td>Beat-v2 F1</td><td><strong>自研 reward</strong>；节拍检测用开源 <a href="https://github.com/CPJKU/madmom" target="_blank" rel="noreferrer">madmom</a></td><td>单项 GRPO 已跑；固定重放独立评分</td><td>对齐的稀疏 clicks 也可高分，不保证和声和编曲</td></tr>
           <tr><td>Coverage · 40 ms RMS / STFT</td><td><strong>自研 reward / 指标</strong></td><td>RMS 单项 GRPO 已跑；STFT 作独立检查</td><td>持续音、噪声和过响可抬高覆盖</td></tr>
-          <tr><td>Richness-v0 proxy</td><td><strong>自研实验性 reward</strong></td><td>已实现构造反例测试；GRPO 尚无结果，未验证主观编曲丰富度</td><td>乱加和声层次仍可能高分；不是原先的频带占用项</td></tr>
-          <tr><td>Beat-v5 vs Beat-v2</td><td><strong>自研评估框架</strong>；v5 scorer 来自前序 vocal2accomp 项目</td><td>v5 同配置 GRPO 运行中；v2 已测 300 步，尚不可宣称对照结论</td><td>构造 click 在 v2/v5 下分别 1.000/0.617；两个版本都可被刷分</td></tr>
+          <tr><td>Richness-v0 proxy</td><td><strong>自研实验性 reward</strong></td><td>构造反例已测；100 步 GRPO 运行中，未验证主观编曲丰富度</td><td>乱加和声层次仍可能高分；不是原先的频带占用项</td></tr>
+          <tr><td>Beat-v5 vs Beat-v2</td><td><strong>自研评估框架</strong>；v5 scorer 来自前序 vocal2accomp 项目</td><td>v5 同配置 100 步、v2 300 步已测；下表给同一步数交叉评分</td><td>构造 click 在 v2/v5 下分别 1.000/0.617；两个版本都可被刷分</td></tr>
           <tr><td>Proxy blend · no Beat-v2</td><td><strong>自研组合代理</strong></td><td>在线消融已跑；Coverage + 起音能量 + 频带占用 − 质量惩罚</td><td>未调用实际 Beat-v2；频带占用也不等于 Richness</td></tr>
           <tr><td>Beat-v2 + Coverage guard</td><td><strong>自研组合 reward</strong></td><td>在线消融已跑；实际 Beat-v2 + 覆盖门控 + 响度、音质约束</td><td>只挡住部分构造攻击，不能声称普遍防止 reward hacking</td></tr>
           <tr><td><a href="https://github.com/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval</a> / <a href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic</a></td><td><strong>外部开源</strong>歌曲审美模型</td><td>候选辅助评分；本站 V2A GRPO 未用</td><td>完整歌曲分数不直接测原人声与伴奏是否合拍</td></tr>
           <tr><td><a href="https://github.com/facebookresearch/audiobox-aesthetics" target="_blank" rel="noreferrer">Audiobox Aesthetics</a></td><td><strong>外部开源</strong>音频审美模型</td><td>音质候选，未做本站 GRPO 消融</td><td>需固定混音响度并防评分器偏好音量</td></tr>
           <tr><td><a href="https://github.com/SonyCSLParis/audio-metrics" target="_blank" rel="noreferrer">APA</a> / FAD</td><td><strong>外部开源</strong>评估指标</td><td>成组数据集报告，不直接作为逐候选 GRPO reward</td><td>需要参考分布；不能把单样本数值冒充训练奖励</td></tr>
+        </tbody></table></div>
+        <h3 class="subsection-heading">Beat-v2 ↔ Beat-v5 · 固定回放交叉评分</h3>
+        <p class="section-copy">同一 Emma 原始人声与固定 seed 的 12 秒输出，包含训练用前 6 秒。两个指标量表不同，只比较各自相对同一冻结起点的变化；单首歌不构成优劣结论。</p>
+        <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>优化目标</th><th>步数</th><th>独立 Beat-v2 F1</th><th>独立 Beat-v5</th><th>v5 confidence</th></tr></thead><tbody>
+          <tr><td>Frozen baseline</td><td>0</td><td>0.296</td><td>0.209</td><td>1.000</td></tr>
+          <tr><td>Beat-v2 only</td><td>50</td><td>0.216</td><td>0.535</td><td>1.000</td></tr>
+          <tr><td>Beat-v2 only</td><td>100</td><td>0.400</td><td>0.453</td><td>1.000</td></tr>
+          <tr><td>Beat-v5 only</td><td>50</td><td>0.296</td><td>0.228</td><td>1.000</td></tr>
+          <tr><td>Beat-v5 only</td><td>100</td><td>0.357</td><td>0.276</td><td>1.000</td></tr>
         </tbody></table></div>
         <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.wav" aria-label="构造 click 节拍攻击试听"></audio></div>
         <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>

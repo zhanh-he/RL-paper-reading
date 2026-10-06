@@ -1,0 +1,742 @@
+{
+  "status": "measured",
+  "config": {
+    "reward": "beat_v5",
+    "group": 2,
+    "seconds": 6.0,
+    "eval_seconds": 12.0,
+    "denoise_steps": 8,
+    "lr": 0.0005,
+    "top_k": 100,
+    "top_p": 0.9,
+    "support_mix": 0.0001,
+    "eval_seed": 777,
+    "schedule": "cosine",
+    "text": "piano and soft drums, supportive accompaniment"
+  },
+  "stages": [
+    {
+      "step": 0,
+      "audio": "./audio/lada_emma_beat_v5_step_0000_mix.wav",
+      "accomp_audio": "./audio/lada_emma_beat_v5_step_0000.wav",
+      "spectrum": "./visuals/lada_emma_beat_v5_step_0000_spectrum.png",
+      "same_as_baseline": false,
+      "beat_v2": {
+        "score": 0.2962962962962963,
+        "reference_beats": 15,
+        "accompaniment_beats": 12,
+        "scorable": true,
+        "coverage_stft": 0.295837023914969,
+        "stereo_rms": 0.019367001698952786,
+        "vocal_rms": 0.04426657475499414,
+        "acc_to_vocal_rms_db": -7.180270558510075,
+        "stereo_peak": 0.223480224609375,
+        "stereo_clipping_fraction": 0.0
+      },
+      "reward": 0.20917152408267042,
+      "rms_coverage": 0.5282392026578073,
+      "onset_fit_proxy": 0.07476803660392761,
+      "band_occupancy_proxy": 0.7142857142857143,
+      "spectral_flatness": 0.1578625738620758,
+      "peak": 0.19943617284297943,
+      "clipping_fraction": 0.0,
+      "quality_penalty": 0.0,
+      "beat_v5_score": 0.20917152408267042,
+      "beat_v5_confidence": 1.0
+    },
+    {
+      "step": 5,
+      "audio": "./audio/lada_emma_beat_v5_step_0005_mix.wav",
+      "accomp_audio": "./audio/lada_emma_beat_v5_step_0005.wav",
+      "spectrum": "./visuals/lada_emma_beat_v5_step_0005_spectrum.png",
+      "same_as_baseline": true,
+      "beat_v2": {
+        "score": 0.2962962962962963,
+        "reference_beats": 15,
+        "accompaniment_beats": 12,
+        "scorable": true,
+        "coverage_stft": 0.295837023914969,
+        "stereo_rms": 0.019367001698952786,
+        "vocal_rms": 0.04426657475499414,
+        "acc_to_vocal_rms_db": -7.180270558510075,
+        "stereo_peak": 0.223480224609375,
+        "stereo_clipping_fraction": 0.0
+      },
+      "reward": 0.20917152408267042,
+      "rms_coverage": 0.5282392026578073,
+      "onset_fit_proxy": 0.07476803660392761,
+      "band_occupancy_proxy": 0.7142857142857143,
+      "spectral_flatness": 0.1578625738620758,
+      "peak": 0.19943617284297943,
+      "clipping_fraction": 0.0,
+      "quality_penalty": 0.0,
+      "beat_v5_score": 0.20917152408267042,
+      "beat_v5_confidence": 1.0
+    },
+    {
+      "step": 50,
+      "audio": "./audio/lada_emma_beat_v5_step_0050_mix.wav",
+      "accomp_audio": "./audio/lada_emma_beat_v5_step_0050.wav",
+      "spectrum": "./visuals/lada_emma_beat_v5_step_0050_spectrum.png",
+      "same_as_baseline": false,
+      "beat_v2": {
+        "score": 0.2962962962962963,
+        "reference_beats": 15,
+        "accompaniment_beats": 12,
+        "scorable": true,
+        "coverage_stft": 0.38441098317094774,
+        "stereo_rms": 0.025035023273608754,
+        "vocal_rms": 0.04426657475499414,
+        "acc_to_vocal_rms_db": -4.950558382089834,
+        "stereo_peak": 0.47796630859375,
+        "stereo_clipping_fraction": 0.0
+      },
+      "reward": 0.22833072628217504,
+      "rms_coverage": 0.6611295681063123,
+      "onset_fit_proxy": 0.07629776000976562,
+      "band_occupancy_proxy": 0.7142857142857143,
+      "spectral_flatness": 0.15596875548362732,
+      "peak": 0.4206045866012573,
+      "clipping_fraction": 0.0,
+      "quality_penalty": 0.0,
+      "beat_v5_score": 0.22833072628217504,
+      "beat_v5_confidence": 1.0
+    },
+    {
+      "step": 100,
+      "audio": "./audio/lada_emma_beat_v5_step_0100_mix.wav",
+      "accomp_audio": "./audio/lada_emma_beat_v5_step_0100.wav",
+      "spectrum": "./visuals/lada_emma_beat_v5_step_0100_spectrum.png",
+      "same_as_baseline": false,
+      "beat_v2": {
+        "score": 0.3571428571428571,
+        "reference_beats": 15,
+        "accompaniment_beats": 13,
+        "scorable": true,
+        "coverage_stft": 0.21169176262178918,
+        "stereo_rms": 0.01697436789682876,
+        "vocal_rms": 0.04426657475499414,
+        "acc_to_vocal_rms_db": -8.325646157611335,
+        "stereo_peak": 0.289520263671875,
+        "stereo_clipping_fraction": 0.0
+      },
+      "reward": 0.275538364991997,
+      "rms_coverage": 0.4983388704318937,
+      "onset_fit_proxy": 0.06602995842695236,
+      "band_occupancy_proxy": 0.5714285714285714,
+      "spectral_flatness": 0.16173061728477478,
+      "peak": 0.21613463759422302,
+      "clipping_fraction": 0.0,
+      "quality_penalty": 0.0,
+      "beat_v5_score": 0.275538364991997,
+      "beat_v5_confidence": 1.0
+    }
+  ],
+  "train_curve": [
+    {
+      "step": 1,
+      "reward": 0.34385329861845404,
+      "rms_coverage": 0.9602649006622517,
+      "sampled_kl": 0.0
+    },
+    {
+      "step": 2,
+      "reward": 0.2780342111102435,
+      "rms_coverage": 0.9834437086092715,
+      "sampled_kl": 0.007486043451947921
+    },
+    {
+      "step": 3,
+      "reward": 0.24453236100543885,
+      "rms_coverage": 0.7284768211920529,
+      "sampled_kl": 1.490219019828487e-05
+    },
+    {
+      "step": 4,
+      "reward": 0.29683010160350376,
+      "rms_coverage": 0.6059602649006622,
+      "sampled_kl": 1.0146743880667941e-05
+    },
+    {
+      "step": 5,
+      "reward": 0.3350556868413925,
+      "rms_coverage": 1.0,
+      "sampled_kl": 1.3438075107785608e-05
+    },
+    {
+      "step": 6,
+      "reward": 0.5129587072462749,
+      "rms_coverage": 0.9933774834437086,
+      "sampled_kl": 1.3351583305620807e-05
+    },
+    {
+      "step": 7,
+      "reward": 0.321856744220709,
+      "rms_coverage": 0.5,
+      "sampled_kl": 1.904359815796397e-05
+    },
+    {
+      "step": 8,
+      "reward": 0.4416479302007025,
+      "rms_coverage": 0.6390728476821192,
+      "sampled_kl": 0.006284564003010473
+    },
+    {
+      "step": 9,
+      "reward": 0.48065185243849556,
+      "rms_coverage": 0.9635761589403973,
+      "sampled_kl": 2.3968454968326114e-05
+    },
+    {
+      "step": 10,
+      "reward": 0.35492938306413413,
+      "rms_coverage": 0.9503311258278146,
+      "sampled_kl": 3.25598689414619e-05
+    },
+    {
+      "step": 11,
+      "reward": 0.4450451815525962,
+      "rms_coverage": 0.9768211920529801,
+      "sampled_kl": 0.01145122146635913
+    },
+    {
+      "step": 12,
+      "reward": 0.27888963761156665,
+      "rms_coverage": 0.9735099337748344,
+      "sampled_kl": 3.9569862167354586e-05
+    },
+    {
+      "step": 13,
+      "reward": 0.4963950875864811,
+      "rms_coverage": 0.705298013245033,
+      "sampled_kl": 0.0037695626811569127
+    },
+    {
+      "step": 14,
+      "reward": 0.35058588154375275,
+      "rms_coverage": 0.9403973509933774,
+      "sampled_kl": 5.532206870384471e-05
+    },
+    {
+      "step": 15,
+      "reward": 0.3276304058364993,
+      "rms_coverage": 0.8576158940397351,
+      "sampled_kl": 3.705289742583773e-05
+    },
+    {
+      "step": 16,
+      "reward": 0.5885414106122369,
+      "rms_coverage": 0.7516556291390728,
+      "sampled_kl": 6.043964191349005e-05
+    },
+    {
+      "step": 17,
+      "reward": 0.3492295807553073,
+      "rms_coverage": 0.4139072847682119,
+      "sampled_kl": 3.741756046338196e-05
+    },
+    {
+      "step": 18,
+      "reward": 0.4297764733022279,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.00010240344886369712
+    },
+    {
+      "step": 19,
+      "reward": 0.31942682299342273,
+      "rms_coverage": 0.804635761589404,
+      "sampled_kl": 0.010864947848176598
+    },
+    {
+      "step": 20,
+      "reward": 0.3895160169662987,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.004998938719722901
+    },
+    {
+      "step": 21,
+      "reward": 0.3499050674128684,
+      "rms_coverage": 0.6490066225165563,
+      "sampled_kl": 0.00010176816635976138
+    },
+    {
+      "step": 22,
+      "reward": 0.5062418524502449,
+      "rms_coverage": 0.49337748344370863,
+      "sampled_kl": 0.021854333463238618
+    },
+    {
+      "step": 23,
+      "reward": 0.325778062426758,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.01188895216318997
+    },
+    {
+      "step": 24,
+      "reward": 0.27064796199648594,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.00019973892847247043
+    },
+    {
+      "step": 25,
+      "reward": 0.20068794947156654,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.00030735764039491187
+    },
+    {
+      "step": 26,
+      "reward": 0.3062264383771969,
+      "rms_coverage": 0.7251655629139073,
+      "sampled_kl": 0.007786981213712352
+    },
+    {
+      "step": 27,
+      "reward": 0.2551160891023766,
+      "rms_coverage": 0.8774834437086093,
+      "sampled_kl": 0.003945523532593143
+    },
+    {
+      "step": 28,
+      "reward": 0.3717604653005555,
+      "rms_coverage": 0.6556291390728477,
+      "sampled_kl": 0.011146741093398305
+    },
+    {
+      "step": 29,
+      "reward": 0.24089200365826335,
+      "rms_coverage": 0.9635761589403973,
+      "sampled_kl": 0.004041396480715775
+    },
+    {
+      "step": 30,
+      "reward": 0.32420944580697686,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.006514522159136504
+    },
+    {
+      "step": 31,
+      "reward": 0.3524736836123709,
+      "rms_coverage": 0.5198675496688742,
+      "sampled_kl": 0.018013172578775993
+    },
+    {
+      "step": 32,
+      "reward": 0.48767886720238285,
+      "rms_coverage": 0.543046357615894,
+      "sampled_kl": 0.00029632643554577953
+    },
+    {
+      "step": 33,
+      "reward": 0.3539276604293624,
+      "rms_coverage": 0.5695364238410596,
+      "sampled_kl": 0.0113257247785441
+    },
+    {
+      "step": 34,
+      "reward": 0.3001878816603618,
+      "rms_coverage": 0.9801324503311258,
+      "sampled_kl": 0.01507742276908175
+    },
+    {
+      "step": 35,
+      "reward": 0.41953757339121905,
+      "rms_coverage": 0.8377483443708609,
+      "sampled_kl": 0.03366542064964051
+    },
+    {
+      "step": 36,
+      "reward": 0.2827886368025273,
+      "rms_coverage": 0.6821192052980133,
+      "sampled_kl": 0.0289918624848724
+    },
+    {
+      "step": 37,
+      "reward": 0.2929917876330227,
+      "rms_coverage": 0.17218543046357615,
+      "sampled_kl": 0.01566104161383919
+    },
+    {
+      "step": 38,
+      "reward": 0.32610711133529424,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.0006275032892517629
+    },
+    {
+      "step": 39,
+      "reward": 0.42899510121306783,
+      "rms_coverage": 0.9668874172185431,
+      "sampled_kl": 0.027784535768660135
+    },
+    {
+      "step": 40,
+      "reward": 0.6387535333546884,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.03326595573253144
+    },
+    {
+      "step": 41,
+      "reward": 0.39966917054581336,
+      "rms_coverage": 0.5298013245033113,
+      "sampled_kl": 0.01631516845770875
+    },
+    {
+      "step": 42,
+      "reward": 0.33012182690620057,
+      "rms_coverage": 0.7152317880794702,
+      "sampled_kl": 0.014198489131558745
+    },
+    {
+      "step": 43,
+      "reward": 0.5757747273288722,
+      "rms_coverage": 0.8708609271523179,
+      "sampled_kl": 0.028742037451593205
+    },
+    {
+      "step": 44,
+      "reward": 0.39138628191236724,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.011625255811850366
+    },
+    {
+      "step": 45,
+      "reward": 0.36808669851687836,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.026592809195790323
+    },
+    {
+      "step": 46,
+      "reward": 0.23288206563860386,
+      "rms_coverage": 0.5,
+      "sampled_kl": 0.04690748247890042
+    },
+    {
+      "step": 47,
+      "reward": 0.6461074130413149,
+      "rms_coverage": 0.9668874172185431,
+      "sampled_kl": 0.009270978236600058
+    },
+    {
+      "step": 48,
+      "reward": 0.34649220794376734,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.01733953295297397
+    },
+    {
+      "step": 49,
+      "reward": 0.47148369593808614,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.031017324764434306
+    },
+    {
+      "step": 50,
+      "reward": 0.33894876646711436,
+      "rms_coverage": 0.5662251655629139,
+      "sampled_kl": 0.03667978679368389
+    },
+    {
+      "step": 51,
+      "reward": 0.2657856199762819,
+      "rms_coverage": 0.9668874172185431,
+      "sampled_kl": 0.03522818706187536
+    },
+    {
+      "step": 52,
+      "reward": 0.4836243741700374,
+      "rms_coverage": 0.9006622516556291,
+      "sampled_kl": 0.03495057030704629
+    },
+    {
+      "step": 53,
+      "reward": 0.3146403406793272,
+      "rms_coverage": 0.8079470198675497,
+      "sampled_kl": 0.021772562620753888
+    },
+    {
+      "step": 54,
+      "reward": 0.371557538088019,
+      "rms_coverage": 0.7483443708609272,
+      "sampled_kl": 0.0384323878079158
+    },
+    {
+      "step": 55,
+      "reward": 0.2419521656064612,
+      "rms_coverage": 0.9072847682119205,
+      "sampled_kl": 0.04336414211365991
+    },
+    {
+      "step": 56,
+      "reward": 0.43676132684336477,
+      "rms_coverage": 0.8311258278145696,
+      "sampled_kl": 0.02044638076040428
+    },
+    {
+      "step": 57,
+      "reward": 0.3700573487411213,
+      "rms_coverage": 0.8841059602649006,
+      "sampled_kl": 0.020641031092054618
+    },
+    {
+      "step": 58,
+      "reward": 0.37814550639756306,
+      "rms_coverage": 0.9867549668874172,
+      "sampled_kl": 0.0130323914490873
+    },
+    {
+      "step": 59,
+      "reward": 0.4373708891565065,
+      "rms_coverage": 0.9966887417218543,
+      "sampled_kl": 0.04336661376510165
+    },
+    {
+      "step": 60,
+      "reward": 0.3824676658447358,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.012890706482721725
+    },
+    {
+      "step": 61,
+      "reward": 0.3758554953388761,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.02667079077582457
+    },
+    {
+      "step": 62,
+      "reward": 0.4321802278920295,
+      "rms_coverage": 0.9867549668874172,
+      "sampled_kl": 0.0425180062175059
+    },
+    {
+      "step": 63,
+      "reward": 0.3665441250333231,
+      "rms_coverage": 0.7549668874172185,
+      "sampled_kl": 0.03531964421563316
+    },
+    {
+      "step": 64,
+      "reward": 0.46740396546209406,
+      "rms_coverage": 0.4768211920529801,
+      "sampled_kl": 0.07741985115717398
+    },
+    {
+      "step": 65,
+      "reward": 0.32671964731448494,
+      "rms_coverage": 0.6423841059602649,
+      "sampled_kl": 0.07944174301519524
+    },
+    {
+      "step": 66,
+      "reward": 0.27411323235502477,
+      "rms_coverage": 0.9304635761589404,
+      "sampled_kl": 0.05180837800799054
+    },
+    {
+      "step": 67,
+      "reward": 0.3584055555731346,
+      "rms_coverage": 0.9304635761589404,
+      "sampled_kl": 0.046284322495921515
+    },
+    {
+      "step": 68,
+      "reward": 0.3156509189655348,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.03550787611675332
+    },
+    {
+      "step": 69,
+      "reward": 0.3697773832505369,
+      "rms_coverage": 0.5033112582781457,
+      "sampled_kl": 0.03936372715361358
+    },
+    {
+      "step": 70,
+      "reward": 0.4883212482255324,
+      "rms_coverage": 0.9735099337748344,
+      "sampled_kl": 0.056495472897950094
+    },
+    {
+      "step": 71,
+      "reward": 0.28913218034838895,
+      "rms_coverage": 0.5198675496688742,
+      "sampled_kl": 0.06225234838348115
+    },
+    {
+      "step": 72,
+      "reward": 0.28281673100779003,
+      "rms_coverage": 0.5132450331125827,
+      "sampled_kl": 0.06389064155519009
+    },
+    {
+      "step": 73,
+      "reward": 0.5080363719873385,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.0448267875071906
+    },
+    {
+      "step": 74,
+      "reward": 0.3039200102904718,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.0363389165213448
+    },
+    {
+      "step": 75,
+      "reward": 0.4425857145503179,
+      "rms_coverage": 0.6225165562913907,
+      "sampled_kl": 0.061565020831039874
+    },
+    {
+      "step": 76,
+      "reward": 0.3000812835457295,
+      "rms_coverage": 0.9933774834437086,
+      "sampled_kl": 0.059285352097504074
+    },
+    {
+      "step": 77,
+      "reward": 0.36290170861596416,
+      "rms_coverage": 0.8377483443708609,
+      "sampled_kl": 0.07141320409573382
+    },
+    {
+      "step": 78,
+      "reward": 0.40740737747057343,
+      "rms_coverage": 0.9933774834437086,
+      "sampled_kl": 0.05502868292387575
+    },
+    {
+      "step": 79,
+      "reward": 0.2108882329482295,
+      "rms_coverage": 0.5033112582781457,
+      "sampled_kl": 0.054863446108356584
+    },
+    {
+      "step": 80,
+      "reward": 0.3035581189223433,
+      "rms_coverage": 0.5231788079470199,
+      "sampled_kl": 0.030355205039086286
+    },
+    {
+      "step": 81,
+      "reward": 0.4396412103767237,
+      "rms_coverage": 0.6754966887417219,
+      "sampled_kl": 0.013380777415477496
+    },
+    {
+      "step": 82,
+      "reward": 0.31448657539039127,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.06101309861332993
+    },
+    {
+      "step": 83,
+      "reward": 0.2598112438035117,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.02893204646807135
+    },
+    {
+      "step": 84,
+      "reward": 0.3570355366829513,
+      "rms_coverage": 0.9834437086092715,
+      "sampled_kl": 0.03443329724177602
+    },
+    {
+      "step": 85,
+      "reward": 0.5879806269039878,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.038517230641446076
+    },
+    {
+      "step": 86,
+      "reward": 0.29845706697769714,
+      "rms_coverage": 0.7119205298013245,
+      "sampled_kl": 0.0375682255726133
+    },
+    {
+      "step": 87,
+      "reward": 0.30965115895016815,
+      "rms_coverage": 0.814569536423841,
+      "sampled_kl": 0.02582685367178783
+    },
+    {
+      "step": 88,
+      "reward": 0.32345689633390173,
+      "rms_coverage": 0.9801324503311258,
+      "sampled_kl": 0.07056119869594113
+    },
+    {
+      "step": 89,
+      "reward": 0.3303880623115825,
+      "rms_coverage": 0.923841059602649,
+      "sampled_kl": 0.05331996568747854
+    },
+    {
+      "step": 90,
+      "reward": 0.5201093422970682,
+      "rms_coverage": 0.7781456953642384,
+      "sampled_kl": 0.058048505499755265
+    },
+    {
+      "step": 91,
+      "reward": 0.22964245676336326,
+      "rms_coverage": 0.9701986754966887,
+      "sampled_kl": 0.03935755514976336
+    },
+    {
+      "step": 92,
+      "reward": 0.42769298216320173,
+      "rms_coverage": 0.6688741721854305,
+      "sampled_kl": 0.07830748998458148
+    },
+    {
+      "step": 93,
+      "reward": 0.45126707681327766,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.04669088051559811
+    },
+    {
+      "step": 94,
+      "reward": 0.46632395733598625,
+      "rms_coverage": 0.5,
+      "sampled_kl": 0.04617001641963725
+    },
+    {
+      "step": 95,
+      "reward": 0.33341844160386946,
+      "rms_coverage": 0.5,
+      "sampled_kl": 0.07541597378440201
+    },
+    {
+      "step": 96,
+      "reward": 0.401076630192709,
+      "rms_coverage": 0.8576158940397351,
+      "sampled_kl": 0.045496708604332525
+    },
+    {
+      "step": 97,
+      "reward": 0.5384556058262877,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.08160697741186596
+    },
+    {
+      "step": 98,
+      "reward": 0.621125127723704,
+      "rms_coverage": 1.0,
+      "sampled_kl": 0.06492774609614571
+    },
+    {
+      "step": 99,
+      "reward": 0.3086260437691567,
+      "rms_coverage": 0.7582781456953642,
+      "sampled_kl": 0.0787176740122959
+    },
+    {
+      "step": 100,
+      "reward": 0.38705845301827035,
+      "rms_coverage": 0.5,
+      "sampled_kl": 0.03430812071019318
+    }
+  ],
+  "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",
+  "source_audio": "./audio/ace_emma_vocal_12s.wav",
+  "source_spectrum": "./visuals/ace_emma_vocal_12s_spectrum.png",
+  "phrase": "training_excerpt",
+  "note": "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim."
+}
