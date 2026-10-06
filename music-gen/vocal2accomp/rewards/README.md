@@ -1,15 +1,15 @@
 # Vocal-to-accompaniment rewards
 
-Keep simple implementations directly in this folder, not in three one-file subfolders:
+Keep small reward implementations close to the training code and distinguish current code from proposed interfaces:
 
-| Intended file | What it should measure | Independent failure check |
+| Reward | Current implementation | Independent failure check |
 | --- | --- | --- |
-| `beat.py` | Timing fit to the **fixed original vocal**; Beat v2 is the requested first arm, v5 a version control | Repetition, drift, human rhythmic fit |
-| `coverage.py` | Accompaniment activity in appropriate vocal sections | Noise beds, uninterrupted droning, missing sections |
-| `richness.py` | Useful, coordinated arrangement layers | Unrelated layers, noise and harmonic clashes |
-| `combine.py` | Calibrated composition of the three after single-arm tests | Floor on quality/coverage; no one score compensates for a hard failure |
+| Beat-v2 / Beat-v5 | [`beat_v2_worker.py`](beat_v2_worker.py) / [`beat_v5_worker.py`](beat_v5_worker.py) call the previous project's scorers against the fixed original vocal | Sparse aligned clicks, drift, v5 confidence/abstention, human rhythmic fit |
+| Coverage | 40 ms RMS activity in [`train_lada_band.py`](../rl/grpo/train_lada_band.py); original STFT coverage remains an independent check | Noise beds, uninterrupted drones, missing sections |
+| Richness-v0 proxy | Multi-band layer activity and movement with tonality/loudness guardrails in [`train_lada_band.py`](../rl/grpo/train_lada_band.py) | Detuned or unrelated layers can score almost identically; no perceptual validation |
+| Proxy blend / Beat-v2 + Coverage guard | Existing partial combinations in [`train_lada_band.py`](../rl/grpo/train_lada_band.py) | A rising aggregate can conceal worse beat fit or mix balance |
 
-Do not create these `.py` files as empty stubs. Migrate the actual, tested vocal2accomp definitions with their versioned dependencies and unit tests. Each reward should accept an explicit fixed-vocal reference, generated accompaniment and metadata, and return a scalar plus diagnostic components. `combine.py` should call the three modules and record their raw and normalized values; it must not hide them behind only one aggregate number.
+A future `combine.py` should call only validated, versioned components and record their raw and normalized values; no such full Beat/Coverage/Richness combination has been trained here. Do not rename the earlier spectral-band occupancy to Richness-v0: they are separate code paths.
 
 ## Fast proxy stress test, 30 Sep 2026
 
@@ -23,7 +23,7 @@ Do not create these `.py` files as empty stubs. Migrate the actual, tested vocal
 
 The combined proxy is therefore a partial guardrail, **not** a validated music-quality reward. The separate coverage-only GRPO arm is needed to test whether the model actually discovers these or other failures; synthetic attack scores alone cannot establish model reward hacking. Beat-v2 and perceptual richness are not optimized in this proxy run.
 
-[`audit_beat_v2_attacks.py`](audit_beat_v2_attacks.py) creates another **constructed, oracle-aligned** probe. It uses the scorer's eight reference beats from the six-second Emma vocal to place 60 ms sinusoidal clicks: original Madmom Beat-v2 F1 is `1.000` with STFT coverage `0.091`. Shifting the same clicks 350 ms later preserves STFT coverage `0.091` but drops Beat-v2 F1 to `0.000`. The [receipt](beat_v2_constructed_click_2026-09-30.json) and [listen-able demo](../../../platform/site/demos/vocal-lada.html) show that beat fit alone does not require any harmony or arrangement. Because the beat positions are taken directly from the metric's reference, this is a reward-function upper-bound attack, **not** evidence that LaDA generated or learned clicks.
+[`audit_beat_v2_attacks.py`](audit_beat_v2_attacks.py) creates another **constructed, oracle-aligned** probe. It uses the scorer's eight reference beats from the six-second Emma vocal to place 60 ms sinusoidal clicks: original Madmom Beat-v2 F1 is `1.000` with STFT coverage `0.091`. Shifting the same clicks 350 ms later preserves STFT coverage `0.091` but drops Beat-v2 F1 to `0.000`. The [receipt](beat_v2_constructed_click_2026-09-30.json) and [main-page listening control](../../../platform/site/demos/index.html) show that beat fit alone does not require any harmony or arrangement. The same unshifted click track scores `0.617` under the madmom-backend Beat-v5 scorer, versus about `0.226` for the frozen six-second baseline. Because the beat positions are taken directly from the v2 reference, this is a reward-function upper-bound attack, **not** evidence that LaDA generated or learned clicks.
 
 The guarded Beat-v2 + coverage formula gives the public PCM click probe `-0.561`: its 40 ms RMS coverage is only `0.107`, so the beat-credit gate is `0.267`, and the loudness/flatness terms penalize it further. These component values are in the same [receipt](beat_v2_constructed_click_2026-09-30.json). This tests a known constructed attack, not the eventual trained guard arm or human preference.
 
@@ -33,7 +33,7 @@ Rescoring that **same saved PCM candidate** under the guarded Beat-v2 + coverage
 
 The same original scorer detected 15 vocal beats and 13 accompaniment beats in the fixed 12-second Beat-v2 step-150 replay, yet F1 was zero. [`render_beat_alignment.py`](render_beat_alignment.py) produced a [beat-time receipt](beat_v2_alignment_0_100_150_2026-09-30.json) and [timeline](../../../platform/site/demos/vocal-lada.html?arm=beat_v2) for baseline, step 100 and step 150. This measured checkpoint has high activity coverage, not silence; the issue is timing agreement with the fixed vocal according to the scorer. Listening is still needed to judge musical quality.
 
-The separate [`beat_v2_worker.py`](beat_v2_worker.py) exposes the original Madmom Beat-v2 scorer to LaDA training through a persistent CPU process. It passed six- and twelve-second baseline preflights and completed a 300-step online arm. The coverage-only arm is complete: 23/100 rollout groups had equal reward for both candidates, including 22 where both reached the maximum 1.0; Beat-v2 had four tied pairs in its first 100 steps and 22/300 in total. Richness still lacks a validated implementation here; the spectral-band proxy must not be renamed to richness.
+The separate [`beat_v2_worker.py`](beat_v2_worker.py) exposes the original Madmom Beat-v2 scorer to LaDA training through a persistent CPU process. It passed six- and twelve-second baseline preflights and completed a 300-step online arm. The coverage-only arm is complete: 23/100 rollout groups had equal reward for both candidates, including 22 where both reached the maximum 1.0; Beat-v2 had four tied pairs in its first 100 steps and 22/300 in total. Richness-v0 is implemented and passes [constructed-signal tests](../rl/grpo/test_richness_v0.py), including an explicit detuned-layer bad case, but has no established listening validity or completed GRPO result yet.
 
 ## Presentation interpretation
 
@@ -45,4 +45,4 @@ The separate [`beat_v2_worker.py`](beat_v2_worker.py) exposes the original Madmo
 
 A next calibrated combination should use the **actual** Beat-v2 scorer, a non-saturated activity term, a validated musical-richness measure, and explicit vocal-relative loudness/peak guardrails. Each component needs its own held-out and listening checks; this is a design direction, not a claimed trained result.
 
-The first partial implementation is [`beat_v2_coverage_guard_reward`](../rl/grpo/train_lada_band.py), which combines actual Beat-v2 and saturating 40 ms coverage with loudness/flatness guardrails. It is unit-tested and scored the oracle click attack at `-0.561`. Its matched GPU arm now has a 100-step [measured replay](../../../platform/site/demos/vocal-lada.html?arm=guarded): guarded reward `0.457 → 0.491 → 0.400` and original Beat-v2 F1 `0.296 → 0.216 → 0.214` at 0/50/100. The full run is continuing to 300; these early checkpoints do not validate a quality improvement. Exact formula and command are in the [GRPO note](../rl/grpo/README.md).
+The first partial implementation is [`beat_v2_coverage_guard_reward`](../rl/grpo/train_lada_band.py), which combines actual Beat-v2 and saturating 40 ms coverage with loudness/flatness guardrails. It is unit-tested and scored the oracle click attack at `-0.561`. Its matched 300-step GPU arm is complete and available on the [main experiment page](../../../platform/site/demos/index.html): fixed-replay Beat-v2 F1 is `0.296 → 0.216 → 0.214 → 0.357` at 0/50/100/300, while accompaniment/vocal RMS moves from `-7.2` to `+3.6 dB` by step 300. These observations do not validate a quality improvement. Exact formula and command are in the [GRPO note](../rl/grpo/README.md).

@@ -6,7 +6,7 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-matrix" />
+    <link rel="stylesheet" href="./styles.css?v=20261006-vocal-audit" />
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
@@ -316,7 +316,7 @@
           <tr><td>Beat-v2 only</td><td>madmom Beat-v2 F1 B</td><td>已测 · 300 步</td><td>稀疏 clicks 可对拍但不像伴奏</td></tr>
           <tr><td>Proxy blend</td><td>0.45 C + 0.35 起音能量 + 0.20 频带占用 − Q；<strong>没有 Beat-v2 / Richness</strong></td><td>已测 · 300 步</td><td>频带项在固定回放恒定；仍有响度漂移</td></tr>
           <tr><td>Beat-v2 + Coverage guard</td><td>真实 B + 饱和 C + 响度 / 峰值 / 噪声约束</td><td>已测 · 300 步</td><td>C 仍能补偿 B 的退化，不能称防住 hacking</td></tr>
-          <tr><td>Beat-v5 only</td><td>原项目 Beat-v5 的 onset-grid 分数与 confidence</td><td>同配置 100 步运行中；无公开回放</td><td>短片段 / 低 confidence 时须检查 abstain</td></tr>
+          <tr><td>Beat-v5 only</td><td>原项目 Beat-v5 的 onset-grid 分数与 confidence</td><td>同配置 100 步运行中；无公开回放</td><td>构造 click 仍得 0.617（6 秒基线约 0.226）；confidence 不等于音乐性</td></tr>
           <tr><td>Richness-v0 proxy</td><td>多频段活动 + 时间变化；音调性与响度护栏</td><td>构造反例通过；GRPO 未完成</td><td>和声冲突、乱加层次仍可能高分</td></tr>
         </tbody></table></div>
         <p class="stage-context">下方可选的四个按钮只对应已完成运行。它们使用相同 Emma 输入、冻结底座、采样设置和评估 seed；不同 reward 的原始纵轴不可直接当成“哪个更好”。</p>
@@ -367,13 +367,14 @@
           <tr><td>Beat-v2 F1</td><td><strong>自研 reward</strong>；节拍检测用开源 <a href="https://github.com/CPJKU/madmom" target="_blank" rel="noreferrer">madmom</a></td><td>单项 GRPO 已跑；固定重放独立评分</td><td>对齐的稀疏 clicks 也可高分，不保证和声和编曲</td></tr>
           <tr><td>Coverage · 40 ms RMS / STFT</td><td><strong>自研 reward / 指标</strong></td><td>RMS 单项 GRPO 已跑；STFT 作独立检查</td><td>持续音、噪声和过响可抬高覆盖</td></tr>
           <tr><td>Richness-v0 proxy</td><td><strong>自研实验性 reward</strong></td><td>已实现构造反例测试；GRPO 尚无结果，未验证主观编曲丰富度</td><td>乱加和声层次仍可能高分；不是原先的频带占用项</td></tr>
-          <tr><td>Beat-v5 vs Beat-v2</td><td><strong>自研评估框架</strong>；v5 scorer 来自前序 vocal2accomp 项目</td><td>v5 同配置 GRPO 运行中；v2 已测 300 步，尚不可宣称对照结论</td><td>v5 有 confidence / abstain，需检查短片段有效率和听感</td></tr>
+          <tr><td>Beat-v5 vs Beat-v2</td><td><strong>自研评估框架</strong>；v5 scorer 来自前序 vocal2accomp 项目</td><td>v5 同配置 GRPO 运行中；v2 已测 300 步，尚不可宣称对照结论</td><td>构造 click 在 v2/v5 下分别 1.000/0.617；两个版本都可被刷分</td></tr>
           <tr><td>Proxy blend · no Beat-v2</td><td><strong>自研组合代理</strong></td><td>在线消融已跑；Coverage + 起音能量 + 频带占用 − 质量惩罚</td><td>未调用实际 Beat-v2；频带占用也不等于 Richness</td></tr>
           <tr><td>Beat-v2 + Coverage guard</td><td><strong>自研组合 reward</strong></td><td>在线消融已跑；实际 Beat-v2 + 覆盖门控 + 响度、音质约束</td><td>只挡住部分构造攻击，不能声称普遍防止 reward hacking</td></tr>
           <tr><td><a href="https://github.com/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval</a> / <a href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic</a></td><td><strong>外部开源</strong>歌曲审美模型</td><td>候选辅助评分；本站 V2A GRPO 未用</td><td>完整歌曲分数不直接测原人声与伴奏是否合拍</td></tr>
           <tr><td><a href="https://github.com/facebookresearch/audiobox-aesthetics" target="_blank" rel="noreferrer">Audiobox Aesthetics</a></td><td><strong>外部开源</strong>音频审美模型</td><td>音质候选，未做本站 GRPO 消融</td><td>需固定混音响度并防评分器偏好音量</td></tr>
           <tr><td><a href="https://github.com/SonyCSLParis/audio-metrics" target="_blank" rel="noreferrer">APA</a> / FAD</td><td><strong>外部开源</strong>评估指标</td><td>成组数据集报告，不直接作为逐候选 GRPO reward</td><td>需要参考分布；不能把单样本数值冒充训练奖励</td></tr>
         </tbody></table></div>
+        <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.wav" aria-label="构造 click 节拍攻击试听"></audio></div>
         <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>
         </div>
         <div id="vocal-formal-track" hidden>

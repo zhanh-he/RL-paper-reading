@@ -153,6 +153,10 @@ button.source-link { padding: 0; border: 0; background: none; cursor: pointer; f
 .vocal-research-brief :is(a, button):hover, .vocal-research-brief :is(a, button):focus-visible { background: var(--surface-muted); }
 .vocal-research-brief strong { color: var(--green-dark); font-size: .82rem; }
 .vocal-research-brief span { color: var(--ink-muted); font-size: .75rem; line-height: 1.45; }
+.vocal-attack-audio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 38%); align-items: center; gap: 18px; margin: 16px 0; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.vocal-attack-audio strong { font-size: .8rem; }
+.vocal-attack-audio p { margin: 5px 0 0; color: var(--ink-muted); font-size: .75rem; line-height: 1.5; }
+.vocal-attack-audio audio { display: block; width: 100%; min-width: 0; }
 .dataset-controls .segmented button { min-width: 0; white-space: nowrap; }
 .replay-model-controls { margin: 0 0 19px; }
 .replay-model-controls .segmented button { min-width: 0; white-space: nowrap; }
@@ -237,7 +241,7 @@ button.source-link { padding: 0; border: 0; background: none; cursor: pointer; f
 @media (max-width: 800px) { .lab-heading { align-items: flex-start; flex-direction: column; } .finding-grid { grid-template-columns: 1fr; } .finding p { min-height: 0; } .audit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .choral-listen { grid-template-columns: 1fr; } .status-row { grid-template-columns: 1fr 1fr; padding: 10px 0; } .status-row small { grid-column: 1 / -1; } }
 @media (max-width: 650px) { .source-grid, .compare-grid, .choral-grpo-grid, .choral-input-band { grid-template-columns: 1fr; } .source-block + .source-block { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); } .source-block { min-height: 0; padding: 14px 0; } }
 @media (max-width: 650px) { .lyrics-pair-audio { grid-template-columns: 1fr; } }
-@media (max-width: 650px) { .vocal-research-brief { grid-template-columns: 1fr; } .vocal-research-brief :is(a, button) { padding: 10px 0; } .vocal-research-brief :is(a, button) + :is(a, button) { border-left: 0; border-top: 1px solid var(--line-strong); } }
+@media (max-width: 650px) { .vocal-research-brief, .vocal-attack-audio { grid-template-columns: 1fr; } .vocal-research-brief :is(a, button) { padding: 10px 0; } .vocal-research-brief :is(a, button) + :is(a, button) { border-left: 0; border-top: 1px solid var(--line-strong); } }
 @media (max-width: 550px) { .app-header { align-items: flex-start; } .brand small { white-space: normal; } .header-actions { flex-wrap: wrap; justify-content: flex-end; } .header-actions .button-secondary { display: inline-flex; } .header-actions .button { font-size: 0; min-width: 38px; padding: 0; } .section-intro { align-items: flex-start; flex-direction: column; } .metric-controls { flex-wrap: wrap; } .metric-controls > span { flex-basis: 100%; } .bar-row { grid-template-columns: 115px minmax(0, 1fr) 48px; gap: 7px; font-size: .7rem; } .audit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .audio-grid { grid-template-columns: 1fr; } .lab-table table { min-width: 560px; } .stage-item { flex-basis: 125px; } .listen-bar { align-items: flex-start; flex-direction: column; } }
 @media (max-width: 550px) { .lyrics-example-controls .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; } .lyrics-example-controls .segmented button { min-width: 0; padding-inline: 4px; font-size: .7rem; } }
 @media (max-width: 550px) { .dataset-controls .segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; } .dataset-controls .segmented button { min-width: 0; white-space: normal; overflow-wrap: anywhere; padding: 7px 4px; font-size: .7rem; } }

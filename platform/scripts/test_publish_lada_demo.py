@@ -93,6 +93,28 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(output.name, "vocal-lada-guarded-run.json")
             self.assertEqual(json.loads(output.read_text())["stages"][0]["reward"], 0.2)
 
+    def test_beat_v5_arm_keeps_its_objective_and_independent_v2_check(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run, site = root / "run", root / "site"
+            run.mkdir()
+            (site / "audio").mkdir(parents=True)
+            (site / "audio/ace_emma_vocal_12s.wav").write_bytes(b"vocal")
+            (run / "run.json").write_text(json.dumps({"args": {"reward": "beat_v5"}}))
+            (run / "evaluations.jsonl").write_text(json.dumps({
+                "step": 0, "reward": 0.21, "beat_v5_score": 0.21, "beat_v5_confidence": 1.0,
+            }) + "\n")
+            (run / "step_0000.wav").write_bytes(b"accompaniment")
+            (run / "beat_v2.json").write_text(json.dumps({"0": {"score": 0.29}}))
+
+            with patch.object(MODULE.subprocess, "run"):
+                output = MODULE.publish(run, site, slug="beat_v5")
+
+            stage = json.loads(output.read_text())["stages"][0]
+            self.assertEqual(stage["reward"], 0.21)
+            self.assertEqual(stage["beat_v5_confidence"], 1.0)
+            self.assertEqual(stage["beat_v2"]["score"], 0.29)
+
     def test_heldout_guarded_reward_is_recomputed_from_original_beat_score(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
