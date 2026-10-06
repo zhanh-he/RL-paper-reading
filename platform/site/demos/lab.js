@@ -820,6 +820,16 @@ for (const button of document.querySelectorAll('[data-dataset-task]')) {
     for (const panel of document.querySelectorAll('[data-dataset-panel]')) panel.hidden = panel.dataset.datasetPanel !== task;
   });
 }
+for (const button of document.querySelectorAll('[data-vocal-track]')) {
+  button.addEventListener('click', () => {
+    const track = button.dataset.vocalTrack;
+    for (const option of document.querySelectorAll('[data-vocal-track]')) option.setAttribute('aria-pressed', String(option.dataset.vocalTrack === track));
+    document.querySelector('#vocal-mock-track').hidden = track !== 'mock';
+    document.querySelector('#vocal-formal-track').hidden = track !== 'formal';
+    document.querySelector('#vocal-mock-actions').hidden = track !== 'mock';
+    document.querySelector('#vocal-view-eyebrow').textContent = track === 'mock' ? 'Case 02 · Mock replay' : 'Case 02 · Formal track reserved';
+  });
+}
 let replayData = null;
 for (const button of document.querySelectorAll('[data-lyrics-track]')) button.addEventListener('click', () => {
   const mock = button.dataset.lyricsTrack === 'mock';

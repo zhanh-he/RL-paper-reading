@@ -5,10 +5,10 @@ const files = {
   guarded: './vocal-lada-guarded-run.json',
 };
 const names = {
-  combined: 'Combined proxy',
+  combined: 'Proxy blend (no Beat-v2)',
   coverage: 'Coverage only',
   beat_v2: 'Beat-v2 only',
-  guarded: 'Beat + Coverage',
+  guarded: 'Beat-v2 + Coverage guard',
 };
 const steps = [0, 5, 50, 100, 150, 200, 300];
 const root = document.getElementById('view-vocal');
