@@ -8,6 +8,8 @@ from pathlib import Path
 
 
 DATASET_SHA256 = "c29217883289d3717c510d671927319d5e7acb70ad00443d2a3d9384653ac23b"
+TRIPLE_PROJECTION_SHA256 = "b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109"
+TRIPLE_SOURCE_SHA256 = "b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0"
 CHECKPOINTS = (0, 1, 25, 50, 100)
 
 
@@ -30,17 +32,28 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
     if not config_path.is_file():
         return {"status": "submitted-unverified", "train_curve": [], "validation": {}}
     config = json.loads(config_path.read_text())
+    protocol = config.get("dataset_protocol")
+    if protocol == "cmi-pref-lyrics-no-ref-decontaminated-v1":
+        dataset_sha, train_count, valid_count = DATASET_SHA256, 234, 59
+    elif protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
+        dataset_sha, train_count, valid_count = TRIPLE_PROJECTION_SHA256, 240, 60
+    else:
+        raise ValueError(f"Unrecognized formal dataset protocol: {protocol}")
     expected = {
-        "dataset_sha256": DATASET_SHA256,
-        "dataset_protocol": "cmi-pref-lyrics-no-ref-decontaminated-v1",
+        "dataset_sha256": dataset_sha,
+        "dataset_protocol": protocol,
         "reward_backend": backend,
-        "train_prompt_count": 234,
-        "validation_prompt_count": 59,
+        "train_prompt_count": train_count,
+        "validation_prompt_count": valid_count,
         "kl_beta": 0.01,
         "compute_dtype": compute_dtype,
         "smoke_only": False,
         "max_tokens": 600,
     }
+    if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
+        expected.update({"source_manifest_sha256": TRIPLE_SOURCE_SHA256,
+                         "input_modalities": ["text", "lyrics"],
+                         "reference_audio_used": False})
     for key, value in expected.items():
         if config.get(key) != value:
             raise ValueError(f"Experiment config {key}={config.get(key)!r}, expected {value!r}")
@@ -75,8 +88,8 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
             continue
         receipt = json.loads(receipt_path.read_text())
         entries = receipt["heldout"]
-        if receipt["optimizer_step"] != step or len(entries) != 59:
-            raise ValueError(f"Incomplete 59-condition validation at step {step}")
+        if receipt["optimizer_step"] != step or len(entries) != valid_count:
+            raise ValueError(f"Incomplete {valid_count}-condition validation at step {step}")
         rewards = []
         peaks = []
         clips = []
@@ -107,7 +120,9 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
         status = "verified-complete"
     else:
         status = "partial-verified"
-    return {"status": status, "train_curve": curve, "validation": validation,
+    return {"status": status, "dataset_protocol": protocol,
+            "train_conditions": train_count, "valid_conditions": valid_count,
+            "train_curve": curve, "validation": validation,
             "experiment_sha256": digest(config_path), "verified_train_steps": len(curve)}
 
 

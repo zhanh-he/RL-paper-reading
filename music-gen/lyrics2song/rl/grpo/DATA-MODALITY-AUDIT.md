@@ -83,11 +83,16 @@ SHA256 is
 `b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0`.
 The public, lyrics-free counts and source hashes are in
 [`cmi-triple-data-summary.json`](../../../../platform/site/demos/cmi-triple-data-summary.json).
-This is a **data freeze only**, not approval to train. The reference MP3s
-have not been downloaded or decoded, per-row reference semantics are not
-verified, and neither existing YuE2 nor Muse GRPO implementation consumes
-external reference audio. The four planned model/reward cells and a tentative
-LR grid are documented in the online demo with no fabricated results.
+The reference MP3s have not been downloaded or decoded, per-row reference
+semantics are not verified, and neither existing YuE2 nor Muse GRPO
+implementation consumes external reference audio. On 2026-10-06 the user
+authorized **text+lyrics baselines on this exact split**: the separate
+[`project_cmi_triple_baseline.py`](project_cmi_triple_baseline.py) projects the
+same 240/60 condition IDs without the audio field (SHA256
+`b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109`).
+The original three-part manifest remains unchanged for future work. Current
+GRPO must declare `reference_audio_used=false`; this authorization does not
+turn the baselines into three-input models.
 
 ## Frozen text+lyrics split
 

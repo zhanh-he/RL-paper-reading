@@ -220,13 +220,21 @@ def main():
         if actual_sha != args.expected_dataset_sha256:
             parser.error(f"Dataset SHA256 changed: {actual_sha}")
         dataset = json.loads(args.dataset_manifest.read_text())
-        if dataset.get("protocol") != "cmi-pref-lyrics-no-ref-decontaminated-v1":
+        protocol = dataset.get("protocol")
+        if protocol not in ("cmi-pref-lyrics-no-ref-decontaminated-v1",
+                            "cmi-pref-triple-source-text-lyrics-baseline-v1"):
             parser.error("Unrecognized formal dataset protocol")
+        if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1":
+            if dataset.get("source_manifest_sha256") != "b611333ef0abdeaf7a0473ea0beaa470673c3414f05b816a97904d2ade25b2e0" \
+                    or dataset.get("input_modalities") != ["text", "lyrics"] \
+                    or dataset.get("reference_audio_used") is not False:
+                parser.error("Three-part source projection is not the audited text+lyrics baseline")
         train = [{"style": row["style"], "lyrics": row["lyrics"], "cot": "off", "cfg_scale": 1.0}
                  for row in dataset["train"]]
         heldout = [{"style": row["style"], "lyrics": row["lyrics"], "cot": "off", "cfg_scale": 1.0}
                    for row in dataset["valid"]]
-        if (len(train), len(heldout)) != (234, 59):
+        expected_counts = (240, 60) if protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1" else (234, 59)
+        if (len(train), len(heldout)) != expected_counts:
             parser.error("Formal split size changed")
         if args.smoke:
             train, heldout = train[:2], heldout[:2]
@@ -239,10 +247,16 @@ def main():
     args.output = args.output.resolve()
     args.output.mkdir(parents=True, exist_ok=True)
     manifest = {
-        "training_data_origin": "pinned CMI-Pref compatible train subset" if args.dataset_manifest else "eight original hand-written English two-line lyrics prompts",
+        "training_data_origin": ("pinned CMI-Pref triple-source text+lyrics projection" if args.dataset_manifest
+                                  and protocol == "cmi-pref-triple-source-text-lyrics-baseline-v1"
+                                  else "pinned CMI-Pref compatible train subset" if args.dataset_manifest
+                                  else "eight original hand-written English two-line lyrics prompts"),
         "heldout_data_origin": "pinned CMI-Pref train-derived validation subset" if args.dataset_manifest else "three separate original hand-written English two-line lyrics prompts",
         "dataset_sha256": args.expected_dataset_sha256,
-        "dataset_protocol": "cmi-pref-lyrics-no-ref-decontaminated-v1" if args.dataset_manifest else None,
+        "dataset_protocol": protocol if args.dataset_manifest else None,
+        "input_modalities": ["text", "lyrics"] if args.dataset_manifest else None,
+        "reference_audio_used": False if args.dataset_manifest else None,
+        "source_manifest_sha256": dataset.get("source_manifest_sha256") if args.dataset_manifest else None,
         "kl_beta": args.kl_beta if args.dataset_manifest else None,
         "compute_dtype": args.compute_dtype if args.dataset_manifest else None,
         "smoke_only": args.smoke,
@@ -257,7 +271,8 @@ def main():
         "musecritic_max_new_tokens": args.musecritic_max_new_tokens if args.reward_backend == "musecritic" else None,
     }
     if not args.dataset_manifest:
-        for key in ("dataset_sha256", "dataset_protocol", "kl_beta", "compute_dtype", "smoke_only", "train_prompt_count",
+        for key in ("dataset_sha256", "dataset_protocol", "input_modalities", "reference_audio_used",
+                    "source_manifest_sha256", "kl_beta", "compute_dtype", "smoke_only", "train_prompt_count",
                     "validation_prompt_count", "eval_seed_base"):
             manifest.pop(key)
     manifest_path = args.output / "experiment.json"

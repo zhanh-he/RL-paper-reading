@@ -3,11 +3,13 @@
 The [earlier CMI-Pref text+lyrics rerun](FORMAL-CMI-PREF.md) used 234 train and
 59 validation conditions; its two YuE2 SongEval arms have verified results.
 Its queued MuseCritic arm was cancelled on 2026-10-06. These are **not**
-reference-audio experiments. The [new three-part candidate](DATA-MODALITY-AUDIT.md)
+reference-audio experiments. The [new three-part source split](DATA-MODALITY-AUDIT.md)
 freezes 240 train / 60 validation conditions and reserves 125 official test
-votes (121 conditions), but its reference audio and model interfaces are not
-ready; **no new training was started**. Earlier pilot/mock results below must
-not be merged into either protocol's validation curves.
+votes (121 conditions). The user then authorized [new YuE2 and Muse GRPO
+jobs](runs/2026-10-06-cmi-triple-source/README.md) that project those exact
+conditions to each model's **text+lyrics** interface. Reference audio is
+reserved for future systems and not used in this rerun. Earlier pilot/mock
+results below must not be merged into either protocol's validation curves.
 
 The [YuE2 SongEval pilot](runs/2026-09-29-yue2/README.md) is an on-policy,
 two-rollout, one-step LoRA update with a deterministic held-out before/after

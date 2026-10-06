@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#PBS -P wa66
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=160GB
+#PBS -l jobfs=40GB
+#PBS -l walltime=24:00:00
+#PBS -l storage=gdata/wa66+gdata/iv96
+#PBS -l wd
+#PBS -N yue2-cmi-triple
+set -euo pipefail
+
+: "${REWARD:?Set REWARD to songeval or musecritic}"
+: "${LR:?Set LR to an audited learning rate}"
+: "${MODE:?Set MODE to smoke or train}"
+case "$REWARD" in songeval|musecritic) ;; *) exit 2 ;; esac
+case "$LR" in 2e-5|1e-4|3e-4) ;; *) exit 2 ;; esac
+case "$MODE" in smoke|train) ;; *) exit 2 ;; esac
+
+root=/g/data/wa66/hanyu/YuE2-posttrain
+critic_root=/g/data/wa66/hanyu/vocal2accomp-muse
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export HF_HUB_OFFLINE=1
+export TOKENIZERS_PARALLELISM=false
+output="$root/outputs/cmi_triple_textlyrics_${REWARD}_lr${LR}_${MODE}_20261006"
+args=(
+  --model "$root/models/YuE2-3B"
+  --vae "$root/models/YuE2-Vae"
+  --dataset-manifest "$root/examples/cmi-pref-triple-text-lyrics-baseline-v1.json"
+  --expected-dataset-sha256 b061588397d54177b25b678962caf756771498b927b9931542908c5e64a7e109
+  --reward-backend "$REWARD"
+  --output "$output"
+  --max-tokens 600
+  --learning-rate "$LR"
+  --kl-beta 0.01
+  --checkpoint-every 25
+)
+if [[ "$MODE" == smoke ]]; then args+=(--max-steps 2 --smoke); else args+=(--max-steps 100); fi
+if [[ "$REWARD" == songeval ]]; then
+  args+=(--songeval /g/data/wa66/hanyu/SongEval-formal --scorer-python "$root/.venv/bin/python")
+else
+  args+=(--musecritic-python "$root/.venv/bin/python"
+         --musecritic-repo "$critic_root/src/MuseCritic"
+         --musecritic-model "$critic_root/models/MuseCritic"
+         --musecritic-max-new-tokens 512)
+fi
+cd "$root"
+exec .venv/bin/python -u examples/yue2_songeval_longrun.py "${args[@]}"

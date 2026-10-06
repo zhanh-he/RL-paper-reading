@@ -5,13 +5,14 @@ generalization. The old pilot remains available under **Mock Experiment** in
 the [demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics).
 
 **Historical text+lyrics protocol, paused 2026-10-06.** The new three-part
-candidate split is 240 train / 60 validation conditions, with the official
+source split is 240 train / 60 validation conditions, with the official
 125-vote, 121-condition three-part test sealed. See
-[`DATA-MODALITY-AUDIT.md`](DATA-MODALITY-AUDIT.md). The existing verified
-SongEval results below are not three-part results. Both Gadi MuseCritic jobs
-`180533336` and `180533343` were cancelled while queued/held; Kaya had no
-queued work, and lab5090 had no related training process. No new training
-is authorized by the data freeze.
+[`DATA-MODALITY-AUDIT.md`](DATA-MODALITY-AUDIT.md). The verified SongEval
+results below are from the old 234/59 conditions. Both old Gadi MuseCritic
+jobs `180533336` and `180533343` were cancelled while queued/held. The user
+subsequently authorized a [new GRPO rerun on a text+lyrics projection of the
+three-part split](runs/2026-10-06-cmi-triple-source/README.md); do not merge
+its results with these historical curves or claim it conditions on audio.
 
 ## Data
 
