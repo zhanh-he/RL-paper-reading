@@ -14,6 +14,8 @@ const steps = [0, 5, 50, 100, 150, 200, 300];
 const root = document.getElementById('view-vocal');
 const el = (selector) => root.querySelector(selector);
 const fmt = (value, digits = 3) => Number.isFinite(value) ? value.toFixed(digits) : '—';
+const stageMetric = (value) => Number.isFinite(value)
+  ? value.toFixed(Math.abs(value) < 0.001 ? 6 : 3) : '—';
 let arm = 'beat_v2';
 let selectedStep = 100;
 let run;
@@ -206,7 +208,10 @@ function render() {
     const item = document.createElement(stage ? 'button' : 'div');
     item.className = `stage-item${stage ? ' available' : ''}`;
     item.append(textNode('strong', '', step === 0 ? 'Baseline' : `${step} steps`));
-    item.append(textNode('span', `state ${stage ? 'measured' : 'pending'}`, stage ? '实测' : '未发布'));
+    const metric = run.train_curve.find((point) => point.step === step);
+    const stageValue = step === 0 ? '冻结起点' : metric
+      ? `Reward ${stageMetric(metric.reward)} · KL ${stageMetric(metric.sampled_kl)}` : '无训练值';
+    item.append(textNode('span', `state ${stage ? 'measured' : 'pending'}`, stage ? stageValue : '未发布'));
     if (stage) {
       item.type = 'button';
       item.setAttribute('aria-pressed', String(step === selectedStep));

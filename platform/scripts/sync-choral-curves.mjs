@@ -23,6 +23,11 @@ if (data.status !== 'measured_training_trace_window_means' || data.bin_size !== 
         (point.updates > 0 && (!Number.isFinite(point.reward) || !Number.isFinite(point.kl)))))) {
   throw new Error('Invalid ChoralGRPO training-curve export');
 }
+if (data.runs.combined.raw_points?.length !== 1000 ||
+    data.runs.combined.raw_points.some((point, index) => point.step !== index + 1 ||
+      !Number.isFinite(point.reward) || !Number.isFinite(point.kl))) {
+  throw new Error('Invalid ChoralGRPO raw training trace');
+}
 if (process.argv.includes('--check')) {
   if (await readFile(output, 'utf8') !== contents) throw new Error('ChoralGRPO public curve data is stale');
 } else {

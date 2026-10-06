@@ -50,6 +50,17 @@ def main():
             },
             "points": points,
         }
+        if arm == "combined":
+            runs[arm]["raw_points"] = [
+                {
+                    "step": row["step"],
+                    "reward": round(row["reward_mean"], 6),
+                    "kl": round(row["kl"], 6),
+                }
+                for row in rows
+            ]
+            if any(row["skipped"] or not all(math.isfinite(row[key]) for key in ("reward_mean", "kl")) for row in rows):
+                raise ValueError("Combined trace needs 1000 finite, non-skipped updates")
 
     result = {
         "status": "measured_training_trace_window_means",

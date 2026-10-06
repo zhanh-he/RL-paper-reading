@@ -1,5 +1,3 @@
-import { createMilestones } from './chart-milestones.js';
-
 const definitions = document.querySelector('#view-choral .choral-reward-details');
 const foldouts = document.querySelector('#choral-training-foldouts');
 foldouts.prepend(definitions);
@@ -11,9 +9,17 @@ const arms = [
   ['coverage', 'Coverage', '#9b5275'],
   ['continuity', 'Continuity', '#657a2b'],
 ];
+const metricLabel = (value) => Math.abs(value) < 0.001 ? value.toFixed(6) : value.toFixed(3);
 
-function chart(canvas, points, key, color, compact = false, marks = null) {
+function chart(canvas, points, key, color, compact = false, rawPoints = null) {
   let selectedStep = 0;
+  const tooltip = rawPoints ? document.createElement('div') : null;
+  if (tooltip) {
+    tooltip.className = 'training-chart-tooltip';
+    tooltip.hidden = true;
+    canvas.parentElement.append(tooltip);
+  }
+  const margin = { left: 39, right: 12, top: 12, bottom: 24 };
   const draw = () => {
     const width = canvas.getBoundingClientRect().width;
     if (width < 20) return;
@@ -23,10 +29,9 @@ function chart(canvas, points, key, color, compact = false, marks = null) {
     canvas.height = Math.round(height * ratio);
     const context = canvas.getContext('2d');
     context.scale(ratio, ratio);
-    const margin = { left: 39, right: 12, top: 12, bottom: 24 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
-    const values = points.map((point) => point[key]).filter(Number.isFinite);
+    const values = [...points, ...(rawPoints || [])].map((point) => point[key]).filter(Number.isFinite);
     const low = Math.min(...values);
     const high = Math.max(...values);
     const pad = Math.max((high - low) * 0.13, 0.004);
@@ -59,31 +64,52 @@ function chart(canvas, points, key, color, compact = false, marks = null) {
       context.stroke();
       context.setLineDash([]);
     }
-    context.strokeStyle = color;
-    context.lineWidth = compact ? 2 : 2.5;
     context.lineJoin = 'round';
     context.lineCap = 'round';
-    context.beginPath();
-    let connected = false;
-    for (const point of points) {
-      if (!Number.isFinite(point[key])) { connected = false; continue; }
-      if (connected) context.lineTo(x(point.step), y(point[key]));
-      else context.moveTo(x(point.step), y(point[key]));
-      connected = true;
-    }
-    context.stroke();
-    const selected = points.find((point) => point.step === selectedStep);
-    if (selected && Number.isFinite(selected[key])) {
+    const trace = (series, alpha, thickness) => {
       context.beginPath();
-      context.arc(x(selectedStep), y(selected[key]), 5, 0, Math.PI * 2);
+      context.strokeStyle = color;
+      context.globalAlpha = alpha;
+      context.lineWidth = thickness;
+      let connected = false;
+      for (const point of series) {
+        if (!Number.isFinite(point[key])) { connected = false; continue; }
+        if (connected) context.lineTo(x(point.step), y(point[key]));
+        else context.moveTo(x(point.step), y(point[key]));
+        connected = true;
+      }
+      context.stroke();
+      context.globalAlpha = 1;
+    };
+    if (rawPoints) trace(rawPoints, 0.2, 1);
+    trace(points, 1, compact ? 2 : 2.5);
+    for (const step of rawPoints ? [1, 100, 300, 1000] : []) {
+      const point = rawPoints[step - 1];
+      context.beginPath();
+      context.arc(x(step), y(point[key]), step === selectedStep ? 5 : 3.5, 0, Math.PI * 2);
       context.fillStyle = '#fff';
       context.fill();
       context.strokeStyle = color;
       context.lineWidth = 2;
       context.stroke();
     }
-    marks?.draw(context, width, height - margin.bottom, color);
   };
+  if (tooltip) {
+    canvas.addEventListener('pointermove', (event) => {
+      const bounds = canvas.getBoundingClientRect();
+      const plotWidth = bounds.width - margin.left - margin.right;
+      if (plotWidth <= 0) return;
+      const step = Math.max(1, Math.min(1000,
+        Math.round((event.clientX - bounds.left - margin.left) / plotWidth * 1000)));
+      const point = rawPoints[step - 1];
+      const window = points[Math.floor((step - 1) / 25) + 1];
+      tooltip.textContent = `第 ${step} 步 · 原始 Reward ${point.reward.toFixed(4)} · KL ${point.kl.toFixed(4)}\n25 步窗口均值 ${window?.[key]?.toFixed(4) ?? '—'}`;
+      tooltip.style.left = `${Math.max(80, Math.min(bounds.width - 80, event.clientX - bounds.left))}px`;
+      tooltip.style.top = `${canvas.offsetTop + 8}px`;
+      tooltip.hidden = false;
+    });
+    canvas.addEventListener('pointerleave', () => { tooltip.hidden = true; });
+  }
   new ResizeObserver(draw).observe(canvas.parentElement);
   draw();
   return { select(step) { selectedStep = step; draw(); } };
@@ -101,21 +127,25 @@ try {
     `${first.reward.toFixed(3)} → ${last.reward.toFixed(3)}`;
   document.querySelector('#choral-combined-kl-value').textContent =
     `${first.kl.toFixed(3)} → ${last.kl.toFixed(3)}`;
-  const milestones = [1, 100, 300, 1000];
-  const createMarkedChart = (selector, key, color, name) => {
-    const canvas = document.querySelector(selector);
-    const marks = createMilestones(canvas, 1000);
-    marks.set(milestones.map((step) => {
-      const point = combined.find((entry) => entry.step === step);
-      const window = step === 1 ? '单步原值' : '25 步窗口均值';
-      return { step, label: `第 ${step} 步 · 训练 ${name} ${window} ${point[key].toFixed(4)}` };
-    }));
-    return chart(canvas, combined, key, color, false, marks);
+  const rawPoints = data.runs.combined.raw_points;
+  const rewardChart = chart(document.querySelector('#choral-combined-reward-chart'), combined,
+    'reward', '#08745d', false, rawPoints);
+  const klChart = chart(document.querySelector('#choral-combined-kl-chart'), combined,
+    'kl', '#b36b24', false, rawPoints);
+  const updateRail = () => {
+    for (const button of document.querySelectorAll('#choral-event-rail button')) {
+      const point = rawPoints[Number(button.dataset.step) - 1];
+      button.querySelector('.state').textContent = `Reward ${metricLabel(point.reward)} · KL ${metricLabel(point.kl)}`;
+    }
   };
-  const rewardChart = createMarkedChart('#choral-combined-reward-chart', 'reward', '#08745d', 'combined reward');
-  const klChart = createMarkedChart('#choral-combined-kl-chart', 'kl', '#b36b24', 'KL');
+  updateRail();
+  document.querySelector('#view-choral .choral-training-note').textContent =
+    '训练 rollout：细线为逐步原值，粗线为 25 步窗口均值；悬停任意位置显示对应 step 的 Reward、KL 原值。下方步骤同步标出虚线，均非未见歌曲 F1。两图纵轴独立缩放。';
   const selectStep = (step) => { rewardChart.select(step); klChart.select(step); };
-  document.querySelector('#view-choral').addEventListener('choral:stepchange', (event) => selectStep(event.detail.step));
+  document.querySelector('#view-choral').addEventListener('choral:stepchange', (event) => {
+    selectStep(event.detail.step);
+    updateRail();
+  });
   selectStep(Number(document.querySelector('#choral-event-rail button[aria-pressed="true"]')?.dataset.step) || 300);
 
   const list = document.querySelector('#choral-small-plots');
