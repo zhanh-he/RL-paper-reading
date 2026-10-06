@@ -31,6 +31,7 @@ def main() -> None:
         "beat_v2": "grpo_emma_beat_v2_6s",
         "guarded": "grpo_emma_guarded_6s",
         "beat_v5": "grpo_emma_beat_v5_6s",
+        "richness_v0": "grpo_emma_richness_v0_6s",
     }
     rows = []
     for arm, directory in names.items():
