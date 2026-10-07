@@ -57,12 +57,12 @@ Muse condition was seen.
 | YuE2 | MuseCritic | 2e-5 | 180732211 | integrated |
 | YuE2 | MuseCritic | 1e-4 | 180732212 | integrated |
 | YuE2 | MuseCritic | 3e-4 | 180732213 | integrated |
-| Muse | SongEval | 1e-6 | 180732234 | 180732240 / 180732241 |
-| Muse | SongEval | 3e-6 | 180732235 | 180732242 / 180732244 |
-| Muse | SongEval | 1e-5 | 180732236 | 180732245 / 180732246 |
-| Muse | MuseCritic | 1e-6 | 180732237 | 180732248 / 180732249 |
-| Muse | MuseCritic | 3e-6 | 180732238 | 180732250 / 180732251 |
-| Muse | MuseCritic | 1e-5 | 180732239 | 180732252 / 180732253 |
+| Muse | SongEval | 1e-6 | 180732514 | 180732515 / 180732516 |
+| Muse | SongEval | 3e-6 | 180732517 | 180732518 / 180732519 |
+| Muse | SongEval | 1e-5 | 180732520 | 180732521 / 180732522 |
+| Muse | MuseCritic | 1e-6 | 180732523 | 180732524 / 180732525 |
+| Muse | MuseCritic | 3e-6 | 180732526 | 180732527 / 180732528 |
+| Muse | MuseCritic | 1e-5 | 180732529 | 180732530 / 180732531 |
 
 Muse validation jobs remain `afterok` dependent on their corresponding full
 train, and also have priority `1023`. Kaya YuE2/SongEval LR1e-4 full job
@@ -71,6 +71,22 @@ dtype-controlled comparison. Its completed two-step smoke `77857` is not a
 gate. Slurm accepted `Nice=0` (from 10000), then started the full job on
 node `k018` at 2026-10-07 16:17 AWST. At 16:19, step-0 evaluation was in
 progress; no formal reward comparison was ready.
+
+At 16:27 AWST, idle lab5090 also started a full YuE2/SongEval LR2e-5 BF16
+run using the same frozen dataset SHA256 and KL beta 0.01. Its launch script
+is `run_lab5090_cmi_triple_9to1_songeval.sh`, remote output is
+`/home/mengh/research/YuE2-posttrain/outputs/cmi_triple_9to1_songeval_lr2e-5_train_20261007_lab5090`,
+and the initial supervisor PID was `3496974`. It is a separate cross-host
+replicate of the Gadi 2e-5 arm, not an additional learning rate or a result
+yet. It was launched only after `nvidia-smi` showed the 5090 idle; do not
+interrupt other workloads to keep it running.
+
+The first directly submitted Muse formal jobs and their dependent validation
+jobs were still queued when an end-of-run checkpoint issue was found: 270 is
+not divisible by `save_steps=25`, but the validator requires `checkpoint-270`.
+Those queued jobs were canceled and replaced with the Muse IDs in the table
+above, using `save_steps=30` so step 270 is saved. No started training was
+discarded.
 
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
