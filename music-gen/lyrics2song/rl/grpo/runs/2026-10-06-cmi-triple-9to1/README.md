@@ -74,3 +74,31 @@ LR or checkpoint. SongEval and MuseCritic scores remain separate scales.
 The YuE2 run uses at most 600 semantic tokens, so it is a short-generation
 study, not a full-song benchmark. Neither reward is perceptual ground truth;
 paired listening is required before claiming quality gains.
+
+## Recovery snapshot: 2026-10-07
+
+At 10:47 AWST, all 12 Gadi smoke jobs were still queued. Their 12 full runs
+and 12 Muse validation jobs were waiting on resources or dependencies; no
+Gadi formal result was available to collect. PBS reported insufficient GPU
+capacity for the first queued YuE2 and Muse smoke jobs. Kaya job `77857`
+(YuE2/SongEval, LR 1e-4, FP16) completed its **two-step smoke** with exit 0;
+the dependent 270-step job `77858` was pending for priority. This snapshot
+is not a claim that the full experiments have completed.
+
+Kaya's smoke used two training and two validation conditions, not the full
+270/30 split. The fixed two-condition validation SongEval means were 3.26271
+at step 0, 3.24181 at step 1, and 3.05944 at step 2. All four scored
+training WAVs and twelve validation audio files matched their recorded SHA256;
+the three receipt means, indices/seeds, and checkpoint files were checked.
+These values only establish that the pipeline runs and the receipts bind to
+its audio. They are not formal effect estimates and are excluded from the
+online results table.
+
+Kaya smoke provenance: `experiment.json` SHA256
+`f21c3763b1ea855d6156216621149e790729e21cb9140899b0f944ca39b5932e`;
+`steps.jsonl` SHA256
+`12e06f23614e6c7dbfc5b5f2760374cc4a8f7c9d109ed717c571669f8f0777b3`;
+step 0/1/2 receipt SHA256 respectively
+`ece826a9626b68e3ed52951667f5ca07db891bc0f86523a8f806dde70f837b09`,
+`bc60c7bdf8af8d9194cf93320d604927d16a4fcbed492e4bdcd7aca007d803e4`,
+and `07948b013bdb16913b8a4794ce75fc319c8630b839eedb80f655a6f1eda5fec8`.
