@@ -118,6 +118,13 @@ baseline generations were truncated under the 600-token limit. Kaya's
 baseline `3.413946` was produced in FP16 versus lab5090 BF16, so the
 cross-host baseline difference must not be read as a learning-rate effect.
 
+At 16:46 AWST, lab5090's fixed 30-condition step-1 receipt was also
+hash-verified: SongEval mean `3.4670353333` versus its own step-0
+`3.4636446667` (delta `+0.003391`, too small to claim improvement).
+Training steps 2/3 reported finite gradient norms and sampled KL
+`0.0006825`/`0.0007817`; the run continued. These are wiring and early
+trajectory checks, not final held-out or perceptual results.
+
 At 16:42 AWST, a lab5090 on-host experiment queue (current PID `3498704`) was
 started, waiting for the current 2e-5 process to exit. It will run
 SongEval LR1e-4, then LR3e-4 in BF16 on the **same 270/30 split**, but only
