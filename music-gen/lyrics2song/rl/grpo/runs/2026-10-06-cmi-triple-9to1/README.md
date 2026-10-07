@@ -132,6 +132,12 @@ Training steps 2/3 reported finite gradient norms and sampled KL
 `0.0006825`/`0.0007817`; the run continued. These are wiring and early
 trajectory checks, not final held-out or perceptual results.
 
+At 16:51 AWST, Kaya's fixed 30-condition step-1 receipt also passed the
+independent collector: SongEval mean `3.412034` versus its own step-0
+`3.413946` (delta `-0.001912`). Both hosts' first-step deltas are tiny and
+neither establishes a meaningful improvement or a fair cross-dtype LR
+ranking. Later held-out checkpoints and paired listening remain necessary.
+
 At 16:42 AWST, a lab5090 on-host experiment queue (current PID `3498704`) was
 started, waiting for the current 2e-5 process to exit. It will run
 SongEval LR1e-4, then LR3e-4 in BF16 on the **same 270/30 split**, but only
