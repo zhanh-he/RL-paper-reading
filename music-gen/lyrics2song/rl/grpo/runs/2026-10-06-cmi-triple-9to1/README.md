@@ -109,6 +109,15 @@ relaunched as supervisor PID `3497790`. The incomplete 30 WAVs are regenerated
 from fixed seeds because their full rollout metadata was not archived; they
 are not treated as a verified receipt.
 
+At 16:39 AWST, the relaunched lab5090 run passed the same independent
+collector: 30/30 step-0 scored/archive audio hashes matched, baseline
+SongEval mean was `3.4636446667`, and optimizer step 1 had two verified
+scored WAVs, finite gradient norm `0.050086`, and sampled KL `0` as expected
+before the first update. Collector status was `partial-verified`. All 30
+baseline generations were truncated under the 600-token limit. Kaya's
+baseline `3.413946` was produced in FP16 versus lab5090 BF16, so the
+cross-host baseline difference must not be read as a learning-rate effect.
+
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
 scored-audio SHA256. Muse training records reward/KL and checkpoints; its
