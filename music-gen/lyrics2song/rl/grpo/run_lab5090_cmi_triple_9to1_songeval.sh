@@ -18,7 +18,7 @@ exec flock -n "$output.lock" .venv/bin/python -u examples/yue2_songeval_formal_9
   --expected-dataset-sha256 c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f \
   --reward-backend songeval \
   --songeval /home/mengh/research/SongEval-audit \
-  --scorer-python "$root/.venv/bin/python" \
+  --scorer-python /home/mengh/miniconda3/envs/pytorch_env/bin/python \
   --output "$output" \
   --max-steps 270 \
   --max-tokens 600 \

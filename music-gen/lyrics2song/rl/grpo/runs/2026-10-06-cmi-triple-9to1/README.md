@@ -88,6 +88,27 @@ Those queued jobs were canceled and replaced with the Muse IDs in the table
 above, using `save_steps=30` so step 270 is saved. No started training was
 discarded.
 
+### Verified early formal receipts, 2026-10-07 16:34 AWST
+
+Kaya job `77858` remains running. The independent collector verified its
+30-condition step-0 SongEval mean `3.413946`, all scored/archive audio SHA256
+bindings, fixed indices/seeds, and the first training step's two scored WAVs.
+All 30 step-0 generations report `truncated=true` under the 600-semantic-token
+limit, so this is a short-generation baseline. Training step 1 has group mean
+`2.651220` and sampled KL `0`; it uses a different training prompt and must
+not be compared directly with the validation mean. No post-training validation
+effect is yet claimed. The collector status was `partial-verified` (one
+optimizer step, one validation checkpoint).
+
+The first lab5090 attempt generated 30 step-0 WAVs but failed before writing
+a receipt because the runner pointed SongEval at the YuE2 environment, which
+lacked `librosa`. The correct pre-existing SongEval environment
+`/home/mengh/miniconda3/envs/pytorch_env/bin/python` successfully scored all
+30 generated WAVs in a manual preflight. The runner was corrected and
+relaunched as supervisor PID `3497790`. The incomplete 30 WAVs are regenerated
+from fixed seeds because their full rollout metadata was not archived; they
+are not treated as a verified receipt.
+
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
 scored-audio SHA256. Muse training records reward/KL and checkpoints; its
