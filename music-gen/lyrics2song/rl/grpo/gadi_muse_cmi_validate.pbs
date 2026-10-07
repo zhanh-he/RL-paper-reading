@@ -38,8 +38,13 @@ args=(
   --output "$run/validation/step_$(printf '%06d' "$STEP")"
 )
 if [[ "$STEP" != 0 ]]; then
-  adapter="$run/checkpoint/checkpoint-$STEP"
-  [[ -f "$adapter/adapter_model.safetensors" ]] || { echo "Missing adapter $adapter" >&2; exit 1; }
+  mapfile -t matches < <(find "$run/checkpoint" -type f \
+    -path "*/checkpoint-$STEP/adapter_model.safetensors")
+  [[ ${#matches[@]} -eq 1 ]] || {
+    echo "Expected exactly one checkpoint-$STEP adapter, found ${#matches[@]}" >&2
+    exit 1
+  }
+  adapter="${matches[0]%/adapter_model.safetensors}"
   args+=(--adapter "$adapter")
 fi
 if [[ "$REWARD" == songeval ]]; then

@@ -57,12 +57,12 @@ Muse condition was seen.
 | YuE2 | MuseCritic | 2e-5 | 180732211 | integrated |
 | YuE2 | MuseCritic | 1e-4 | 180732212 | integrated |
 | YuE2 | MuseCritic | 3e-4 | 180732213 | integrated |
-| Muse | SongEval | 1e-6 | 180732514 | 180732515 / 180732516 |
-| Muse | SongEval | 3e-6 | 180732517 | 180732518 / 180732519 |
-| Muse | SongEval | 1e-5 | 180732520 | 180732521 / 180732522 |
-| Muse | MuseCritic | 1e-6 | 180732523 | 180732524 / 180732525 |
-| Muse | MuseCritic | 3e-6 | 180732526 | 180732527 / 180732528 |
-| Muse | MuseCritic | 1e-5 | 180732529 | 180732530 / 180732531 |
+| Muse | SongEval | 1e-6 | 180732514 | 180733606 / 180733607 |
+| Muse | SongEval | 3e-6 | 180732517 | 180733608 / 180733609 |
+| Muse | SongEval | 1e-5 | 180732520 | 180733610 / 180733611 |
+| Muse | MuseCritic | 1e-6 | 180732523 | 180733612 / 180733613 |
+| Muse | MuseCritic | 3e-6 | 180732526 | 180733614 / 180733615 |
+| Muse | MuseCritic | 1e-5 | 180732529 | 180733616 / 180733617 |
 
 Muse validation jobs remain `afterok` dependent on their corresponding full
 train, and also have priority `1023`. Kaya YuE2/SongEval LR1e-4 full job
@@ -87,6 +87,13 @@ not divisible by `save_steps=25`, but the validator requires `checkpoint-270`.
 Those queued jobs were canceled and replaced with the Muse IDs in the table
 above, using `save_steps=30` so step 270 is saved. No started training was
 discarded.
+
+At 16:48 AWST, a prior Muse pilot showed ms-swift nests checkpoints under
+`checkpoint/v0-<timestamp>/checkpoint-<step>`. The validation script's direct
+`checkpoint/checkpoint-270` lookup was therefore wrong. It now requires
+exactly one recursive match for the requested step, and the 12 not-yet-run
+validation jobs were replaced by the IDs in the table. The six training job
+IDs and their queue times were not changed.
 
 ### Verified early formal receipts, 2026-10-07 16:34 AWST
 
