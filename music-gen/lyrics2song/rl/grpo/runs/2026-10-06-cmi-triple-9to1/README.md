@@ -102,3 +102,22 @@ step 0/1/2 receipt SHA256 respectively
 `ece826a9626b68e3ed52951667f5ca07db891bc0f86523a8f806dde70f837b09`,
 `bc60c7bdf8af8d9194cf93320d604927d16a4fcbed492e4bdcd7aca007d803e4`,
 and `07948b013bdb16913b8a4794ce75fc319c8630b839eedb80f655a6f1eda5fec8`.
+
+### Queue reassessment, 2026-10-07 10:54 AWST
+
+The user has access to both Gadi projects: wa66 (23.92 KSU available) and
+iv96 (14.70 KSU available in 2026.q4). The original 36 Gadi jobs had all
+been billed to wa66. The six MuseCritic arms and their validation chains
+(18 pending jobs: YuE2 `180635253`-`180635258`, Muse `180635271`-
+`180635276`, validation `180636767`-`180636772`) were changed in place to
+iv96 with `qalter -P iv96`; SongEval remains on wa66. PBS confirmed the
+changed project for each job, original queue time, dependencies, and
+priority `-100`. No duplicate jobs were submitted. Both projects have ample
+compute allocation, but they share the same gpuhopper GPU queue: PBS
+reported zero currently available GPUs and no estimated start time for our
+jobs. Project rebilling therefore does not establish a faster start.
+
+Kaya's scheduler gave pending full job `77858` a provisional start of
+2026-10-09 10:03 AWST (`squeue --start`, observed 2026-10-07 10:52 AWST).
+This is a movable scheduling prediction, not a reservation or a completion
+time. Its `Nice=10000`/priority 1 preserves other jobs' precedence.
