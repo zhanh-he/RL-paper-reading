@@ -32,44 +32,53 @@ until logs, checkpoints, scored-audio hashes, and validation receipts pass.
   public prompt text needed by the model. The reference audio is **not**
   downloaded, decoded, or passed to either model in this run.
 
-## Submitted arms
+## Current formal jobs (2026-10-07 16:19 AWST)
 
-All Gadi jobs were accepted at priority -100. Each two-step smoke is a
-prerequisite for its distinct 270-step training job, which starts from a
-fresh LoRA. The 270 planned YuE2 updates traverse all 270 training conditions
-once by index. Muse's ms-swift loader controls sampling order; 270 optimizer
-steps must not be described as proof that every Muse condition was seen.
+The first Gadi smoke-gated submission is superseded. Its Muse jobs failed a
+pre-training assertion because the script hashed an older dataset path; the
+YuE2/MuseCritic smoke failed because torchaudio 2.10 required absent
+TorchCodec for FLAC decoding. Both faults are corrected in the checked-in
+scripts and deployed on Gadi. All remaining old queued/held jobs were
+canceled. No old Gadi smoke score is a formal result.
 
-| Model | Reward | LR | Smoke | Train |
+The replacement jobs below start **full 270-step training directly** from a
+fresh LoRA, with no smoke dependency. Gadi PBS confirmed priority `1023`
+(maximum user-settable job priority), SongEval billed to wa66 and MuseCritic
+to iv96. Training was queued at this snapshot, not yet verified complete.
+YuE2 traverses all 270 training conditions once by index; Muse's ms-swift
+loader controls sampling order, so 270 optimizer steps do not prove each
+Muse condition was seen.
+
+| Model | Reward | LR | Gadi full train | Fixed validation 0 / 270 |
 | --- | --- | --- | --- | --- |
-| YuE2 | SongEval | 2e-5 | 180635247 | 180635248 |
-| YuE2 | SongEval | 1e-4 | 180635249 | 180635250 |
-| YuE2 | SongEval | 3e-4 | 180635251 | 180635252 |
-| YuE2 | MuseCritic | 2e-5 | 180635253 | 180635254 |
-| YuE2 | MuseCritic | 1e-4 | 180635255 | 180635256 |
-| YuE2 | MuseCritic | 3e-4 | 180635257 | 180635258 |
-| Muse | SongEval | 1e-6 | 180635265 | 180635266 |
-| Muse | SongEval | 3e-6 | 180635267 | 180635268 |
-| Muse | SongEval | 1e-5 | 180635269 | 180635270 |
-| Muse | MuseCritic | 1e-6 | 180635271 | 180635272 |
-| Muse | MuseCritic | 3e-6 | 180635273 | 180635274 |
-| Muse | MuseCritic | 1e-5 | 180635275 | 180635276 |
+| YuE2 | SongEval | 2e-5 | 180732208 | integrated |
+| YuE2 | SongEval | 1e-4 | 180732209 | integrated |
+| YuE2 | SongEval | 3e-4 | 180732210 | integrated |
+| YuE2 | MuseCritic | 2e-5 | 180732211 | integrated |
+| YuE2 | MuseCritic | 1e-4 | 180732212 | integrated |
+| YuE2 | MuseCritic | 3e-4 | 180732213 | integrated |
+| Muse | SongEval | 1e-6 | 180732234 | 180732240 / 180732241 |
+| Muse | SongEval | 3e-6 | 180732235 | 180732242 / 180732244 |
+| Muse | SongEval | 1e-5 | 180732236 | 180732245 / 180732246 |
+| Muse | MuseCritic | 1e-6 | 180732237 | 180732248 / 180732249 |
+| Muse | MuseCritic | 3e-6 | 180732238 | 180732250 / 180732251 |
+| Muse | MuseCritic | 1e-5 | 180732239 | 180732252 / 180732253 |
 
-Kaya additionally accepted YuE2/SongEval LR1e-4 smoke `77857` and
-dependent train `77858` at low priority. This is an FP16 cross-host replicate,
-not a fourth LR or a dtype-controlled comparison. Its GPU partition is
-capacity-constrained; submission is not completion.
+Muse validation jobs remain `afterok` dependent on their corresponding full
+train, and also have priority `1023`. Kaya YuE2/SongEval LR1e-4 full job
+`77858` is an FP16 cross-host replicate, not a fourth LR or a
+dtype-controlled comparison. Its completed two-step smoke `77857` is not a
+gate. Slurm accepted `Nice=0` (from 10000), then started the full job on
+node `k018` at 2026-10-07 16:17 AWST. At 16:19, step-0 evaluation was in
+progress; no formal reward comparison was ready.
 
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
 scored-audio SHA256. Muse training records reward/KL and checkpoints; its
-separate fixed validation jobs for steps 0 and 270 are submitted with
-`afterok` dependencies on the corresponding full runs: SongEval 1e-6
-`180636761/762`, 3e-6 `180636763/764`, 1e-5 `180636765/766`;
-MuseCritic 1e-6 `180636767/768`, 3e-6 `180636769/770`, 1e-5
-`180636771/772`. They remain unverified until complete; intermediate Muse
-validation points are intentionally blank. The official test is never used to pick
-LR or checkpoint. SongEval and MuseCritic scores remain separate scales.
+separate fixed validation jobs cover steps 0 and 270. They remain unverified
+until complete; intermediate Muse validation points are intentionally blank.
+The official test is never used to pick LR or checkpoint. SongEval and
+MuseCritic scores remain separate scales.
 
 The YuE2 run uses at most 600 semantic tokens, so it is a short-generation
 study, not a full-song benchmark. Neither reward is perceptual ground truth;

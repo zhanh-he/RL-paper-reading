@@ -7,10 +7,22 @@ import re
 import sys
 from pathlib import Path
 
+import soundfile as sf
 import torch
+import torchaudio
 
 
 KEYS = ("Coherence", "Musicality", "Memorability", "Clarity", "Naturalness")
+
+
+def load_audio_soundfile(source, sample_rate):
+    waveform, original_sample_rate = sf.read(source, dtype="float32", always_2d=True)
+    waveform = torch.from_numpy(waveform.T.copy())
+    if waveform.size(0) > 1:
+        waveform = waveform.mean(dim=0, keepdim=True)
+    if original_sample_rate != sample_rate:
+        waveform = torchaudio.functional.resample(waveform, original_sample_rate, sample_rate)
+    return waveform.squeeze(0).cpu().numpy()
 
 
 def main():
@@ -31,7 +43,9 @@ def main():
 
     deploy = args.repo / "muse_grpo" / "deploy" / "musecritic"
     sys.path.insert(0, str(deploy))
-    from musecritic_serve import MuseCriticServer
+    import musecritic_serve
+    musecritic_serve._load_audio = load_audio_soundfile
+    MuseCriticServer = musecritic_serve.MuseCriticServer
 
     server = MuseCriticServer(args.model.resolve(), torch.device("cuda:0"),
                              default_max_tokens=args.max_new_tokens)

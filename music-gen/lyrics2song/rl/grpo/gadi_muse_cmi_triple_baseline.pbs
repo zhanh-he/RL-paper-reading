@@ -57,11 +57,11 @@ export SONGEVAL_REPO=/g/data/wa66/hanyu/SongEval-formal
 export SONGEVAL_PY=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
 export MUSE_SCORING_DIR="$run/songeval_scoring"
 
-"$train_py" - "$run/experiment.json" "$REWARD" "$LR" "$MODE" <<'PY'
+"$train_py" - "$run/experiment.json" "$REWARD" "$LR" "$MODE" "$data" <<'PY'
 import hashlib, json, pathlib, sys
 path = pathlib.Path(sys.argv[1])
-reward, lr, mode = sys.argv[2:]
-dataset = pathlib.Path('/g/data/wa66/hanyu/vocal2accomp-muse/experiments/cmi_triple_textlyrics_20261006/data/muse-cmi-triple-train.jsonl')
+reward, lr, mode = sys.argv[2:5]
+dataset = pathlib.Path(sys.argv[5])
 actual = hashlib.sha256(dataset.read_bytes()).hexdigest()
 assert actual == 'ff437d751d62742d92daf7ac56a678010c52d6c22def5624a8324301e6699be6'
 manifest = {'source_split_sha256': '2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136',
