@@ -118,6 +118,16 @@ baseline generations were truncated under the 600-token limit. Kaya's
 baseline `3.413946` was produced in FP16 versus lab5090 BF16, so the
 cross-host baseline difference must not be read as a learning-rate effect.
 
+At 16:42 AWST, a lab5090 on-host experiment queue (current PID `3498704`) was
+started, waiting for the current 2e-5 process to exit. It will run
+SongEval LR1e-4, then LR3e-4 in BF16 on the **same 270/30 split**, but only
+after the preceding run passes `collect_formal_run.py` as
+`verified-complete` and the GPU is continuously idle. The queue stops on a
+failed receipt or existing output, and yields to any other workload occupying
+the GPU. It is a remote experiment process, not a Codex scheduled task. Its
+log is `outputs/cmi_triple_9to1_songeval_followups_20261007.log` on lab5090;
+at this snapshot both follow-up arms are pending, not running or successful.
+
 YuE2 evaluates 30 fixed validation conditions at steps 0/1/25/50/100/270,
 logs training reward and sampled KL against the frozen base, and records
 scored-audio SHA256. Muse training records reward/KL and checkpoints; its

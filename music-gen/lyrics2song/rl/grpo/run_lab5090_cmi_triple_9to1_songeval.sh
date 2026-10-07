@@ -2,7 +2,9 @@
 set -euo pipefail
 
 root=/home/mengh/research/YuE2-posttrain
-output="$root/outputs/cmi_triple_9to1_songeval_lr2e-5_train_20261007_lab5090"
+lr=${LR:-2e-5}
+case "$lr" in 2e-5|1e-4|3e-4) ;; *) echo "Unsupported LR: $lr" >&2; exit 2 ;; esac
+output="$root/outputs/cmi_triple_9to1_songeval_lr${lr}_train_20261007_lab5090"
 manifest="$root/examples/cmi-pref-triple-text-lyrics-9to1-v2.json"
 
 cd "$root"
@@ -22,7 +24,7 @@ exec flock -n "$output.lock" .venv/bin/python -u examples/yue2_songeval_formal_9
   --output "$output" \
   --max-steps 270 \
   --max-tokens 600 \
-  --learning-rate 2e-5 \
+  --learning-rate "$lr" \
   --kl-beta 0.01 \
   --compute-dtype bf16 \
   --checkpoint-every 25
