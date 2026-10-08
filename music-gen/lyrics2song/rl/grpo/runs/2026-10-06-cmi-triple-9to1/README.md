@@ -64,6 +64,50 @@ Muse condition was seen.
 | Muse | MuseCritic | 3e-6 | 180732526 | 180733614 / 180733615 |
 | Muse | MuseCritic | 1e-5 | 180732529 | 180733616 / 180733617 |
 
+### 2026-10-08 AWST checkpoint
+
+The table above is the original submission ledger, not current job status.
+On lab5090, YuE2/SongEval at LR 2e-5, 1e-4, and 3e-4 each completed 270 steps
+and passed the independent collector (six 30-condition validation receipts
+plus scored-audio SHA256 bindings). Their step-0 mean was 3.463645 and their
+step-270 means were 3.5235, 3.5358, and 3.6605 respectively. These are
+short-generation validation reward scores, not human preference or long-song
+results. The paired 30-condition LR 3e-4 mean delta was +0.1969 (19/30
+positive; simple 5,000-resample bootstrap 95% interval +0.0442 to +0.3550).
+This exploratory interval does not correct for selecting the best of three
+learning rates. Kaya's FP16 YuE2/SongEval LR 1e-4 completed 270 steps and passed
+the same collector; its step-0/270 means were 3.413946/3.5478. Do not read
+the BF16-versus-FP16 difference as an LR effect.
+
+Gadi YuE2/MuseCritic LR 2e-5, job 180732211, completed 270 steps and passed
+the updated collector; its step-0/270 validation means were 2.6392/2.6930.
+Its paired mean delta was +0.0538 (18/30 positive; same bootstrap interval
+-0.1175 to +0.2256), so this arm does not show a clear validation gain.
+The other five Gadi YuE2 arms remained queued at this checkpoint. The official
+121-condition test remains sealed.
+
+All six original Gadi Muse jobs failed, rather than finishing training.
+MuseCritic jobs hit the scheduler's 512-total-token cap before generating
+`<AUDIO_*>` for some long prompts. SongEval jobs used a transient HF cache,
+then could not load MuQ on a network-isolated compute node. The v2 job scripts
+use a 2048-total-token cap and the persistent, offline-verified MuQ cache.
+Exact chat-template preflight on all 270 train and 30 valid prompts found a
+maximum 1393 and 961 prompt tokens, respectively, leaving at least 591
+generation tokens on train after the 64-token safety margin. This is a
+configuration check, not proof that all future generations will be valid.
+Failed v1 run directories were preserved. Full v2 retrains were submitted as
+SongEval 1e-6/3e-6/1e-5: 180801560/563/566 and MuseCritic 1e-6/3e-6/1e-5:
+180801569/572/575, with dependent fixed 0/270 validation jobs. All six v2
+trains were queued at PBS priority 1023 at the time of submission; no v2 Muse
+score is claimed yet.
+
+Long-form inference is a separate, fixed-seed replay, not a change to the
+training protocol. On lab5090, the LR 3e-4 SongEval baseline/checkpoint-270
+pair was rendered for validation indexes 0/10/20. All six files passed WAV
+and FLAC SHA256 checks and run for about 64 seconds; all six hit the
+1600-semantic-token cap. They are not yet listened to, long-form scored, or
+published as demo evidence. See [LONG_REPLAY_PROTOCOL.md](LONG_REPLAY_PROTOCOL.md).
+
 Muse validation jobs remain `afterok` dependent on their corresponding full
 train, and also have priority `1023`. Kaya YuE2/SongEval LR1e-4 full job
 `77858` is an FP16 cross-host replicate, not a fourth LR or a

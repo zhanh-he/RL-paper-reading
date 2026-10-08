@@ -29,11 +29,12 @@ train_py=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
 codec_py="$root/envs/mucodec-py310-cu128/bin/python"
 plugin="$study/muse_cmi_rewards.py"
 data="$study/data/muse-cmi-triple-train.jsonl"
-run="$study/outputs/${REWARD}_lr${LR}_${MODE}"
+run="$study/outputs/${REWARD}_lr${LR}_${MODE}${RUN_TAG:+_$RUN_TAG}"
 mkdir -p "$run" "$PBS_JOBFS/tmp" "$PBS_JOBFS/cache"
 export TMPDIR="$PBS_JOBFS/tmp"
 export XDG_CACHE_HOME="$PBS_JOBFS/cache/xdg"
-export HF_HOME="$PBS_JOBFS/cache/huggingface"
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export HF_HUB_OFFLINE=1
 export TORCH_HOME="$PBS_JOBFS/cache/torch"
 export TRITON_CACHE_DIR="$PBS_JOBFS/cache/triton"
 mkdir -p "$XDG_CACHE_HOME" "$HF_HOME" "$TORCH_HOME" "$TRITON_CACHE_DIR"
@@ -45,7 +46,7 @@ export MUSE_MUCODEC_API_BASE=http://127.0.0.1:18003
 export MUSE_CRITIC_API_BASE=http://127.0.0.1:18002/v1
 export MUSECRITIC_RM_AUDIO_DIR="$run/decoded"
 export MUSE_ROLLOUT_RESULT_PATH="$run/rollouts.jsonl"
-export MUSE_GRPO_MAX_TOTAL_TOKENS=512
+export MUSE_GRPO_MAX_TOTAL_TOKENS=2048
 export MUSE_DECODE_DURATION=10.24
 export MUSE_DECODE_STEPS=20
 export MUSE_CRITIC_MAX_NEW_TOKENS=512

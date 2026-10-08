@@ -25,7 +25,9 @@ export PYTHONNOUSERSITE=1
 unset PYTHONHOME
 root=/g/data/wa66/hanyu/vocal2accomp-muse
 study="$root/experiments/cmi_triple_9to1_20261006"
-run="$study/outputs/${REWARD}_lr${LR}_train"
+run="$study/outputs/${REWARD}_lr${LR}_train${RUN_TAG:+_$RUN_TAG}"
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export HF_HUB_OFFLINE=1
 train_py=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
 args=(
   --model "$root/models/Muse-0.6b"
