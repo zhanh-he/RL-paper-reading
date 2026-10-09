@@ -7,18 +7,156 @@
   "sealed_test_conditions": 121,
   "planned_updates": 270,
   "arms": [
-    {"model":"YuE2","reward":"SongEval","lr":"2e-5","host":"Gadi BF16","smoke":"180635247","train":"180635248"},
-    {"model":"YuE2","reward":"SongEval","lr":"1e-4","host":"Gadi BF16","smoke":"180635249","train":"180635250"},
-    {"model":"YuE2","reward":"SongEval","lr":"3e-4","host":"Gadi BF16","smoke":"180635251","train":"180635252"},
-    {"model":"YuE2","reward":"MuseCritic","lr":"2e-5","host":"Gadi BF16","smoke":"180635253","train":"180635254"},
-    {"model":"YuE2","reward":"MuseCritic","lr":"1e-4","host":"Gadi BF16","smoke":"180635255","train":"180635256"},
-    {"model":"YuE2","reward":"MuseCritic","lr":"3e-4","host":"Gadi BF16","smoke":"180635257","train":"180635258"},
-    {"model":"Muse","reward":"SongEval","lr":"1e-6","host":"Gadi BF16","smoke":"180635265","train":"180635266","valid0":"180636761","valid270":"180636762"},
-    {"model":"Muse","reward":"SongEval","lr":"3e-6","host":"Gadi BF16","smoke":"180635267","train":"180635268","valid0":"180636763","valid270":"180636764"},
-    {"model":"Muse","reward":"SongEval","lr":"1e-5","host":"Gadi BF16","smoke":"180635269","train":"180635270","valid0":"180636765","valid270":"180636766"},
-    {"model":"Muse","reward":"MuseCritic","lr":"1e-6","host":"Gadi BF16","smoke":"180635271","train":"180635272","valid0":"180636767","valid270":"180636768"},
-    {"model":"Muse","reward":"MuseCritic","lr":"3e-6","host":"Gadi BF16","smoke":"180635273","train":"180635274","valid0":"180636769","valid270":"180636770"},
-    {"model":"Muse","reward":"MuseCritic","lr":"1e-5","host":"Gadi BF16","smoke":"180635275","train":"180635276","valid0":"180636771","valid270":"180636772"},
-    {"model":"YuE2","reward":"SongEval","lr":"1e-4","host":"Kaya FP16","smoke":"77857","train":"77858"}
-  ]
+    {
+      "model": "YuE2",
+      "reward": "SongEval",
+      "lr": "2e-5",
+      "host": "lab5090 BF16",
+      "train": "180732208",
+      "status": "verified-complete",
+      "validation": {
+        "0": 3.463645,
+        "270": 3.5235
+      }
+    },
+    {
+      "model": "YuE2",
+      "reward": "SongEval",
+      "lr": "1e-4",
+      "host": "lab5090 BF16",
+      "train": "180732209",
+      "status": "verified-complete",
+      "validation": {
+        "0": 3.463645,
+        "270": 3.5358
+      }
+    },
+    {
+      "model": "YuE2",
+      "reward": "SongEval",
+      "lr": "3e-4",
+      "host": "lab5090 BF16",
+      "train": "180732210",
+      "status": "verified-complete",
+      "validation": {
+        "0": 3.463645,
+        "270": 3.6605
+      }
+    },
+    {
+      "model": "YuE2",
+      "reward": "MuseCritic",
+      "lr": "2e-5",
+      "host": "Gadi BF16",
+      "train": "180732211",
+      "status": "verified-complete",
+      "validation": {
+        "0": 2.6392,
+        "270": 2.693
+      }
+    },
+    {
+      "model": "YuE2",
+      "reward": "MuseCritic",
+      "lr": "1e-4",
+      "host": "Gadi BF16",
+      "train": null,
+      "status": "queued-at-snapshot",
+      "validation": {}
+    },
+    {
+      "model": "YuE2",
+      "reward": "MuseCritic",
+      "lr": "3e-4",
+      "host": "Gadi BF16",
+      "train": null,
+      "status": "queued-at-snapshot",
+      "validation": {}
+    },
+    {
+      "model": "Muse",
+      "reward": "SongEval",
+      "lr": "1e-6",
+      "host": "Gadi BF16",
+      "train": "180801560",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "Muse",
+      "reward": "SongEval",
+      "lr": "3e-6",
+      "host": "Gadi BF16",
+      "train": "180801563",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "Muse",
+      "reward": "SongEval",
+      "lr": "1e-5",
+      "host": "Gadi BF16",
+      "train": "180801566",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "Muse",
+      "reward": "MuseCritic",
+      "lr": "1e-6",
+      "host": "Gadi BF16",
+      "train": "180801569",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "Muse",
+      "reward": "MuseCritic",
+      "lr": "3e-6",
+      "host": "Gadi BF16",
+      "train": "180801572",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "Muse",
+      "reward": "MuseCritic",
+      "lr": "1e-5",
+      "host": "Gadi BF16",
+      "train": "180801575",
+      "status": "queued-at-snapshot",
+      "validation": {},
+      "note": "Original Gadi Muse jobs failed; v2 retrains queued at snapshot."
+    },
+    {
+      "model": "YuE2",
+      "reward": "SongEval",
+      "lr": "1e-4",
+      "host": "Kaya FP16",
+      "train": "77858",
+      "status": "verified-complete",
+      "validation": {
+        "0": 3.413946,
+        "270": 3.5478
+      }
+    }
+  ],
+  "snapshot": "2026-10-08 AWST",
+  "evidence": "music-gen/lyrics2song/rl/grpo/runs/2026-10-06-cmi-triple-9to1/README.md#2026-10-08-awst-checkpoint",
+  "comparison": {
+    "arm": "YuE2 SongEval 3e-4 lab5090 BF16",
+    "paired_positive": 19,
+    "paired_total": 30,
+    "bootstrap_95": [
+      0.0442,
+      0.355
+    ],
+    "bootstrap_resamples": 5000,
+    "selection_adjusted": false
+  }
 }
