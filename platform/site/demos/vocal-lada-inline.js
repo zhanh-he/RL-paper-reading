@@ -39,7 +39,7 @@ function panel(stage, side) {
   const wave = document.createElement('div');
   wave.className = 'wave-visual';
   const waveImage = document.createElement('img');
-  waveImage.src = stage.audio.replace('/audio/', '/visuals/').replace(/\.wav$/, '_wave.png');
+  waveImage.src = stage.audio.replace('/audio/', '/visuals/').replace(/\.mp3$/, '_wave.png');
   waveImage.alt = `${side === 'a' ? 'Baseline' : `GRPO ${stage.step}`} mix waveform`;
   wave.append(waveImage);
   node.append(wave);
@@ -224,7 +224,7 @@ function render() {
     rail.append(item);
   }
   el('#lada-stage-context').textContent = selected.step === 0
-    ? '冻结模型基线；所有 reward 组使用逐字节相同的 step-0 WAV。'
+    ? '冻结模型基线；所有 reward 组使用相同的 step-0 MP3 试听副本，评分原件私有留存。'
     : `${selected.step} 步固定 12 秒重放；在线更新只使用前 6 秒。${selected.same_as_baseline ? '本步音频与基线逐字节相同。' : '音频按模型原始电平播放，响度变化本身需要检查。'}`;
   el('#lada-compare').replaceChildren(panel(baseline, 'a'), panel(selected, 'b'));
   el('#lada-metric-head').textContent = `${selected.step} steps`;

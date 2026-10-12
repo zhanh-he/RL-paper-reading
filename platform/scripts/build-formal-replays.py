@@ -5,6 +5,7 @@ import hashlib
 import importlib.util
 import json
 import shutil
+import subprocess
 from pathlib import Path
 
 import matplotlib
@@ -61,7 +62,7 @@ def main():
                             'index': i, 'seed': 5101 + i} for i in (0, 10, 20)],
               'visual_protocol': {'waveform_bounds': [-1, 1], 'spectrum': 'mel',
                                   'frequency_hz': [0, 24000], 'decibels': [-80, 0], 'background': '#000000'},
-              'arms': [], 'replicates': []}
+              'arms': [], 'replicates': [], 'superseded_arms': []}
     media_dir = args.staging / 'release-assets'; media_dir.mkdir(exist_ok=True)
     visuals = DEMOS / 'visuals/formal'; visuals.mkdir(parents=True, exist_ok=True)
     archive = ROOT / 'music-gen/lyrics2song/rl/grpo/runs/2026-10-12-formal-recovery'; archive.mkdir(parents=True, exist_ok=True)
@@ -80,16 +81,30 @@ def main():
             data, rate = sf.read(audio, always_2d=True)
             if rate != 48000 or abs(len(data) / rate - record['seconds']) > 1 / rate:
                 raise ValueError(f'Audio duration/rate mismatch: {path}')
+            source_sha = sha
+            cache = args.staging / 'mp3-192k-v1'
+            cache.mkdir(exist_ok=True)
+            encoded = cache / f'{source_sha}.mp3'
+            if not encoded.exists():
+                subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-i', str(audio),
+                                '-map', '0:a:0', '-c:a', 'libmp3lame', '-b:a', '192k',
+                                '-ar', '48000', '-map_metadata', '-1', str(encoded)], check=True)
+            sha = digest(encoded)
             name = f'{prefix}_valid{i:02d}_{sha[:12]}'
-            destination = media_dir / f'{name}.flac'
-            if not destination.exists(): shutil.copyfile(audio, destination)
+            destination = media_dir / f'{name}.mp3'
+            if not destination.exists(): shutil.copyfile(encoded, destination)
             elif digest(destination) != sha: raise ValueError('Release asset collision')
+            playback, playback_rate = sf.read(destination, always_2d=True)
+            if abs(len(playback) / playback_rate - record['seconds']) > .1:
+                raise ValueError('MP3 transcode changed audio duration')
             for kind, render in [('wave', wave), ('spectrum', mel.render)]:
                 image = visuals / f'{name}_{kind}.png'
-                if not image.exists(): render(audio, image)
+                if not image.exists(): render(destination, image)
             flags = record.get('truncated', False)
             entry = {'index': i, 'seed': record['seed'], 'seconds': record['seconds'],
-                     'sha256': sha, 'audio': URL + destination.name, 'signal': record['signal'],
+                     'sha256': sha, 'source_audio_sha256': source_sha, 'audio': URL + destination.name,
+                     'encoding': 'MP3 192 kbps / 48 kHz; no loudness normalization',
+                     'signal': record['signal'], 'signal_source': 'lossless original before MP3 encoding',
                      'wave': f'visuals/formal/{name}_wave.png', 'spectrum': f'visuals/formal/{name}_spectrum.png',
                      'wave_sha256': digest(visuals / f'{name}_wave.png'),
                      'spectrum_sha256': digest(visuals / f'{name}_spectrum.png'),
@@ -100,7 +115,8 @@ def main():
             if record.get('backend'):
                 entry['inference_backend'] = record['backend']
                 entry['inference_dtype'] = record['dtype']
-            assets[destination.name] = {'sha256': sha, 'bytes': destination.stat().st_size}
+            assets[destination.name] = {'sha256': sha, 'bytes': destination.stat().st_size,
+                                        'source_audio_sha256': source_sha}
             rows.append(entry)
         return rows
 
@@ -129,7 +145,6 @@ def main():
                 if rendered: arm['long_replays'][str(s)] = rendered
             output['arms'].append(arm)
             (archive / f'{arm["id"]}.json').write_text(json.dumps(verified, indent=2) + '\n')
-    muse_baseline = clips(args.staging / 'muse/native_vllm/long_baseline', 'muse_baseline')
     for reward in ('songeval', 'musecritic'):
         for lr in ('1e-6', '3e-6', '1e-5'):
             source = args.staging / f'muse/{reward}_lr{lr}_train_v2'
@@ -138,17 +153,38 @@ def main():
                    'id': f'muse-{reward}-{lr}', 'model': 'Muse',
                    'reward': 'SongEval' if reward == 'songeval' else 'MuseCritic', 'lr': lr,
                    'host': 'gadi', 'validation': {}, 'long_replays': {}}
-            if muse_baseline: arm['long_replays']['0'] = muse_baseline
-            for s in arm['checkpoints']:
-                rendered = clips(source / f'long_replay_vllm/step_{s:06d}/grpo', f'muse_{reward}_lr{lr}_step{s:06d}')
-                if rendered: arm['long_replays'][str(s)] = rendered
             for receipt in source.glob('validation/step_*/receipt.json'):
+                independent = read(receipt.with_name('verified_validation.json'))
+                if independent['receipt_sha256'] != digest(receipt):
+                    raise ValueError('Changed Muse validation receipt after independent audit')
                 evaluated = read(receipt); entries = evaluated['heldout']; s = str(int(receipt.parent.name.removeprefix('step_')))
                 if evaluated['n'] != 30: raise ValueError('Incomplete Muse validation')
                 arm['validation'][s] = {'mean_reward': evaluated['mean_reward'], 'n': 30,
                     'dimensions': {k: sum(r['reward'][k] for r in entries) / 30 for k in KEYS}}
-            output['arms'].append(arm)
+            shared_receipt = args.staging / f'muse/{reward}_lr1e-6_train_v2/validation/step_000000/receipt.json'
+            if '0' not in arm['validation'] and shared_receipt.exists():
+                if read(shared_receipt.with_name('verified_validation.json'))['receipt_sha256'] != digest(shared_receipt):
+                    raise ValueError('Shared baseline lacks independent verification')
+                evaluated = read(shared_receipt)
+                if evaluated['n'] != 30 or evaluated['adapter'] is not None:
+                    raise ValueError('Shared Muse baseline is not a 30-condition frozen reference')
+                arm['validation']['0'] = {'mean_reward': evaluated['mean_reward'], 'n': 30,
+                    'dimensions': {k: sum(r['reward'][k] for r in evaluated['heldout']) / 30 for k in KEYS}}
+            if arm['verified_train_steps'] == 270 and all(s in arm['validation'] for s in ('0', '270')):
+                arm['status'] = 'verified-complete'
+            arm['superseded_reason'] = '2026-10-12: user requested YuE2-aligned LR grid; old Muse inference and pending validation cancelled.'
+            output['superseded_arms'].append(arm)
             (archive / f'{arm["id"]}.json').write_text(json.dumps(verified, indent=2) + '\n')
+    for reward in ('songeval', 'musecritic'):
+        for lr in ('2e-5', '1e-4', '3e-4'):
+            receipt = args.staging / f'muse_aligned/submission_{reward}_lr{lr}.json'
+            submitted = read(receipt)
+            if submitted['standalone_inference'] or submitted['validation_generation']:
+                raise ValueError('Muse standalone inference is disabled by user request')
+            if submitted['verified_train_steps'] != 0 or submitted['train_curve']:
+                raise ValueError('Submission receipt is not a verified training log')
+            output['arms'].append(submitted)
+            (archive / f'{submitted["id"]}-submission.json').write_text(json.dumps(submitted, indent=2) + '\n')
     for source in sorted((args.staging / 'gadi').glob('cmi_triple_9to1_songeval*')):
         if not (source / 'verified_complete.json').exists(): continue
         record = read(source / 'verified_complete.json')

@@ -21,10 +21,18 @@ validation indexes 0, 10 and 20, seeds 5101, 5111 and 5121.
   1e-6 / 3e-6 / 1e-5 respectively. Very short generated audio caused a MuQ
   input-padding failure in the first two arms; the third produced no AUDIO
   tokens. Their last saved checkpoints are 60 / 120 / 30.
-- Muse fixed validation originally failed before generation because a deployed
-  helper module was missing. The module was restored and 0/270 fixed-valid
-  evaluations were resubmitted on Gadi iv96 (181026660–181026662). Training
-  completion must not be confused with validation completion.
+- The six old Muse arms are superseded and retained only for audit. All eight
+  pending validation jobs and the lab5090 independent Muse replay decoder
+  were cancelled on the user's request; no new Muse listening audio is published.
+- Six fresh Muse formal trains use the same LR grid as YuE2: 2e-5, 1e-4,
+  3e-4 for each of SongEval and MuseCritic, 270 planned updates, beta=0.01,
+  LoRA rank 8 and seed 42. SongEval uses wa66, MuseCritic iv96, priority 1023.
+  Submission JSONs record real job IDs; queued is not training-complete.
+  Native GRPO rollouts are retained, but independent inference and validation
+  generation are disabled. Missing AUDIO, nonfinite audio or decoded audio
+  under one second gets an explicit zero penalty and a separate invalid-output
+  journal. Infrastructure errors remain fatal. This objective revision applies
+  consistently to all six fresh Muse arms, not retroactively to older traces.
 
 Every JSON snapshot records its real contiguous optimizer-step count,
 checkpoint availability, source experiment SHA256, and audited reward/KL
@@ -33,18 +41,18 @@ trace. Muse failures are preserved, not filled with made-up final scores.
 ## Replay Integrity
 
 YuE2 long inference uses max 1600 / min 200 semantic tokens; actual files are
-approximately 64 seconds. Muse uses one continuous 1600-completion-token
-trajectory using the official Muse vLLM inference approach (BF16,
-temperature/top-p 0.9, repetition penalty 1.3, per-request fixed seeds)
-and the official MuCodec overlapping decoder; actual length is
-determined by AUDIO token count. Fixed per-model baseline audio is shared
-across learning rates, rewards and checkpoints. Original FLAC lives in the
-GitHub release to keep GitHub Pages below its site-size limit. Waveforms use
+approximately 64 seconds. Independent Muse inference is paused by request.
+Fixed YuE2 baseline audio is shared across rewards, rates and checkpoints.
+Public audio is MP3 only (192 kbps / 48 kHz, no loudness normalization), with
+separate lossless-source and MP3 hashes. Lossless scoring originals remain
+outside the repository; release assets must also be MP3. Waveforms use
 fixed [-1, 1]; Mel spectra use 0–24 kHz and fixed [-80, 0] dB with black floor.
 
 Audio filename suffixes encode SHA256 prefixes. Full hashes and byte counts
 are in `asset-bindings.json`; the public registry binds prompts, seeds, actual
-durations, checkpoints, audio and visuals. Missing long-file scores are
+durations, checkpoints, audio and visuals rendered from the actual MP3.
+Signal diagnostics in tables refer explicitly to pre-encoding originals.
+Missing long-file scores are
 explicitly unscored; short validation scores are not attributed to long audio.
 
 ## Interpretation

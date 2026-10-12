@@ -7,12 +7,12 @@
       "seed": 5101,
       "reference": null,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_longrun_000005.flac", "wave": "visuals/yue2_longrun_000005_wave.png", "spectrum": "visuals/yue2_longrun_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_longrun_000025.flac", "wave": "visuals/yue2_longrun_000025_wave.png", "spectrum": "visuals/yue2_longrun_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_longrun_000050.flac", "wave": "visuals/yue2_longrun_000050_wave.png", "spectrum": "visuals/yue2_longrun_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_longrun_000100.flac", "wave": "visuals/yue2_longrun_000100_wave.png", "spectrum": "visuals/yue2_longrun_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_longrun_000005.mp3", "wave": "visuals/yue2_longrun_000005_wave.png", "spectrum": "visuals/yue2_longrun_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_longrun_000025.mp3", "wave": "visuals/yue2_longrun_000025_wave.png", "spectrum": "visuals/yue2_longrun_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_longrun_000050.mp3", "wave": "visuals/yue2_longrun_000050_wave.png", "spectrum": "visuals/yue2_longrun_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_longrun_000100.mp3", "wave": "visuals/yue2_longrun_000100_wave.png", "spectrum": "visuals/yue2_longrun_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
     "yue2_stress": {
@@ -23,17 +23,17 @@
       "reference": null,
       "learning_rate": 0.0001,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_highlr_000005.flac", "wave": "visuals/yue2_highlr_000005_wave.png", "spectrum": "visuals/yue2_highlr_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_highlr_000025.flac", "wave": "visuals/yue2_highlr_000025_wave.png", "spectrum": "visuals/yue2_highlr_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_highlr_000050.flac", "wave": "visuals/yue2_highlr_000050_wave.png", "spectrum": "visuals/yue2_highlr_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_highlr_000100.flac", "wave": "visuals/yue2_highlr_000100_wave.png", "spectrum": "visuals/yue2_highlr_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_highlr_000005.mp3", "wave": "visuals/yue2_highlr_000005_wave.png", "spectrum": "visuals/yue2_highlr_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_highlr_000025.mp3", "wave": "visuals/yue2_highlr_000025_wave.png", "spectrum": "visuals/yue2_highlr_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_highlr_000050.mp3", "wave": "visuals/yue2_highlr_000050_wave.png", "spectrum": "visuals/yue2_highlr_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_highlr_000100.mp3", "wave": "visuals/yue2_highlr_000100_wave.png", "spectrum": "visuals/yue2_highlr_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ],
       "pairs_100": [
-        { "index": 0, "baseline": "audio/yue2_longrun_000000.flac", "after": "audio/yue2_highlr_000100.flac" },
-        { "index": 1, "baseline": "audio/yue2_baseline_heldout1.flac", "after": "audio/yue2_highlr_000100_heldout1.flac" },
-        { "index": 2, "baseline": "audio/yue2_baseline_heldout2.flac", "after": "audio/yue2_highlr_000100_heldout2.flac" }
+        { "index": 0, "baseline": "audio/yue2_longrun_000000.mp3", "after": "audio/yue2_highlr_000100.mp3" },
+        { "index": 1, "baseline": "audio/yue2_baseline_heldout1.mp3", "after": "audio/yue2_highlr_000100_heldout1.mp3" },
+        { "index": 2, "baseline": "audio/yue2_baseline_heldout2.mp3", "after": "audio/yue2_highlr_000100_heldout2.mp3" }
       ]
     },
     "yue2_lr1e3": {
@@ -45,12 +45,12 @@
       "reward_model": "SongEval",
       "learning_rate": 0.001,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_lr1e3_000005.flac", "wave": "visuals/yue2_lr1e3_000005_wave.png", "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_lr1e3_000025.flac", "wave": "visuals/yue2_lr1e3_000025_wave.png", "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_lr1e3_000050.flac", "wave": "visuals/yue2_lr1e3_000050_wave.png", "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_lr1e3_000100.flac", "wave": "visuals/yue2_lr1e3_000100_wave.png", "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_lr1e3_000005.mp3", "wave": "visuals/yue2_lr1e3_000005_wave.png", "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_lr1e3_000025.mp3", "wave": "visuals/yue2_lr1e3_000025_wave.png", "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_lr1e3_000050.mp3", "wave": "visuals/yue2_lr1e3_000050_wave.png", "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_lr1e3_000100.mp3", "wave": "visuals/yue2_lr1e3_000100_wave.png", "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
     "yue2_lr1e2": {
@@ -62,12 +62,12 @@
       "reward_model": "SongEval",
       "learning_rate": 0.01,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_lr1e2_000005.flac", "wave": "visuals/yue2_lr1e2_000005_wave.png", "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_lr1e2_000025.flac", "wave": "visuals/yue2_lr1e2_000025_wave.png", "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_lr1e2_000050.flac", "wave": "visuals/yue2_lr1e2_000050_wave.png", "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_lr1e2_000100.flac", "wave": "visuals/yue2_lr1e2_000100_wave.png", "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_lr1e2_000005.mp3", "wave": "visuals/yue2_lr1e2_000005_wave.png", "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_lr1e2_000025.mp3", "wave": "visuals/yue2_lr1e2_000025_wave.png", "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_lr1e2_000050.mp3", "wave": "visuals/yue2_lr1e2_000050_wave.png", "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_lr1e2_000100.mp3", "wave": "visuals/yue2_lr1e2_000100_wave.png", "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
     "yue2_musecritic": {
@@ -79,12 +79,12 @@
       "reward_model": "MuseCritic",
       "learning_rate": 0.00002,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000005.flac", "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000025.flac", "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000050.flac", "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000100.flac", "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000005.mp3", "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000025.mp3", "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000050.mp3", "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_pcm24_000100.mp3", "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png", "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
     "yue2_musecritic_lr1e4": {
@@ -96,12 +96,12 @@
       "reward_model": "MuseCritic",
       "learning_rate": 0.0001,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000005.flac", "wave": "visuals/yue2_musecritic_lr1e4_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000005/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 25, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000025.flac", "wave": "visuals/yue2_musecritic_lr1e4_000025_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000025/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 50, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000050.flac", "wave": "visuals/yue2_musecritic_lr1e4_000050_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000050/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000100.flac", "wave": "visuals/yue2_musecritic_lr1e4_000100_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000100/receipt.json", "receipt_key": "heldout:0" }
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000005.mp3", "wave": "visuals/yue2_musecritic_lr1e4_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 25, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000025.mp3", "wave": "visuals/yue2_musecritic_lr1e4_000025_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000025/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 50, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000050.mp3", "wave": "visuals/yue2_musecritic_lr1e4_000050_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000050/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 100, "status": "measured", "audio": "audio/yue2_musecritic_lr1e4_000100.mp3", "wave": "visuals/yue2_musecritic_lr1e4_000100_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000100/receipt.json", "receipt_key": "heldout:0" }
       ]
     },
     "yue2_musecritic_lr1e3": {
@@ -113,9 +113,9 @@
       "reward_model": "MuseCritic",
       "learning_rate": 0.001,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000001/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e3_000005.flac", "wave": "visuals/yue2_musecritic_lr1e3_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000005/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 5, "status": "measured", "audio": "audio/yue2_musecritic_lr1e3_000005.mp3", "wave": "visuals/yue2_musecritic_lr1e3_000005_wave.png", "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000005/receipt.json", "receipt_key": "heldout:0" },
         { "step": 25, "status": "running" },
         { "step": 50, "status": "running" },
         { "step": 100, "status": "running" }
@@ -130,8 +130,8 @@
       "reward_model": "MuseCritic",
       "learning_rate": 0.01,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.flac", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json", "receipt_key": "heldout:0" },
-        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.flac", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 0, "status": "measured", "audio": "audio/yue2_longrun_000000.mp3", "wave": "visuals/yue2_longrun_000000_wave.png", "spectrum": "visuals/yue2_longrun_000000_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json", "receipt_key": "heldout:0" },
+        { "step": 1, "status": "measured", "audio": "audio/yue2_longrun_000001.mp3", "wave": "visuals/yue2_longrun_000001_wave.png", "spectrum": "visuals/yue2_longrun_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json", "receipt_key": "heldout:0" },
         { "step": 5, "status": "queued" },
         { "step": 25, "status": "queued" },
         { "step": 50, "status": "queued" },
@@ -145,8 +145,8 @@
       "seed": 5101,
       "reference": null,
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.flac", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "before" },
-        { "step": 1, "status": "measured", "audio": "audio/muse_songeval_matched_after.flac", "wave": "visuals/muse_songeval_matched_after_wave.png", "spectrum": "visuals/muse_songeval_matched_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "after" },
+        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.mp3", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "before" },
+        { "step": 1, "status": "measured", "audio": "audio/muse_songeval_matched_after.mp3", "wave": "visuals/muse_songeval_matched_after_wave.png", "spectrum": "visuals/muse_songeval_matched_after_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json", "receipt_key": "after" },
         { "step": 25, "status": "pending" },
         { "step": 50, "status": "pending" },
         { "step": 100, "status": "pending" },
@@ -161,27 +161,27 @@
       "reference": null,
       "reward_model": "MuseCritic",
       "stages": [
-        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.flac", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "before" },
-        { "step": 1, "status": "measured", "audio": "audio/muse_shared_musecritic_000001.flac", "wave": "visuals/muse_shared_musecritic_000001_wave.png", "spectrum": "visuals/muse_shared_musecritic_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "after" },
-        { "step": 25, "status": "measured", "audio": "audio/muse_shared_musecritic_000025.flac", "wave": "visuals/muse_shared_musecritic_000025_wave.png", "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json", "receipt_key": "after" },
-        { "step": 50, "status": "measured", "audio": "audio/muse_shared_musecritic_000050.flac", "wave": "visuals/muse_shared_musecritic_000050_wave.png", "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json", "receipt_key": "after" },
+        { "step": 0, "status": "measured", "audio": "audio/muse_songeval_matched_before.mp3", "wave": "visuals/muse_songeval_matched_before_wave.png", "spectrum": "visuals/muse_songeval_matched_before_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "before" },
+        { "step": 1, "status": "measured", "audio": "audio/muse_shared_musecritic_000001.mp3", "wave": "visuals/muse_shared_musecritic_000001_wave.png", "spectrum": "visuals/muse_shared_musecritic_000001_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json", "receipt_key": "after" },
+        { "step": 25, "status": "measured", "audio": "audio/muse_shared_musecritic_000025.mp3", "wave": "visuals/muse_shared_musecritic_000025_wave.png", "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json", "receipt_key": "after" },
+        { "step": 50, "status": "measured", "audio": "audio/muse_shared_musecritic_000050.mp3", "wave": "visuals/muse_shared_musecritic_000050_wave.png", "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png", "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json", "receipt_key": "after" },
         { "step": 100, "status": "queued", "job": "180204792.gadi-pbs" },
         { "step": 300, "status": "queued", "job": "180213393.gadi-pbs", "depends_on": "180204792.gadi-pbs" }
       ]
     }
   },
   "vocal": {
-    "input": { "audio": "audio/guide_vocal.wav", "wave": "visuals/guide_vocal_wave.png", "spectrum": "visuals/guide_vocal_spectrum.png" },
+    "input": { "audio": "audio/guide_vocal.mp3", "wave": "visuals/guide_vocal_wave.png", "spectrum": "visuals/guide_vocal_spectrum.png" },
     "reference": null,
     "stages": [
-      { "step": 0, "status": "measured", "audio": "audio/ace_complete_seed29.wav", "wave": "visuals/ace_complete_seed29_wave.png", "spectrum": "visuals/ace_complete_seed29_spectrum.png" },
+      { "step": 0, "status": "measured", "audio": "audio/ace_complete_seed29.mp3", "wave": "visuals/ace_complete_seed29_wave.png", "spectrum": "visuals/ace_complete_seed29_spectrum.png" },
       { "step": 100, "status": "pending" },
       { "step": 300, "status": "pending" },
       { "step": 1000, "status": "pending" }
     ],
     "outputs": [
-      { "model": "AnyAccomp", "kind": "accompaniment_only", "step": 0, "status": "measured", "audio": "audio/anyaccomp_accompaniment_seed29.wav", "wave": "visuals/anyaccomp_accompaniment_seed29_wave.png", "spectrum": "visuals/anyaccomp_accompaniment_seed29_spectrum.png" },
-      { "model": "AnyAccomp", "kind": "input_plus_accompaniment", "step": 0, "status": "measured", "audio": "audio/anyaccomp_mixture_seed29.wav", "wave": "visuals/anyaccomp_mixture_seed29_wave.png", "spectrum": "visuals/anyaccomp_mixture_seed29_spectrum.png" }
+      { "model": "AnyAccomp", "kind": "accompaniment_only", "step": 0, "status": "measured", "audio": "audio/anyaccomp_accompaniment_seed29.mp3", "wave": "visuals/anyaccomp_accompaniment_seed29_wave.png", "spectrum": "visuals/anyaccomp_accompaniment_seed29_spectrum.png" },
+      { "model": "AnyAccomp", "kind": "input_plus_accompaniment", "step": 0, "status": "measured", "audio": "audio/anyaccomp_mixture_seed29.mp3", "wave": "visuals/anyaccomp_mixture_seed29_wave.png", "spectrum": "visuals/anyaccomp_mixture_seed29_spectrum.png" }
     ]
   },
   "choral": {

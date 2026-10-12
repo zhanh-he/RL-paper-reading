@@ -17857,13 +17857,13 @@
     "model": "AnyAccomp public checkpoint",
     "model_source": "https://huggingface.co/amphion/anyaccomp",
     "run_host": "lab5090",
-    "input": "platform/site/demos/audio/guide_vocal.wav",
+    "input": "platform/site/demos/audio/guide_vocal.mp3",
     "seed": 29,
     "n_timesteps": 50,
     "cfg": 3,
     "outputs": {
       "accompaniment": {
-        "public_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.wav",
+        "public_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.mp3",
         "sample_rate": 24000,
         "seconds": 16,
         "rms": 0.03013126365840435,
@@ -17871,7 +17871,7 @@
         "sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea"
       },
       "mixture": {
-        "public_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.wav",
+        "public_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.mp3",
         "sample_rate": 24000,
         "seconds": 16,
         "rms": 0.23373523354530334,
@@ -18117,7 +18117,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
@@ -18206,7 +18206,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
                 "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
               },
@@ -18249,7 +18249,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
               },
@@ -18292,7 +18292,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
               }
@@ -18301,7 +18301,7 @@
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
@@ -18391,7 +18391,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
               },
@@ -18434,7 +18434,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
               },
@@ -18477,7 +18477,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
               }
@@ -18486,7 +18486,7 @@
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000005.flac",
+            "audio": "audio/yue2_longrun_000005.mp3",
             "wave": "visuals/yue2_longrun_000005_wave.png",
             "spectrum": "visuals/yue2_longrun_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000005/receipt.json",
@@ -18576,7 +18576,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000005.flac",
+                "audio": "audio/yue2_longrun_000005.mp3",
                 "wave": "visuals/yue2_longrun_000005_wave.png",
                 "spectrum": "visuals/yue2_longrun_000005_spectrum.png"
               },
@@ -18619,7 +18619,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000005_heldout1.flac",
+                "audio": "audio/yue2_longrun_000005_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000005_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000005_heldout1_spectrum.png"
               },
@@ -18662,7 +18662,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000005_heldout2.flac",
+                "audio": "audio/yue2_longrun_000005_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000005_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000005_heldout2_spectrum.png"
               }
@@ -18671,7 +18671,7 @@
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000025.flac",
+            "audio": "audio/yue2_longrun_000025.mp3",
             "wave": "visuals/yue2_longrun_000025_wave.png",
             "spectrum": "visuals/yue2_longrun_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000025/receipt.json",
@@ -18761,7 +18761,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000025.flac",
+                "audio": "audio/yue2_longrun_000025.mp3",
                 "wave": "visuals/yue2_longrun_000025_wave.png",
                 "spectrum": "visuals/yue2_longrun_000025_spectrum.png"
               },
@@ -18804,7 +18804,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000025_heldout1.flac",
+                "audio": "audio/yue2_longrun_000025_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000025_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000025_heldout1_spectrum.png"
               },
@@ -18847,7 +18847,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000025_heldout2.flac",
+                "audio": "audio/yue2_longrun_000025_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000025_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000025_heldout2_spectrum.png"
               }
@@ -18856,7 +18856,7 @@
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000050.flac",
+            "audio": "audio/yue2_longrun_000050.mp3",
             "wave": "visuals/yue2_longrun_000050_wave.png",
             "spectrum": "visuals/yue2_longrun_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000050/receipt.json",
@@ -18946,7 +18946,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000050.flac",
+                "audio": "audio/yue2_longrun_000050.mp3",
                 "wave": "visuals/yue2_longrun_000050_wave.png",
                 "spectrum": "visuals/yue2_longrun_000050_spectrum.png"
               },
@@ -18989,7 +18989,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000050_heldout1.flac",
+                "audio": "audio/yue2_longrun_000050_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000050_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000050_heldout1_spectrum.png"
               },
@@ -19032,7 +19032,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000050_heldout2.flac",
+                "audio": "audio/yue2_longrun_000050_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000050_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000050_heldout2_spectrum.png"
               }
@@ -19041,7 +19041,7 @@
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000100.flac",
+            "audio": "audio/yue2_longrun_000100.mp3",
             "wave": "visuals/yue2_longrun_000100_wave.png",
             "spectrum": "visuals/yue2_longrun_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000100/receipt.json",
@@ -19131,7 +19131,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000100.flac",
+                "audio": "audio/yue2_longrun_000100.mp3",
                 "wave": "visuals/yue2_longrun_000100_wave.png",
                 "spectrum": "visuals/yue2_longrun_000100_spectrum.png"
               },
@@ -19174,7 +19174,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000100_heldout1.flac",
+                "audio": "audio/yue2_longrun_000100_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000100_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000100_heldout1_spectrum.png"
               },
@@ -19217,7 +19217,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000100_heldout2.flac",
+                "audio": "audio/yue2_longrun_000100_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000100_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000100_heldout2_spectrum.png"
               }
@@ -19236,7 +19236,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
@@ -19325,7 +19325,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
                 "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
               },
@@ -19368,7 +19368,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
               },
@@ -19411,7 +19411,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
               }
@@ -19420,7 +19420,7 @@
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
@@ -19510,7 +19510,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
               },
@@ -19553,7 +19553,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
               },
@@ -19596,7 +19596,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
               }
@@ -19605,7 +19605,7 @@
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_highlr_000005.flac",
+            "audio": "audio/yue2_highlr_000005.mp3",
             "wave": "visuals/yue2_highlr_000005_wave.png",
             "spectrum": "visuals/yue2_highlr_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000005/receipt.json",
@@ -19695,7 +19695,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000005.flac",
+                "audio": "audio/yue2_highlr_000005.mp3",
                 "wave": "visuals/yue2_highlr_000005_wave.png",
                 "spectrum": "visuals/yue2_highlr_000005_spectrum.png"
               },
@@ -19738,7 +19738,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000005_heldout1.flac",
+                "audio": "audio/yue2_highlr_000005_heldout1.mp3",
                 "wave": "visuals/yue2_highlr_000005_heldout1_wave.png",
                 "spectrum": "visuals/yue2_highlr_000005_heldout1_spectrum.png"
               },
@@ -19781,7 +19781,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000005_heldout2.flac",
+                "audio": "audio/yue2_highlr_000005_heldout2.mp3",
                 "wave": "visuals/yue2_highlr_000005_heldout2_wave.png",
                 "spectrum": "visuals/yue2_highlr_000005_heldout2_spectrum.png"
               }
@@ -19790,7 +19790,7 @@
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_highlr_000025.flac",
+            "audio": "audio/yue2_highlr_000025.mp3",
             "wave": "visuals/yue2_highlr_000025_wave.png",
             "spectrum": "visuals/yue2_highlr_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000025/receipt.json",
@@ -19880,7 +19880,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000025.flac",
+                "audio": "audio/yue2_highlr_000025.mp3",
                 "wave": "visuals/yue2_highlr_000025_wave.png",
                 "spectrum": "visuals/yue2_highlr_000025_spectrum.png"
               },
@@ -19923,7 +19923,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000025_heldout1.flac",
+                "audio": "audio/yue2_highlr_000025_heldout1.mp3",
                 "wave": "visuals/yue2_highlr_000025_heldout1_wave.png",
                 "spectrum": "visuals/yue2_highlr_000025_heldout1_spectrum.png"
               },
@@ -19966,7 +19966,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000025_heldout2.flac",
+                "audio": "audio/yue2_highlr_000025_heldout2.mp3",
                 "wave": "visuals/yue2_highlr_000025_heldout2_wave.png",
                 "spectrum": "visuals/yue2_highlr_000025_heldout2_spectrum.png"
               }
@@ -19975,7 +19975,7 @@
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_highlr_000050.flac",
+            "audio": "audio/yue2_highlr_000050.mp3",
             "wave": "visuals/yue2_highlr_000050_wave.png",
             "spectrum": "visuals/yue2_highlr_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000050/receipt.json",
@@ -20065,7 +20065,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000050.flac",
+                "audio": "audio/yue2_highlr_000050.mp3",
                 "wave": "visuals/yue2_highlr_000050_wave.png",
                 "spectrum": "visuals/yue2_highlr_000050_spectrum.png"
               },
@@ -20108,7 +20108,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000050_heldout1.flac",
+                "audio": "audio/yue2_highlr_000050_heldout1.mp3",
                 "wave": "visuals/yue2_highlr_000050_heldout1_wave.png",
                 "spectrum": "visuals/yue2_highlr_000050_heldout1_spectrum.png"
               },
@@ -20151,7 +20151,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000050_heldout2.flac",
+                "audio": "audio/yue2_highlr_000050_heldout2.mp3",
                 "wave": "visuals/yue2_highlr_000050_heldout2_wave.png",
                 "spectrum": "visuals/yue2_highlr_000050_heldout2_spectrum.png"
               }
@@ -20160,7 +20160,7 @@
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_highlr_000100.flac",
+            "audio": "audio/yue2_highlr_000100.mp3",
             "wave": "visuals/yue2_highlr_000100_wave.png",
             "spectrum": "visuals/yue2_highlr_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-lr-stress/step_000100/receipt.json",
@@ -20250,7 +20250,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000100.flac",
+                "audio": "audio/yue2_highlr_000100.mp3",
                 "wave": "visuals/yue2_highlr_000100_wave.png",
                 "spectrum": "visuals/yue2_highlr_000100_spectrum.png"
               },
@@ -20293,7 +20293,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000100_heldout1.flac",
+                "audio": "audio/yue2_highlr_000100_heldout1.mp3",
                 "wave": "visuals/yue2_highlr_000100_heldout1_wave.png",
                 "spectrum": "visuals/yue2_highlr_000100_heldout1_spectrum.png"
               },
@@ -20336,7 +20336,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_highlr_000100_heldout2.flac",
+                "audio": "audio/yue2_highlr_000100_heldout2.mp3",
                 "wave": "visuals/yue2_highlr_000100_heldout2_wave.png",
                 "spectrum": "visuals/yue2_highlr_000100_heldout2_spectrum.png"
               }
@@ -20350,8 +20350,8 @@
         "pairs_100": [
           {
             "index": 0,
-            "baseline": "audio/yue2_longrun_000000.flac",
-            "after": "audio/yue2_highlr_000100.flac",
+            "baseline": "audio/yue2_longrun_000000.mp3",
+            "after": "audio/yue2_highlr_000100.mp3",
             "seed": 5101,
             "prompt": {
               "style": "English, mellow acoustic folk, guitar, light percussion, male vocal, 92 BPM",
@@ -20364,8 +20364,8 @@
           },
           {
             "index": 1,
-            "baseline": "audio/yue2_baseline_heldout1.flac",
-            "after": "audio/yue2_highlr_000100_heldout1.flac",
+            "baseline": "audio/yue2_baseline_heldout1.mp3",
+            "after": "audio/yue2_highlr_000100_heldout1.mp3",
             "seed": 5102,
             "prompt": {
               "style": "English, light jazz pop, piano, upright bass, brushes, female vocal, 100 BPM",
@@ -20378,8 +20378,8 @@
           },
           {
             "index": 2,
-            "baseline": "audio/yue2_baseline_heldout2.flac",
-            "after": "audio/yue2_highlr_000100_heldout2.flac",
+            "baseline": "audio/yue2_baseline_heldout2.mp3",
+            "after": "audio/yue2_highlr_000100_heldout2.mp3",
             "seed": 5103,
             "prompt": {
               "style": "English, airy electronic pop, synth pads, soft beat, male vocal, 108 BPM",
@@ -20404,7 +20404,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
@@ -20493,7 +20493,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
                 "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
               },
@@ -20536,7 +20536,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
               },
@@ -20579,7 +20579,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
               }
@@ -20588,7 +20588,7 @@
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
@@ -20678,7 +20678,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
               },
@@ -20721,7 +20721,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
               },
@@ -20764,7 +20764,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
               }
@@ -20773,7 +20773,7 @@
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_lr1e3_000005.flac",
+            "audio": "audio/yue2_lr1e3_000005.mp3",
             "wave": "visuals/yue2_lr1e3_000005_wave.png",
             "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000005/receipt.json",
@@ -20863,7 +20863,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000005.flac",
+                "audio": "audio/yue2_lr1e3_000005.mp3",
                 "wave": "visuals/yue2_lr1e3_000005_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000005_spectrum.png"
               },
@@ -20906,7 +20906,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000005_heldout1.flac",
+                "audio": "audio/yue2_lr1e3_000005_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e3_000005_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000005_heldout1_spectrum.png"
               },
@@ -20949,7 +20949,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000005_heldout2.flac",
+                "audio": "audio/yue2_lr1e3_000005_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e3_000005_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000005_heldout2_spectrum.png"
               }
@@ -20958,7 +20958,7 @@
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_lr1e3_000025.flac",
+            "audio": "audio/yue2_lr1e3_000025.mp3",
             "wave": "visuals/yue2_lr1e3_000025_wave.png",
             "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000025/receipt.json",
@@ -21048,7 +21048,7 @@
                     "flat_top_fraction": 0.000618957997666537
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000025.flac",
+                "audio": "audio/yue2_lr1e3_000025.mp3",
                 "wave": "visuals/yue2_lr1e3_000025_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000025_spectrum.png"
               },
@@ -21091,7 +21091,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000025_heldout1.flac",
+                "audio": "audio/yue2_lr1e3_000025_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e3_000025_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000025_heldout1_spectrum.png"
               },
@@ -21134,7 +21134,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000025_heldout2.flac",
+                "audio": "audio/yue2_lr1e3_000025_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e3_000025_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000025_heldout2_spectrum.png"
               }
@@ -21143,7 +21143,7 @@
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_lr1e3_000050.flac",
+            "audio": "audio/yue2_lr1e3_000050.mp3",
             "wave": "visuals/yue2_lr1e3_000050_wave.png",
             "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000050/receipt.json",
@@ -21233,7 +21233,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000050.flac",
+                "audio": "audio/yue2_lr1e3_000050.mp3",
                 "wave": "visuals/yue2_lr1e3_000050_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000050_spectrum.png"
               },
@@ -21276,7 +21276,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000050_heldout1.flac",
+                "audio": "audio/yue2_lr1e3_000050_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e3_000050_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000050_heldout1_spectrum.png"
               },
@@ -21319,7 +21319,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000050_heldout2.flac",
+                "audio": "audio/yue2_lr1e3_000050_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e3_000050_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000050_heldout2_spectrum.png"
               }
@@ -21328,7 +21328,7 @@
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_lr1e3_000100.flac",
+            "audio": "audio/yue2_lr1e3_000100.mp3",
             "wave": "visuals/yue2_lr1e3_000100_wave.png",
             "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-3/step_000100/receipt.json",
@@ -21418,7 +21418,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000100.flac",
+                "audio": "audio/yue2_lr1e3_000100.mp3",
                 "wave": "visuals/yue2_lr1e3_000100_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000100_spectrum.png"
               },
@@ -21461,7 +21461,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000100_heldout1.flac",
+                "audio": "audio/yue2_lr1e3_000100_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e3_000100_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000100_heldout1_spectrum.png"
               },
@@ -21504,7 +21504,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e3_000100_heldout2.flac",
+                "audio": "audio/yue2_lr1e3_000100_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e3_000100_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e3_000100_heldout2_spectrum.png"
               }
@@ -21524,7 +21524,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000000/receipt.json",
@@ -21613,7 +21613,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
                 "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
               },
@@ -21656,7 +21656,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
               },
@@ -21699,7 +21699,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
                 "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
               }
@@ -21708,7 +21708,7 @@
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-longrun/step_000001/receipt.json",
@@ -21798,7 +21798,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
               },
@@ -21841,7 +21841,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
               },
@@ -21884,7 +21884,7 @@
                     "semantic": true
                   }
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
                 "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
               }
@@ -21893,7 +21893,7 @@
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_lr1e2_000005.flac",
+            "audio": "audio/yue2_lr1e2_000005.mp3",
             "wave": "visuals/yue2_lr1e2_000005_wave.png",
             "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000005/receipt.json",
@@ -21983,7 +21983,7 @@
                     "flat_top_fraction": 0.000046877604311350633
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000005.flac",
+                "audio": "audio/yue2_lr1e2_000005.mp3",
                 "wave": "visuals/yue2_lr1e2_000005_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000005_spectrum.png"
               },
@@ -22026,7 +22026,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000005_heldout1.flac",
+                "audio": "audio/yue2_lr1e2_000005_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e2_000005_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000005_heldout1_spectrum.png"
               },
@@ -22069,7 +22069,7 @@
                     "flat_top_fraction": 0.00007769528862714595
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000005_heldout2.flac",
+                "audio": "audio/yue2_lr1e2_000005_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e2_000005_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000005_heldout2_spectrum.png"
               }
@@ -22078,7 +22078,7 @@
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_lr1e2_000025.flac",
+            "audio": "audio/yue2_lr1e2_000025.mp3",
             "wave": "visuals/yue2_lr1e2_000025_wave.png",
             "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000025/receipt.json",
@@ -22168,7 +22168,7 @@
                     "flat_top_fraction": 0.0014249923606867048
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000025.flac",
+                "audio": "audio/yue2_lr1e2_000025.mp3",
                 "wave": "visuals/yue2_lr1e2_000025_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000025_spectrum.png"
               },
@@ -22211,7 +22211,7 @@
                     "flat_top_fraction": 0.001589063975776432
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000025_heldout1.flac",
+                "audio": "audio/yue2_lr1e2_000025_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e2_000025_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000025_heldout1_spectrum.png"
               },
@@ -22254,7 +22254,7 @@
                     "flat_top_fraction": 0.0018842192621812324
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000025_heldout2.flac",
+                "audio": "audio/yue2_lr1e2_000025_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e2_000025_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000025_heldout2_spectrum.png"
               }
@@ -22263,7 +22263,7 @@
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_lr1e2_000050.flac",
+            "audio": "audio/yue2_lr1e2_000050.mp3",
             "wave": "visuals/yue2_lr1e2_000050_wave.png",
             "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000050/receipt.json",
@@ -22353,7 +22353,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000050.flac",
+                "audio": "audio/yue2_lr1e2_000050.mp3",
                 "wave": "visuals/yue2_lr1e2_000050_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000050_spectrum.png"
               },
@@ -22396,7 +22396,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000050_heldout1.flac",
+                "audio": "audio/yue2_lr1e2_000050_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e2_000050_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000050_heldout1_spectrum.png"
               },
@@ -22439,7 +22439,7 @@
                     "flat_top_fraction": 4.340518917717651e-7
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000050_heldout2.flac",
+                "audio": "audio/yue2_lr1e2_000050_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e2_000050_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000050_heldout2_spectrum.png"
               }
@@ -22448,7 +22448,7 @@
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_lr1e2_000100.flac",
+            "audio": "audio/yue2_lr1e2_000100.mp3",
             "wave": "visuals/yue2_lr1e2_000100_wave.png",
             "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-yue2-high-lr/lr1e-2/step_000100/receipt.json",
@@ -22538,7 +22538,7 @@
                     "flat_top_fraction": 0.000028647424856936496
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000100.flac",
+                "audio": "audio/yue2_lr1e2_000100.mp3",
                 "wave": "visuals/yue2_lr1e2_000100_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000100_spectrum.png"
               },
@@ -22581,7 +22581,7 @@
                     "flat_top_fraction": 0.00003646035890882827
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000100_heldout1.flac",
+                "audio": "audio/yue2_lr1e2_000100_heldout1.mp3",
                 "wave": "visuals/yue2_lr1e2_000100_heldout1_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000100_heldout1_spectrum.png"
               },
@@ -22624,7 +22624,7 @@
                     "flat_top_fraction": 0.000023438802155675317
                   }
                 },
-                "audio": "audio/yue2_lr1e2_000100_heldout2.flac",
+                "audio": "audio/yue2_lr1e2_000100_heldout2.mp3",
                 "wave": "visuals/yue2_lr1e2_000100_heldout2_wave.png",
                 "spectrum": "visuals/yue2_lr1e2_000100_heldout2_spectrum.png"
               }
@@ -22644,7 +22644,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json",
@@ -22735,9 +22735,10 @@
                   },
                   "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
-                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -22779,9 +22780,10 @@
                   },
                   "audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b"
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -22823,16 +22825,17 @@
                   },
                   "audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a"
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json",
@@ -22924,9 +22927,10 @@
                   },
                   "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -22968,9 +22972,10 @@
                   },
                   "audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23012,16 +23017,17 @@
                   },
                   "audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_pcm24_000005.flac",
+            "audio": "audio/yue2_musecritic_pcm24_000005.mp3",
             "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png",
             "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000005/receipt.json",
@@ -23113,9 +23119,10 @@
                   },
                   "audio_sha256": "fd3d94abb4b534925802eafe5e5ebb1ae7052f4130d80f577937dee77eeb537c"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000005.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000005.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000005_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -23157,9 +23164,10 @@
                   },
                   "audio_sha256": "eadbda65bf50b8b148b393e5e5bcc11146db2edc0caf56bb42486797db8b2e2d"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000005_heldout1.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000005_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000005_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23201,16 +23209,17 @@
                   },
                   "audio_sha256": "fb0186be1a20bd19efe4b4d052f6b6c18365bf00dd062a0d6d0c58710cb2e9b5"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000005_heldout2.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000005_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000005_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000005_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_pcm24_000025.flac",
+            "audio": "audio/yue2_musecritic_pcm24_000025.mp3",
             "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png",
             "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000025/receipt.json",
@@ -23302,9 +23311,10 @@
                   },
                   "audio_sha256": "812e7ae8683397f9318ec4a9b885b77157dd61932adc5cf5da269354e37d1fd1"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000025.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000025.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000025_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -23346,9 +23356,10 @@
                   },
                   "audio_sha256": "aaec89e25252cfea45702c58b25406d143f04c406ce77718384c17e55105e184"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000025_heldout1.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000025_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000025_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23390,16 +23401,17 @@
                   },
                   "audio_sha256": "a35eb685ed9a2b3d292bc71957e91a532818254c9de941d0e7f07c8596bf2689"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000025_heldout2.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000025_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000025_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000025_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_pcm24_000050.flac",
+            "audio": "audio/yue2_musecritic_pcm24_000050.mp3",
             "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png",
             "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000050/receipt.json",
@@ -23491,9 +23503,10 @@
                   },
                   "audio_sha256": "13a79cea30357b3569365d3d6d2bd28c42b933ef43c0aa8509f0dab86098ac17"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000050.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000050.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000050_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -23535,9 +23548,10 @@
                   },
                   "audio_sha256": "8f5c91969db4b32c5e649243dc034c6ad44d0958cc13ef731e8c430a361a7011"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000050_heldout1.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000050_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000050_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23579,16 +23593,17 @@
                   },
                   "audio_sha256": "6fc986353a97e9afa17e67aec1119b5346a4f89d9d9f8ee54bc1ca1a390e140b"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000050_heldout2.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000050_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000050_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000050_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_pcm24_000100.flac",
+            "audio": "audio/yue2_musecritic_pcm24_000100.mp3",
             "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png",
             "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000100/receipt.json",
@@ -23680,9 +23695,10 @@
                   },
                   "audio_sha256": "def13e97501a81c5cbbdc4292779d3f43d0b9dc20673a33faeefba2d94ed155f"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000100.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000100.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000100_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -23724,9 +23740,10 @@
                   },
                   "audio_sha256": "bf991ad83b49e6eba007491614fee7d87a9bca2ea2c3de0b1e7dd84209ba81c4"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000100_heldout1.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000100_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000100_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23768,9 +23785,10 @@
                   },
                   "audio_sha256": "48dc8f2998a4df244cb4289011b28d1dc387f7d5989ef76fea6771d1e333de91"
                 },
-                "audio": "audio/yue2_musecritic_pcm24_000100_heldout2.flac",
+                "audio": "audio/yue2_musecritic_pcm24_000100_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_pcm24_000100_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_pcm24_000100_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           }
@@ -23788,7 +23806,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000000/receipt.json",
@@ -23879,9 +23897,10 @@
                   },
                   "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
-                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -23923,9 +23942,10 @@
                   },
                   "audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b"
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -23967,16 +23987,17 @@
                   },
                   "audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a"
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000001/receipt.json",
@@ -24067,9 +24088,10 @@
                   },
                   "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -24111,9 +24133,10 @@
                   },
                   "audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -24155,16 +24178,17 @@
                   },
                   "audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_lr1e4_000005.flac",
+            "audio": "audio/yue2_musecritic_lr1e4_000005.mp3",
             "wave": "visuals/yue2_musecritic_lr1e4_000005_wave.png",
             "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000005/receipt.json",
@@ -24255,9 +24279,10 @@
                   },
                   "audio_sha256": "ce2883dd0e86a4c2e9911bf5d9d5e496793348407c0187475a8f0289a0259b8b"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000005.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000005.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000005_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -24299,9 +24324,10 @@
                   },
                   "audio_sha256": "326b4f32c27c1beafe3bb4a6f50116ed649ad1792fcdc4bbb753de5612a718c8"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000005_heldout1.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000005_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000005_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -24343,16 +24369,17 @@
                   },
                   "audio_sha256": "60058d4862ae7601fae5b9735fed5dd440f1f17f1fedc224eb5ff80dab5b111e"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000005_heldout2.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000005_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000005_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000005_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_lr1e4_000025.flac",
+            "audio": "audio/yue2_musecritic_lr1e4_000025.mp3",
             "wave": "visuals/yue2_musecritic_lr1e4_000025_wave.png",
             "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000025/receipt.json",
@@ -24443,9 +24470,10 @@
                   },
                   "audio_sha256": "cb3cc8acf416507e920960d54d298e82a46310c9d7543b25548dcd36a397034b"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000025.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000025.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000025_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -24487,9 +24515,10 @@
                   },
                   "audio_sha256": "e4888befaf7ff5c12ea7ee804c846858959518b77569cb32f04cd6d0080cafea"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000025_heldout1.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000025_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000025_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -24531,16 +24560,17 @@
                   },
                   "audio_sha256": "28447bb257f49b0bca3726de2ea34da88b662e08572640a819af8014a3d8cca2"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000025_heldout2.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000025_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000025_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000025_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_lr1e4_000050.flac",
+            "audio": "audio/yue2_musecritic_lr1e4_000050.mp3",
             "wave": "visuals/yue2_musecritic_lr1e4_000050_wave.png",
             "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000050/receipt.json",
@@ -24631,9 +24661,10 @@
                   },
                   "audio_sha256": "c2cdee1a6bdb688a592b12d488ecee7ebe78c36c54023ebdccbf370d22e2b793"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000050.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000050.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000050_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -24675,9 +24706,10 @@
                   },
                   "audio_sha256": "330ee86e7fa8bf98800fd8bbbeb54e83f22eaa7ebfebe7aa7cec5d212d501d2a"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000050_heldout1.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000050_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000050_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -24719,16 +24751,17 @@
                   },
                   "audio_sha256": "6d5aba207da148bcb6251df37e056366400dd9c1e136c2ef070bcd74492f2602"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000050_heldout2.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000050_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000050_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000050_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 100,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_lr1e4_000100.flac",
+            "audio": "audio/yue2_musecritic_lr1e4_000100.mp3",
             "wave": "visuals/yue2_musecritic_lr1e4_000100_wave.png",
             "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e4/step_000100/receipt.json",
@@ -24819,9 +24852,10 @@
                   },
                   "audio_sha256": "c3e4244e78b08eca9bbdb64f70b6d5b5535fbdc8e213ba7aac569dd84aa5c4a9"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000100.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000100.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000100_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -24863,9 +24897,10 @@
                   },
                   "audio_sha256": "62b2f202b73bc34057d058406ff2deeafa2b784b63bc210009c08cf14d83bfe1"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000100_heldout1.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000100_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000100_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -24907,9 +24942,10 @@
                   },
                   "audio_sha256": "f2b1c783a68e9adc274dea5fb17c41f1766947b36eb64ac752acaef6998ae4a6"
                 },
-                "audio": "audio/yue2_musecritic_lr1e4_000100_heldout2.flac",
+                "audio": "audio/yue2_musecritic_lr1e4_000100_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e4_000100_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e4_000100_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           }
@@ -24927,7 +24963,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000000/receipt.json",
@@ -25018,9 +25054,10 @@
                   },
                   "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
-                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -25062,9 +25099,10 @@
                   },
                   "audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b"
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -25106,16 +25144,17 @@
                   },
                   "audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a"
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000001/receipt.json",
@@ -25206,9 +25245,10 @@
                   },
                   "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -25250,9 +25290,10 @@
                   },
                   "audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -25294,16 +25335,17 @@
                   },
                   "audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 5,
             "status": "measured",
-            "audio": "audio/yue2_musecritic_lr1e3_000005.flac",
+            "audio": "audio/yue2_musecritic_lr1e3_000005.mp3",
             "wave": "visuals/yue2_musecritic_lr1e3_000005_wave.png",
             "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-05-yue2-musecritic-lr1e3/step_000005/receipt.json",
@@ -25394,9 +25436,10 @@
                   },
                   "audio_sha256": "d509a0df1745362329b8fe8db1141c3a0dd56988d74db941118de978836c4ac6"
                 },
-                "audio": "audio/yue2_musecritic_lr1e3_000005.flac",
+                "audio": "audio/yue2_musecritic_lr1e3_000005.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e3_000005_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -25438,9 +25481,10 @@
                   },
                   "audio_sha256": "3e73f760c943ebc366893b2fd40d62ecf2dd4f3d0fc3be45c4461c04d0aabb55"
                 },
-                "audio": "audio/yue2_musecritic_lr1e3_000005_heldout1.flac",
+                "audio": "audio/yue2_musecritic_lr1e3_000005_heldout1.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e3_000005_heldout1_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -25482,9 +25526,10 @@
                   },
                   "audio_sha256": "c34e783e445e1778c6e1fa8b15a33219f24a22f6fec4771db78a4e6a82b6220a"
                 },
-                "audio": "audio/yue2_musecritic_lr1e3_000005_heldout2.flac",
+                "audio": "audio/yue2_musecritic_lr1e3_000005_heldout2.mp3",
                 "wave": "visuals/yue2_musecritic_lr1e3_000005_heldout2_wave.png",
-                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_musecritic_lr1e3_000005_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
@@ -25514,7 +25559,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000000.flac",
+            "audio": "audio/yue2_longrun_000000.mp3",
             "wave": "visuals/yue2_longrun_000000_wave.png",
             "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000000/receipt.json",
@@ -25605,9 +25650,10 @@
                   },
                   "audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d"
                 },
-                "audio": "audio/yue2_longrun_000000.flac",
+                "audio": "audio/yue2_longrun_000000.mp3",
                 "wave": "visuals/yue2_longrun_000000_wave.png",
-                "spectrum": "visuals/yue2_longrun_000000_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000000_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -25649,9 +25695,10 @@
                   },
                   "audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b"
                 },
-                "audio": "audio/yue2_baseline_heldout1.flac",
+                "audio": "audio/yue2_baseline_heldout1.mp3",
                 "wave": "visuals/yue2_baseline_heldout1_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -25693,16 +25740,17 @@
                   },
                   "audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a"
                 },
-                "audio": "audio/yue2_baseline_heldout2.flac",
+                "audio": "audio/yue2_baseline_heldout2.mp3",
                 "wave": "visuals/yue2_baseline_heldout2_wave.png",
-                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_baseline_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/yue2_longrun_000001.flac",
+            "audio": "audio/yue2_longrun_000001.mp3",
             "wave": "visuals/yue2_longrun_000001_wave.png",
             "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-pcm24/step_000001/receipt.json",
@@ -25793,9 +25841,10 @@
                   },
                   "audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df"
                 },
-                "audio": "audio/yue2_longrun_000001.flac",
+                "audio": "audio/yue2_longrun_000001.mp3",
                 "wave": "visuals/yue2_longrun_000001_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 1,
@@ -25837,9 +25886,10 @@
                   },
                   "audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout1.flac",
+                "audio": "audio/yue2_longrun_000001_heldout1.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout1_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout1_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               },
               {
                 "index": 2,
@@ -25881,9 +25931,10 @@
                   },
                   "audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393"
                 },
-                "audio": "audio/yue2_longrun_000001_heldout2.flac",
+                "audio": "audio/yue2_longrun_000001_heldout2.mp3",
                 "wave": "visuals/yue2_longrun_000001_heldout2_wave.png",
-                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png"
+                "spectrum": "visuals/yue2_longrun_000001_heldout2_spectrum.png",
+                "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
               }
             ]
           },
@@ -25915,7 +25966,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/muse_songeval_matched_before.flac",
+            "audio": "audio/muse_songeval_matched_before.mp3",
             "wave": "visuals/muse_songeval_matched_before_wave.png",
             "spectrum": "visuals/muse_songeval_matched_before_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
@@ -25956,12 +26007,13 @@
                 "Naturalness": 3.21875,
                 "mean": 3.09375
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/muse_songeval_matched_after.flac",
+            "audio": "audio/muse_songeval_matched_after.mp3",
             "wave": "visuals/muse_songeval_matched_after_wave.png",
             "spectrum": "visuals/muse_songeval_matched_after_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json",
@@ -26002,7 +26054,8 @@
                 "Naturalness": 3.21875,
                 "mean": 3.09375
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 25,
@@ -26033,7 +26086,7 @@
           {
             "step": 0,
             "status": "measured",
-            "audio": "audio/muse_songeval_matched_before.flac",
+            "audio": "audio/muse_songeval_matched_before.mp3",
             "wave": "visuals/muse_songeval_matched_before_wave.png",
             "spectrum": "visuals/muse_songeval_matched_before_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
@@ -26074,12 +26127,13 @@
                 "Naturalness": 2.2278,
                 "mean": 2.31522
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 1,
             "status": "measured",
-            "audio": "audio/muse_shared_musecritic_000001.flac",
+            "audio": "audio/muse_shared_musecritic_000001.mp3",
             "wave": "visuals/muse_shared_musecritic_000001_wave.png",
             "spectrum": "visuals/muse_shared_musecritic_000001_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json",
@@ -26120,12 +26174,13 @@
                 "Naturalness": 2.2278,
                 "mean": 2.31522
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 25,
             "status": "measured",
-            "audio": "audio/muse_shared_musecritic_000025.flac",
+            "audio": "audio/muse_shared_musecritic_000025.mp3",
             "wave": "visuals/muse_shared_musecritic_000025_wave.png",
             "spectrum": "visuals/muse_shared_musecritic_000025_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000025/receipt.json",
@@ -26166,12 +26221,13 @@
                 "Naturalness": 3.0625,
                 "mean": 3.22348
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 50,
             "status": "measured",
-            "audio": "audio/muse_shared_musecritic_000050.flac",
+            "audio": "audio/muse_shared_musecritic_000050.mp3",
             "wave": "visuals/muse_shared_musecritic_000050_wave.png",
             "spectrum": "visuals/muse_shared_musecritic_000050_spectrum.png",
             "receipt": "music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000050/receipt.json",
@@ -26212,7 +26268,8 @@
                 "Naturalness": 3.1067,
                 "mean": 3.2708399999999997
               }
-            }
+            },
+            "listening_copy": "MP3; reward and signal metrics refer to archived lossless original"
           },
           {
             "step": 100,
@@ -26230,7 +26287,7 @@
     },
     "vocal": {
       "input": {
-        "audio": "audio/guide_vocal.wav",
+        "audio": "audio/guide_vocal.mp3",
         "wave": "visuals/guide_vocal_wave.png",
         "spectrum": "visuals/guide_vocal_spectrum.png"
       },
@@ -26239,7 +26296,7 @@
         {
           "step": 0,
           "status": "measured",
-          "audio": "audio/ace_complete_seed29.wav",
+          "audio": "audio/ace_complete_seed29.mp3",
           "wave": "visuals/ace_complete_seed29_wave.png",
           "spectrum": "visuals/ace_complete_seed29_spectrum.png"
         },
@@ -26262,7 +26319,7 @@
           "kind": "accompaniment_only",
           "step": 0,
           "status": "measured",
-          "audio": "audio/anyaccomp_accompaniment_seed29.wav",
+          "audio": "audio/anyaccomp_accompaniment_seed29.mp3",
           "wave": "visuals/anyaccomp_accompaniment_seed29_wave.png",
           "spectrum": "visuals/anyaccomp_accompaniment_seed29_spectrum.png"
         },
@@ -26271,7 +26328,7 @@
           "kind": "input_plus_accompaniment",
           "step": 0,
           "status": "measured",
-          "audio": "audio/anyaccomp_mixture_seed29.wav",
+          "audio": "audio/anyaccomp_mixture_seed29.mp3",
           "wave": "visuals/anyaccomp_mixture_seed29_wave.png",
           "spectrum": "visuals/anyaccomp_mixture_seed29_spectrum.png"
         }

@@ -15,16 +15,34 @@ try {
     await page.route('https://github.com/zhanh-he/RL-paper-reading/releases/download/formal-cmi-pref-20261012/*', async (route) => {
       const file = path.join(process.env.LOCAL_RELEASE_ASSETS, path.basename(new URL(route.request().url()).pathname));
       const body = await readFile(file);
-      await route.fulfill({ status: 200, contentType: 'audio/flac', body });
+      await route.fulfill({ status: 200, contentType: 'audio/mpeg', body });
     });
   }
   await page.goto(url);
   await page.locator('#formal-v2-controls button').first().waitFor();
   const registry = await page.evaluate(async () => (await fetch('./formal-9to1-runs.json')).json());
   const root = page.locator('#lyrics-formal');
+  const views = await page.locator('.lab-tab').evaluateAll((nodes) => nodes.map((n) => n.dataset.view));
+  for (const view of views) {
+    await page.locator(`.lab-tab[data-view="${view}"]`).click();
+    if (['vocal', 'choral'].includes(view)) {
+      const audio = page.locator('audio:visible').first();
+      await audio.waitFor();
+      assert.ok((await audio.getAttribute('src')).endsWith('.mp3'));
+      await audio.evaluate((node) => node.load());
+      await page.waitForFunction((src) => [...document.querySelectorAll('audio')].some((node) => node.src === new URL(src, document.baseURI).href && node.readyState >= 1), await audio.getAttribute('src'));
+      await audio.evaluate(async (node) => { await node.play(); node.pause(); });
+    }
+  }
+  await page.locator('.lab-tab[data-view="lyrics"]').click();
   let pairs = 0;
   for (const arm of registry.arms) {
     await root.locator(`#formal-v2-controls button[data-id="${arm.id}"]`).click();
+    if (arm.model === 'Muse') {
+      assert.match(await root.locator('#formal-v2-status').textContent(), /排队/);
+      assert.equal(await root.locator('#formal-v2-compare audio').count(), 0);
+      assert.equal(await root.locator('[data-formal-listen]:enabled').count(), 0);
+    }
     for (const example of registry.examples) {
       await root.locator(`#formal-v2-examples button[data-index="${example.index}"]`).click();
       const expectedBaseline = arm.long_replays['0']?.find((r) => r.index === example.index);
@@ -32,7 +50,7 @@ try {
       for (const [step, clips] of Object.entries(arm.long_replays)) {
         const expected = clips.find((r) => r.index === example.index);
         if (!expected) continue;
-        await root.locator('#formal-v2-stages button').filter({ hasText: new RegExp(`^${step} steps$`) }).click();
+        await root.locator('#formal-v2-stages button').filter({ hasText: new RegExp(`^${step} steps?$`) }).click();
         assert.equal(await root.locator('[data-role="candidate"]').getAttribute('data-sha256'), expected.sha256);
         assert.equal(await root.locator('[data-role="baseline"]').getAttribute('data-sha256'), expectedBaseline.sha256);
         await root.locator('[data-role="candidate"] img').first().scrollIntoViewIfNeeded();
@@ -60,5 +78,5 @@ try {
     assert.ok(overflow.scroll <= width + 1, `Horizontal overflow: ${JSON.stringify(overflow)}`);
   }
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ arms: registry.arms.length, replayPairsChecked: pairs, media, pageErrors: errors, output }, null, 2));
+  console.log(JSON.stringify({ arms: registry.arms.length, views, replayPairsChecked: pairs, media, pageErrors: errors, output }, null, 2));
 } finally { await browser.close(); }

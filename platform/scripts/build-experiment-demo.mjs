@@ -4,6 +4,22 @@ import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
+const mp3Bindings = (await readJson('platform/site/demos/audio-encoding.json')).files;
+async function verifyListeningCopy(path, sourceHash) {
+  const binding = mp3Bindings[`platform/site/demos/${path}`];
+  const actualHash = createHash('sha256').update(await readFile(resolve(root, 'platform/site/demos', path))).digest('hex');
+  if (!binding || binding.sha256 !== actualHash || binding.source_audio_sha256 !== sourceHash) {
+    throw new Error(`MP3 listening copy does not match its archived scoring original: ${path}`);
+  }
+}
+function publicCopy(value) {
+  if (Array.isArray(value)) return value.map(publicCopy);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, publicCopy(v)]));
+  if (typeof value === 'string' && value.startsWith('platform/site/demos/audio/')) {
+    return value.replace(/\.(wav|flac)$/, '.mp3');
+  }
+  return value;
+}
 const output = resolve(root, 'platform/site/demos/results.json');
 const musePath = 'music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-songeval/step_000001/receipt.json';
 const muse = await readJson(musePath);
@@ -52,15 +68,15 @@ for (const key of ['0', '1', '100', '300', '1000',
   }
 }
 for (const name of ['input', 'reference', 'baseline', 'grpo']) {
-  await access(resolve(root, `platform/site/demos/audio/choral_synth_${name}.wav`));
+  await access(resolve(root, `platform/site/demos/audio/choral_synth_${name}.mp3`));
   if (name !== 'input') await access(resolve(root, `platform/site/demos/midi/choral_synth_${name}.mid`));
 }
-await access(resolve(root, 'platform/site/demos/audio/muscriptor_synth_baseline.wav'));
+await access(resolve(root, 'platform/site/demos/audio/muscriptor_synth_baseline.mp3'));
 await access(resolve(root, 'platform/site/demos/midi/muscriptor_synth_baseline.mid'));
 for (const name of ['choral_ace_reference_short', 'choral_ace_baseline',
   'choral_audit_onset_only_short_notes', 'choral_audit_overfill_octave',
   'choral_audit_fragment_sustained']) {
-  await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
+  await access(resolve(root, `platform/site/demos/audio/${name}.mp3`));
   for (const kind of ['wave', 'spectrum']) {
     await access(resolve(root, `platform/site/demos/visuals/${name}_${kind}.png`));
   }
@@ -71,7 +87,7 @@ for (const name of ['choral_ace_reference_short', 'choral_ace_baseline',
 for (const step of [0, 1, 100, 300, 1000]) {
   const id = String(step).padStart(4, '0');
   await access(resolve(root, `platform/site/demos/midi/choral_event_${id}.mid`));
-  await access(resolve(root, `platform/site/demos/audio/choral_event_${id}.wav`));
+  await access(resolve(root, `platform/site/demos/audio/choral_event_${id}.mp3`));
   for (const kind of step === 1 ? [] : ['wave', 'spectrum']) {
     await access(resolve(root, `platform/site/demos/visuals/choral_event_${id}_${kind}.png`));
   }
@@ -79,7 +95,7 @@ for (const step of [0, 1, 100, 300, 1000]) {
 for (const arm of ['onset', 'onset_offset', 'frame', 'coverage', 'continuity', 'precision']) {
   const name = `choral_event_arm_${arm}_300`;
   await access(resolve(root, `platform/site/demos/midi/${name}.mid`));
-  await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
+  await access(resolve(root, `platform/site/demos/audio/${name}.mp3`));
   for (const kind of ['wave', 'spectrum']) {
     await access(resolve(root, `platform/site/demos/visuals/${name}_${kind}.png`));
   }
@@ -88,7 +104,7 @@ for (const arm of activeChoralArms) {
   for (const step of [1, 100, 1000]) {
     const name = `choral_event_arm_${arm}_${step}`;
     await access(resolve(root, `platform/site/demos/midi/${name}.mid`));
-    await access(resolve(root, `platform/site/demos/audio/${name}.wav`));
+    await access(resolve(root, `platform/site/demos/audio/${name}.mp3`));
   }
 }
 await access(resolve(root, 'platform/site/demos/midi/choral_event_arm_weak_voice_300.mid'));
@@ -109,7 +125,7 @@ for (const entry of cases) {
     }
     for (const key of ['audio', 'wave', 'spectrum']) {
       if (!stage[key]) continue;
-      if (!/^(audio|visuals)\/[a-z0-9_-]+\.(flac|wav|png)$/.test(stage[key])) {
+      if (!/^(audio|visuals)\/[a-z0-9_-]+\.(mp3|png)$/.test(stage[key])) {
         throw new Error(`Invalid public replay asset: ${stage[key]}`);
       }
       await access(resolve(root, 'platform/site/demos', stage[key]));
@@ -131,8 +147,8 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
     if (receipt.cross_reward) stage.cross_reward = receipt.cross_reward;
     if (receipt.shared_replay_receipt === sharedMusePath) {
       const expectedHash = receipt[stage.receipt_key]?.audio_sha256;
-      const actualHash = createHash('sha256').update(await readFile(resolve(root, 'platform/site/demos', stage.audio))).digest('hex');
-      if (actualHash !== expectedHash) throw new Error(`Muse ${stage.step} audio differs from scored receipt`);
+      await verifyListeningCopy(stage.audio, expectedHash);
+      stage.listening_copy = 'MP3; reward and signal metrics refer to archived lossless original';
     }
     if (stage.paired_baseline) {
       const paired = receipt.before;
@@ -170,12 +186,12 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
       const baseline = replays.lyrics.yue2.stages[0];
       stage.examples = [];
       for (const [index, item] of receipt.heldout.entries()) {
-        const stem = index === 0 ? stage.audio.replace(/^audio\//, '').replace(/\.flac$/, '') :
+        const stem = index === 0 ? stage.audio.replace(/^audio\//, '').replace(/\.mp3$/, '') :
           stage.step === 0 ? `yue2_baseline_heldout${index}` :
-            `${stage.audio.replace(/^audio\//, '').replace(/\.flac$/, '')}_heldout${index}`;
+            `${stage.audio.replace(/^audio\//, '').replace(/\.mp3$/, '')}_heldout${index}`;
         const example = {
           index, seed: item.seed, prompt: item.prompt, metrics: item,
-          audio: index === 0 ? stage.audio : `audio/${stem}.flac`,
+          audio: index === 0 ? stage.audio : `audio/${stem}.mp3`,
           wave: index === 0 ? stage.wave : `visuals/${stem}_wave.png`,
           spectrum: index === 0 ? stage.spectrum : `visuals/${stem}_spectrum.png`,
         };
@@ -188,8 +204,8 @@ for (const [modelKey, entry] of Object.entries(replays.lyrics)) {
           await access(resolve(root, 'platform/site/demos', example[key]));
         }
         if (item.audio_sha256) {
-          const actualHash = createHash('sha256').update(await readFile(resolve(root, 'platform/site/demos', example.audio))).digest('hex');
-          if (actualHash !== item.audio_sha256) throw new Error(`${modelKey} step ${stage.step} example ${index} differs from scored FLAC`);
+          await verifyListeningCopy(example.audio, item.audio_sha256);
+          example.listening_copy = 'MP3; reward and signal metrics refer to archived lossless original';
         }
         stage.examples.push(example);
       }
@@ -207,7 +223,7 @@ if (pairs100?.length !== 3 || pairs100.some((pair, index) => pair.index !== inde
 }
 for (const pair of pairs100) {
   for (const key of ['baseline', 'after']) {
-    if (!/^audio\/[a-z0-9_-]+\.flac$/.test(pair[key])) throw new Error(`Invalid YuE2 pair audio: ${pair[key]}`);
+    if (!/^audio\/[a-z0-9_-]+\.mp3$/.test(pair[key])) throw new Error(`Invalid YuE2 pair audio: ${pair[key]}`);
     await access(resolve(root, 'platform/site/demos', pair[key]));
   }
   const before = baselineHeldout[pair.index];
@@ -308,7 +324,7 @@ const result = {
   musecritic: await readJson('music-gen/lyrics2song/rl/grpo/runs/2026-09-30-muse-shared-musecritic/step_000001/receipt.json'),
   replays,
 };
-const serialized = `${JSON.stringify(result, null, 2)}\n`;
+const serialized = `${JSON.stringify(publicCopy(result), null, 2)}\n`;
 if (process.argv.includes('--check')) {
   if (await readFile(output, 'utf8') !== serialized) {
     throw new Error('Experiment demo data is stale. Run npm --prefix platform run build.');

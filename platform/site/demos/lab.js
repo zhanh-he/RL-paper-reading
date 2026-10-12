@@ -231,7 +231,7 @@ function renderAceChoral() {
     const panel = document.createElement('article'); panel.className = 'audio-item';
     const index = document.createElement('span'); index.className = 'audio-index'; index.textContent = label;
     const heading = document.createElement('h3'); heading.textContent = title;
-    const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./audio/${file}.wav`;
+    const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = `./audio/${file}.mp3`;
     const note = document.createElement('small'); note.textContent = detail;
     panel.append(index, heading, audio, note);
     return panel;
@@ -325,13 +325,13 @@ function setupChoralCompare(data, pitchRange, armNames, getStep) {
   const fixed = (key) => key === 'reference' || key === 'baseline';
   const variant = (key, step) => {
     if (key === 'reference') return { title: names[key], notes: data.notes.reference,
-      audio: './audio/choral_ace_reference_short.wav', midi: './midi/choral_synth_reference.mid' };
+      audio: './audio/choral_ace_reference_short.mp3', midi: './midi/choral_synth_reference.mid' };
     if (key === 'baseline') return { title: names[key], notes: data.notes['0'],
-      audio: './audio/choral_event_0000.wav', midi: './midi/choral_event_0000.mid' };
+      audio: './audio/choral_event_0000.mp3', midi: './midi/choral_event_0000.mid' };
     const stage = key === 'combined' ? String(step) : `arm_${key}_${step}`;
     const stem = key === 'combined' ? `choral_event_${String(step).padStart(4, '0')}` : `choral_event_${stage}`;
     return { title: `${names[key]} · ${step} 步`, notes: data.notes[stage],
-      audio: `./audio/${stem}.wav`, midi: `./midi/${stem}.mid` };
+      audio: `./audio/${stem}.mp3`, midi: `./midi/${stem}.mid` };
   };
   const updateSide = (side, item) => {
     $(`#choral-compare-${side}-title`).textContent = item.title;
@@ -451,8 +451,8 @@ function renderEventReplay(data, pilot) {
     panel.links.hidden = false;
     panel.canvas.setAttribute('aria-label', `${title} SATB MIDI piano roll`);
     drawVoiceMidi(panel.canvas, notes, pitchRange);
-    const audioPath = `./audio/${stem}.wav`;
-    if (!panel.audio.src.endsWith(`/${stem}.wav`)) panel.audio.src = audioPath;
+    const audioPath = `./audio/${stem}.mp3`;
+    if (!panel.audio.src.endsWith(`/${stem}.mp3`)) panel.audio.src = audioPath;
     panel.direct.href = audioPath;
     panel.midi.href = `./midi/${midiStem}.mid`;
     panel.midi.textContent = '下载 MIDI ↓';
@@ -624,7 +624,7 @@ function renderActualArmReplays(replay, pilot) {
   const stageKey = (arm) => arm === 'combined' ? '300' : `arm_${arm}_300`;
   const assetName = (arm) => arm === 'combined' ? 'choral_event_0300' :
     `choral_event_arm_${arm}_300`;
-  const asset = (name) => ({ audio: `audio/${name}.wav`,
+  const asset = (name) => ({ audio: `audio/${name}.mp3`,
     wave: `visuals/${name}_wave.png`, spectrum: `visuals/${name}_spectrum.png` });
   const rows = [['Frozen', 0, replay.receipt.steps['0']],
     ...Object.keys(names).map((arm) => [names[arm],
@@ -696,7 +696,7 @@ function renderSatbBadcaseAudio() {
     overfill_octave: 'Coverage-only octave overfill',
     fragment_sustained: 'Frame-only fragmented notes',
   };
-  const asset = (name) => ({ audio: `audio/${name}.wav`,
+  const asset = (name) => ({ audio: `audio/${name}.mp3`,
     wave: `visuals/${name}_wave.png`, spectrum: `visuals/${name}_spectrum.png` });
   const render = () => {
     const key = $('#satb-badcase-select').value;

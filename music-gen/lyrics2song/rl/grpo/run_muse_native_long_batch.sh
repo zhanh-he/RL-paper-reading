@@ -17,7 +17,10 @@ mapfile -t tokens < <(find "$study/native_vllm" "$study"/*_train_v2/long_replay_
     [[ -f "${path%/audio.json}/failure.json" ]] || printf '%s\n' "$path"
   done)
 [[ ${#tokens[@]} -gt 0 ]]
-/home/mengh/miniconda3/envs/mucodec-cu128/bin/python -u "$root/infer/decode_muse_tokens.py" \
-  --mucodec /home/mengh/research/MuCodec-posttrain --duration 40.96 --steps 20 \
-  --token-file "${tokens[@]}"
+(
+  cd /home/mengh/research/MuCodec-posttrain
+  /home/mengh/miniconda3/envs/mucodec-cu128/bin/python -u "$root/infer/decode_muse_tokens.py" \
+    --mucodec /home/mengh/research/MuCodec-posttrain --duration 40.96 --steps 20 \
+    --token-file "${tokens[@]}"
+)
 "$python" -u "$root/infer/generate_muse_formal_batch.py" finalize "${args[@]}"

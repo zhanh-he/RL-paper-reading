@@ -43,9 +43,7 @@ def generate(args):
     records = [json.loads(line) for line in args.valid.read_text().splitlines()]
     if len(records) != 30:
         raise ValueError('Expected 30 validation prompts')
-    engine = LLM(model=str(args.model), trust_remote_code=True, dtype='bfloat16',
-                 enforce_eager=True, max_model_len=4096, gpu_memory_utilization=0.55,
-                 max_num_seqs=3, enable_lora=True, max_lora_rank=8)
+    engine = None
     for adapter_id, (folder, adapter) in enumerate(groups(args.study), 1):
         adapter_sha = sha(adapter / 'adapter_model.safetensors') if adapter else None
         paths, prompts, params, indexes = [], [], [], []
@@ -67,6 +65,10 @@ def generate(args):
                                          temperature=0.9, top_p=0.9, repetition_penalty=1.3))
         if not paths:
             continue
+        if engine is None:
+            engine = LLM(model=str(args.model), trust_remote_code=True, dtype='bfloat16',
+                         enforce_eager=True, max_model_len=4096, gpu_memory_utilization=0.55,
+                         max_num_seqs=3, enable_lora=True, max_lora_rank=8)
         request = LoRARequest(f'formal-{adapter_id}', adapter_id, str(adapter)) if adapter else None
         outputs = engine.generate(prompts, params, lora_request=request, use_tqdm=False)
         if len(outputs) != len(paths):

@@ -15,8 +15,8 @@
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
-    <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261012b">
-    <script type="module" src="./lyrics-formal-v2.js?v=20261012b"></script>
+    <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261012c">
+    <script type="module" src="./lyrics-formal-v2.js?v=20261012c"></script>
   </head>
   <body>
     <header class="app-header">
@@ -85,14 +85,14 @@
           </div>
         </section>
         <div class="choral-replay-heading"><h3 class="subsection-heading">同一首歌 · MIDI 与试听</h3><div class="choral-replay-controls"><div class="segmented" role="group" aria-label="可视化方式"><button type="button" data-choral-view="step" aria-pressed="true">Step-by-step</button><button type="button" data-choral-view="reward" aria-pressed="false">Reward-opt</button></div><label id="choral-reward-filter" hidden>Reward <select id="choral-reward-select"><option value="combined">Combined rewards</option><option value="onset">Onset only</option><option value="onset_offset">Onset + offset only</option><option value="frame">Frame only</option><option value="coverage">Coverage only</option><option value="continuity">Continuity only</option></select></label><label>一行几个图 <select id="choral-columns"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></label></div></div>
-        <div class="choral-input-band"><div><span class="source-label">MODEL INPUT / ORIGINAL SYNTHESIS</span><p>原始合成音频是所有模型输出共用的输入。四个 SATB 声部叠在同一音高轴；下方所有 piano roll 共用音高与时间轴。</p></div><audio controls preload="metadata" src="./audio/choral_synth_input.wav" aria-label="原始合成模型输入音频"></audio></div>
+        <div class="choral-input-band"><div><span class="source-label">MODEL INPUT / ORIGINAL SYNTHESIS</span><p>原始合成音频是所有模型输出共用的输入。四个 SATB 声部叠在同一音高轴；下方所有 piano roll 共用音高与时间轴。</p></div><audio controls preload="metadata" src="./audio/choral_synth_input.mp3" aria-label="原始合成模型输入音频"></audio></div>
         <div class="choral-midi-legend" aria-label="SATB MIDI colors"><span><i class="voice-s"></i>Soprano</span><span><i class="voice-a"></i>Alto</span><span><i class="voice-t"></i>Tenor</span><span><i class="voice-b"></i>Bass</span></div>
         <div class="stage-rail" id="choral-event-rail" aria-label="GRPO replay stages"></div>
         <div class="choral-grpo-grid" id="choral-grpo-grid">
           <article class="choral-midi-panel choral-reference-panel">
             <div class="choral-midi-heading"><h4>GT · 参考 SATB</h4></div>
             <button class="choral-midi-zoom" type="button" data-choral-compare="reference" title="放大并对比参考 SATB MIDI" aria-label="放大并对比参考 SATB MIDI"><canvas id="choral-reference-midi" width="1120" height="620" role="img" aria-label="Ground-truth SATB MIDI on one shared piano roll, colored by voice"></canvas><span class="choral-zoom-icon" aria-hidden="true"><i data-lucide="maximize-2"></i></span></button>
-            <audio controls preload="metadata" src="./audio/choral_ace_reference_short.wav" aria-label="ACE Studio 参考 SATB 音频"></audio>
+            <audio controls preload="metadata" src="./audio/choral_ace_reference_short.mp3" aria-label="ACE Studio 参考 SATB 音频"></audio>
             <div class="choral-midi-links"><a class="source-link" href="./midi/choral_synth_reference.mid" download>下载参考 MIDI ↓</a></div>
           </article>
           <div id="choral-baseline-panel"></div>
@@ -126,10 +126,10 @@
         <div class="source-grid"><div class="source-block"><span class="source-label">Separate held-out benchmark</span><strong>30 首 YouChorale-Pro 测试歌曲</strong><p>原始音频、参考 SATB MIDI 与逐首 ID 不公开。下方保留完整歌曲的汇总指标，不把公开合成例算进测试集。</p></div><div class="source-block"><span class="source-label">Separate public example</span><strong>原创 4 声部合成片段</strong><p>同一输入下对比 ChoralStream baseline、frame-head GRPO 和 MuScriptor 在线 baseline；示范例不属于 held-out benchmark。</p></div></div>
         <h3 class="subsection-heading">公开样本：先听再看 MIDI</h3>
         <div class="audio-grid choral-listen" id="choral-listen">
-          <div class="audio-item"><span class="audio-index">INPUT / REFERENCE</span><h3>原创 SATB 合成输入</h3><audio controls preload="metadata" src="./audio/choral_synth_input.wav"></audio><a class="source-link" href="./midi/choral_synth_reference.mid" download>参考 MIDI ↓</a></div>
-          <div class="audio-item"><span class="audio-index">BASELINE / 0 UPDATES</span><h3>ChoralStream 转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_baseline.wav"></audio><a class="source-link" href="./midi/choral_synth_baseline.mid" download>Baseline MIDI ↓</a></div>
-          <div class="audio-item"><span class="audio-index">FRAME-HEAD GRPO / 1,152 UPDATES</span><h3>GRPO 后转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_grpo.wav"></audio><a class="source-link" href="./midi/choral_synth_grpo.mid" download>GRPO MIDI ↓</a></div>
-          <div class="audio-item"><span class="audio-index">SECOND MODEL / NO GRPO</span><h3>MuScriptor · 官方 demo 输出</h3><audio controls preload="metadata" src="./audio/muscriptor_synth_baseline.wav"></audio><a class="source-link" href="./midi/muscriptor_synth_baseline.mid" download>MuScriptor MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">INPUT / REFERENCE</span><h3>原创 SATB 合成输入</h3><audio controls preload="metadata" src="./audio/choral_synth_input.mp3"></audio><a class="source-link" href="./midi/choral_synth_reference.mid" download>参考 MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">BASELINE / 0 UPDATES</span><h3>ChoralStream 转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_baseline.mp3"></audio><a class="source-link" href="./midi/choral_synth_baseline.mid" download>Baseline MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">FRAME-HEAD GRPO / 1,152 UPDATES</span><h3>GRPO 后转录渲染</h3><audio controls preload="metadata" src="./audio/choral_synth_grpo.mp3"></audio><a class="source-link" href="./midi/choral_synth_grpo.mid" download>GRPO MIDI ↓</a></div>
+          <div class="audio-item"><span class="audio-index">SECOND MODEL / NO GRPO</span><h3>MuScriptor · 官方 demo 输出</h3><audio controls preload="metadata" src="./audio/muscriptor_synth_baseline.mp3"></audio><a class="source-link" href="./midi/muscriptor_synth_baseline.mid" download>MuScriptor MIDI ↓</a></div>
         </div>
         <h3 class="subsection-heading">固定四位歌手的 SATB 回放</h3>
         <p class="section-copy">ACE Studio 中四轨始终使用 Elirah、Emma、Julian、Mangus，同一份 MIDI 的歌词均为 la。frame-head GRPO 的 MIDI 与 baseline 相同，因此 B/C 共用同一段渲染，避免把合成器随机性误作训练差异。</p>
@@ -171,10 +171,11 @@
           <div class="metric-controls lyrics-example-controls"><span class="control-label">Sample</span><div class="segmented" id="formal-v2-examples" role="group" aria-label="固定长片段验证样本"></div><span id="formal-v2-seed"></span></div>
           <div class="source-grid"><div class="source-block"><span class="source-label">Input · text + lyrics</span><strong id="formal-v2-style"></strong><details><summary>歌词</summary><pre id="formal-v2-lyrics"></pre></details></div><div class="source-block"><span class="source-label">Reference output</span><strong>开放式生成，无唯一标准歌曲</strong><p>本轮未将 reference audio 作为模型输入；同一模型的各 reward / LR / checkpoint 使用固定条件与种子。</p></div></div>
           <h3 class="subsection-heading">Long-form replay · target 60 seconds</h3><div class="stage-rail" id="formal-v2-stages" aria-label="正式实验推理检查点"></div><p class="stage-context" id="formal-v2-replay-note"></p>
-          <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="正式实验同步位置试听"><button type="button" data-formal-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-formal-listen="candidate" aria-pressed="false">B · GRPO</button></div><span id="formal-v2-listen-status" aria-live="polite">固定 baseline · 原始 FLAC</span></div><div class="compare-grid" id="formal-v2-compare"></div>
+          <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="正式实验同步位置试听"><button type="button" data-formal-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-formal-listen="candidate" aria-pressed="false">B · GRPO</button></div><span id="formal-v2-listen-status" aria-live="polite">固定 baseline · MP3</span></div><div class="compare-grid" id="formal-v2-compare"></div>
           <h3 class="subsection-heading" id="formal-v2-validation-title">固定验证 · 30 conditions</h3><div class="table-shell lab-table" tabindex="0"><table><thead id="formal-v2-validation-head"></thead><tbody id="formal-v2-validation"></tbody></table></div><p class="stage-context">每格为固定验证 reward 均分（Δ vs 同臂 0 步）。这是训练长度下的验证；长片段评分单列。SongEval 与 MuseCritic 分数不可跨量表比较；官方 test 仍封存。</p>
-          <details class="choral-deep-dive"><summary>长片段总表 · 三个固定样本 / checkpoint</summary><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Step</th><th>长片段 reward（Δ vs 0）</th><th>实际时长</th><th>最高峰值</th><th>近满幅比例</th><th>已评分样本</th></tr></thead><tbody id="formal-v2-long-table"></tbody></table></div><p class="section-copy">长片段的采样上限高于训练配置；分数绑定到本页播放的 FLAC 或明确标注的评分 WAV。采样达到 token 上限会标记截断。分数与信号指标需要结合试听解释。</p></details>
-          <details class="choral-deep-dive"><summary>实现、核验与跨主机重复实验</summary><p class="section-copy" id="formal-v2-framework"></p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Run</th><th>Host / dtype</th><th>Steps</th><th>0 → final validation</th></tr></thead><tbody id="formal-v2-replicates"></tbody></table></div><p class="section-copy">重复实验单独报告，Kaya FP16 与 BF16 的差异不能解释为学习率效应。Muse 的失败臂只展示已保存 checkpoint；未完成的终点不填结果。</p></details>
+          <details class="choral-deep-dive"><summary>长片段总表 · 三个固定样本 / checkpoint</summary><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Step</th><th>长片段 reward（Δ vs 0）</th><th>实际时长</th><th>原件最高峰值</th><th>原件近满幅比例</th><th>已评分样本</th></tr></thead><tbody id="formal-v2-long-table"></tbody></table></div><p class="section-copy">长片段的采样上限高于训练配置；网页只播放 MP3。峰值与近满幅比例来自压缩前原件，原件和 MP3 哈希分别记录；短片段评分不归给长片段。频谱和波形按本页 MP3 绘制。采样达到 token 上限会标记截断。</p></details>
+          <details class="choral-deep-dive"><summary>实现、核验与跨主机重复实验</summary><p class="section-copy" id="formal-v2-framework"></p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Run</th><th>Host / dtype</th><th>Steps</th><th>0 → final validation</th></tr></thead><tbody id="formal-v2-replicates"></tbody></table></div><p class="section-copy">重复实验单独报告，Kaya FP16 与 BF16 的差异不能解释为学习率效应；未完成的终点不填结果。</p></details>
+          <details class="choral-deep-dive"><summary>Muse 旧小学习率实验 · 已替代</summary><p class="section-copy">旧 1e-6 / 3e-6 / 1e-5 记录保留审计，退出主实验选项。独立推理和 8 个待运行验证任务已取消；新实验采用与 YuE2 相同的 2e-5 / 1e-4 / 3e-4，从冻结基座开始。</p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>旧实验</th><th>已核验 steps</th><th>状态</th><th>说明</th></tr></thead><tbody id="formal-v2-superseded"></tbody></table></div></details>
           <div class="model-links"><a class="source-link" href="./data/cmi-pref-triple-9to1-split.json" download>下载 train / valid / test split JSON ↓</a><a class="source-link" href="#datasets" data-open-view="datasets">划分与复现说明 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo/runs/2026-10-06-cmi-triple-9to1" target="_blank" rel="noreferrer">运行记录 ↗</a></div>
         </div>
         <div id="lyrics-mock" hidden>
@@ -307,7 +308,7 @@
         <div id="vocal-mock-track">
         <p class="stage-context">Mock 数据：ACE Studio Emma 原创独唱，仅一条录音；前 6 秒在线训练，固定 12 秒重放包含训练片段。后 6 秒只是同录音未训练乐句，不是未见歌曲或歌手。</p>
         <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" id="lada-arms" role="group" aria-label="LaDA training objective"></div><span>固定 Emma 人声 · seed 777</span></div>
-        <div class="source-grid"><div class="source-block"><span class="source-label">Input · vocal</span><strong>ACE Studio Emma · 原创独唱旋律</strong><audio id="lada-source" controls preload="metadata" src="./audio/ace_emma_vocal_12s.wav"></audio><p>训练用前 6 秒；固定种子重放前 12 秒。所有 reward 组使用相同输入。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一参考伴奏</strong><p>开放式伴奏任务没有单一正确音频；评价靠同输入 A/B、拍点、活动覆盖、响度和主观听感共同判断。</p></div></div>
+        <div class="source-grid"><div class="source-block"><span class="source-label">Input · vocal</span><strong>ACE Studio Emma · 原创独唱旋律</strong><audio id="lada-source" controls preload="metadata" src="./audio/ace_emma_vocal_12s.mp3"></audio><p>训练用前 6 秒；固定种子重放前 12 秒。所有 reward 组使用相同输入。</p></div><div class="source-block"><span class="source-label">Ground-truth output</span><strong>无唯一参考伴奏</strong><p>开放式伴奏任务没有单一正确音频；评价靠同输入 A/B、拍点、活动覆盖、响度和主观听感共同判断。</p></div></div>
         <div class="lyrics-protocol"><strong id="lada-protocol-title">LaDA-Band · online GRPO</strong><p id="lada-protocol"></p></div>
         <section class="choral-training" id="lada-training" aria-label="LaDA training traces">
           <div class="choral-training-heading"><h3>训练过程 · <span id="lada-training-arm">Beat-v2</span> reward / KL</h3><span id="lada-training-extent">每步 2 条 6 秒采样</span></div>
@@ -393,11 +394,11 @@
           <tr><td>Richness-v0 only</td><td>50</td><td>0.270</td><td>0.526</td><td>0.534</td><td>1.000</td></tr>
           <tr><td>Richness-v0 only</td><td>100</td><td>0.552</td><td>0.331</td><td>0.539</td><td>1.000</td></tr>
         </tbody></table></div>
-        <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.wav" aria-label="构造 click 节拍攻击试听"></audio></div>
+        <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.mp3" aria-label="构造 click 节拍攻击试听"></audio></div>
         <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>
       </section>
 
-      <footer class="lab-footer">Data are generated from versioned aggregate receipts. No private recordings or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>
+      <footer class="lab-footer">公开音频均为 MP3 192 kbps 试听副本，不做响度归一化；reward 与信号诊断基于私有留存的无损评分原件，不能把 MP3 当作逐字节一致的评分文件。旧图像来自评分原件，正式长片段图像来自播放 MP3。No private recordings or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>
     </main>
   </body>
 </html>

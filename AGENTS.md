@@ -31,6 +31,8 @@ This file is the first-read instruction for any agent working in this repository
 
 ## Experiment Publishing
 
+- Public audio policy: this repository, GitHub Pages and demo release assets may contain only MP3 audio. Encode listening copies with libmp3lame at 192 kbps / 48 kHz, without loudness normalization. Never commit or upload WAV/FLAC/OGG/M4A/AAC/AIFF audio. Keep lossless training/scoring originals outside the repository on experiment machines or private recovery storage. Record separate original and MP3 SHA256 hashes; lossy listening copies must not be described as byte-identical scored audio. MIDI and image assets are allowed. Run the MP3-only build check before publication.
+
 - `platform/site/index.html` and `platform/data/literature.csv` remain the literature site's entry and source of truth. The deployed Pages URL stays stable although the repository source moved.
 - Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `platform/site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
 - Do not publish private vault notes, restricted data, checkpoints, credentials or unlicensed audio. Label external paper results, local measurements and plans distinctly. Do not create dummy reward implementations or demo pages that look like completed experiments.

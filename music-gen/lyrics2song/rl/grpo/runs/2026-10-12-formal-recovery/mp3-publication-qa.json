@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-12",
+  "policy": "MP3-only public audio; lossless scoring originals retained privately",
+  "encoder": "libmp3lame 192 kbps, 48 kHz, no loudness normalization",
+  "legacy_site_audio_files": 222,
+  "legacy_source_bytes": 620144729,
+  "legacy_mp3_bytes": 85975686,
+  "formal_release_mp3_files": 93,
+  "formal_ui_clip_bindings": 108,
+  "public_baseline_policy": "one frozen YuE2 baseline per prompt, shared across rewards, learning rates and checkpoints",
+  "checks_passed": [
+    "npm build and check; 74 literature records preserved",
+    "222 legacy MP3 byte counts and SHA256 bindings to private scoring originals",
+    "93 formal MP3 assets verified against GitHub server SHA256 and byte count",
+    "12 formal experiment controls, including six queued Muse aligned-LR submissions",
+    "108 formal replay bindings with prompt, seed, checkpoint, images and frozen baseline",
+    "all nine navigation views; Vocal and Choral MP3 playback",
+    "approximately 64-second YuE2 MP3 playback and seek to 30 seconds",
+    "desktop 1440px, mobile 390px and 768px: no horizontal document overflow",
+    "no browser page errors",
+    "Muse independent inference stopped; no new Muse replay audio published",
+    "four invalid-output guard unit tests passed locally and in the Gadi training environment"
+  ],
+  "limitations": [
+    "listening MP3s are lossy copies, not the audio files originally scored",
+    "formal long clips remain unscored; short validation rewards are not attached to them",
+    "queued Muse jobs have not completed training; no claim of perceptual improvement",
+    "older images use lossless originals; formal long-clip images use actual MP3s",
+    "historical Git commits are not rewritten; current repository tree and public release use MP3"
+  ]
+}

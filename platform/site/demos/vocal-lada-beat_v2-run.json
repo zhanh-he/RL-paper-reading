@@ -17,8 +17,8 @@
   "stages": [
     {
       "step": 0,
-      "audio": "./audio/lada_emma_beat_v2_step_0000_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0000.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0000_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0000.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0000_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -44,8 +44,8 @@
     },
     {
       "step": 5,
-      "audio": "./audio/lada_emma_beat_v2_step_0005_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0005.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0005_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0005.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0005_spectrum.png",
       "same_as_baseline": true,
       "beat_v2": {
@@ -71,8 +71,8 @@
     },
     {
       "step": 50,
-      "audio": "./audio/lada_emma_beat_v2_step_0050_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0050.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0050_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0050.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0050_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -98,8 +98,8 @@
     },
     {
       "step": 100,
-      "audio": "./audio/lada_emma_beat_v2_step_0100_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0100.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0100_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0100.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0100_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -125,8 +125,8 @@
     },
     {
       "step": 150,
-      "audio": "./audio/lada_emma_beat_v2_step_0150_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0150.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0150_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0150.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0150_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -152,8 +152,8 @@
     },
     {
       "step": 200,
-      "audio": "./audio/lada_emma_beat_v2_step_0200_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0200.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0200_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0200.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0200_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -179,8 +179,8 @@
     },
     {
       "step": 300,
-      "audio": "./audio/lada_emma_beat_v2_step_0300_mix.wav",
-      "accomp_audio": "./audio/lada_emma_beat_v2_step_0300.wav",
+      "audio": "./audio/lada_emma_beat_v2_step_0300_mix.mp3",
+      "accomp_audio": "./audio/lada_emma_beat_v2_step_0300.mp3",
       "spectrum": "./visuals/lada_emma_beat_v2_step_0300_spectrum.png",
       "same_as_baseline": false,
       "beat_v2": {
@@ -2008,7 +2008,7 @@
     }
   ],
   "source": "ACE Studio Vocal Synth, Emma, original melody, dry mono export",
-  "source_audio": "./audio/ace_emma_vocal_12s.wav",
+  "source_audio": "./audio/ace_emma_vocal_12s.mp3",
   "source_spectrum": "./visuals/ace_emma_vocal_12s_spectrum.png",
   "phrase": "training_excerpt",
   "note": "One-source controlled replay; no paired ground-truth accompaniment or held-out song-level claim."

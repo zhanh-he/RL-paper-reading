@@ -15,7 +15,7 @@ set -euo pipefail
 : "${LR:?Set LR to a Muse learning rate}"
 : "${MODE:?Set MODE to smoke or train}"
 case "$REWARD" in songeval|musecritic) ;; *) exit 2 ;; esac
-case "$LR" in 1e-6|3e-6|1e-5) ;; *) exit 2 ;; esac
+case "$LR" in 1e-6|3e-6|1e-5|2e-5|1e-4|3e-4) ;; *) exit 2 ;; esac
 case "$MODE" in smoke|train) ;; *) exit 2 ;; esac
 
 module purge
@@ -24,10 +24,10 @@ module load cuda/12.8.0
 export PYTHONNOUSERSITE=1
 unset PYTHONHOME
 root=/g/data/wa66/hanyu/vocal2accomp-muse
-study="$root/experiments/cmi_triple_9to1_20261006"
+study="${STUDY:-$root/experiments/cmi_triple_9to1_20261006}"
 train_py=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
 codec_py="$root/envs/mucodec-py310-cu128/bin/python"
-plugin="$study/muse_cmi_rewards.py"
+plugin="${MUSE_REWARD_PLUGIN:-$study/muse_cmi_rewards.py}"
 data="$study/data/muse-cmi-triple-train.jsonl"
 run="$study/outputs/${REWARD}_lr${LR}_${MODE}${RUN_TAG:+_$RUN_TAG}"
 mkdir -p "$run" "$PBS_JOBFS/tmp" "$PBS_JOBFS/cache"
@@ -38,12 +38,24 @@ export HF_HUB_OFFLINE=1
 export TORCH_HOME="$PBS_JOBFS/cache/torch"
 export TRITON_CACHE_DIR="$PBS_JOBFS/cache/triton"
 mkdir -p "$XDG_CACHE_HOME" "$HF_HOME" "$TORCH_HOME" "$TRITON_CACHE_DIR"
-export CUDA_VISIBLE_DEVICES=0
+allocated_devices="${CUDA_VISIBLE_DEVICES:-0,1}"
+IFS=, read -r -a devices <<< "$allocated_devices"
+[[ ${#devices[@]} -ge 2 ]] || { echo 'Two allocated GPUs required' >&2; exit 1; }
+train_gpu="${devices[0]}"
+service_gpu="${devices[1]}"
+export CUDA_VISIBLE_DEVICES="$train_gpu"
 export NPROC_PER_NODE=1
+job_number="${PBS_JOBID%%.*}"
+port_base=$((20000 + (job_number % 2000) * 5))
+rollout_port=$port_base
+codec_port=$((port_base + 1))
+critic_port=$((port_base + 2))
+group_port=$((port_base + 3))
+export MASTER_PORT=$((port_base + 4))
 export MODEL="$root/models/Muse-0.6b"
 export MUSE_BASE_PLUGIN="$root/src/MuseCritic/muse_grpo/plugin.py"
-export MUSE_MUCODEC_API_BASE=http://127.0.0.1:18003
-export MUSE_CRITIC_API_BASE=http://127.0.0.1:18002/v1
+export MUSE_MUCODEC_API_BASE="http://127.0.0.1:$codec_port"
+export MUSE_CRITIC_API_BASE="http://127.0.0.1:$critic_port/v1"
 export MUSECRITIC_RM_AUDIO_DIR="$run/decoded"
 export MUSE_ROLLOUT_RESULT_PATH="$run/rollouts.jsonl"
 export MUSE_GRPO_MAX_TOTAL_TOKENS=2048
@@ -53,10 +65,12 @@ export MUSE_CRITIC_MAX_NEW_TOKENS=512
 export MUSE_MUCODEC_MAX_WORKERS=1
 export MUSE_CRITIC_MAX_WORKERS=1
 export MUSECRITIC_RM_STRICT=true
-export MUSE_SERVICE_GPU=1
+export MUSE_SERVICE_GPU="$service_gpu"
 export SONGEVAL_REPO=/g/data/wa66/hanyu/SongEval-formal
 export SONGEVAL_PY=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
 export MUSE_SCORING_DIR="$run/songeval_scoring"
+export MUSE_INVALID_OUTPUT_LOG="$run/invalid_outputs.jsonl"
+export MUSE_MIN_AUDIO_SECONDS=1
 
 "$train_py" - "$run/experiment.json" "$REWARD" "$LR" "$MODE" "$data" <<'PY'
 import hashlib, json, pathlib, sys
@@ -71,6 +85,13 @@ manifest = {'source_split_sha256': '2f5f31219514ad479984e921a8dc6603680e275f3153
             'input_modalities': ['text', 'lyrics'], 'reference_audio_used': False,
             'model': 'Muse-0.6b', 'reward': reward, 'learning_rate': lr, 'mode': mode,
             'planned_steps': 2 if mode == 'smoke' else 270}
+import os
+if os.environ.get('ALIGNED_LR') == '1':
+    manifest.update({'protocol_revision': 'muse-aligned-lr-20261012', 'fresh_base': True,
+                     'standalone_inference': False, 'validation_generation': False,
+                     'beta': 0.01, 'seed': 42, 'lora_rank': 8,
+                     'invalid_output_policy': 'zero for missing AUDIO, nonfinite or under 1-second decoded audio; infrastructure errors fatal',
+                     'reward_plugin_sha256': hashlib.sha256(pathlib.Path(os.environ['MUSE_REWARD_PLUGIN']).read_bytes()).hexdigest()})
 if path.exists():
     assert json.loads(path.read_text()) == manifest, 'Existing run has different configuration'
 else:
@@ -81,25 +102,25 @@ pids=()
 cleanup() { for pid in "${pids[@]}"; do kill "$pid" 2>/dev/null || true; done; wait 2>/dev/null || true; }
 trap cleanup EXIT
 
-LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES=1 \
+LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES="$service_gpu" \
   "$codec_py" "$root/src/MuCodec/deploy/mucodec_serve.py" \
-  --model "$root/src/MuCodec/weights/mucodec.pt" --host 127.0.0.1 --port 18003 \
+  --model "$root/src/MuCodec/weights/mucodec.pt" --host 127.0.0.1 --port "$codec_port" \
   >"$run/mucodec.log" 2>&1 &
 pids+=("$!")
-ports=(18001 18003)
+ports=("$rollout_port" "$codec_port")
 reward_name=songeval_rm
 if [[ "$REWARD" == musecritic ]]; then
   reward_name=musecritic_pcm24_rm
-  CUDA_VISIBLE_DEVICES=1 "$train_py" "$root/src/MuseCritic/muse_grpo/deploy/musecritic/musecritic_serve.py" \
-    --model "$root/models/MuseCritic" --host 127.0.0.1 --port 18002 --max-new-tokens 512 \
+  CUDA_VISIBLE_DEVICES="$service_gpu" "$train_py" "$root/src/MuseCritic/muse_grpo/deploy/musecritic/musecritic_serve.py" \
+    --model "$root/models/MuseCritic" --host 127.0.0.1 --port "$critic_port" --max-new-tokens 512 \
     >"$run/musecritic.log" 2>&1 &
   pids+=("$!")
-  ports+=(18002)
+  ports+=("$critic_port")
 fi
-CUDA_VISIBLE_DEVICES=1 "$(dirname "$train_py")/swift" rollout \
+CUDA_VISIBLE_DEVICES="$service_gpu" "$(dirname "$train_py")/swift" rollout \
   --model_type qwen3 --model "$MODEL" --external_plugins "$plugin" \
   --multi_turn_scheduler muse_multi_turn_scheduler \
-  --vllm_use_async_engine true --host 127.0.0.1 --port 18001 \
+  --vllm_use_async_engine true --host 127.0.0.1 --port "$rollout_port" \
   --vllm_max_model_len 2048 --vllm_gpu_memory_utilization 0.15 \
   --temperature 0.9 --repetition_penalty 1.3 --top_p 0.9 \
   >"$run/rollout_server.log" 2>&1 &
@@ -122,7 +143,8 @@ if [[ "$MODE" == smoke ]]; then steps=2; save_steps=1; fi
   --reward_funcs "$reward_name" --external_plugins "$plugin" \
   --tuner_type lora --lora_rank 8 --dataset "$data" \
   --use_vllm true --vllm_mode server --vllm_server_host 127.0.0.1 \
-  --vllm_server_port 18001 --vllm_server_pass_dataset true --vllm_server_timeout 1200 \
+  --vllm_server_port "$rollout_port" --vllm_server_group_port "$group_port" \
+  --vllm_server_pass_dataset true --vllm_server_timeout 1200 \
   --max_completion_length 512 --max_length 2048 \
   --per_device_train_batch_size 2 --gradient_accumulation_steps 1 --num_generations 2 \
   --max_steps "$steps" --learning_rate "$LR" --beta 0.01 \
@@ -137,7 +159,10 @@ root, steps = pathlib.Path(sys.argv[1]), int(sys.argv[2])
 records = [json.loads(line) for line in (root / 'rollouts.jsonl').read_text().splitlines() if line]
 adapters = list((root / 'checkpoint').rglob('adapter_model.safetensors'))
 bound = []
+judged = 0
 for record in records:
+    judged += sum(key.startswith('reward_') and not key.startswith('reward_scores_')
+                  and isinstance(value, (int, float)) for key, value in record.items())
     for key, value in record.items():
         if not key.startswith('audio_path_') or not value:
             continue
@@ -148,8 +173,13 @@ for record in records:
         bound.append({'audio_path': str(path.relative_to(root)),
                       'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
                       'reward': record.get(f'reward_{suffix}')})
-receipt = {'status': 'training-complete' if adapters and len(bound) >= 2 * steps else 'incomplete',
+states = [json.loads(p.read_text()) for p in (root / 'checkpoint').rglob('trainer_state.json')]
+actual_steps = max((state.get('global_step', 0) for state in states), default=0)
+invalid_path = root / 'invalid_outputs.jsonl'
+invalid_count = len(invalid_path.read_text().splitlines()) if invalid_path.exists() else 0
+receipt = {'status': 'training-complete' if adapters and actual_steps == steps and judged >= 2 * steps else 'incomplete',
            'steps_requested': steps, 'rollout_records': len(records), 'bound_audio': bound,
+           'actual_steps': actual_steps, 'judged_completions': judged, 'invalid_outputs': invalid_count,
            'adapter_checkpoints': len(adapters), 'validation_status': 'not-yet-evaluated'}
 (root / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
 if receipt['status'] != 'training-complete':

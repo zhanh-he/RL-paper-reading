@@ -1,0 +1,1559 @@
+{
+  "policy": "public MP3 only; scored originals retained privately",
+  "files": {
+    "platform/site/demos/audio/ace_complete_seed29.mp3": {
+      "source_path": "platform/site/demos/audio/ace_complete_seed29.wav",
+      "source_audio_sha256": "d16ae6c20b713756161734e0e006429e19a8e421e3e83599dcd6b6c7153abd00",
+      "sha256": "0cefd9019b61fa20ba4fb586241a59a6bb7653c82e93f1c69e240f77fb435a08",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/ace_emma_vocal_12s.mp3": {
+      "source_path": "platform/site/demos/audio/ace_emma_vocal_12s.wav",
+      "source_audio_sha256": "9a98ae976042bd933a1095e99288b054a3cad00bc5044fb1462ae8a136053e68",
+      "sha256": "1c2f1651e1a55d331d565af64e6a2922eae7ac3bf840e06e3188043096568c0d",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/ace_emma_vocal_heldout_6s.mp3": {
+      "source_path": "platform/site/demos/audio/ace_emma_vocal_heldout_6s.wav",
+      "source_audio_sha256": "21868a56058cae9a9527f23ab8d0d5b1bd7b5dcacd1ffb27f1b3b2b8e21d713b",
+      "sha256": "5186dd2792f7c2d77d585628b4a60fdc79b44e3775b17f943877c87e9e4157db",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/anyaccomp_accompaniment_seed29.mp3": {
+      "source_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.wav",
+      "source_audio_sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea",
+      "sha256": "a003eee79563cef22185c660ca9421a4ce025c6feb0dbe74562386b70715489f",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/anyaccomp_mixture_seed29.mp3": {
+      "source_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.wav",
+      "source_audio_sha256": "ad206f8ac57371f06fb3c82d28eefb3e867d6cc76b65c3914b8239e5a78279b6",
+      "sha256": "2968d6ff82272d78ff6613d89a8c193608cc6e042a11f312db85271ff94e132f",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/beat_v2_constructed_click_6s.mp3": {
+      "source_path": "platform/site/demos/audio/beat_v2_constructed_click_6s.wav",
+      "source_audio_sha256": "b547e4f50b279f55b75809f528acd393172b942ab2c18014f92c6d264b0fab6a",
+      "sha256": "c0a626b43f4c4b699abb5c85a46dfcb93b072f3af206c63e24b5d638a576ba34",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/beat_v2_constructed_click_6s_shifted.mp3": {
+      "source_path": "platform/site/demos/audio/beat_v2_constructed_click_6s_shifted.wav",
+      "source_audio_sha256": "b9d945139d1a1b593c8aa4f5519b78a8744f5cf5a9d3f4870d77375f1b00ab33",
+      "sha256": "d79a93fcf3a2b335b19ed14c867d8a17dc6258b2820af4c593c08cb6208e6232",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_ace_baseline.mp3": {
+      "source_path": "platform/site/demos/audio/choral_ace_baseline.wav",
+      "source_audio_sha256": "c9224b2b2a170979e24bd986fcec9c35eeb6389eae3775dbe40f3165e5be218f",
+      "sha256": "7f57c58745c555cc5ee348262ec45b4707b83a614a7a344106e0d6e132c96624",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_ace_reference_short.mp3": {
+      "source_path": "platform/site/demos/audio/choral_ace_reference_short.wav",
+      "source_audio_sha256": "e05fa204053d9ff184bfdfe0b3213d83cb251b314fc1b77ed75c443afc43c214",
+      "sha256": "6efab45dc681b36ced7f889a712bba4eae5957b87a26b866f48256fd1edcaf25",
+      "bytes": 265581,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_audit_fragment_sustained.mp3": {
+      "source_path": "platform/site/demos/audio/choral_audit_fragment_sustained.wav",
+      "source_audio_sha256": "ec31e22717f8de7d5ad6fab7a39c22782fce6da042e30f962cba182d8452bc34",
+      "sha256": "de0af79988ab27f71f76ed331336bf287fd1cb7b7cf8f4ed2fa733cc6535a4cc",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_audit_onset_only_short_notes.mp3": {
+      "source_path": "platform/site/demos/audio/choral_audit_onset_only_short_notes.wav",
+      "source_audio_sha256": "379381b0272257d97fcaab4ea11a5b9a7a310100a865d2b591985ec631b65ceb",
+      "sha256": "4d40375bf6d7375b3f848a8e8343c2948dec06d8ea5795057c5803c4a0d4ee52",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_audit_overfill_octave.mp3": {
+      "source_path": "platform/site/demos/audio/choral_audit_overfill_octave.wav",
+      "source_audio_sha256": "04603a39779c7fff33f405e4e97b430f63d29a4ce0e01d712d08bd07694ec5e5",
+      "sha256": "ea1953f1e5cd8219d352f8ddc76d6493039dee8bfa40c34190130f77e9ce2fc6",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_0000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_0000.wav",
+      "source_audio_sha256": "a5bb0d3dcdf86a97421e7c95306e67875cc3ce4acdc758163e241336058db518",
+      "sha256": "86f2b5cf2d5686886f6e3c4ff60d722c2c8106b7cf39a1120d639ea0878c1ad8",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_0001.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_0001.wav",
+      "source_audio_sha256": "384b08731f8f9e6e84a33f3cacc9f92d161a76eadad7daa0e1073f6e1af37536",
+      "sha256": "0c2b9d727ae1ecf9b90ef4dd253c40ccf6f7b5b16a17a6547a65c22b712b54ba",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_0100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_0100.wav",
+      "source_audio_sha256": "f5c275655f12b648932e91e835328f246dbd8d10eb150405530f3d34c8f85f45",
+      "sha256": "54fe9b9464f9f5dd7e76affed1ab4d03a6aa8e463d9d829b43b4201421416f80",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_0300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_0300.wav",
+      "source_audio_sha256": "bc29a4b4f639bd4400b300d396adc886e88e1cd3bfaf445ae71d2725d30311b8",
+      "sha256": "e6ff3344a24f399588bb81a55f7722427f2ff1b3af777811743ebcfe1eef7df8",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_1000.wav",
+      "source_audio_sha256": "771c8e373b9f55b7fbd7cad58a498ae1b120302bf1f2446b9963320a9275385f",
+      "sha256": "472384dce055c1d43884f8f98264f6456c6b3155856a9540238e42db243d1dc1",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_continuity_1.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_continuity_1.wav",
+      "source_audio_sha256": "61c65d3af2c1ae01a049af6fe1fa0a4ec2c8a9f143bf854d99908cb4aa8d076b",
+      "sha256": "c8357283408c4286834a51be62bc452376e04bd1199683244eb953379c37a315",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_continuity_100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_continuity_100.wav",
+      "source_audio_sha256": "600e0cb10b8c458cc2db208099a84deb03c52ecbc59777e420423408ec495ad8",
+      "sha256": "de1c93b3ffe72219ffffd97906eb56c763f27fcdac43d90c25e89c9fb3b1ca8b",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_continuity_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_continuity_1000.wav",
+      "source_audio_sha256": "0e009d777dee54df1fce0f9bb65a67f74727c62e5ba082987dd8e0e488ddbc46",
+      "sha256": "ed34c08e364389d836dfb99126f66062d30c33c2b80d64573bce5aa13ec2192d",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_continuity_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_continuity_300.wav",
+      "source_audio_sha256": "637ca6896a2a3582790e9c085533f91fd53538e2c600c825ed20c538ac81b020",
+      "sha256": "77f1facacb6a495c4ca0690356bf1c805712fb88cdda51e9333fbcb4be361b61",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_coverage_1.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_coverage_1.wav",
+      "source_audio_sha256": "873d58668509d41829fc4e4d29cb1adc03fdff9882c09d738d493e68ac5e50d0",
+      "sha256": "f5ea33e3ab3a553a424dd3de0cf675517e0e07c443b76ea00205c065f560286c",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_coverage_100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_coverage_100.wav",
+      "source_audio_sha256": "0b17daae5ba45763fc36105e7dbe3b77d4b2d254d79e289ad68c7ca2fedfd59c",
+      "sha256": "3e768ec48e2cac4a74a99ea6753d8e25e2d9f0969f13f64049780f316c13f77d",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_coverage_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_coverage_1000.wav",
+      "source_audio_sha256": "c939deeec1e531a108b22789c003a7b5defa44669d91c3a9929c6d56ce084cd1",
+      "sha256": "ade396371df66d2c2e0928912e40dd991a3d1ab94754e97c5846a23e930ae01b",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_coverage_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_coverage_300.wav",
+      "source_audio_sha256": "8c5debf235f7bd1feac2e616ea79ca7433b0bcdf6ca730a6e354defe7b53d64c",
+      "sha256": "1a363af6dc1bec52a05189bada9b166fd4051d4a094c32044e67581bc6c51ff9",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_frame_1.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_frame_1.wav",
+      "source_audio_sha256": "1be79a308e36f52cb62f0bfcb36bd1dc087b02d67ede71666a11ee8a25c262c4",
+      "sha256": "20869bb9dee2a44bde80ee3664a3e0856b9c039cc7052e823de4faa995c8c406",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_frame_100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_frame_100.wav",
+      "source_audio_sha256": "f1ec9fdd95bfd2c2e8844de8be68170de92a77df231c4c157be2e3748d866b2f",
+      "sha256": "d8994a2039911b83b35340368196b6fe6ccb13aacd48fd6cd799226839809bf8",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_frame_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_frame_1000.wav",
+      "source_audio_sha256": "bc472050eedc8a45e89493820b1c1ea01c07a6f91d2dbcd0d75adad0b9127f96",
+      "sha256": "327e3ba37b976962eddaf61ff54f8254c50dd5743ddb77d6959152c10c93a3ce",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_frame_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_frame_300.wav",
+      "source_audio_sha256": "effdd986aacda0b009e68fccd9fce8865dec702318342e4f57d578e78375f920",
+      "sha256": "13881d1fe1e460c71f38d4999f2eb2dc54f7b824efdee466c05795acdeee9c27",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_1.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_1.wav",
+      "source_audio_sha256": "02af0c6ae7e1397089d8ad29057fda47201e0dc62bcb09c14786398b12f0ae5d",
+      "sha256": "052544399caf9e2d0f8350ea75ada79616508f43648360545bbe1bbd533abe5a",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_100.wav",
+      "source_audio_sha256": "047cb08b25a7e97ab6e0dae90b2c4542d9135176839ae9f41fd5378bdf15fadc",
+      "sha256": "b9554dbb0e0fe3b5fe8b5b0a9bc296c2b5265e4f2eb583e4930ba16060e9c235",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_1000.wav",
+      "source_audio_sha256": "19197b697566a52f3ee4d8a1c3a2c76e0174f36a0d404d5cd1a5d8258312c61e",
+      "sha256": "76c0f5dce2ab31f0affac09550b224abe2895cf950bd48c6c8ea45d62fb49982",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_300.wav",
+      "source_audio_sha256": "abd2bb1d5401ab7abcd59ee8bc975d4b93615d0ed2d7d85ac5abe02034318aeb",
+      "sha256": "49065d4c30da6a73d0a6e731dcca6c90c05de705ddda99ed22dd869fb6ff3f2e",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_offset_1.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_offset_1.wav",
+      "source_audio_sha256": "97261c60c86595cf94e95790a9e14b8895b6cfca1793e5bd30c39edf427ee353",
+      "sha256": "5f64ed495234cc3b54ff009970711af9f5174f2bafe7550dfaf4ce7229bacb1b",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_offset_100.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_offset_100.wav",
+      "source_audio_sha256": "15981cffdb629d64395e1f0684f0b6d541f26fe2476c027ea7e678dbe475eca5",
+      "sha256": "df9a7a87d5cd92eceee84d6b8e0fd9491ef48ff582f0d8fd45e0166664890030",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_offset_1000.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_offset_1000.wav",
+      "source_audio_sha256": "4517512f52398e2addc32baab53b0f115c670470fa3365fcf2bb55035b42e617",
+      "sha256": "445f1abe9ee471bd4b2c78c1b08e9a4b7099c6c2dfa3f88d9e86a28210f30b24",
+      "bytes": 266733,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_onset_offset_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_onset_offset_300.wav",
+      "source_audio_sha256": "79c59f4fc2e810f7aabd8180abe9933c0050359b64775e0d698f15c8b43114ef",
+      "sha256": "845eea1d33a0de10b12fa024b5988afbad945a06fb18bf61c73c5367017e894b",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_event_arm_precision_300.mp3": {
+      "source_path": "platform/site/demos/audio/choral_event_arm_precision_300.wav",
+      "source_audio_sha256": "dedcd72069714727b36575eea648098c8274a9e3d1f85a6d2c52cd371d64fbe8",
+      "sha256": "5d388817101893932aaf0ad5e166dca8ba4471781dd2e58122112ce21e701da2",
+      "bytes": 266157,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_synth_baseline.mp3": {
+      "source_path": "platform/site/demos/audio/choral_synth_baseline.wav",
+      "source_audio_sha256": "d807057771f43563ab24b83908f378acdb8ef05cf306cc8ba727efdb2eed93fa",
+      "sha256": "a6bbc72a811a7336482e03c075add87488514eed6c18b5853b099680e5f73fbe",
+      "bytes": 245997,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_synth_grpo.mp3": {
+      "source_path": "platform/site/demos/audio/choral_synth_grpo.wav",
+      "source_audio_sha256": "d807057771f43563ab24b83908f378acdb8ef05cf306cc8ba727efdb2eed93fa",
+      "sha256": "a6bbc72a811a7336482e03c075add87488514eed6c18b5853b099680e5f73fbe",
+      "bytes": 245997,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_synth_input.mp3": {
+      "source_path": "platform/site/demos/audio/choral_synth_input.wav",
+      "source_audio_sha256": "b106c8fe0d96670c08b0345692a764d6037140e39db88a55b0abd0b270f3c886",
+      "sha256": "e300c3f0e20f2c08ba8c0ae639786ea0951e910f20a795b69667fc8a1f7053b9",
+      "bytes": 245997,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/choral_synth_reference.mp3": {
+      "source_path": "platform/site/demos/audio/choral_synth_reference.wav",
+      "source_audio_sha256": "b106c8fe0d96670c08b0345692a764d6037140e39db88a55b0abd0b270f3c886",
+      "sha256": "e300c3f0e20f2c08ba8c0ae639786ea0951e910f20a795b69667fc8a1f7053b9",
+      "bytes": 245997,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/guide_vocal.mp3": {
+      "source_path": "platform/site/demos/audio/guide_vocal.wav",
+      "source_audio_sha256": "b4336c4f124adeba71076388735751c7b4426d4ac4391891ab6d520baa7d5b79",
+      "sha256": "c6bd7cf23c6a80120969cdf1e0dc6a464dd97bad59853f4cce64271b878da0b9",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_online_step_0080_candidate_2.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_online_step_0080_candidate_2.wav",
+      "source_audio_sha256": "1df5609c99ba1bbb9da9d69f7f8f931f1deb7a02887df21aece23e50ea2f845c",
+      "sha256": "c4f2a2349fe5ea16fd6ccd23b4ca790de37dd03b26acd9a53f8a81585b8d9afa",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_online_step_0080_candidate_2_preview_plus18db.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_online_step_0080_candidate_2_preview_plus18db.wav",
+      "source_audio_sha256": "bf07fb65558761f32440c9b6bb2f9ccddda022e5bedf2ad82eca68c3d6cb9243",
+      "sha256": "86f1cb4e64a72275626bddcb74bb38ef3903987f6da07452649ccad9bcea6c3f",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0005.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0005_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0050.wav",
+      "source_audio_sha256": "3e702243c992fdc7a6c4165e7279f243fa16a1a1126eb8b2e70c2f10e6e2ef63",
+      "sha256": "d2fb78a7aa7ada2917c59ee4e8eb992d13b347f223294168920e226560dea362",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0050_mix.wav",
+      "source_audio_sha256": "ff03ac719f16e0aad8f088ce4f11858a1cce0c70d654e6a21c08762537e928df",
+      "sha256": "8ccdcb3f680f3c15bb5ee8b3bee279d8ef18e38136383a8d6dbf2c4c38bb2432",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0100.wav",
+      "source_audio_sha256": "12890fb2141835c04a49b138e18af86fc420c1f25d2ddfad5743b223e13d5d35",
+      "sha256": "220c4295de71096858f142d8c20e52836f1b1e32794b13a011b2e4ebbc15a06c",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0100_mix.wav",
+      "source_audio_sha256": "42fee7f0106007a1e7cc4af7caceee4c4e8a899770cf8458402bfb05f7386750",
+      "sha256": "ff1ba2c4e4c6e5a6f7ce33a7ff14894e7da97b28085f7f40f74439aba0271e23",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0150.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0150.wav",
+      "source_audio_sha256": "3478c67c351dd20e382d55ee8522dbe9a757ec2c365e28e18f41084b2155760b",
+      "sha256": "1e363662105f204f5c4670b8c24ab3594d8254eec0dcb82d165dcabeb372ca74",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0150_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0150_mix.wav",
+      "source_audio_sha256": "4c0e96a216223874fdf341de5f0d72691db78307de6e54b30c8c4d7dbbb0d9f4",
+      "sha256": "512943a6886b7d3ebc2df8718cb4527e65e9d3227bc68223eda582c7b9812f94",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0200.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0200.wav",
+      "source_audio_sha256": "a865410a2c4dd54235e1754c2b445291cc4b1a11f26d798e20efb5d94d71fdfb",
+      "sha256": "134d37708a9a76909c24b0d0145090921aeb26336c44a50a3e5ad92cc00923bb",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0200_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0200_mix.wav",
+      "source_audio_sha256": "e0349ad655fc75a17c573307c2eab51f27a36484635d0f42546250ae4cd655d4",
+      "sha256": "dcc21836059f194a547717b18f7299e485c57d3c2803fcbf067a0a58a82569f3",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0300.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0300.wav",
+      "source_audio_sha256": "4e8fc0b8faeca65d42bc5af5849f05263d54479b53098031ec5f96f59fff1d5a",
+      "sha256": "4b53c26217325c81263a019910daf2cfb9ce156b66d719943c24f7dbc464ce3a",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v2_step_0300_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v2_step_0300_mix.wav",
+      "source_audio_sha256": "be141e3ad320ffa6d9cbae6ece75f470a7ad0330233b3710b0b0763c23a3fdd3",
+      "sha256": "2ceb74e061c1a9470b93a2712c3ecc2493087a6270a206a17c54c3b895f8e19d",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0005.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0005_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0050.wav",
+      "source_audio_sha256": "4a9a371517c9b101dc621e43e5379b309adecdbfe5a51e9100b002542deb7f68",
+      "sha256": "3abed552d1af840641037f0338608d0102f85e2a436fb063fc282f304fa14e22",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0050_mix.wav",
+      "source_audio_sha256": "27783405a23717d3002654f34e42b06d39e2129c4adf1078b2c908ac6dfa4e1c",
+      "sha256": "315a55d440b4922900629f42c39b4ecb178d52363bb05a8171ffc50d1cc63056",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0100.wav",
+      "source_audio_sha256": "8d8ef105e9f0d7f4be5d510e24c3a7c272d418bed6b900d6da880b1c15617784",
+      "sha256": "9f13c0e550bdd56132ab129fda7cc259c1c6595bee19a90407366d11161236dc",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_beat_v5_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_beat_v5_step_0100_mix.wav",
+      "source_audio_sha256": "3f6ea51c996076342af8b981ea06b1869e5db5c07a9336a78237fd11f69e5310",
+      "sha256": "7d86a56d7c8dde4c0a1f91a348915dcef31d236c36561aae1fa704941eb35697",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0000.wav",
+      "source_audio_sha256": "731f6d010c2cb340a8326a3d05458d3a66c741e44b89b7017b9dc7ac1a4886c2",
+      "sha256": "b5b7388c41ce9747b274a9e254f09916a02daa0256dfd8aee68591314ae4f3be",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0000_mix.wav",
+      "source_audio_sha256": "eb68e209be724f9113b635c845f40bd8c4779ed9d6f99f3963d4386684d80dc2",
+      "sha256": "4d56c18d6203a5d88c6ef3291f1bd7d46f384c89021a26d12c5089c1e7482670",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0005.wav",
+      "source_audio_sha256": "731f6d010c2cb340a8326a3d05458d3a66c741e44b89b7017b9dc7ac1a4886c2",
+      "sha256": "b5b7388c41ce9747b274a9e254f09916a02daa0256dfd8aee68591314ae4f3be",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0005_mix.wav",
+      "source_audio_sha256": "eb68e209be724f9113b635c845f40bd8c4779ed9d6f99f3963d4386684d80dc2",
+      "sha256": "4d56c18d6203a5d88c6ef3291f1bd7d46f384c89021a26d12c5089c1e7482670",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0050.wav",
+      "source_audio_sha256": "731f6d010c2cb340a8326a3d05458d3a66c741e44b89b7017b9dc7ac1a4886c2",
+      "sha256": "b5b7388c41ce9747b274a9e254f09916a02daa0256dfd8aee68591314ae4f3be",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0050_mix.wav",
+      "source_audio_sha256": "eb68e209be724f9113b635c845f40bd8c4779ed9d6f99f3963d4386684d80dc2",
+      "sha256": "4d56c18d6203a5d88c6ef3291f1bd7d46f384c89021a26d12c5089c1e7482670",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0100.wav",
+      "source_audio_sha256": "b22896c723e7e59b18c93827391d04b10d2434f08226cebf63a33697faad6f6a",
+      "sha256": "61f06ccad78a380aa3c085d4eb0699d648f7725ae794b10fc885adf682ba3e43",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0100_mix.wav",
+      "source_audio_sha256": "27403e92a64a0d6905aef126c0d4960d8518a6cf7d0f4d141bb32ed3d92170f3",
+      "sha256": "50ff4c23f24727948e67c0c33b071e89230304a52cc7dcfd9da690e7fb84ede9",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0150.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0150.wav",
+      "source_audio_sha256": "b22896c723e7e59b18c93827391d04b10d2434f08226cebf63a33697faad6f6a",
+      "sha256": "61f06ccad78a380aa3c085d4eb0699d648f7725ae794b10fc885adf682ba3e43",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0150_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0150_mix.wav",
+      "source_audio_sha256": "27403e92a64a0d6905aef126c0d4960d8518a6cf7d0f4d141bb32ed3d92170f3",
+      "sha256": "50ff4c23f24727948e67c0c33b071e89230304a52cc7dcfd9da690e7fb84ede9",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0200.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0200.wav",
+      "source_audio_sha256": "7a6489b39289a4f8cecd5c909c77fd54e7dafa0733b015b1170fbed3d4c89d8e",
+      "sha256": "2175f9fca330d7e7a59955d40e905ca65b15864101ef61f2e605719f1c6e64d8",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0200_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0200_mix.wav",
+      "source_audio_sha256": "6f60ef9cc6d7964d661b386a71168cc37d5f9f5b3d25d431a6a1555613686f61",
+      "sha256": "09757d28075714f6bd9a1cec324288ce098a86ba250a9c4773ff5884dc950f17",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0300.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0300.wav",
+      "source_audio_sha256": "e72ab9135e2946eed609c69ec96c59d717f01de21cace55bcddf71dd6682d24b",
+      "sha256": "81c20dad55178da0b5723bd5cb3f9d6df96c522ece93152a5b134259e16a6678",
+      "bytes": 146349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_heldout_step_0300_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_heldout_step_0300_mix.wav",
+      "source_audio_sha256": "02d2013c877f001c7a607468c886910696fca8874f73852231ff8f515e56e935",
+      "sha256": "3f09e5aacae7d50fecfadb1820f317ab59e4619f285c082a33597b2d76b53297",
+      "bytes": 145197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0005.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0005_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0050.wav",
+      "source_audio_sha256": "4d5f7a7ed95d413501f21f1ca1f7e8a8df9910c67a4a6cb01acee87502bbffc4",
+      "sha256": "c9a4b4fc4254e3f8f93f6ac649d1e4fbf8c6c530495d4776132f089a3e10533f",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0050_mix.wav",
+      "source_audio_sha256": "90ceeb8a22e2546df15f72c41255a119c27356be6fe7e41ba8cd5e802b6d0f67",
+      "sha256": "77b039ed2544d1965faff87f40d601a92353330f6e017739060fcd9eb3ef17d0",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0100.wav",
+      "source_audio_sha256": "88a87a3458ed6c9cceacf92775cc9051c4730fcd33a63244cbb0b5db198a8c3d",
+      "sha256": "567323669507b4ae72bce3e2b4d05b48ac6b6d7c39ba399ab318c00e38f2db6a",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0100_mix.wav",
+      "source_audio_sha256": "9e29ca718620707e76d84ecb4ab24e15b2f8f83fbe094ebf54a5add77684c4a7",
+      "sha256": "9d7210d8a47d61bb0be5f8144a26a885d9b19aae6c4a1bea710954bbdc431de9",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0150.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0150.wav",
+      "source_audio_sha256": "abba3a2179b1bb3876bfbfd18362e71779cdbc1e8089fc7dff7108245a631c0e",
+      "sha256": "52b5207c98f33c6a4ddb0790129653d6cfeef3edc508caca66d07803f8e437df",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0150_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0150_mix.wav",
+      "source_audio_sha256": "cd9754afe528e8e0c30d0a4549e75dfee3ae1ce3478e85a387170a376b64c04a",
+      "sha256": "50a9dcb6709930ea16bf8c1c66b03f42545a0e0c9824ee79acb2326bd03e926d",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0200.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0200.wav",
+      "source_audio_sha256": "03cefbcf321e030d9e41d94052acefddf1d8296d2542215b896ffcbe47f17872",
+      "sha256": "25aac628386bf4e7be55e2058f7a0959a0060c61bbef5c4d4f0495711b9b18f9",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0200_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0200_mix.wav",
+      "source_audio_sha256": "db5c221b26d22f715802282187dfcd317300a52f37067243b1c095fc185461c6",
+      "sha256": "2f837e6aa728989df6baae820c0512053e9f6ad62f1c9af11e582389a7433d29",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0300.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0300.wav",
+      "source_audio_sha256": "5eb56222fd1e9f721f395fa7be0cc494698f21c9411e4ed864f5e4116252cd59",
+      "sha256": "f197a615c7b487eba16e596c689bb243d955ab6269d420bc1cee460cc7e189d7",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_combined_step_0300_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_combined_step_0300_mix.wav",
+      "source_audio_sha256": "07e783833e682113be099ff0f5c6906479b12cc489823885df13547c0c49b893",
+      "sha256": "55582334a4ff2e37d2b661754427fa3dd715704617e0badac0ae2492c2ee9185",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0005.wav",
+      "source_audio_sha256": "8ad1b34d820e0feb1ec209e45e6887318ee293d364197f0c8fa8dc561f42ea08",
+      "sha256": "9130df037d4e2dd6d3e1a1eb3d0b9d45cfac9ce797e384f58e0b3e3b109ea048",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0005_mix.wav",
+      "source_audio_sha256": "436920c8ccc8d5f4a1139bc4049d853f4219851a4e562c14dc56b2dc78d6c5d5",
+      "sha256": "d533832d0ec4c210a740423909feb50721aaeae40943cfecf912c4952bd7cf05",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0050.wav",
+      "source_audio_sha256": "8f3434865bd85a0bd5c0b5b461b58b570eeb960365ba3d8b667e930f4507ec75",
+      "sha256": "e2d140c8481d49327f3d66098cfd22b093919f421b2358f980f26065bb02b626",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0050_mix.wav",
+      "source_audio_sha256": "f5f27f3bf5d5b68f45ce3cd8813a16523de7f2920dba5252f9f528199a03f335",
+      "sha256": "9cf85c0bd8e97012aecf8c15774eb18beb352c331c02ddb1917f263de1542709",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0100.wav",
+      "source_audio_sha256": "507de4c81f3fa5b23be0ad1bc9275d1fe8001fc9747f026d3aef3e7e7f1d96a7",
+      "sha256": "6bce98097b53005f786f2667c4683761dbf37c9b8409fb53a91183f2b96d87d1",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_coverage_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_coverage_step_0100_mix.wav",
+      "source_audio_sha256": "7b17f918f03b28037192ed7e891b76c28c54969aeb4bedcb7df4dfb141f6b61d",
+      "sha256": "63941a42dc688d93386c8d43f1dafb2d4ebe8402adea68cbfe53d31b064ac03a",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0005.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0005_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0050.wav",
+      "source_audio_sha256": "281c9b3f15cd930c9f35e2e288f8614ad3801bf7dacaf38ac50b63357d1db996",
+      "sha256": "e5aee33de5be4813709cf41e57a2e84b98f43845bfc51f1d75639b07e27b304c",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0050_mix.wav",
+      "source_audio_sha256": "0bb2117dcd1454ec94e9a788e69de5ab99e5ef576cd6a79464386ef407a9d8c5",
+      "sha256": "496d1bc9cddedf0b1ff50d0a12319297f1466288629770169a38e3180924a4fd",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0100.wav",
+      "source_audio_sha256": "f7c4c7d8565f70c63e7dd2bdaead765040901c61df72dffd882854cdb250ac58",
+      "sha256": "c8760f83b4566f39538f674b5d20e3c4fc8ea4f8b7ae335d342dda621ea2d346",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0100_mix.wav",
+      "source_audio_sha256": "484ad9d59494f65019fb7a3aa2a126ef942e15681c7d86b3448bde249892a4d8",
+      "sha256": "c5991f4ab368dedebb5680166a9f75d17de970db83aa9bf1052caadb185685bb",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0150.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0150.wav",
+      "source_audio_sha256": "65474e5b267272f381ca55584f487906a4198223cbdee0caa3c83f77188fec7a",
+      "sha256": "736b3367babff26604babe054be9e9e7a83c91bb144cd9fe55eb8c0fd7f993c3",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0150_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0150_mix.wav",
+      "source_audio_sha256": "03d078b0f834907da755c070ad91961899df84364f598ad127232c2cfb902258",
+      "sha256": "c2d436cc953f89eb46309a133867eb36bd1b9510115c660b55eaf60f9bf01063",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0200.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0200.wav",
+      "source_audio_sha256": "0da6a3aac518a6fbbfb06fe229714e9b67a45b510224cc51a9a74849adb1b6af",
+      "sha256": "bb69eae4372edea2175695988375dc08887e2429f74d32caaea2e3e4b982563b",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0200_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0200_mix.wav",
+      "source_audio_sha256": "a8e689a80938c3a476b7fd12d81824b18c04bbf313788ce0e5997c3b1e9bbecc",
+      "sha256": "e663ff6dba0a64ee294e4eac8476edb0dbaa383b0e109bd5e4e273b760aade71",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0300.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0300.wav",
+      "source_audio_sha256": "5a9b9e6dbcf41f2f342109c49409fb0601da18f410a545f7dcfaa0bd717ef246",
+      "sha256": "ea53549cbd85b323b530542cc8a23870dedfd15883409f217267da956a5d2673",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_guarded_step_0300_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_guarded_step_0300_mix.wav",
+      "source_audio_sha256": "a86b158bac70e8d14736784cfba59eb4a709e0dced467a8b94dd753c0e7ffee1",
+      "sha256": "c26d66518980d1eb38d0dc6ae54eb1cf4ce9849a34c4ea280ae45b03a6c2128b",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0000.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0000.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0000_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0000_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0005.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0005.wav",
+      "source_audio_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0005_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0005_mix.wav",
+      "source_audio_sha256": "72ce0f4b5a774f14536c4aa4aa91bc83928e262920e7ab89ddbaf85ebfcf3390",
+      "sha256": "52fec0ae5a697a097686d0bd41fa456ff81d857c851256a5a48f1b55b6a47b5e",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0050.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0050.wav",
+      "source_audio_sha256": "d421483e01497c93c10ebc32eee27dfed660c9d0099935e1ef14bea7ab7b0992",
+      "sha256": "1d85e41ddf653ccdad01ce22cefcc5acf8a8870c14273fb858d4e51e7c5b5c96",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0050_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0050_mix.wav",
+      "source_audio_sha256": "1bffd5c99e3f03ac159131d205219135c8ffbacc1516d2bf96f05055969f5da3",
+      "sha256": "d2078a0c78c8470d5dd744423a5759729df681cde3b396c4991cc21eb1e78287",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0100.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0100.wav",
+      "source_audio_sha256": "8839df4483febe7fe789535c7ff5f5b04806e38372bb66a215ad6dff6839ec77",
+      "sha256": "4224ef0324ce670dce833143794c55c90670fc9bff377ed3fc1b2ce907ff86cc",
+      "bytes": 290349,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/lada_emma_richness_v0_step_0100_mix.mp3": {
+      "source_path": "platform/site/demos/audio/lada_emma_richness_v0_step_0100_mix.wav",
+      "source_audio_sha256": "9af29dbd239368177bb08d9b88736b6fdeb75d8da2c4748b9ea6658d28b1ee21",
+      "sha256": "d2be6e9550a404fc8d01eda931c2d40da97d91d6b8c4abb73868ff8da2c2232c",
+      "bytes": 289197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muscriptor_synth_baseline.mp3": {
+      "source_path": "platform/site/demos/audio/muscriptor_synth_baseline.wav",
+      "source_audio_sha256": "e0c8510b38e67a3f3050542b1d33495cf9c924a490f8f8b143c62065aacdbb5d",
+      "sha256": "527e54e2f7607b919909afb324db7c009ff5487079a85b006c45d0f2a81ac2dc",
+      "bytes": 285741,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_000025.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_000025.wav",
+      "source_audio_sha256": "3a804424fe4e4ca55ba84dec4cde3d278a9878475e756b848985457d9a9ec5ef",
+      "sha256": "ef9aae2457fb693bd49c55349e809ff82eef540b249b9fd28a7d4e989217ce3e",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_000025_before.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_000025_before.wav",
+      "source_audio_sha256": "7620a1c8ba88c5f1a771f3042843da3579c04cd1192be8226cf5964236114758",
+      "sha256": "195f428e7d5d08928b837e200c00a84dc3563973ca41cb88bf48cb3e9be8c011",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_000050.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_000050.wav",
+      "source_audio_sha256": "eb06323f0d0c97017e91e744a8479107957c5b974ce1d8001d42c74be25f02b4",
+      "sha256": "dfb64e2d0cfd2bd8d79029e782778b35f5e1d5f5359585a647049be4d88217d0",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_000050_before.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_000050_before.wav",
+      "source_audio_sha256": "cc6439ca8e8bfa9011b68d5f38645b12615a00ad76d05ed46fe1dbc06089d27c",
+      "sha256": "f599e999a1b630d9cc02effc99c434b5f2e7de1f23f6b99cc59dfef70f4c5515",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_after.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_after.wav",
+      "source_audio_sha256": "2dc5a811bf6c60ebac002691bd422e6afa4fce2ed0169877fb4e70881e8d46bd",
+      "sha256": "106946e0acf707c87a9c8dc1048faad1df39e5c24aa10ecda51ff3120812755f",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_musecritic_before.mp3": {
+      "source_path": "platform/site/demos/audio/muse_musecritic_before.wav",
+      "source_audio_sha256": "36ad6e98c177484de0c04edcdd9dd941eda73e5b2549b6ee7b323f0ed8a8bb38",
+      "sha256": "85acd821e115e1234663cacfd40ccc2ecde43063365bff7c074e6a720c43dbeb",
+      "bytes": 247149,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_shared_musecritic_000001.mp3": {
+      "source_path": "platform/site/demos/audio/muse_shared_musecritic_000001.flac",
+      "source_audio_sha256": "1aad67359efa4595b6819bf7d60f0507e013e75004454d16b25d8df7ffeb8031",
+      "sha256": "15797a57effedb6aac84933c9091f99114f249622dd2e069e1244c39d8e8c7bb",
+      "bytes": 475821,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_shared_musecritic_000025.mp3": {
+      "source_path": "platform/site/demos/audio/muse_shared_musecritic_000025.flac",
+      "source_audio_sha256": "6b9bdc93767a33f970c540c2594dd205d8e6783fb71ca3d909181bec24dadfcd",
+      "sha256": "bc1278e03c0bff24f84e834ec75bdd2c89b7a08c0f98fbff83a6027a53b0706f",
+      "bytes": 475821,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_shared_musecritic_000050.mp3": {
+      "source_path": "platform/site/demos/audio/muse_shared_musecritic_000050.flac",
+      "source_audio_sha256": "67a55931eb0931fb7e98a445a9a3446842b8ba43b9d2003a75f4acb8f9760fcc",
+      "sha256": "6193a9c28aff73aaa40ba50ce7df2cb141711dbe1fd46e05b68f677ab79c3d3f",
+      "bytes": 475821,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_songeval_after.mp3": {
+      "source_path": "platform/site/demos/audio/muse_songeval_after.flac",
+      "source_audio_sha256": "a21a6b0254018a3f631e043958b217f1eeec5a082d2b55e94edcb9ad806132ae",
+      "sha256": "b78d8e7b1f544b8e6f40fae606900e4d98d3c2b7eb661d9a47814aa8feb01dcc",
+      "bytes": 476397,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_songeval_before.mp3": {
+      "source_path": "platform/site/demos/audio/muse_songeval_before.flac",
+      "source_audio_sha256": "9f3e091b44d7df4f0917ae81e4c3fc340b8044720c5c2c67a8873a8c384f7cc1",
+      "sha256": "4a975a4a0e5b2ddcb21fd73bbdc83dfa6a3095f99091f13e74aad2f43fa6eb50",
+      "bytes": 476397,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_songeval_matched_after.mp3": {
+      "source_path": "platform/site/demos/audio/muse_songeval_matched_after.flac",
+      "source_audio_sha256": "0fa95a186893499252978e856bd279d082aa04c56a2cddcb8368de2cb1d8ee26",
+      "sha256": "1e01dc860b5423e1ebcba480e6657ffa6261a4152ccc79e45ed259d13ac8d15f",
+      "bytes": 475821,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/muse_songeval_matched_before.mp3": {
+      "source_path": "platform/site/demos/audio/muse_songeval_matched_before.flac",
+      "source_audio_sha256": "23013b73b1b858ab39ef8d10f579ffc6194127fb9b20f5a32c909f17a362321c",
+      "sha256": "5fec6234b161929638f41308d50377ba34b2dc94cd9dabf954df30eafc58d72b",
+      "bytes": 475821,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_baseline_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_baseline_heldout1.flac",
+      "source_audio_sha256": "c305f48a2cc2ff7a400235a9d27872ac84a928b4836bc8e31d71eacca171758b",
+      "sha256": "11cc25f606968fc6db87d918ef44aafd98a8ceb64a63e96eaa5e18dde69ec54f",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_baseline_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_baseline_heldout2.flac",
+      "source_audio_sha256": "2f2cf5f0692e12167dc3edd4f07b6fcdabc112c938b06a021a2a93858fabcc5a",
+      "sha256": "8c890a38b353ddafcf6e534d0a6d3b1ff8d1d17a96fd7caca73dae7300cb9897",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000005.flac",
+      "source_audio_sha256": "5ceb21c1c7f1d8e86b05b47c01c3bb2018a76722c18409d9eda5fcc9a5e0c0db",
+      "sha256": "1a6db92fa39c223cbf01b42d4027955805faefd7615b061e8d00c75543153061",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000005_heldout1.flac",
+      "source_audio_sha256": "c3df9053e9ef33a2cfd213a11f3dce71710e3485f2a7d5e4d1280be4a03255d0",
+      "sha256": "60d5a1bdbf87f3f8b144730d200b95ac4651410548db22bd7c0dfbc0c21187f5",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000005_heldout2.flac",
+      "source_audio_sha256": "4004bf7aa7ea4a18d3b27c06384592af1b6ed628ea82f4d04787e3970f8a0260",
+      "sha256": "bf9de40f825631ead79c30eeda715055ffaa328e5224ea3f3908074d160faf45",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000025.flac",
+      "source_audio_sha256": "7e217055ba2e339e5baf76e54e899128a4f656cb9b666a2ceb0bc978893c2a44",
+      "sha256": "a8dab7698ff1141af5eefe587ecc18f5849781117dfb9dd895ac17cd48d61627",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000025_heldout1.flac",
+      "source_audio_sha256": "bda20aa1e6ce1bef771a03fe5b1fa97eddd9bfd0c3e9f325b5a76594ea8a4238",
+      "sha256": "75dbba5d954ae4862af2a3c5c86ac0ebfe535b6068343836e05ef7fc7ed3941b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000025_heldout2.flac",
+      "source_audio_sha256": "478f89fde2947dd5c5e873f540aa6d32d285a7558db9ccb41959ef47aedd1573",
+      "sha256": "21c1bbe0e434dde36edcb0854869a2780afa42b4d7f2bfc3e7952670a03acd66",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000050.flac",
+      "source_audio_sha256": "c1f59045787bf7c927d1f7ec04e3c2d5d68dbd7740c7b9263f0df9014ebfeaca",
+      "sha256": "a321f68ddb40f702129a091c7ee4b1f99a5a2994a9099fa70fea1db11849126b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000050_heldout1.flac",
+      "source_audio_sha256": "e8c839ff78ba37de4ea82e8a53334dc37f2009b2fcea61ddf5ce7c287b25f298",
+      "sha256": "7fcbfc0aeab94fb79e9a7ae9fcd10ce7865ac7ca68c97bfe7c4b6ae10498fe8a",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000050_heldout2.flac",
+      "source_audio_sha256": "0eaa00165f4321e8ddfe96914ab8382dc3b34f0fef35276a98b26d046eb7833d",
+      "sha256": "20812bb48a835504ec577e19aa174e5cf0ea87435803fc33f93730d480a60683",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000100.flac",
+      "source_audio_sha256": "a9b2be46c29cf6d09c2061302a598cc4927abe1e365389704b72682fff9de51c",
+      "sha256": "35e15ff8e10b424fd9e6ad5eb04d415544dcd8045048e9469960ae9110393237",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000100_heldout1.flac",
+      "source_audio_sha256": "8c8a0aeac82e4519472ed1811e65d6a9e444da97633e7a2412a74d15b23deca7",
+      "sha256": "712f2e39912bee48f910d3835edb02a88849b75004f15107b7df25d8ee30c38b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_highlr_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_highlr_000100_heldout2.flac",
+      "source_audio_sha256": "f6b2d7e454b655cb8f5942d64dce6a11c78256afe403d68035d538f49acca26f",
+      "sha256": "052effdf45c51da89033fd5f4e8dd37797c8776a273485df11c0ef2b487b4684",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000000.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000000.flac",
+      "source_audio_sha256": "42cf99c500f0abd282519b1296ffac6371b8929cfe86e4707dc4b2fefc64f05d",
+      "sha256": "1ec75e87cf88087b222ac5ec87efbcc5162900d47d7c2e4c697ab7286e6e523c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000001.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000001.flac",
+      "source_audio_sha256": "af86ba382eb18ebb2ebb4a37a537dcf7c5b3055e1d86736c8d963d6f6dd956df",
+      "sha256": "f3e8477d4be5ef53c775826129b48a49cdb8e44f40ec49b4cf059e7a84c75a3f",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000001_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000001_heldout1.flac",
+      "source_audio_sha256": "99cf4cb299776c6eb416db25dab3b91ac9ac942d5b2e06cd9db3533a24c4fec0",
+      "sha256": "32380a4446b4f880c344c127bd9ad8261ea715dfff5d92ad0e3df79b7f558185",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000001_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000001_heldout2.flac",
+      "source_audio_sha256": "1b02abc1f537382c9fd82dac87a0cc056ba5ffc6fe5cea053067e55b3dcc2393",
+      "sha256": "23e1b69317ffad3ce46ae0f9a3bb7130ae881c4ca676153436637e1b5473b805",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000005.flac",
+      "source_audio_sha256": "fd1c707de8f5c1cdb7bfc4ab61bd9d5fa3ad51e20b7ed48db15a2699602a45de",
+      "sha256": "1049a3bb69a0c31c92b9297da95b428e6e47b88cda7d392663dd0f56803ad33d",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000005_heldout1.flac",
+      "source_audio_sha256": "fd0d3a6b91ff76096666efb90348d40e0ebb97f155346a4e1d8239c23ee2493d",
+      "sha256": "6fffa9fa687c87621d203a08e11b1340b16f9197c062510425955a5d4d2bcb2d",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000005_heldout2.flac",
+      "source_audio_sha256": "018cadb0c81b8d4e42ab8a6f87f5bc1991d55d30a34c29e1f6d31fad24991cc7",
+      "sha256": "d146d91e5b55dc480e95974babcb09b09c91f3e233a116b2d15e84d36f7d138e",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000025.flac",
+      "source_audio_sha256": "b2030bf1ae5c8c421836c3bb01a1b993f2e51615ab24af2cd992d372dd8c88e5",
+      "sha256": "817c9aa08cca0ebdf057251a588b66b0274a1606649576aafa33a81eed2a04f9",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000025_heldout1.flac",
+      "source_audio_sha256": "aeae3abee112e43ea43480f7a9803404ab1041e3cfcead33658f13714402c06d",
+      "sha256": "d4c00d38667c6bcaa7baafcaed0cb53b69a937eef4ac7c58220021c4d2ab6e06",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000025_heldout2.flac",
+      "source_audio_sha256": "804d3ffce7310564143ff36b6c89de16e670489b7f6d3912f017aec090e0b832",
+      "sha256": "cd610f3141054045bad3022aee318af09af66e277897a60f89b43cc99896b945",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000050.flac",
+      "source_audio_sha256": "a7e51fb9ad8102ff6c16fe7e1a9735987f401eb06a7bc08e587c896f6ed7e9bb",
+      "sha256": "d28ba0cca3ee0ab7b682c7173a60860fe8bee503ac41357adc8bd7aa81a65b40",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000050_heldout1.flac",
+      "source_audio_sha256": "e8e5cd664d11315b186ba3c4bcb6084f142bcf8606fdc2e632b351d665cd4b13",
+      "sha256": "689c82864e1e8fe72810df30caea1bef7497fe441bd67b63dd0d94ebdf2de989",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000050_heldout2.flac",
+      "source_audio_sha256": "4dac0701e6322e7f160b0765771fda12b496bedc7bf0f0e15cebcedd0c1fdd44",
+      "sha256": "b0540a9ffe4d350f8faee6b15e0fa6806d37007bf8a72c1b0ed7965e983e22c4",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000100.flac",
+      "source_audio_sha256": "f240cb71c7123fb0e6f9deee5993407136a86d36cdd0d22a3a80dbc571277aea",
+      "sha256": "ad554229bfe39f024b5b0fe5adf0858da1c351cb82fb4373172d39dcf5918543",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000100_heldout1.flac",
+      "source_audio_sha256": "b843187be2e823c1d6d985c134415e3cc1dd4b1eb7c03443d194adcd52bdc9c2",
+      "sha256": "6bf086afb4693bf0d6e7a0216fa59ab1c17fefefe55430c0a36aa32db48b9fa2",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_longrun_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_longrun_000100_heldout2.flac",
+      "source_audio_sha256": "82de93f4145a93450037fb8ee8abaee920b5f2031f45302c9a46ecff9b7f81d2",
+      "sha256": "a7e54b6cfc90ab901a919dd5b9026f66cc053b2b53dcced37cd03ae6045cd6b2",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000005.flac",
+      "source_audio_sha256": "0b7745d092e751c9612abdc458a48f379ad49ec0e9464eb8d78f1f0db887bb15",
+      "sha256": "f34852f3f1490e07be5996acf5779c6eccd0a918cf89ca01a82b0c545629630d",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000005_heldout1.flac",
+      "source_audio_sha256": "744abc076610123c20576a0ff56b9d93bcac174553e62d182679fe4c924e34fe",
+      "sha256": "38fda5f06be06f9bbb6a4ca24d170afe64b94b712066b3cae15167a829afc239",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000005_heldout2.flac",
+      "source_audio_sha256": "5520e7eb020e25d3980ec4ab962506193016fae687533ef7f79b870e0bfd0f38",
+      "sha256": "04c53665c9059fce26e1c9ee83d5fe66cfd75d603b1178dfb8be615b695eb7b6",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000025.flac",
+      "source_audio_sha256": "105c6db49d3fcccb4dae763655d76a4d92d94f0eadf677c337811ec842bbd357",
+      "sha256": "6958df8ae25c8fb9e2061bf02375e46103d7647bcd2f94baa08a1474f9ef87c0",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000025_heldout1.flac",
+      "source_audio_sha256": "2d17f42b20b8ed990935326b77becb38c68942eea49c9255534e78f7fa60d63e",
+      "sha256": "de890684859ae4c69bb113fa33c1cea190a78b3337dad7b4d97c7052a03bfef2",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000025_heldout2.flac",
+      "source_audio_sha256": "5ba4d1d1a51442125e29e5d7bd7ab67e54c74abd9956255855557b0e20c711c3",
+      "sha256": "7f4492dd61ca0a155d10129cc8d475bc959ac741d6cb152fb0600e81406e6a4f",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000050.flac",
+      "source_audio_sha256": "bb1ac669502ca54c0840968d2b37e23c1f66a355eb46af71953707015ff2a11a",
+      "sha256": "053dee1630d109935fd29039e0704925769a12ebd77d96a7ea76c9944f5ad37f",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000050_heldout1.flac",
+      "source_audio_sha256": "f861fb111effa68677bb0add651393e08aa4f23d43850d1e70c25400234bef72",
+      "sha256": "6c1eff98f7a554f89201dd1c076673e6e05e6d1d381270618054f377c5f046c4",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000050_heldout2.flac",
+      "source_audio_sha256": "d653ff9a1f6dd9a1603c10c3aeb7db03dbb8e529414353b35037ba5591785da4",
+      "sha256": "4434c6dfc6716285f03c42389c3e8a548163848a5d227ba5a0b834deae607f62",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000100.flac",
+      "source_audio_sha256": "6e22620e63ca5c0f360918b3e6cd8fe13c84495e6923f5e6536aa9f42bfe9530",
+      "sha256": "0bc6d0fb78d27cb388272c68c2f9432085cc1dcad4e6cf068e01bf558ff9b911",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000100_heldout1.flac",
+      "source_audio_sha256": "65f62e4dd0e36854e85acedddb093a59bcf4490d541851c04fad65e9476de3ca",
+      "sha256": "beecccf069f4baabd3dbce1a8e946290b3f4b79cf1770ca2424d8fba0ef3665c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e2_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e2_000100_heldout2.flac",
+      "source_audio_sha256": "2c40daa1aa80f71d047614612bfcc64adeb122be2ada3f3aa898d8044d3c499a",
+      "sha256": "0ac70de878c0b17a0499ca56109381dae1c980532b3928554434f472aa439e4c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000005.flac",
+      "source_audio_sha256": "ed4a16290c963f810de6114d49a6b93c6b7209d3d5a156a892c2107998341d85",
+      "sha256": "db02ab60b019adf55f94490ee4d0f3c832c913da9757748ef2b1009d3cce77c8",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000005_heldout1.flac",
+      "source_audio_sha256": "35d8deee371b5639c0bd379eb6cc71a7794d88faa11210b4276e576a0527f87c",
+      "sha256": "aee1c95236fcf09289cfe5cec66e0cd25f228739c1fbde654b395ead3f917bb0",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000005_heldout2.flac",
+      "source_audio_sha256": "1106da2cb973eebb2c3fe6b8355e04c82a12a7ae1223988cf9f6bc7e9e3b98aa",
+      "sha256": "70c463e87525cd5382c395d09ba88423ddaa18c08ce523da8c5fa397eeec5a1b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000025.flac",
+      "source_audio_sha256": "30036c3882b8d6511285507d3402ca8b5348e3a17b30f0a6d14a72ef3404b984",
+      "sha256": "aaa0662c2483098bde6e35e91b190f51c85b1a0512353f3bde2a19677307fa8c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000025_heldout1.flac",
+      "source_audio_sha256": "a9632211bc6cf294fd8c5704dc248d0b87229d7d20ac99a6acbdc5e9b26c9474",
+      "sha256": "bd184ef5e9ce94b83a4aa67bd37b913ec6fdd0e05762250b53a4a26717b2e0bc",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000025_heldout2.flac",
+      "source_audio_sha256": "ee82ee15c9123c2487199b5cfd506b32f296c3b777ed27ffcde44860a7485d19",
+      "sha256": "0992ce49826a0fb008cfc13ed9948ec7df5aa6d5616b5b8641f06d6f738603d4",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000050.flac",
+      "source_audio_sha256": "0809bd3298e924545c501b7c5f3127f359eec2a26ede22cfa6c341c7e80c9a7b",
+      "sha256": "b93222ecb594591f9987df0ce3ac9ab34f0bc8e5e11aee2c9220ae1faa132f00",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000050_heldout1.flac",
+      "source_audio_sha256": "d29b03489525a7ab096392231c1c28f9f7783b4e2843fcbb4e714caeb7fbf0ac",
+      "sha256": "5069a93f29e302409d9cc2f583b8acaf8999c26358517fdea73c8671e3d1a65f",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000050_heldout2.flac",
+      "source_audio_sha256": "0a9448247442759be26903882b03842ba8229aede7a9c161bd1c46dac1d86bf9",
+      "sha256": "050f798d134f29e1812356547281334c2b0d5aa6c23db0b44ebd7352bf6d8c1b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000100.flac",
+      "source_audio_sha256": "c42e47f095210f9b3935afe81d5c787ee536a6b5171ddf95c40f984ecd4f8cca",
+      "sha256": "1d0e496c6adcd1734fb9c2a3fcd8556c7466ef3b363d928ca491f8cbe6e8b7cd",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000100_heldout1.flac",
+      "source_audio_sha256": "b92d71f0dce4274e67afd5f4fd99e16dbcb7db817ef02e6e318d512475feec4a",
+      "sha256": "698746e9ecb5b7306fb7ce31025f94f5aaa965ed7e2ebb640cee42319b74f459",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_lr1e3_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_lr1e3_000100_heldout2.flac",
+      "source_audio_sha256": "04f89d4f152880ea73bef830901de55f3c445927470f1f0c76219679a30861bb",
+      "sha256": "3ae2b33e24aacbb86914deff55761dc2ef53aa1885741ed1322d4c9d248a8678",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e3_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e3_000005.flac",
+      "source_audio_sha256": "d509a0df1745362329b8fe8db1141c3a0dd56988d74db941118de978836c4ac6",
+      "sha256": "0a0530c374549ebc7fe340b20d66ec55cdd947d7d5aca35d5e07b04a1aa7199c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e3_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e3_000005_heldout1.flac",
+      "source_audio_sha256": "3e73f760c943ebc366893b2fd40d62ecf2dd4f3d0fc3be45c4461c04d0aabb55",
+      "sha256": "85a5fb9d9e1a704e3183c92087151372abf4e132232364254b25662241fd699e",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e3_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e3_000005_heldout2.flac",
+      "source_audio_sha256": "c34e783e445e1778c6e1fa8b15a33219f24a22f6fec4771db78a4e6a82b6220a",
+      "sha256": "ec8a64cb8feb94f995e66fd6fb30ad7abc00d343caa578259a2150885fda36de",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000005.flac",
+      "source_audio_sha256": "ce2883dd0e86a4c2e9911bf5d9d5e496793348407c0187475a8f0289a0259b8b",
+      "sha256": "7ad353d33e2257f52593a092d8b4e17731a464e75197c2977c8cb7b2ded1e700",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000005_heldout1.flac",
+      "source_audio_sha256": "326b4f32c27c1beafe3bb4a6f50116ed649ad1792fcdc4bbb753de5612a718c8",
+      "sha256": "163442420066e89e4c29e3de35a5d83149fe68e4ff3fe100ac5e92c54963967c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000005_heldout2.flac",
+      "source_audio_sha256": "60058d4862ae7601fae5b9735fed5dd440f1f17f1fedc224eb5ff80dab5b111e",
+      "sha256": "63ad805fca25d051e2465dd3ed80f50d5b7debd7b0c7495628095f98d3baf92c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000025.flac",
+      "source_audio_sha256": "cb3cc8acf416507e920960d54d298e82a46310c9d7543b25548dcd36a397034b",
+      "sha256": "755625f80dfa939b0cb4d59109ea230103d326ee471fc51c592d880fc378b18d",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000025_heldout1.flac",
+      "source_audio_sha256": "e4888befaf7ff5c12ea7ee804c846858959518b77569cb32f04cd6d0080cafea",
+      "sha256": "7eea9e85411c6502569100b308c2fefb6194798ac39786147e06420d964b7465",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000025_heldout2.flac",
+      "source_audio_sha256": "28447bb257f49b0bca3726de2ea34da88b662e08572640a819af8014a3d8cca2",
+      "sha256": "7978edd163d831ea9c55184dfc33e375d4a9db86ce540f4acd26fbe4e4fbaa2c",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000050.flac",
+      "source_audio_sha256": "c2cdee1a6bdb688a592b12d488ecee7ebe78c36c54023ebdccbf370d22e2b793",
+      "sha256": "a6636dcce83ce71eb7696f074e51ea7e11d395d86ec0875f183ff75f7300fc47",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000050_heldout1.flac",
+      "source_audio_sha256": "330ee86e7fa8bf98800fd8bbbeb54e83f22eaa7ebfebe7aa7cec5d212d501d2a",
+      "sha256": "75dc622a758599dc621597629949317131b9879f123202427407aa981318ba23",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000050_heldout2.flac",
+      "source_audio_sha256": "6d5aba207da148bcb6251df37e056366400dd9c1e136c2ef070bcd74492f2602",
+      "sha256": "6264865f8b0937a6ef8561aaa802e4211481d3e04ae05bf6facf5c22d84a6571",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000100.flac",
+      "source_audio_sha256": "c3e4244e78b08eca9bbdb64f70b6d5b5535fbdc8e213ba7aac569dd84aa5c4a9",
+      "sha256": "d9e1cf214e4586e41f673fb6abc831710b814075b9c82f5ac7d8ba041e5ef1df",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000100_heldout1.flac",
+      "source_audio_sha256": "62b2f202b73bc34057d058406ff2deeafa2b784b63bc210009c08cf14d83bfe1",
+      "sha256": "22fee77dc96a62bcf4080f2f0aee7b73cadc73c375ba5a5b4673286484ae4f25",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_lr1e4_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_lr1e4_000100_heldout2.flac",
+      "source_audio_sha256": "f2b1c783a68e9adc274dea5fb17c41f1766947b36eb64ac752acaef6998ae4a6",
+      "sha256": "1f78c8b5a86558ba1cc9c508f1ebb51fae451005fd0ce51bc832df3facbb2f17",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000005.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000005.flac",
+      "source_audio_sha256": "fd3d94abb4b534925802eafe5e5ebb1ae7052f4130d80f577937dee77eeb537c",
+      "sha256": "1c1f7f6c8bd07e413844029d677900cd4edfc4daff1f9eac4bb1ad716d5eb71e",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000005_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000005_heldout1.flac",
+      "source_audio_sha256": "eadbda65bf50b8b148b393e5e5bcc11146db2edc0caf56bb42486797db8b2e2d",
+      "sha256": "c942e7f83b914f2acbeed81aced0bff8fdaa602ca2b9642dfef94a6c7c8149ec",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000005_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000005_heldout2.flac",
+      "source_audio_sha256": "fb0186be1a20bd19efe4b4d052f6b6c18365bf00dd062a0d6d0c58710cb2e9b5",
+      "sha256": "6f013456b6d9f82f31e50554fd9b8bdabd81ebd58350de2120435daa07f20e69",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000025.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000025.flac",
+      "source_audio_sha256": "812e7ae8683397f9318ec4a9b885b77157dd61932adc5cf5da269354e37d1fd1",
+      "sha256": "e37ef802ae94d37a6168a51daa061695fcaf67a14a9799a2c0f0e26835ad4d46",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000025_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000025_heldout1.flac",
+      "source_audio_sha256": "aaec89e25252cfea45702c58b25406d143f04c406ce77718384c17e55105e184",
+      "sha256": "786188fec84e47db4467ccfea61709b7602b417c4c8d6f36d5592aafcfc830fd",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000025_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000025_heldout2.flac",
+      "source_audio_sha256": "a35eb685ed9a2b3d292bc71957e91a532818254c9de941d0e7f07c8596bf2689",
+      "sha256": "09d488aac22cdb6d2493f9d011306b867b93fe361263273b9d32850b80091c8d",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000050.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000050.flac",
+      "source_audio_sha256": "13a79cea30357b3569365d3d6d2bd28c42b933ef43c0aa8509f0dab86098ac17",
+      "sha256": "48b69234cd3f8553107e97324a8d871c88d6bfb8ae3deef8864f87657448224b",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000050_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000050_heldout1.flac",
+      "source_audio_sha256": "8f5c91969db4b32c5e649243dc034c6ad44d0958cc13ef731e8c430a361a7011",
+      "sha256": "21987dfe656e438b2e6f05f9f5d8c3ee86aba30ff1b13574b3d5e62f80ee2613",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000050_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000050_heldout2.flac",
+      "source_audio_sha256": "6fc986353a97e9afa17e67aec1119b5346a4f89d9d9f8ee54bc1ca1a390e140b",
+      "sha256": "63b3ee0b29abf5285729d2daf33859dd3094b7c971d36643b3fd278d016a2993",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000100.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000100.flac",
+      "source_audio_sha256": "def13e97501a81c5cbbdc4292779d3f43d0b9dc20673a33faeefba2d94ed155f",
+      "sha256": "7eb1f4f3c8c20b8cc89917be73624091560a85e257cd34fb4a9bb56076be5717",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000100_heldout1.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000100_heldout1.flac",
+      "source_audio_sha256": "bf991ad83b49e6eba007491614fee7d87a9bca2ea2c3de0b1e7dd84209ba81c4",
+      "sha256": "af34221f0ad029f478f4a43aefd8e1fc332195dea963bc72b6f185b9d8025057",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_musecritic_pcm24_000100_heldout2.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_musecritic_pcm24_000100_heldout2.flac",
+      "source_audio_sha256": "48dc8f2998a4df244cb4289011b28d1dc387f7d5989ef76fea6771d1e333de91",
+      "sha256": "502856ca2dd4b2f72940019b3ac1cce9bed36e7482219f90c8ed7556546f1fbc",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_songeval_after.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_songeval_after.flac",
+      "source_audio_sha256": "c2e2ef34e6d0662cc68380516935e7aea149e2d3c1c699647d936e15d1a9b1ee",
+      "sha256": "dab38b9992e6e280505f0bfe2d852c85afe76b4fa6066d95c6cc0f9774018f39",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/audio/yue2_songeval_before.mp3": {
+      "source_path": "platform/site/demos/audio/yue2_songeval_before.flac",
+      "source_audio_sha256": "d519b4eb934d99cf538ea56b8a0bc5332299515373c7ae284df88f7e4f9f4834",
+      "sha256": "b437796d34bea3f23c9bafdc93d3b0fdcc8082677099c51584874e97bc6f5e5a",
+      "bytes": 577197,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    }
+  }
+}

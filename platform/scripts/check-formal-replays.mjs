@@ -17,6 +17,14 @@ const baselineHashes = new Map();
 let clips = 0;
 for (const arm of data.arms) {
   assert.ok(arm.id && arm.model && arm.reward && arm.lr);
+  assert.ok(['2e-5', '1e-4', '3e-4'].includes(arm.lr));
+  if (arm.model === 'Muse') {
+    assert.equal(arm.standalone_inference, false);
+    assert.equal(arm.validation_generation, false);
+    assert.match(arm.job_id, /^\d+\.gadi-pbs$/);
+    assert.equal(arm.priority, 1023);
+    assert.deepEqual(arm.long_replays, {});
+  }
   assert.equal(arm.train_curve.length, arm.verified_train_steps);
   arm.train_curve.forEach((r, i) => { assert.equal(r.step, i + 1); assert.ok(Number.isFinite(r.reward)); assert.ok(Number.isFinite(r.sampled_kl)); });
   if (arm.status === 'verified-complete') {
@@ -30,7 +38,10 @@ for (const arm of data.arms) {
     for (const row of rows) {
       assert.ok([0, 10, 20].includes(row.index)); assert.equal(row.seed, 5101 + row.index);
       assert.match(row.sha256, /^[a-f0-9]{64}$/);
-      assert.ok(row.audio.endsWith(`${row.sha256.slice(0, 12)}.flac`));
+      assert.ok(row.audio.endsWith(`${row.sha256.slice(0, 12)}.mp3`));
+      assert.match(row.source_audio_sha256, /^[a-f0-9]{64}$/);
+      assert.ok(row.audio.startsWith('https://github.com/zhanh-he/RL-paper-reading/releases/download/formal-cmi-pref-20261012/'));
+      if (arm.model === 'Muse') { assert.equal(row.inference_backend, 'vllm'); assert.equal(row.inference_dtype, 'bfloat16'); }
       assert.equal(row.reaches_30_seconds, row.seconds >= 30);
       assert.ok(Number.isFinite(row.signal.peak));
       for (const type of ['wave', 'spectrum']) {
@@ -47,4 +58,5 @@ for (const arm of data.arms) {
     }
   }
 }
+assert.equal(data.superseded_arms.length, 6);
 console.log(`Formal registry checked: ${data.arms.length} arms, ${clips} clip bindings, fixed per-model baseline.`);

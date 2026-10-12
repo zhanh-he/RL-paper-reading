@@ -78,7 +78,7 @@ function tables() {
   $('validation').replaceChildren(...stages.map((s) => row([s, ...siblings.map((a) => delta(a.validation[s]?.mean_reward, a.validation[0]?.mean_reward))])));
   $('long-table').replaceChildren(...Object.entries(arm.long_replays || {}).map(([s, clips]) => {
     const scored = clips.filter((c) => Number.isFinite(c.reward?.mean));
-    return row([s, scored.length === 3 ? fmt(scored.reduce((total, c) => total + c.reward.mean, 0) / 3) : '尚无完整长音频评分',
+    return row([s, scored.length === 3 ? fmt(scored.reduce((total, c) => total + c.reward.mean, 0) / 3) : '未评分',
       clips.length ? `${Math.min(...clips.map((c) => c.seconds)).toFixed(1)}–${Math.max(...clips.map((c) => c.seconds)).toFixed(1)} s` : '—',
       clips.length ? Math.max(...clips.map((c) => c.signal.peak)).toFixed(3) : '—',
       clips.length ? `${(100 * clips.reduce((total, c) => total + c.signal.near_full_scale_fraction, 0) / clips.length).toFixed(3)}%` : '—', `${scored.length}/3`]);
@@ -93,19 +93,21 @@ function panel(clip, label, role) {
   const article = document.createElement('article'); article.className = 'compare-panel'; article.dataset.role = role;
   const title = document.createElement('h3'); title.textContent = label; article.append(title);
   if (!clip) {
-    const p = document.createElement('p'); p.textContent = '尚未回收该 checkpoint 的长片段；没有替代音频。'; article.append(p); return article;
+    const p = document.createElement('p'); p.textContent = arm.model === 'Muse' && arm.standalone_inference === false
+      ? '按当前实验安排暂停 Muse 独立推理；此处不放替代音频。'
+      : '尚未回收该 checkpoint 的长片段；没有替代音频。'; article.append(p); return article;
   }
   article.dataset.sha256 = clip.sha256;
   const caption = document.createElement('p'); caption.className = 'muted';
-  caption.textContent = `${clip.seconds.toFixed(2)} s · seed ${clip.seed} · 原始 PCM24-FLAC${clip.seconds < 30 ? ' · 未达到 30 秒目标' : ''}${clip.truncated ? ' · 达到生成上限' : ''}`; article.append(caption);
+  caption.textContent = `${clip.seconds.toFixed(2)} s · seed ${clip.seed} · MP3 192 kbps${clip.seconds < 30 ? ' · 未达到 30 秒目标' : ''}${clip.truncated ? ' · 达到生成上限' : ''}`; article.append(caption);
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = clip.audio;
   audio.addEventListener('play', () => pauseOthers(audio));
-  audio.addEventListener('error', () => { $('listen-status').textContent = '音频加载失败，请使用原始 FLAC 链接重试。'; }); article.append(audio);
+  audio.addEventListener('error', () => { $('listen-status').textContent = '音频加载失败，请使用 MP3 链接重试。'; }); article.append(audio);
   for (const [type, alt] of [['wave', 'Waveform · fixed −1 to +1'], ['spectrum', 'Mel · 0–24 kHz · fixed −80 to 0 dB']]) {
     const figure = document.createElement('figure'); figure.className = type === 'wave' ? 'wave-visual' : 'spectrum-visual';
     const img = document.createElement('img'); img.src = clip[type]; img.alt = alt; img.loading = 'lazy'; figure.append(img); article.append(figure);
   }
-  const link = document.createElement('a'); link.href = clip.audio; link.textContent = '原始 FLAC'; article.append(link);
+  const link = document.createElement('a'); link.href = clip.audio; link.textContent = '下载 MP3'; article.append(link);
   return article;
 }
 
@@ -121,23 +123,28 @@ function replay() {
   const nextB = panel(candidate, `B · ${arm.model}-${arm.reward}-${arm.lr} · Step ${step}`, 'candidate');
   const oldB = grid.querySelector('[data-role="candidate"]'); if (oldB) oldB.replaceWith(nextB); else grid.append(nextB);
   const stages = [...new Set([0, ...(arm.checkpoints || []), ...Object.keys(arm.long_replays || {}).map(Number)])].sort((a, b) => a - b);
-  $('stages').replaceChildren(...stages.map((s) => button(`${s} steps`, () => { step = s; replay(); }, step === s,
+  $('stages').replaceChildren(...stages.map((s) => button(`${s} step${s === 1 ? '' : 's'}`, () => { step = s; replay(); }, step === s,
     !arm.long_replays?.[s]?.some((c) => c.index === index))));
-  $('replay-note').textContent = `相同条件、seed 和冻结起点；长片段为独立推理，不代替 30 条短片段验证。${arm.model === 'Muse' ? 'Muse 强制生成 1600 completion tokens，实际时长按 AUDIO token 数计算；MuCodec 使用原生重叠解码。' : 'YuE2 上限 1600 semantic tokens，最少 200，实际时长逐文件报告。'}波形 ±1，Mel 0–24 kHz / −80–0 dB，黑色底。`;
+  $('replay-note').textContent = arm.model === 'Muse' && arm.standalone_inference === false
+    ? 'Muse 本轮只提交正式训练，保留 GRPO 内部采样；独立推理和验证生成暂停。'
+    : '相同条件、seed 和冻结起点；长片段为独立推理，不代替 30 条短片段验证。YuE2 上限 1600 semantic tokens，最少 200，实际时长逐文件报告。波形 ±1，Mel 0–24 kHz / −80–0 dB，黑色底。';
+  root.querySelectorAll('[data-formal-listen]').forEach((b) => { b.disabled = !(b.dataset.formalListen === 'baseline' ? baseline : candidate); });
   $('listen-status').textContent = '';
 }
 
 function select(next) {
   arm = next;
   $('controls').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === arm.id)));
-  $('status').textContent = arm.status === 'verified-complete' ? '270 步 + 固定验证已核验' : `${arm.verified_train_steps} 步已核验${arm.status.includes('failed') ? ' · 中途失败' : ' · 固定验证尚待回收'}`;
+  $('status').textContent = arm.status === 'verified-complete' ? '270 步 + 固定验证已核验'
+    : arm.status === 'queued' ? '正式训练已提交 · 排队中'
+    : `${arm.verified_train_steps} 步已核验${arm.status.includes('failed') ? ' · 中途失败' : ' · 固定验证尚待回收'}`;
   $('status').className = `state ${arm.status === 'verified-complete' ? 'measured' : 'diagnostic'}`;
-  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host} · ${arm.failure_reason || '官方 test 保持封存；结果不代表已听辨的音质提升。'}`;
+  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host}${arm.job_id ? ` · ${arm.project} · ${arm.job_id} · priority ${arm.priority}` : ''} · ${arm.failure_reason || '官方 test 保持封存；结果不代表已听辨的音质提升。'}`;
   $('reward-title').textContent = `优化目标 · ${arm.reward} 五维均值`;
   $('reward-definition').textContent = arm.reward === 'SongEval'
-    ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。训练与短片段验证使用 WAV 评分；本页独立长片段播放 PCM24-FLAC，未将短片段分数归到这些长音频上。'
-    : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。MuseCritic 的含义为整体连贯性、整体音乐性、可记忆性、歌曲结构清晰度、人声呼吸与分句自然度；先生成评论，再用评分头预测。它不是 SongEval，也不与其数值横比。本实验直接评分归档的 PCM24-FLAC。';
-  $('train-protocol').textContent = `CMI-Pref：270 train / 30 valid / 121 封存 test；投影 text + lyrics，不输入参考音频。${arm.model === 'YuE2' ? 'PyTorch + PEFT LoRA，组大小 2，AdamW；600 semantic tokens。' : 'ms-swift / TRL + vLLM，LoRA，组大小 2；512 completion tokens。'} β = 0.01，记录对冻结参考策略的 sampled training KL。`;
+    ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。训练与短片段验证使用 WAV 原件评分；网页只提供 MP3 试听副本。短片段分数不归到独立长音频上。'
+    : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。MuseCritic 的含义为整体连贯性、整体音乐性、可记忆性、歌曲结构清晰度、人声呼吸与分句自然度；先生成评论，再用评分头预测。它不是 SongEval，也不与其数值横比。本实验评分私有归档的 PCM24-FLAC 原件；公开音频只使用 MP3 试听副本，不宣称压缩文件就是评分原件。';
+  $('train-protocol').textContent = `CMI-Pref：270 train / 30 valid / 121 封存 test；投影 text + lyrics，不输入参考音频。${arm.model === 'YuE2' ? 'PyTorch + PEFT LoRA，组大小 2，AdamW；600 semantic tokens。' : 'ms-swift / TRL + vLLM，LoRA，组大小 2；512 completion tokens。从冻结基座重启；无 AUDIO、非有限值或不足 1 秒的解码输出记 0 分并单独记录，基础设施错误停机。'} β = 0.01，记录对冻结参考策略的 sampled training KL。`;
   $('reward-caption').textContent = 'Reward · 五维均值 · 逐步训练值 + trailing 5-step mean';
   $('kl').previousElementSibling.querySelector('span').textContent = 'KL · 训练期间冻结参考策略采样估计';
   $('reward-value').textContent = fmt(arm.train_curve.at(-1)?.reward);
@@ -149,6 +156,10 @@ function select(next) {
   }));
   $('framework').textContent = 'YuE2：原生 PyTorch + PEFT，每组只更新一次，该次梯度中的 ratio clipping 不起作用；log-prob 使用原始模型分布，生成使用原生采样变换，右图是已记录的采样 KL 正则项，不是精确全策略 KL。Muse：ms-swift / TRL + vLLM。长音频采用同一模型解码，不循环、拼接独立歌曲或补静音。';
   $('replicates').replaceChildren(...(registry.replicates || []).map((a) => row([`${a.model}-${a.reward}-${a.lr}`, a.host, a.verified_train_steps, `${fmt(a.validation[0]?.mean_reward)} → ${fmt(a.validation[270]?.mean_reward)}`])));
+  $('superseded').replaceChildren(...(registry.superseded_arms || []).map((a) => row([
+    `${a.model}-${a.reward}-${a.lr}`, a.verified_train_steps,
+    a.status.includes('failed') ? '部分失败' : '训练完成，验证未完成', a.failure_reason || '已被同 LR 重跑替代'
+  ])));
   const available = Object.keys(arm.long_replays || {}).map(Number).filter((s) => s > 0);
   step = available.includes(step) ? step : Math.max(0, ...available);
   tables(); replay(); draw();
@@ -179,7 +190,7 @@ try {
     const position = other?.currentTime || 0; pauseOthers(audio);
     try { if (audio.readyState < 1) await new Promise((resolve, reject) => { audio.addEventListener('loadedmetadata', resolve, { once: true }); audio.addEventListener('error', reject, { once: true }); });
       audio.currentTime = Math.min(position, Math.max(0, audio.duration - 0.1)); await audio.play(); $('listen-status').textContent = `正在播放 ${b.dataset.formalListen === 'baseline' ? 'A' : 'B'}`;
-    } catch { $('listen-status').textContent = '浏览器未能播放，请检查原始 FLAC 链接。'; }
+    } catch { $('listen-status').textContent = '浏览器未能播放，请检查 MP3 链接。'; }
   }));
   new ResizeObserver(draw).observe($('reward').parentElement);
   $('dimensions-details').addEventListener('toggle', draw);
