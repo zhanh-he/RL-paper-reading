@@ -1,0 +1,56 @@
+#!/bin/bash
+#PBS -N vocal-bcr
+#PBS -q gpuhopper
+#PBS -l ncpus=12
+#PBS -l ngpus=1
+#PBS -l mem=64GB
+#PBS -l jobfs=20GB
+#PBS -l walltime=24:00:00
+#PBS -l storage=scratch/wa66+gdata/wa66
+#PBS -j oe
+set -euo pipefail
+module load python3/3.11.7 gcc/12.2.0 ffmpeg/4.3.1
+ROOT=/scratch/wa66/hm6416/vocal-musdb-20261012
+ARM=${ARM:-bcr}
+SEED=${SEED:-13}
+MODE=${MODE:-train}
+EPOCHS=${EPOCHS:-2}
+export LADA_PRETRAINED_ROOT=/scratch/wa66/hm6416/LaDA-Band-assets/pretrained
+export HF_HUB_CACHE="$LADA_PRETRAINED_ROOT" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+export NUMBA_NUM_THREADS=1 TOKENIZERS_PARALLELISM=false
+test -f "$ROOT/env.complete"
+test -f "$ROOT/beat-env.complete"
+test -f "$ROOT/reward-worker.complete"
+test -f "$ROOT/prepared/prepare.complete"
+if [[ "$MODE" != preflight ]]; then test -f "$ROOT/preflight.complete"; fi
+if [[ "$ARM" != bcr ]]; then test -f "$ROOT/runs/bcr_seed13/train.complete"; fi
+cd "$ROOT/code/rl/grpo"
+"$ROOT/env/bin/python" -m unittest test_train_lada_band test_richness_v0 test_formal_protocol
+nvidia-smi
+OUT="$ROOT/runs/${ARM}_seed${SEED}"
+EXTRA=()
+if [[ "$MODE" == preflight ]]; then
+  OUT="$ROOT/preflight"
+  EXTRA+=(--steps 2 --group 4 --eval-limit 1 --eval-seeds 777 --save-steps 1 2)
+elif [[ -f "$OUT/train.complete" ]]; then
+  echo 'TRAIN_ALREADY_COMPLETE'
+  exit 0
+elif [[ -d "$OUT" ]]; then
+  LATEST=$(find "$OUT" -maxdepth 1 -name 'step_*.pt' | sort | tail -1)
+  if [[ -n "$LATEST" ]]; then EXTRA+=(--resume "$LATEST"); fi
+fi
+"$ROOT/env/bin/python" -u train_lada_formal.py \
+  --code-root /scratch/wa66/hm6416/LaDA-Band-posttrain/codes \
+  --checkpoint /scratch/wa66/hm6416/LaDA-Band-assets/checkpoints/lada_band_lm1B_total3B.ckpt \
+  --manifest "$ROOT/prepared/train.jsonl" --validation "$ROOT/prepared/valid-probes.jsonl" \
+  --output "$OUT" --arm "$ARM" --seed "$SEED" --epochs "$EPOCHS" \
+  --group 4 --denoise-steps 16 --rank 32 --alpha 32 --lr 1e-4 --beta 0.02 \
+  --beat-worker-python "$ROOT/beat-env/bin/python" \
+  --beat-worker-script "$ROOT/code/rewards/formal_worker.py" \
+  --beat-reward-root /g/data/wa66/hanyu/vocal2accomp-muse \
+  --max-seconds 79200 "${EXTRA[@]}"
+if [[ "$MODE" == preflight ]]; then
+  test -f "$OUT/train.complete"
+  touch "$ROOT/preflight.complete"
+fi

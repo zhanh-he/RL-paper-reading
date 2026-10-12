@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -N vocal-musdb-fetch
+#PBS -q copyq
+#PBS -l ncpus=1
+#PBS -l mem=4GB
+#PBS -l walltime=04:00:00
+#PBS -l storage=scratch/wa66
+#PBS -j oe
+
+set -euo pipefail
+ROOT=/scratch/wa66/hm6416/vocal-musdb-20261012
+mkdir -p "$ROOT/data" "$ROOT/logs"
+cd "$ROOT/data"
+module load python3/3.11.7
+python3 "$ROOT/code/fetch_archive.py" "$ROOT/data"
+printf '%s\n' '12d4f2ecd55245a4688754dd76363103  musdb18hq.zip' | md5sum --check
+curl --fail --location --retry 5 --output mus.yaml \
+  https://raw.githubusercontent.com/sigsep/sigsep-mus-db/master/musdb/configs/mus.yaml
+sha256sum musdb18hq.zip mus.yaml
+touch download.complete

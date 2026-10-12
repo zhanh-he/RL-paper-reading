@@ -1,0 +1,21 @@
+{
+  "provenance": "constructed persistent-worker smoke, not model result",
+  "repeated_requests": 2,
+  "result": {
+    "score": 0.9998111355372112,
+    "scorable": true,
+    "confidence": 1.0,
+    "reasons": [],
+    "components": {
+      "global_soft_mean": 0.9998111355372112,
+      "local_soft_mean": 0.9998111355372112,
+      "local_soft_tail": 0.9998111355372112,
+      "valid_window_fraction": 1.0,
+      "onset_support": 1.0,
+      "beat_support": 1.0
+    },
+    "reference_beats": 24,
+    "accompaniment_beats": 25,
+    "stft_coverage": 0.38898756660746003
+  }
+}

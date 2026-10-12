@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -N vocal-musdb-prep
+#PBS -q normal
+#PBS -l ncpus=4
+#PBS -l mem=16GB
+#PBS -l walltime=04:00:00
+#PBS -l storage=scratch/wa66
+#PBS -j oe
+set -euo pipefail
+ROOT=/scratch/wa66/hm6416/vocal-musdb-20261012
+test -f "$ROOT/data/download.complete"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python "$ROOT/code/prepare_musdb.py" \
+  --archive "$ROOT/data/musdb18hq.zip" --root "$ROOT/data/musdb18hq" \
+  --config "$ROOT/data/mus.yaml" --output "$ROOT/prepared" --seconds 12

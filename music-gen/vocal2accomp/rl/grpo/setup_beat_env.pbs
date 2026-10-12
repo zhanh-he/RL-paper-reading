@@ -1,0 +1,46 @@
+#!/bin/bash
+#PBS -N vocal-beat-env
+#PBS -q copyq
+#PBS -l ncpus=1
+#PBS -l mem=8GB
+#PBS -l jobfs=4GB
+#PBS -l walltime=01:00:00
+#PBS -l storage=scratch/wa66+gdata/wa66
+#PBS -j oe
+set -euo pipefail
+module load python3/3.11.7 gcc/12.2.0 ffmpeg/4.3.1
+ROOT=/scratch/wa66/hm6416/vocal-musdb-20261012
+PYTHON="$ROOT/beat-env/bin/python"
+mkdir -p "$ROOT/wheels" "$ROOT/madmom-src"
+"$PYTHON" -m pip download --no-deps --no-binary=:all: --no-build-isolation \
+  madmom==0.16.1 --dest "$ROOT/wheels"
+tar -xzf "$ROOT/wheels/madmom-0.16.1.tar.gz" -C "$ROOT/madmom-src" --strip-components=1
+# PyPI bundles stale generated C that predates CPython 3.11. Regenerate it from
+# the unchanged official Python/PYX sources with the installed Cython 0.29.37.
+find "$ROOT/madmom-src/madmom" -name '*.c' -delete
+"$PYTHON" -m pip install --no-deps --no-build-isolation "$ROOT/madmom-src"
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
+"$PYTHON" - <<'PY'
+from pathlib import Path
+import sys, json
+import numpy as np
+import soundfile as sf
+sys.path.insert(0, '/g/data/wa66/hanyu/vocal2accomp-muse')
+from mir.reward_function.beat_v5 import BeatV5Config, BeatV5Scorer
+from mir.reward_function.coverage import accompaniment_coverage_path
+BeatV5Scorer._compatibility_shims()
+root = Path('/scratch/wa66/hm6416/vocal-musdb-20261012')
+t = np.arange(44100 * 12) / 44100
+x = 0.08 * np.sin(2*np.pi*220*t) * np.exp(-(t % 0.5)/0.15)
+path = root / 'beat-env-smoke.wav'
+sf.write(path, x, 44100, subtype='PCM_24')
+scorer = BeatV5Scorer(BeatV5Config(segment_seconds=12, madmom_workers=1), backend='madmom')
+result = scorer.score_paths(path, path)
+receipt = {'provenance':'constructed install smoke, not LaDA or MUSDB result',
+           'score':result.score, 'abstain':result.abstain,
+           'coverage':accompaniment_coverage_path(path)}
+(root / 'beat-env-smoke.json').write_text(json.dumps(receipt, indent=2))
+print('BEAT_SCORING_OK', json.dumps(receipt), flush=True)
+PY
+"$PYTHON" -m pip freeze > "$ROOT/beat-env-freeze.txt"
+touch "$ROOT/beat-env.complete"

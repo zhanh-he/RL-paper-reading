@@ -1,0 +1,79 @@
+{
+  "run_id": "vocal-musdb-20261012",
+  "verified_at_utc": "2026-10-12T03:29:09Z",
+  "status": "Full corpus downloading; GPU jobs submitted with dependencies; zero new optimizer updates verified",
+  "model": "LaDA-Band lada_band_lm1B_total3B.ckpt",
+  "root_gadi": "/scratch/wa66/hm6416/vocal-musdb-20261012",
+  "root_kaya": "/group/ems011/zhe/vocal-musdb-20261012",
+  "excluded_machine": "RTX 5090",
+  "data": {
+    "dataset": "MUSDB18-HQ",
+    "source": "https://zenodo.org/records/3338373",
+    "archive_bytes": 22656664047,
+    "approximate_downloaded_bytes": 18435821568,
+    "archive_md5": "12d4f2ecd55245a4688754dd76363103",
+    "official_split_before_quality_filter": {"train": 86, "valid": 14, "test": 50},
+    "eligible_counts": null,
+    "counts_source_after_preparation": "prepared/protocol.json",
+    "selection": "Every qualifying non-overlapping 12-second train/validation phrase; no per-song clip cap; known errata quarantined",
+    "test": "sealed; preparation inventories headers only",
+    "instrument_annotations": "coarse drums/bass/other activity; fine instrument coverage unknown"
+  },
+  "training": {
+    "arm": "bcr",
+    "reward": "0.50 Beat-v5 + 0.25 capped STFT Coverage + 0.25 Richness-v0 - stereo quality - reference loudness guard",
+    "epochs": 2,
+    "group": 4,
+    "denoise_steps": 16,
+    "rank": 32,
+    "learning_rate": 0.0001,
+    "beta": 0.02,
+    "algorithm": "single-pass group-relative diffusion policy gradient; ratio clipping effectively inactive",
+    "save_steps": [0, 5, 50, 100, 300, 1000],
+    "also_save": "every 300 updates, epoch boundary, final update and runtime budget",
+    "budget": "up to three 24-hour PBS blocks per seed; checkpoint/resume at 22 hours; this budget is not a completion guarantee",
+    "throughput": "pending actual GPU preflight"
+  },
+  "jobs": {
+    "download": {"id": "181032354.gadi-pbs", "project": "wa66", "state": "R"},
+    "prepare": {"id": "181032964.gadi-pbs", "project": "wa66", "state": "H", "afterok": "181032354.gadi-pbs"},
+    "beat_environment": {"id": "181036814.gadi-pbs", "project": "wa66", "state": "F", "exit_status": 0, "original_scorer_smoke": "passed"},
+    "reward_worker_smoke": {"id": "181038322.gadi-pbs", "project": "wa66", "state": "F", "exit_status": 0, "receipt": "reward-worker-smoke.json", "purpose": "two requests with PCM24 44.1 kHz vocal and FLOAT stereo 48 kHz candidate; excludes GPU/model weights"},
+    "preflight": {"id": "181037627.gadi-pbs", "project": "wa66", "state": "H", "afterok": "181032964.gadi-pbs", "updates": 2},
+    "main_seed13": [
+      {"id": "181037628.gadi-pbs", "project": "wa66", "state": "H", "afterok": "181037627.gadi-pbs"},
+      {"id": "181037629.gadi-pbs", "project": "wa66", "state": "H", "afterok": "181037628.gadi-pbs"},
+      {"id": "181037630.gadi-pbs", "project": "wa66", "state": "H", "afterok": "181037629.gadi-pbs"}
+    ],
+    "main_seed29": [
+      {"id": "181037631.gadi-pbs", "project": "iv96", "state": "H", "afterok": "181037627.gadi-pbs"},
+      {"id": "181037632.gadi-pbs", "project": "iv96", "state": "H", "afterok": "181037631.gadi-pbs"},
+      {"id": "181037633.gadi-pbs", "project": "iv96", "state": "H", "afterok": "181037632.gadi-pbs"}
+    ],
+    "ablations": [
+      {"arm": "no_beat", "id": "181036323.gadi-pbs", "project": "wa66", "state": "H"},
+      {"arm": "no_coverage", "id": "181036324.gadi-pbs", "project": "iv96", "state": "H"},
+      {"arm": "no_richness", "id": "181036325.gadi-pbs", "project": "wa66", "state": "H"},
+      {"arm": "beat", "id": "181036326.gadi-pbs", "project": "iv96", "state": "H"},
+      {"arm": "coverage", "id": "181036327.gadi-pbs", "project": "wa66", "state": "H"},
+      {"arm": "richness", "id": "181036328.gadi-pbs", "project": "iv96", "state": "H"}
+    ],
+    "ablation_dependency": "afterok:181037630.gadi-pbs, plus runtime main-completion guard",
+    "ablation_continuations": [
+      {"arm": "no_beat", "id": "181038946.gadi-pbs", "afterok": "181036323.gadi-pbs"},
+      {"arm": "no_coverage", "id": "181038947.gadi-pbs", "afterok": "181036324.gadi-pbs"},
+      {"arm": "no_richness", "id": "181038948.gadi-pbs", "afterok": "181036325.gadi-pbs"},
+      {"arm": "beat", "id": "181038949.gadi-pbs", "afterok": "181036326.gadi-pbs"},
+      {"arm": "coverage", "id": "181038950.gadi-pbs", "afterok": "181036327.gadi-pbs"},
+      {"arm": "richness", "id": "181038951.gadi-pbs", "afterok": "181036328.gadi-pbs"}
+    ],
+    "ablation_protocol": "One complete epoch, seed13, shared safety checks; compare with main first epoch",
+    "kaya_audit": {"id": "134085", "state": "COMPLETED", "exit_status": 0, "tests_passed": 16}
+  },
+  "scheduler_note": "H is the scheduler dependency hold, not a user pause. Environment-repair failure invalidated older GPU submissions; the listed chain replaces them. Dataset preparation and GPU preflight have not passed yet.",
+  "audit": {
+    "receipt": "constructed-reward-audit.json",
+    "type": "constructed function audit; not generated model results",
+    "finding": "Noise and clipping penalties respond, but detuned layers can outscore aligned chord; no validated harmonic-fit constraint or general anti-hacking guarantee"
+  }
+}

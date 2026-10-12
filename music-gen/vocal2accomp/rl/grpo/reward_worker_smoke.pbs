@@ -1,0 +1,44 @@
+#!/bin/bash
+#PBS -N vocal-worker-smoke
+#PBS -q copyq
+#PBS -l ncpus=1
+#PBS -l mem=4GB
+#PBS -l walltime=00:10:00
+#PBS -l storage=scratch/wa66+gdata/wa66
+#PBS -j oe
+set -euo pipefail
+module load python3/3.11.7 gcc/12.2.0 ffmpeg/4.3.1
+ROOT=/scratch/wa66/hm6416/vocal-musdb-20261012
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMBA_NUM_THREADS=1
+"$ROOT/beat-env/bin/python" - <<'PY'
+import json
+from pathlib import Path
+import subprocess
+import sys
+import numpy as np
+import soundfile as sf
+from scipy.signal import resample_poly
+root = Path('/scratch/wa66/hm6416/vocal-musdb-20261012')
+vocal, sr = sf.read(root / 'beat-env-smoke.wav', dtype='float32')
+candidate = resample_poly(vocal, 160, 147)
+assert sr == 44100 and len(candidate) == 48000 * 12
+sf.write(root / 'worker-smoke-float48.wav', np.column_stack((candidate, candidate)),
+         48000, subtype='FLOAT')
+request = {'vocal':str(root / 'beat-env-smoke.wav'),
+           'audio':str(root / 'worker-smoke-float48.wav'), 'seconds':12}
+worker = root / 'code/rewards/formal_worker.py'
+result = subprocess.run([sys.executable, str(worker), '--reward-root',
+                         '/g/data/wa66/hanyu/vocal2accomp-muse'],
+                        input=json.dumps(request) + '\n' + json.dumps(request) + '\n',
+                        text=True, capture_output=True, timeout=240, check=True)
+print(result.stderr, file=sys.stderr)
+rows = [json.loads(line) for line in result.stdout.splitlines()]
+assert len(rows) == 2 and all('error' not in row for row in rows), rows
+assert rows[0] == rows[1], rows
+assert rows[0]['scorable'] and rows[0]['score'] > 0.9, rows
+receipt = {'provenance':'constructed persistent-worker smoke, not model result',
+           'repeated_requests':2, 'result':rows[0]}
+(root / 'reward-worker-smoke.json').write_text(json.dumps(receipt, indent=2))
+print('WORKER_SCORING_OK', json.dumps(receipt), flush=True)
+PY
+touch "$ROOT/reward-worker.complete"
