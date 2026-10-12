@@ -27,11 +27,17 @@ either curve as long-form quality.
   outputs are failures of the long-form target, not samples to discard, pad,
   stretch, or silently replace. The first paired render is baseline versus
   SongEval LR 3e-4 checkpoint 270 on lab5090.
-- For Muse, first validate native multi-turn continuation and segment ordering
-  with MuCodec. Three 10.24-second turns target 30.72 seconds; six target
-  61.44 seconds. Independent clip concatenation is not evidence of continuous
-  song generation. Until continuation and boundary quality pass, label Muse
-  audio as short-form rather than fabricating a 30/60-second demo.
+- For Muse, request one continuous 1600-completion-token trajectory with
+  `force_length=True` for both baseline and adapters. Decode with the official
+  MuCodec `duration=40.96` window, not the short evaluation's `10.24` crop.
+  MuCodec determines total length from AUDIO token count at 25 tokens/second
+  and natively overlap-decodes longer sequences (1024-token window,
+  768-token hop). The duration argument is a decoder window, not a target song
+  duration. Count actual AUDIO tokens and report actual seconds; text tokens
+  may make a 1600-completion-token output shorter than 64 seconds. Do not
+  concatenate independent songs, repeat audio, or pad to meet the target.
+  Muse checkpoints are saved at multiples of 30, unlike YuE2's 1/25/50/100;
+  show their real optimizer steps and retain failed-arm partial checkpoints.
 
 ## Measurement And Presentation
 

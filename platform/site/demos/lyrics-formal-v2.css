@@ -1,0 +1,20 @@
+#lyrics-formal { min-width: 0; }
+#lyrics-formal .formal-source, #formal-v2-lyrics { white-space: pre-wrap; max-height: 240px; overflow: auto; overflow-wrap: anywhere; }
+#lyrics-formal #formal-v2-replicates { white-space: pre-wrap; }
+#lyrics-formal #formal-v2-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+#lyrics-formal #formal-v2-stages { display: flex; flex-wrap: wrap; gap: 8px; }
+#lyrics-formal #formal-v2-stages button { min-width: 96px; min-height: 40px; }
+#lyrics-formal button:disabled { opacity: .45; cursor: default; }
+#lyrics-formal .compare-panel { min-width: 0; }
+#lyrics-formal .compare-panel h3 { font-size: 16px; overflow-wrap: anywhere; }
+#lyrics-formal audio { width: 100%; }
+#lyrics-formal .wave-visual { margin: 8px 0; aspect-ratio: 1200 / 160; background: #000; }
+#lyrics-formal .spectrum-visual { aspect-ratio: 1200 / 320; background: #000; }
+#lyrics-formal .wave-visual img, #lyrics-formal .spectrum-visual img { width: 100%; height: 100%; object-fit: contain; }
+#lyrics-formal #formal-v2-dimensions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+#lyrics-formal #formal-v2-dimensions figure { margin: 0; min-width: 0; }
+#lyrics-formal canvas { display: block; }
+#lyrics-formal td, #lyrics-formal th { white-space: nowrap; }
+@media (max-width: 700px) {
+  #lyrics-formal #formal-v2-dimensions, #lyrics-formal .compare-grid { grid-template-columns: 1fr; }
+}

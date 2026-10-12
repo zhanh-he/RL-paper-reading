@@ -66,6 +66,7 @@ def main():
     parser.add_argument("--step", type=int, default=270)
     parser.add_argument("--max-tokens", type=int, default=1600)
     parser.add_argument("--min-tokens", type=int, default=200)
+    parser.add_argument("--baseline-root", type=Path)
     args = parser.parse_args()
     if args.min_tokens >= args.max_tokens:
         parser.error("min-tokens must be below max-tokens")
@@ -98,6 +99,8 @@ def main():
     if not manifest_path.exists():
         write_json(manifest_path, manifest)
 
+    baseline_root = args.baseline_root or output / "baseline"
+
     pipe = YuE2Pipeline.from_pretrained(args.model, vae=args.vae, device="cuda",
                                         backend="torch-eager", memory_budget_gib=32,
                                         progress=False)
@@ -107,7 +110,7 @@ def main():
         prompt = {"style": row["style"], "lyrics": row["lyrics"],
                   "cot": "off", "cfg_scale": 1.0}
         result = render(pipe, prompt, run["eval_seed_base"] + index,
-                        output / "baseline" / f"valid_{index:02d}", args.max_tokens, args.min_tokens)
+                        baseline_root / f"valid_{index:02d}", args.max_tokens, args.min_tokens)
         print(f"baseline valid_{index:02d}: {result['seconds']:.2f}s", flush=True)
     PeftModel.from_pretrained(base, adapter, is_trainable=False).eval()
     for index in INDEXES:

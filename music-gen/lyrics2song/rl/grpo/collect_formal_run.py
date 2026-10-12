@@ -111,7 +111,8 @@ def collect(root, backend, learning_rate, compute_dtype="bf16"):
             rewards.append(entry["reward"]["mean"])
             peaks.append(entry["signal"]["peak"])
             clips.append(entry["signal"]["near_full_scale_fraction"])
-            truncated += bool(entry["truncated"])
+            flags = entry["truncated"]
+            truncated += any(flags.values()) if isinstance(flags, dict) else bool(flags)
         mean = sum(rewards) / len(rewards)
         if not math.isclose(mean, receipt["mean_reward"], rel_tol=1e-6, abs_tol=1e-6):
             raise ValueError(f"Validation mean mismatch at step {step}")

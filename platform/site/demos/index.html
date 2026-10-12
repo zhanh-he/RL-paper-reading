@@ -15,7 +15,8 @@
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
-    <script type="module" src="./lyrics-formal-v2.js?v=20261008-verified"></script>
+    <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261012">
+    <script type="module" src="./lyrics-formal-v2.js?v=20261012"></script>
   </head>
   <body>
     <header class="app-header">
@@ -32,7 +33,7 @@
     <main class="lab-main">
       <section class="lab-heading">
         <div>
-          <p class="eyebrow">Presentation evidence · updated 06 Oct 2026</p>
+          <p class="eyebrow">Presentation evidence · updated 12 Oct 2026</p>
           <h1>Music post-training replay</h1>
           <p class="lab-subtitle">逐样本对齐输入、基线、训练阶段与客观分数。先听，再核对 MIDI 与指标。</p>
         </div>
@@ -62,7 +63,7 @@
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
           <div class="status-row"><span>合唱转录</span><span class="state measured">事件级 GRPO 已测</span><small>16 首训练、8 首测试，5.12 秒片段；完整歌曲尚未验证</small></div>
           <div class="status-row"><span>人声输入 → 歌曲</span><span class="state measured">Mock：LaDA-Band 消融已测</span><small>Emma 单录音回放；Shanghai Formal 仅预留协议位，尚无公开结果</small></div>
-          <div class="status-row"><span>以词生曲</span><span class="state measured">YuE2 常规 LR 100 步 · 高 LR 25 步已测</span><small>高 LR 100 步将在共享 5090 资源释放后续跑；Muse 是独立实验</small></div>
+          <div class="status-row"><span>以词生曲</span><span class="state measured">CMI-Pref 正式实验已回收</span><small>270/30 固定划分；逐步 reward / KL、独立验证与长片段试听见 Lyrics2song GRPO</small></div>
         </div>
       </section>
 
@@ -160,13 +161,20 @@
       <section class="lab-view" id="view-lyrics">
         <div class="section-intro"><div><p class="eyebrow">Case 01 · Lyrics-conditioned post-training</p><h2>Lyrics2song GRPO</h2></div><a class="source-link" href="#datasets" data-open-view="datasets">数据与划分协议 ↗</a></div>
         <div id="lyrics-formal">
-          <div class="evidence-note"><strong>CMI-Pref · 9:1 正式实验 · 2026-10-08 核验快照</strong><p>从同时具有 text、reference audio、lyrics 的公开条件冻结 <strong>270 train / 30 validation</strong>；官方同模态 test 为 121 个独立条件（125 票），仍封存。YuE2 和 Muse 本轮只输入 text + lyrics，未使用 reference audio。五条 YuE2 臂有 270 步完成及独立 collector 核验摘要；Muse v2 作业在记录时仍排队。旧 234/59 与 240/60 协议不并入这里。</p></div>
+          <div class="evidence-note"><strong>CMI-Pref · 9:1 正式实验 · 2026-10-12 回收</strong><p>冻结 <strong>270 train / 30 validation</strong>；官方同模态 test 为 121 个独立条件（125 票），仍封存。数据源同时具有 text、reference audio、lyrics；YuE2 和 Muse 本轮输入 text + lyrics。每条实验臂保留实际训练步数、验证、checkpoint 与试听资产的核验记录。</p></div>
           <div class="protocol-strip"><span><strong>270</strong> train conditions</span><span><strong>30</strong> validation conditions</span><span><strong>121</strong> sealed test conditions</span><span><strong>270</strong> planned updates</span></div>
-          <div class="metric-controls replay-model-controls"><span class="control-label">Experiment</span><div class="segmented" id="formal-v2-controls" role="group" aria-label="CMI-Pref formal experiment arm"></div><span id="formal-v2-status" class="state pending">加载状态</span></div>
+          <div class="metric-controls replay-model-controls"><span class="control-label">Experiments</span><div class="segmented" id="formal-v2-controls" role="group" aria-label="CMI-Pref formal experiment arm"></div><span id="formal-v2-status" class="state pending">加载状态</span></div>
           <p class="stage-context" id="formal-v2-description"></p>
-          <section class="choral-training" aria-label="Formal training traces"><div class="choral-training-heading"><h3>训练过程 · Reward / KL</h3><span>仅在逐步日志入库后绘制</span></div><div class="choral-training-plots"><figure><figcaption>Training reward</figcaption><div class="formal-v2-pending" id="formal-v2-reward">逐步日志尚未入库，不能绘制曲线</div></figure><figure><figcaption>Sampled KL vs frozen base</figcaption><div class="formal-v2-pending" id="formal-v2-kl">逐步日志尚未入库，不能绘制曲线</div></figure></div><p class="choral-training-note">下表是 30 条固定验证条件的摘要，不是训练 rollout 曲线。SongEval 与 MuseCritic 分数不可跨量表比较；Kaya FP16 与 lab5090 BF16 的差异不能解释为学习率效应。</p></section>
-          <h3 class="subsection-heading">固定验证 · 0 / 1 / 25 / 50 / 100 / 270</h3><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Step</th><th>30 条条件 reward 均分</th><th>Δ vs 0</th><th>峰值 / 削波</th><th>试听</th></tr></thead><tbody id="formal-v2-validation"></tbody></table></div><p class="stage-context">lab5090 SongEval LR 3e-4 的配对验证变化为 +0.1969，30 条中 19 条上升；5,000 次简单 bootstrap 的 95% 区间为 +0.0442 至 +0.3550，未校正三个学习率中择优。Gadi MuseCritic LR 2e-5 的变化为 +0.0538，区间 −0.1175 至 +0.2256。两种 reward 不可跨量表比较。</p><p class="stage-context">短生成：YuE2 上限 600 semantic tokens，已审核的 30 条 baseline 均触及上限。仓库没有本轮正式验证音频或长版试听资产；下方旧实验样例使用不同协议。</p>
-          <details class="choral-deep-dive"><summary>Reward 与优化口径</summary><p class="section-copy">SongEval 优化其五项审美分数均值；MuseCritic 先生成 critique，再预测其五项评分，YuE2 分支评分与归档使用同一 PCM24-FLAC。YuE2 每步在同一训练条件采样两首、组内标准化优势，冻结底座 sampled KL 的损失系数为 0.01；Muse 使用 ms-swift GRPO/LoRA，KL 系数同为 0.01。两者的实现、采样与学习率分别报告，不把“270 条 train”误称为 270 条偏好音频监督。正式结果须通过音频哈希与条件/种子核验。</p></details>
+          <div class="lyrics-protocol"><strong id="formal-v2-reward-title"></strong><p id="formal-v2-reward-definition"></p><p id="formal-v2-train-protocol"></p></div>
+          <details class="choral-deep-dive formal-training-details" open><summary>训练过程 · Combined reward / KL</summary><section class="choral-training" aria-label="Formal training traces"><div class="choral-training-plots"><figure><figcaption><span id="formal-v2-reward-caption">Combined reward · mean</span><strong id="formal-v2-reward-value"></strong></figcaption><canvas id="formal-v2-reward" role="img" aria-label="正式实验逐步训练 reward"></canvas></figure><figure><figcaption><span>KL · 训练时冻结底座</span><strong id="formal-v2-kl-value"></strong></figcaption><canvas id="formal-v2-kl" role="img" aria-label="正式实验逐步训练 KL"></canvas></figure></div><p class="choral-training-note">每点来自实际训练日志；实线为 5 步滚动均值，浅线为原始值。右图是训练记录的 sampled KL，损失系数 β = 0.01。鼠标指向圆点查看 step 与分数。</p></section></details>
+          <details class="choral-deep-dive" id="formal-v2-dimensions-details"><summary>五项子分数 · 30 条固定验证趋势</summary><p class="section-copy" id="formal-v2-dimensions-note"></p><div class="choral-small-plots" id="formal-v2-dimensions"></div></details>
+          <div class="metric-controls lyrics-example-controls"><span class="control-label">Sample</span><div class="segmented" id="formal-v2-examples" role="group" aria-label="固定长片段验证样本"></div><span id="formal-v2-seed"></span></div>
+          <div class="source-grid"><div class="source-block"><span class="source-label">Input · text + lyrics</span><strong id="formal-v2-style"></strong><details><summary>歌词</summary><pre id="formal-v2-lyrics"></pre></details></div><div class="source-block"><span class="source-label">Reference output</span><strong>开放式生成，无唯一标准歌曲</strong><p>本轮未将 reference audio 作为模型输入；同一模型的各 reward / LR / checkpoint 使用固定条件与种子。</p></div></div>
+          <h3 class="subsection-heading">Long-form replay · target 60 seconds</h3><div class="stage-rail" id="formal-v2-stages" aria-label="正式实验推理检查点"></div><p class="stage-context" id="formal-v2-replay-note"></p>
+          <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="正式实验同步位置试听"><button type="button" data-formal-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-formal-listen="candidate" aria-pressed="false">B · GRPO</button></div><span id="formal-v2-listen-status" aria-live="polite">固定 baseline · 原始 FLAC</span></div><div class="compare-grid" id="formal-v2-compare"></div>
+          <h3 class="subsection-heading" id="formal-v2-validation-title">固定验证 · 30 conditions</h3><div class="table-shell lab-table" tabindex="0"><table><thead id="formal-v2-validation-head"></thead><tbody id="formal-v2-validation"></tbody></table></div><p class="stage-context">每格为固定验证 reward 均分（Δ vs 同臂 0 步）。这是训练长度下的验证；长片段评分单列。SongEval 与 MuseCritic 分数不可跨量表比较；官方 test 仍封存。</p>
+          <details class="choral-deep-dive"><summary>长片段总表 · 三个固定样本 / checkpoint</summary><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Step</th><th>长片段 reward（Δ vs 0）</th><th>实际时长</th><th>最高峰值</th><th>近满幅比例</th><th>已评分样本</th></tr></thead><tbody id="formal-v2-long-table"></tbody></table></div><p class="section-copy">长片段的采样上限高于训练配置；分数绑定到本页播放的 FLAC 或明确标注的评分 WAV。采样达到 token 上限会标记截断。分数与信号指标需要结合试听解释。</p></details>
+          <details class="choral-deep-dive"><summary>实现、核验与跨主机重复实验</summary><p class="section-copy" id="formal-v2-framework"></p><div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Run</th><th>Host / dtype</th><th>Steps</th><th>0 → final validation</th></tr></thead><tbody id="formal-v2-replicates"></tbody></table></div><p class="section-copy">重复实验单独报告，Kaya FP16 与 BF16 的差异不能解释为学习率效应。Muse 的失败臂只展示已保存 checkpoint；未完成的终点不填结果。</p></details>
           <div class="model-links"><a class="source-link" href="./data/cmi-pref-triple-9to1-split.json" download>下载 train / valid / test split JSON ↓</a><a class="source-link" href="#datasets" data-open-view="datasets">划分与复现说明 ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo/runs/2026-10-06-cmi-triple-9to1" target="_blank" rel="noreferrer">运行记录 ↗</a></div>
         </div>
         <div id="lyrics-mock" hidden>
