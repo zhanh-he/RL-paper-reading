@@ -138,8 +138,11 @@ function renderChoralDemo(data) {
 }
 
 function setView(view) {
-  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets'].includes(view) ? view : 'lyrics';
-  for (const section of document.querySelectorAll('.lab-view')) section.hidden = section.id !== `view-${chosen}`;
+  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets', 'vocal-models', 'vocal-rewards'].includes(view) ? view : 'lyrics';
+  for (const section of document.querySelectorAll('.lab-view')) {
+    section.hidden = section.id !== `view-${chosen}`;
+    if (section.hidden) for (const audio of section.querySelectorAll('audio')) audio.pause();
+  }
   for (const tab of document.querySelectorAll('.lab-tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === chosen));
   document.querySelector(`.lab-tab[data-view="${chosen}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
   if (location.hash !== `#${chosen}`) history.replaceState(null, '', `#${chosen}`);

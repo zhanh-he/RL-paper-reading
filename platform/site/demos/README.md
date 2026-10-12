@@ -6,6 +6,11 @@ from aggregate receipts and `replays.json`; do not edit it by hand. The latter
 is the curated, public case/stage manifest. The build validates each referenced
 media file and rejects a `pending` stage that claims public media.
 
+Vocal2song replay lives at `#vocal`. Its reference pages are `#vocal-models`
+for model availability and inference baselines, and `#vocal-rewards` for reward
+provenance, objective definitions, cross-scores and constructed attacks.
+Dataset Protocol remains at `#datasets` with the Vocal2song task selected.
+
 Each case follows input, reference output (when a legitimate reference exists),
 baseline, then checkpoints ordered by **optimizer updates**. Five YuE2 arms
 have 0/1/5/25/50/100 measured stages: SongEval at `2e-5`, `1e-4`, `1e-3`,
