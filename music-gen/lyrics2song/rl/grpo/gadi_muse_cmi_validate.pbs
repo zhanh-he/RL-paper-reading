@@ -3,9 +3,9 @@
 #PBS -q gpuhopper
 #PBS -l ncpus=12
 #PBS -l ngpus=1
-#PBS -l mem=128GB
+#PBS -l mem=64GB
 #PBS -l jobfs=40GB
-#PBS -l walltime=24:00:00
+#PBS -l walltime=02:00:00
 #PBS -l storage=gdata/wa66+scratch/wa66
 #PBS -l wd
 #PBS -N muse-cmi-valid
@@ -16,7 +16,7 @@ set -euo pipefail
 : "${STEP:?Set STEP to a saved optimizer step}"
 case "$REWARD" in songeval|musecritic) ;; *) exit 2 ;; esac
 case "$LR" in 1e-6|3e-6|1e-5) ;; *) exit 2 ;; esac
-case "$STEP" in 0|25|50|100|270) ;; *) exit 2 ;; esac
+case "$STEP" in 0|30|60|90|120|150|180|210|240|270) ;; *) exit 2 ;; esac
 
 module purge
 module load python3/3.11.7

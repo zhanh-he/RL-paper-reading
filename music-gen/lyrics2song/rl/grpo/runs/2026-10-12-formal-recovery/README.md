@@ -34,7 +34,9 @@ trace. Muse failures are preserved, not filled with made-up final scores.
 
 YuE2 long inference uses max 1600 / min 200 semantic tokens; actual files are
 approximately 64 seconds. Muse uses one continuous 1600-completion-token
-trajectory and the official MuCodec overlapping decoder; actual length is
+trajectory using the official Muse vLLM inference approach (BF16,
+temperature/top-p 0.9, repetition penalty 1.3, per-request fixed seeds)
+and the official MuCodec overlapping decoder; actual length is
 determined by AUDIO token count. Fixed per-model baseline audio is shared
 across learning rates, rewards and checkpoints. Original FLAC lives in the
 GitHub release to keep GitHub Pages below its site-size limit. Waveforms use
@@ -59,3 +61,12 @@ establish reward hacking, and a higher reward does not establish perceptual
 improvement. A corrected follow-up should give malformed outputs a bounded
 explicit penalty and preserve sampling, conditioning and score-file bindings;
 it must be reported as a separate run rather than editing these receipts.
+
+YuE2 updates each two-song group only once. With dropout disabled, the
+old/current ratio is one before that update; PPO ratio clipping is therefore
+inactive in that gradient. The implementation computes raw-model action
+log-probabilities while generation uses the native sampling transforms.
+Consequently, the plotted KL is the logged sampled regularizer, not an exact
+full-policy KL measurement. Audited receipts establish what ran and what was
+scored; they do not certify an unbiased policy-gradient estimator or eliminate
+these methodological limitations.

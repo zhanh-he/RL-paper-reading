@@ -3,7 +3,10 @@
 #lyrics-formal #formal-v2-replicates { white-space: pre-wrap; }
 #lyrics-formal #formal-v2-controls { display: flex; flex-wrap: wrap; gap: 8px; }
 #lyrics-formal #formal-v2-stages { display: flex; flex-wrap: wrap; gap: 8px; }
-#lyrics-formal #formal-v2-stages button { min-width: 96px; min-height: 40px; }
+#lyrics-formal #formal-v2-stages button { min-width: 96px; min-height: 40px; padding: 9px 14px; border: 1px solid #b9c5c0; border-radius: 4px; background: #fff; color: #586560; font: 700 12px system-ui; cursor: pointer; }
+#lyrics-formal #formal-v2-stages button[aria-pressed="true"] { color: #085941; background: #e1f0e9; border-color: #6d9f8c; }
+#lyrics-formal #formal-v2-stages button:hover:not(:disabled) { border-color: #085941; }
+#lyrics-formal #formal-v2-stages button:focus-visible { outline: 2px solid #407dc5; outline-offset: 2px; }
 #lyrics-formal button:disabled { opacity: .45; cursor: default; }
 #lyrics-formal .compare-panel { min-width: 0; }
 #lyrics-formal .compare-panel h3 { font-size: 16px; overflow-wrap: anywhere; }

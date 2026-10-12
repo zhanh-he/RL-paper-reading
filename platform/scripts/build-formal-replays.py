@@ -57,8 +57,10 @@ def main():
     output = {'schema_version': 3, 'protocol': 'cmi-pref-triple-source-text-lyrics-baseline-9to1-v2',
               'recovered_at': '2026-10-12', 'train_conditions': 270, 'valid_conditions': 30,
               'sealed_test_conditions': 121, 'projection_sha256': PROJECTION_SHA,
-              'examples': [{**{key: dataset['valid'][i][key] for key in ('style', 'lyrics')},
+              'examples': [{**{key: dataset['valid'][i][key] for key in ('condition_id', 'style', 'lyrics')},
                             'index': i, 'seed': 5101 + i} for i in (0, 10, 20)],
+              'visual_protocol': {'waveform_bounds': [-1, 1], 'spectrum': 'mel',
+                                  'frequency_hz': [0, 24000], 'decibels': [-80, 0], 'background': '#000000'},
               'arms': [], 'replicates': []}
     media_dir = args.staging / 'release-assets'; media_dir.mkdir(exist_ok=True)
     visuals = DEMOS / 'visuals/formal'; visuals.mkdir(parents=True, exist_ok=True)
@@ -89,10 +91,15 @@ def main():
             entry = {'index': i, 'seed': record['seed'], 'seconds': record['seconds'],
                      'sha256': sha, 'audio': URL + destination.name, 'signal': record['signal'],
                      'wave': f'visuals/formal/{name}_wave.png', 'spectrum': f'visuals/formal/{name}_spectrum.png',
+                     'wave_sha256': digest(visuals / f'{name}_wave.png'),
+                     'spectrum_sha256': digest(visuals / f'{name}_spectrum.png'),
                      'truncated': any(flags.values()) if isinstance(flags, dict) else bool(flags),
                      'reaches_30_seconds': record['seconds'] >= 30,
                      'scored_audio_sha256': record.get('scored_audio_sha256'),
                      'reward': record.get('reward')}
+            if record.get('backend'):
+                entry['inference_backend'] = record['backend']
+                entry['inference_dtype'] = record['dtype']
             assets[destination.name] = {'sha256': sha, 'bytes': destination.stat().st_size}
             rows.append(entry)
         return rows
@@ -122,7 +129,7 @@ def main():
                 if rendered: arm['long_replays'][str(s)] = rendered
             output['arms'].append(arm)
             (archive / f'{arm["id"]}.json').write_text(json.dumps(verified, indent=2) + '\n')
-    muse_baseline = clips(args.staging / 'muse/long_baseline', 'muse_baseline')
+    muse_baseline = clips(args.staging / 'muse/native_vllm/long_baseline', 'muse_baseline')
     for reward in ('songeval', 'musecritic'):
         for lr in ('1e-6', '3e-6', '1e-5'):
             source = args.staging / f'muse/{reward}_lr{lr}_train_v2'
@@ -133,7 +140,7 @@ def main():
                    'host': 'gadi', 'validation': {}, 'long_replays': {}}
             if muse_baseline: arm['long_replays']['0'] = muse_baseline
             for s in arm['checkpoints']:
-                rendered = clips(source / f'long_replay/step_{s:06d}/grpo', f'muse_{reward}_lr{lr}_step{s:06d}')
+                rendered = clips(source / f'long_replay_vllm/step_{s:06d}/grpo', f'muse_{reward}_lr{lr}_step{s:06d}')
                 if rendered: arm['long_replays'][str(s)] = rendered
             for receipt in source.glob('validation/step_*/receipt.json'):
                 evaluated = read(receipt); entries = evaluated['heldout']; s = str(int(receipt.parent.name.removeprefix('step_')))

@@ -2,12 +2,16 @@ import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const base = fileURLToPath(new URL('../site/demos/', import.meta.url));
 const data = JSON.parse(await readFile(path.join(base, 'formal-9to1-runs.json')));
 if (data.schema_version !== 3) throw new Error('Expected recovered formal registry v3');
 assert.equal(data.train_conditions, 270); assert.equal(data.valid_conditions, 30); assert.equal(data.sealed_test_conditions, 121);
 assert.equal(data.arms.length, 12);
+assert.deepEqual(data.visual_protocol.waveform_bounds, [-1, 1]);
+assert.deepEqual(data.visual_protocol.frequency_hz, [0, 24000]);
+assert.deepEqual(data.visual_protocol.decibels, [-80, 0]);
 assert.deepEqual(data.examples.map((r) => r.index), [0, 10, 20]);
 const baselineHashes = new Map();
 let clips = 0;
@@ -29,7 +33,10 @@ for (const arm of data.arms) {
       assert.ok(row.audio.endsWith(`${row.sha256.slice(0, 12)}.flac`));
       assert.equal(row.reaches_30_seconds, row.seconds >= 30);
       assert.ok(Number.isFinite(row.signal.peak));
-      for (const asset of [row.wave, row.spectrum]) { assert.ok(!asset.includes('..')); await access(path.join(base, asset)); }
+      for (const type of ['wave', 'spectrum']) {
+        const asset = row[type]; assert.ok(!asset.includes('..')); await access(path.join(base, asset));
+        assert.equal(createHash('sha256').update(await readFile(path.join(base, asset))).digest('hex'), row[`${type}_sha256`]);
+      }
       if (Number(step) === 0) {
         const key = `${arm.model}/${row.index}`;
         if (baselineHashes.has(key)) assert.equal(row.sha256, baselineHashes.get(key), `Baseline mismatch ${key}`);

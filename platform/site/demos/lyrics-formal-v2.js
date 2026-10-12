@@ -30,7 +30,7 @@ function chart(canvas, points, color, marks) {
   if (!rows.length) { context.fillText('暂无已核验数据', 39, 65); return; }
   let low = Math.min(...rows.map((p) => p.value)); let high = Math.max(...rows.map((p) => p.value));
   const padding = Math.max((high - low) * 0.12, Math.abs(high) * 0.015, 0.00001);
-  low = Math.max(0, low - padding); high += padding;
+  low = low >= 0 ? Math.max(0, low - padding) : low - padding; high += padding;
   const x = (s) => 39 + (width - 51) * s / 270;
   const y = (v) => 12 + (height - 41) * (high - v) / (high - low);
   for (let i = 0; i < 4; i++) {
@@ -97,7 +97,7 @@ function panel(clip, label, role) {
   }
   article.dataset.sha256 = clip.sha256;
   const caption = document.createElement('p'); caption.className = 'muted';
-  caption.textContent = `${clip.seconds.toFixed(2)} s · seed ${clip.seed} · 原始 PCM24-FLAC${clip.truncated ? ' · 达到生成上限' : ''}`; article.append(caption);
+  caption.textContent = `${clip.seconds.toFixed(2)} s · seed ${clip.seed} · 原始 PCM24-FLAC${clip.seconds < 30 ? ' · 未达到 30 秒目标' : ''}${clip.truncated ? ' · 达到生成上限' : ''}`; article.append(caption);
   const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = clip.audio;
   audio.addEventListener('play', () => pauseOthers(audio));
   audio.addEventListener('error', () => { $('listen-status').textContent = '音频加载失败，请使用原始 FLAC 链接重试。'; }); article.append(audio);
@@ -123,7 +123,7 @@ function replay() {
   const stages = [...new Set([0, ...(arm.checkpoints || []), ...Object.keys(arm.long_replays || {}).map(Number)])].sort((a, b) => a - b);
   $('stages').replaceChildren(...stages.map((s) => button(`${s} steps`, () => { step = s; replay(); }, step === s,
     !arm.long_replays?.[s]?.some((c) => c.index === index))));
-  $('replay-note').textContent = '相同条件、seed 和冻结起点；长片段为独立推理，不代替 30 条短片段验证。波形 ±1，Mel 0–24 kHz / −80–0 dB，黑色底。';
+  $('replay-note').textContent = `相同条件、seed 和冻结起点；长片段为独立推理，不代替 30 条短片段验证。${arm.model === 'Muse' ? 'Muse 强制生成 1600 completion tokens，实际时长按 AUDIO token 数计算；MuCodec 使用原生重叠解码。' : 'YuE2 上限 1600 semantic tokens，最少 200，实际时长逐文件报告。'}波形 ±1，Mel 0–24 kHz / −80–0 dB，黑色底。`;
   $('listen-status').textContent = '';
 }
 
@@ -135,7 +135,7 @@ function select(next) {
   $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host} · ${arm.failure_reason || '官方 test 保持封存；结果不代表已听辨的音质提升。'}`;
   $('reward-title').textContent = `优化目标 · ${arm.reward} 五维均值`;
   $('reward-definition').textContent = arm.reward === 'SongEval'
-    ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。'
+    ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。训练与短片段验证使用 WAV 评分；本页独立长片段播放 PCM24-FLAC，未将短片段分数归到这些长音频上。'
     : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。MuseCritic 的含义为整体连贯性、整体音乐性、可记忆性、歌曲结构清晰度、人声呼吸与分句自然度；先生成评论，再用评分头预测。它不是 SongEval，也不与其数值横比。本实验直接评分归档的 PCM24-FLAC。';
   $('train-protocol').textContent = `CMI-Pref：270 train / 30 valid / 121 封存 test；投影 text + lyrics，不输入参考音频。${arm.model === 'YuE2' ? 'PyTorch + PEFT LoRA，组大小 2，AdamW；600 semantic tokens。' : 'ms-swift / TRL + vLLM，LoRA，组大小 2；512 completion tokens。'} β = 0.01，记录对冻结参考策略的 sampled training KL。`;
   $('reward-caption').textContent = 'Reward · 五维均值 · 逐步训练值 + trailing 5-step mean';
@@ -147,7 +147,7 @@ function select(next) {
     const figure = document.createElement('figure'); const cap = document.createElement('figcaption'); cap.textContent = key;
     const canvas = document.createElement('canvas'); canvas.className = 'dimension-chart'; canvas.dataset.key = key; figure.append(cap, canvas); return figure;
   }));
-  $('framework').textContent = 'YuE2：原生 PyTorch + PEFT GRPO；Muse：ms-swift / TRL + vLLM。长音频采用同一模型解码，不循环、拼接独立歌曲或补静音。';
+  $('framework').textContent = 'YuE2：原生 PyTorch + PEFT，每组只更新一次，该次梯度中的 ratio clipping 不起作用；log-prob 使用原始模型分布，生成使用原生采样变换，右图是已记录的采样 KL 正则项，不是精确全策略 KL。Muse：ms-swift / TRL + vLLM。长音频采用同一模型解码，不循环、拼接独立歌曲或补静音。';
   $('replicates').replaceChildren(...(registry.replicates || []).map((a) => row([`${a.model}-${a.reward}-${a.lr}`, a.host, a.verified_train_steps, `${fmt(a.validation[0]?.mean_reward)} → ${fmt(a.validation[270]?.mean_reward)}`])));
   const available = Object.keys(arm.long_replays || {}).map(Number).filter((s) => s > 0);
   step = available.includes(step) ? step : Math.max(0, ...available);
