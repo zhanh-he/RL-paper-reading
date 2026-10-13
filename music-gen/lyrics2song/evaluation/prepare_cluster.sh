@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 : "${EVAL_WORK:?}" "${BASE_PYTHON:?}" "${PREPARE_METRICS:?}"
+code=$(cd "$(dirname "$0")" && pwd)
 mkdir -p "$EVAL_WORK" "$EVAL_WORK/cache"
 export UV_CACHE_DIR="$EVAL_WORK/cache/uv"
 export XDG_CACHE_HOME="$EVAL_WORK/cache/xdg"
@@ -21,6 +22,10 @@ if [[ -n "${EVAL_RUNTIME_WORK:-}" ]]; then
     mkdir -p "$target"
     if [[ ! -e "$name" && ! -L "$name" ]]; then ln -s "$target" "$name"; fi
   done
+fi
+if [[ -n "${EVAL_INSTALL_CACHE_JOBFS:-}" ]]; then
+  "$BASE_PYTHON" "$code/stage_install_cache.py" --bundle "$EVAL_WORK/wsb_metrics" \
+    --jobfs "$EVAL_INSTALL_CACHE_JOBFS" --key-root "${EVAL_KEY_ROOT:?}"
 fi
 prepared=0
 for attempt in 1 2 3; do
@@ -63,3 +68,7 @@ PY
 import json, pathlib, sys
 pathlib.Path(sys.argv[1]).write_text(json.dumps({'status': 'prepared', 'metrics': sys.argv[2], 'new_training': False}, indent=2) + '\n')
 PY
+if [[ -n "${EVAL_INSTALL_CACHE_JOBFS:-}" ]]; then
+  "$BASE_PYTHON" "$code/balance_evaluator_runtime.py" --work "$EVAL_WORK"
+  "$BASE_PYTHON" "$code/stage_install_cache.py" --bundle "$EVAL_WORK/wsb_metrics" --finish
+fi

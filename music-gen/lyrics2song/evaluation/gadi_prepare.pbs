@@ -1,15 +1,26 @@
 #!/usr/bin/env bash
 #PBS -P iv96
 #PBS -q copyq
-#PBS -l ncpus=1,mem=16GB,walltime=06:00:00,jobfs=10GB
+#PBS -l ncpus=1,mem=16GB,walltime=06:00:00,jobfs=150GB
 #PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
 #PBS -l wd
 #PBS -N wsb-prepare
 set -euo pipefail
 export EVAL_WORK=/scratch/iv96/hm6416/wsb-objective-20261013
 export EVAL_RUNTIME_WORK=/scratch/wa66/hm6416/wsb-objective-20261013
+export EVAL_KEY_ROOT="$EVAL_WORK/evaluator-key"
+export EVAL_INSTALL_CACHE_JOBFS="$PBS_JOBFS/install-cache"
 export BASE_PYTHON=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
 export HF_HOME=/g/data/wa66/hanyu/hf-cache
 export PREPARE_METRICS=all PREPARE_GENERATION=1
 export TMPDIR="$PBS_JOBFS"
-bash /scratch/wa66/hm6416/wsb-objective-20261013/code/prepare_cluster.sh
+export SINGULARITY_TMPDIR="$PBS_JOBFS/singularity"
+mkdir -p "$SINGULARITY_TMPDIR"
+code=/scratch/wa66/hm6416/wsb-objective-20261013/code
+"$BASE_PYTHON" "$code/prepare_gadi_container.py" --work "$EVAL_WORK" --python "$BASE_PYTHON"
+binds=/apps,/g/data/wa66,/scratch/wa66,/scratch/iv96,/jobfs
+for name in libffi.so.6 libssl.so.1.1 libcrypto.so.1.1; do
+  binds+=",/usr/lib64/$name:/usr/lib/x86_64-linux-gnu/$name"
+done
+exec /opt/singularity/bin/singularity exec --bind "$binds" "$EVAL_WORK/python312-bookworm-build.sif" \
+  bash "$code/prepare_cluster.sh"

@@ -91,6 +91,29 @@ def main():
     if target.exists() and json.loads(target.read_text()) != protocol:
         raise ValueError('Output directory already binds a different protocol')
     write(target, protocol)
+    conditions = range(a.start, min(a.end or len(rows), len(rows)))
+    cached_folders = []
+    for i in conditions:
+        for j in range(2):
+            seed = ([831001, 831019] if a.dataset == 'wsb' else [931001, 931019])[j] + i
+            cached_folders.append((i, seed, a.output / 'songs' / f'{a.dataset}_{i:03d}_r{j}_s{seed}'))
+    if all((folder / 'evaluation_binding.json').exists() for _, _, folder in cached_folders):
+        for i, seed, folder in cached_folders:
+            result = verify_result(folder)
+            cached = json.loads((folder / 'evaluation_binding.json').read_text())
+            request = json.loads((folder / 'request.json').read_text())
+            if (cached['adapter_sha256'] != adapter_sha or cached['source_sha256'] != source_sha
+                    or cached['audio_sha256'] != sha(folder / 'audio.flac')
+                    or cached['result_sha256'] != sha(folder / 'result.json')
+                    or request['seed'] != seed or request['style'] != rows[i]['style']
+                    or request['lyrics'] != rows[i]['lyrics']):
+                raise ValueError(f'Changed completed generation: {folder.name}')
+            for name, checksum in [('mot', '1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9'),
+                                   ('vae', 'b6d283628913bb41145ba99e2314eef613905ee95f690eb70e8212d5f4965044')]:
+                if result['weights'][name]['files']['model.safetensors']['sha256'] != checksum:
+                    raise ValueError('Cached generation used a different benchmark model')
+        print(f'{a.arm}: verified {len(cached_folders)} cached candidates without GPU model loading', flush=True)
+        return
     # Merge into the native model so both AR and NAR see adapted weights.
     with YuE2Pipeline.from_pretrained(a.model, vae=a.vae,
             vae_revision=protocol['decoder_revision'], device='cuda:0', backend='torch-eager',

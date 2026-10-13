@@ -10,6 +10,7 @@ import sys
 from pathlib import Path
 
 from generate_objective import sha, write
+from scorer_cache import needs_scoring
 
 
 def main():
@@ -36,6 +37,11 @@ def main():
     for source in sources:
         original = json.loads(source.read_text())
         report = a.output / source.relative_to(a.input).parent
+        generation = source.parent.parent / 'generation-receipts.json'
+        if a.dataset == 'cmi':
+            if not generation.is_file():
+                raise ValueError('CMI production assignment requires exported generation receipts')
+            write(report.parent / 'generation-receipts.json', json.loads(generation.read_text()))
         chunk = report / source.name
         cache = {r['id']: r for r in json.loads(chunk.read_text())['rows']} if chunk.exists() else {}
         rows = json.loads(json.dumps(original['rows']))
@@ -54,7 +60,7 @@ def main():
             for row in rows:
                 identity = extended_eval.identity(row, metric, config, assets, code)
                 receipt = report / 'receipts' / row['id'] / (metric + '.json')
-                if extended_eval.read_cached(receipt, identity) is None:
+                if needs_scoring(receipt, extended_eval.read_cached(receipt, identity)):
                     jobs.append({**row, 'identity': identity, 'result_path': str(receipt.resolve())})
             jobfile = report / (metric + '.jobs.json')
             write(jobfile, {'jobs': jobs, 'config': config})

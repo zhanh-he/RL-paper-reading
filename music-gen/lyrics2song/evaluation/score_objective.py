@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 from generate_objective import cmi_conditions, sha, write
+from scorer_cache import needs_scoring
 
 
 def select_candidates(rows):
@@ -20,6 +21,19 @@ def select_candidates(rows):
         return per['per'], per['edits'], abs(len(repeat['phonemes']) - per['reference_phonemes']), row['candidate_index']
     indexes = sorted({r['prompt_index'] for r in rows})
     return [min((r for r in rows if r['prompt_index'] == i), key=key) for i in indexes]
+
+
+def save_prepared_chunk(path, rows, protocol):
+    if path.exists():
+        previous = json.loads(path.read_text())
+        fields = ['id', 'audio_sha256', 'adapter_sha256', 'seed', 'source_flac_sha256']
+        bindings = lambda values: [{k: r[k] for k in fields} for r in values]
+        if previous['generation_protocol'] != protocol or bindings(previous['rows']) != bindings(rows):
+            raise ValueError('Prepared chunk changed an existing generation binding')
+        if previous.get('complete'):
+            return
+    write(path, {'complete': False, 'rows': rows, 'generation_protocol': protocol,
+                 'scope': 'CMI both candidates, unscored MP3 preparation'})
 
 
 def main():
@@ -54,12 +68,14 @@ def main():
     release = frozen.verify_release()
     metrics = ['per', 'songbench', 'mulan', 'allmusiccaps'] if dataset == 'wsb' else ['songbench', 'mulan', 'allmusiccaps']
     hashes = frozen.verify_assets(metrics) if not a.prepare_only else {}
-    write(report / 'protocol.json', {'generation_protocol': protocol, 'code_files': release['code_files'],
+    scoring_protocol = {'generation_protocol': protocol, 'code_files': release['code_files'],
           'asset_hashes': hashes, 'config': config, 'extension_not_official_acceptance': True,
           'songbench_runtime_extension_sha256': sha(Path(__file__).with_name('score_songbench_blackwell.py')),
           'selection': 'WSB lower-PER of 2, 4 ASR passes; CMI unselected mean of both candidates',
           'cmi_per': 'n/a: complete multilingual cohort lacks validated multilingual G2P; no English G2P for non-English lyrics',
-          'q3o': 'CMI n/a: no frozen target weights; WSB pending 80GB scorer'})
+          'q3o': 'CMI n/a: no frozen target weights; WSB pending 80GB scorer'}
+    if not a.prepare_only or not (report / 'protocol.json').exists():
+        write(report / 'protocol.json', scoring_protocol)
     for i in range(a.start, a.end):
         for j in range(2):
             seed = ([831001, 831019] if dataset == 'wsb' else [931001, 931019])[j] + i
@@ -94,8 +110,7 @@ def main():
                 'adapter_sha256': protocol['adapter_sha256'], 'generation_truncated': result['truncated'],
                 'seconds': result['audio_seconds'], 'metrics': {}})
     if a.prepare_only:
-        write(report / f'chunk_{a.start:03d}_{a.end:03d}.json', {'complete': False, 'rows': rows,
-              'generation_protocol': protocol, 'scope': 'CMI both candidates, unscored MP3 preparation'})
+        save_prepared_chunk(report / f'chunk_{a.start:03d}_{a.end:03d}.json', rows, protocol)
         print(f'{protocol["arm"]}: prepared {len(rows)} CMI scoring MP3s', flush=True)
         return
     for metric in metrics:
@@ -109,7 +124,7 @@ def main():
         for row in scored_rows:
             key = extended_eval.identity(row, metric, config, hashes, code)
             path = report / 'receipts' / row['id'] / (metric + '.json')
-            if extended_eval.read_cached(path, key) is None:
+            if needs_scoring(path, extended_eval.read_cached(path, key)):
                 jobs.append({**row, 'identity': key, 'result_path': str(path.resolve())})
         jobfile = report / (metric + '.jobs.json')
         write(jobfile, {'jobs': jobs, 'config': config})

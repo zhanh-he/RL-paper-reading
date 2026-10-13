@@ -6,8 +6,10 @@ import subprocess
 from pathlib import Path
 
 from generate_objective import sha, write
-from run_cluster_shard import ARMS
+from run_cluster_shard import ARMS, clean_install_cache
 from pack_completed_chunk import pack, verified_archive
+from enter_eval_container import enter
+from balance_evaluator_runtime import balance
 
 
 def main():
@@ -17,6 +19,9 @@ def main():
     p.add_argument('--songeval', type=Path, required=True)
     p.add_argument('--python', required=True)
     a = p.parse_args()
+    enter(a.work)
+    balance(a.work)
+    clean_install_cache(a.work)
     import torch
     if torch.cuda.get_device_properties(0).total_memory < 79 * (1 << 30):
         raise RuntimeError('An 80GB-class GPU is required')

@@ -95,7 +95,10 @@ conditions, not just a smoke sample; four-condition chunks are resumable
 publication/checkpoint boundaries, not subsets used as final benchmark scores.
 For the distributed campaign, `EVAL_END=4 SCORE_WSB=0` restricts the 5090 to
 the first four conditions of each cohort; WSB ASR/Q3O scoring is delegated to
-Gadi. An actual CUDA OOM stopped the original official ASR worker at
+Gadi. The replacement controller uses `SCORE_CMI=0` to prepare immutable MP3
+chunks for Kaya instead of occupying the generation GPU with quality scorers.
+It preserves the three CMI arms already scored locally and lets the old
+controller's in-flight child finish under the same lock. An actual CUDA OOM stopped the original official ASR worker at
 SongEval-3e-4; its generated audio was retained, not regenerated or discarded.
 An incomplete result directory requires inspection; no overwrite or random reseed.
 Scorer failure stops the queue, retaining the affected audio and traceback.
@@ -122,11 +125,32 @@ separate preparation and V100 quality-scoring job on five arms' already-selected
 WSB MP3s. It checks cross-host numerical drift without changing candidate draws
 or adding duplicate observations to the headline cohort. No BF16 native YuE2
 generation, official BF16 ASR, or 80GB Q3O runs on Kaya's V100s.
+This audit completed on `k020`: 20 scored MP3s, exit 0, maximum absolute
+cross-host difference 0.0002432 across audited score dimensions. This is a
+numerical compatibility check, not a full-cohort or perceptual improvement.
+`kaya_cmi_quality.sbatch` scores new unselected CMI chunks prepared on the 5090;
+these are production test observations, not additional draws. Each arm has a
+separate input/output root and retains both seeds and generation receipts.
+Two SongEval-3e-4 songs exceeded a 16GB V100 in full-song MuQ attention; the
+replacement job requires a 32GB V100. No cropping or scoring math changes.
+`scorer_cache.py` archives original failed receipts before explicit retries;
+completed receipts remain cached and are not silently rescored.
+The finite `dispatch_reserved_cmi.py` transfer stage handles exactly the three
+remaining reserved chunks, streams MP3s directly between SSH hosts, submits one
+native quality job per arm, and exits. It never collects/publishes future results,
+creates schedules, starts training, or sends notifications. Its bounded execution
+receipt is `/tmp/lyrics-cmi-quality-transfer-20261013.json` on this Mac.
 
 Use repeat `collect_objective.py --runs ...` arguments for disjoint roots: Gadi
 `first-four` for WSB, the 5090 reserved CMI root, and the twelve Gadi `shard_XX`
 roots. Do not also include the 5090's original selected WSB chunks or Kaya's
 numerical audit. Duplicate IDs and differing adapter/scorer hashes are rejected.
+For the reserved CMI range, use 5090 results for baseline/SongEval-2e-5/
+MuseCritic-2e-5, and the separate Kaya `cmi-quality/<arm>` roots for the other
+four arms. Alternatively, `merge_returned_quality.py` verifies and recovers each
+completed Kaya chunk into its original 5090 run, replacing only that arm's unscored
+placeholder. After this recovery, collect the original 5090 prefix alone, not
+both copies. Bound MP3s, source FLACs, candidates, seeds and adapters must match.
 Q3O is published only after all 192 selected-song scores exist; partial scores
 remain diagnostics. Sharded Q3O resets request sequence between chunks and is
 explicitly a local-checkpoint extension, not exact full-sequence paper acceptance.
@@ -136,7 +160,23 @@ are removed. Generation metadata and score chunks remain available for merging;
 incomplete chunks are never cleaned up. This avoids exhausting the projects'
 scratch inode quotas without deleting the original audio or raw scoring receipts.
 The evaluator venvs/runtime and large asset/cache files are spread across the
-two mounted scratch projects; existing research folders are not modified.
+two mounted scratch projects; existing research folders are not modified. The
+independent SongBench eval environment resides on iv96, while the metrics venv
+and portable Python runtime remain on wa66; their logical venv paths are unchanged.
+After a shared scratch inode-limit failure, the preparation job moves only its
+own UV download/extraction cache to 150GB allocation-local jobfs. Installed
+environments use the original `UV_LINK_MODE=copy`, so removing that temporary
+link after preparation does not remove runtime packages. Failed dependency
+jobs are resubmitted, not repaired only through `qalter`: PBS retains the old
+upstream failure relationship. No original frozen evaluator code/locks change.
+Gadi's host glibc 2.28 is also older than the frozen [vLLM 0.14.0 wheel's
+glibc 2.31 minimum](https://pypi.org/project/vllm/0.14.0/#files). The campaign
+uses a hash-bound Python 3.12.11 Debian bookworm OS image; native /apps Python
+and its existing Torch/YuE2 packages are preserved through explicit compatibility
+library bindings. Frozen scorer locks and model hashes remain unchanged.
+`container-runtime.json` stores the SIF identity and actual import preflight.
+The image includes GCC and a compiler preflight: the earlier slim image could
+import the native runtime but failed to build the frozen madmom extension.
 
 No cron, scheduled task or automation is created. The user requests subsequent
 recovery manually. Submission receipts are not a live scheduler-status claim;

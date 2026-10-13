@@ -1,13 +1,17 @@
 """One allocated GPU owns matched model arms on a disjoint condition shard."""
 
 import argparse
+import fcntl
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
 from generate_objective import write
 from pack_completed_chunk import pack, verified_archive
+from enter_eval_container import enter
+from balance_evaluator_runtime import balance
 
 ARMS = ['baseline', 'songeval-2e-5', 'musecritic-2e-5', 'songeval-1e-4',
         'musecritic-1e-4', 'songeval-3e-4', 'musecritic-3e-4']
@@ -15,6 +19,20 @@ ARMS = ['baseline', 'songeval-2e-5', 'musecritic-2e-5', 'songeval-1e-4',
 
 def bounds(start, end, n):
     return [(start + (end-start)*i//n, start + (end-start)*(i+1)//n) for i in range(n)]
+
+
+def clean_install_cache(work):
+    if json.loads((work / 'preparation-receipt.json').read_text())['status'] != 'prepared':
+        raise ValueError('Cannot clean an incomplete installation')
+    # The frozen installer uses UV_LINK_MODE=copy. Installed runtimes are not
+    # backed by these download/build caches; serialize cleanup across GPU jobs.
+    with (work / 'cache-cleanup.lock').open('w') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        cache = work / 'wsb_metrics/.cache/uv'
+        if cache.is_symlink():
+            raise ValueError('Refuse to clean an external UV cache')
+        if cache.exists():
+            shutil.rmtree(cache)
 
 
 def main():
@@ -31,6 +49,9 @@ def main():
         p.error('Invalid task index')
     if not (a.work / 'preparation-receipt.json').is_file():
         raise FileNotFoundError('Preparation has not completed')
+    enter(a.work)
+    balance(a.work)
+    clean_install_cache(a.work)
     import torch
     memory = torch.cuda.get_device_properties(0).total_memory
     if memory < 79 * (1 << 30):

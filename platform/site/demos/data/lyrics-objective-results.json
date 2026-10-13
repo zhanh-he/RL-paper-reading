@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at": "2026-10-13T04:22:26.655117+00:00",
+  "updated_at": "2026-10-13T06:09:44.419495+00:00",
   "host": "lab5090",
-  "queue_pid": 3613175,
+  "queue_pid": 3616468,
   "metrics": [
     "songbench_global_avg",
     "songbench_musicality",
@@ -14,7 +14,7 @@
     "control_overall",
     "per"
   ],
-  "queue_running_at_collection": true,
+  "queue_running_at_collection": false,
   "test_authorized_at": "2026-10-13",
   "datasets": {
     "wsb": {
@@ -2977,51 +2977,58 @@
           "system": "YuE2-SongEval-2e-5",
           "step": 270,
           "status": "evaluating",
-          "generated_candidates": 4,
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3036,7 +3043,240 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 167.55866666666665,
+              "scoring_mp3_sha256": "586e5c1a58c6a616e374f4e6a1037f2ea69a762fc8ac1c4aa20aab0e668155d2",
+              "source_flac_sha256": "602450147c82c39d699d18d8f1c5f4a97e81f81a3c1d31d0afc5bc38c7a62e00",
+              "songbench_dimensions": {
+                "Melody": 6.661535739898682,
+                "Arrangement": 7.139354705810547,
+                "Musicality": 6.156583309173584,
+                "Vocal": 7.426880359649658,
+                "Instrumental": 6.8724236488342285,
+                "Mixing": 6.868642807006836,
+                "Structure": 7.030885219573975
+              },
+              "metrics": {
+                "songbench_global_avg": 6.879472255706787,
+                "songbench_musicality": 6.156583309173584,
+                "songeval_global_avg": 4.28663911819458,
+                "songeval_musicality": 4.194002151489258,
+                "audiobox_pq": 7.897111415863037,
+                "mulan": 0.3063478469848633,
+                "allmusiccaps": 0.18572647869586945,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 174.35866666666666,
+              "scoring_mp3_sha256": "5fb41d1a90f1a9b1cb3dccb5f9a9e105a28570743287bfabfaa8db6b7ef6eb8f",
+              "source_flac_sha256": "5a2f817b466abdbeb7183e4a7a8b317745feabd6c2983161918a2a9a2ca408ef",
+              "songbench_dimensions": {
+                "Melody": 6.646445274353027,
+                "Arrangement": 7.144024848937988,
+                "Musicality": 5.86740255355835,
+                "Vocal": 6.963590621948242,
+                "Instrumental": 7.013423442840576,
+                "Mixing": 6.796427249908447,
+                "Structure": 6.597407341003418
+              },
+              "metrics": {
+                "songbench_global_avg": 6.718388761792864,
+                "songbench_musicality": 5.86740255355835,
+                "songeval_global_avg": 4.121230602264404,
+                "songeval_musicality": 4.000128746032715,
+                "audiobox_pq": 7.730053901672363,
+                "mulan": 0.41714751720428467,
+                "allmusiccaps": 0.02760103903710842,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 324.39866666666666,
+              "scoring_mp3_sha256": "2bb3d8527a5bb2e44258a951adc10bd4946115a5a5abcd23b081943c78146fb0",
+              "source_flac_sha256": "4fc8d52745e4f0134e07e2d77212d12ae64b031bc71c0c74e6a20e89e93605f6",
+              "songbench_dimensions": {
+                "Melody": 6.777987957000732,
+                "Arrangement": 7.064965724945068,
+                "Musicality": 6.263641834259033,
+                "Vocal": 7.183314323425293,
+                "Instrumental": 6.6580915451049805,
+                "Mixing": 6.651345252990723,
+                "Structure": 6.709397315979004
+              },
+              "metrics": {
+                "songbench_global_avg": 6.758391993386405,
+                "songbench_musicality": 6.263641834259033,
+                "songeval_global_avg": 4.170629692077637,
+                "songeval_musicality": 4.048199653625488,
+                "audiobox_pq": 8.068399429321289,
+                "mulan": 0.38984793424606323,
+                "allmusiccaps": -0.02203371375799179,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 304.95866666666666,
+              "scoring_mp3_sha256": "f634c758b8513b55193c0296f61194b0246a4766a78918caf70964b150054a50",
+              "source_flac_sha256": "d886e698529c653ac53b3a86c9c7ca50d77d807eb441854032c40ccb8d88529f",
+              "songbench_dimensions": {
+                "Melody": 6.915705680847168,
+                "Arrangement": 7.400725364685059,
+                "Musicality": 6.248842239379883,
+                "Vocal": 7.704542636871338,
+                "Instrumental": 7.401288032531738,
+                "Mixing": 7.264711380004883,
+                "Structure": 6.832474231719971
+              },
+              "metrics": {
+                "songbench_global_avg": 7.109755652291434,
+                "songbench_musicality": 6.248842239379883,
+                "songeval_global_avg": 3.9638994216918944,
+                "songeval_musicality": 3.911754608154297,
+                "audiobox_pq": 8.153146743774414,
+                "mulan": 0.43356066942214966,
+                "allmusiccaps": -0.010097812861204147,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 217.23866666666666,
+              "scoring_mp3_sha256": "cc08b7c565f9f29500b37c731875b487980a8e29ca64727d5a1d91542f28ed8d",
+              "source_flac_sha256": "8b45f8e809ab549f71ec6db52f36543de65c6461d8a52f255899fa5214da6313",
+              "songbench_dimensions": {
+                "Melody": 6.9693450927734375,
+                "Arrangement": 7.173288822174072,
+                "Musicality": 6.270232677459717,
+                "Vocal": 7.112569808959961,
+                "Instrumental": 6.781000137329102,
+                "Mixing": 6.818042755126953,
+                "Structure": 7.410512924194336
+              },
+              "metrics": {
+                "songbench_global_avg": 6.933570316859654,
+                "songbench_musicality": 6.270232677459717,
+                "songeval_global_avg": 3.960922431945801,
+                "songeval_musicality": 3.8033242225646973,
+                "audiobox_pq": 7.770791053771973,
+                "mulan": 0.27569934725761414,
+                "allmusiccaps": 0.3825398087501526,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 249.07866666666666,
+              "scoring_mp3_sha256": "8c5f0b90622be30911bde0ab0ffa37e3b214b717155c05e18876daaeca2100a1",
+              "source_flac_sha256": "e0fd1679e10bd6d1485ebb2b849f0e91a5341cb72b64a155742ab82b5e9c7142",
+              "songbench_dimensions": {
+                "Melody": 6.909856796264648,
+                "Arrangement": 7.255252361297607,
+                "Musicality": 5.742234706878662,
+                "Vocal": 6.858940124511719,
+                "Instrumental": 6.947082996368408,
+                "Mixing": 6.9476237297058105,
+                "Structure": 7.181070327758789
+              },
+              "metrics": {
+                "songbench_global_avg": 6.834580148969378,
+                "songbench_musicality": 5.742234706878662,
+                "songeval_global_avg": 3.864753484725952,
+                "songeval_musicality": 3.7422163486480713,
+                "audiobox_pq": 7.813930988311768,
+                "mulan": 0.269566148519516,
+                "allmusiccaps": 0.3372662365436554,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 322.27866666666665,
+              "scoring_mp3_sha256": "aa0a14a354aa833c8015f0066e42e3f0e2b542e35104ba30237fe78b3cd97abb",
+              "source_flac_sha256": "f3cb83a604a5230c4bb7c91cac2a7dddfee60112bcf38e48dd5182c9997007b8",
+              "songbench_dimensions": {
+                "Melody": 6.974961280822754,
+                "Arrangement": 7.313949108123779,
+                "Musicality": 5.821463584899902,
+                "Vocal": 7.313979625701904,
+                "Instrumental": 6.625782489776611,
+                "Mixing": 6.908617973327637,
+                "Structure": 7.084146499633789
+              },
+              "metrics": {
+                "songbench_global_avg": 6.863271508898054,
+                "songbench_musicality": 5.821463584899902,
+                "songeval_global_avg": 3.6453343868255614,
+                "songeval_musicality": 3.55257511138916,
+                "audiobox_pq": 8.056177139282227,
+                "mulan": 0.26490604877471924,
+                "allmusiccaps": 0.41311684250831604,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 269.91866666666664,
+              "scoring_mp3_sha256": "2689495166571b3e065bcf2124b5cf58ca3472bf7dff008a8526d4c401967146",
+              "source_flac_sha256": "3eeb33cf47ecb5d354d966e90ca3983ed64940e59055c3406b3d936b0579802e",
+              "songbench_dimensions": {
+                "Melody": 7.098132610321045,
+                "Arrangement": 7.186771392822266,
+                "Musicality": 6.096423625946045,
+                "Vocal": 6.942530632019043,
+                "Instrumental": 6.845458984375,
+                "Mixing": 6.908827304840088,
+                "Structure": 7.1128926277160645
+              },
+              "metrics": {
+                "songbench_global_avg": 6.884433882577079,
+                "songbench_musicality": 6.096423625946045,
+                "songeval_global_avg": 3.6947192668914797,
+                "songeval_musicality": 3.6255054473876953,
+                "audiobox_pq": 7.843327522277832,
+                "mulan": 0.48323363065719604,
+                "allmusiccaps": 0.3462337553501129,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
           "generation_receipts": [
             {
               "id": "cmi_000_r0_s931001",
@@ -3101,60 +3341,136 @@
                 "semantic": false
               },
               "elapsed_seconds": 151.37891961168498
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "8b45f8e809ab549f71ec6db52f36543de65c6461d8a52f255899fa5214da6313",
+              "result_sha256": "8108a9af32bd45575bcacfd80d8b1960a66bd5d268ef7afc95bb1bf622ff3d4d",
+              "seconds": 217.23866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 98.90200784336776
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "e0fd1679e10bd6d1485ebb2b849f0e91a5341cb72b64a155742ab82b5e9c7142",
+              "result_sha256": "8fc12c64071e1d52a1433eae8858cb44a3e10dd7735096bd23cb7a77044d063a",
+              "seconds": 249.07866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 108.7132907230407
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "f3cb83a604a5230c4bb7c91cac2a7dddfee60112bcf38e48dd5182c9997007b8",
+              "result_sha256": "0c87962442da8397a6b4a27a9ceb6221ab3c51f7aea0c5e43a95c7b872caa401",
+              "seconds": 322.27866666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 147.9750498952344
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "3eeb33cf47ecb5d354d966e90ca3983ed64940e59055c3406b3d936b0579802e",
+              "result_sha256": "3e4b9f599fd6e4a3fa81dde5f3f277b256148b332cf094b8209678b3c1c60569",
+              "seconds": 269.91866666666664,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 130.82233083900064
             }
           ],
-          "receipt_files": []
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-songeval-2e-5/cmi/evaluation/chunk_000_004.json",
+              "sha256": "f1625584d1c9679e3216e2ed378676e9c56f6b0f8e7d9da6e9d20ee144e1ac5d"
+            }
+          ]
         },
         {
           "id": "yue2-songeval-1e-4",
           "system": "YuE2-SongEval-1e-4",
           "step": 270,
-          "status": "scheduled",
-          "generated_candidates": 0,
+          "status": "evaluating",
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3169,60 +3485,434 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
-          "generation_receipts": [],
-          "receipt_files": []
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 162.19866666666667,
+              "scoring_mp3_sha256": "d8745394f86ba3f34ba2ccd8884744a2d3309a4e13f077130e901034f3cef412",
+              "source_flac_sha256": "1d3cebccd1d378e5efcb7329bead8104edd5b22af667efd8b89d49e209bcd351",
+              "songbench_dimensions": {
+                "Melody": 6.298573017120361,
+                "Arrangement": 6.865143775939941,
+                "Musicality": 5.612472057342529,
+                "Vocal": 7.303931713104248,
+                "Instrumental": 6.741250038146973,
+                "Mixing": 6.7278618812561035,
+                "Structure": 6.800172805786133
+              },
+              "metrics": {
+                "songbench_global_avg": 6.621343612670898,
+                "songbench_musicality": 5.612472057342529,
+                "songeval_global_avg": 4.403869342803955,
+                "songeval_musicality": 4.314901828765869,
+                "audiobox_pq": 7.883204460144043,
+                "mulan": 0.31768321990966797,
+                "allmusiccaps": 0.10404818505048752,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 164.39866666666666,
+              "scoring_mp3_sha256": "9c447af98c9d4407d2adb269dfd5a97be545639bb13f93f559d0729a36115d61",
+              "source_flac_sha256": "66844922d5b9fe47d909a9fccb20b7192c88383672ff5eb520d14a4e0c8d7cbf",
+              "songbench_dimensions": {
+                "Melody": 7.173120975494385,
+                "Arrangement": 7.215301513671875,
+                "Musicality": 6.251383304595947,
+                "Vocal": 7.1397294998168945,
+                "Instrumental": 7.1324920654296875,
+                "Mixing": 6.790684700012207,
+                "Structure": 7.019222259521484
+              },
+              "metrics": {
+                "songbench_global_avg": 6.960276331220355,
+                "songbench_musicality": 6.251383304595947,
+                "songeval_global_avg": 4.168560791015625,
+                "songeval_musicality": 4.061289310455322,
+                "audiobox_pq": 7.8905134201049805,
+                "mulan": 0.3862929046154022,
+                "allmusiccaps": 0.02452746033668518,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 297.39866666666666,
+              "scoring_mp3_sha256": "fe037a2fd97c9a6b946f4a28f4c3cc0b9338ad9df25fbfbccc8e19d348951bfc",
+              "source_flac_sha256": "2f8973dc1b0f7a28a46a153dcacbd2be69c43d199db969c54174f232be294627",
+              "songbench_dimensions": {
+                "Melody": 6.9032440185546875,
+                "Arrangement": 7.391041278839111,
+                "Musicality": 6.134204864501953,
+                "Vocal": 6.974332332611084,
+                "Instrumental": 6.963633060455322,
+                "Mixing": 6.7426652908325195,
+                "Structure": 6.7356791496276855
+              },
+              "metrics": {
+                "songbench_global_avg": 6.8349714279174805,
+                "songbench_musicality": 6.134204864501953,
+                "songeval_global_avg": 4.038390445709228,
+                "songeval_musicality": 3.8979783058166504,
+                "audiobox_pq": 8.027462005615234,
+                "mulan": 0.4453584551811218,
+                "allmusiccaps": -0.05927255377173424,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 283.5586666666667,
+              "scoring_mp3_sha256": "8fa6198bafb1e2ec2cb7e1128623ca1b74643025ecb2982d51dfd6c5600dd461",
+              "source_flac_sha256": "43bc3e4575e90a4fffd622e3187194d8571eb953b18d79f060be4e5728f6505d",
+              "songbench_dimensions": {
+                "Melody": 6.663331985473633,
+                "Arrangement": 7.158671855926514,
+                "Musicality": 5.925157070159912,
+                "Vocal": 7.460705757141113,
+                "Instrumental": 7.32966947555542,
+                "Mixing": 6.971529006958008,
+                "Structure": 6.601022720336914
+              },
+              "metrics": {
+                "songbench_global_avg": 6.872869695935931,
+                "songbench_musicality": 5.925157070159912,
+                "songeval_global_avg": 3.917959785461426,
+                "songeval_musicality": 3.863638162612915,
+                "audiobox_pq": 8.229934692382812,
+                "mulan": 0.41297706961631775,
+                "allmusiccaps": 0.020892096683382988,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 189.63866666666667,
+              "scoring_mp3_sha256": "cb868e78cc32ee8dbcafb7a79fd5590934735ccde9f8b3bd38bdd21c57ce596b",
+              "source_flac_sha256": "e80f928ccff6af10516a08d075903201786d05d1c07228cc7da773ee313f30e8",
+              "songbench_dimensions": {
+                "Melody": 7.072696208953857,
+                "Arrangement": 7.6077165603637695,
+                "Musicality": 5.867886066436768,
+                "Vocal": 6.853296279907227,
+                "Instrumental": 6.962922096252441,
+                "Mixing": 6.747855186462402,
+                "Structure": 7.257818698883057
+              },
+              "metrics": {
+                "songbench_global_avg": 6.910027299608503,
+                "songbench_musicality": 5.867886066436768,
+                "songeval_global_avg": 4.140005874633789,
+                "songeval_musicality": 4.023289203643799,
+                "audiobox_pq": 7.866833686828613,
+                "mulan": 0.32471299171447754,
+                "allmusiccaps": 0.2863045930862427,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 203.07866666666666,
+              "scoring_mp3_sha256": "56118d8083b1eb62f026f0abfa5fd3ccad1e794e404284736e9702c224059b37",
+              "source_flac_sha256": "552ffbcb42c31ffac5c613972a749dace11f077cfb850fb6eb3f67ed64d24ac5",
+              "songbench_dimensions": {
+                "Melody": 6.720221996307373,
+                "Arrangement": 7.560367584228516,
+                "Musicality": 5.989972114562988,
+                "Vocal": 7.078968048095703,
+                "Instrumental": 6.299165725708008,
+                "Mixing": 6.812918186187744,
+                "Structure": 6.926664352416992
+              },
+              "metrics": {
+                "songbench_global_avg": 6.769754001072475,
+                "songbench_musicality": 5.989972114562988,
+                "songeval_global_avg": 3.638195848464966,
+                "songeval_musicality": 3.5952746868133545,
+                "audiobox_pq": 7.552578926086426,
+                "mulan": 0.2971383035182953,
+                "allmusiccaps": 0.3531579375267029,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 307.7986666666667,
+              "scoring_mp3_sha256": "f5f2328bbfa8b7b37b719f481e5601a5a1e28534c3bc6d2c64fad27727ac895b",
+              "source_flac_sha256": "295bb6eaddfab419bfcd41e954ad6be65c47a5b7fe70cb6910f6e4d399d0feba",
+              "songbench_dimensions": {
+                "Melody": 7.32283353805542,
+                "Arrangement": 7.543454647064209,
+                "Musicality": 6.208087921142578,
+                "Vocal": 7.456453323364258,
+                "Instrumental": 7.2524285316467285,
+                "Mixing": 7.2551960945129395,
+                "Structure": 7.242857933044434
+              },
+              "metrics": {
+                "songbench_global_avg": 7.183044569832938,
+                "songbench_musicality": 6.208087921142578,
+                "songeval_global_avg": 3.539055585861206,
+                "songeval_musicality": 3.4659883975982666,
+                "audiobox_pq": 8.042591094970703,
+                "mulan": 0.24969962239265442,
+                "allmusiccaps": 0.32992318272590637,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 293.3586666666667,
+              "scoring_mp3_sha256": "fefea2d3caae109afb3f1439e9043e74ba190c587c4946064f2bbd8ad023f55f",
+              "source_flac_sha256": "dd61e6da97990462d4ba7cbfe877ada02cd8ddacdcfa295305d729f586b474a9",
+              "songbench_dimensions": {
+                "Melody": 6.911733150482178,
+                "Arrangement": 7.388258457183838,
+                "Musicality": 5.782968521118164,
+                "Vocal": 6.756624221801758,
+                "Instrumental": 7.371285438537598,
+                "Mixing": 7.00869083404541,
+                "Structure": 6.695365905761719
+              },
+              "metrics": {
+                "songbench_global_avg": 6.844989504132952,
+                "songbench_musicality": 5.782968521118164,
+                "songeval_global_avg": 3.9294020175933837,
+                "songeval_musicality": 3.810718536376953,
+                "audiobox_pq": 8.288507461547852,
+                "mulan": 0.26653754711151123,
+                "allmusiccaps": 0.23029565811157227,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
+          "generation_receipts": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seed": 931001,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "1d3cebccd1d378e5efcb7329bead8104edd5b22af667efd8b89d49e209bcd351",
+              "result_sha256": "58e84dfa8bf79308a8b69b8b0892b900a3169915ce1bdf1316064c7366db9889",
+              "seconds": 162.19866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 72.02129178959876
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seed": 931019,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "66844922d5b9fe47d909a9fccb20b7192c88383672ff5eb520d14a4e0c8d7cbf",
+              "result_sha256": "5c667a3f1bddb4301eac0920812dbb277cae080e7cd6489e235ea081d1340908",
+              "seconds": 164.39866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 72.6111771510914
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seed": 931002,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "2f8973dc1b0f7a28a46a153dcacbd2be69c43d199db969c54174f232be294627",
+              "result_sha256": "7efb1f1d7c0562a0381e4e8e71980687d0dce55b18b43cbf4959494aa6efa742",
+              "seconds": 297.39866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 149.60632067453116
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seed": 931020,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "43bc3e4575e90a4fffd622e3187194d8571eb953b18d79f060be4e5728f6505d",
+              "result_sha256": "39654fc031ac0a305cdc7aae3aa9fedd8d1500f3f6fc08d5a307369d8a072045",
+              "seconds": 283.5586666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 146.05123393423855
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "e80f928ccff6af10516a08d075903201786d05d1c07228cc7da773ee313f30e8",
+              "result_sha256": "e8760fe7dcad487ba18107bc3a805aa458c1fef2e999606392b636c5659ff670",
+              "seconds": 189.63866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 84.63727700524032
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "552ffbcb42c31ffac5c613972a749dace11f077cfb850fb6eb3f67ed64d24ac5",
+              "result_sha256": "a3cb46792f2591ecba3ecaeedcf28d88a21ef1d8b83feb8a31b4881710d68f40",
+              "seconds": 203.07866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 84.8388161920011
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "295bb6eaddfab419bfcd41e954ad6be65c47a5b7fe70cb6910f6e4d399d0feba",
+              "result_sha256": "1bb7820d000f8f69c609ec4c3b81ef460bebc6e6278473d360bb1689fa13d4d3",
+              "seconds": 307.7986666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 142.92985703516752
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "65359df6c9cd73bb380b295b1e9d20236555edf514fff54299174c922c889f74",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "dd61e6da97990462d4ba7cbfe877ada02cd8ddacdcfa295305d729f586b474a9",
+              "result_sha256": "b205603d09ff9170f15e87caa2689bfbfec609495b4db56a3355b86f82b1f77b",
+              "seconds": 293.3586666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 142.23022050317377
+            }
+          ],
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-songeval-1e-4/cmi/evaluation/chunk_000_004.json",
+              "sha256": "c417d96c2e2ff88823721935f5df28051b13e93a52061529999e69e596cf08a7"
+            }
+          ]
         },
         {
           "id": "yue2-songeval-3e-4",
           "system": "YuE2-SongEval-3e-4",
           "step": 270,
-          "status": "scheduled",
-          "generated_candidates": 0,
+          "status": "evaluating",
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3237,60 +3927,434 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
-          "generation_receipts": [],
-          "receipt_files": []
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 150.39866666666666,
+              "scoring_mp3_sha256": "34c29c52bc991d775bdd88ecf3799307a4f1c654a1eeffb7dec5479b81b114f3",
+              "source_flac_sha256": "f6febeb826eaf4a285c6a5b6e703652c9d8fabc0fce9ec16c830c12a79451610",
+              "songbench_dimensions": {
+                "Melody": 7.168869972229004,
+                "Arrangement": 7.360804080963135,
+                "Musicality": 6.344171047210693,
+                "Vocal": 7.394167900085449,
+                "Instrumental": 7.19912052154541,
+                "Mixing": 6.998819351196289,
+                "Structure": 7.008288383483887
+              },
+              "metrics": {
+                "songbench_global_avg": 7.067748750959124,
+                "songbench_musicality": 6.344171047210693,
+                "songeval_global_avg": 4.284313488006592,
+                "songeval_musicality": 4.290472030639648,
+                "audiobox_pq": 7.932960510253906,
+                "mulan": 0.34758391976356506,
+                "allmusiccaps": 0.13271917402744293,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 139.87866666666667,
+              "scoring_mp3_sha256": "0669df0f9aad448cc3c4915dbba44b090230c4f308bf1f434e2f3ef20a64ff76",
+              "source_flac_sha256": "202e47ddeff977ae95477281378672d197537368fced0f75e2a16efb9f8d0fab",
+              "songbench_dimensions": {
+                "Melody": 6.542206764221191,
+                "Arrangement": 6.57825231552124,
+                "Musicality": 5.657688617706299,
+                "Vocal": 7.173386573791504,
+                "Instrumental": 6.526386737823486,
+                "Mixing": 6.328641891479492,
+                "Structure": 6.48330020904541
+              },
+              "metrics": {
+                "songbench_global_avg": 6.469980444226946,
+                "songbench_musicality": 5.657688617706299,
+                "songeval_global_avg": 4.213689136505127,
+                "songeval_musicality": 4.148163795471191,
+                "audiobox_pq": 7.512966632843018,
+                "mulan": 0.3681005537509918,
+                "allmusiccaps": 0.05489495024085045,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 311.63866666666667,
+              "scoring_mp3_sha256": "418d64d5cd01054e9cc40398730b6c197dd32309832c41e7f092a86de956a2ed",
+              "source_flac_sha256": "285464d0ab01e6036a8e9f534072b061f0602749c2a63e4c2e11a376bbd97fae",
+              "songbench_dimensions": {
+                "Melody": 6.850856304168701,
+                "Arrangement": 7.17070198059082,
+                "Musicality": 6.060007572174072,
+                "Vocal": 7.248170852661133,
+                "Instrumental": 7.43997859954834,
+                "Mixing": 7.037667751312256,
+                "Structure": 6.913225173950195
+              },
+              "metrics": {
+                "songbench_global_avg": 6.96008689062936,
+                "songbench_musicality": 6.060007572174072,
+                "songeval_global_avg": 4.160671997070312,
+                "songeval_musicality": 4.035070419311523,
+                "audiobox_pq": 8.195512771606445,
+                "mulan": 0.41237008571624756,
+                "allmusiccaps": -0.06216512247920036,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 359.9986666666667,
+              "scoring_mp3_sha256": "f33b2b04e76fb5a0dd3b0bdf3e1b36ac20f0921780385136eb6738e064e06f36",
+              "source_flac_sha256": "f13f79eefed23ba1fcec1801a2e15b1f8b7971f60291c56a878d31a4256eb18b",
+              "songbench_dimensions": {
+                "Melody": 6.6915364265441895,
+                "Arrangement": 6.970339775085449,
+                "Musicality": 6.1543474197387695,
+                "Vocal": 7.397011756896973,
+                "Instrumental": 7.23704195022583,
+                "Mixing": 7.0427398681640625,
+                "Structure": 6.736550331115723
+              },
+              "metrics": {
+                "songbench_global_avg": 6.889938218253,
+                "songbench_musicality": 6.1543474197387695,
+                "songeval_global_avg": 4.237597942352295,
+                "songeval_musicality": 4.135130882263184,
+                "audiobox_pq": 8.294267654418945,
+                "mulan": 0.35737594962120056,
+                "allmusiccaps": -0.01354293990880251,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 202.23866666666666,
+              "scoring_mp3_sha256": "6fdcfc2914555e1ba40051ff38ec85028c570dd38939c69a2901f55d00204e46",
+              "source_flac_sha256": "f0fae73615b467bcf918ff8e70b0280b1f605beed9acd0775226ce2cf58be1f2",
+              "songbench_dimensions": {
+                "Melody": 6.812082290649414,
+                "Arrangement": 7.345718860626221,
+                "Musicality": 6.007067680358887,
+                "Vocal": 7.1903886795043945,
+                "Instrumental": 6.363696098327637,
+                "Mixing": 7.0139594078063965,
+                "Structure": 6.916301727294922
+              },
+              "metrics": {
+                "songbench_global_avg": 6.80703067779541,
+                "songbench_musicality": 6.007067680358887,
+                "songeval_global_avg": 4.020994424819946,
+                "songeval_musicality": 3.886496067047119,
+                "audiobox_pq": 7.872265815734863,
+                "mulan": 0.28003937005996704,
+                "allmusiccaps": 0.4071437120437622,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 359.9986666666667,
+              "scoring_mp3_sha256": "56bf0954318ab5c3b0f50b1762d4c966b680785b91dd77ea22a2d284f8a795f1",
+              "source_flac_sha256": "200ad0581811850479e8e4a0702ca20b42d62f38fd941515302b69c039210a1d",
+              "songbench_dimensions": {
+                "Melody": 6.399374008178711,
+                "Arrangement": 7.057448863983154,
+                "Musicality": 5.453785419464111,
+                "Vocal": 6.200390815734863,
+                "Instrumental": 6.61654806137085,
+                "Mixing": 6.923908710479736,
+                "Structure": 6.291910648345947
+              },
+              "metrics": {
+                "songbench_global_avg": 6.420480932508196,
+                "songbench_musicality": 5.453785419464111,
+                "songeval_global_avg": 3.719530534744263,
+                "songeval_musicality": 3.650411605834961,
+                "audiobox_pq": 7.795826435089111,
+                "mulan": 0.28205496072769165,
+                "allmusiccaps": 0.4440721273422241,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 294.7986666666667,
+              "scoring_mp3_sha256": "04fdc31971ce7d27ee047626c32ac0ad041181bcc47c57920589b90644a6ba85",
+              "source_flac_sha256": "d6ef49ca588662c84f765555cececfb5e58be837a45b5edd23d1ab813fa61483",
+              "songbench_dimensions": {
+                "Melody": 6.367056846618652,
+                "Arrangement": 6.71438455581665,
+                "Musicality": 5.460601329803467,
+                "Vocal": 6.9520134925842285,
+                "Instrumental": 6.797713279724121,
+                "Mixing": 6.771707057952881,
+                "Structure": 6.5204620361328125
+              },
+              "metrics": {
+                "songbench_global_avg": 6.511991228376116,
+                "songbench_musicality": 5.460601329803467,
+                "songeval_global_avg": 3.828326463699341,
+                "songeval_musicality": 3.7774016857147217,
+                "audiobox_pq": 8.20864200592041,
+                "mulan": 0.24681583046913147,
+                "allmusiccaps": 0.20044592022895813,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 294.95866666666666,
+              "scoring_mp3_sha256": "8523f5dab589fa97d6fb9db8d0b6ff2696eb1005927063ef0e48d594acc0b298",
+              "source_flac_sha256": "1790dbbfa30a9c40e64b987d91c27e3e2ad7a5fcb4a00e2224ae2f30ae22be55",
+              "songbench_dimensions": {
+                "Melody": 6.647263526916504,
+                "Arrangement": 6.871293544769287,
+                "Musicality": 5.612220764160156,
+                "Vocal": 6.415567874908447,
+                "Instrumental": 6.644252300262451,
+                "Mixing": 6.726590156555176,
+                "Structure": 6.559870719909668
+              },
+              "metrics": {
+                "songbench_global_avg": 6.49672269821167,
+                "songbench_musicality": 5.612220764160156,
+                "songeval_global_avg": 3.785100746154785,
+                "songeval_musicality": 3.7134876251220703,
+                "audiobox_pq": 7.878443241119385,
+                "mulan": 0.23891565203666687,
+                "allmusiccaps": 0.2587120831012726,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
+          "generation_receipts": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seed": 931001,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "f6febeb826eaf4a285c6a5b6e703652c9d8fabc0fce9ec16c830c12a79451610",
+              "result_sha256": "9e913f1605259ce1fb2f166d1b103f9c77797845b7511a70f4cb3e6f299914d0",
+              "seconds": 150.39866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 66.32280102185905
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seed": 931019,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "202e47ddeff977ae95477281378672d197537368fced0f75e2a16efb9f8d0fab",
+              "result_sha256": "7cfd3d16fc3bf3ea07c88e458fa761ca7cb11353e03fdedc010d5481706969d3",
+              "seconds": 139.87866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 61.87208883743733
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seed": 931002,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "285464d0ab01e6036a8e9f534072b061f0602749c2a63e4c2e11a376bbd97fae",
+              "result_sha256": "f56fff001415a8cfe5653c63d5aa5443ff3ae92e8966c234f913c319a92ff5a7",
+              "seconds": 311.63866666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 155.0394502831623
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seed": 931020,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "f13f79eefed23ba1fcec1801a2e15b1f8b7971f60291c56a878d31a4256eb18b",
+              "result_sha256": "a43401c08abf96608b69a7f1b286d3d18899aba8cfa425c3dbea0720f21562b2",
+              "seconds": 359.9986666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": true
+              },
+              "elapsed_seconds": 174.03123023360968
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "f0fae73615b467bcf918ff8e70b0280b1f605beed9acd0775226ce2cf58be1f2",
+              "result_sha256": "b7ffcdd3e82e3491ef343db25b9af8c48a0250dfd9b34f91abd9800d01e69e8f",
+              "seconds": 202.23866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 90.6883899224922
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "200ad0581811850479e8e4a0702ca20b42d62f38fd941515302b69c039210a1d",
+              "result_sha256": "75bf337ad39f59abe88eba795a2d4391c7376b06bb5bb3911d8d2ae85b0fb2c5",
+              "seconds": 359.9986666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": true
+              },
+              "elapsed_seconds": 160.98174100462347
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "d6ef49ca588662c84f765555cececfb5e58be837a45b5edd23d1ab813fa61483",
+              "result_sha256": "e0d1dc98ebe2ac413ef706014f178598edf115709665ddaf5fafdf87a1b432da",
+              "seconds": 294.7986666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 136.16005132440478
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "c3b408961d0fc00665ab1166cfdcb057d3518b31aaeedd43c5a2f91981f12d5a",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "1790dbbfa30a9c40e64b987d91c27e3e2ad7a5fcb4a00e2224ae2f30ae22be55",
+              "result_sha256": "0bd8b66bf3ee74d263003f3ce7b6fda2c1e95dd8e17495cbf4e15a44533dd5c5",
+              "seconds": 294.95866666666666,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 148.69466156046838
+            }
+          ],
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-songeval-3e-4/cmi/evaluation/chunk_000_004.json",
+              "sha256": "f4dacd844565b543fb3ad9d9b191ca38ac18302aa188ecff6987b9f0d3960839"
+            }
+          ]
         },
         {
           "id": "yue2-musecritic-2e-5",
           "system": "YuE2-MuseCritic-2e-5",
           "step": 270,
-          "status": "scheduled",
-          "generated_candidates": 0,
+          "status": "evaluating",
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3305,60 +4369,434 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
-          "generation_receipts": [],
-          "receipt_files": []
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 149.95866666666666,
+              "scoring_mp3_sha256": "2b6560b56f3adf15e2d265548764911665c91d2ffba0a2ec85890e2a7b85edb4",
+              "source_flac_sha256": "d83ba94c0b19ee606c227257fbd5e45cb535e2465fddc9313a7374c104b71657",
+              "songbench_dimensions": {
+                "Melody": 6.154300689697266,
+                "Arrangement": 7.059174537658691,
+                "Musicality": 5.713693141937256,
+                "Vocal": 7.1941704750061035,
+                "Instrumental": 6.873894214630127,
+                "Mixing": 6.447394847869873,
+                "Structure": 6.952077388763428
+              },
+              "metrics": {
+                "songbench_global_avg": 6.627815042223249,
+                "songbench_musicality": 5.713693141937256,
+                "songeval_global_avg": 4.237513160705566,
+                "songeval_musicality": 4.165481090545654,
+                "audiobox_pq": 7.754789352416992,
+                "mulan": 0.33400535583496094,
+                "allmusiccaps": 0.17033594846725464,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 142.19866666666667,
+              "scoring_mp3_sha256": "825504410fe7d23919525304277069e74420d1528529b001f9ba30ff317ce735",
+              "source_flac_sha256": "096ab1eb81b41b3468d2601afc990ad4e89fe5d2f06f4e00166c9ef896de0c05",
+              "songbench_dimensions": {
+                "Melody": 6.669529914855957,
+                "Arrangement": 7.069938659667969,
+                "Musicality": 5.84030818939209,
+                "Vocal": 6.7952799797058105,
+                "Instrumental": 7.283419609069824,
+                "Mixing": 6.325921058654785,
+                "Structure": 6.559911727905273
+              },
+              "metrics": {
+                "songbench_global_avg": 6.649187019893101,
+                "songbench_musicality": 5.84030818939209,
+                "songeval_global_avg": 4.104958534240723,
+                "songeval_musicality": 4.066549301147461,
+                "audiobox_pq": 7.588870048522949,
+                "mulan": 0.4182855486869812,
+                "allmusiccaps": 0.051165658980607986,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 311.71866666666665,
+              "scoring_mp3_sha256": "c22ff5f0093c727dc5bdb1ac8a8c132d3df9a7b219eaf4929ec206426b4711af",
+              "source_flac_sha256": "ad99325a7d842546d34726ca5b97ca5cf39b26f20c1296bd41f12110b63e7cdd",
+              "songbench_dimensions": {
+                "Melody": 6.684254169464111,
+                "Arrangement": 7.125669002532959,
+                "Musicality": 6.089411735534668,
+                "Vocal": 6.984035491943359,
+                "Instrumental": 6.928713798522949,
+                "Mixing": 6.768284320831299,
+                "Structure": 6.812299728393555
+              },
+              "metrics": {
+                "songbench_global_avg": 6.7703811781747,
+                "songbench_musicality": 6.089411735534668,
+                "songeval_global_avg": 4.105064153671265,
+                "songeval_musicality": 3.985724687576294,
+                "audiobox_pq": 7.931059837341309,
+                "mulan": 0.4062512516975403,
+                "allmusiccaps": -0.043632086366415024,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 289.51866666666666,
+              "scoring_mp3_sha256": "b91139d202fd06a7bb2ac8071e0aded73a22af517c01e7789d5951a29ebeb3ea",
+              "source_flac_sha256": "d14731b4e1bbb40e30e0b027f27c79e38c98d5792eac8b39cd02cb3466427b96",
+              "songbench_dimensions": {
+                "Melody": 6.846707344055176,
+                "Arrangement": 7.268760681152344,
+                "Musicality": 5.984715461730957,
+                "Vocal": 7.42238712310791,
+                "Instrumental": 7.243900299072266,
+                "Mixing": 7.0779924392700195,
+                "Structure": 6.861286163330078
+              },
+              "metrics": {
+                "songbench_global_avg": 6.957964215959821,
+                "songbench_musicality": 5.984715461730957,
+                "songeval_global_avg": 3.977594423294067,
+                "songeval_musicality": 3.9120187759399414,
+                "audiobox_pq": 8.247965812683105,
+                "mulan": 0.4741877615451813,
+                "allmusiccaps": 0.03619704768061638,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 275.51866666666666,
+              "scoring_mp3_sha256": "178e958e3f85542d67fd5a44bc332e41d5e8049b5110501f4f67d6d0e47e0a9c",
+              "source_flac_sha256": "ecbe5eced99e6e9c2819da86a5dd0cce36022ba655c9dbae4255256cb3a2e712",
+              "songbench_dimensions": {
+                "Melody": 6.8626322746276855,
+                "Arrangement": 7.429128646850586,
+                "Musicality": 6.057642459869385,
+                "Vocal": 7.104652404785156,
+                "Instrumental": 6.509515762329102,
+                "Mixing": 6.960359573364258,
+                "Structure": 7.272204875946045
+              },
+              "metrics": {
+                "songbench_global_avg": 6.885162285396031,
+                "songbench_musicality": 6.057642459869385,
+                "songeval_global_avg": 4.036423587799073,
+                "songeval_musicality": 3.8230438232421875,
+                "audiobox_pq": 7.677979469299316,
+                "mulan": 0.42440205812454224,
+                "allmusiccaps": 0.3889499008655548,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 322.5586666666667,
+              "scoring_mp3_sha256": "c994f71de7d15598189b6e0dfc7118cfa61a15f796cb77eb5c48fce3c89c3c6e",
+              "source_flac_sha256": "40cd205625ece402bc4666effe88afd058040f779fd292511e8cebf730233c9f",
+              "songbench_dimensions": {
+                "Melody": 6.466975688934326,
+                "Arrangement": 7.091393947601318,
+                "Musicality": 5.019951820373535,
+                "Vocal": 6.166852951049805,
+                "Instrumental": 6.088737964630127,
+                "Mixing": 6.548524856567383,
+                "Structure": 6.327079772949219
+              },
+              "metrics": {
+                "songbench_global_avg": 6.24421671458653,
+                "songbench_musicality": 5.019951820373535,
+                "songeval_global_avg": 3.5736133575439455,
+                "songeval_musicality": 3.534364700317383,
+                "audiobox_pq": 7.792473793029785,
+                "mulan": 0.37010204792022705,
+                "allmusiccaps": 0.44284191727638245,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 307.1186666666667,
+              "scoring_mp3_sha256": "7b1d35c3e0afa01c72e7e4dd0847cbe5a0a774a95f26a92fc7907be215287720",
+              "source_flac_sha256": "6db4eb71931e07f5a5da80c0752bac1fb2476f3b9615081b0198ed32e9bb14c8",
+              "songbench_dimensions": {
+                "Melody": 6.779778480529785,
+                "Arrangement": 6.981335639953613,
+                "Musicality": 6.0430378913879395,
+                "Vocal": 6.968498706817627,
+                "Instrumental": 6.813295364379883,
+                "Mixing": 6.677682876586914,
+                "Structure": 6.847063064575195
+              },
+              "metrics": {
+                "songbench_global_avg": 6.730098860604422,
+                "songbench_musicality": 6.0430378913879395,
+                "songeval_global_avg": 3.2617289066314696,
+                "songeval_musicality": 3.1661269664764404,
+                "audiobox_pq": 8.1214017868042,
+                "mulan": 0.27914202213287354,
+                "allmusiccaps": 0.2757188677787781,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 279.95866666666666,
+              "scoring_mp3_sha256": "179dc60a08602ede1f312044de472edfe938ed2373cd15e6c0f5beb876f813b4",
+              "source_flac_sha256": "cd5a1526331c6463e34693aab0704034e0bab0aadbcdfc409b25784f49502fbe",
+              "songbench_dimensions": {
+                "Melody": 6.921718597412109,
+                "Arrangement": 7.418123245239258,
+                "Musicality": 6.059076309204102,
+                "Vocal": 7.435741901397705,
+                "Instrumental": 7.135113716125488,
+                "Mixing": 7.014693737030029,
+                "Structure": 7.151496410369873
+              },
+              "metrics": {
+                "songbench_global_avg": 7.019423416682652,
+                "songbench_musicality": 6.059076309204102,
+                "songeval_global_avg": 3.9568530082702638,
+                "songeval_musicality": 3.7922911643981934,
+                "audiobox_pq": 7.808056831359863,
+                "mulan": 0.34634214639663696,
+                "allmusiccaps": 0.25440675020217896,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
+          "generation_receipts": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seed": 931001,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "d83ba94c0b19ee606c227257fbd5e45cb535e2465fddc9313a7374c104b71657",
+              "result_sha256": "7eef21723321028880a7f16b8ec8c3aa41a3c2ba152b36b504c9ced48cc1a4d7",
+              "seconds": 149.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 66.09196280501783
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seed": 931019,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "096ab1eb81b41b3468d2601afc990ad4e89fe5d2f06f4e00166c9ef896de0c05",
+              "result_sha256": "d59cf3cd2e3bdaf103bffbe5727c1420c323b2415f9f1abf75a94c1b56093dbe",
+              "seconds": 142.19866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 63.2003965806216
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seed": 931002,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "ad99325a7d842546d34726ca5b97ca5cf39b26f20c1296bd41f12110b63e7cdd",
+              "result_sha256": "e3bddfa662a52b3311243aa935abb8917f64ea0f4e619082dbcee253e3426643",
+              "seconds": 311.71866666666665,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 153.7755595240742
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seed": 931020,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "d14731b4e1bbb40e30e0b027f27c79e38c98d5792eac8b39cd02cb3466427b96",
+              "result_sha256": "71b412cbe71b9c1857541d66230df4d7ca92d01204b2d944471d6092699a2d83",
+              "seconds": 289.51866666666666,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 145.58628785982728
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "ecbe5eced99e6e9c2819da86a5dd0cce36022ba655c9dbae4255256cb3a2e712",
+              "result_sha256": "de8641a73871699a8cbbd794f98d717103c93f5dd7d99c4342ec3fee6e3a4444",
+              "seconds": 275.51866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 126.00486900378019
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "40cd205625ece402bc4666effe88afd058040f779fd292511e8cebf730233c9f",
+              "result_sha256": "bc3160f6685e6b78224c36497b41924ae3ca0eb295ab8dd501175d14102f5b1c",
+              "seconds": 322.5586666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 144.1486286977306
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "6db4eb71931e07f5a5da80c0752bac1fb2476f3b9615081b0198ed32e9bb14c8",
+              "result_sha256": "7e84a9b077185356d517015a8dac5d96176b81000d0c39653f785dcd68afe1f7",
+              "seconds": 307.1186666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 142.3228618837893
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "7b389d21b90514c2539002b50422e0ef5b3e3e3ff63a09a9e7db50532423e0c2",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "cd5a1526331c6463e34693aab0704034e0bab0aadbcdfc409b25784f49502fbe",
+              "result_sha256": "da3d16a475b873242ae8e4a20c553d06d5dac936268075e1356422760b202251",
+              "seconds": 279.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 134.2611997621134
+            }
+          ],
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-musecritic-2e-5/cmi/evaluation/chunk_000_004.json",
+              "sha256": "6c136caa6da7f22705f42c7bfa1b517753152c4cc3968ce7f77cbdf791edc2b8"
+            }
+          ]
         },
         {
           "id": "yue2-musecritic-1e-4",
           "system": "YuE2-MuseCritic-1e-4",
           "step": 270,
-          "status": "scheduled",
-          "generated_candidates": 0,
+          "status": "evaluating",
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3373,60 +4811,434 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
-          "generation_receipts": [],
-          "receipt_files": []
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 163.95866666666666,
+              "scoring_mp3_sha256": "02b371e3e02f4ee5d3a2d44ec87829f2ab5e7c9ce8c67be6d9a6551be105e3e5",
+              "source_flac_sha256": "67ba896ee57e8e7dd9cbae5ffa718e771905936cc60313fff62514314873e04f",
+              "songbench_dimensions": {
+                "Melody": 6.427585601806641,
+                "Arrangement": 6.885561943054199,
+                "Musicality": 6.149806499481201,
+                "Vocal": 7.092978477478027,
+                "Instrumental": 6.749521732330322,
+                "Mixing": 6.430089950561523,
+                "Structure": 6.8774614334106445
+              },
+              "metrics": {
+                "songbench_global_avg": 6.659000805446079,
+                "songbench_musicality": 6.149806499481201,
+                "songeval_global_avg": 4.229656028747558,
+                "songeval_musicality": 4.133994102478027,
+                "audiobox_pq": 7.932313919067383,
+                "mulan": 0.30621546506881714,
+                "allmusiccaps": 0.15119124948978424,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 202.51866666666666,
+              "scoring_mp3_sha256": "b967be83c5d03e97c9e65f295a2465ab42b7e43564de4c116a88b932765556a4",
+              "source_flac_sha256": "ebdda611725feea6fb02fd0815ec547189bab5a7253c153cc996b07940893b60",
+              "songbench_dimensions": {
+                "Melody": 6.7169189453125,
+                "Arrangement": 6.85840368270874,
+                "Musicality": 5.515185832977295,
+                "Vocal": 6.676647663116455,
+                "Instrumental": 6.482756614685059,
+                "Mixing": 6.348896026611328,
+                "Structure": 6.85386323928833
+              },
+              "metrics": {
+                "songbench_global_avg": 6.4932388578142435,
+                "songbench_musicality": 5.515185832977295,
+                "songeval_global_avg": 4.000086975097656,
+                "songeval_musicality": 3.937007427215576,
+                "audiobox_pq": 7.575156211853027,
+                "mulan": 0.40940219163894653,
+                "allmusiccaps": 0.021637901663780212,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 315.3186666666667,
+              "scoring_mp3_sha256": "3637391a91e5c20b77ab52769afed175eb74c3624e8cc9b722bf547d0f1ef412",
+              "source_flac_sha256": "54511d8bff995cf4afaf3eebca221590810d5dfec258d971a3c4ebd9245693a2",
+              "songbench_dimensions": {
+                "Melody": 6.841524600982666,
+                "Arrangement": 7.476416110992432,
+                "Musicality": 6.2333984375,
+                "Vocal": 7.119071960449219,
+                "Instrumental": 7.028009414672852,
+                "Mixing": 7.019775867462158,
+                "Structure": 6.981019020080566
+              },
+              "metrics": {
+                "songbench_global_avg": 6.957030773162842,
+                "songbench_musicality": 6.2333984375,
+                "songeval_global_avg": 3.8723073959350587,
+                "songeval_musicality": 3.75341534614563,
+                "audiobox_pq": 8.201528549194336,
+                "mulan": 0.46830952167510986,
+                "allmusiccaps": -0.00432866346091032,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 285.91866666666664,
+              "scoring_mp3_sha256": "e49d9dbab50ab5d400423290aea6fb07a8f1bec6998a5fae5b8f8c2990c755ee",
+              "source_flac_sha256": "b0750a9ae8a0971e13762fa8cf1acb88e818abaf84be51220909d39b52404632",
+              "songbench_dimensions": {
+                "Melody": 6.498560428619385,
+                "Arrangement": 7.071451663970947,
+                "Musicality": 6.052230358123779,
+                "Vocal": 7.143989086151123,
+                "Instrumental": 7.017617225646973,
+                "Mixing": 6.825502395629883,
+                "Structure": 6.451369762420654
+              },
+              "metrics": {
+                "songbench_global_avg": 6.722960131508963,
+                "songbench_musicality": 6.052230358123779,
+                "songeval_global_avg": 3.945576000213623,
+                "songeval_musicality": 3.840125322341919,
+                "audiobox_pq": 8.256166458129883,
+                "mulan": 0.41154205799102783,
+                "allmusiccaps": -0.0371665395796299,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 259.8786666666667,
+              "scoring_mp3_sha256": "9b74746328eb8c9f63fded8892414afc342dcb3ab0b395d2972d1f444d568f6c",
+              "source_flac_sha256": "a0a349f2608742c89b2b4cdad3c690d863829e226c5186dfd63edf82a95751ca",
+              "songbench_dimensions": {
+                "Melody": 6.677820682525635,
+                "Arrangement": 6.961272239685059,
+                "Musicality": 5.568605899810791,
+                "Vocal": 6.967677116394043,
+                "Instrumental": 6.465279579162598,
+                "Mixing": 6.595853328704834,
+                "Structure": 7.071259498596191
+              },
+              "metrics": {
+                "songbench_global_avg": 6.615395477839878,
+                "songbench_musicality": 5.568605899810791,
+                "songeval_global_avg": 3.965880107879639,
+                "songeval_musicality": 3.827605962753296,
+                "audiobox_pq": 7.696137428283691,
+                "mulan": 0.310443639755249,
+                "allmusiccaps": 0.3124985992908478,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 210.63866666666667,
+              "scoring_mp3_sha256": "e6a16c18e451fdadb746f6b2acb2b8f6121c55a41b0aee83b17940dec6627dce",
+              "source_flac_sha256": "dae6fc102d814e3a874ba533c3fd414b2657ccfd53aa681774fbbdb614ece63e",
+              "songbench_dimensions": {
+                "Melody": 6.453820705413818,
+                "Arrangement": 6.743847846984863,
+                "Musicality": 5.503154754638672,
+                "Vocal": 6.8956427574157715,
+                "Instrumental": 6.453701496124268,
+                "Mixing": 6.840826034545898,
+                "Structure": 6.709210395812988
+              },
+              "metrics": {
+                "songbench_global_avg": 6.51431485584804,
+                "songbench_musicality": 5.503154754638672,
+                "songeval_global_avg": 3.7666255474090575,
+                "songeval_musicality": 3.614941120147705,
+                "audiobox_pq": 7.6725873947143555,
+                "mulan": 0.2181856632232666,
+                "allmusiccaps": 0.3614885210990906,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 264.95866666666666,
+              "scoring_mp3_sha256": "15d09ff37ce8aefb82c8cd60c402ddbaa2f170470ee46d0dc72193dfa8dc1865",
+              "source_flac_sha256": "a740f327c1284899c2c0660c9836573e26f373556ef46fe68880d3398dbea169",
+              "songbench_dimensions": {
+                "Melody": 6.50402307510376,
+                "Arrangement": 6.895011901855469,
+                "Musicality": 5.568223476409912,
+                "Vocal": 6.670505523681641,
+                "Instrumental": 6.695834159851074,
+                "Mixing": 6.70035982131958,
+                "Structure": 6.503158092498779
+              },
+              "metrics": {
+                "songbench_global_avg": 6.505302292960031,
+                "songbench_musicality": 5.568223476409912,
+                "songeval_global_avg": 3.8069722175598146,
+                "songeval_musicality": 3.6817989349365234,
+                "audiobox_pq": 7.898291110992432,
+                "mulan": 0.22782471776008606,
+                "allmusiccaps": 0.25086066126823425,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 234.71866666666668,
+              "scoring_mp3_sha256": "ac38ff0df41570b5571ef5081ef764a56a26ce45435f32bd750b59e65415778e",
+              "source_flac_sha256": "56a69b4fd1a2707a77ab279ab8bdd9dfc323a73a48d77181e880e232d991929d",
+              "songbench_dimensions": {
+                "Melody": 6.961191654205322,
+                "Arrangement": 7.09434175491333,
+                "Musicality": 5.444833278656006,
+                "Vocal": 6.983760356903076,
+                "Instrumental": 6.984419345855713,
+                "Mixing": 6.988066673278809,
+                "Structure": 6.960253715515137
+              },
+              "metrics": {
+                "songbench_global_avg": 6.773838111332485,
+                "songbench_musicality": 5.444833278656006,
+                "songeval_global_avg": 3.9152833938598635,
+                "songeval_musicality": 3.745939016342163,
+                "audiobox_pq": 7.883153915405273,
+                "mulan": 0.4275422692298889,
+                "allmusiccaps": 0.3836999237537384,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
+          "generation_receipts": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seed": 931001,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "67ba896ee57e8e7dd9cbae5ffa718e771905936cc60313fff62514314873e04f",
+              "result_sha256": "b2e263389bfef037b384a697f3a659a481b6dcfe0329bd633472a72d2f584c62",
+              "seconds": 163.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 73.02057639881968
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seed": 931019,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "ebdda611725feea6fb02fd0815ec547189bab5a7253c153cc996b07940893b60",
+              "result_sha256": "90a81a8a1f87d81ce59fabd5bf5dee2d20a632df013ccb7979b83801f89969bf",
+              "seconds": 202.51866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 90.70828867796808
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seed": 931002,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "54511d8bff995cf4afaf3eebca221590810d5dfec258d971a3c4ebd9245693a2",
+              "result_sha256": "82cae115b6c54fb05bb191c3a7ab1cffa8b34f81e9a06443046960bd13377a0a",
+              "seconds": 315.3186666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 155.66526298876852
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seed": 931020,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "b0750a9ae8a0971e13762fa8cf1acb88e818abaf84be51220909d39b52404632",
+              "result_sha256": "9515c3241579b2e8f12bb2ea821c8826bc94c1acd9d02ac0d911f376ad7ba7ab",
+              "seconds": 285.91866666666664,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 145.37239806260914
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "a0a349f2608742c89b2b4cdad3c690d863829e226c5186dfd63edf82a95751ca",
+              "result_sha256": "b607072bada3efac788391769703211f36eef0546e29a93fa8bf382407eeec0d",
+              "seconds": 259.8786666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 121.46200266946107
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "dae6fc102d814e3a874ba533c3fd414b2657ccfd53aa681774fbbdb614ece63e",
+              "result_sha256": "9a74d5c0436a510f68d6e470f2c5caf65bba140d4b2639bfcb35e237273145ee",
+              "seconds": 210.63866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 88.7858975417912
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "a740f327c1284899c2c0660c9836573e26f373556ef46fe68880d3398dbea169",
+              "result_sha256": "dae083b9113f67297992fdd510facb355b7def80e3c3f6aee757d38794a2e097",
+              "seconds": 264.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 119.472705822438
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "8dd60dc105f488025e9d20af32bcec2a41e354bf38bc513f1a1ec9cb7c0597dc",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "56a69b4fd1a2707a77ab279ab8bdd9dfc323a73a48d77181e880e232d991929d",
+              "result_sha256": "77edbda3b127e31ccc7d9f91fb9f9837c97769486d746cd8746a7475ee347859",
+              "seconds": 234.71866666666668,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 115.0612099179998
+            }
+          ],
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-musecritic-1e-4/cmi/evaluation/chunk_000_004.json",
+              "sha256": "2a00cc10917b00e271d3ca7d60e5af0c76336fd5f5ae6b957ccded8b748f6ee8"
+            }
+          ]
         },
         {
           "id": "yue2-musecritic-3e-4",
           "system": "YuE2-MuseCritic-3e-4",
           "step": 270,
-          "status": "scheduled",
-          "generated_candidates": 0,
+          "status": "evaluating",
+          "generated_candidates": 8,
           "expected_candidates": 242,
-          "scored_conditions": 0,
+          "scored_conditions": 4,
           "metrics": {
             "songbench_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songbench_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_global_avg": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "songeval_musicality": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "audiobox_pq": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "mulan": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "allmusiccaps": {
               "status": "pending",
               "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "scored": 8,
+              "reason": "尚未完成完整测试集。",
+              "expected": 242
             },
             "control_overall": {
               "status": "not-applicable",
@@ -3441,9 +5253,376 @@
               "reason": "全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。"
             }
           },
-          "diagnostic_rows": [],
-          "generation_receipts": [],
-          "receipt_files": []
+          "diagnostic_rows": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seconds": 152.03866666666667,
+              "scoring_mp3_sha256": "9534be10a1a9f0a944dcf724574496203e92703ddc21981a61fd334677ff9b07",
+              "source_flac_sha256": "8651eb7185455ad70f4d4d5981e40c7df22d2293af2d158d723e936fddb005a8",
+              "songbench_dimensions": {
+                "Melody": 6.670722484588623,
+                "Arrangement": 7.072403430938721,
+                "Musicality": 6.125173091888428,
+                "Vocal": 7.461709022521973,
+                "Instrumental": 6.782878875732422,
+                "Mixing": 6.843244552612305,
+                "Structure": 7.1137518882751465
+              },
+              "metrics": {
+                "songbench_global_avg": 6.867126192365374,
+                "songbench_musicality": 6.125173091888428,
+                "songeval_global_avg": 4.350943660736084,
+                "songeval_musicality": 4.32039737701416,
+                "audiobox_pq": 7.72599983215332,
+                "mulan": 0.3280934691429138,
+                "allmusiccaps": 0.14220356941223145,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seconds": 177.19866666666667,
+              "scoring_mp3_sha256": "94e577f76409b18d93b8e48db6230e611f38347e998fe14cfc716dbeee4e4c9e",
+              "source_flac_sha256": "e00b6326fcb9335d35c8d22f293269a17ce7e84031fb3baa64c851d257bee2fd",
+              "songbench_dimensions": {
+                "Melody": 6.533490180969238,
+                "Arrangement": 7.165862083435059,
+                "Musicality": 6.050571441650391,
+                "Vocal": 6.935159683227539,
+                "Instrumental": 6.859132289886475,
+                "Mixing": 6.551750183105469,
+                "Structure": 6.636038303375244
+              },
+              "metrics": {
+                "songbench_global_avg": 6.676000595092773,
+                "songbench_musicality": 6.050571441650391,
+                "songeval_global_avg": 4.160689163208008,
+                "songeval_musicality": 4.108089447021484,
+                "audiobox_pq": 7.6856865882873535,
+                "mulan": 0.38925832509994507,
+                "allmusiccaps": 0.004621788393706083,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seconds": 319.6786666666667,
+              "scoring_mp3_sha256": "3238283a3cda82c661c4ccb22cfad3f34c61d80608722c31c8ad483d7ed56ed9",
+              "source_flac_sha256": "4f0265bb6e86adff5cc3d9bfd226fe1aa55cbed1e8c0c60bb3af5b6d78ab43c9",
+              "songbench_dimensions": {
+                "Melody": 6.656434059143066,
+                "Arrangement": 7.297276020050049,
+                "Musicality": 5.946803092956543,
+                "Vocal": 6.295792579650879,
+                "Instrumental": 6.791302680969238,
+                "Mixing": 6.899592399597168,
+                "Structure": 6.7437944412231445
+              },
+              "metrics": {
+                "songbench_global_avg": 6.661570753370013,
+                "songbench_musicality": 5.946803092956543,
+                "songeval_global_avg": 4.031687641143799,
+                "songeval_musicality": 3.8403496742248535,
+                "audiobox_pq": 7.998692989349365,
+                "mulan": 0.3877834975719452,
+                "allmusiccaps": -0.029705744236707687,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seconds": 277.95866666666666,
+              "scoring_mp3_sha256": "8db0b2af58ff46475a796138e150c6feb6230d2655b8e3f1044162ac048a8893",
+              "source_flac_sha256": "0f8b6df4f9c61dab54997ed49ee0ba98ad5fec5bdf2939734d83c067fb55b84a",
+              "songbench_dimensions": {
+                "Melody": 6.870551109313965,
+                "Arrangement": 7.33864688873291,
+                "Musicality": 6.183785438537598,
+                "Vocal": 7.246028423309326,
+                "Instrumental": 7.315086841583252,
+                "Mixing": 7.302975654602051,
+                "Structure": 7.029031753540039
+              },
+              "metrics": {
+                "songbench_global_avg": 7.040872301374163,
+                "songbench_musicality": 6.183785438537598,
+                "songeval_global_avg": 3.864527463912964,
+                "songeval_musicality": 3.7867660522460938,
+                "audiobox_pq": 8.125741958618164,
+                "mulan": 0.4811461567878723,
+                "allmusiccaps": -0.03480766713619232,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seconds": 206.19866666666667,
+              "scoring_mp3_sha256": "9051f73e78f5b66d402d855ff2f4e32a5ab48a9cc666cbbeeead9720a0501f49",
+              "source_flac_sha256": "33c338cfab7325e52425526a7c622d2b154c9bddb2b5c84ba91447d80f631e67",
+              "songbench_dimensions": {
+                "Melody": 6.9081597328186035,
+                "Arrangement": 7.277057647705078,
+                "Musicality": 5.883967399597168,
+                "Vocal": 7.283421993255615,
+                "Instrumental": 6.7223052978515625,
+                "Mixing": 6.552363872528076,
+                "Structure": 7.249302387237549
+              },
+              "metrics": {
+                "songbench_global_avg": 6.83951119014195,
+                "songbench_musicality": 5.883967399597168,
+                "songeval_global_avg": 4.246119117736816,
+                "songeval_musicality": 4.146267414093018,
+                "audiobox_pq": 7.928917407989502,
+                "mulan": 0.2499629110097885,
+                "allmusiccaps": 0.36534467339515686,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seconds": 184.95866666666666,
+              "scoring_mp3_sha256": "0bc86ea644a8c07a2c51e7e7adbba9cd5b986031cb1f9d0a04741c8b47281866",
+              "source_flac_sha256": "2d4eb5fb33986e67f44cfac967398d767090b073b77e8fc85b6674a395c6fce2",
+              "songbench_dimensions": {
+                "Melody": 6.630687713623047,
+                "Arrangement": 7.060761451721191,
+                "Musicality": 5.55192756652832,
+                "Vocal": 6.671834945678711,
+                "Instrumental": 6.504584789276123,
+                "Mixing": 6.6832170486450195,
+                "Structure": 6.653505802154541
+              },
+              "metrics": {
+                "songbench_global_avg": 6.536645616803851,
+                "songbench_musicality": 5.55192756652832,
+                "songeval_global_avg": 4.088148546218872,
+                "songeval_musicality": 3.944744825363159,
+                "audiobox_pq": 7.879913806915283,
+                "mulan": 0.25831907987594604,
+                "allmusiccaps": 0.3300035297870636,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seconds": 302.4386666666667,
+              "scoring_mp3_sha256": "9721c43bd36488b0475875dcb07159811984daf65fdce84891a8559ceb87447b",
+              "source_flac_sha256": "edfe74ea0aedb5d911e5b6385f435145bc3a760003432fead4f24e68516dcb59",
+              "songbench_dimensions": {
+                "Melody": 6.859904766082764,
+                "Arrangement": 7.154756546020508,
+                "Musicality": 5.770838737487793,
+                "Vocal": 6.946367263793945,
+                "Instrumental": 6.650588035583496,
+                "Mixing": 6.962106704711914,
+                "Structure": 6.631957530975342
+              },
+              "metrics": {
+                "songbench_global_avg": 6.710931369236538,
+                "songbench_musicality": 5.770838737487793,
+                "songeval_global_avg": 3.7817309379577635,
+                "songeval_musicality": 3.7186102867126465,
+                "audiobox_pq": 8.086462020874023,
+                "mulan": 0.34273797273635864,
+                "allmusiccaps": 0.33933329582214355,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seconds": 317.75866666666667,
+              "scoring_mp3_sha256": "8a8525e9a13167ff3380fdd07404994a35152e1223c4de0e3cbae70c4dafb331",
+              "source_flac_sha256": "f455c2430da1ff7099ea39286b3355698469149fd19e3759442a923e92f23796",
+              "songbench_dimensions": {
+                "Melody": 6.9417829513549805,
+                "Arrangement": 7.0988922119140625,
+                "Musicality": 5.484768867492676,
+                "Vocal": 6.6266632080078125,
+                "Instrumental": 6.70986270904541,
+                "Mixing": 6.819082736968994,
+                "Structure": 7.055438995361328
+              },
+              "metrics": {
+                "songbench_global_avg": 6.676641668592181,
+                "songbench_musicality": 5.484768867492676,
+                "songeval_global_avg": 3.6220843315124513,
+                "songeval_musicality": 3.4965405464172363,
+                "audiobox_pq": 7.9970550537109375,
+                "mulan": 0.3713177442550659,
+                "allmusiccaps": 0.3722609281539917,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            }
+          ],
+          "generation_receipts": [
+            {
+              "id": "cmi_000_r0_s931001",
+              "condition_index": 0,
+              "candidate_index": 0,
+              "seed": 931001,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "8651eb7185455ad70f4d4d5981e40c7df22d2293af2d158d723e936fddb005a8",
+              "result_sha256": "1585eb786913f6ab9066c3d1b167a652d7a67080d9ce97731e1d6e488ea566a0",
+              "seconds": 152.03866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 65.92629691306502
+            },
+            {
+              "id": "cmi_000_r1_s931019",
+              "condition_index": 0,
+              "candidate_index": 1,
+              "seed": 931019,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "e00b6326fcb9335d35c8d22f293269a17ce7e84031fb3baa64c851d257bee2fd",
+              "result_sha256": "99921e29084f97a41b71f7662a18ac610d35c277edd3cb68fa61ee32c637f255",
+              "seconds": 177.19866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 78.28137275297195
+            },
+            {
+              "id": "cmi_001_r0_s931002",
+              "condition_index": 1,
+              "candidate_index": 0,
+              "seed": 931002,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "4f0265bb6e86adff5cc3d9bfd226fe1aa55cbed1e8c0c60bb3af5b6d78ab43c9",
+              "result_sha256": "6e117085b8ed879be16124e70e8df520b6bf745823e6c51105a15855ed8d8679",
+              "seconds": 319.6786666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 155.1941109066829
+            },
+            {
+              "id": "cmi_001_r1_s931020",
+              "condition_index": 1,
+              "candidate_index": 1,
+              "seed": 931020,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "0f8b6df4f9c61dab54997ed49ee0ba98ad5fec5bdf2939734d83c067fb55b84a",
+              "result_sha256": "6978d020dfc667a955453591df19d5449c9caf5a7b8cbcf8a1794f9b5c3d0877",
+              "seconds": 277.95866666666666,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 141.00050163082778
+            },
+            {
+              "id": "cmi_002_r0_s931003",
+              "condition_index": 2,
+              "candidate_index": 0,
+              "seed": 931003,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "33c338cfab7325e52425526a7c622d2b154c9bddb2b5c84ba91447d80f631e67",
+              "result_sha256": "58826a21c16681d4fd25f40ad1522f1d03f1251f19d9d99a94754ff82102de1c",
+              "seconds": 206.19866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 88.26516111474484
+            },
+            {
+              "id": "cmi_002_r1_s931021",
+              "condition_index": 2,
+              "candidate_index": 1,
+              "seed": 931021,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "2d4eb5fb33986e67f44cfac967398d767090b073b77e8fc85b6674a395c6fce2",
+              "result_sha256": "f86843e8c3f7f0edc0a739390db60ba38592515d0eb38076e22113a8ce3e40c9",
+              "seconds": 184.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 81.05902258586138
+            },
+            {
+              "id": "cmi_003_r0_s931004",
+              "condition_index": 3,
+              "candidate_index": 0,
+              "seed": 931004,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "edfe74ea0aedb5d911e5b6385f435145bc3a760003432fead4f24e68516dcb59",
+              "result_sha256": "c733ec6bee53eeed0b8110506fd3409f0a9906d8a61a9b589c86f61455f88593",
+              "seconds": 302.4386666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 138.15119843091816
+            },
+            {
+              "id": "cmi_003_r1_s931022",
+              "condition_index": 3,
+              "candidate_index": 1,
+              "seed": 931022,
+              "adapter_sha256": "64bc264f7ff1a9e65f35dbc7583d912132704d997362b3c1c3b67029f8416099",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "f455c2430da1ff7099ea39286b3355698469149fd19e3759442a923e92f23796",
+              "result_sha256": "28071e38414a2f9f1738da4fff927aa50f923c2a49bdecc4cb8cc4b784d1d3ff",
+              "seconds": 317.75866666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 153.82044239155948
+            }
+          ],
+          "receipt_files": [
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-musecritic-3e-4/cmi/evaluation/chunk_000_004.json",
+              "sha256": "1b1ca3b2f28275bf6f776ffbff965f76d884583a816ae6b8c4454112b4fd94c6"
+            }
+          ]
         },
         {
           "id": "muse-baseline",
@@ -3930,13 +6109,69 @@
     "songbench_grpo_started": false,
     "scheduled_tasks_created": false,
     "gadi": {
-      "preparation_job": "181120629.gadi-pbs",
+      "preparation_job": "181127745.gadi-pbs",
+      "replaced_compiler_failed_preparation_job": "181125053.gadi-pbs",
+      "compiler_failure_reason": "Frozen madmom extension requires cc; the slim OS image had none. The replacement full Python bookworm image passes the compiler and native-runtime preflight before installation.",
+      "replaced_jobfs_preparation_job": "181124170.gadi-pbs",
+      "replaced_finalization_job": "181120629.gadi-pbs",
       "initial_download_install_job": "181118793.gadi-pbs",
-      "finalization_dependency": "afterany:181118793.gadi-pbs; reverify cached assets/imports before releasing GPU jobs",
+      "finalization_dependency": "GPU jobs depend only on afterok:181127745.gadi-pbs",
       "preparation_queue": "copyq",
       "parallel_asset_staging_job": "181119657.gadi-pbs",
       "replaced_failed_preparation_job": "181118511.gadi-pbs",
       "failure_reason": "Express compute nodes have no outbound network; moved downloads/install to copyq",
+      "installation_repair": "Shared scratch hit its inode hard limit during wheel extraction. Preparation now moves its own copied-install UV cache to 150GB allocation-local jobfs. The installer was paused to move the already-installed independent eval venv to iv96; metrics/portable Python stay on wa66 and the small key runtime on iv96. Logical venv prefixes and frozen evaluator files/locks are unchanged.",
+      "runtime_relocation_job": "181126711.gadi-pbs",
+      "os_compatibility_repair": "Gadi glibc 2.28 cannot load the frozen vLLM 0.14.0 manylinux_2_31 wheel. A Python 3.12.11 Debian bookworm OS container wraps unchanged native generator/scorers; container SHA and preflight are stored remotely, without changing scorer locks or weights.",
+      "container_image_sha256": "84e1b3c8f8187dffb8f0d0de223fe07336bf211fad2786de2338730bb3e4cb24",
+      "container_source": "docker://python:3.12.11-bookworm",
+      "container_preflight": "glibc 2.36; native Torch 2.10.0+cu128, YuE2/MuQ/SSL/ctypes imports passed; cc Debian 12.2.0-14+deb12u1",
+      "replaced_compiler_dependency_gpu_jobs": [
+        "181125240.gadi-pbs",
+        "181125241.gadi-pbs",
+        "181125242.gadi-pbs",
+        "181125243.gadi-pbs",
+        "181125244.gadi-pbs",
+        "181125245.gadi-pbs",
+        "181125246.gadi-pbs",
+        "181125247.gadi-pbs",
+        "181125248.gadi-pbs",
+        "181125250.gadi-pbs",
+        "181125251.gadi-pbs",
+        "181125252.gadi-pbs",
+        "181125253.gadi-pbs"
+      ],
+      "replaced_pre_container_gpu_jobs": [
+        "181124291.gadi-pbs",
+        "181124292.gadi-pbs",
+        "181124293.gadi-pbs",
+        "181124294.gadi-pbs",
+        "181124295.gadi-pbs",
+        "181124296.gadi-pbs",
+        "181124297.gadi-pbs",
+        "181124298.gadi-pbs",
+        "181124299.gadi-pbs",
+        "181124300.gadi-pbs",
+        "181124301.gadi-pbs",
+        "181124302.gadi-pbs",
+        "181124303.gadi-pbs"
+      ],
+      "dependency_repair": "PBS ended earlier GPU jobs on upstream preparation failures. All 13 have been freshly resubmitted against only the full-compiler preparation job; old dependency jobs never consumed GPUs.",
+      "replaced_gpu_jobs": [
+        "181118803.gadi-pbs",
+        "181118804.gadi-pbs",
+        "181118805.gadi-pbs",
+        "181118806.gadi-pbs",
+        "181118807.gadi-pbs",
+        "181118808.gadi-pbs",
+        "181118809.gadi-pbs",
+        "181118810.gadi-pbs",
+        "181118811.gadi-pbs",
+        "181118812.gadi-pbs",
+        "181118813.gadi-pbs",
+        "181118814.gadi-pbs",
+        "181119192.gadi-pbs"
+      ],
       "gpu_queue": "gpuhopper",
       "submission_priority": 1023,
       "requested_gpu_count_per_job": 1,
@@ -3948,7 +6183,7 @@
         {
           "task": 0,
           "project": "wa66",
-          "job": "181118803.gadi-pbs",
+          "job": "181128149.gadi-pbs",
           "wsb": [
             4,
             19
@@ -3961,7 +6196,7 @@
         {
           "task": 1,
           "project": "wa66",
-          "job": "181118804.gadi-pbs",
+          "job": "181128150.gadi-pbs",
           "wsb": [
             19,
             35
@@ -3974,7 +6209,7 @@
         {
           "task": 2,
           "project": "wa66",
-          "job": "181118805.gadi-pbs",
+          "job": "181128151.gadi-pbs",
           "wsb": [
             35,
             51
@@ -3987,7 +6222,7 @@
         {
           "task": 3,
           "project": "wa66",
-          "job": "181118806.gadi-pbs",
+          "job": "181128152.gadi-pbs",
           "wsb": [
             51,
             66
@@ -4000,7 +6235,7 @@
         {
           "task": 4,
           "project": "wa66",
-          "job": "181118807.gadi-pbs",
+          "job": "181128153.gadi-pbs",
           "wsb": [
             66,
             82
@@ -4013,7 +6248,7 @@
         {
           "task": 5,
           "project": "wa66",
-          "job": "181118808.gadi-pbs",
+          "job": "181128154.gadi-pbs",
           "wsb": [
             82,
             98
@@ -4026,7 +6261,7 @@
         {
           "task": 6,
           "project": "iv96",
-          "job": "181118809.gadi-pbs",
+          "job": "181128155.gadi-pbs",
           "wsb": [
             98,
             113
@@ -4039,7 +6274,7 @@
         {
           "task": 7,
           "project": "iv96",
-          "job": "181118810.gadi-pbs",
+          "job": "181128156.gadi-pbs",
           "wsb": [
             113,
             129
@@ -4052,7 +6287,7 @@
         {
           "task": 8,
           "project": "iv96",
-          "job": "181118811.gadi-pbs",
+          "job": "181128157.gadi-pbs",
           "wsb": [
             129,
             145
@@ -4065,7 +6300,7 @@
         {
           "task": 9,
           "project": "iv96",
-          "job": "181118812.gadi-pbs",
+          "job": "181128158.gadi-pbs",
           "wsb": [
             145,
             160
@@ -4078,7 +6313,7 @@
         {
           "task": 10,
           "project": "iv96",
-          "job": "181118813.gadi-pbs",
+          "job": "181128160.gadi-pbs",
           "wsb": [
             160,
             176
@@ -4091,7 +6326,7 @@
         {
           "task": 11,
           "project": "iv96",
-          "job": "181118814.gadi-pbs",
+          "job": "181128161.gadi-pbs",
           "wsb": [
             176,
             192
@@ -4102,12 +6337,24 @@
           ]
         }
       ],
-      "staged_first_four_job": "181119192.gadi-pbs",
+      "staged_first_four_job": "181128162.gadi-pbs",
       "staged_first_four_project": "iv96",
       "staged_first_four_wsb": [
         0,
         4
       ],
+      "status_checked_at": "2026-10-13T06:08:24Z",
+      "status_at_check": "Preparation COMPLETED, exit 0, 00:13:29; all 13 GPU jobs released to Q (scheduler queue), not running",
+      "preparation_completed": true,
+      "gpu_jobs_at_check": {
+        "queued": 13,
+        "running": 0,
+        "dependency_held": 0
+      },
+      "account_available_ksu_at_check": {
+        "wa66": 21.78,
+        "iv96": 11.2
+      },
       "initial_status": "GPU jobs depend on successful preparation; not claimed as running"
     },
     "kaya": {
@@ -4116,6 +6363,65 @@
       "replaced_preparation_job": "137391",
       "failure_reason": "Final supplemental-cache prefetch lacked hf_hub_download import; repaired and resumed using already-installed frozen environments",
       "quality_job": "137435",
+      "quality_job_status": "COMPLETED, exit 0:0, 00:13:34",
+      "audit_scored_candidates": 20,
+      "audit_max_absolute_difference": 0.00024318695068359375,
+      "cmi_quality_jobs": [
+        {
+          "arm": "yue2-songeval-1e-4",
+          "job": "137626",
+          "conditions": [
+            0,
+            4
+          ],
+          "candidates": 8,
+          "status": "complete",
+          "recovered": true,
+          "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+        },
+        {
+          "arm": "yue2-musecritic-1e-4",
+          "job": "137631",
+          "conditions": [
+            0,
+            4
+          ],
+          "candidates": 8,
+          "status": "complete",
+          "recovered": true,
+          "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+        },
+        {
+          "arm": "yue2-songeval-3e-4",
+          "job": "137684",
+          "replaced_job": "137667",
+          "conditions": [
+            0,
+            4
+          ],
+          "candidates": 8,
+          "status": "complete",
+          "recovered": true,
+          "gpu_memory_gb": 32,
+          "status_at_submission_check": "COMPLETED, exit 0:0, 00:06:29 on k046; both OOM receipts retried, six completed SongBench receipts reused; exact bindings recovered to the original 5090 run"
+        },
+        {
+          "arm": "yue2-musecritic-3e-4",
+          "job": "137679",
+          "conditions": [
+            0,
+            4
+          ],
+          "candidates": 8,
+          "status": "complete",
+          "recovered": true,
+          "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+        }
+      ],
+      "cmi_memory_repair": "SongEval-3e-4 had two full-song MuQ attention CUDA OOMs on a 16GB V100. Resubmitted on a 32GB V100 without cropping or changing scoring math. Explicit retries archive failed receipts and reuse completed receipts.",
+      "cmi_transfer_pipeline": "dispatch_reserved_cmi.py transfers and submits exactly the three remaining reserved CMI chunks as generation completes, then exits; no recurring schedule or notification",
+      "finite_transfer_pid_on_mac": 38321,
+      "finite_transfer_receipt_on_mac": "/tmp/lyrics-cmi-quality-transfer-20261013.json",
       "replaced_quality_jobs": [
         "137401",
         "137426"
@@ -4123,14 +6429,17 @@
       "quality_failure_reason": "Nested extras venv lacked parent Torch, then isolated runtime lacked rich; fixed parent-runtime path and explicit rich/submitit dependencies, resumed cached receipts",
       "gpu_partition": "gpu",
       "nice": 0,
-      "role": "Independent quality-scoring audit on exactly the already-selected WSB MP3s, five arms times four conditions",
+      "role": "Completed 20-song WSB numerical audit plus new, disjoint CMI production quality scoring on four arms",
       "generation": false,
       "q3o": false,
-      "count_in_headline_cohort": false,
-      "initial_status": "GPU job depends on preparation; not claimed as running"
+      "audit_count_in_headline_cohort": false,
+      "production_cmi_count_in_headline_cohort": true,
+      "initial_status": "The 20-song numerical audit and all four new CMI production chunks completed; all 32 new CMI candidates recovered with exact hashes"
     },
     "lab5090": {
-      "queue_pid": 3613175,
+      "queue_pid": 3616468,
+      "replaced_controller_pid": 3613175,
+      "handoff": "Stopped only the owned shell controller; its in-flight generation child retains the lock and finishes normally before the new generation/MP3-only controller starts",
       "reserved_wsb": [
         0,
         4
@@ -4140,7 +6449,12 @@
         4
       ],
       "wsb_asr_failure": "Official Qwen3-ASR worker CUDA OOM on SongEval-3e-4; saved audio retained and scoring moved to Gadi",
-      "role": "Generate reserved first four conditions for all seven YuE2 arms; score CMI quality locally; WSB scoring on Gadi"
+      "role": "All reserved generation finished: 56 WSB and 56 CMI candidates across seven YuE2 arms. Three CMI arms scored locally and four delegated to Kaya; WSB scoring on Gadi",
+      "status_at_check": "Generation-only controller completed normally; no GPU process left by this controller",
+      "generated_reserved_candidates": {
+        "wsb": 56,
+        "cmi": 56
+      }
     },
     "arm_count": 7,
     "arms": [
@@ -4155,7 +6469,7 @@
     "cohorts": {
       "wsb_conditions": 192,
       "cmi_test_conditions": 121,
-      "total_generated_candidates": 4382
+      "expected_total_candidates": 4382
     },
     "recovery": "Manual user-requested recovery; never create cron or heartbeat monitors"
   }

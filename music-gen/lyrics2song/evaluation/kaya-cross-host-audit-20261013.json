@@ -1,0 +1,428 @@
+{
+  "status": "in-progress",
+  "host": "k020.hpc.uwa.edu.au",
+  "gpu": "Tesla V100-PCIE-32GB",
+  "rows": [
+    {
+      "experiment": "yue2-baseline",
+      "id": "wsb_000_r0_s831001",
+      "audio_sha256": "1e999790b42231e06fa2fc6ab37924d962cb279cbdcc46c0fe091c0426616854",
+      "differences": {
+        "mulan": 1.1146068572998047e-05,
+        "allmusiccaps": 4.264712333679199e-05,
+        "songbench_Melody": -6.723403930664062e-05,
+        "songbench_Arrangement": -3.5762786865234375e-05,
+        "songbench_Musicality": 5.14984130859375e-05,
+        "songbench_Vocal": -8.630752563476562e-05,
+        "songbench_Instrumental": -1.1920928955078125e-05,
+        "songbench_Mixing": 4.8160552978515625e-05,
+        "songbench_Structure": 4.673004150390625e-05,
+        "songeval_Coherence": 1.1920928955078125e-05,
+        "songeval_Musicality": 2.8133392333984375e-05,
+        "songeval_Memorability": 5.245208740234375e-06,
+        "songeval_Clarity": 3.814697265625e-05,
+        "songeval_Naturalness": 2.3365020751953125e-05
+      }
+    },
+    {
+      "experiment": "yue2-baseline",
+      "id": "wsb_001_r0_s831002",
+      "audio_sha256": "26285c54fa498b49a51aeb432bda85700657afc771dd88a4ab596eafa44f72a2",
+      "differences": {
+        "mulan": -1.6987323760986328e-05,
+        "allmusiccaps": 1.4901161193847656e-06,
+        "songbench_Melody": -3.0517578125e-05,
+        "songbench_Arrangement": -9.441375732421875e-05,
+        "songbench_Musicality": -0.00017452239990234375,
+        "songbench_Vocal": -0.00013113021850585938,
+        "songbench_Instrumental": -0.0001544952392578125,
+        "songbench_Mixing": -0.00015974044799804688,
+        "songbench_Structure": 4.57763671875e-05,
+        "songeval_Coherence": 3.7670135498046875e-05,
+        "songeval_Musicality": 5.7220458984375e-06,
+        "songeval_Memorability": 2.86102294921875e-05,
+        "songeval_Clarity": 4.9114227294921875e-05,
+        "songeval_Naturalness": 1.8596649169921875e-05
+      }
+    },
+    {
+      "experiment": "yue2-baseline",
+      "id": "wsb_002_r0_s831003",
+      "audio_sha256": "5b8f422ccaefc27cd92b9e470c13fec3f3d7336c16d4a27e353a486c7b59b957",
+      "differences": {
+        "mulan": -4.7087669372558594e-05,
+        "allmusiccaps": -1.2099742889404297e-05,
+        "songbench_Melody": 2.09808349609375e-05,
+        "songbench_Arrangement": 0.00013113021850585938,
+        "songbench_Musicality": 1.4781951904296875e-05,
+        "songbench_Vocal": -0.00010919570922851562,
+        "songbench_Instrumental": -0.00012350082397460938,
+        "songbench_Mixing": 3.4809112548828125e-05,
+        "songbench_Structure": 2.2411346435546875e-05,
+        "songeval_Coherence": 9.5367431640625e-06,
+        "songeval_Musicality": 2.3365020751953125e-05,
+        "songeval_Memorability": 9.5367431640625e-07,
+        "songeval_Clarity": 3.933906555175781e-05,
+        "songeval_Naturalness": 1.6689300537109375e-05
+      }
+    },
+    {
+      "experiment": "yue2-baseline",
+      "id": "wsb_003_r1_s831022",
+      "audio_sha256": "97d3ebc1dbc446403b79642a99de4562c3a2d9e802c75b6cbef8b9db20a9ccd2",
+      "differences": {
+        "mulan": 2.3186206817626953e-05,
+        "allmusiccaps": 2.276897430419922e-05,
+        "songbench_Melody": -4.1484832763671875e-05,
+        "songbench_Arrangement": -6.341934204101562e-05,
+        "songbench_Musicality": -5.1021575927734375e-05,
+        "songbench_Vocal": 8.106231689453125e-06,
+        "songbench_Instrumental": -6.389617919921875e-05,
+        "songbench_Mixing": -2.765655517578125e-05,
+        "songbench_Structure": -6.341934204101562e-05,
+        "songeval_Coherence": -4.76837158203125e-06,
+        "songeval_Musicality": -1.7642974853515625e-05,
+        "songeval_Memorability": -9.059906005859375e-06,
+        "songeval_Clarity": 3.814697265625e-06,
+        "songeval_Naturalness": 2.86102294921875e-06
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-1e-4",
+      "id": "wsb_000_r0_s831001",
+      "audio_sha256": "9c37d9279ac96c55f9ae2de20d2b6d4d80e83e529912d852b840f77ca7b02a90",
+      "differences": {
+        "mulan": -1.195073127746582e-05,
+        "allmusiccaps": 4.7266483306884766e-05,
+        "songbench_Melody": -2.8133392333984375e-05,
+        "songbench_Arrangement": 4.673004150390625e-05,
+        "songbench_Musicality": 3.6716461181640625e-05,
+        "songbench_Vocal": -0.00019550323486328125,
+        "songbench_Instrumental": 0.00013875961303710938,
+        "songbench_Mixing": -0.00012493133544921875,
+        "songbench_Structure": 0.00010013580322265625,
+        "songeval_Coherence": 1.52587890625e-05,
+        "songeval_Musicality": 3.3855438232421875e-05,
+        "songeval_Memorability": 2.956390380859375e-05,
+        "songeval_Clarity": 3.62396240234375e-05,
+        "songeval_Naturalness": 2.86102294921875e-05
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-1e-4",
+      "id": "wsb_001_r0_s831002",
+      "audio_sha256": "da4a298d3ab60a43e69b9085c27a30e56944c9b7fa793bba2d3c858071b16550",
+      "differences": {
+        "mulan": -8.112192153930664e-05,
+        "allmusiccaps": -4.559755325317383e-06,
+        "songbench_Melody": -4.291534423828125e-05,
+        "songbench_Arrangement": -0.00012826919555664062,
+        "songbench_Musicality": -0.000110626220703125,
+        "songbench_Vocal": -5.91278076171875e-05,
+        "songbench_Instrumental": -0.00011682510375976562,
+        "songbench_Mixing": -0.00010395050048828125,
+        "songbench_Structure": -4.57763671875e-05,
+        "songeval_Coherence": 5.245208740234375e-06,
+        "songeval_Musicality": 1.71661376953125e-05,
+        "songeval_Memorability": -1.52587890625e-05,
+        "songeval_Clarity": 1.621246337890625e-05,
+        "songeval_Naturalness": 6.67572021484375e-06
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-1e-4",
+      "id": "wsb_002_r1_s831021",
+      "audio_sha256": "38cdadf43909ab0fa63ce44c201f4b9c08af81861f8abb3b5cd2bdb33be0e863",
+      "differences": {
+        "mulan": -7.081031799316406e-05,
+        "allmusiccaps": 8.761882781982422e-06,
+        "songbench_Melody": -0.0001220703125,
+        "songbench_Arrangement": -0.00023937225341796875,
+        "songbench_Musicality": -2.5272369384765625e-05,
+        "songbench_Vocal": -0.00012683868408203125,
+        "songbench_Instrumental": 2.288818359375e-05,
+        "songbench_Mixing": 1.2874603271484375e-05,
+        "songbench_Structure": -4.291534423828125e-05,
+        "songeval_Coherence": 3.62396240234375e-05,
+        "songeval_Musicality": -2.384185791015625e-06,
+        "songeval_Memorability": -9.5367431640625e-07,
+        "songeval_Clarity": 3.0517578125e-05,
+        "songeval_Naturalness": -7.62939453125e-06
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-1e-4",
+      "id": "wsb_003_r0_s831004",
+      "audio_sha256": "e67ed2c5dbaa0d9f950981863747fd7cd55ea16126ad1d9fb4546e7de918b885",
+      "differences": {
+        "mulan": -1.3947486877441406e-05,
+        "allmusiccaps": 2.8073787689208984e-05,
+        "songbench_Melody": -4.2438507080078125e-05,
+        "songbench_Arrangement": -5.91278076171875e-05,
+        "songbench_Musicality": 3.528594970703125e-05,
+        "songbench_Vocal": -6.341934204101562e-05,
+        "songbench_Instrumental": -9.441375732421875e-05,
+        "songbench_Mixing": -4.7206878662109375e-05,
+        "songbench_Structure": -0.00022363662719726562,
+        "songeval_Coherence": -4.76837158203125e-06,
+        "songeval_Musicality": 1.049041748046875e-05,
+        "songeval_Memorability": -1.0013580322265625e-05,
+        "songeval_Clarity": 2.384185791015625e-05,
+        "songeval_Naturalness": 3.0994415283203125e-05
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-2e-5",
+      "id": "wsb_000_r0_s831001",
+      "audio_sha256": "ec2d7e502a1fe7f497d2b79441ed6bce3c4333d006a192fbad7b9a93295a253b",
+      "differences": {
+        "mulan": 2.110004425048828e-05,
+        "allmusiccaps": 3.802776336669922e-05,
+        "songbench_Melody": -1.049041748046875e-05,
+        "songbench_Arrangement": -4.38690185546875e-05,
+        "songbench_Musicality": 4.291534423828125e-05,
+        "songbench_Vocal": -7.62939453125e-06,
+        "songbench_Instrumental": -4.38690185546875e-05,
+        "songbench_Mixing": -6.198883056640625e-05,
+        "songbench_Structure": -7.724761962890625e-05,
+        "songeval_Coherence": 2.09808349609375e-05,
+        "songeval_Musicality": 3.814697265625e-06,
+        "songeval_Memorability": 2.86102294921875e-06,
+        "songeval_Clarity": 1.2874603271484375e-05,
+        "songeval_Naturalness": 2.1457672119140625e-05
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-2e-5",
+      "id": "wsb_001_r0_s831002",
+      "audio_sha256": "b17db8d06b1f23c2d69718977f438f63ce841b9d25ba9aa2cc0c54271b5cdf13",
+      "differences": {
+        "mulan": -3.635883331298828e-05,
+        "allmusiccaps": -3.904104232788086e-06,
+        "songbench_Melody": -5.8650970458984375e-05,
+        "songbench_Arrangement": -6.67572021484375e-05,
+        "songbench_Musicality": -5.6743621826171875e-05,
+        "songbench_Vocal": 3.0994415283203125e-05,
+        "songbench_Instrumental": -7.724761962890625e-05,
+        "songbench_Mixing": -2.47955322265625e-05,
+        "songbench_Structure": 0.000141143798828125,
+        "songeval_Coherence": 2.956390380859375e-05,
+        "songeval_Musicality": 4.00543212890625e-05,
+        "songeval_Memorability": 3.337860107421875e-05,
+        "songeval_Clarity": 3.147125244140625e-05,
+        "songeval_Naturalness": 4.5299530029296875e-05
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-2e-5",
+      "id": "wsb_002_r1_s831021",
+      "audio_sha256": "7db6e6bd5c62db8bcca954f3c37c0f1bf23bbb899629ce80c7ea00139f633063",
+      "differences": {
+        "mulan": -3.612041473388672e-05,
+        "allmusiccaps": 1.3053417205810547e-05,
+        "songbench_Melody": -1.9550323486328125e-05,
+        "songbench_Arrangement": -0.00016498565673828125,
+        "songbench_Musicality": -3.814697265625e-05,
+        "songbench_Vocal": -6.29425048828125e-05,
+        "songbench_Instrumental": 2.002716064453125e-05,
+        "songbench_Mixing": -7.62939453125e-06,
+        "songbench_Structure": -4.1484832763671875e-05,
+        "songeval_Coherence": -3.62396240234375e-05,
+        "songeval_Musicality": -2.9087066650390625e-05,
+        "songeval_Memorability": -9.5367431640625e-06,
+        "songeval_Clarity": -1.9073486328125e-06,
+        "songeval_Naturalness": -1.3828277587890625e-05
+      }
+    },
+    {
+      "experiment": "yue2-musecritic-2e-5",
+      "id": "wsb_003_r0_s831004",
+      "audio_sha256": "87c73396ee3d557b474f66dcc63dee611dd10ba2786f4b9501f5d9d1fecc2b46",
+      "differences": {
+        "mulan": -5.960464477539062e-07,
+        "allmusiccaps": 1.4722347259521484e-05,
+        "songbench_Melody": 6.198883056640625e-06,
+        "songbench_Arrangement": 9.5367431640625e-06,
+        "songbench_Musicality": -9.5367431640625e-06,
+        "songbench_Vocal": -7.62939453125e-06,
+        "songbench_Instrumental": 6.29425048828125e-05,
+        "songbench_Mixing": 3.62396240234375e-05,
+        "songbench_Structure": 8.7738037109375e-05,
+        "songeval_Coherence": -1.1920928955078125e-05,
+        "songeval_Musicality": 6.198883056640625e-06,
+        "songeval_Memorability": 3.3855438232421875e-05,
+        "songeval_Clarity": 3.337860107421875e-06,
+        "songeval_Naturalness": 2.3365020751953125e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-1e-4",
+      "id": "wsb_000_r0_s831001",
+      "audio_sha256": "5695d72ef55b2c5e46b40d0041dd6f29477f054dd88d09f241ad1c816043e19b",
+      "differences": {
+        "mulan": -7.271766662597656e-06,
+        "allmusiccaps": 2.0831823348999023e-05,
+        "songbench_Melody": -1.8596649169921875e-05,
+        "songbench_Arrangement": -0.00013971328735351562,
+        "songbench_Musicality": -5.1975250244140625e-05,
+        "songbench_Vocal": 8.106231689453125e-06,
+        "songbench_Instrumental": -7.009506225585938e-05,
+        "songbench_Mixing": -1.430511474609375e-05,
+        "songbench_Structure": 0.00014972686767578125,
+        "songeval_Coherence": 5.1975250244140625e-05,
+        "songeval_Musicality": 4.76837158203125e-07,
+        "songeval_Memorability": 6.67572021484375e-06,
+        "songeval_Clarity": 3.337860107421875e-06,
+        "songeval_Naturalness": 3.337860107421875e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-1e-4",
+      "id": "wsb_001_r0_s831002",
+      "audio_sha256": "f9841de3920f4846aeb91f67838bf8302c9cbe9a0a4fe4c7627f352bad760934",
+      "differences": {
+        "mulan": -3.796815872192383e-05,
+        "allmusiccaps": 1.0311603546142578e-05,
+        "songbench_Melody": 0.0001125335693359375,
+        "songbench_Arrangement": -1.1920928955078125e-05,
+        "songbench_Musicality": 0.000133514404296875,
+        "songbench_Vocal": 0.00010776519775390625,
+        "songbench_Instrumental": -9.298324584960938e-05,
+        "songbench_Mixing": -3.62396240234375e-05,
+        "songbench_Structure": 0.000141143798828125,
+        "songeval_Coherence": 1.4781951904296875e-05,
+        "songeval_Musicality": 4.291534423828125e-06,
+        "songeval_Memorability": 2.1457672119140625e-05,
+        "songeval_Clarity": 1.239776611328125e-05,
+        "songeval_Naturalness": 1.71661376953125e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-1e-4",
+      "id": "wsb_002_r1_s831021",
+      "audio_sha256": "4abdf5f8b8b33fc0a24a7cec4ad8ed61a93f6e885632eba363bf4e5e1ba77d9c",
+      "differences": {
+        "mulan": -8.165836334228516e-06,
+        "allmusiccaps": -7.62939453125e-06,
+        "songbench_Melody": -6.580352783203125e-05,
+        "songbench_Arrangement": 3.8623809814453125e-05,
+        "songbench_Musicality": 8.106231689453125e-06,
+        "songbench_Vocal": -5.6743621826171875e-05,
+        "songbench_Instrumental": -0.00012350082397460938,
+        "songbench_Mixing": -0.00014734268188476562,
+        "songbench_Structure": 8.440017700195312e-05,
+        "songeval_Coherence": 2.0503997802734375e-05,
+        "songeval_Musicality": -2.193450927734375e-05,
+        "songeval_Memorability": 1.430511474609375e-05,
+        "songeval_Clarity": 1.811981201171875e-05,
+        "songeval_Naturalness": 0.0
+      }
+    },
+    {
+      "experiment": "yue2-songeval-1e-4",
+      "id": "wsb_003_r1_s831022",
+      "audio_sha256": "0c4ec227ae97e7b50897e8d0bf2782d49f1706ce200d0078dc72f39d85075b09",
+      "differences": {
+        "mulan": 1.722574234008789e-05,
+        "allmusiccaps": 2.9742717742919922e-05,
+        "songbench_Melody": 0.0001125335693359375,
+        "songbench_Arrangement": -3.9577484130859375e-05,
+        "songbench_Musicality": 4.291534423828125e-06,
+        "songbench_Vocal": 4.673004150390625e-05,
+        "songbench_Instrumental": -3.24249267578125e-05,
+        "songbench_Mixing": -2.9087066650390625e-05,
+        "songbench_Structure": 6.67572021484375e-05,
+        "songeval_Coherence": 3.2901763916015625e-05,
+        "songeval_Musicality": 1.430511474609375e-05,
+        "songeval_Memorability": 8.106231689453125e-06,
+        "songeval_Clarity": 9.5367431640625e-07,
+        "songeval_Naturalness": 2.6226043701171875e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-2e-5",
+      "id": "wsb_000_r1_s831019",
+      "audio_sha256": "95a4a2ad611531c7b52ccd66b48dd06dcb5e934e3ac613a173b0cddc49790f5a",
+      "differences": {
+        "mulan": -4.32133674621582e-05,
+        "allmusiccaps": 1.0818243026733398e-05,
+        "songbench_Melody": 8.58306884765625e-05,
+        "songbench_Arrangement": -0.000213623046875,
+        "songbench_Musicality": 0.0001773834228515625,
+        "songbench_Vocal": 7.581710815429688e-05,
+        "songbench_Instrumental": 9.1552734375e-05,
+        "songbench_Mixing": 7.62939453125e-06,
+        "songbench_Structure": 1.9073486328125e-06,
+        "songeval_Coherence": 5.7697296142578125e-05,
+        "songeval_Musicality": 2.384185791015625e-05,
+        "songeval_Memorability": 2.8133392333984375e-05,
+        "songeval_Clarity": 2.765655517578125e-05,
+        "songeval_Naturalness": 6.723403930664062e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-2e-5",
+      "id": "wsb_001_r1_s831020",
+      "audio_sha256": "f69ed5cb87d928db641b67e66b369b3807b25b481dbc570e948c31ea985f5095",
+      "differences": {
+        "mulan": -0.00019228458404541016,
+        "allmusiccaps": 1.233816146850586e-05,
+        "songbench_Melody": -9.5367431640625e-07,
+        "songbench_Arrangement": -7.677078247070312e-05,
+        "songbench_Musicality": 7.915496826171875e-05,
+        "songbench_Vocal": -0.00013256072998046875,
+        "songbench_Instrumental": -0.00024318695068359375,
+        "songbench_Mixing": -0.00017070770263671875,
+        "songbench_Structure": -0.00019979476928710938,
+        "songeval_Coherence": 9.059906005859375e-06,
+        "songeval_Musicality": 4.76837158203125e-07,
+        "songeval_Memorability": 4.76837158203125e-06,
+        "songeval_Clarity": 1.621246337890625e-05,
+        "songeval_Naturalness": 2.384185791015625e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-2e-5",
+      "id": "wsb_002_r1_s831021",
+      "audio_sha256": "0078c286e644e96986bcf1b6ad5aae3593bd55429b6a0b780585eb8ccc728a56",
+      "differences": {
+        "mulan": -1.33514404296875e-05,
+        "allmusiccaps": 2.2470951080322266e-05,
+        "songbench_Melody": -0.000148773193359375,
+        "songbench_Arrangement": -0.00011444091796875,
+        "songbench_Musicality": 1.1444091796875e-05,
+        "songbench_Vocal": -6.67572021484375e-06,
+        "songbench_Instrumental": -4.100799560546875e-05,
+        "songbench_Mixing": -3.62396240234375e-05,
+        "songbench_Structure": 7.867813110351562e-05,
+        "songeval_Coherence": 1.4781951904296875e-05,
+        "songeval_Musicality": -9.5367431640625e-07,
+        "songeval_Memorability": -6.67572021484375e-06,
+        "songeval_Clarity": 5.245208740234375e-06,
+        "songeval_Naturalness": 2.288818359375e-05
+      }
+    },
+    {
+      "experiment": "yue2-songeval-2e-5",
+      "id": "wsb_003_r1_s831022",
+      "audio_sha256": "4ece603a761148234fc1af20b07f8021c83efab4277236ee7b77cfb167298131",
+      "differences": {
+        "mulan": 3.552436828613281e-05,
+        "allmusiccaps": 2.568960189819336e-05,
+        "songbench_Melody": -9.202957153320312e-05,
+        "songbench_Arrangement": 0.00014019012451171875,
+        "songbench_Musicality": 1.71661376953125e-05,
+        "songbench_Vocal": 0.00022602081298828125,
+        "songbench_Instrumental": 7.009506225585938e-05,
+        "songbench_Mixing": 5.1975250244140625e-05,
+        "songbench_Structure": -4.1961669921875e-05,
+        "songeval_Coherence": 1.33514404296875e-05,
+        "songeval_Musicality": -2.384185791015625e-06,
+        "songeval_Memorability": 8.106231689453125e-06,
+        "songeval_Clarity": 1.0013580322265625e-05,
+        "songeval_Naturalness": 3.9577484130859375e-05
+      }
+    }
+  ],
+  "scope": "audit only; do not append duplicate observations to cohort"
+}

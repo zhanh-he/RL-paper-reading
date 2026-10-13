@@ -43,10 +43,11 @@ function render() {
     : dataset === 'wsb'
       ? '本站完整目标为 192 条 × 2 候选，每候选 4 次 ASR，按官方 PER / edits / phoneme length / candidate index 规则选择；其余指标共用同一首。YuE2 使用 legacy benchmark VAE、完整 symbolic planning 和 9000 semantic-token 上限，保留截断。尚未完整覆盖的均分不发布。'
       : '121 个官方 test 条件（125 偏好票），不使用偏好音频当唯一 ground truth。每条件两个固定种子，质量/对齐指标报告全部 242 候选的均值，不按质量挑最好一首。全体多语言 PER 与缺少冻结属性权重的 Q3O 标 n/a；不把英文 G2P 套在越南语、爪哇语等歌词上。';
+  const productionJobs = measured.execution?.kaya.cmi_quality_jobs || [];
   const submitted = measured.execution
-    ? ' · Gadi wa66 / iv96：12 个完整分片 + 首四条 80GB 评分任务已提交 · Kaya：20 首固定音频质量评分核验已提交（不重复计入总分）'
+    ? ` · Gadi wa66 / iv96：12 个完整分片 + 首四条 80GB 评分任务已提交${measured.execution.gadi.preparation_completed ? '，冻结评测环境准备完成' : ''} · Kaya：20 首跨机核验已完成（不重复计入总分）；新增 CMI ${productionJobs.filter((j) => j.recovered).length}/${productionJobs.length} 组已回收`
     : '';
-  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN')} · 5090 evaluation queue ${measured.queue_pid || '未提交'}${measured.queue_running_at_collection ? ' · 回收时运行中' : ' · 回收时未运行'}${submitted} · 提交记录不代表 GPU 已开始运行 · Muse 正式臂等待训练 checkpoint`;
+  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN')} · 5090 首四条候选生成${measured.queue_running_at_collection ? '运行中' : measured.execution?.lab5090.generated_reserved_candidates ? '已完成' : '未运行'}${submitted} · 提交记录不代表 GPU 已开始运行 · Muse 正式臂等待训练 checkpoint`;
   const diagnostics = measured.datasets[dataset].rows.flatMap((r) => (r.diagnostic_rows || []).map((sample) => ({ system: r.system, ...sample })));
   $('diagnostics').hidden = published || !diagnostics.length;
   $('diagnostic-head').replaceChildren(tr(['Experiment', 'Candidate · duration', ...official.metrics.map((m) => `${m.label} ${m.lowerIsBetter ? '↓' : '↑'}`)], true));

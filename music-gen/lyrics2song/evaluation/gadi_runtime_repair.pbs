@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q copyq
+#PBS -l ncpus=1,mem=8GB,walltime=02:00:00,jobfs=1GB
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -N wsb-runtime-move
+set -euo pipefail
+: "${PREP_JOB:?}"
+work=/scratch/iv96/hm6416/wsb-objective-20261013
+python=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+# The caller pauses only this campaign's installer before submitting this move.
+# No generation/scoring workers run until that install job finishes successfully.
+"$python" "$work/balance_evaluator_runtime.py" --work "$work" --installer-paused
+qsig -s CONT "$PREP_JOB"
