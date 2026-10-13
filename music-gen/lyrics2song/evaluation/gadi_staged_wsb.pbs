@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=04:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N wsb-first-four
+set -euo pipefail
+work=/scratch/iv96/hm6416/wsb-objective-20261013
+code=/scratch/wa66/hm6416/wsb-objective-20261013/code
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export TOKENIZERS_PARALLELISM=false PYTHONNOUSERSITE=1 OMP_NUM_THREADS=8
+export TMPDIR="$PBS_JOBFS" XDG_CACHE_HOME="$work/cache/xdg"
+python=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+exec "$python" -u "$code/run_staged_wsb.py" --work "$work" \
+  --runs /scratch/wa66/hm6416/wsb-objective-20261013/first-four \
+  --songeval /g/data/wa66/hanyu/SongEval-formal --python "$python"

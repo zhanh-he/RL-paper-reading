@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=16:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N wsb-objective
+set -euo pipefail
+: "${EVAL_TASK:?}"
+work=/scratch/iv96/hm6416/wsb-objective-20261013
+code=/scratch/wa66/hm6416/wsb-objective-20261013/code
+export TOKENIZERS_PARALLELISM=false PYTHONNOUSERSITE=1
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export OMP_NUM_THREADS=8
+export TMPDIR="$PBS_JOBFS"
+export XDG_CACHE_HOME="$work/cache/xdg"
+export TRITON_CACHE_DIR="$PBS_JOBFS/triton"
+export VLLM_CACHE_ROOT="$PBS_JOBFS/vllm"
+python=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+exec "$python" -u "$code/run_cluster_shard.py" --work "$work" \
+  --storage /scratch/wa66/hm6416/wsb-objective-20261013/runs \
+  --model /g/data/wa66/hanyu/YuE2-posttrain/models/YuE2-3B \
+  --songeval /g/data/wa66/hanyu/SongEval-formal --python "$python" --task "$EVAL_TASK"

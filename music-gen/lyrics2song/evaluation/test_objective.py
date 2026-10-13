@@ -6,9 +6,43 @@ from pathlib import Path
 from collect_objective import aggregate, cell
 from generate_objective import cmi_conditions
 from score_objective import select_candidates
+from run_cluster_shard import bounds
+from pack_completed_chunk import pack, verified_archive
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_chunk_archive_is_verified_before_cleanup(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            ids = ['wsb_000_r0_s831001', 'wsb_000_r1_s831019']
+            for ident in ids:
+                folder = root / 'songs' / ident
+                folder.mkdir(parents=True)
+                (folder / 'evaluation_binding.json').write_text(json.dumps({'id': ident}))
+                (folder / 'result.json').write_text('{}')
+            chunk = root / 'evaluation/chunk_000_001.json'
+            chunk.parent.mkdir()
+            chunk.write_text(json.dumps({'rows': [{'id': ids[0], 'prompt_index': 0,
+                'metrics': {'songbench': {}, 'mulan': {}, 'allmusiccaps': {},
+                            'q3o': {'status': 'complete'}}, 'supplementary': {}}]}))
+            pack(root, chunk)
+            self.assertTrue(verified_archive(root, chunk))
+            self.assertFalse((root / 'songs' / ids[0]).exists())
+            self.assertEqual(len(json.loads((root / 'generation-receipts.json').read_text())), 2)
+            (root / 'archives/chunk_000_001.tar').write_bytes(b'corrupt')
+            with self.assertRaises(ValueError):
+                verified_archive(root, chunk)
+
+    def test_cluster_shards_cover_exactly_once(self):
+        for size in [192, 121]:
+            intervals = [(0, 4), *bounds(4, size, 12)]
+            flattened = [i for lo, hi in intervals for i in range(lo, hi)]
+            self.assertEqual(flattened, list(range(size)))
+
+    def test_q3o_submission_is_not_a_measured_score(self):
+        c = cell('control_overall', 'wsb', q3o_submitted=True)
+        self.assertEqual(c['status'], 'pending')
+        self.assertIsNone(c['value'])
     def test_frozen_cmi_source(self):
         root = Path(__file__).resolve().parents[3]
         split = json.loads((root / 'platform/site/demos/data/cmi-pref-triple-9to1-split.json').read_text())

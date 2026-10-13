@@ -24,7 +24,7 @@ gpu_available() {
 # Setup is CPU/download-only; generation can start before the scorer install.
 # Interleave arms, so matched before/after evidence arrives before one whole
 # baseline campaign monopolizes the GPU for every dataset.
-for ((start=0; start<192; start+=4)); do
+for ((start=${EVAL_START:-0}; start<${EVAL_END:-192}; start+=4)); do
   for dataset in wsb cmi; do
     count=192; source="$code/reproduction_manifest.jsonl"; split=()
     if [[ "$dataset" == cmi ]]; then
@@ -49,6 +49,10 @@ for ((start=0; start<192; start+=4)); do
       "$python" -u "$code/generate_objective.py" --dataset "$dataset" --source "$source" "${split[@]}" \
         --model "$root/models/YuE2-3B" --vae "$storage/models/YuE2-Vae-legacy" \
         --arm "YuE2-$arm" "${adapter[@]}" --output "$output" --start "$start" --end "$end"
+      if [[ "$dataset" == wsb && "${SCORE_WSB:-1}" == 0 ]]; then
+        echo "WSB scoring delegated to the 80GB Gadi allocation"
+        continue
+      fi
       while [[ ! -f "$work/wsb_metrics/validation/preparation.json" ]]; do
         if ! kill -0 "${PREPARE_PID:?Scorer prepare PID must be supplied}" 2>/dev/null; then
           echo 'Scorer preparation failed; inspect prepare.log' >&2; exit 4
@@ -57,9 +61,11 @@ for ((start=0; start<192; start+=4)); do
       done
       gpu_available
       echo "$(date -Iseconds) SCORE YuE2-$arm $dataset $start:$end"
+      scoring=()
+      if [[ "$dataset" == cmi && "${SCORE_CMI:-1}" == 0 ]]; then scoring=(--prepare-only); fi
       "$python" -u "$code/score_objective.py" --bundle "$work/wsb_metrics" --run "$output" \
         --source "$source" "${split[@]}" --start "$start" --end "$end" \
-        --extras-python "$work/extras/bin/python" --songeval /home/mengh/research/SongEval-audit
+        --extras-python "$work/extras/bin/python" --songeval /home/mengh/research/SongEval-audit "${scoring[@]}"
     done
   done
 done

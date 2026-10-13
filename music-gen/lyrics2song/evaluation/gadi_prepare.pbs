@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q copyq
+#PBS -l ncpus=1,mem=16GB,walltime=06:00:00,jobfs=10GB
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N wsb-prepare
+set -euo pipefail
+export EVAL_WORK=/scratch/iv96/hm6416/wsb-objective-20261013
+export EVAL_RUNTIME_WORK=/scratch/wa66/hm6416/wsb-objective-20261013
+export BASE_PYTHON=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+export HF_HOME=/g/data/wa66/hanyu/hf-cache
+export PREPARE_METRICS=all PREPARE_GENERATION=1
+export TMPDIR="$PBS_JOBFS"
+bash /scratch/wa66/hm6416/wsb-objective-20261013/code/prepare_cluster.sh

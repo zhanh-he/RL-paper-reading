@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#PBS -P iv96
+#PBS -q copyq
+#PBS -l ncpus=1,mem=4GB,walltime=03:00:00,jobfs=1GB
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N q3o-prestage
+set -euo pipefail
+exec /g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python -u \
+  /scratch/wa66/hm6416/wsb-objective-20261013/code/prestage_q3o_assets.py \
+  --bundle /scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics --workers 4

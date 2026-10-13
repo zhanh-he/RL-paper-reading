@@ -32,6 +32,7 @@ def main():
     p.add_argument('--end', type=int, required=True)
     p.add_argument('--extras-python', type=Path)
     p.add_argument('--songeval', type=Path)
+    p.add_argument('--prepare-only', action='store_true', help='CMI MP3/identity preparation only; no GPU scorers')
     a = p.parse_args()
     a.bundle = a.bundle.resolve()
     sys.path[:0] = [str(a.bundle), str(a.bundle / 'src'), str(a.bundle / 'vendor')]
@@ -42,6 +43,8 @@ def main():
     if sha(a.source) != protocol['source_sha256']:
         raise ValueError('Source changed after generation')
     dataset = protocol['dataset']
+    if a.prepare_only and dataset != 'cmi':
+        p.error('WSB requires ASR-based candidate selection before preparing a selected chunk')
     targets = {r['prompt_index']: r for r in frozen.read_jsonl(a.bundle / 'data/evaluation_targets.jsonl')}
     cmi = cmi_conditions(a.source, json.loads(a.split.read_text())) if dataset == 'cmi' else None
     rows = []
@@ -50,7 +53,7 @@ def main():
     config = json.loads((a.bundle / 'configs/evaluation.json').read_text())
     release = frozen.verify_release()
     metrics = ['per', 'songbench', 'mulan', 'allmusiccaps'] if dataset == 'wsb' else ['songbench', 'mulan', 'allmusiccaps']
-    hashes = frozen.verify_assets(metrics)
+    hashes = frozen.verify_assets(metrics) if not a.prepare_only else {}
     write(report / 'protocol.json', {'generation_protocol': protocol, 'code_files': release['code_files'],
           'asset_hashes': hashes, 'config': config, 'extension_not_official_acceptance': True,
           'songbench_runtime_extension_sha256': sha(Path(__file__).with_name('score_songbench_blackwell.py')),
@@ -90,6 +93,11 @@ def main():
                 'audio_path': str(mp3.resolve()), 'audio_sha256': sha(mp3), 'source_flac_sha256': binding['audio_sha256'],
                 'adapter_sha256': protocol['adapter_sha256'], 'generation_truncated': result['truncated'],
                 'seconds': result['audio_seconds'], 'metrics': {}})
+    if a.prepare_only:
+        write(report / f'chunk_{a.start:03d}_{a.end:03d}.json', {'complete': False, 'rows': rows,
+              'generation_protocol': protocol, 'scope': 'CMI both candidates, unscored MP3 preparation'})
+        print(f'{protocol["arm"]}: prepared {len(rows)} CMI scoring MP3s', flush=True)
+        return
     for metric in metrics:
         # PER is scored on both WSB candidates. Every remaining scorer sees the
         # same lower-PER candidates; CMI uses both, without quality-based cherry picking.
@@ -120,7 +128,8 @@ def main():
                 raise ValueError(f'{metric} missing/failed for {row["id"]}')
             row['metrics'][metric] = frozen.canonical_per(value) if metric == 'per' else frozen.canonical_songbench(value) if metric == 'songbench' else value
     selected = select_candidates(rows) if dataset == 'wsb' else rows
-    write(report / f'chunk_{a.start:03d}_{a.end:03d}.json', {'complete': True, 'rows': selected})
+    write(report / f'chunk_{a.start:03d}_{a.end:03d}.json', {'complete': True, 'rows': selected,
+          'generation_protocol': protocol})
     if a.extras_python:
         if not a.songeval:
             p.error('Supplementary scores require --songeval')

@@ -30,8 +30,8 @@ PQ, MuQ-MuLan, AllMusicCaps, Q3O control and phoneme error rate (PER).
 - [AudioBox](https://github.com/facebookresearch/audiobox-aesthetics): Production
   Quality (PQ). Store CE / CU / PC too, but headline comparison follows PQ.
 - MuQ-MuLan / AllMusicCaps: audio similarity to requested **style text**, not lyrics.
-- Q3O: prompt-control score; official WSB requires 80 GB GPU. On 32 GB 5090
-  this is **resource-pending**, not `n/a` and not submitted.
+- Q3O: prompt-control score; official WSB requires 80 GB GPU. Submitted to
+  Gadi Hopper allocations, never substituted with a smaller model on the 5090.
 - PER: corpus micro average, sum edits / sum reference phonemes, not mean of
   per-song percentages. Preserve incomplete lyrics and capped ASR outputs.
 
@@ -93,6 +93,10 @@ Neither restricted data nor private audio is copied to this repository.
 each chunk. It stops without interrupting another job. It runs all 192 / 121
 conditions, not just a smoke sample; four-condition chunks are resumable
 publication/checkpoint boundaries, not subsets used as final benchmark scores.
+For the distributed campaign, `EVAL_END=4 SCORE_WSB=0` restricts the 5090 to
+the first four conditions of each cohort; WSB ASR/Q3O scoring is delegated to
+Gadi. An actual CUDA OOM stopped the original official ASR worker at
+SongEval-3e-4; its generated audio was retained, not regenerated or discarded.
 An incomplete result directory requires inspection; no overwrite or random reseed.
 Scorer failure stops the queue, retaining the affected audio and traceback.
 
@@ -103,6 +107,37 @@ is complete. `pending` / resource-pending / not-applicable remain distinct.
 snapshot date and source provenance, not locally generated results.
 
 First complete run covers 7 YuE2 arms × (384 WSB + 242 CMI) = **4,382 full-song
-candidates**, plus scoring. This is a multi-day queue on one GPU, not an
-overnight smoke run. No cron, scheduled task or automation is created. The user
-requests subsequent recovery manually.
+candidates**, plus scoring. See [actual submission receipts](submissions-20261013.json).
+Gadi wa66/iv96 each have six disjoint single-Hopper jobs; each owns the same
+conditions across all seven model arms and includes Q3O. A thirteenth Hopper
+job finishes the 5090's first four WSB conditions, reusing the five completed
+selected-audio chunks and scoring the two remaining arms. The six existing
+Muse training jobs are not cancelled, suspended or preempted. Both projects
+share a physical queue, and the per-user six-running-job limit prevents a claim
+of thirteen simultaneous Gadi GPUs. Submission priority is 1023.
+
+Downloads and installation run in Gadi `copyq`: ordinary compute nodes cannot
+reach Hugging Face. GPU jobs depend on successful preparation. Kaya has a
+separate preparation and V100 quality-scoring job on five arms' already-selected
+WSB MP3s. It checks cross-host numerical drift without changing candidate draws
+or adding duplicate observations to the headline cohort. No BF16 native YuE2
+generation, official BF16 ASR, or 80GB Q3O runs on Kaya's V100s.
+
+Use repeat `collect_objective.py --runs ...` arguments for disjoint roots: Gadi
+`first-four` for WSB, the 5090 reserved CMI root, and the twelve Gadi `shard_XX`
+roots. Do not also include the 5090's original selected WSB chunks or Kaya's
+numerical audit. Duplicate IDs and differing adapter/scorer hashes are rejected.
+Q3O is published only after all 192 selected-song scores exist; partial scores
+remain diagnostics. Sharded Q3O resets request sequence between chunks and is
+explicitly a local-checkpoint extension, not exact full-sequence paper acceptance.
+Completed Gadi chunks are packed into private uncompressed tar archives with
+per-member and whole-archive SHA256 verification before any materialized copies
+are removed. Generation metadata and score chunks remain available for merging;
+incomplete chunks are never cleaned up. This avoids exhausting the projects'
+scratch inode quotas without deleting the original audio or raw scoring receipts.
+The evaluator venvs/runtime and large asset/cache files are spread across the
+two mounted scratch projects; existing research folders are not modified.
+
+No cron, scheduled task or automation is created. The user requests subsequent
+recovery manually. Submission receipts are not a live scheduler-status claim;
+shared queue wait times are not predictable enough for a guaranteed ETA.
