@@ -6,12 +6,13 @@
     <meta name="description" content="Listen and compare input, baseline, post-training audio, visualizations and measured rewards." />
     <title>Music Post-Training Lab | Experiments</title>
     <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
-    <link rel="stylesheet" href="./styles.css?v=20261012-vocal-reference" />
+    <link rel="stylesheet" href="./styles.css?v=20261013-lyrics-reference" />
     <link rel="stylesheet" href="./choral-curves.css?v=20261005-yue2-two-plots" />
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261012-vocal-reference"></script>
+    <script type="module" src="./lab.js?v=20261013-lyrics-reference"></script>
+    <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
@@ -33,7 +34,7 @@
     <main class="lab-main">
       <section class="lab-heading">
         <div>
-          <p class="eyebrow">Presentation evidence · updated 12 Oct 2026</p>
+          <p class="eyebrow">Experiment evidence · research updated 13 Oct 2026</p>
           <h1>Music post-training replay</h1>
           <p class="lab-subtitle">逐样本对齐输入、基线、训练阶段与客观分数。先听，再核对 MIDI 与指标。</p>
         </div>
@@ -48,8 +49,8 @@
         <button class="lab-tab" type="button" data-view="songeval" aria-selected="false">SongEval audit</button>
         <button class="lab-tab" type="button" data-view="rewards" aria-selected="false">MIDI rewards</button>
         <button class="lab-tab" type="button" data-view="datasets" aria-selected="false">Dataset Protocol</button>
-        <button class="lab-tab" type="button" data-view="vocal-models" aria-selected="false">SOTA Models</button>
-        <button class="lab-tab" type="button" data-view="vocal-rewards" aria-selected="false">Vocal Rewards</button>
+        <button class="lab-tab" type="button" data-view="models" aria-selected="false">Models</button>
+        <button class="lab-tab" type="button" data-view="reward-catalog" aria-selected="false">Rewards</button>
       </nav>
 
       <section class="lab-view" id="view-overview" hidden>
@@ -159,7 +160,8 @@
       </section>
 
       <section class="lab-view" id="view-lyrics">
-        <div class="section-intro"><div><p class="eyebrow">Case 01 · Lyrics-conditioned post-training</p><h2>Lyrics2song GRPO</h2></div><a class="source-link" href="#datasets" data-open-view="datasets">数据与划分协议 ↗</a></div>
+        <div class="section-intro"><div><p class="eyebrow">Case 01 · Lyrics-conditioned post-training</p><h2>Lyrics2song GRPO</h2></div><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">数据与划分协议 ↗</a></div>
+        <nav class="model-links reference-entry-links" aria-label="Lyrics2song reference pages"><a class="source-link" href="#lyrics-models" data-open-view="lyrics-models">Models · 发布与后训练 ↗</a><a class="source-link" href="#lyrics-rewards" data-open-view="lyrics-rewards">Rewards · 目标与盲点 ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">Dataset Protocol ↗</a></nav>
         <div id="lyrics-formal">
           <div class="evidence-note"><strong>CMI-Pref · 9:1 正式实验 · 2026-10-12 回收</strong><p>冻结 <strong>270 train / 30 validation</strong>；官方同模态 test 为 121 个独立条件（125 票），仍封存。数据源同时具有 text、reference audio、lyrics；YuE2 和 Muse 本轮输入 text + lyrics。每条实验臂保留实际训练步数、验证、checkpoint 与试听资产的核验记录。</p></div>
           <div class="protocol-strip"><span><strong>270</strong> train conditions</span><span><strong>30</strong> validation conditions</span><span><strong>121</strong> sealed test conditions</span><span><strong>270</strong> planned updates</span></div>
@@ -214,7 +216,7 @@
         <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Metric</th><th>Baseline</th><th id="lyrics-metric-head">1 step</th><th>Δ</th></tr></thead><tbody id="lyrics-metric-table"></tbody></table></div>
         <div class="evidence-note"><strong>当前证据的边界</strong><p id="lyrics-interpretation"></p></div>
         <form class="review-form" id="listening-review"><div><span class="source-label">Human listening review</span><h3>这段音频你更愿意保留哪版？</h3></div><label>Preference<select name="preference"><option value="">未选择</option><option value="baseline">A · Baseline</option><option value="candidate">B · 1 step</option><option value="tie">差不多</option></select></label><label>听感备注<input name="note" type="text" maxlength="240" placeholder="如：人声清晰度、杂音、旋律连续性" /></label><button class="button button-primary" type="submit"><i data-lucide="save" aria-hidden="true"></i>保存</button><span id="review-status" aria-live="polite"></span></form>
-        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rewards/songeval-grpo-protocol.md" target="_blank" rel="noreferrer">Reward and optimizer protocol ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/m-a-p/YuE2" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
+        <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rewards/songeval-grpo-protocol.md" target="_blank" rel="noreferrer">Reward and optimizer protocol ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo" target="_blank" rel="noreferrer">Training code and receipts ↗</a><a class="source-link" href="https://github.com/multimodal-art-projection/YuE" target="_blank" rel="noreferrer">YuE2 ↗</a><a class="source-link" href="https://github.com/yuhui1038/Muse" target="_blank" rel="noreferrer">Muse ↗</a><a class="source-link" href="https://github.com/WuqnEl/MuseCritic" target="_blank" rel="noreferrer">MuseCritic ↗</a><a class="source-link" href="https://github.com/tencent-ailab/MuCodec" target="_blank" rel="noreferrer">MuCodec ↗</a></div>
         <p class="stage-context" id="lyrics-framework-note"></p>
         </div>
       </section>
@@ -232,11 +234,27 @@
           <h3 class="subsection-heading">已冻结的三模态来源 · 9:1</h3>
           <p class="section-copy">train/valid 按正规化歌词分组并作 SHA256 固定排序；官方 test 不参与学习率和 checkpoint 选择。下载 JSON 含条件哈希与官方 prompt ID，不重发布歌词或音频；原始文件 revision 与 SHA 固定在清单中。</p>
           <p class="stage-context">来源清单 SHA256：<code>2f5f31219514ad479984e921a8dc6603680e275f31531778c7bb018da5df0136</code>；text+lyrics 投影 SHA256：<code>c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f</code>。参考音频字段不传给当前模型。</p>
-          <h3 class="subsection-heading">重训队列 · 四臂 × 学习率</h3>
-          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Model / reward</th><th>学习率网格</th><th>Gadi smoke → 270 更新</th></tr></thead><tbody><tr><td>YuE2 / SongEval</td><td>2e-5 / 1e-4 / 3e-4</td><td>180635247/249/251 → 248/250/252</td></tr><tr><td>YuE2 / MuseCritic</td><td>2e-5 / 1e-4 / 3e-4</td><td>180635253/255/257 → 254/256/258</td></tr><tr><td>Muse / SongEval</td><td>1e-6 / 3e-6 / 1e-5</td><td>180635265/267/269 → 266/268/270</td></tr><tr><td>Muse / MuseCritic</td><td>1e-6 / 3e-6 / 1e-5</td><td>180635271/273/275 → 272/274/276</td></tr><tr><td>YuE2 / SongEval · Kaya FP16 复核</td><td>1e-4</td><td>Slurm 77857 → 77858</td></tr></tbody></table></div>
-          <p class="stage-context">Gadi 低优先级提交，Kaya 也设置 nice；每组两步 smoke 成功才解锁训练。作业 ID 不代表完成。只用 30 条 validation 选模型；官方 test 留到最后。SongEval / MuseCritic 分别报告，不跨量表比较。</p>
+          <h3 class="subsection-heading">正式实验 · 固定来源与学习率</h3>
+          <p class="section-copy">YuE2 / Muse × SongEval / MuseCritic 统一学习率 2e-5 / 1e-4 / 3e-4；全部沿用这份 270 / 30 来源划分。Muse 旧小学习率队列已替代；当前 checkpoint、回收状态与独立推理边界以 <a href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO 正式页</a>的逐臂记录为准，不再引用旧作业队列作为当前状态。SongEval / MuseCritic 分别报告，不跨量表比较。</p>
         </details>
         <div class="model-links"><a class="source-link" href="./data/cmi-pref-triple-9to1-split.json" download>下载 train / valid / test split JSON ↓</a><a class="source-link" href="https://huggingface.co/datasets/HaiwenXia/cmi-pref" target="_blank" rel="noreferrer">CMI-Pref ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/prepare_cmi_triple_data.py" target="_blank" rel="noreferrer">Reproduce split ↗</a></div>
+        <h3 class="subsection-heading">公开协议调研 · 不改变当前 split</h3>
+        <p class="section-copy">没有统一的 Lyrics2song train/valid/test benchmark：SFT 歌曲库、RL 条件库、偏好票、scorer 测试集和整歌生成测试各有用途。下表区分作者协议与本站协议；这是来源核验，不是这些数据上已经完成的新实验。</p>
+        <details class="choral-deep-dive" id="lyrics-data-survey"><summary>数据与 benchmark · 8 个来源 / 官方切分与适用边界</summary>
+          <p class="stage-context" data-lyrics-reference-date>官方来源核验 2026-10-13</p>
+          <div class="table-shell lab-table reference-table" tabindex="0"><table><thead><tr><th>Dataset / role / sources</th><th>内容</th><th>官方 / 本站 protocol</th><th>边界与泄漏风险</th></tr></thead><tbody id="lyrics-dataset-reference-body"><tr><td colspan="4">加载调研资料</td></tr></tbody></table></div>
+        </details>
+        <details class="choral-deep-dive"><summary>共同报告规则 · condition split / candidate budget / long-form test</summary>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Protocol</th><th>固定内容</th><th>为什么</th></tr></thead><tbody>
+            <tr><td>先划来源，再取片段</td><td>按歌词 / prompt / reference recording 分组；同歌候选、投票、切片不得跨 split。官方 test 在 train/valid 前隔离。</td><td>防止 469 票被误当 469 首歌，或同一参考音频、歌词泄漏到 test。</td></tr>
+            <tr><td>模型使用 native 输入投影</td><td>固定来源三模态元数据；对 text+lyrics、audio+lyrics、三模态分层报告，列 missing-modality mask 与 prompt adapter。</td><td>公平比较是同条件来源和明确接口差异，不是假装所有模型都支持三模态联合。</td></tr>
+            <tr><td>训练 / 验证 / test 三条口径</td><td>online reward + reference-policy KL；固定 valid conditions 选 LR/checkpoint；sealed test 最后评估，失败样本也计入。</td><td>训练曲线有采样波动；scorer 自评和 3 条精选 demo 不能证明泛化。</td></tr>
+            <tr><td>候选预算一致</td><td>固定种子数量、temperature、top-p、planning、codec 与 best-of-N 选择器；另列 reranking 成本。</td><td>WSB best-of-2 / best-of-8 不是单 seed baseline；不能只挑好的输出比较。</td></tr>
+            <tr><td>长片段与整歌另测</td><td>本站正式试听约 64 秒；训练/validation 仍是 600-token 短片段。新增 test 建议同时报告固定 60 秒与自然结束整首；记录实际时长及截断。</td><td>不能把延长 inference 当成已经验证长歌 RL；缺失歌词后半段、重复与结构退化须单列。</td></tr>
+            <tr><td>reward 与独立判断分开</td><td>审美五轴、歌词 PER、style similarity、信号失败率和 blind A/B 各自报告。MP3 仅为公开试听，lossless scoring hash 另存。</td><td>不把 FAD 当逐样本 reward，不把同源 SongEval / MuseCritic cross-score 当完全独立真值。</td></tr>
+          </tbody></table></div>
+        </details>
+        <div class="model-links"><a class="source-link" href="#lyrics-models" data-open-view="lyrics-models">Lyrics Models ↗</a><a class="source-link" href="#lyrics-rewards" data-open-view="lyrics-rewards">Lyrics Rewards ↗</a><a class="source-link" href="./data/lyrics-reference.json" download>下载模型 / reward / 数据调研 JSON ↓</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/research" target="_blank" rel="noreferrer">调研笔记与源清单 ↗</a></div>
         </div>
         <div data-dataset-panel="vocal" hidden>
           <p class="section-copy">任务口径：输入固定原人声，生成独立伴奏，再与原人声混音；不能把重新生成歌声的 cover 模型或纯歌词提示集当作同一任务。当前 LaDA-Band 是单条人声上的在线 reward 消融，不与 Lyrics2song 的 CMI-Pref 划分共用数据。</p>
@@ -338,8 +356,20 @@
         </div>
       </section>
 
-      <section class="lab-view" id="view-vocal-models" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Vocal2song · model reference</p><h2>SOTA Models</h2></div><span class="state diagnostic">任务口径与可用性</span></div>
+      <section class="lab-view" id="view-models" hidden>
+        <div class="section-intro"><div><p class="eyebrow" data-reference-eyebrow>Lyrics2song · model reference</p><h2>Models</h2></div><span class="state diagnostic">官方发布 · 可训练性</span></div>
+        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Model reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button></div></div>
+        <div data-reference-panel="lyrics">
+          <div class="model-links"><a class="source-link" href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">Dataset Protocol ↗</a><a class="source-link" href="#lyrics-rewards" data-open-view="lyrics-rewards">Lyrics Rewards ↗</a></div>
+          <h3 class="subsection-heading">Open-weight song models · 默认接口优先</h3>
+          <p class="section-copy">保留“代码 + 权重 + 推理”即可研究的模型，但单独核验 training / LoRA / RL recipe。下表不是跨论文排行榜；MusicGen、Stable Audio Open 等 text-to-music 模型不自动归为给定歌词的完整唱歌模型，Suno / Udio 则是闭源输出参照，不是本地 GRPO policy。</p>
+          <p class="stage-context" data-lyrics-reference-date>官方来源核验 2026-10-13</p>
+          <div class="metric-controls reference-family-controls"><div class="segmented" role="group" aria-label="Lyrics model architecture"><button type="button" data-model-family="all" aria-pressed="true">All</button><button type="button" data-model-family="ar" aria-pressed="false">AR</button><button type="button" data-model-family="hybrid" aria-pressed="false">Hybrid</button><button type="button" data-model-family="flow" aria-pressed="false">Flow / diffusion</button><button type="button" data-model-family="archive" aria-pressed="false">待恢复发布</button></div><span id="lyrics-model-reference-count">8 models</span></div>
+          <div class="table-shell lab-table reference-table" tabindex="0"><table><thead><tr><th>Model / family / sources</th><th>公开 native 输入</th><th>发布范围 / 许可</th><th>后训练路线 · 本项目判断</th></tr></thead><tbody id="lyrics-model-reference-body"><tr><td colspan="4">加载调研资料</td></tr></tbody></table></div>
+          <details class="choral-deep-dive"><summary>下一步选择 · 主实验、新增竞品与 flow 对照</summary><p class="section-copy">现有 YuE2 / Muse 保持同一 CMI 划分；下一批优先核验 LeVo 2（开放权重竞品）与 HeartMuLa（3B AR）。需要三模态 native 条件时先测 SongGen，而不是强塞给 YuE2 / Muse。ACE-Step 1.5 可补高效 flow 推理与 LoRA 对照，真正的 DiT-GRPO 另开方法实现。SongBloom 原官方发布当前不可访问，暂留方法位。这些是选型建议，不是已启动训练或质量排名。</p></details>
+          <div class="model-links"><a class="source-link" href="./data/lyrics-reference.json" download>下载调研 JSON ↓</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/research" target="_blank" rel="noreferrer">调研笔记 / 更新依据 ↗</a></div>
+        </div>
+        <div data-reference-panel="vocal" hidden>
         <div class="model-links"><a class="source-link" href="#vocal" data-open-view="vocal">Vocal2song GRPO · 配对试听 ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="vocal">Dataset Protocol ↗</a><a class="source-link" href="#vocal-rewards" data-open-view="vocal-rewards">Rewards ↗</a></div>
         <h3 class="subsection-heading" id="vocal-models">Model catalog · 同任务优先</h3>
         <p class="section-copy">只把“保留原人声、生成独立伴奏”的模型放在直接比较组。不同论文的输入条件、片段长度、训练数据和重训版本不同；下表不是跨论文总排行榜。</p>
@@ -353,10 +383,22 @@
         </tbody></table></div>
         <h3 class="subsection-heading">Inference baselines · 模型接通测试</h3>
         <div><p class="section-copy">以下 ACE-Step / AnyAccomp 使用另一条合成元音引导声，只是模型接通测试；不能和 Emma / LaDA 主实验作同输入提升比较。</p><div class="stage-rail" id="vocal-stage-rail" aria-label="Other vocal model baselines"></div><div class="compare-grid" id="vocal-compare"></div><div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>0</strong> GRPO updates</span></div><div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div></div>
+        </div>
       </section>
 
-      <section class="lab-view" id="view-vocal-rewards" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Vocal2song · reward reference</p><h2>Rewards</h2></div><span class="state diagnostic">来源 · 消融 · 反例</span></div>
+      <section class="lab-view" id="view-reward-catalog" hidden>
+        <div class="section-intro"><div><p class="eyebrow" data-reference-eyebrow>Lyrics2song · reward reference</p><h2>Rewards</h2></div><span class="state diagnostic">目标 · 评估 · 反例</span></div>
+        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Reward reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button></div></div>
+        <div data-reference-panel="lyrics">
+          <div class="model-links"><a class="source-link" href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">Dataset Protocol ↗</a><a class="source-link" href="#lyrics-models" data-open-view="lyrics-models">Lyrics Models ↗</a></div>
+          <h3 class="subsection-heading">Reward map · aesthetics / alignment / lyrics / guards</h3>
+          <p class="section-copy">下表整理公开歌曲论文中反复出现的评分家族，并标记本站已用、候选项与只能评估的指标；不是统计意义的使用频率排名。当前正式 SongEval / MuseCritic 各自优化五维均值，没有偷偷加入 coverage、beat 或乐器 richness。</p>
+          <p class="stage-context" data-lyrics-reference-date>官方来源核验 2026-10-13</p>
+          <div class="table-shell lab-table reference-table" tabindex="0"><table><thead><tr><th>Reward / role / sources</th><th>实际定义</th><th>使用与证据</th><th>单项优化盲点</th></tr></thead><tbody id="lyrics-reward-reference-body"><tr><td colspan="4">加载调研资料</td></tr></tbody></table></div>
+          <details class="choral-deep-dive"><summary>候选组合与 reward-hacking 消融 · 设计，尚未执行</summary><p class="section-copy">候选目标 R = w₁ · aesthetic + w₂ · lyric fidelity + w₃ · style alignment − signal penalties；KL 系数 β 单独记录。归一化、权重与门槛只能用 train/valid 校准，不混加 SongEval / MuseCritic / CLAP 的原始量表，也不加“乐器越多越好”的普遍目标。依次跑单项、无 guard 组合、有 guard 组合，并保留相同 prompt / seed 的回放。</p><p class="section-copy">先做固定音频的增益、限幅、静音、噪声、重复与删词攻击，再测未见条件和长片段。展示每项分数、combined reward、policy KL 与失败率；共享 SongEval 标注的 cross-score 仅是交叉检查，最终仍需独立歌词/条件指标和盲听。这是下一轮方案，不能替当前单项结果贴上“已防刷分”标签。</p></details>
+          <div class="model-links"><a class="source-link" href="./data/lyrics-reference.json" download>下载调研 JSON ↓</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/research" target="_blank" rel="noreferrer">调研笔记 / 更新依据 ↗</a></div>
+        </div>
+        <div data-reference-panel="vocal" hidden>
         <div class="model-links"><a class="source-link" href="#vocal" data-open-view="vocal">Vocal2song GRPO · 配对试听 ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="vocal">Dataset Protocol ↗</a><a class="source-link" href="#vocal-models" data-open-view="vocal-models">SOTA Models ↗</a></div>
         <h3 class="subsection-heading" id="vocal-rewards">Reward catalog · 来源与可训练性</h3>
         <p class="section-copy">“开源”指外部公开实现；“自研”指本项目或前序 vocal2accomp 项目的评分逻辑。底层调用开源库不等于整个 reward 来自外部。训练 reward 与独立评估分开列，避免把代理指标写成已验证的音乐质量。</p>
@@ -396,6 +438,7 @@
         </tbody></table></div>
         <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.mp3" aria-label="构造 click 节拍攻击试听"></audio></div>
         <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>
+        </div>
       </section>
 
       <footer class="lab-footer">公开音频均为 MP3 192 kbps 试听副本，不做响度归一化；reward 与信号诊断基于私有留存的无损评分原件，不能把 MP3 当作逐字节一致的评分文件。旧图像来自评分原件，正式长片段图像来自播放 MP3。No private recordings or model checkpoints are published. <a href="https://github.com/zhanh-he/RL-paper-reading">Source repository</a></footer>

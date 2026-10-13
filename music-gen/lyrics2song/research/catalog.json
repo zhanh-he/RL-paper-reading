@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-13",
+  "scope": "公开论文与官方发布核验；不是模型排行榜，也没有统计全领域的使用频率。后训练路线是本项目判断，不等于作者已发布 GRPO。",
+  "models": [
+    {
+      "id": "yue2", "name": "YuE2 · 3B", "family": "ar", "architecture": "AR / NAR · symbolic planning + semantic generator + VAE",
+      "input": "style text + structured lyrics；新版 cover/edit 流程先把参考录音转成 melody/chord score，不等于当前 GRPO 直接输入 reference audio。",
+      "release": "公开推理、3B / VAE 权重；未核验完整官方预训练或 GRPO recipe。本站已有自研 LoRA-GRPO。",
+      "license": "代码 Apache-2.0；权重 CC BY-NC 4.0 + creator permission。",
+      "posttrain": "当前主模型；优化 semantic AR token policy、冻结声学解码。版本、planning 开关、token 上限与 VAE 都须固定，不能把新版官方 benchmark 配置混进现有实验。",
+      "sources": [{"label":"官方代码 / 许可证","url":"https://github.com/multimodal-art-projection/YuE"},{"label":"3B 权重","url":"https://huggingface.co/m-a-p/YuE2-3B"},{"label":"技术报告","url":"https://arxiv.org/abs/2609.33757"}]
+    },
+    {
+      "id": "muse", "name": "Muse · 0.6B", "family": "ar", "architecture": "Qwen-based AR + MuCodec",
+      "input": "global style + segment style + lyrics；公开生成输入不是任意 reference-audio 条件。不同 baseline 只能用共同支持的 global style。",
+      "release": "推理、ms-swift SFT、0.6B checkpoint、数据与评估 pipeline 公开；MuseCritic 项目另提供 Muse-GRPO。",
+      "license": "代码 MIT；Muse-0.6b 权重卡 Apache-2.0；合成数据卡 MIT。分别记录，不混为一个许可证。",
+      "posttrain": "当前小模型对照；token GRPO 可以接入，但须审计音乐 special-token、生成失败率和采样/loss 一致性。模型大小与数据、codec 不同，不能做纯参数量因果比较。",
+      "sources": [{"label":"代码 / SFT","url":"https://github.com/yuhui1038/Muse"},{"label":"0.6B 权重","url":"https://huggingface.co/bolshyC/Muse-0.6b"},{"label":"论文","url":"https://arxiv.org/abs/2601.03973"},{"label":"官方 Muse-GRPO","url":"https://github.com/WuqnEl/MuseCritic/tree/main/muse_grpo"}]
+    },
+    {
+      "id": "levo2", "name": "LeVo 2 · SongGeneration", "family": "hybrid", "architecture": "Hierarchical LM + diffusion renderer",
+      "input": "structured lyrics + comma-separated description tags，或 lyrics + 前 10 秒参考音频。官方明确建议不要同时传 descriptions 和 prompt_audio_path；不能默认三模态联合有效。",
+      "release": "官方 LeVo repo 与 v2-medium / v2-large 权重、推理和输入样例可访问；公布 SFT → offline / semi-online DPO 方法，不等于训练 recipe 全部公开。",
+      "license": "SongGeneration 自定义许可：学术、研究、教育使用；第三方组件另有条款。",
+      "posttrain": "优先新增的开放权重竞品；先复现 native inference 再适配 LM policy / frozen renderer。v2 报告仍标 upcoming；2506.07520 是原 LeVo 论文，不当 v2 技术报告。本站未训练。",
+      "sources": [{"label":"官方 v2 代码 / 输入说明","url":"https://github.com/levo-demo/LeVo"},{"label":"v2-medium 权重","url":"https://huggingface.co/lglg666/SongGeneration-v2-medium"},{"label":"原 LeVo 论文","url":"https://arxiv.org/abs/2506.07520"},{"label":"许可","url":"https://github.com/levo-demo/LeVo/blob/main/LICENSE"}]
+    },
+    {
+      "id": "heartmula", "name": "HeartMuLa · oss-3B", "family": "ar", "architecture": "AR music LM + HeartCodec",
+      "input": "公开 3B 接口是 tags + lyrics。主 repo 的 reference audio conditioning 仍在 TODO；已发布的 MuLaCover 是单独的 audio/MIDI cover 流程，不能冒充 3B 原生接口。",
+      "release": "3B / RL / happy-new-year checkpoints、codec 与推理公开；未核验完整 3B 训练/GRPO recipe。HeartTranscriptor 可独立做歌词转录。",
+      "license": "官方声明 repo 与相关权重 Apache-2.0。",
+      "posttrain": "AR-GRPO 候选；需适配 codebook 序列概率、mask 和 reference policy。发布的 RL checkpoint 不证明我们自己的在线 GRPO 已接通。本站未训练。",
+      "sources": [{"label":"代码 / release / TODO","url":"https://github.com/HeartMuLa/heartlib"},{"label":"3B 权重","url":"https://huggingface.co/HeartMuLa/HeartMuLa-oss-3B-happy-new-year"},{"label":"论文","url":"https://arxiv.org/abs/2601.10547"},{"label":"独立 MuLaCover","url":"https://github.com/HeartMuLa/MuLaCover"}]
+    },
+    {
+      "id": "songgen", "name": "SongGen · Mixed / A-V", "family": "ar", "architecture": "Single-stage AR + XCodec · mixed / dual-track",
+      "input": "text + lyrics + optional reference voice；论文使用 3 秒 voice clip。参考声色克隆不等同于保留原 vocal waveform 的 Vocal2song。",
+      "release": "mixed_pro / interleaving A-V 权重、推理与 training guide 公开。",
+      "license": "代码 Apache-2.0；mixed_pro 模型卡的权重许可栏仍待补充，不能仅据代码许可替权重下结论。",
+      "posttrain": "有训练代码，适合检验多 codebook / dual-track GRPO；先核验可生成长度和显存，不能直接承诺与当前 60 秒 demo 同等能力。本站未训练。",
+      "sources": [{"label":"代码 / training guide","url":"https://github.com/LiuZH-19/SongGen"},{"label":"mixed_pro 权重","url":"https://huggingface.co/LiuZH-19/SongGen_mixed_pro"},{"label":"论文","url":"https://arxiv.org/abs/2502.13128"}]
+    },
+    {
+      "id": "acestep15", "name": "ACE-Step · 1.5", "family": "flow", "architecture": "LM planner + DiT / flow audio generation",
+      "input": "caption / tags + lyrics；另有 reference audio、cover、repaint 等任务。具体条件与能力依 DiT checkpoint / task 模式而定。",
+      "release": "推理、base / SFT / turbo 与 XL 模型、LoRA training tutorial 公开；不把官方 intrinsic RL 宣传等同于外部 SongEval-GRPO recipe。",
+      "license": "代码与主模型卡 MIT；依赖组件单独核查。",
+      "posttrain": "快速推理与风格 LoRA 对照候选。训练 DiT 需要 diffusion/flow 的有效轨迹目标及 reference 约束，不能套 token GRPO 的 log-prob；仅训 planner 则是另一目标。本站 Lyrics GRPO 未跑。",
+      "sources": [{"label":"代码 / LoRA guide","url":"https://github.com/ace-step/ACE-Step-1.5"},{"label":"权重 / model zoo","url":"https://huggingface.co/ACE-Step/Ace-Step1.5"}]
+    },
+    {
+      "id": "diffrhythm2", "name": "DiffRhythm · 2", "family": "flow", "architecture": "Semi-AR block flow matching",
+      "input": "公开推理样例使用歌词文件 + style/reference audio；不要把 DiffRhythm v1 的 text-style 更新自动归到 v2 release。",
+      "release": "v2 推理与权重公开；本次检查未见完整 v2 training recipe。v1 repo 另有 train 目录，不代表 v2 相同。",
+      "license": "v2 官方声明代码及权重 Apache-2.0。",
+      "posttrain": "结构化、长歌的 flow 基线候选；GRPO 需另实现块/轨迹采样概率与 KL，当前不能一键接现有 YuE2 训练器。本站未训练。",
+      "sources": [{"label":"v2 官方代码","url":"https://github.com/ASLP-lab/DiffRhythm2"},{"label":"v2 权重","url":"https://huggingface.co/ASLP-lab/DiffRhythm2"},{"label":"v2 论文","url":"https://arxiv.org/abs/2510.22950"}]
+    },
+    {
+      "id": "songbloom", "name": "SongBloom", "family": "archive", "architecture": "AR sketching + diffusion refinement",
+      "input": "论文为完整歌曲生成的 interleaved AR / diffusion 方法。当前官方发布无法访问，native 输入能力需重新核验。",
+      "release": "历史官方 release 有推理 / DPO 版本记录；2026-10-13 原 GitHub 返回 404、原 HF 权重未能公开访问。第三方 fork 不充作官方可用性证据。",
+      "license": "当前官方许可与权重可下载性未核验；不建议据 fork 标签部署。",
+      "posttrain": "保留方法参照，不列为可立即训练模型。需先恢复官方权重/许可，再讨论 hybrid GRPO。本站未训练。",
+      "sources": [{"label":"论文","url":"https://arxiv.org/abs/2506.07634"}],
+      "unavailable_sources": ["https://github.com/tencent-ailab/SongBloom", "https://github.com/Cypress-Yang/SongBloom", "https://huggingface.co/CypressYang/SongBloom"]
+    }
+  ],
+  "rewards": [
+    {
+      "id":"songeval", "name":"SongEval · five-axis mean", "role":"审美 · 本站训练目标", "definition":"R = mean(Coherence, Musicality, Memorability, Clarity of Song Structure, Naturalness of Vocal Breathing and Phrasing)。直接音频特征评分；不是 coverage / 乐器计数 / 逐字歌词准确率。",
+      "use":"公开 scorer；Muse 与 YuE2 的已有正式实验分别用五维均值优化。保存五项分数和预处理版本。",
+      "risk":"没有显式时长、歌词或响度约束。评分增长不等于听感改善；检查增益、削波、噪声、截断和未见生成器。",
+      "sources":[{"label":"官方 scorer / axes","url":"https://github.com/ASLP-lab/SongEval"},{"label":"论文","url":"https://arxiv.org/abs/2505.10793"}]
+    },
+    {
+      "id":"musecritic", "name":"MuseCritic · critique then score", "role":"审美 · 本站训练目标", "definition":"先生成自然语言审美 critique，再由 reward head 输出五项连续分数 (1,5)，本轮取均值。五轴沿用 SongEval rubric；区别在模型与 critique-then-score 机制，不是另造五个维度。",
+      "use":"官方 Muse-GRPO 可参考；本站 YuE2 已使用固定 PCM24-FLAC 评分链。它和 SongEval 共享标注来源，不是完全独立的人类真值。",
+      "risk":"检查 critique 随机性、I/O 格式和预处理。本站曾实测近似相同 WAV / FLAC 评分不一致；评分文件 hash 与公开 MP3 hash 分别保存，不能用 MP3 替换训练评分链。",
+      "sources":[{"label":"代码 / GRPO","url":"https://github.com/WuqnEl/MuseCritic"},{"label":"论文","url":"https://arxiv.org/abs/2608.11755"},{"label":"数据来源","url":"https://github.com/WuqnEl/MuseCritic/tree/main/dataset"}]
+    },
+    {
+      "id":"cmirm", "name":"CMI-RM · quality + alignment", "role":"条件匹配 · 候选 reward", "definition":"模型的单样本 API 输出 quality 与 alignment；条件可含 text、lyrics、reference audio。CMI-RewardBench 是评测框架，CMI-Pref 是偏好数据，CMI-RM 才是 scorer。",
+      "use":"适合检验组合指令，不只音频审美；先按每种输入 mask 核验。本站尚未开展此 GRPO，权重/组合系数需 validation 选择。",
+      "risk":"RM 的训练来源与当前 CMI 条件可能重叠，不能称为独立 test evaluator。条件缺失、同源偏好和评分捷径都需审计。",
+      "sources":[{"label":"官方 benchmark / RM","url":"https://github.com/Haiwen-Xia/CMI-RewardBench"},{"label":"单样本 API","url":"https://github.com/Haiwen-Xia/CMI-RewardBench/blob/main/baselines/inference.py"},{"label":"权重","url":"https://huggingface.co/HaiwenXia/CMI-RM"}]
+    },
+    {
+      "id":"audiobox", "name":"Audiobox Aesthetics", "role":"音质 / 审美 · 独立检查候选", "definition":"四轴：Content Enjoyment (CE)、Content Usefulness (CU)、Production Complexity (PC)、Production Quality (PQ)。通用音频评分，不是歌曲五轴。",
+      "use":"Muse 和 WildSongBench 采用的评估家族；PQ / CE 可作辅助 reward 候选，本站尚未训练。优先报告单项，而不是不加解释取四轴均值。",
+      "risk":"复杂度并非越高越好，CU 不等于歌词忠实度；不约束指令。优化前测试增益/限幅/静音与短片段敏感性。",
+      "sources":[{"label":"官方代码","url":"https://github.com/facebookresearch/audiobox-aesthetics"},{"label":"权重 / 四轴定义","url":"https://huggingface.co/facebook/audiobox-aesthetics"}]
+    },
+    {
+      "id":"alignment", "name":"MuQ-MuLan / CLAP similarity", "role":"文本匹配 · 代理 reward", "definition":"音乐与 style text 的 embedding 相似度。MuQ-MuLan 支持中英、要求 24 kHz；CLAP 是另一模型家族，分数和预处理不能混用。",
+      "use":"在公开歌曲论文中常作客观 style-alignment 指标；可做辅助项。只传 style description，不把相似度当逐字歌词匹配。本站正式目标没有此项。",
+      "risk":"标签和整体音色可升分但歌词仍错；对否定、时序、声部细节不可靠。不要最大化所有标签或直接跨 encoder 比较。",
+      "sources":[{"label":"MuQ-MuLan 代码 / 许可","url":"https://github.com/tencent-ailab/MuQ"},{"label":"CLAP 代码","url":"https://github.com/LAION-AI/CLAP"},{"label":"Muse 评估协议","url":"https://arxiv.org/html/2601.03973v1#S5.SS2"}]
+    },
+    {
+      "id":"lyrics", "name":"ASR → PER / WER / CER", "role":"歌词准确度 · metric / 设计候选", "definition":"对给定歌词与转录结果做 phoneme / word / character edit distance。PER 越低越好；拟作 reward 时可设计 1 − min(1, PER)，这不是已跑目标。",
+      "use":"SongGen、Muse、LeVo、WildSongBench 都报告歌词错误率。固定 ASR、语言、标点/拼音标准化和作用片段；可用 HeartTranscriptor 作为唱词转录候选。",
+      "risk":"唱词 ASR 自身会错、会幻觉；未唱的后半首不应被悄悄删掉。短片段需预先固定对应歌词范围，整首需计漏唱、重复与截断。",
+      "sources":[{"label":"Muse PER 说明","url":"https://arxiv.org/html/2601.03973v1#S5.SS2"},{"label":"WSB PER protocol","url":"https://huggingface.co/datasets/m-a-p/WildSongBench"},{"label":"HeartTranscriptor","url":"https://github.com/HeartMuLa/heartlib"}]
+    },
+    {
+      "id":"signal", "name":"Duration / silence / clipping guards", "role":"自研约束 · 不是审美真值", "definition":"有效音频、时长、静音率、峰值/削波与响度漂移检测；无效输出保留失败记账。RL 的 KL 另作 policy 约束，不混称音频质量分。",
+      "use":"候选组合：审美 + 歌词 + style alignment，配合 signal guards；各项仅用 train/valid 固定校准。原有 SongEval / MuseCritic 单项实验不追认成组合目标。",
+      "risk":"低峰值不保证音质，长音或噪声可骗 coverage；不能强迫每首歌乐器越多越好。增益/静音/噪声/重复/删词等攻击先单项再组合审计。",
+      "sources":[{"label":"本站目标协议","url":"https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rewards/songeval-grpo-protocol.md"},{"label":"格式 / cross-reward 审计","url":"https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rl/grpo/runs/2026-10-01-yue2-musecritic-format-audit"}]
+    },
+    {
+      "id":"distribution", "name":"FAD / FD / embedding KL", "role":"分布指标 · 非逐候选 GRPO reward", "definition":"生成集与参考集 embedding / 分布比较；必须固定 encoder、样本数、音频长度与参考域。这里的 embedding KL 不是 policy KL。",
+      "use":"可作成组独立评估；没有唯一歌曲 waveform ground truth 时不追求样本级重建。训练中的 sampled reference-policy KL 单独画图。",
+      "risk":"小集合的分布估计不稳定；不能从单首 FAD 或 embedding KL 声称音乐变好，也不能拿它替代 GRPO 的 reference-policy 正则。",
+      "sources":[{"label":"FAD / audio metrics","url":"https://github.com/SonyCSLParis/audio-metrics"},{"label":"MusicGen 评估","url":"https://github.com/facebookresearch/audiocraft/blob/main/docs/MUSICGEN.md"}]
+    },
+    {
+      "id":"human", "name":"Blind paired listening", "role":"主观 test · 不冒充自动 reward", "definition":"同 prompt、长度与候选预算下盲听 A/B，分别问音乐性、音质、歌词、style adherence；允许 tie，记录听者与样本数。",
+      "use":"原始增益试听保留响度变化；另做同响度音质判断时明确另有校准，不能替换发布原件。优先用未参与选模的条件作最终判断。",
+      "risk":"少量挑选 demo 不能替代随机 test；评分员或展示者知道模型、选最好候选、重复曲目会引入偏差。本站没有新的人类偏好实验结果。",
+      "sources":[{"label":"YuE2 研究 / listening study","url":"https://arxiv.org/abs/2609.33757"},{"label":"SongGen 人类评价","url":"https://arxiv.org/abs/2502.13128"}]
+    }
+  ],
+  "datasets": [
+    {
+      "id":"cmi-pref", "name":"CMI-Pref", "kind":"Human preference / multimodal conditions",
+      "content":"当前官方卡：3,527 train votes / 500 test votes；四种模态。每行是投票，不是独立歌或唯一 ground truth。",
+      "protocol":"本站固定 revision：三模态来源 469 train 票；去重及 test 歌词隔离后 300 条条件，按歌词组 SHA 排序冻结 270 train / 30 valid；121 条三模态 official test 条件封存（125 票）。",
+      "boundary":"9:1 是我们预注册划分，不是官方 validation。GRPO 只取条件在线采样，没有消费 A/B preference label；当前模型投影 text+lyrics。全官方 test 不是只有 121 条。",
+      "sources":[{"label":"官方数据卡","url":"https://huggingface.co/datasets/HaiwenXia/cmi-pref"},{"label":"本站固定协议","url":"https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/rl/grpo/FORMAL-CMI-PREF.md"}]
+    },
+    {
+      "id":"cmi-pseudo", "name":"CMI-Pref-Pseudo", "kind":"Pseudo preference / larger candidate pool",
+      "content":"当前卡：56k generations、23 models、165k comparisons，其中 115k 由 Qwen3-Omni 标注；论文摘要的早期计数不能替代当前 release。",
+      "protocol":"提供 comparison train/test 元数据；按 prompt / reference source 分组核查后再训练 reward model 或 offline preference policy。扩大数据时另冻结新 manifest。",
+      "boundary":"不是 165k 人类票，也不是 165k 独立歌；不能与现有 CMI-Pref test 去重前混入 train。本站正式实验未用。CC BY-NC-SA 4.0。",
+      "sources":[{"label":"官方 release / 字段","url":"https://huggingface.co/datasets/HaiwenXia/cmi-pref-pseudo"},{"label":"论文","url":"https://arxiv.org/abs/2603.00610"}]
+    },
+    {
+      "id":"muse-data", "name":"Muse synthetic corpus", "kind":"Full-song SFT / reproducible data",
+      "content":"116k 中英合成歌，含 global / segment style、歌词、音频；作者声明 licensed SunoV5 synthetic corpus，数据卡 MIT。",
+      "protocol":"Muse 论文 §5.1：256 songs valid、100 songs test，其余 train；song-level disjoint。复现须核对实际 ID 文件，不能按任意 9:1 声称复现论文 split。",
+      "boundary":"适合 SFT 或新的独立 RL 条件库；Muse 基座已经见过其 train，不能把该 train 再当未见泛化 test。本站当前 CMI 实验未加入。",
+      "sources":[{"label":"音频 / 元数据","url":"https://huggingface.co/datasets/bolshyC/Muse"},{"label":"token training data","url":"https://huggingface.co/datasets/bolshyC/Muse_train"},{"label":"论文 split","url":"https://arxiv.org/html/2601.03973v1#S5.SS1"}]
+    },
+    {
+      "id":"wildsongbench", "name":"WildSongBench", "kind":"External full-song generation test",
+      "content":"192 text+lyrics prompts：94 中文 / 98 英文；test-only，音频不随 prompts 发布；无 reference-audio 输入。",
+      "protocol":"官方 standard：固定两组 seed，四次 ASR 估计 PER，再选低 PER 候选供全部 metric；YuE2 使用 legacy VAE / 指定版本。best-of-8 是另一预算，不可混排行。",
+      "boundary":"可增设外部测试，但不是当前 CMI 正式 test 的替代，不用于调 LR。本站固定单 seed replay 与官方 best-of-2 不等价，不能直接引用排行榜作本地结论。",
+      "sources":[{"label":"官方 prompts / evaluator / seeds","url":"https://huggingface.co/datasets/m-a-p/WildSongBench"},{"label":"YuE2 benchmark recipe","url":"https://github.com/multimodal-art-projection/YuE/blob/main/docs/benchmarks.md"}]
+    },
+    {
+      "id":"heartbeats", "name":"HeartBeats / HeartMuLa-Benchmark", "kind":"Lyrics + tags generation evaluation",
+      "content":"官方发布的跨语言、跨风格 AI-generated lyrics / tags；HeartMuLa 论文称 HeartBeats Benchmark，release 名 HeartMuLa-Benchmark。",
+      "protocol":"作为额外 generation evaluation prompts，遵守官方版本、输入字段与 generation budget；本次不宣称未知的官方 train/valid 数量。",
+      "boundary":"不是监督 audio target 或 reference-vocal pairs。公开论文能力和实际 3B 接口分开；本站没有在该 benchmark 上测量。",
+      "sources":[{"label":"官方 benchmark release","url":"https://modelscope.cn/datasets/HeartMuLa/HeartMuLa-Benchmark"},{"label":"官方 release 说明","url":"https://github.com/HeartMuLa/heartlib"}]
+    },
+    {
+      "id":"musiccaps-song", "name":"MusicCaps → SongGen subset", "kind":"Short-clip text-to-song evaluation",
+      "content":"原 MusicCaps 约 5.5k music-caption pairs；SongGen 论文选 326 个英文有声歌唱样本，另发布 MusicCaps_Test_Song。不是全 MusicCaps 都带准确歌词。",
+      "protocol":"保留官方 eval 子集；SongGen 自动补歌词/描述字段是特定预处理，需固定版本。短片段 FAD、style 与歌词评价分开。",
+      "boundary":"不是 60 秒整歌或原生三模态 RL 数据。下载来源及许可依原数据卡；不把公开 metadata 自动视为音频可再分发。本站未用于正式训练。",
+      "sources":[{"label":"原 MusicCaps","url":"https://www.kaggle.com/datasets/googleai/musiccaps"},{"label":"SongGen subset release","url":"https://huggingface.co/datasets/LiuZH-19/MusicCaps_Test_Song"},{"label":"SongGen 论文","url":"https://arxiv.org/abs/2502.13128"}]
+    },
+    {
+      "id":"songeval-data", "name":"SongEval / MuseCritic metadata", "kind":"Aesthetic scorer supervision / evaluation",
+      "content":"SongEval：2,399 complete songs、约 140h、16 expert raters、五项评分；MuseCritic 的 sft_train / rm_train / test 元数据引用 SongEval 音频。",
+      "protocol":"保留 evaluator 自己的 held-out 划分；评估 scorer 用 MSE / correlation，生成模型泛化另需未见条件、生成器与盲听。",
+      "boundary":"不等于 Lyrics2song 的完整 prompt RL train/valid/test。优化 SongEval 再用同源 MuseCritic 检查，不是完全独立验证。SongEval 数据 CC BY-NC-SA 4.0。",
+      "sources":[{"label":"SongEval 数据","url":"https://huggingface.co/datasets/ASLP-lab/SongEval"},{"label":"MuseCritic 数据 README","url":"https://github.com/WuqnEl/MuseCritic/tree/main/dataset"}]
+    },
+    {
+      "id":"cmi-rewardbench", "name":"CMI-RewardBench", "kind":"Reward-model benchmark · not generator training set",
+      "content":"统一 musicality、text–music alignment、compositional instruction alignment 的评测框架，整合 PAM-Music、MusicEval、MusicArena、CMI-Pref。",
+      "protocol":"按原数据 split、标注类型与子任务报告 correlation / pairwise accuracy，尤其区分四种模态；不能把 RM accuracy 当生成质量。",
+      "boundary":"框架、scorer 与数据名称分开；评测集和当前 CMI 条件可能有同源关系。上线新 reward 前先测基线、攻击、输入 mask；本站尚未跑此完整评测。",
+      "sources":[{"label":"官方 framework / datasets","url":"https://github.com/Haiwen-Xia/CMI-RewardBench"},{"label":"论文","url":"https://arxiv.org/abs/2603.00610"}]
+    }
+  ]
+}

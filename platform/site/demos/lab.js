@@ -138,14 +138,30 @@ function renderChoralDemo(data) {
 }
 
 function setView(view) {
-  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets', 'vocal-models', 'vocal-rewards'].includes(view) ? view : 'lyrics';
+  const aliases = {
+    'lyrics-models': ['models', 'lyrics'], 'vocal-models': ['models', 'vocal'],
+    'lyrics-rewards': ['reward-catalog', 'lyrics'], 'vocal-rewards': ['reward-catalog', 'vocal'],
+  };
+  const [route, task] = aliases[view] || [view, 'lyrics'];
+  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
+  let hash = chosen;
+  if (chosen === 'models' || chosen === 'reward-catalog') {
+    const root = document.querySelector(`#view-${chosen}`);
+    for (const panel of root.querySelectorAll('[data-reference-panel]')) {
+      panel.hidden = panel.dataset.referencePanel !== task;
+      if (panel.hidden) for (const audio of panel.querySelectorAll('audio')) audio.pause();
+    }
+    for (const button of root.querySelectorAll('[data-reference-task]')) button.setAttribute('aria-pressed', String(button.dataset.referenceTask === task));
+    root.querySelector('[data-reference-eyebrow]').textContent = `${task === 'lyrics' ? 'Lyrics2song' : 'Vocal2song'} · ${chosen === 'models' ? 'model' : 'reward'} reference`;
+    hash = `${task}-${chosen === 'models' ? 'models' : 'rewards'}`;
+  }
   for (const section of document.querySelectorAll('.lab-view')) {
     section.hidden = section.id !== `view-${chosen}`;
     if (section.hidden) for (const audio of section.querySelectorAll('audio')) audio.pause();
   }
   for (const tab of document.querySelectorAll('.lab-tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === chosen));
   document.querySelector(`.lab-tab[data-view="${chosen}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
-  if (location.hash !== `#${chosen}`) history.replaceState(null, '', `#${chosen}`);
+  if (location.hash !== `#${hash}`) history.replaceState(null, '', `#${hash}`);
 }
 
 function renderChoral(data) {
@@ -965,6 +981,10 @@ function renderSongEval(data) {
 }
 
 for (const tab of document.querySelectorAll('.lab-tab')) tab.addEventListener('click', () => setView(tab.dataset.view));
+for (const button of document.querySelectorAll('[data-reference-task]')) button.addEventListener('click', () => {
+  const family = button.closest('.lab-view').id === 'view-models' ? 'models' : 'rewards';
+  setView(`${button.dataset.referenceTask}-${family}`);
+});
 for (const button of document.querySelectorAll('[data-dataset-task]')) {
   button.addEventListener('click', () => {
     const task = button.dataset.datasetTask;

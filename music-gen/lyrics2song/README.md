@@ -5,6 +5,9 @@
 - [Models](models/README.md) start with Muse and YuE2 as different-size systems, not a pure parameter-count causal comparison.
 - [Rewards](rewards/README.md) specify independent SongEval, MuseCritic, CMI-RM and audio-aesthetic arms.
 - [RL](rl/README.md) separates DPO from GRPO and requires a true base-versus-post checkpoint comparison.
+- [Public research map](research/README.md) surveys native model inputs,
+  post-training feasibility, reward families and dataset protocols, with sources
+  and matching Models / Rewards / Dataset Protocol panels in the online demo.
 
 ## Formal CMI-Pref Experiments
 
@@ -12,15 +15,18 @@ The [2026-10-12 recovery](rl/grpo/runs/2026-10-12-formal-recovery/README.md)
 uses frozen 270 train / 30 validation / 121 sealed official-test conditions.
 Both models receive their native text+lyrics projection, without reference
 audio. YuE2-SongEval and YuE2-MuseCritic each have three audited 270-step
-learning-rate arms. Muse's two completed and four failed-partial arms are
-reported with their real optimizer-step counts, not fabricated final scores.
+learning-rate arms. Earlier Muse small-LR arms remain archived; six replacement
+arms use the matched 2e-5 / 1e-4 / 3e-4 grid. The live registry records actual
+status, not fabricated final scores, and independent Muse inference is paused.
 
 The [public demo](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics)
 shows combined training reward beside sampled training KL, separate fixed
 validation tables, and three paired long-inference conditions with one frozen
-baseline per model. Original audio is stored in a GitHub release with SHA256
-bindings; plots use fixed waveform bounds and mel scale. Long replay is not
-short validation, and reward increases are not listening-based quality claims.
+baseline per model when replay is available. Only MP3 listening copies are
+published in the GitHub release; lossless scoring originals remain private,
+with separate SHA256 bindings. Plots use fixed waveform bounds and mel scale.
+Long replay is not short validation, and reward increases are not
+listening-based quality claims.
 
 ## Earlier Engineering Pilots
 

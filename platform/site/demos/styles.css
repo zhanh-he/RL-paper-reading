@@ -241,6 +241,15 @@ button.source-link { padding: 0; border: 0; background: none; cursor: pointer; f
 .midi-empty strong { color: var(--ink); font-size: .84rem; }
 .midi-empty p { margin: 3px 0 0; font-size: .76rem; line-height: 1.5; }
 .model-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.reference-controls { margin-top: 8px; }
+.reference-entry-links { margin-bottom: 18px; }
+.lab-table.reference-table table { min-width: 980px; table-layout: fixed; }
+.reference-table th:first-child { width: 24%; }
+.reference-table td { vertical-align: top; line-height: 1.65; }
+.reference-category { display: block; margin-top: 7px; color: var(--ink-muted); font-size: .73rem; }
+.reference-sources { display: flex; flex-wrap: wrap; column-gap: 12px; row-gap: 4px; margin-top: 8px; font-size: .73rem; }
+.reference-family-controls .segmented { flex-wrap: wrap; max-width: 100%; }
+.reference-family-controls .segmented button { min-width: 0; }
 .lab-footer { margin-top: 42px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-muted); font-size: .75rem; line-height: 1.5; }
 .lab-footer a { color: var(--blue); }
 @media (max-width: 850px) { .choral-grpo-grid { grid-template-columns: repeat(min(var(--choral-columns, 4), 2), minmax(0, 1fr)); } }
