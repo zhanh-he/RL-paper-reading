@@ -1,4 +1,7 @@
 const $ = (selector) => document.querySelector(selector);
+const midiRewardsTemplate = $('#midi-rewards-template');
+$('#choral-midi-rewards').append(midiRewardsTemplate.content);
+midiRewardsTemplate.remove();
 const fmt = (value, digits = 4) => Number(value).toFixed(digits);
 const signed = (value, digits = 3) => `${value >= 0 ? '+' : ''}${fmt(value, digits)}`;
 const satbColors = ['#e3484f', '#ea8b27', '#00a4ad', '#315fd2'];
@@ -141,9 +144,11 @@ function setView(view) {
   const aliases = {
     'lyrics-models': ['models', 'lyrics'], 'vocal-models': ['models', 'vocal'],
     'lyrics-rewards': ['reward-catalog', 'lyrics'], 'vocal-rewards': ['reward-catalog', 'vocal'],
+    'choral-models': ['models', 'choral'], 'choral-rewards': ['reward-catalog', 'choral'],
+    rewards: ['reward-catalog', 'choral'],
   };
   const [route, task] = aliases[view] || [view, 'lyrics'];
-  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'rewards', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
+  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
   let hash = chosen;
   if (chosen === 'models' || chosen === 'reward-catalog') {
     const root = document.querySelector(`#view-${chosen}`);
@@ -152,7 +157,7 @@ function setView(view) {
       if (panel.hidden) for (const audio of panel.querySelectorAll('audio')) audio.pause();
     }
     for (const button of root.querySelectorAll('[data-reference-task]')) button.setAttribute('aria-pressed', String(button.dataset.referenceTask === task));
-    root.querySelector('[data-reference-eyebrow]').textContent = `${task === 'lyrics' ? 'Lyrics2song' : 'Vocal2song'} · ${chosen === 'models' ? 'model' : 'reward'} reference`;
+    root.querySelector('[data-reference-eyebrow]').textContent = `${{ lyrics: 'Lyrics2song', vocal: 'Vocal2song', choral: 'Choral transcription' }[task]} · ${chosen === 'models' ? 'model' : 'reward'} reference`;
     hash = `${task}-${chosen === 'models' ? 'models' : 'rewards'}`;
   }
   for (const section of document.querySelectorAll('.lab-view')) {

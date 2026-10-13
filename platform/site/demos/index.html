@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261013-lyrics-reference"></script>
+    <script type="module" src="./lab.js?v=20261013-choral-reference"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -47,7 +47,6 @@
         <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
         <button class="lab-tab" type="button" data-view="overview" aria-selected="false">Overview</button>
         <button class="lab-tab" type="button" data-view="songeval" aria-selected="false">SongEval audit</button>
-        <button class="lab-tab" type="button" data-view="rewards" aria-selected="false">MIDI rewards</button>
         <button class="lab-tab" type="button" data-view="datasets" aria-selected="false">Dataset Protocol</button>
         <button class="lab-tab" type="button" data-view="models" aria-selected="false">Models</button>
         <button class="lab-tab" type="button" data-view="reward-catalog" aria-selected="false">Rewards</button>
@@ -58,7 +57,7 @@
         <div class="finding-grid">
           <article class="finding"><span class="state measured">实测 · 30 首短片段</span><strong id="headline-grpo">Loading</strong><p>弱 ChoralStream frame head 用 96 首训练歌曲做 GRPO 后，seed 29 测试 frame F1 的变化；另两次训练 seed 同向。</p><a href="#choral" data-open-view="choral">看对照实验 <span aria-hidden="true">↗</span></a></article>
           <article class="finding"><span class="state measured">监督对照</span><strong id="headline-bce">Loading</strong><p>相同起点和歌曲上的 weighted BCE 更强。GRPO 的提升不能单独讲成最优训练方法。</p><a href="#choral" data-open-view="choral">看完整指标 <span aria-hidden="true">↗</span></a></article>
-          <article class="finding"><span class="state diagnostic">四例 MIDI 审计</span><strong id="headline-swap">Loading</strong><p>声部交换时普通 onset 匹配看不见错误；track-aware note reward 能识别。</p><a href="#rewards" data-open-view="rewards">看 reward 压测 <span aria-hidden="true">↗</span></a></article>
+          <article class="finding"><span class="state diagnostic">四例 MIDI 审计</span><strong id="headline-swap">Loading</strong><p>声部交换时普通 onset 匹配看不见错误；track-aware note reward 能识别。</p><a href="#choral-rewards" data-open-view="choral-rewards">看 reward 压测 <span aria-hidden="true">↗</span></a></article>
         </div>
         <div class="case-status">
           <div><h3>三个 case 的进度</h3><p>模型推理、reward 验证和 GRPO 训练是不同的里程碑。</p></div>
@@ -70,6 +69,7 @@
 
       <section class="lab-view" id="view-choral" hidden>
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Local measured result</p><h2>Choral singing transcription: GRPO</h2></div><span class="state measured">实测 · lab5090</span></div>
+        <nav class="model-links reference-entry-links" aria-label="Choral transcription reference pages"><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="choral">Dataset Protocol ↗</a><a class="source-link" href="#choral-models" data-open-view="choral-models">Models ↗</a><a class="source-link" href="#choral-rewards" data-open-view="choral-rewards">Rewards · MIDI 审计 ↗</a></nav>
         <div class="source-grid"><div class="source-block"><span class="source-label">Event-head held-out test</span><strong>16 首训练、8 首未见原曲</strong><p>每首一段 5.12 秒 YouChorale-Pro；每次消融同一模型起点与划分。只公开聚合指标，不公开原始音频、逐首 ID 或权重。</p></div><div class="source-block"><span class="source-label">Public replay</span><strong>原创 10.2 秒 SATB 合成歌曲</strong><p>同一输入解出冻结起点及六种 reward 的 1/100/300/1000 步 MIDI；ACE Studio 用同样四位歌手回放。此歌不计入 8 首测试指标。</p></div></div>
         <section class="choral-training" aria-label="ChoralGRPO training traces">
           <div class="choral-training-heading"><h3>训练过程 · Combined reward / KL</h3><span>1–1000 步 · 25 步均值</span></div>
@@ -282,7 +282,20 @@
           <p class="section-copy">ChoralStream frame-head pilot 与 event-head reward 消融是两套独立实验，不能混用分母或把公开合成试听算入测试集。</p>
           <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Experiment</th><th>Train</th><th>Validation</th><th>Held-out test</th><th>Unit</th></tr></thead><tbody><tr><td>Frame-head pilot</td><td>96 首</td><td>28 首</td><td>30 首</td><td>YouChorale-Pro；每首固定一段 5.12 秒，原曲 ID 不交叉。</td></tr><tr><td>Event-head reward ablation</td><td>16 首</td><td>未设独立 validation</td><td>8 首</td><td>YouChorale-Pro；每首一段 5.12 秒；同一划分与冻结起点比较 reward 臂。</td></tr><tr><td>Public MIDI/audio replay</td><td>不参与训练</td><td>不参与选择</td><td>不计入测试</td><td>原创合成 SATB 歌曲；用于控制输入的主观试听。</td></tr></tbody></table></div>
           <p class="stage-context">原始 YouChorale-Pro 音频、逐首 ID 与模型权重不在公开网站发布。两套实验的 F1 分别报告；ICASSP 文章的 YouChorale test 表是参考结果，不是这里的 GRPO 测量。</p>
+          <h3 class="subsection-heading">公开数据 · 先看标注层级</h3>
+          <p class="section-copy">四条真实 SATB 声部需要对齐的 <strong>note onset / offset / pitch / part</strong>；只有多 F0、分轨音频或总谱时，必须另做同步和音符边界核验。以下为数据来源，不是本站新增实验。</p>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>Dataset / source</th><th>现成标签</th><th>建议角色</th><th>核验重点</th></tr></thead><tbody>
+            <tr><td><a href="https://zenodo.org/records/21777039" target="_blank" rel="noreferrer">PawChorale · 2026</a></td><td>200 部作品；混音、可用声部分轨、逐声部对齐 MIDI / MusicXML</td><td>优先的公开 part-aware 音符训练/外部测试候选</td><td>并非每首都有四部；按作品和谱源分组，逐条核对版权与对齐质量</td></tr>
+            <tr><td><a href="https://zenodo.org/records/2649950" target="_blank" rel="noreferrer">Choral Singing Dataset</a> / <a href="https://zenodo.org/records/5848990" target="_blank" rel="noreferrer">ESMUC</a></td><td>歌手分轨、F0 与音符；CSD 的声部 MIDI 为半同步</td><td>小规模真实歌声适配、声部和边界审计</td><td>分别只有 3 首作品；CSD 需复核音频-MIDI 对齐，ESMUC 有特殊双声部编制</td></tr>
+            <tr><td><a href="https://zenodo.org/records/5851070" target="_blank" rel="noreferrer">Cantoría</a> / <a href="https://www.audiolabs-erlangen.de/resources/MIR/2020-DagstuhlChoirSet" target="_blank" rel="noreferrer">Dagstuhl ChoirSet</a></td><td>真实分轨；Cantoría 自动 F0，DCS 有对齐总谱与自动 F0</td><td>跨录音域 F0、声部分配和听感测试</td><td>不要把自动 F0 或对齐总谱直接当人工逐音符真值</td></tr>
+            <tr><td><a href="https://github.com/mtg/choralsynth" target="_blank" rel="noreferrer">ChoralSynth</a> / <a href="https://magenta.tensorflow.org/datasets/cocochorales" target="_blank" rel="noreferrer">CocoChorales</a></td><td>合成音频与源 MIDI；后者是四声部乐器合奏</td><td>结构预训练与受控错误注入</td><td>合成到真实歌声的域差；CocoChorales 不能当真实合唱测试</td></tr>
+          </tbody></table></div>
+          <details class="choral-deep-dive"><summary>SATB 数据 pipeline · 训练、验证与封存测试</summary>
+            <ol class="section-copy"><li>按作品、谱源、歌手及录音会话分组，先划 train / valid / sealed test，再切 5.12 秒片段；同歌不同 take 和移调版本不跨集合。</li><li>保留每个窗口的 active-part mask；非四部齐唱、声部休止和双 S/T 编制显式标记，不用空轨填音。</li><li>对每个声部检查 MIDI 时间原点、速度变化、音高范围与音频对齐；CSD 半同步 MIDI 和自动 F0 只在人工抽查后升级为强标签。</li><li>训练可混合合成结构数据与少量真实对齐数据；valid 选阈值与 checkpoint，sealed test 报四声部宏平均及逐声部 frame / onset / onset+offset F1，另列域外测试。</li></ol>
+            <p class="section-copy">新的公开数据来源不追认到现有 YouChorale-Pro 消融。PawChorale 的作品可能与公开谱源共享曲目；跨库评估前仍需作品级去重。</p>
+          </details>
           <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/README.md" target="_blank" rel="noreferrer">Frame-head protocol ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/README.md" target="_blank" rel="noreferrer">Event-head protocol ↗</a></div>
+          <div class="model-links"><a class="source-link" href="#choral-models" data-open-view="choral-models">Choral Models ↗</a><a class="source-link" href="#choral-rewards" data-open-view="choral-rewards">Choral Rewards ↗</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/research/README.md" target="_blank" rel="noreferrer">完整调研与数据边界 ↗</a></div>
         </div>
       </section>
 
@@ -294,7 +307,7 @@
         <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/rewards" target="_blank" rel="noreferrer">Audit code and aggregate receipt ↗</a><a class="source-link" href="https://github.com/ASLP-lab/SongEval" target="_blank" rel="noreferrer">SongEval official repository ↗</a></div>
       </section>
 
-      <section class="lab-view" id="view-rewards" hidden>
+      <template id="midi-rewards-template">
         <div class="section-intro"><div><p class="eyebrow">Case 03 · Reward diagnostic</p><h2>What should a SATB reward penalize?</h2></div><span class="state measured">训练消融 + 诊断</span></div>
         <h3 class="subsection-heading">真实单项 GRPO · 同一首歌</h3>
         <p class="section-copy">这里仅展示五个保留的单项 reward 与已完成的 Combined：它们从同一 ChoralStream 起点训练，在同一首原创合唱输入上重新解码。这一首歌用于听和看错误类型，不等于 8 首未见歌曲的平均性能。零方差 group 会跳过优化，因此下表另列有效更新次数。</p>
@@ -317,7 +330,7 @@
         <div class="compare-grid" id="satb-badcase-audio"></div>
         <p class="stage-context">两版均由 ACE Studio 使用相同四位歌手、相同 la 歌词和相同导出设置渲染；不同 MIDI 可下载核对。ACE 合成过程可能有自身随机性，音频用于听感反例，不用于上表 MIDI 指标计算。</p>
         <a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rewards" target="_blank" rel="noreferrer">Metric definitions, tests and aggregate audit <span aria-hidden="true">↗</span></a>
-      </section>
+      </template>
 
       <section class="lab-view" id="view-vocal" hidden>
         <div class="section-intro"><div><p class="eyebrow" id="vocal-view-eyebrow">Case 02 · Mock replay</p><h2>Vocal → accompaniment</h2></div><div class="section-actions" id="vocal-mock-actions"><span class="state measured">Mock 实测 · RTX 5090</span><button class="button button-secondary" type="button" data-jump="lada-compare"><i data-lucide="headphones" aria-hidden="true"></i>试听样本</button></div></div>
@@ -358,7 +371,7 @@
 
       <section class="lab-view" id="view-models" hidden>
         <div class="section-intro"><div><p class="eyebrow" data-reference-eyebrow>Lyrics2song · model reference</p><h2>Models</h2></div><span class="state diagnostic">官方发布 · 可训练性</span></div>
-        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Model reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button></div></div>
+        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Model reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button><button type="button" data-reference-task="choral" aria-pressed="false">Choral transcription</button></div></div>
         <div data-reference-panel="lyrics">
           <div class="model-links"><a class="source-link" href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">Dataset Protocol ↗</a><a class="source-link" href="#lyrics-rewards" data-open-view="lyrics-rewards">Lyrics Rewards ↗</a></div>
           <h3 class="subsection-heading">Open-weight song models · 默认接口优先</h3>
@@ -384,11 +397,27 @@
         <h3 class="subsection-heading">Inference baselines · 模型接通测试</h3>
         <div><p class="section-copy">以下 ACE-Step / AnyAccomp 使用另一条合成元音引导声，只是模型接通测试；不能和 Emma / LaDA 主实验作同输入提升比较。</p><div class="stage-rail" id="vocal-stage-rail" aria-label="Other vocal model baselines"></div><div class="compare-grid" id="vocal-compare"></div><div class="protocol-strip"><span><strong>16 s</strong> input / output</span><span><strong>29</strong> inference seed</span><span><strong>50</strong> inference steps</span><span><strong>0</strong> GRPO updates</span></div><div class="protocol-strip"><span><strong id="vocal-coverage">—</strong> AnyAccomp coverage</span><span><strong id="vocal-beat">—</strong> Beat-v2 F1</span><span><strong id="vocal-beat-count">—</strong> detected vocal beats</span></div></div>
         </div>
+        <div data-reference-panel="choral" hidden>
+          <div class="model-links"><a class="source-link" href="#choral" data-open-view="choral">Choral GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="choral">Dataset Protocol ↗</a><a class="source-link" href="#choral-rewards" data-open-view="choral-rewards">Rewards ↗</a></div>
+          <h3 class="subsection-heading">从 F0 到四条 MIDI · 任务接口不同</h3>
+          <p class="section-copy">“转录出音高”“输出一个混合 MIDI”“分出乐器轨”“按 S/A/T/B 命名音符轨”是四个不同终点。下表按输出能力而不是跨论文 F1 排名；只有最后一类能直接计本站的 SATB part-aware 完整音符 F1。</p>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>工作 / 原始来源</th><th>原生输出</th><th>在本站的用途与边界</th></tr></thead><tbody>
+            <tr><td><a href="https://arxiv.org/abs/2610.09861" target="_blank" rel="noreferrer">PawCT · 2026 preprint</a> / <a href="https://hanyu-meng.github.io/Paw_Choral_AMT_Demo/" target="_blank" rel="noreferrer">demo</a></td><td>part presence + S/A/T/B onset、offset、frame；逐声部 MIDI</td><td>最接近直接目标的架构与指标参照；论文标注为 submitted to ICASSP 2027，不能写作已录用</td></tr>
+            <tr><td><a href="https://ismir.net/conferences/ismir-2024/" target="_blank" rel="noreferrer">Yu &amp; Duan · ISMIR 2024</a></td><td>合唱音符级转录，合并 note 轨</td><td>choral note 检出基线；须另加声部分配，不能直接与 part-aware 分数比较</td></tr>
+            <tr><td><a href="https://arxiv.org/abs/2607.08168" target="_blank" rel="noreferrer">MuScriptor · 2026</a> / <a href="https://github.com/muscriptor/muscriptor" target="_blank" rel="noreferrer">code + weights</a></td><td>多乐器事件 token / MIDI 轨</td><td>开放权重、可研究 GRPO；通用乐器轨不等于 SATB 标签。本站只有 pitch-only smoke，未有 part-aware 多歌结论</td></tr>
+            <tr><td><a href="https://openreview.net/forum?id=iMSjopcOn0p" target="_blank" rel="noreferrer">MT3 · ICLR 2022</a> / <a href="https://github.com/magenta/mt3" target="_blank" rel="noreferrer">code</a></td><td>多任务多乐器 MIDI 事件</td><td>预训练推理基线；官方仓库注明训练不易直接支持，GRPO 需额外 trainer 与 SATB 映射</td></tr>
+            <tr><td><a href="https://arxiv.org/abs/2407.04822" target="_blank" rel="noreferrer">YourMT3+ · 2024</a> / <a href="https://github.com/mimbres/YourMT3" target="_blank" rel="noreferrer">code</a></td><td>多乐器 note 轨</td><td>跨数据集增强思路；PawCT 使用其改编版作对照，不能把原 checkpoint 当原生合唱模型</td></tr>
+            <tr><td><a href="https://arxiv.org/abs/2009.04172" target="_blank" rel="noreferrer">Cuesta et al. · multi-F0</a> / <a href="https://github.com/helenacuesta/multif0-estimation-polyvocals" target="_blank" rel="noreferrer">code</a></td><td>混合歌声多 F0 / pitch salience</td><td>低层音高诊断或两阶段前端；没有音符 onset / offset / 声部标签</td></tr>
+            <tr><td><a href="https://doi.org/10.5334/tismir.121" target="_blank" rel="noreferrer">Cuesta &amp; Gómez · Voice Assignment</a> / <a href="https://github.com/helenacuesta/voas-vocal-quartets" target="_blank" rel="noreferrer">code</a></td><td>四个声部的音高分配，输入为预提取 salience</td><td>multi-F0 → voice assignment 两阶段基线；仍需 onset / offset 分段才成为 SATB MIDI</td></tr>
+          </tbody></table></div>
+          <p class="stage-context">优先顺序：PawCT / 当前 ChoralStream 直接 SATB；MuScriptor / MT3 / YourMT3+ 作迁移基线；multi-F0 + VA 作声部与调谐误差拆解。不同输入、数据与轨道语义的论文数值不可直接合并排名。</p>
+          <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/research/README.md" target="_blank" rel="noreferrer">文献笔记与实验建议 ↗</a></div>
+        </div>
       </section>
 
       <section class="lab-view" id="view-reward-catalog" hidden>
         <div class="section-intro"><div><p class="eyebrow" data-reference-eyebrow>Lyrics2song · reward reference</p><h2>Rewards</h2></div><span class="state diagnostic">目标 · 评估 · 反例</span></div>
-        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Reward reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button></div></div>
+        <div class="metric-controls reference-controls"><span class="control-label">Task</span><div class="segmented" role="group" aria-label="Reward reference task"><button type="button" data-reference-task="lyrics" aria-pressed="true">Lyrics2song</button><button type="button" data-reference-task="vocal" aria-pressed="false">Vocal2song</button><button type="button" data-reference-task="choral" aria-pressed="false">Choral transcription</button></div></div>
         <div data-reference-panel="lyrics">
           <div class="model-links"><a class="source-link" href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">Dataset Protocol ↗</a><a class="source-link" href="#lyrics-models" data-open-view="lyrics-models">Lyrics Models ↗</a></div>
           <h3 class="subsection-heading">Reward map · aesthetics / alignment / lyrics / guards</h3>
@@ -438,6 +467,20 @@
         </tbody></table></div>
         <div class="vocal-attack-audio"><div><strong>Beat reward 反例 · 构造 click，不是模型输出</strong><p>同一 6 秒 click 轨：Beat-v2 = 1.000，Beat-v5 = 0.617；v5 冻结基线约 0.226。高 confidence 也不能证明这是音乐伴奏。</p></div><audio controls preload="metadata" src="./audio/beat_v2_constructed_click_6s.mp3" aria-label="构造 click 节拍攻击试听"></audio></div>
         <p class="stage-context">下一轮候选组合：自研 Beat + Coverage + 经配对验证的和声/编曲项，配合开源音质评分及峰值、削波、人声相对响度约束；每项先做单独攻击测试，再用未见歌曲和同响度盲听检验组合。和声/编曲项目前仍是设计，不是已运行结果。</p>
+        </div>
+        <div data-reference-panel="choral" hidden>
+          <div class="model-links"><a class="source-link" href="#choral" data-open-view="choral">Choral GRPO ↗</a><a class="source-link" href="#datasets" data-open-view="datasets" data-dataset-target="choral">Dataset Protocol ↗</a><a class="source-link" href="#choral-models" data-open-view="choral-models">Models ↗</a></div>
+          <h3 class="subsection-heading">Reward map · 论文指标与本站训练目标</h3>
+          <p class="section-copy">PawCT 使用 part-aware 的 onset / offset / frame 与 part-presence 目标；多 F0 和声部分配工作测量的是不同终点。本站的 GRPO reward 是参考 SATB MIDI 上的七项加权分数；下面的五个单项训练臂与受控反例均是本站实测或诊断，不是论文直接报告的 GRPO 结果。</p>
+          <div class="table-shell lab-table" tabindex="0"><table><thead><tr><th>信号</th><th>文献/实现连接</th><th>适合的角色</th><th>单项优化风险</th></tr></thead><tbody>
+            <tr><td>SATB onset + complete-note F1</td><td><a href="https://arxiv.org/abs/2610.09861" target="_blank" rel="noreferrer">PawCT</a> 的 part-aware note 评价；本站 <a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/rewards/note_metrics.py" target="_blank" rel="noreferrer">一对一匹配</a></td><td>主 reward / 封存测试；起点 50 ms，offset max(50 ms, 20% 音长)</td><td>只看 onset 会缩短音；只看完整音符可能偏向易音，牺牲弱声部</td></tr>
+            <tr><td>Frame + activity / part presence</td><td><a href="https://arxiv.org/abs/2009.04172" target="_blank" rel="noreferrer">multi-F0</a> 与 <a href="https://arxiv.org/abs/2610.09861" target="_blank" rel="noreferrer">PawCT</a> 的帧/声部目标</td><td>辅助连续性及活跃声部 coverage；只对参考活跃窗口比较</td><td>frame 看不见切碎长音，coverage 看不见声部内多余八度</td></tr>
+            <tr><td>Per-voice floor / precision / fragmentation</td><td>本站 <a href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-trans/choral-singing/rewards" target="_blank" rel="noreferrer">组合 reward</a> 与反例审计</td><td>约束漏 Bass、过填与短碎音</td><td>precision-only 可删难音；continuity-only 在静音时也可能高分</td></tr>
+            <tr><td>F0 accuracy / voice assignment</td><td><a href="https://github.com/helenacuesta/multif0-estimation-polyvocals" target="_blank" rel="noreferrer">Cuesta multi-F0</a> + <a href="https://github.com/helenacuesta/voas-vocal-quartets" target="_blank" rel="noreferrer">VoAS</a></td><td>两阶段诊断或辅助一致性实验；本站尚未作为 GRPO reward</td><td>F0 正确不保证 note segmentation，交换 S/A 也可能被 part-agnostic 匹配漏报</td></tr>
+          </tbody></table></div>
+          <details class="choral-deep-dive"><summary>组合权重与评估边界</summary><p class="section-copy">本站已跑的加权目标：onset .25、onset+offset .25、frame .15、active-voice .10、最弱声部完整音符 .10、完整音符 precision .10、1−fragmentation .05。逐项量表都在 [0, 1]；不能据此推断组合必然不被利用。报告四声部宏平均、逐部 recall、frame / onset / onset+offset F1、有效更新、KL 与音符数；同一输入配对试听作主观核查。</p></details>
+          <div id="choral-midi-rewards"></div>
+          <div class="model-links"><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-trans/choral-singing/research/README.md" target="_blank" rel="noreferrer">调研笔记 / 来源 ↗</a></div>
         </div>
       </section>
 
