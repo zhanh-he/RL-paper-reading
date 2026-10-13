@@ -139,12 +139,12 @@ function select(next) {
     : arm.status === 'queued' ? '正式训练已提交 · 排队中'
     : `${arm.verified_train_steps} 步已核验${arm.status.includes('failed') ? ' · 中途失败' : ' · 固定验证尚待回收'}`;
   $('status').className = `state ${arm.status === 'verified-complete' ? 'measured' : 'diagnostic'}`;
-  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host}${arm.job_id ? ` · ${arm.project} · ${arm.job_id} · priority ${arm.priority}` : ''} · ${arm.failure_reason || '官方 test 保持封存；结果不代表已听辨的音质提升。'}`;
+  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host}${arm.job_id ? ` · ${arm.project} · ${arm.job_id} · priority ${arm.priority}` : ''} · ${arm.failure_reason || '训练 / 验证与新客观 test 表分开；结果不代表已听辨的音质提升。'}`;
   $('reward-title').textContent = `优化目标 · ${arm.reward} 五维均值`;
   $('reward-definition').textContent = arm.reward === 'SongEval'
     ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。训练与短片段验证使用 WAV 原件评分；网页只提供 MP3 试听副本。短片段分数不归到独立长音频上。'
     : 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。MuseCritic 的含义为整体连贯性、整体音乐性、可记忆性、歌曲结构清晰度、人声呼吸与分句自然度；先生成评论，再用评分头预测。它不是 SongEval，也不与其数值横比。本实验评分私有归档的 PCM24-FLAC 原件；公开音频只使用 MP3 试听副本，不宣称压缩文件就是评分原件。';
-  $('train-protocol').textContent = `CMI-Pref：270 train / 30 valid / 121 封存 test；投影 text + lyrics，不输入参考音频。${arm.model === 'YuE2' ? 'PyTorch + PEFT LoRA，组大小 2，AdamW；600 semantic tokens。' : 'ms-swift / TRL + vLLM，LoRA，组大小 2；512 completion tokens。从冻结基座重启；无 AUDIO、非有限值或不足 1 秒的解码输出记 0 分并单独记录，基础设施错误停机。'} β = 0.01，记录对冻结参考策略的 sampled training KL。`;
+  $('train-protocol').textContent = `CMI-Pref：270 train / 30 valid / 121 official test；test 2026-10-13 开始独立评估，不参与调参。投影 text + lyrics，不输入参考音频。${arm.model === 'YuE2' ? 'PyTorch + PEFT LoRA，组大小 2，AdamW；600 semantic tokens。' : 'ms-swift / TRL + vLLM，LoRA，组大小 2；512 completion tokens。从冻结基座重启；无 AUDIO、非有限值或不足 1 秒的解码输出记 0 分并单独记录，基础设施错误停机。'} β = 0.01，记录对冻结参考策略的 sampled training KL。`;
   $('reward-caption').textContent = 'Reward · 五维均值 · 逐步训练值 + trailing 5-step mean';
   $('kl').previousElementSibling.querySelector('span').textContent = 'KL · 训练期间冻结参考策略采样估计';
   $('reward-value').textContent = fmt(arm.train_curve.at(-1)?.reward);

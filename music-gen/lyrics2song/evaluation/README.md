@@ -1,0 +1,108 @@
+# Lyrics2song Objective Test Evaluation
+
+The objective tables distinguish **our measured final-step checkpoints** from
+**the YuE2 authors' published WSB comparison**. Test evaluation was authorized on
+2026-10-13. No new training is launched; YuE2-SongBench GRPO is reserved only.
+
+## Cohorts
+
+| Dataset | Unit | Generation and aggregation |
+| --- | --- | --- |
+| CMI-Pref official triple-source test | 121 conditions / 125 preference votes | Frozen public split IDs, two fixed seeds, all 242 candidates averaged. Input text + lyrics; reference audio reserved, not consumed. Preference recordings are not unique generation targets. |
+| WildSongBench | All 192 prompts, 94 Chinese / 98 English | Two official seeds per prompt; four ASR passes per candidate; choose lower PER with official tie-breaking. Every other metric sees the same selected audio. |
+
+Keep the existing 270 train / 30 validation memberships unchanged. Every completed
+YuE2 formal arm is evaluated at **fixed final step 270** with LR 2e-5 / 1e-4 /
+3e-4, under both SongEval and MuseCritic. Do not select checkpoint or learning
+rate from either test set. Comparing all preregistered arms is not a license to
+tune on the test results. Muse replacement arms still await training; old small-LR
+or Mock runs cannot fill their rows. Muse baseline evaluation is not submitted yet.
+
+## Metrics
+
+The [official nine-column comparison](https://github.com/multimodal-art-projection/YuE/blob/main/docs/benchmarks.md)
+includes SongBench mean and Musicality, SongEval mean and Musicality, AudioBox
+PQ, MuQ-MuLan, AllMusicCaps, Q3O control and phoneme error rate (PER).
+
+- [SongBench](https://github.com/Tencent/SongBench): Vocal, Instrumental, Melody,
+  Structure, Arrangement, Mixing, Musicality; mean of seven, not SongEval mean.
+- SongEval: five independent SongEval-head scores; mean and Musicality.
+- [AudioBox](https://github.com/facebookresearch/audiobox-aesthetics): Production
+  Quality (PQ). Store CE / CU / PC too, but headline comparison follows PQ.
+- MuQ-MuLan / AllMusicCaps: audio similarity to requested **style text**, not lyrics.
+- Q3O: prompt-control score; official WSB requires 80 GB GPU. On 32 GB 5090
+  this is **resource-pending**, not `n/a` and not submitted.
+- PER: corpus micro average, sum edits / sum reference phonemes, not mean of
+  per-song percentages. Preserve incomplete lyrics and capped ASR outputs.
+
+CMI-Pref's complete test cohort includes Vietnamese and Javanese lyrics. The
+frozen Chinese/English G2P is not a validated multilingual reference: full-cohort
+PER is `n/a`. Do not transliterate, drop foreign songs, or label all Latin script
+as English to produce an apparently comparable number. A future language-audited
+subset would need its own denominator and protocol. CMI Q3O is also `n/a` for
+the fixed WSB metric: CMI has no corresponding frozen musical-attribute weights.
+New Q3O annotations would constitute a separately versioned extension.
+
+## Reproduction Boundary
+
+WSB sources are pinned at revision
+`e361b85a8d7365d3079fa9647641a87ce3c8c5b5`.
+The evaluator archive SHA256 is
+`bd550b36f1fc43cad3254a9897dd3a078e50c4eb9e8d4f295ac4b5e81d1fc4fd`.
+The prompt manifest SHA256 is
+`859e5225d319912efb64d587d1d5eb6cf0abc9fb162cc3d5f02d1688cff2edc0`.
+The CMI test source SHA256 is
+`824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9`.
+Membership is checked against the downloadable
+[frozen split](../../../platform/site/demos/data/cmi-pref-triple-9to1-split.json).
+
+Native YuE2 inference: full symbolic planning, CFG 1, unquantized bf16 AR,
+FP32 benchmark `YuE2-Vae-legacy` revision
+`b54118f0fc462f08999d1ec07e88817f4ee3f770`, 200–9000 semantic tokens,
+32-step midpoint acoustic sampling, torch-eager backend. Both capped and
+uncapped outputs stay in the cohort. This differs from training's 600-token cap
+and the listening demo's 1600-token / modern-VAE setting.
+LoRA is merged into the native bf16 AR/NAR model before evaluation; the original
+adapter file SHA is recorded separately from the base weight identity.
+
+The frozen WSB CLI intentionally rejects adapted generator weights and non-WSB
+prompts. **Do not patch it to pass acceptance.** Our wrapper invokes its original
+workers, verifies their frozen code/assets/environments and binds each score to
+audio and adapter hashes. These are local checkpoint/CMI extensions, not exact
+paper acceptance runs. SongEval and AudioBox are supplementary implementations;
+store their runtime/config/model-state hashes and do not claim identical paper
+preprocessing for these two score families.
+
+The original SongBench eval environment is Torch 2.7.0+cu126, which lacks RTX
+5090 sm_120 kernels: the first four scores failed while the eight PER receipts
+completed. `score_songbench_blackwell.py` reuses the original SongBench model,
+checkpoint, FP32 MuQ frontend and seed, but runs in the frozen metrics environment
+with Torch 2.9.1+cu128. Its source/runtime hash is included in scoring identities.
+The original code and lock files are not altered; the original failure log and
+environment receipt remain archived privately. SongBench is therefore a **Blackwell runtime extension**,
+not a frozen SongBench-environment acceptance run.
+
+Unlike training reward, these objective evaluators consume fixed 48 kHz / 192
+kbps MP3 encoding, following the WSB input contract. No loudness normalization.
+Private FLAC generation originals and public scoring MP3s have separate hashes.
+Neither restricted data nor private audio is copied to this repository.
+
+## Execution And Recovery
+
+`run_objective_queue.sh` uses a lock and checks for other GPU processes before
+each chunk. It stops without interrupting another job. It runs all 192 / 121
+conditions, not just a smoke sample; four-condition chunks are resumable
+publication/checkpoint boundaries, not subsets used as final benchmark scores.
+An incomplete result directory requires inspection; no overwrite or random reseed.
+Scorer failure stops the queue, retaining the affected audio and traceback.
+
+`collect_objective.py` publishes denominators, hash receipts and measured
+coverage. Headline numeric cells are withheld until their full metric cohort
+is complete. `pending` / resource-pending / not-applicable remain distinct.
+`official-wsb-results.json` is the unchanged official published JSON, with
+snapshot date and source provenance, not locally generated results.
+
+First complete run covers 7 YuE2 arms × (384 WSB + 242 CMI) = **4,382 full-song
+candidates**, plus scoring. This is a multi-day queue on one GPU, not an
+overnight smoke run. No cron, scheduled task or automation is created. The user
+requests subsequent recovery manually.

@@ -18,6 +18,21 @@
 #lyrics-formal #formal-v2-dimensions figure { margin: 0; min-width: 0; }
 #lyrics-formal canvas { display: block; }
 #lyrics-formal td, #lyrics-formal th { white-space: nowrap; }
+#lyrics-objective { margin: 28px 0; padding-block: 16px; border-block: 1px solid #dbe2de; min-width: 0; }
+#lyrics-objective h4 { font-size: 15px; margin: 14px 0 8px; overflow-wrap: anywhere; }
+#lyrics-objective .table-shell { max-width: 100%; }
+#lyrics-formal #lyrics-objective table { min-width: 1250px; table-layout: auto; }
+#lyrics-formal #lyrics-objective th, #lyrics-formal #lyrics-objective td { padding: 10px; }
+#lyrics-formal #lyrics-objective th { white-space: normal; overflow-wrap: normal; min-width: 80px; line-height: 1.45; position: static; }
+#lyrics-formal #lyrics-objective td:not(:first-child) { white-space: normal; }
+#lyrics-formal #lyrics-objective th:first-child { min-width: 190px; }
+#lyrics-formal #lyrics-objective th:nth-child(2) { min-width: 155px; max-width: 185px; }
+#lyrics-formal #lyrics-objective td:nth-child(2) { max-width: 185px; overflow-wrap: anywhere; }
+#lyrics-formal #lyrics-objective[data-origin="official"] table { min-width: 1250px; }
+#lyrics-formal #lyrics-objective[data-origin="official"] th:nth-child(2) { min-width: 48px; }
+#lyrics-objective td[data-status="complete"] { color: #126b4a; font-variant-numeric: tabular-nums; }
+#lyrics-objective td[data-status="not-applicable"] { color: #7c7c7c; font-style: italic; }
+#lyrics-objective td[data-status="resource-pending"] { color: #8b6330; }
 @media (max-width: 700px) {
   #lyrics-formal #formal-v2-dimensions, #lyrics-formal .compare-grid { grid-template-columns: 1fr; }
 }
