@@ -11,6 +11,10 @@ export OMP_NUM_THREADS=8
 mkdir -p "$storage/runs"
 exec 9>"$storage/queue.lock"
 flock -n 9 || { echo 'Evaluation queue already running'; exit 2; }
+read -r -a datasets <<< "${EVAL_DATASETS:-wsb cmi}"
+for dataset in "${datasets[@]}"; do
+  case "$dataset" in wsb|cmi) ;; *) echo "Unknown evaluation dataset: $dataset" >&2; exit 5 ;; esac
+done
 
 gpu_available() {
   local pids
@@ -25,7 +29,7 @@ gpu_available() {
 # Interleave arms, so matched before/after evidence arrives before one whole
 # baseline campaign monopolizes the GPU for every dataset.
 for ((start=${EVAL_START:-0}; start<${EVAL_END:-192}; start+=4)); do
-  for dataset in wsb cmi; do
+  for dataset in "${datasets[@]}"; do
     count=192; source="$code/reproduction_manifest.jsonl"; split=()
     if [[ "$dataset" == cmi ]]; then
       count=121; source="$code/cmi_test.jsonl"; split=(--split "$code/cmi-pref-triple-9to1-split.json")
@@ -69,4 +73,4 @@ for ((start=${EVAL_START:-0}; start<${EVAL_END:-192}; start+=4)); do
     done
   done
 done
-echo "$(date -Iseconds) All available YuE2 final-step test arms complete"
+echo "$(date -Iseconds) Configured stages finished for ${datasets[*]} ${EVAL_START:-0}:${EVAL_END:-192}; full metric completion requires all scoring receipts"

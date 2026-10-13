@@ -14,8 +14,13 @@ def merge(original, returned):
         raise ValueError('Returned quality scores bind a different/incomplete run')
     before = {r['id']: r for r in original['rows']}
     after = {r['id']: r for r in returned['rows']}
-    if len(before) != 8 or len(after) != 8 or set(before) != set(after):
+    if len(before) < 2 or len(before) != len(original['rows']) or len(after) != len(returned['rows']) or set(before) != set(after):
         raise ValueError('Returned quality candidate coverage changed')
+    indexes = {r['prompt_index'] for r in original['rows']}
+    for i in indexes:
+        candidates = [r for r in original['rows'] if r['prompt_index'] == i]
+        if len(candidates) != 2 or {r['candidate_index'] for r in candidates} != {0, 1}:
+            raise ValueError('CMI recovery must retain both fixed candidates')
     for ident, row in after.items():
         source = before[ident]
         for key in ['prompt_index', 'candidate_index', 'seed', 'audio_sha256', 'source_flac_sha256',
@@ -43,8 +48,10 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--returned', type=Path, required=True)
+    p.add_argument('--start', type=int, default=0)
+    p.add_argument('--end', type=int, default=4)
     a = p.parse_args()
-    source = a.run / 'evaluation/chunk_000_004.json'
+    source = a.run / f'evaluation/chunk_{a.start:03d}_{a.end:03d}.json'
     original = json.loads(source.read_text())
     returned = json.loads(a.returned.read_text())
     result = merge(original, returned)

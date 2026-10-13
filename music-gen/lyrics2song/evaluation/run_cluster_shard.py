@@ -44,6 +44,8 @@ def main():
     p.add_argument('--python', required=True)
     p.add_argument('--task', type=int, required=True)
     p.add_argument('--tasks', type=int, default=12)
+    p.add_argument('--datasets', nargs='+', choices=['wsb', 'cmi'], default=['wsb'],
+                   help='CMI production generation/quality is assigned to 5090/Kaya in this campaign')
     a = p.parse_args()
     if not 0 <= a.task < a.tasks:
         p.error('Invalid task index')
@@ -62,9 +64,10 @@ def main():
     write(output / 'assignment.json', {'task': a.task, 'tasks': a.tasks, 'host': os.uname().nodename,
         'job': os.environ.get('PBS_JOBID'), 'gpu': torch.cuda.get_device_name(0),
         'gpu_bytes': memory, 'torch': torch.__version__, 'wsb': bounds(4, 192, a.tasks)[a.task],
-        'cmi': bounds(4, 121, a.tasks)[a.task], 'arms': ARMS, 'new_training': False,
+        'cmi': bounds(4, 121, a.tasks)[a.task] if 'cmi' in a.datasets else None,
+        'datasets': a.datasets, 'arms': ARMS, 'new_training': False,
         'reserved_lab5090_ranges': {'wsb': [0, 4], 'cmi': [0, 4]}})
-    for dataset, end in [('wsb', 192), ('cmi', 121)]:
+    for dataset, end in [(name, 192 if name == 'wsb' else 121) for name in a.datasets]:
         lower, upper = bounds(4, end, a.tasks)[a.task]
         source = code / ('reproduction_manifest.jsonl' if dataset == 'wsb' else 'cmi_test.jsonl')
         split = ['--split', str(code / 'cmi-pref-triple-9to1-split.json')] if dataset == 'cmi' else []

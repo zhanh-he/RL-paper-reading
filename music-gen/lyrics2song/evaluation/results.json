@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "updated_at": "2026-10-13T06:09:44.419495+00:00",
+  "updated_at": "2026-10-13T09:51:38.103298+00:00",
   "host": "lab5090",
-  "queue_pid": 3616468,
+  "queue_pid": 3629786,
   "metrics": [
     "songbench_global_avg",
     "songbench_musicality",
@@ -14,7 +14,7 @@
     "control_overall",
     "per"
   ],
-  "queue_running_at_collection": false,
+  "queue_running_at_collection": true,
   "test_authorized_at": "2026-10-13",
   "datasets": {
     "wsb": {
@@ -2535,7 +2535,7 @@
           "system": "YuE2-Baseline",
           "step": 0,
           "status": "evaluating",
-          "generated_candidates": 8,
+          "generated_candidates": 16,
           "expected_candidates": 242,
           "scored_conditions": 4,
           "metrics": {
@@ -2833,6 +2833,174 @@
                 "per": null
               },
               "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_004_r0_s931005",
+              "condition_index": 4,
+              "candidate_index": 0,
+              "seconds": 274.91866666666664,
+              "scoring_mp3_sha256": "0e8b4025e7a9a81869960bcc441a479c683da9d3b2477db1c9ca5167123e919b",
+              "source_flac_sha256": "1bd7daae4d5b8e77837f3eb55b96a535385cb9819050274b34356d968fbd25b1",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_004_r1_s931023",
+              "condition_index": 4,
+              "candidate_index": 1,
+              "seconds": 279.8786666666667,
+              "scoring_mp3_sha256": "5d7ee155106c4d9ad2fd0045cdfd936dbd41387824ffecd1046957ec49a0a629",
+              "source_flac_sha256": "3e5f9140afc0cb467a39015df5d9719f1ed3196bcdc8731eaaaa7f5235a17ff6",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_005_r0_s931006",
+              "condition_index": 5,
+              "candidate_index": 0,
+              "seconds": 267.71866666666665,
+              "scoring_mp3_sha256": "45f7776b1755b7e7f682bc001dfc9e6f943fca8f74c5152f2e901d33f4b164a4",
+              "source_flac_sha256": "ec560174d3d0c9807b1bca06a7707b6a44191e0cdcd51d70592c917da9d6c831",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_005_r1_s931024",
+              "condition_index": 5,
+              "candidate_index": 1,
+              "seconds": 304.71866666666665,
+              "scoring_mp3_sha256": "57bb3dbb27796b6566ada39f3518cabfa3c6521dd1b229ff71af1355b499ccae",
+              "source_flac_sha256": "80d55de8c81f20e4802ec255955e29a6846b891fbaab8d7c1da988eb0a6eeacd",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_006_r0_s931007",
+              "condition_index": 6,
+              "candidate_index": 0,
+              "seconds": 272.1186666666667,
+              "scoring_mp3_sha256": "5e20b203ba775a236ff603a70379641f912c3b7b498dec799dd6536482eb6445",
+              "source_flac_sha256": "4311dd89816edcb9c039c9b6389103fba171ceb0f779a1c9d2ef2aec5cf09aa8",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_006_r1_s931025",
+              "condition_index": 6,
+              "candidate_index": 1,
+              "seconds": 328.03866666666664,
+              "scoring_mp3_sha256": "53da40739798ac9676724e9044310876f57a61a9fe31e147a66840581d9f9b1c",
+              "source_flac_sha256": "43c4d25f890daae3cddf5218146ce8d5b146624a14ad8abc3fdebd84c05057d9",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_007_r0_s931008",
+              "condition_index": 7,
+              "candidate_index": 0,
+              "seconds": 162.95866666666666,
+              "scoring_mp3_sha256": "8c96ba3d78e980d1f416fb555c6a8a4835db6c53e3d6f87c13b3a57233aff0b5",
+              "source_flac_sha256": "01e36e6ee14e71bce1b84cca900c405c55a493441ed180a097720fc711ea10bd",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
+            },
+            {
+              "id": "cmi_007_r1_s931026",
+              "condition_index": 7,
+              "candidate_index": 1,
+              "seconds": 185.87866666666667,
+              "scoring_mp3_sha256": "b8585858f2a182f7462a8cacd54703aabff1b05bee46f7573e4cee54f064d426",
+              "source_flac_sha256": "10957ee488fb98257941353c789754b3222cb6592f43f0d6bc1f460a66332b94",
+              "songbench_dimensions": null,
+              "metrics": {
+                "songbench_global_avg": null,
+                "songbench_musicality": null,
+                "songeval_global_avg": null,
+                "songeval_musicality": null,
+                "audiobox_pq": null,
+                "mulan": null,
+                "allmusiccaps": null,
+                "control_overall": null,
+                "per": null
+              },
+              "scope": "individual candidate diagnostic, not full-cohort metric; PER here is per-song, not corpus micro"
             }
           ],
           "generation_receipts": [
@@ -2963,12 +3131,144 @@
                 "semantic": false
               },
               "elapsed_seconds": 100.79361191019416
+            },
+            {
+              "id": "cmi_004_r0_s931005",
+              "condition_index": 4,
+              "candidate_index": 0,
+              "seed": 931005,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "1bd7daae4d5b8e77837f3eb55b96a535385cb9819050274b34356d968fbd25b1",
+              "result_sha256": "864c212754a2936b624531b7bb825ec3f1d89c5ca90358570cae93b0d38af502",
+              "seconds": 274.91866666666664,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 141.82219921890646
+            },
+            {
+              "id": "cmi_004_r1_s931023",
+              "condition_index": 4,
+              "candidate_index": 1,
+              "seed": 931023,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "3e5f9140afc0cb467a39015df5d9719f1ed3196bcdc8731eaaaa7f5235a17ff6",
+              "result_sha256": "5691b95543e8c431cf2fabe0e1d1702fc84909638881b25969e8673c91d90666",
+              "seconds": 279.8786666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 129.24038749467582
+            },
+            {
+              "id": "cmi_005_r0_s931006",
+              "condition_index": 5,
+              "candidate_index": 0,
+              "seed": 931006,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "ec560174d3d0c9807b1bca06a7707b6a44191e0cdcd51d70592c917da9d6c831",
+              "result_sha256": "e8f0ef69680f0dd6edc93bb21c351a0a82b2f6226366dd5bf8c706c172a3bd50",
+              "seconds": 267.71866666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 125.60964004509151
+            },
+            {
+              "id": "cmi_005_r1_s931024",
+              "condition_index": 5,
+              "candidate_index": 1,
+              "seed": 931024,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "80d55de8c81f20e4802ec255955e29a6846b891fbaab8d7c1da988eb0a6eeacd",
+              "result_sha256": "89143c20479bdb512a3f4e65a609f713973f695ba572f79d3166a54f64a4d62f",
+              "seconds": 304.71866666666665,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 135.18713811598718
+            },
+            {
+              "id": "cmi_006_r0_s931007",
+              "condition_index": 6,
+              "candidate_index": 0,
+              "seed": 931007,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "4311dd89816edcb9c039c9b6389103fba171ceb0f779a1c9d2ef2aec5cf09aa8",
+              "result_sha256": "8b84ab5f6de6dc2b75de178db012981f8cb559fb32d7be5e12e7a4edde7a870a",
+              "seconds": 272.1186666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 117.31031310465187
+            },
+            {
+              "id": "cmi_006_r1_s931025",
+              "condition_index": 6,
+              "candidate_index": 1,
+              "seed": 931025,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "43c4d25f890daae3cddf5218146ce8d5b146624a14ad8abc3fdebd84c05057d9",
+              "result_sha256": "0c9e00ac8f20d75efe523d6d0651a868759f6f507124a4f0d051e6743c95d4b0",
+              "seconds": 328.03866666666664,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 147.03325814940035
+            },
+            {
+              "id": "cmi_007_r0_s931008",
+              "condition_index": 7,
+              "candidate_index": 0,
+              "seed": 931008,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "01e36e6ee14e71bce1b84cca900c405c55a493441ed180a097720fc711ea10bd",
+              "result_sha256": "dea1357dfaf25bff2773a725f39746d1df4f105c08170d8535fd6f63cdc28361",
+              "seconds": 162.95866666666666,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 68.22714723926038
+            },
+            {
+              "id": "cmi_007_r1_s931026",
+              "condition_index": 7,
+              "candidate_index": 1,
+              "seed": 931026,
+              "adapter_sha256": null,
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "10957ee488fb98257941353c789754b3222cb6592f43f0d6bc1f460a66332b94",
+              "result_sha256": "13e110f03df8115cc94085bc8273fcf63fcafede5744cc715c0ca8c26dd13584",
+              "seconds": 185.87866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 82.71871690731496
             }
           ],
           "receipt_files": [
             {
               "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-baseline/cmi/evaluation/chunk_000_004.json",
               "sha256": "e2e6faf9a129e56cbba757d5ec55c6d78559a80b58c14d84f8b53fd781501808"
+            },
+            {
+              "file": "/storage/zhanh_storage/lyrics-objective-eval-20261013/runs/yue2-baseline/cmi/evaluation/chunk_004_008.json",
+              "sha256": "da886d8df931af83419b0f8b8a5c805711895202063deedbde1bdfbe71e9ff38"
             }
           ]
         },
@@ -2977,7 +3277,7 @@
           "system": "YuE2-SongEval-2e-5",
           "step": 270,
           "status": "evaluating",
-          "generated_candidates": 8,
+          "generated_candidates": 12,
           "expected_candidates": 242,
           "scored_conditions": 4,
           "metrics": {
@@ -3405,6 +3705,70 @@
                 "semantic": false
               },
               "elapsed_seconds": 130.82233083900064
+            },
+            {
+              "id": "cmi_004_r0_s931005",
+              "condition_index": 4,
+              "candidate_index": 0,
+              "seed": 931005,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "4d3534a6b940ce191176bbe7ab63e5e083d7c6d37872c798e456994b57ccca0f",
+              "result_sha256": "c42424717c5e7bd02a8358f1e2e7c02c29398c81f02d0eae00d267a300a2318b",
+              "seconds": 274.63866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 135.523033012636
+            },
+            {
+              "id": "cmi_004_r1_s931023",
+              "condition_index": 4,
+              "candidate_index": 1,
+              "seed": 931023,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "afb1ba29ccbf5a3b208f88011e29e523969d3f0f67aaf13684ecff31e3365a9e",
+              "result_sha256": "5ab7eb29a3766f203b34575a6dd398693cce6483705ab2a0c7bb48ec5e873298",
+              "seconds": 359.9986666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": true
+              },
+              "elapsed_seconds": 173.17504339199513
+            },
+            {
+              "id": "cmi_005_r0_s931006",
+              "condition_index": 5,
+              "candidate_index": 0,
+              "seed": 931006,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "bf329465918e5434b4dcd4e9a8dc6e5c26e517283b7f13695922f280fbd3e963",
+              "result_sha256": "35bb8d35bf2c310ca5641d3f9aa11f83c77358562186561ba000c514c30dc06d",
+              "seconds": 299.3586666666667,
+              "truncated": {
+                "abc": true,
+                "semantic": false
+              },
+              "elapsed_seconds": 150.0576218077913
+            },
+            {
+              "id": "cmi_005_r1_s931024",
+              "condition_index": 5,
+              "candidate_index": 1,
+              "seed": 931024,
+              "adapter_sha256": "c3d93d36d9ab12ffe59bc79085054ee9a00d71b1735311efa12377d3bf1303fe",
+              "source_sha256": "824a92f33d04096e739fdc771d09bda125943baafae5c0eb5b6e9e267d3762e9",
+              "audio_sha256": "076af383a5c34067b2752a7a4ff6fd5f4a4f9db598716dd60bba3653f8cf7c60",
+              "result_sha256": "eeb4d52cf3db4a4563a7bb93d0e66ceb393069b3620d6015df56b4d56f298761",
+              "seconds": 229.19866666666667,
+              "truncated": {
+                "abc": false,
+                "semantic": false
+              },
+              "elapsed_seconds": 107.35851660370827
             }
           ],
           "receipt_files": [
@@ -6188,10 +6552,7 @@
             4,
             19
           ],
-          "cmi": [
-            4,
-            13
-          ]
+          "cmi": null
         },
         {
           "task": 1,
@@ -6201,10 +6562,7 @@
             19,
             35
           ],
-          "cmi": [
-            13,
-            23
-          ]
+          "cmi": null
         },
         {
           "task": 2,
@@ -6214,10 +6572,7 @@
             35,
             51
           ],
-          "cmi": [
-            23,
-            33
-          ]
+          "cmi": null
         },
         {
           "task": 3,
@@ -6227,10 +6582,7 @@
             51,
             66
           ],
-          "cmi": [
-            33,
-            43
-          ]
+          "cmi": null
         },
         {
           "task": 4,
@@ -6240,10 +6592,7 @@
             66,
             82
           ],
-          "cmi": [
-            43,
-            52
-          ]
+          "cmi": null
         },
         {
           "task": 5,
@@ -6253,10 +6602,7 @@
             82,
             98
           ],
-          "cmi": [
-            52,
-            62
-          ]
+          "cmi": null
         },
         {
           "task": 6,
@@ -6266,10 +6612,7 @@
             98,
             113
           ],
-          "cmi": [
-            62,
-            72
-          ]
+          "cmi": null
         },
         {
           "task": 7,
@@ -6279,10 +6622,7 @@
             113,
             129
           ],
-          "cmi": [
-            72,
-            82
-          ]
+          "cmi": null
         },
         {
           "task": 8,
@@ -6292,10 +6632,7 @@
             129,
             145
           ],
-          "cmi": [
-            82,
-            91
-          ]
+          "cmi": null
         },
         {
           "task": 9,
@@ -6305,10 +6642,7 @@
             145,
             160
           ],
-          "cmi": [
-            91,
-            101
-          ]
+          "cmi": null
         },
         {
           "task": 10,
@@ -6318,10 +6652,7 @@
             160,
             176
           ],
-          "cmi": [
-            101,
-            111
-          ]
+          "cmi": null
         },
         {
           "task": 11,
@@ -6331,10 +6662,7 @@
             176,
             192
           ],
-          "cmi": [
-            111,
-            121
-          ]
+          "cmi": null
         }
       ],
       "staged_first_four_job": "181128162.gadi-pbs",
@@ -6434,10 +6762,44 @@
       "q3o": false,
       "audit_count_in_headline_cohort": false,
       "production_cmi_count_in_headline_cohort": true,
-      "initial_status": "The 20-song numerical audit and all four new CMI production chunks completed; all 32 new CMI candidates recovered with exact hashes"
+      "initial_status": "The 20-song numerical audit and all four new CMI production chunks completed; all 32 new CMI candidates recovered with exact hashes",
+      "full_cmi_campaign": {
+        "generation_owner": "lab5090",
+        "quality_owner": "kaya",
+        "conditions": [
+          0,
+          121
+        ],
+        "arms": 7,
+        "candidates": 1694,
+        "verified_prefix": [
+          0,
+          4
+        ],
+        "remaining_candidates": 1638,
+        "remaining_assignments": 210,
+        "gpu": "V100 32GB",
+        "native_batch_script": "kaya_cmi_quality.sbatch",
+        "transport_pid_on_mac": 47036,
+        "transport_receipt_on_mac": "/tmp/lyrics-full-cmi-dispatch-20261013.json",
+        "automatic_result_recovery": false,
+        "first_submission": {
+          "job": "138312",
+          "arm": "yue2-baseline",
+          "conditions": [
+            4,
+            8
+          ],
+          "candidates": 8,
+          "submitted_at": "2026-10-13T09:40:55.985611+00:00",
+          "verified_state": "PENDING (Priority)",
+          "completed": false
+        }
+      }
     },
     "lab5090": {
-      "queue_pid": 3616468,
+      "queue_pid": 3629786,
+      "completed_prefix_controller_pid": 3616468,
       "replaced_controller_pid": 3613175,
       "handoff": "Stopped only the owned shell controller; its in-flight generation child retains the lock and finishes normally before the new generation/MP3-only controller starts",
       "reserved_wsb": [
@@ -6449,8 +6811,17 @@
         4
       ],
       "wsb_asr_failure": "Official Qwen3-ASR worker CUDA OOM on SongEval-3e-4; saved audio retained and scoring moved to Gadi",
-      "role": "All reserved generation finished: 56 WSB and 56 CMI candidates across seven YuE2 arms. Three CMI arms scored locally and four delegated to Kaya; WSB scoring on Gadi",
-      "status_at_check": "Generation-only controller completed normally; no GPU process left by this controller",
+      "role": "Generate the full 121-condition CMI cohort for all seven YuE2 arms; Kaya scores immutable MP3 chunks. The completed first-four prefix is reused. Gadi owns only WSB, so no duplicate CMI generation/scoring.",
+      "status_at_check": "Full CMI generation RUNNING; first new candidate cmi_004_r0_s931005 completed, 274.9187 seconds",
+      "full_cmi_conditions": [
+        0,
+        121
+      ],
+      "resume_conditions": [
+        4,
+        121
+      ],
+      "scope_revision": "Initial first-four reservation ended; full CMI is now active rather than waiting for Gadi GPU availability",
       "generated_reserved_candidates": {
         "wsb": 56,
         "cmi": 56

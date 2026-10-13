@@ -47,7 +47,8 @@ function render() {
   const submitted = measured.execution
     ? ` · Gadi wa66 / iv96：12 个完整分片 + 首四条 80GB 评分任务已提交${measured.execution.gadi.preparation_completed ? '，冻结评测环境准备完成' : ''} · Kaya：20 首跨机核验已完成（不重复计入总分）；新增 CMI ${productionJobs.filter((j) => j.recovered).length}/${productionJobs.length} 组已回收`
     : '';
-  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN')} · 5090 首四条候选生成${measured.queue_running_at_collection ? '运行中' : measured.execution?.lab5090.generated_reserved_candidates ? '已完成' : '未运行'}${submitted} · 提交记录不代表 GPU 已开始运行 · Muse 正式臂等待训练 checkpoint`;
+  const fullCmi = measured.execution?.lab5090.full_cmi_conditions;
+  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN')} · 5090 ${fullCmi ? 'CMI test 全量 121 条 × 7 设置 × 2 候选' : '首四条候选生成'}${measured.queue_running_at_collection ? '运行中' : fullCmi ? '回收时未运行' : measured.execution?.lab5090.generated_reserved_candidates ? '已完成' : '未运行'}${submitted} · 提交记录不代表 GPU 已开始运行 · Muse 正式臂等待训练 checkpoint`;
   const diagnostics = measured.datasets[dataset].rows.flatMap((r) => (r.diagnostic_rows || []).map((sample) => ({ system: r.system, ...sample })));
   $('diagnostics').hidden = published || !diagnostics.length;
   $('diagnostic-head').replaceChildren(tr(['Experiment', 'Candidate · duration', ...official.metrics.map((m) => `${m.label} ${m.lowerIsBetter ? '↓' : '↑'}`)], true));

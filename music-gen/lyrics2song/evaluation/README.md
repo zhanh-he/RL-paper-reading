@@ -89,11 +89,49 @@ Neither restricted data nor private audio is copied to this repository.
 
 ## Execution And Recovery
 
+### Active Full-Cohort Ownership
+
+The first-four reservation is **superseded**, not the final test size.
+
+| Cohort | Generation | Scoring | Required coverage per arm |
+| --- | --- | --- | --- |
+| CMI-Pref | Active 5090 full-cohort controller | Kaya 32GB V100 jobs | All 121 conditions, both candidates: 242 scores |
+| WildSongBench | Twelve disjoint Gadi wa66/iv96 shards; reuse the 5090 prefix | Gadi, including 80GB ASR/Q3O | All 192 conditions, official two-candidate PER selection |
+
+The 5090 command resumes CMI at condition 4 and runs through condition 120,
+inclusive, for every one of the seven arms. Conditions 0--3 already have verified
+generation and quality receipts; they remain part of the 121-condition cohort.
+It is launched with `EVAL_START=4 EVAL_END=121 EVAL_DATASETS=cmi SCORE_CMI=0`.
+Four-condition chunks are only save/transport boundaries; they never reduce
+the test cohort. Gadi's queued workers now default to WSB only, so they do not
+also generate or score these CMI observations.
+
+`dispatch_full_cmi.py` is the finite transport/submission stage of this actual
+campaign. It streams each ready immutable MP3 chunk to a unique Kaya root and
+submits a native 32GB scoring job. Its fixed 210 assignments cover all remaining
+1,638 candidates (117 conditions x 7 arms x 2); with the 56 verified prefix
+candidates this is all 1,694 CMI candidates. It neither schedules future runs
+nor automatically recovers or publishes results. A terminal transport failure
+leaves generated inputs intact for explicit manual resumption; the receipt and
+log are in `/tmp/lyrics-full-cmi-dispatch-20261013.*` on this Mac. The transport
+stage must remain alive while generation runs; sleeping/disconnecting this Mac
+can delay transfer but does not remove the remote generation or scoring jobs.
+
+Each full-CMI assignment has its own `cmi-full-input/<arm>-<start>-<end>` and
+`cmi-full-quality/<arm>-<start>-<end>` root on Kaya. Manual recovery uses
+`merge_returned_quality.py --start <start> --end <end>` against the matching
+original 5090 run, followed by the full-cohort collector. The last chunk is
+condition 120 alone, with exactly two candidates. Do not collect both the
+original and returned copies of a candidate. Test completion is established
+by the complete cohort receipts, not by a generator process ending.
+
+### Initial Handoff History
+
 `run_objective_queue.sh` uses a lock and checks for other GPU processes before
 each chunk. It stops without interrupting another job. It runs all 192 / 121
 conditions, not just a smoke sample; four-condition chunks are resumable
 publication/checkpoint boundaries, not subsets used as final benchmark scores.
-For the distributed campaign, `EVAL_END=4 SCORE_WSB=0` restricts the 5090 to
+For the initial distributed handoff, `EVAL_END=4 SCORE_WSB=0` restricted the 5090 to
 the first four conditions of each cohort; WSB ASR/Q3O scoring is delegated to
 Gadi. The replacement controller uses `SCORE_CMI=0` to prepare immutable MP3
 chunks for Kaya instead of occupying the generation GPU with quality scorers.
@@ -112,7 +150,7 @@ snapshot date and source provenance, not locally generated results.
 First complete run covers 7 YuE2 arms × (384 WSB + 242 CMI) = **4,382 full-song
 candidates**, plus scoring. See [actual submission receipts](submissions-20261013.json).
 Gadi wa66/iv96 each have six disjoint single-Hopper jobs; each owns the same
-conditions across all seven model arms and includes Q3O. A thirteenth Hopper
+WSB conditions across all seven model arms and includes Q3O. A thirteenth Hopper
 job finishes the 5090's first four WSB conditions, reusing the five completed
 selected-audio chunks and scoring the two remaining arms. The six existing
 Muse training jobs are not cancelled, suspended or preempted. Both projects

@@ -10,11 +10,13 @@
 set -euo pipefail
 work=/scratch/ems011/zhe/wsb-objective-20261013
 : "${CMI_ARM:?}"
+input=${CMI_INPUT:-$work/cmi-input/$CMI_ARM}
+output=${CMI_OUTPUT:-$work/cmi-quality/$CMI_ARM}
 export HF_HOME=/scratch/ems011/zhe/yue2-formal/hf-cache
 export TOKENIZERS_PARALLELISM=false PYTHONNOUSERSITE=1 OMP_NUM_THREADS=8
 export XDG_CACHE_HOME="$work/cache/xdg"
 python=/scratch/ems011/zhe/yue2-formal/.venv/bin/python
 exec "$python" -u "$work/code/score_saved_quality.py" --bundle "$work/wsb_metrics" \
-  --input "$work/cmi-input/$CMI_ARM" --output "$work/cmi-quality/$CMI_ARM" \
+  --input "$input" --output "$output" \
   --extras-python "$work/extras/bin/python" --dataset cmi \
   --songeval /scratch/ems011/zhe/yue2-formal/SongEval

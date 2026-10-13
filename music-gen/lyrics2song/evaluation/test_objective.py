@@ -13,9 +13,25 @@ from export_quality_inputs import validate_assignment
 from balance_evaluator_runtime import balance
 from merge_returned_quality import merge
 from scorer_cache import needs_scoring
+from dispatch_full_cmi import assignments
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_full_cmi_assignments_cover_all_121_conditions(self):
+        tasks = assignments()
+        self.assertEqual(len(tasks), 210)
+        self.assertEqual(sum(2*(hi-lo) for _, lo, hi in tasks), 1638)
+        for arm in {r[0] for r in tasks}:
+            indexes = [*range(4), *[i for name, lo, hi in tasks if name == arm for i in range(lo, hi)]]
+            self.assertEqual(indexes, list(range(121)))
+
+    def test_export_accepts_last_full_cohort_condition(self):
+        rows = [{'id': f'cmi_120_r{j}_s{[931001, 931019][j]+120}', 'prompt_index': 120,
+                 'candidate_index': j, 'seed': [931001, 931019][j]+120, 'metrics': {}} for j in range(2)]
+        validate_assignment({'generation_protocol': {'dataset': 'cmi'}, 'rows': rows}, 120, 121)
+        with self.assertRaises(ValueError):
+            validate_assignment({'generation_protocol': {'dataset': 'cmi'}, 'rows': rows[:1]}, 120, 121)
+
     def test_failed_receipts_are_archived_and_retried(self):
         with TemporaryDirectory() as directory:
             receipt = Path(directory) / 'songbench.json'

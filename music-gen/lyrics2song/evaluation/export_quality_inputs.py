@@ -8,14 +8,16 @@ from pathlib import Path
 from generate_objective import sha, write
 
 
-def validate_assignment(chunk):
-    if chunk['generation_protocol']['dataset'] != 'cmi' or len(chunk['rows']) != 8:
-        raise ValueError('Expected both candidates of the four reserved CMI conditions')
-    expected = {f'cmi_{i:03d}_r{j}_s{[931001, 931019][j]+i}' for i in range(4) for j in range(2)}
+def validate_assignment(chunk, start=0, end=4):
+    if not 0 <= start < end <= 121:
+        raise ValueError('Invalid frozen CMI condition interval')
+    if chunk['generation_protocol']['dataset'] != 'cmi' or len(chunk['rows']) != 2 * (end-start):
+        raise ValueError('Expected both fixed candidates of every assigned CMI condition')
+    expected = {f'cmi_{i:03d}_r{j}_s{[931001, 931019][j]+i}' for i in range(start, end) for j in range(2)}
     if {r['id'] for r in chunk['rows']} != expected:
         raise ValueError('Reserved CMI candidate coverage changed')
     for row in chunk['rows']:
-        if (row['prompt_index'] not in range(4) or row['candidate_index'] not in (0, 1)
+        if (row['prompt_index'] not in range(start, end) or row['candidate_index'] not in (0, 1)
                 or row['seed'] != [931001, 931019][row['candidate_index']] + row['prompt_index']
                 or row['id'] != f"cmi_{row['prompt_index']:03d}_r{row['candidate_index']}_s{row['seed']}"):
             raise ValueError('Reserved CMI ID/seed binding changed')
@@ -27,16 +29,16 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--start', type=int, default=0)
+    p.add_argument('--end', type=int, default=4)
     a = p.parse_args()
-    source = a.run / 'evaluation/chunk_000_004.json'
+    source = a.run / f'evaluation/chunk_{a.start:03d}_{a.end:03d}.json'
     chunk = json.loads(source.read_text())
-    validate_assignment(chunk)
+    validate_assignment(chunk, a.start, a.end)
     arm = a.run.parent.name
     output = a.output / arm / 'cmi'
     generation = []
     for row in chunk['rows']:
-        if row['prompt_index'] not in range(4):
-            raise ValueError('Kaya assignment overlaps a Gadi shard')
         binding = json.loads((a.run / 'songs' / row['id'] / 'evaluation_binding.json').read_text())
         if (binding['adapter_sha256'] != row['adapter_sha256']
                 or binding['audio_sha256'] != row['source_flac_sha256']
@@ -56,8 +58,8 @@ def main():
         generation.append(binding)
     write(output / 'evaluation' / source.name, chunk)
     write(output / 'generation-receipts.json', generation)
-    write(output / 'quality-assignment.json', {'dataset': 'cmi', 'conditions': [0, 4],
-        'candidates': 8, 'arm': arm, 'source_chunk_sha256': sha(source),
+    write(output / 'quality-assignment.json', {'dataset': 'cmi', 'conditions': [a.start, a.end],
+        'candidates': 2 * (a.end-a.start), 'arm': arm, 'source_chunk_sha256': sha(source),
         'selection': 'none; both fixed seeds', 'new_training': False})
 
 
