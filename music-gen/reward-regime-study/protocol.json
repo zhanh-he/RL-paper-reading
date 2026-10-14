@@ -1,7 +1,8 @@
 {
-  "version": "proposal-20261014-v1",
+  "version": "proposal-20261014-v2",
   "status": "awaiting-user-approval",
   "training_authorized": false,
+  "reward_selection": {"confirmed_by": "user", "date_awst": "2026-10-14", "third_reward": "SongBench-Arrangement", "scope": "Reward choice only; training not authorized"},
   "title": "SP / AI Reward Regimes",
   "hypothesis": "SP spectral-layer proxies may help lower-quality generators, while learned perceptual rewards may distinguish stronger generators. MOS 2-3 versus 4+ is a hypothesis, not a measured model label.",
   "data": {
@@ -23,11 +24,11 @@
   ],
   "rewards": [
     {"id": "richness", "name": "SP Richness-v1 (proposed)", "status": "Definition awaiting approval", "definition": "G * (0.60 * layer_activity + 0.25 * layer_movement + 0.15 * active_frame_fraction)", "meaning": "Five-band spectral activity/movement with a spectral-flatness tonality gate; not instrument count or MOS.", "note": "Reuse the existing Richness-v0 raw core. Lyrics2song has no fixed vocal input: freeze a common vocal/accompaniment separator and apply SP to generated accompaniment. The original accompaniment-to-fixed-vocal loudness penalty cannot be copied unchanged. Freeze separation and common guardrails before training; label this adaptation v1.", "source": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rl/grpo/train_lada_band.py"},
-    {"id": "songbench", "name": "SongBench-Instrument", "status": "Available metric; RL adapter not yet built", "definition": "R = Instrument (public scoring output may name this Instrumental)", "meaning": "Instrument realism, synthesis quality and acoustic fidelity, not the number of instruments.", "note": "Frozen SongBench checkpoint/frontend; log all seven dimensions for independent cross-reward evaluation. Arrangement is a separate optional orchestration reward, not secretly part of this arm.", "source": "https://github.com/Tencent/SongBench"},
-    {"id": "songeval", "name": "SongEval-Musicality (optional proxy)", "status": "Requires user confirmation", "definition": "R = Musicality", "meaning": "Holistic musical enjoyment, not an instrument-specific head.", "note": "SongEval has only Coherence, Musicality, Memorability, Clarity and Naturalness. SongEval-inst does not exist; use this broader proxy only after confirmation, or replace this arm with SongBench-Arrangement.", "source": "https://github.com/ASLP-lab/SongEval"}
+    {"id": "songbench", "name": "SongBench-Instrument", "status": "Available metric; RL adapter not yet built", "definition": "R = Instrument (public scoring output may name this Instrumental)", "meaning": "Instrument realism, synthesis quality and acoustic fidelity, not the number of instruments.", "note": "Frozen SongBench checkpoint/frontend; log all seven dimensions for independent cross-reward evaluation. Arrangement is a separate training arm, not secretly part of this objective.", "source": "https://github.com/Tencent/SongBench"},
+    {"id": "songbench-arrangement", "name": "SongBench-Arrangement", "status": "Reward choice confirmed; training not authorized", "definition": "R = Arrangement", "meaning": "Artistry of harmonic framework and instrumental orchestration; closer to arrangement richness than instrument realism, but not an instrument-count metric.", "note": "User selected this third reward on 2026-10-14, replacing the optional SongEval-Musicality arm. Use the same frozen SongBench checkpoint/frontend as Instrument, with a separate single-dimension objective. SongEval remains independent cross-evaluation only.", "source": "https://github.com/Tencent/SongBench"}
   ],
   "design": {
-    "primary_matrix": "YuE2 / Muse x SP Richness / SongBench-Instrument / optional SongEval-Musicality",
+    "primary_matrix": "YuE2 / Muse x SP Richness / SongBench-Instrument / SongBench-Arrangement",
     "weak_model_extension": "Adds three arms only after a valid weak checkpoint is selected and approved",
     "optimizer": "Proposed LoRA GRPO; frozen reference, beta=0.01, identical group size and schedule within each model",
     "lr_grid": ["2e-5", "1e-4", "3e-4"],

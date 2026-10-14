@@ -6,6 +6,8 @@ const value = JSON.parse(fs.readFileSync(source));
 assert.equal(value.training_authorized, false);
 assert.equal(value.runs.length, 0);
 assert.equal(value.rewards.length, 3);
+assert.deepEqual(value.rewards.map((r) => r.id), ['richness', 'songbench', 'songbench-arrangement']);
+assert.equal(value.reward_selection.third_reward, 'SongBench-Arrangement');
 assert.ok(value.models.every((m) => m.mos === null));
 const rendered = JSON.stringify(value, null, 2) + '\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(target, 'utf8'), rendered);

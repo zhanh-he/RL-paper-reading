@@ -5,7 +5,9 @@ The versioned [protocol](protocol.json) is **not approved for training**. No run
 synthetic curves or invented MOS values are presented as results.
 
 The proposed core compares original YuE2 and Muse bases under spectral Richness,
-SongBench-Instrument, and optional SongEval-Musicality. A controlled weaker
+SongBench-Instrument, and SongBench-Arrangement. The user confirmed Arrangement
+as the third reward on 2026-10-14; this does not authorize training. SongEval
+remains independent cross-evaluation, not an optimization arm. A controlled weaker
 checkpoint is preferable for isolating baseline quality, but needs independent
 train/valid listening, a weight hash and user approval. None of the quality bands
 or a MOS 4+ boundary has been established by our matched human evaluation.

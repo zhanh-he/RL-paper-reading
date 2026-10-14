@@ -22,6 +22,7 @@ try {
     }
     const data = await page.evaluate(async () => (await fetch('./data/reward-regime-protocol.json')).json());
     assert.equal(data.training_authorized, false); assert.deepEqual(data.runs, []);
+    assert.equal(data.rewards[2].name, 'SongBench-Arrangement');
     assert.equal(await root.locator('audio,canvas').count(), 0);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth+1));
     await root.locator('[data-regime="models"] button').first().click();
