@@ -6,6 +6,9 @@ field-wide usage frequency. No new model training is launched by this update.
 
 ## Online Reference
 
+- [BRPO, NFT and reward-validity decisions](2026-10-14-brpo-nft-reward-validity.md):
+  source-checked comparison with DPO/GRPO, the two-candidate qualification,
+  conditional priorities and explicit limits. This reading adds no experiments.
 - [Source-checked post-training reading map](2026-10-14-post-training-reading.md):
   LeVo 2, YuE2 and Full-Song equations/results, version differences, OPD
   foundations and teacher-side distribution shift. Paper evidence stays separate

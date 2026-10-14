@@ -101,4 +101,11 @@ For DiffusionNFT, verified official resources are [code](https://github.com/NVla
 
 ### Evaluation implications, not an experiment authorization
 
-Compare systems by updated module, feedback source, candidate construction, update operator, data freshness, constraints and independent evaluation. Fixed-distribution pairwise validity, Best-of-K selection pressure and on-policy trajectories answer different questions. A monotone score transform preserves ranks but can change standardized GRPO advantages; the optimizer is not rank-only. These are methodological distinctions, not newly measured music gains or a guarantee that any combination of rewards prevents collapse.
+Compare systems by updated module, feedback source, candidate construction, update operator, data freshness, constraints and independent evaluation. Fixed-distribution pairwise validity, Best-of-K selection pressure and on-policy trajectories answer different questions. For general groups a monotone score transform can change standardized GRPO advantages; with two candidates and population standard deviation outside a numerical floor, the advantages reduce to approximately +1/-1. This qualification applies to the explicitly inspected YuE2 trainers, not all music implementations. These distinctions are not newly measured music gains or a guarantee against collapse.
+
+### BRPO / NFT decision follow-up
+
+See [the source-checked decision note](2026-10-14-brpo-nft-reward-validity.md) for
+judge/optimizer confounding in Writing-Zero, continuous DiffusionNFT versus AR-NFT,
+GIFT's actual policy-gradient construction, and conditional DPO/GRPO priorities.
+This reading launches no new experiment and does not revoke existing approvals.
