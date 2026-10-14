@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "approval_date_awst": "2026-10-14",
+  "scope": "YuE2/Muse x Richness/Instrument/Arrangement, LR3e-4 seed42, full270 train/30 valid",
+  "code_sha256": {
+    "collect_progress.py": "b87b08b82726ad3ab50e106508f3651583cc55a99de0b0f17abb7c8749296037",
+    "gadi_muse.pbs": "0a4e2b7d6f88b1c2a6eefb00e63065e3790873df0b410c270569c38ec64d18d9",
+    "gadi_yue2.pbs": "0fdeba55da137254be2ba499e97ebc7d97791263edc714e0dbde01c239bef557",
+    "launch_container_worker.py": "65ca0aabf55a7e1e32946e01c9ae8153f385368b861be09c487c67ebf8e9b450",
+    "muse_plugin.py": "6cbe57491b7d5046b6f671ed59f202f6a93c26dff57d1b047a86b5b2e8da5425",
+    "render_yue2_replays.py": "3b7f585db2f86401cd24c9dc5356e077ec6a3add327dac47c1313207ec3e6d99",
+    "reward_server.py": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+    "rewards.py": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+    "run_lab_queue.sh": "85fc4bc7100547130cdfa00fa26dbaceaf381b3e95fdf575afc650eadb2f38d6",
+    "test_rewards.py": "4724f34c44b1236a961029b1d7a16a13c8cf8b481b811d37fbf9928468d80013",
+    "train_yue2.py": "d8d7dd10f0525ec83562300cf715bb0ecb697984920a7791364ac7d8a274e78a",
+    "validate_muse.py": "3da60a85e6ba36649135c1a2a7b038c229a4414db242ad4904ae9ac8043756c8",
+    "yue2_shared_baseline.py": "6ecd66c7a79265acabbc45848de17ba4df86c6a178a3bbfa04499a65230e803e"
+  },
+  "verified_assets": {
+    "yue2-base": {
+      "sha256": "1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9",
+      "bytes": 7261441640
+    },
+    "songbench-muq-lab5090": {
+      "sha256": "273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6",
+      "bytes": 1333825096
+    }
+  },
+  "queue_history": [
+    {
+      "jobs": [
+        181212843,
+        181212844
+      ],
+      "state_at_withdrawal": "Q",
+      "reason": "YuE2 moved to available5090; no trained steps discarded"
+    },
+    {
+      "jobs": [
+        181212845,
+        181212846,
+        181212847
+      ],
+      "state_at_withdrawal": "Q",
+      "reason": "Muse PBS replaced to include independent full30 validation"
+    },
+    {
+      "jobs": [
+        181217412,
+        181217413,
+        181217415
+      ],
+      "state_at_withdrawal": "Q",
+      "reason": "Muse sampling fixed: disabled inherited top-k20, study scheduler512"
+    },
+    {
+      "jobs": [
+        181221314,
+        181221317,
+        181221319
+      ],
+      "state_at_withdrawal": "Q",
+      "reason": "Muse allocation reduced from two Hopper GPUs to one80GB shared GPU"
+    }
+  ],
+  "current_muse_jobs": [
+    181223774,
+    181223777,
+    181223779
+  ],
+  "local_queue_pid": 3842776,
+  "training_pid": 3839302,
+  "scorer_pid": 3839125,
+  "checks": {
+    "remote_reward_unit_tests": 3,
+    "muse_cpu_plugin_import": "passed with exact PBS environment variables; no GPU training on login",
+    "python_compile": "passed",
+    "bash_parse": "passed",
+    "desktop_mobile": "passed including canvas pixels and hover",
+    "score_audio_binding": "all completed YuE2 rollout/validation hashes verified by collector",
+    "gpu_compatibility": "YuE2 live training measured; Muse compute-node memory fit not yet measured",
+    "no_new_scheduled_tasks": true,
+    "no_unrelated_jobs_interrupted": true
+  },
+  "test_run": false,
+  "notes": [
+    "CPU plugin check is not a completed Muse training run.",
+    "Online k3 KL is a sampled training proxy, not exact full-policy KL.",
+    "Public audio MP3 only; all lossless scoring audio and checkpoints remain private.",
+    "Native long replay stage follows all three YuE2 training arms; not started at collection."
+  ]
+}

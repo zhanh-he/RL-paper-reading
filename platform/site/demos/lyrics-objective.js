@@ -1,5 +1,5 @@
 const root = document.querySelector('#lyrics-objective');
-let dataset = 'wsb', origin = 'local', official, measured;
+let dataset = 'wsb', origin = 'local', official, measured, priority;
 const $ = (name) => root.querySelector(`[data-objective="${name}"]`);
 const tr = (values, header = false) => {
   const row = document.createElement('tr');
@@ -55,6 +55,7 @@ function render() {
   const museRecords = measured.execution?.muse_training || [];
   const museDone = museRecords.filter((r) => r.verified_train_steps === 270).length;
   $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN', {timeZone: 'Australia/Perth'})} AWST · CMI 全量生成 ${generated}/1694 (${(100*generated/1694).toFixed(1)}%) · 5090 ${measured.queue_running_at_collection ? '运行中' : '回收时未运行'}${submitted} · 提交不代表完成；Muse ${museDone}/6 臂训练完成${museRecords.some((r) => r.resume) ? '、从 180 续跑已提交' : ''}，独立评估尚未提交`;
+  if (priority?.other_work?.paused_on) $('updated').textContent = `2026-10-14 用户要求优先 SP / AI Rewards：此处旧评估队列和旧 Muse 续跑已暂停，保留已完成结果。以下数字为上次回收快照，不是当前运行状态：CMI 生成 ${generated}/1694；Muse ${museDone}/6 臂训练完成。提交或局部覆盖不等于全量完成。`;
   const diagnostics = measured.datasets[dataset].rows.flatMap((r) => (r.diagnostic_rows || []).map((sample) => ({ system: r.system, ...sample })));
   $('diagnostics').hidden = published || !diagnostics.length;
   $('diagnostic-head').replaceChildren(tr(['Experiment', 'Candidate · duration', ...official.metrics.map((m) => `${m.label} ${m.lowerIsBetter ? '↓' : '↑'}`)], true));
@@ -65,6 +66,7 @@ try {
   const load = async (file) => { const response = await fetch(file, { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); };
   official = await load('./data/wsb-official-results.json');
   measured = await load('./data/lyrics-objective-results.json');
+  priority = await load('./data/reward-regime-protocol.json');
   if (official.metrics.length !== 9 || official.rows.length !== 17 || measured.schema !== 1) throw new Error('Objective evaluation schema mismatch');
   root.querySelectorAll('[data-objective-dataset]').forEach((b) => b.addEventListener('click', () => {
     dataset = b.dataset.objectiveDataset; if (dataset === 'cmi') origin = 'local'; render();

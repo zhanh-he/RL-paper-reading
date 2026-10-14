@@ -1,19 +1,19 @@
 {
-  "version": "proposal-20261014-v2",
-  "status": "awaiting-user-approval",
-  "training_authorized": false,
+  "version": "approved-20261014-v3",
+  "status": "formal-training-in-progress",
+  "training_authorized": true,
   "reward_selection": {
     "confirmed_by": "user",
     "date_awst": "2026-10-14",
     "third_reward": "SongBench-Arrangement",
-    "scope": "Reward choice only; training not authorized"
+    "scope": "Six primary arms approved at LR 3e-4, seed 42; prioritize over owned older work. No scheduled tasks."
   },
   "title": "SP / AI Reward Regimes",
   "hypothesis": "SP spectral-layer proxies may help lower-quality generators, while learned perceptual rewards may distinguish stronger generators. MOS 2-3 versus 4+ is a hypothesis, not a measured model label.",
   "data": {
     "train": "CMI-Pref triple-source frozen 270 conditions",
     "valid": "CMI-Pref same frozen 30 conditions",
-    "test": "WildSongBench all 192 conditions, sealed for this new study until protocol approval and model/reward selection is frozen",
+    "test": "WildSongBench all 192 conditions, sealed: no test generation or reward-based test selection in this urgent training phase",
     "split_url": "./data/cmi-pref-triple-9to1-split.json",
     "modalities": "Native text + lyrics; reference audio remains reserved, not an RL target.",
     "no_test_tuning": true,
@@ -23,19 +23,19 @@
     {
       "id": "yue2",
       "name": "YuE2-3B",
-      "role": "Proposed stronger baseline",
+      "role": "Stronger-baseline hypothesis",
       "mos": null,
-      "status": "Awaiting approval",
-      "note": "Use the original base, not an existing SongEval/MuseCritic-adapted checkpoint. MOS >=4 must be verified by blind listening.",
+      "status": "Formal training on lab5090",
+      "note": "Original base, not an existing SongEval/MuseCritic-adapted checkpoint. MOS >=4 must be verified by blind listening.",
       "source": "https://github.com/multimodal-art-projection/YuE"
     },
     {
       "id": "muse",
       "name": "Muse-0.6B",
-      "role": "Proposed contrasting baseline",
+      "role": "Contrasting-baseline hypothesis",
       "mos": null,
-      "status": "Awaiting approval",
-      "note": "Use the original base. Its lower quality relative to YuE2 is not yet a matched human-MOS measurement.",
+      "status": "Formal jobs submitted on Gadi wa66 / iv96",
+      "note": "Original base. Its lower quality relative to YuE2 is not yet a matched human-MOS measurement. Submitted does not mean running.",
       "source": "https://github.com/yuhui1038/Muse"
     },
     {
@@ -78,18 +78,18 @@
   "rewards": [
     {
       "id": "richness",
-      "name": "SP Richness-v1 (proposed)",
-      "status": "Definition awaiting approval",
-      "definition": "G * (0.60 * layer_activity + 0.25 * layer_movement + 0.15 * active_frame_fraction)",
+      "name": "SP Richness-v1",
+      "status": "Formal reward implemented",
+      "definition": "R = G * (0.60 * layer_activity + 0.25 * layer_movement + 0.15 * active_frame_fraction) - shared penalty",
       "meaning": "Five-band spectral activity/movement with a spectral-flatness tonality gate; not instrument count or MOS.",
-      "note": "Reuse the existing Richness-v0 raw core. Lyrics2song has no fixed vocal input: freeze a common vocal/accompaniment separator and apply SP to generated accompaniment. The original accompaniment-to-fixed-vocal loudness penalty cannot be copied unchanged. Freeze separation and common guardrails before training; label this adaptation v1.",
-      "source": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rl/grpo/train_lada_band.py"
+      "note": "Existing Richness-v0 raw core on accompaniment estimated by frozen htdemucs 955717e8. The fixed-vocal loudness penalty is replaced by the common generated-mixture guard; raw SP and penalties are logged separately.",
+      "source": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/rewards.py"
     },
     {
       "id": "songbench",
       "name": "SongBench-Instrument",
-      "status": "Available metric; RL adapter not yet built",
-      "definition": "R = Instrument (public scoring output may name this Instrumental)",
+      "status": "Formal reward implemented",
+      "definition": "R = Instrumental / 10 - shared penalty",
       "meaning": "Instrument realism, synthesis quality and acoustic fidelity, not the number of instruments.",
       "note": "Frozen SongBench checkpoint/frontend; log all seven dimensions for independent cross-reward evaluation. Arrangement is a separate training arm, not secretly part of this objective.",
       "source": "https://github.com/Tencent/SongBench"
@@ -97,36 +97,112 @@
     {
       "id": "songbench-arrangement",
       "name": "SongBench-Arrangement",
-      "status": "Reward choice confirmed; training not authorized",
-      "definition": "R = Arrangement",
+      "status": "Formal reward implemented",
+      "definition": "R = Arrangement / 10 - shared penalty",
       "meaning": "Artistry of harmonic framework and instrumental orchestration; closer to arrangement richness than instrument realism, but not an instrument-count metric.",
-      "note": "User selected this third reward on 2026-10-14, replacing the optional SongEval-Musicality arm. Use the same frozen SongBench checkpoint/frontend as Instrument, with a separate single-dimension objective. SongEval remains independent cross-evaluation only.",
+      "note": "Confirmed by user, replacing the optional SongEval-Musicality arm. Same frozen SongBench checkpoint/frontend as Instrument. SongEval is independent evaluation only, not this training objective.",
       "source": "https://github.com/Tencent/SongBench"
     }
   ],
   "design": {
     "primary_matrix": "YuE2 / Muse x SP Richness / SongBench-Instrument / SongBench-Arrangement",
     "weak_model_extension": "Adds three arms only after a valid weak checkpoint is selected and approved",
-    "optimizer": "Proposed LoRA GRPO; frozen reference, beta=0.01, identical group size and schedule within each model",
+    "optimizer": "LoRA GRPO, group size 2, frozen reference beta=0.01. YuE2: PyTorch/PEFT rank4 alpha8, AdamW constant3e-4, single group update; ratio clipping is inactive at that first gradient. Muse: ms-swift/TRL + vLLM rank8, native scheduler. Compare reward arms within model, not implementation equality across models.",
     "lr_grid": [
-      "2e-5",
-      "1e-4",
       "3e-4"
     ],
     "steps": 270,
     "seeds": [
-      42,
-      43,
-      44
+      42
     ],
     "selection": "Hyperparameters/checkpoints selected on all 30 validation conditions only. Test all 192 once the selection rule is frozen; report all preregistered arms, no best-on-test selection.",
-    "audio": "Same prompt/seed and frozen per-model baseline; 30-60 second native excerpts, no padding or repeated loops. Fix identical conditioning and decoding within model, document unavoidable cross-model differences.",
+    "audio": "Same prompt/seed and frozen per-model baseline. Training/full validation use short native rollout budgets (YuE2 max600/min200 semantic tokens, Muse max512 completion tokens); these are not 60-second replay results. Long replay target30-60 seconds is a separate inference stage; no padding or repeated loops. Public MP3 only, private PCM24-FLAC for scoring.",
     "score_binding": "All rewards consume the same immutable private lossless audio per candidate, with SHA256 and duration; public MP3 is a separate listening copy.",
-    "common_guards": "Freeze identical KL, silence/nonfinite, clipping and loudness policy for all arms before launch. Log raw target and any penalty separately; no arm-specific hidden guardrails.",
-    "cross_scoring": "Every arm scored by SP raw components, SongBench Instrument/Arrangement/Mixing/Musicality, all five SongEval dimensions, peak/clipping/LUFS, lyric alignment where language-supported.",
+    "common_guards": "Invalid/nonfinite, <1 second or RMS<1e-5 => zero objective. Otherwise shared penalty = 0.5*min(1,near-fullscale sample fraction/0.01) + min(0.1,0.01*(max(0,RMS_dBFS+6)+max(0,-40-RMS_dBFS))). Near-fullscale thresholdabs(sample)>=0.999. Raw target, penalties and invalid rates separate; learned target divided by10, SP raw0-1. KL beta0.01 is a separate loss term, not included in plotted reward.",
+    "sampling": "Unfiltered temperature1, top_p1, repetition1. YuE2 codec+EOS support with EOS masked for first200 actions; loss uses same support. Native BF16 sampling versus FP32 log-softmax remains numerical approximation, not bit-exact likelihood equality. Muse top_k=-1, study scheduler512 tokens per turn. Different native codec budgets between models disclosed.",
+    "validation": "All frozen30 conditions; YuE2 checkpoints0/50/100/270, Muse0/270. Freeze seeds5101+index and same per-model baseline audio across reward arms. Partial validation is never reported as full mean.",
+    "cross_scoring": "During training/validation: all SP components, all seven SongBench dimensions, peak/clipping/RMS. Independent SongEval, LUFS, lyric alignment and blind listening remain follow-up evaluation, not completed claims.",
+    "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+    "songbench_head_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
     "human_test": "Blind paired A/B plus separate instrument-realism, arrangement-richness and overall MOS ratings; randomized order and level-matched listening copies kept separate from scored audio. Model quality bands determined from baseline listening, never reward predictions.",
     "statistics": "Paired per-condition deltas, bootstrap confidence intervals clustered by condition and seed. Test interaction of baseline quality x reward family; account for reward saturation/ranking and multiple comparisons. Two differently architected models alone cannot establish a universal MOS threshold.",
     "hacking_audit": "Noise layering, gain/clipping, duplicated layers, dense dissonant tones, empty or missing vocals, sparse accompaniment. An optimized score increase alone is not improvement; require blind ratings/cross-metric evidence. Synthetic attacks are diagnostics only, never counted as full benchmark outcomes."
   },
-  "runs": []
+  "other_work": {
+    "paused_on": "2026-10-14",
+    "reason": "User priority request",
+    "lab5090_controller_pid": 3629786,
+    "mac_transport_pid": 47036,
+    "gadi_old_jobs_held": [
+      181128149,
+      181128150,
+      181128151,
+      181128152,
+      181128153,
+      181128154,
+      181128155,
+      181128156,
+      181128157,
+      181128158,
+      181128160,
+      181128161,
+      181128162,
+      181197557
+    ],
+    "kaya_owned_pending_jobs_held": 74,
+    "unrelated_jobs_interrupted": false
+  },
+  "runs": [
+    {
+      "model": "yue2",
+      "reward": "richness",
+      "status": "running",
+      "host": "lab5090",
+      "process_id": 3839302
+    },
+    {
+      "model": "yue2",
+      "reward": "instrument",
+      "status": "local-sequential-queue",
+      "host": "lab5090",
+      "controller_pid": 3842776
+    },
+    {
+      "model": "yue2",
+      "reward": "arrangement",
+      "status": "local-sequential-queue",
+      "host": "lab5090",
+      "controller_pid": 3842776
+    },
+    {
+      "model": "muse",
+      "reward": "richness",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "wa66",
+      "priority": 1023,
+      "job_id": "181223774.gadi-pbs",
+      "gpus": 1
+    },
+    {
+      "model": "muse",
+      "reward": "instrument",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "iv96",
+      "priority": 1023,
+      "job_id": "181223777.gadi-pbs",
+      "gpus": 1
+    },
+    {
+      "model": "muse",
+      "reward": "arrangement",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "wa66",
+      "priority": 1023,
+      "job_id": "181223779.gadi-pbs",
+      "gpus": 1
+    }
+  ]
 }

@@ -18,7 +18,7 @@
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
-    <script type="module" src="./reward-regime.js?v=20261014-proposal"></script>
+    <script type="module" src="./reward-regime.js?v=20261014-running"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-recovered-progress"></script>
   </head>
   <body>
@@ -71,12 +71,22 @@
       </section>
 
       <section class="lab-view" id="view-reward-regimes" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Reward regime study · Proposal</p><h2>SP / AI Rewards</h2></div><span class="state pending">待确认 · 未启动训练</span></div>
+        <div class="section-intro"><div><p class="eyebrow">Reward regime study · Formal experiments</p><h2>SP / AI Rewards</h2></div><span class="state measured">已授权 · LR 3e-4</span></div>
+        <p class="section-copy" data-regime="updated"></p>
         <p class="section-copy" data-regime="hypothesis"></p>
         <div class="source-block"><strong>指标边界</strong><p>SongEval 没有 Instrument 维度。SongBench-Instrument 评乐器真实度与合成质量，不是乐器数量；SP Richness 是频谱层次代理。MOS 2–3 / 4+ 是待验证假设，不是已测标签。</p></div>
         <nav class="model-links reference-entry-links"><a href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a href="./data/reward-regime-protocol.json" download>下载实验协议 JSON</a><a href="./data/cmi-pref-triple-9to1-split.json" download>下载冻结 CMI split</a></nav>
         <h3>Models</h3><div class="model-controls" data-regime="models" aria-label="Reward study models"></div><p class="section-copy" data-regime="model-note"></p>
-        <div class="table-scroll"><table><thead><tr><th>Experiment</th><th>Reward definition</th><th>Run</th><th>Train steps</th><th>Valid Δ</th><th>WSB test Δ</th></tr></thead><tbody data-regime="arms"></tbody></table></div>
+        <div class="table-scroll"><table><thead><tr><th>Experiment · LR3e-4</th><th>Reward definition</th><th>Run</th><th>Train steps</th><th>Valid · value (Δ vs baseline)</th><th>WSB test Δ</th></tr></thead><tbody data-regime="arms"></tbody></table></div>
+        <details open data-regime="training"><summary>Training · Reward / KL</summary>
+          <div class="model-controls" data-regime="reward-controls" aria-label="Training reward"></div>
+          <p class="section-copy" data-regime="trace-note"></p>
+          <div class="choral-training-plots" data-regime="plots">
+            <figure><figcaption>Reward · 单项目标 − shared penalty</figcaption><canvas data-regime="reward-chart" role="img" aria-label="Training reward"></canvas></figure>
+            <figure><figcaption>KL · 在线冻结参考 k3 估计</figcaption><canvas data-regime="kl-chart" role="img" aria-label="Training KL"></canvas></figure>
+          </div>
+        </details>
+        <details><summary>Full validation · 30/30 条交叉评分（不是测试集 / MOS）</summary><p class="section-copy">SP 为0–1代理，SongBench各列为原始0–10输出；不同指标不能横向比大小。Invalid 保留在30条分母中，不丢弃失败样本。</p><div class="table-scroll"><table><thead><tr><th>Arm</th><th>Step · N</th><th>SP Richness</th><th>Instrumental</th><th>Arrangement</th><th>Mixing</th><th>Musicality</th><th>Invalid</th></tr></thead><tbody data-regime="validation"></tbody></table></div></details>
         <details open><summary>Reward definitions · SP / AI</summary><div class="table-scroll"><table><thead><tr><th>Reward</th><th>R</th><th>Meaning</th><th>Boundary / status</th></tr></thead><tbody data-regime="rewards"></tbody></table></div></details>
         <details open><summary>CMI-Perf train / valid · WildSongBench sealed test</summary><div class="table-scroll"><table><tbody data-regime="data"></tbody></table></div></details>
         <details><summary>GRPO · cross-reward evaluation · human listening · reward hacking</summary><div class="table-scroll"><table><tbody data-regime="design"></tbody></table></div></details>

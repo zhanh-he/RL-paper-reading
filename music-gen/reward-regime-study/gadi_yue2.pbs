@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=08:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N regime-yue2
+set -euo pipefail
+: "${REGIME_REWARD:?}"
+study=/scratch/iv96/hm6416/reward-regimes-20261014
+code="$study/code"
+root=/g/data/wa66/hanyu/YuE2-posttrain
+bundle=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics
+export PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 HF_HOME=/g/data/wa66/hanyu/hf-cache OMP_NUM_THREADS=4
+export TMPDIR="$PBS_JOBFS"
+port=$((43000+${PBS_JOBID%%.*}%1000))
+output="$study/outputs/yue2-${REGIME_REWARD}-lr3e4-seed42"
+mkdir -p "$output"
+"$root/.venv/bin/python" "$code/launch_container_worker.py" \
+  --work /scratch/iv96/hm6416/wsb-objective-20261013 \
+  --python "$bundle/.venvs/metrics/bin/python" --script "$code/reward_server.py" \
+  --bundle "$bundle" --deps "$study/deps" --separator "$study/models/955717e8-8726e21a.th" \
+  --receipt-dir "$output/scorer" --port "$port" > "$output/scorer.log" 2>&1 &
+scorer_pid=$!
+trap 'kill "$scorer_pid" 2>/dev/null || true' EXIT
+for _ in $(seq 1 180); do
+  curl -fsS "http://127.0.0.1:$port/health" >/dev/null && break
+  kill -0 "$scorer_pid" || exit 1
+  sleep 5
+done
+curl -fsS "http://127.0.0.1:$port/health" >/dev/null
+"$root/.venv/bin/python" -u "$code/train_yue2.py" \
+  --model "$root/models/YuE2-3B" --vae "$root/models/YuE2-Vae" \
+  --data "$root/examples/cmi-pref-triple-text-lyrics-9to1-v2.json" \
+  --reward "$REGIME_REWARD" --scorer "http://127.0.0.1:$port" --output "$output" --lr 3e-4 --steps 270

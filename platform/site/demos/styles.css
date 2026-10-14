@@ -251,6 +251,13 @@ button.source-link { padding: 0; border: 0; background: none; cursor: pointer; f
 #view-reward-regimes th { background: var(--surface-muted); }
 #view-reward-regimes details { padding: 14px 0; border-top: 1px solid var(--line); }
 #view-reward-regimes summary { cursor: pointer; font-weight: 650; }
+#view-reward-regimes [data-regime="reward-controls"] { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+#view-reward-regimes [data-regime="reward-controls"] button { padding: 8px 12px; min-height: 38px; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--surface); color: var(--ink-muted); cursor: pointer; font: inherit; font-size: .82rem; }
+#view-reward-regimes [data-regime="reward-controls"] button[aria-pressed="true"] { background: var(--green-soft); color: var(--green-dark); }
+#view-reward-regimes .choral-training-plots[hidden] { display: none; }
+#view-reward-regimes .choral-training-plots figure { margin: 0; min-width: 0; position: relative; }
+#view-reward-regimes figcaption { font-size: .77rem; font-weight: 650; }
+#view-reward-regimes canvas { display: block; width: 100%; height: 180px; }
 .reference-entry-links { margin-bottom: 18px; }
 .lab-table.reference-table table { min-width: 980px; table-layout: fixed; }
 .reference-table th:first-child { width: 24%; }

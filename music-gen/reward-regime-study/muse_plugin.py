@@ -1,0 +1,44 @@
+"""Canonical FLAC rewards on the existing Muse multi-turn GRPO integration."""
+import importlib.util
+import os
+import sys
+from pathlib import Path
+import soundfile as sf
+import numpy as np
+from swift.rewards import orms
+from swift.rollout.multi_turn import multi_turns
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from rewards import score_remote
+
+spec = importlib.util.spec_from_file_location('regime_aligned', os.environ['MUSE_ALIGNED_PLUGIN'])
+aligned = importlib.util.module_from_spec(spec); sys.modules[spec.name] = aligned; spec.loader.exec_module(aligned)
+
+
+class RegimeScheduler(aligned.original.base.MuseMultiTurnScheduler):
+    MAX_TOKENS_PER_TURN = 512
+
+
+multi_turns['regime_scheduler'] = RegimeScheduler
+
+
+class RegimeRM(aligned.InvalidOutputGuard, aligned.original.base.MusecriticRM):
+    def _decode_completion_to_wav(self, completion, request_id, index, local_batch_size=1):
+        source = Path(super()._decode_completion_to_wav(completion, request_id, index, local_batch_size))
+        samples, sr = sf.read(source, dtype='float32')
+        if not np.isfinite(samples).all():
+            return str(source)  # Preserve nonfinite values for the inherited invalid-output guard.
+        destination = source.with_suffix('.flac')
+        sf.write(destination, samples, sr, subtype='PCM_24')
+        return str(destination)
+
+    def _score_audios(self, paths, request_ids):
+        rows = score_remote(os.environ['REGIME_SCORER'], paths, os.environ['REGIME_REWARD'])
+        return [{'reward': r['mean'], 'reward_scores': {'SP_Richness': r['richness']['raw'],
+                 **r['songbench'], 'Shared_penalty': r['guard']['penalty']}, 'infer_critic': '', 'error': None} for r in rows]
+
+    def _score_audio(self, path, request_id='', index=0, local_batch_size=1):
+        result = self._score_audios([path], [request_id])[0]
+        return result['reward'], result
+
+
+orms['regime_rm'] = RegimeRM
