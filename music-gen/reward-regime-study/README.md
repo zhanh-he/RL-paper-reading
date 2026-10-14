@@ -1,6 +1,11 @@
 # SP / AI Reward Regimes
 
 [Public experiments](https://zhanh-he.github.io/RL-paper-reading/demos/#reward-regimes).
+New: [Open-model RL expansion plan, 2026-10-14](OPEN_MODEL_RL_PLAN_2026-10-14.md)
+records the proposed YuE2 / HeartMuLa / DiffRhythm2 / SongBloom routes,
+team-reported ten-input listening estimates, release checks and approval gates.
+The expansion is **awaiting review; no new training is authorized or launched**.
+
 The versioned [protocol](protocol.json) was **approved for six formal training
 arms on 2026-10-14**, one learning rate **3e-4**, seed42, 270 training steps.
 [Progress](progress.json) contains checkpoint-verified traces and only complete
