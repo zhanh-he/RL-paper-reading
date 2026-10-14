@@ -1,0 +1,40 @@
+#view-reward-regimes { min-width: 0; }
+#view-reward-regimes .protocol-strip { margin-bottom: 22px; }
+#view-reward-regimes .metric-controls { gap: 10px; }
+#view-reward-regimes [data-regime="models"],
+#view-reward-regimes [data-regime="reward-controls"] { margin: 0; gap: 6px; }
+#view-reward-regimes [data-regime="model-note"] { margin: -8px 0 18px; }
+#view-reward-regimes .lyrics-protocol { margin-bottom: 20px; }
+#view-reward-regimes .lyrics-protocol p { margin: 7px 0 10px; font-size: .82rem; color: var(--ink-muted); line-height: 1.6; overflow-wrap: anywhere; }
+#view-reward-regimes .choral-deep-dive { margin-top: 22px; padding: 0; border-bottom: 0; }
+#view-reward-regimes .choral-deep-dive > summary { padding: 15px 2px; }
+#view-reward-regimes .choral-deep-dive[open] { padding-bottom: 16px; }
+#view-reward-regimes .choral-training { padding-top: 0; }
+#view-reward-regimes .regime-replay { margin-top: 22px; padding: 18px 0 0; }
+#view-reward-regimes .lyrics-example-controls { margin: 16px 0; }
+#view-reward-regimes [data-regime="example-controls"] { display: inline-flex; margin: 0; gap: 0; }
+#view-reward-regimes .source-block { min-height: 105px; }
+#view-reward-regimes .stage-rail { flex-wrap: wrap; gap: 8px; border: 0; overflow: visible; }
+#view-reward-regimes .stage-rail button { min-width: 96px; min-height: 40px; padding: 9px 14px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink-muted); background: var(--surface); font: 700 12px system-ui; cursor: pointer; }
+#view-reward-regimes .stage-rail button[aria-pressed="true"] { color: var(--green-dark); background: var(--green-soft); border-color: #6d9f8c; }
+#view-reward-regimes button:disabled { opacity: .45; cursor: default; }
+#view-reward-regimes button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+#view-reward-regimes .compare-panel h3 { font-size: 16px; overflow-wrap: anywhere; }
+#view-reward-regimes .compare-panel .muted { font-size: .78rem; color: var(--ink-muted); }
+#view-reward-regimes .regime-placeholder { min-height: 180px; padding-block: 18px; color: var(--ink-muted); font-size: .82rem; line-height: 1.6; }
+#view-reward-regimes .wave-visual { margin: 8px 0; aspect-ratio: 1200 / 140; background: #000; }
+#view-reward-regimes .spectrum-visual { margin: 8px 0; aspect-ratio: 1200 / 320; background: #000; }
+#view-reward-regimes .wave-visual img,
+#view-reward-regimes .spectrum-visual img { display: block; width: 100%; height: 100%; object-fit: contain; }
+#view-reward-regimes .table-scroll { margin: 8px 0 16px; }
+#view-reward-regimes td, #view-reward-regimes th { padding: 10px; font-variant-numeric: tabular-nums; }
+#view-reward-regimes [data-regime="validation"] td { white-space: nowrap; }
+#view-reward-regimes [data-regime="audio-provenance"] p { font-size: .74rem; color: var(--ink-muted); overflow-wrap: anywhere; line-height: 1.6; }
+#view-reward-regimes .regime-lr { white-space: nowrap; }
+@media (max-width: 700px) {
+  #view-reward-regimes .compare-grid, #view-reward-regimes .source-grid { grid-template-columns: minmax(0, 1fr); }
+  #view-reward-regimes .source-block + .source-block { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  #view-reward-regimes [data-regime="models"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  #view-reward-regimes [data-regime="reward-controls"] { display: grid; grid-template-columns: minmax(0, 1fr); width: 100%; }
+  #view-reward-regimes [data-regime="models"] button { min-width: 0; white-space: normal; }
+}

@@ -1,7 +1,23 @@
 import { createMilestones } from './chart-milestones.js';
+
 const root = document.querySelector('#view-reward-regimes');
 const $ = (id) => root.querySelector(`[data-regime="${id}"]`);
-const row = (values, heading = false) => {
+const checkpoints = [0, 50, 100, 270];
+const rewardKey = (id) => ({ songbench: 'instrument', 'songbench-arrangement': 'arrangement' })[id] || id;
+const rewardName = (key) => ({ richness: 'SP-Richness', instrument: 'SongBench-Instrument', arrangement: 'SongBench-Arrangement' })[key] || key;
+const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', complete: '已核验完成' };
+const marks = new Map(['reward', 'kl'].map((key) => [key, createMilestones($(`${key}-chart`), 270)]));
+const fmt = (value) => Number.isFinite(value) ? value.toFixed(4) : 'n/a';
+const delta = (value, baseline) => Number.isFinite(value) && Number.isFinite(baseline)
+  ? `${fmt(value)} (${value >= baseline ? '+' : ''}${fmt(value - baseline)})` : fmt(value);
+let protocol, progress, recovery;
+let selected = 'yue2', target = 'richness', replayMode = 'long', example = 0, replayStep = 270, badId = 0;
+
+const model = () => protocol.models.find((m) => m.id === selected);
+const experiment = () => `${model().name}-${rewardName(target)}-3e-4`;
+const measuredRun = (key = target) => progress.runs.find((r) => r.model === selected && r.reward === key);
+
+function row(values, heading = false) {
   const tr = document.createElement('tr');
   for (const value of values) {
     const cell = document.createElement(heading ? 'th' : 'td');
@@ -9,168 +25,278 @@ const row = (values, heading = false) => {
     tr.append(cell);
   }
   return tr;
-};
-let protocol, progress, recovery, selected = 'yue2', target = 'richness', replayMode='long', example=0, replayStep=270, badId=0;
-const rewardKey = (id) => ({ songbench: 'instrument', 'songbench-arrangement': 'arrangement' })[id] || id;
-const status = { running: '运行中', 'local-sequential-queue': '本机连续队列', 'pbs-queued': 'PBS 排队（未起跑）' };
-const rewardName=(key)=>({richness:'Richness',instrument:'SongBench-Instrument',arrangement:'SongBench-Arrangement'})[key]||key;
-const runName=(key)=>`${selected==='yue2'?'YuE2':'Muse'}-${rewardName(key)}-3e-4`;
-const markers = new Map(['reward', 'kl'].map((key) => [key, createMilestones($(`${key}-chart`), 270)]));
+}
+
+function button(value, label, current, choose, disabled = false) {
+  const element = document.createElement('button');
+  element.type = 'button'; element.textContent = label; element.disabled = disabled;
+  if (label.endsWith('-3e-4')) {
+    element.textContent = label.slice(0, -4);
+    const lr = document.createElement('span'); lr.className = 'regime-lr'; lr.textContent = '3e-4'; element.append(lr);
+  }
+  element.setAttribute('aria-pressed', String(value === current));
+  element.addEventListener('click', () => choose(value));
+  return element;
+}
+
+function controls(container, items, current, choose) {
+  container.replaceChildren(...items.map(([value, label, disabled]) => button(value, label, current, choose, disabled)));
+}
 
 function chart(key, points) {
   const canvas = $(`${key}-chart`), width = canvas.clientWidth, height = canvas.clientHeight;
   if (!width || !height) return;
   const dpr = window.devicePixelRatio || 1;
-  canvas.width = Math.round(width*dpr); canvas.height = Math.round(height*dpr);
-  const ctx = canvas.getContext('2d'); ctx.scale(dpr,dpr);
+  canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
   const values = points.map((p) => p[key]);
-  let low = Math.min(0,...values), high = Math.max(...values);
-  if (high-low < .00001) high = low+.00001;
-  const padding = .12*(high-low); high+=padding; if (low<0) low-=padding;
-  const axisY=height-30, color=key==='reward'?'#177e70':'#ba514d';
-  const x=(step)=>39+(width-51)*step/270;
-  const y=(value)=>12+(axisY-12)*(high-value)/(high-low);
-  ctx.font='11px system-ui'; ctx.lineWidth=1;
-  for (let i=0;i<4;i++) {
-    const value=low+(high-low)*i/3, yy=y(value);
-    ctx.strokeStyle='#dde4df'; ctx.beginPath();ctx.moveTo(39,yy);ctx.lineTo(width-12,yy);ctx.stroke();
-    ctx.fillStyle='#59615c';ctx.textAlign='right';ctx.fillText(value.toFixed(key==='kl'?4:2),35,yy+4);
+  let low = Math.min(0, ...values), high = Math.max(...values);
+  if (high - low < .00001) high = low + .00001;
+  const padding = .12 * (high - low); high += padding; if (low < 0) low -= padding;
+  const axisY = height - 30, color = key === 'reward' ? '#177e70' : '#407dc5';
+  const x = (step) => 39 + (width - 51) * step / 270;
+  const y = (value) => 12 + (axisY - 12) * (high - value) / (high - low);
+  ctx.font = '11px system-ui'; ctx.lineWidth = 1;
+  for (let i = 0; i < 4; i++) {
+    const value = low + (high - low) * i / 3, yy = y(value);
+    ctx.strokeStyle = '#dde4df'; ctx.beginPath(); ctx.moveTo(39, yy); ctx.lineTo(width - 12, yy); ctx.stroke();
+    ctx.fillStyle = '#59615c'; ctx.textAlign = 'right'; ctx.fillText(value.toFixed(key === 'kl' ? 4 : 2), 35, yy + 4);
   }
-  ctx.textAlign='center';ctx.fillStyle='#59615c';
-  for (const step of [0,50,100,200,270]) ctx.fillText(String(step),x(step),height-8);
-  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();
-  points.forEach((p,i)=>{
-    const window=points.slice(Math.max(0,i-9),i+1);
-    const mean=window.reduce((n,q)=>n+q[key],0)/window.length;
-    if(i)ctx.lineTo(x(p.step),y(mean));else ctx.moveTo(x(p.step),y(mean));
-  });ctx.stroke();
-  const milestones=points.filter((p)=>[1,5,25,50,100,270].includes(p.step));
-  markers.get(key).set(milestones.map((p)=>({step:p.step,label:`Step ${p.step}\n${key==='kl'?'KL':'Reward'} ${p[key].toFixed(6)}（日志原值）`})));
-  markers.get(key).draw(ctx,width,axisY,color);
+  ctx.textAlign = 'center'; ctx.fillStyle = '#59615c';
+  for (const step of [0, 50, 100, 200, 270]) ctx.fillText(String(step), x(step), height - 8);
+  function line(rows, opacity, weight) {
+    ctx.globalAlpha = opacity; ctx.strokeStyle = color; ctx.lineWidth = weight; ctx.beginPath();
+    rows.forEach((p, i) => i ? ctx.lineTo(x(p.step), y(p.value)) : ctx.moveTo(x(p.step), y(p.value)));
+    ctx.stroke(); ctx.globalAlpha = 1;
+  }
+  line(points.map((p) => ({ step: p.step, value: p[key] })), .22, 1);
+  line(points.map((p, i) => ({ step: p.step, value: points.slice(Math.max(0, i - 9), i + 1)
+    .reduce((sum, q) => sum + q[key], 0) / Math.min(i + 1, 10) })), 1, 2);
+  if (replayStep <= points.at(-1).step) {
+    ctx.strokeStyle = '#79827d'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(x(replayStep), 12); ctx.lineTo(x(replayStep), axisY); ctx.stroke(); ctx.setLineDash([]);
+  }
+  marks.get(key).draw(ctx, width, axisY, color);
 }
 
 function draw() {
   if (!progress) return;
-  const data=progress.runs.find((r)=>r.model===selected && r.reward===target);
-  const trace=data?.trace || [];
-  $('plots').hidden=!trace.length;
-  $('trace-note').textContent=trace.length
-    ? `${selected==='yue2'?'YuE2':'Muse'}-${target}-3e-4 · 已核验 ${data.steps}/270 步。曲线为10步滑动均值，悬停打点显示日志原值。Reward 不包含 KL loss；KL 是同一 rollout 上的在线参考估计，不是精确全策略 KL，也不是测试分数。`
-    : '尚无已核验训练日志。排队状态不代表已训练，不显示替代曲线。';
-  if(trace.length) { chart('reward',trace);chart('kl',trace); }
+  const run = measuredRun(), trace = run?.trace || [];
+  $('plots').hidden = !trace.length;
+  for (const key of ['reward', 'kl']) {
+    marks.get(key).set(trace.filter((p) => [1, 5, 25, 50, 100, 270].includes(p.step)).map((p) => ({
+      step: p.step, label: `Step ${p.step}\n${key === 'kl' ? 'Sampled KL' : 'Reward'} ${p[key].toFixed(6)}（日志原值）`,
+    })));
+    $(`${key}-value`).textContent = trace.length ? `末步 ${fmt(trace.at(-1)[key])}` : '';
+    if (trace.length) chart(key, trace);
+  }
+  $('trace-note').textContent = trace.length
+    ? `${run.steps}/270 步已核验。浅线为原值，实线为10步滚动均值；Reward不含KL loss。右图为训练rollout上的冻结参考采样估计，不是离线探针或测试分数。`
+    : `${model().status}。尚无本模型、本目标的已核验日志，不显示替代曲线。`;
 }
 
-function buttons(container,items,current,choose) {
-  container.replaceChildren(...items.map(([value,label])=>{
-    const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',String(value===current));
-    b.addEventListener('click',()=>choose(value));return b;
-  }));
+function pauseOthers(audio) {
+  document.querySelectorAll('audio').forEach((other) => { if (other !== audio) other.pause(); });
 }
 
-function panel(asset,label) {
-  const article=document.createElement('article');article.className='compare-panel';
-  const h=document.createElement('h3');h.textContent=label;
-  const wave=document.createElement('img');wave.src=asset.wave;wave.alt=`${label} waveform, fixed -1 to +1`;wave.loading='lazy';wave.className='regime-wave';
-  const spectrum=document.createElement('img');spectrum.src=asset.spectrum;spectrum.alt=`${label} mel spectrum, 0-24kHz, -80 to 0dB, black floor`;spectrum.loading='lazy';spectrum.className='regime-mel';
-  const audio=document.createElement('audio');audio.controls=true;audio.preload='metadata';audio.src=asset.audio;
-  const scale=document.createElement('small');scale.textContent='Wave −1…+1 · Mel 0–24kHz / −80…0dB（固定）';
-  audio.dataset.sourceSha=asset.source_audio_sha256;
-  audio.addEventListener('play',()=>document.querySelectorAll('audio').forEach((a)=>{if(a!==audio)a.pause();}));
-  const note=document.createElement('small');note.textContent=`${asset.seconds.toFixed(2)}s · MP3 192kbps / 48kHz · 无响度归一化 · 原始 SHA ${asset.source_audio_sha256.slice(0,12)} · MP3 SHA ${asset.sha256.slice(0,12)}`;
-  note.title=`Original ${asset.source_audio_sha256}\nMP3 ${asset.sha256}`;
-  article.append(h,wave,spectrum,scale,audio,note);return article;
+function panel(asset, label, role) {
+  const article = document.createElement('article'); article.className = 'compare-panel'; article.dataset.role = role;
+  article.dataset.binding = `${selected}:${asset?.sha256 || 'pending'}`;
+  const h = document.createElement('h3'); h.textContent = label; article.append(h);
+  if (!asset) {
+    const note = document.createElement('p'); note.className = 'regime-placeholder';
+    note.textContent = selected === 'private' ? '私有对照未公开音频、权重或实验结果。'
+      : role === 'baseline' ? '尚未回收本模型的冻结起点音频。' : '尚未回收该实验与步骤的GRPO音频，不借用其他模型或实验。';
+    article.append(note); return article;
+  }
+  const caption = document.createElement('p'); caption.className = 'muted';
+  caption.textContent = `${asset.seconds.toFixed(2)} s · MP3 192 kbps / 48 kHz · 无响度归一化`; article.append(caption);
+  const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = asset.audio;
+  audio.dataset.sourceSha = asset.source_audio_sha256;
+  audio.addEventListener('play', () => {
+    pauseOthers(audio);
+    root.querySelectorAll('[data-regime-listen]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.regimeListen === role)));
+    $('listen-status').textContent = `正在播放 ${role === 'baseline' ? 'A · Baseline' : 'B · GRPO'}`;
+  });
+  audio.addEventListener('pause', () => {
+    root.querySelector(`[data-regime-listen="${role}"]`).setAttribute('aria-pressed', 'false');
+  });
+  audio.addEventListener('error', () => { $('listen-status').textContent = '音频加载失败，请核对MP3链接。'; });
+  article.append(audio);
+  for (const [type, alt] of [['wave', 'Waveform · fixed -1 to +1'], ['spectrum', 'Mel · 0-24 kHz · fixed -80 to 0 dB · black floor']]) {
+    const figure = document.createElement('figure'); figure.className = type === 'wave' ? 'wave-visual' : 'spectrum-visual';
+    const img = document.createElement('img'); img.src = asset[type]; img.alt = alt; img.loading = 'lazy'; figure.append(img); article.append(figure);
+  }
+  const link = document.createElement('a'); link.href = asset.audio; link.textContent = '下载 MP3'; link.className = 'audio-fallback';
+  const scale = document.createElement('small'); scale.textContent = 'Wave ±1 · Mel 0–24kHz / −80–0dB';
+  article.append(link, scale); return article;
+}
+
+function compare(a, b) {
+  // Preserve the exact baseline element across reward/checkpoint changes.
+  for (const [role, asset, label] of [['baseline', a, `A · Baseline (${model().name})`],
+    ['candidate', b, `B · ${experiment()} · Step ${replayStep}`]]) {
+    const previous = $('media').querySelector(`[data-role="${role}"]`);
+    if (role === 'baseline' && previous?.dataset.binding === `${selected}:${asset?.sha256 || 'pending'}`) continue;
+    previous?.querySelector('audio')?.pause();
+    const next = panel(asset, label, role);
+    if (previous) previous.replaceWith(next); else $('media').append(next);
+  }
+  for (const element of root.querySelectorAll('[data-regime-listen]')) {
+    element.disabled = !(element.dataset.regimeListen === 'baseline' ? a : b);
+    const audio = $('media').querySelector(`[data-role="${element.dataset.regimeListen}"] audio`);
+    element.setAttribute('aria-pressed', String(Boolean(audio && !audio.paused)));
+  }
+  if (![...$('media').querySelectorAll('audio')].some((audio) => !audio.paused)) $('listen-status').textContent = '';
+  $('pair-metrics').replaceChildren(); $('audio-provenance').replaceChildren();
+  if (!a || !b) {
+    $('pair-metrics').append(row(['尚无完整A/B评分对', 'n/a', 'n/a'])); return;
+  }
+  const value = (metrics, key) => key === 'objective'
+    ? metrics.invalid ? 0 : (target === 'richness' ? metrics.SP_Richness : metrics[target === 'instrument' ? 'Instrumental' : 'Arrangement'] / 10) - (metrics.penalty ?? 0)
+    : metrics[key];
+  $('pair-metrics').replaceChildren(...[['objective', 'Target − shared penalty'], ['SP_Richness', 'SP Richness · 0–1'],
+    ['Instrumental', 'Instrumental · 0–10'], ['Arrangement', 'Arrangement · 0–10'], ['Musicality', 'Musicality · 0–10'],
+    ['Mixing', 'Mixing · 0–10'], ['clipping_fraction', '近满幅样本比例']].map(([key, label]) =>
+    row([label, fmt(value(a.metrics, key)), delta(value(b.metrics, key), value(a.metrics, key))])));
+  for (const [label, asset] of [['A', a], ['B', b]]) {
+    const note = document.createElement('p');
+    note.textContent = `${label} · 原件 SHA256 ${asset.source_audio_sha256} · MP3 SHA256 ${asset.sha256}`;
+    $('audio-provenance').append(note);
+  }
 }
 
 function renderMedia() {
-  if(!recovery)return;
-  for(const b of $('replay-modes').querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.mode===replayMode));
-  $('media').querySelectorAll('audio').forEach((a)=>{a.pause();a.removeAttribute('src');a.load();});
-  $('media').replaceChildren();$('pair-metrics').replaceChildren();$('example-controls').replaceChildren();$('step-controls').replaceChildren();
-  if(selected!=='yue2'){$('replay-note').textContent='Muse 尚无已回收的本组正式训练音频；不使用其他实验的音频替代。';return;}
-  let a,b,step,index;
-  if(replayMode==='long') {
-    const available=recovery.long_replays.filter((r)=>r.reward===target);
-    if(!available.length){$('replay-note').textContent=`${runName(target)} 尚无已回收长片段。已完成的曲线/验证分数仍显示在上方。`;return;}
-    const indices=[...new Set(available.map((r)=>r.index))];if(!indices.includes(example))example=indices[0];
-    const steps=[0,...new Set(available.filter((r)=>r.index===example).map((r)=>r.step))].sort((x,y)=>x-y);
-    if(!steps.includes(replayStep))replayStep=steps.at(-1);
-    buttons($('example-controls'),indices.map((i)=>[i,`CMI valid #${i+1}`]),example,(i)=>{example=i;renderMedia();});
-    buttons($('step-controls'),steps.map((s)=>[s,`${s} steps`]),replayStep,(s)=>{replayStep=s;renderMedia();});
-    a=recovery.baseline.find((r)=>r.index===example).asset;
-    b=replayStep===0?a:available.find((r)=>r.index===example&&r.step===replayStep).asset;step=replayStep;index=example;
-    $('replay-note').textContent=`${runName(target)} · 同一 Text+Lyrics、seed ${5101+index}；A 始终为冻结0步。原生长片段（750–1500 semantic tokens），末尾可能因预算截断，无循环/补齐；不是短预算30条验证的均值。参考音频未输入，GT为n/a。图像来自MP3，以下分数来自其绑定的原始lossless音频。`;
+  if (!recovery) return;
+  root.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === replayMode)));
+  $('seed').textContent = '';
+  $('replay-title').textContent = replayMode === 'long' ? 'Long-form replay · target 60 seconds' : 'Badcase · 原始短验证片段';
+  $('input').textContent = model().input;
+  $('reference-note').textContent = selected === 'private' ? '未公开输入或生成结果。'
+    : selected === 'songbloom' ? '拟使用固定参考音频；当前资源待核验，参考歌曲不是唯一正确输出。'
+      : '本轮不输入参考音频；各reward共享同模型的冻结起点。';
+  const ownsRecovery = recovery.model === selected;
+  let a, b;
+  if (replayMode === 'long') {
+    const available = ownsRecovery ? recovery.long_replays.filter((r) => r.reward === target) : [];
+    const baselines = ownsRecovery ? recovery.baseline : [];
+    const indices = baselines.length ? [...new Set(baselines.map((r) => r.index))] : [0, 10, 20];
+    if (!indices.includes(example)) example = indices[0];
+    controls($('example-controls'), indices.map((i, n) => [i, `Sample ${n + 1}`, !baselines.length]), example, (i) => { example = i; renderMedia(); });
+    a = baselines.find((r) => r.index === example)?.asset;
+    const steps = [...new Set([...checkpoints, ...available.map((r) => r.step)])].sort((x, y) => x - y);
+    controls($('step-controls'), steps.map((s) => [s, `${s} steps`, s === 0 ? !a : !available.some((r) => r.index === example && r.step === s)]),
+      replayStep, (s) => { replayStep = s; renderMedia(); });
+    b = replayStep === 0 ? a : available.find((r) => r.index === example && r.step === replayStep)?.asset;
+    $('input-note').textContent = a ? `CMI valid #${example + 1} · 固定条件 · seed ${5101 + example}` : '本模型尚无已回收的固定条件试听样本。';
+    if (a) $('seed').textContent = `CMI valid #${example + 1} · seed ${5101 + example}`;
+    $('replay-note').textContent = b
+      ? '冻结baseline与当前checkpoint使用同一条件和seed。原生长回放，不循环或补齐；训练/全量短验证的分数不归到这段长音频。图像来自MP3，评分绑定原件。'
+      : `${model().status}。${a ? 'A保留已核验的同模型baseline；B长回放尚未回收。' : '音频和可视化均未用其他实验替代。'}`;
   } else {
-    const cases=recovery.badcases.filter((r)=>r.reward===target);
-    if(!cases.length){$('replay-note').textContent='尚无符合本次冲突筛选规则的已回收候选，不编造 badcase；可查看全量验证与选择规则。';return;}
-    if(badId>=cases.length)badId=0;
-    buttons($('example-controls'),cases.map((r,i)=>[i,`Valid #${r.index+1} · step ${r.step}`]),badId,(i)=>{badId=i;renderMedia();});
-    const item=cases[badId];a=item.baseline;b=item.candidate;step=item.step;index=item.index;
-    const intermediate=recovery.audits.find((r)=>r.reward===target)?.complete_arm?'':'该臂仍训练中，这是中间checkpoint，不是最终结果。';
-    $('replay-note').textContent=`${runName(target)} · 验证 #${index+1} / step ${step}。${intermediate}这是确实被评分的短验证音频，保留原始长度，不伪装成30–60秒长回放。刻意挑选“目标上升、两个交叉维度下降”的案例，尚未由人确认听感退化，不代表总体比例或已证实reward hacking。`;
+    const cases = ownsRecovery ? recovery.badcases.filter((r) => r.reward === target) : [];
+    if (badId >= cases.length) badId = 0;
+    controls($('example-controls'), cases.map((r, i) => [i, `Valid #${r.index + 1} · step ${r.step}`]), badId, (i) => { badId = i; renderMedia(); });
+    const item = cases[badId];
+    if (item) {
+      a = item.baseline; b = item.candidate; replayStep = item.step;
+      controls($('step-controls'), [[item.step, `${item.step} steps`]], replayStep, () => {});
+      $('seed').textContent = `CMI valid #${item.index + 1} · seed ${item.seed}`;
+      $('input-note').textContent = `固定验证 #${item.index + 1} · 事后选取的proxy-conflict候选`;
+      $('replay-note').textContent = `${item.step < 270 ? `这是step${item.step}的归档中间结果，不是270步终点。` : ''}确实被评分的短验证音频，不是30–60秒回放。刻意选择目标上涨、交叉分数下降的样本；尚未由盲听确认reward hacking。选择规则与全30条分布见下方折叠区。`;
+    } else {
+      $('step-controls').replaceChildren(); $('input-note').textContent = '本实验尚无已归档的badcase音频对。';
+      $('replay-note').textContent = '没有已回收的指标冲突候选；不把“尚未回收”解释为没有reward hacking。';
+    }
   }
-  $('media').append(panel(a,'A · Baseline · 0 steps'),panel(b,`B · ${runName(target)} · ${step} steps`));
-  const value=(m,key)=>key==='objective'?(target==='richness'?m.SP_Richness:m[target==='instrument'?'Instrumental':'Arrangement']/10)-(m.penalty??0):m[key];
-  $('pair-metrics').replaceChildren(...[['objective','Target − shared penalty'],['SP_Richness','SP Richness · 0–1'],['Instrumental','SongBench Instrumental · 0–10'],['Arrangement','SongBench Arrangement · 0–10'],['Musicality','SongBench Musicality · 0–10'],['Mixing','SongBench Mixing · 0–10'],['clipping_fraction','原始音频近满幅样本比例']].map(([key,label])=>{
-    const x=value(a.metrics,key),y=value(b.metrics,key),delta=y-x;
-    return row([label,x.toFixed(4),`${y.toFixed(4)} (${delta>=0?'+':''}${delta.toFixed(4)})`]);
+  compare(a, b); draw();
+}
+
+function tables() {
+  $('arms').replaceChildren(...protocol.rewards.map((reward) => {
+    const key = rewardKey(reward.id), run = protocol.runs.find((r) => r.model === selected && r.reward === key), data = measuredRun(key);
+    const baseline = data?.validation.find((v) => v.step === 0), latest = data?.validation.at(-1);
+    const valid = latest && baseline ? `Step ${latest.step} · ${delta(latest.mean, baseline.mean)} · ${latest.n}/30` : '待全量30条验证';
+    return row([`${model().name}-${rewardName(key)}-3e-4`, run
+      ? `${data?.complete ? '已核验完成' : statusNames[run.status] || run.status} · ${run.host}${run.project ? ` / ${run.project}` : ''}${run.job_id ? ` · ${run.job_id}` : ''}`
+      : model().status, run ? `${data?.steps || 0}/270` : '未提交', run ? valid : 'n/a', '封存 · 未运行']);
   }));
+  const run = measuredRun(), baseline = run?.validation.find((v) => v.step === 0);
+  $('validation-title').textContent = `${experiment()} · 固定验证 / 30 conditions`;
+  $('validation').replaceChildren(...checkpoints.map((step) => {
+    const data = run?.validation.find((v) => v.step === step);
+    return row([`${step} · ${data ? `${data.n}/30` : '未评测'}`, delta(data?.mean, baseline?.mean),
+      ...['SP_Richness', 'Instrumental', 'Arrangement', 'Mixing', 'Musicality'].map((key) => delta(data?.cross_means?.[key], baseline?.cross_means?.[key])),
+      data ? `${data.invalid_n}/30` : 'n/a']);
+  }));
+  const interval = (value) => `${value.mean_delta >= 0 ? '+' : ''}${fmt(value.mean_delta)} [${value.ci95.map(fmt).join(', ')}]`;
+  const audits = recovery.model === selected ? recovery.audits.filter((r) => r.reward === target) : [];
+  $('case-audit').replaceChildren(...audits.map((r) => row([`${rewardName(r.reward)} · Step ${r.step}${r.complete_arm ? '' : ' · 中间checkpoint'}`,
+    `${r.candidate_n}/${r.n}`, ...['objective', 'Instrumental', 'Arrangement'].map((key) => interval(r.statistics[key])), r.selection])));
+  if (!audits.length) $('case-audit').append(row(['尚未回收本实验的候选筛选记录', 'n/a', 'n/a', 'n/a', 'n/a', '未用其他模型替代']));
 }
 
 function render() {
   for (const b of $('models').querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.model === selected));
-  for (const b of $('reward-controls').querySelectorAll('button')) b.setAttribute('aria-pressed',String(b.dataset.reward===target));
-  const model = protocol.models.find((m) => m.id === selected);
-  $('model-note').textContent = `${model.name} · ${model.role} · ${model.status} · MOS 未测。${model.note}`;
-  $('arms').replaceChildren(...protocol.rewards.map((r)=>{
-    const reward=rewardKey(r.id),run=protocol.runs.find((p)=>p.model===selected && p.reward===reward);
-    const data=progress.runs.find((p)=>p.model===selected && p.reward===reward);
-    const baseline=data?.validation.find((v)=>v.step===0),latest=data?.validation.at(-1);
-    const valid=latest && baseline
-      ? `Step ${latest.step} · ${latest.mean.toFixed(4)} (${latest.mean-baseline.mean>=0?'+':''}${(latest.mean-baseline.mean).toFixed(4)}) · ${latest.n}/30`
-      : '待全量30条验证';
-    return row([['yue2','muse'].includes(selected)?runName(reward):`${model.name}-${r.name}`,r.definition,
-      run?`${data?.complete?'完成':status[run.status]||run.status} · ${run.host}${run.project?' / '+run.project:''}${run.job_id?' · '+run.job_id:''}`:'候选，未启动',
-      run?`${data?.steps||0}/270`:'—',run?valid:'—','封存 · 未运行']);
-  }));
-  $('validation').replaceChildren(...progress.runs.filter((r)=>r.model===selected).flatMap((r)=>r.validation.map((v)=>row([
-    `${model.name}-${r.reward}-3e-4`,`${v.step} · ${v.n}/30`,
-    ...['SP_Richness','Instrumental','Arrangement','Mixing','Musicality'].map((key)=>Number.isFinite(v.cross_means?.[key])?v.cross_means[key].toFixed(4):'n/a'),
-    `${v.invalid_n ?? 'n/a'}/30`,
-  ]))));
-  draw();
-  renderMedia();
+  controls($('reward-controls'), protocol.rewards.map((r) => [rewardKey(r.id), `${model().name}-${rewardName(rewardKey(r.id))}-3e-4`]),
+    target, (value) => { target = value; render(); });
+  const estimate = model().team_listening_estimate;
+  $('model-note').textContent = `${model().role}${Number.isFinite(estimate) ? ` · 团队十输入快听 ≈${estimate.toFixed(1)}（非正式MOS）` : ''} · 本站正式MOS 未测`;
+  const run = measuredRun(), submitted = protocol.runs.find((r) => r.model === selected && r.reward === target);
+  $('status').textContent = run?.complete ? '270步 + 30/30验证已核验' : submitted ? statusNames[submitted.status] || submitted.status : model().status;
+  $('status').className = `state ${run?.complete ? 'measured' : 'pending'}`;
+  const reward = protocol.rewards.find((r) => rewardKey(r.id) === target);
+  $('reward-title').textContent = `优化目标 · ${reward.name}`;
+  $('reward-definition').textContent = `${reward.definition}。${target === 'richness'
+    ? '伴奏频谱活动/变化与tonality gate，不是乐器数量或MOS。'
+    : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。' : '评和声框架与配器编排，不是简单计数。'} 三臂都使用同一削波/RMS guard；KL为独立loss项。`;
+  $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
+    ? `CMI-Pref 270 train / 30 valid · LR3e-4 · seed42 · 组大小2 · β0.01。${selected === 'yue2' ? 'PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : 'ms-swift / TRL + vLLM，512 completion-token预算；尚在PBS排队。'}`
+    : `${model().input} · ${model().status}。暂无已生效训练配置，不把旧模型的token预算或KL算法归给本模型。`;
+  $('kl-caption').textContent = 'KL · 在线冻结参考采样估计';
+  $('model-detail').textContent = `${model().name}：${model().note}`;
+  $('model-source').hidden = !model().source;
+  if (model().source) $('model-source').href = model().source; else $('model-source').removeAttribute('href');
+  tables(); renderMedia();
 }
+
 try {
-  const response = await fetch('./data/reward-regime-protocol.json', { cache: 'no-store' });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  protocol = await response.json();
-  const progressResponse=await fetch('./data/reward-regime-progress.json',{cache:'no-store'});
-  if(!progressResponse.ok)throw Error(`HTTP ${progressResponse.status}`);
-  progress=await progressResponse.json();
-  const recoveryResponse=await fetch('./data/reward-regime-recovery.json',{cache:'no-store'});
-  if(!recoveryResponse.ok)throw Error(`Media HTTP ${recoveryResponse.status}`);
-  recovery=await recoveryResponse.json();
-  if(!protocol.training_authorized || protocol.runs.length!==6)throw Error('Approved matrix mismatch');
-  $('updated').textContent=`已核验快照 ${new Date(progress.updated_at).toLocaleString('zh-CN',{timeZone:'Australia/Perth'})} AWST · 单个 LR3e-4 / seed42 · 旧评估和本项目旧训练已暂停；不影响其他人的任务。快照不是远端实时状态。`;
-  $('hypothesis').textContent = protocol.hypothesis;
+  async function load(path) {
+    const response = await fetch(path, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
+    return response.json();
+  }
+  protocol = await load('./data/reward-regime-protocol.json');
+  progress = await load('./data/reward-regime-progress.json');
+  recovery = await load('./data/reward-regime-recovery.json');
+  if (!protocol.training_authorized || protocol.runs.length !== 6) throw new Error('Approved executed matrix mismatch');
+  $('updated').textContent = `已核验快照 ${new Date(progress.updated_at).toLocaleString('zh-CN', { timeZone: 'Australia/Perth' })} AWST · 快照不是远端实时状态。新增模型占位不代表已提交；不显示合成曲线。`;
+  $('hypothesis').textContent = '研究问题：不同起点模型对SP与AI reward的响应是否不同？团队快听只提供分层假设；自动分数与同事的十输入估分均不是本站正式MOS或可听提升结论。';
   $('models').replaceChildren(...protocol.models.map((m) => {
-    const b = document.createElement('button'); b.type = 'button'; b.textContent = m.name; b.dataset.model = m.id;
-    b.addEventListener('click', () => { selected = m.id; render(); }); return b;
-  }));
-  $('reward-controls').replaceChildren(...protocol.rewards.map((r)=>{
-    const b=document.createElement('button');b.type='button';b.textContent=r.name;b.dataset.reward=rewardKey(r.id);
-    b.addEventListener('click',()=>{target=b.dataset.reward;render();});return b;
+    const b = button(m.id, m.name, selected, (value) => { selected = value; replayStep = 270; render(); }); b.dataset.model = m.id; return b;
   }));
   $('rewards').replaceChildren(...protocol.rewards.map((r) => {
     const link = document.createElement('a'); link.href = r.source; link.textContent = r.name;
-    return row([link, r.definition, r.meaning, `${r.status}。${r.note}`]);
+    return row([link, r.definition, r.meaning, r.note]);
   }));
   $('data').replaceChildren(...['train', 'valid', 'test', 'modalities'].map((key) => row([key, protocol.data[key]])));
   $('design').replaceChildren(...Object.entries(protocol.design).map(([key, value]) => row([key, Array.isArray(value) ? value.join(' / ') : value])));
-  $('replay-modes').querySelectorAll('button').forEach((b)=>b.addEventListener('click',()=>{replayMode=b.dataset.mode;renderMedia();}));
-  const interval=(v)=>`${v.mean_delta>=0?'+':''}${v.mean_delta.toFixed(4)} [${v.ci95.map((x)=>x.toFixed(4)).join(', ')}]`;
-  $('case-audit').replaceChildren(...recovery.audits.map((r)=>row([`${rewardName(r.reward)} · ${r.step}${r.complete_arm?' · 完整270步':' · 训练中间checkpoint'}`,`${r.candidate_n}/${r.n}`,
-    ...['objective','Instrumental','Arrangement'].map((key)=>interval(r.statistics[key])),r.selection])));
+  root.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => { replayMode = b.dataset.mode; replayStep = 270; renderMedia(); }));
+  root.querySelectorAll('[data-regime-listen]').forEach((b) => b.addEventListener('click', async () => {
+    const audio = $('media').querySelector(`[data-role="${b.dataset.regimeListen}"] audio`);
+    if (!audio) return;
+    const playing = [...$('media').querySelectorAll('audio')].find((a) => !a.paused);
+    const position = playing?.currentTime || audio.currentTime || 0; pauseOthers(audio);
+    try {
+      if (audio.readyState < 1) await new Promise((resolve, reject) => {
+        audio.addEventListener('loadedmetadata', resolve, { once: true }); audio.addEventListener('error', reject, { once: true }); audio.load();
+      });
+      audio.currentTime = Math.min(position, Math.max(0, audio.duration - .1)); await audio.play();
+    } catch { $('listen-status').textContent = '浏览器未能播放，请检查MP3链接。'; }
+  }));
+  $('training').addEventListener('toggle', draw);
   new ResizeObserver(draw).observe($('reward-chart'));
   render();
-} catch (error) { $('model-note').textContent = '协议加载失败，未显示替代结果。'; console.error(error); }
+} catch (error) {
+  $('model-note').textContent = '实验记录加载失败，未显示替代结果。'; console.error(error);
+}

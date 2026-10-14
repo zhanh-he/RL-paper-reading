@@ -1,8 +1,8 @@
 # 开放歌曲模型的 RL 路线与质量分层实验
 
-**状态：待 Zhanh 审阅，新增训练未授权、未提交。核验日期：2026-10-14。**
+**状态：模型名单已确认，用户已要求准备新增RL实验；新增训练尚未提交，当前按最新请求优先重组online demo。核验日期：2026-10-14。**
 
-本文是新的实验提案，不替换正在执行的 [六臂协议](protocol.json)，也不是训练完成记录。本轮只查代码、发布状态和数据协议，没有下载大权重、运行模型或改动现有任务。已有结果继续按原协议归档，不把旧短片段结果冒充下面的新对照。
+本文保留新增实验技术路线，不替换已有 [六臂协议](protocol.json)，也不是训练完成记录。后续用户已确认HeartMuLa / DiffRhythm2 / SongBloom名单并移除SongGen，ACE-Step1.5留在最后；新增模型仍需完成各自真实训练接入，尚未提交。已有结果继续按原协议归档，不把旧短片段结果冒充下面的新对照。
 
 ## 1. 建议先决定什么
 
@@ -10,7 +10,7 @@
 2. 优先模型为 **YuE2、DiffRhythm2、SongBloom**；**HeartMuLa** 补充中间质量段，已有 **Muse** 保留为工程与历史对照。不再人为劣化强模型来替代真实的较弱模型。
 3. 每模型保留三个独立目标：**SP Richness-v1 / SongBench-Instrument / SongBench-Arrangement**。首轮只用 **LR 3e-4**，不扩 grid search。SongEval 用于独立评估，它没有 instrument 子分。
 4. **AR 用 token GRPO，连续 flow 用有明确转移概率的 Flow-GRPO**。SongBloom 另有低成本但能力受限的 sketch-head 路线，不能把两者混称同一个实验。
-5. 优先做 DiffRhythm2 的声学 RL 接入；SongBloom 同时解决版本、权重与参考音频问题。先审阅本计划，再实现与启动。没有定时任务。
+5. 优先做 DiffRhythm2 的声学 RL 接入；SongBloom 同时解决版本、权重与参考音频问题。名单已确认，按最新请求先整理online demo；未实现的适配不冒充已启动。没有定时任务。
 
 ## 2. 模型名单与开放状态
 
@@ -25,7 +25,7 @@
 | Muse | 本次未提供 | [代码](https://github.com/yuhui1038/Muse)及此前实验工程已有记录 | 补充对照；不擅自填一个 MOS，也不以它取代 DiffRhythm2 / SongBloom |
 | Suno 4.5 | 约 4.0-4.2 | 此处仅保留团队已有试听对照；没有可用于本研究本地梯度训练的权重 | 不安排 actor RL；保存版本与既有音频来源，不冒充本地训练 |
 | “盘古 / Mureka” | 约 4.0-4.2 | 名称沿用用户口述，具体产品和版本待确认，不自行认定两者是同一模型 | 同上，仅作已有外部试听参照 |
-| “Jukebox” | 约 2.5 | 团队/具体模型身份待确认。若指 [OpenAI Jukebox](https://github.com/openai/jukebox)，代码和权重并非闭源，现为 [Noncommercial Use License](https://github.com/openai/jukebox/blob/master/LICENSE) | 身份确认前不纳入 RL 主矩阵；旧工具链与采样成本另作可行性判断 |
+| Private baseline | 不公开 | 不可获取的内部模型；公开页面仅保留通用占位，不披露内部信息或索取文件 | 不纳入可执行RL矩阵，不填入替代音频、分数或曲线 |
 
 **SongBloom 的“开放”要说准确：**社区代码副本中的 [LICENSE](https://github.com/Shamdon/songbloom/blob/990987ec94c49056a8dbf838987af93a37a1250d/LICENSE)限制学术用途；某些 HF 副本却标 Apache-2.0。这里不能凭副本标签宣称原权重无限制开放。先归档拟使用版本的来源与随附许可，按已确认的学术研究范围准备；目前没有下载或执行副本权重。404 / 401 只说明本次访问失败，不证明永久撤回或不能向作者获取。
 
@@ -217,9 +217,9 @@ S2 比 S1 更直接测试声音质量的可优化性，工程成本也更高。�
 | DiffRhythm2 | 读取作者发布分支代码/配置与官方论文；代码 SHA `7804f821b797b4f276090e1a9dcd37e97d9915d5` | 权重下载、SDE adapter、真实显存/吞吐与训练 |
 | SongBloom | 官方论文/项目页仍可读；作者代码入口404、HF模型及long入口401；仅检查社区代码与文件元数据 | 作者/同事可核验的发布版本、权重 SHA、许可与音频资源、GPU运行 |
 | 数据 | 重新核对现有 split 的270/30/121数量与 SHA；核对 WSB192、固定 audio prompt 和无音频发布的边界 | 对 SongBloom 所需参考资源的真实解码与覆盖审计 |
-| 新实验 | 本 MD 与入口链接 | **未授权、未排队、未训练、未更新为“已完成”demo** |
+| 新实验 | 本 MD、已确认模型名单与demo独立实验选项 | **训练接入尚未完成、未排队、未训练，未更新为“已完成”demo** |
 
-请优先审阅四个选择：**模型版本是否与同事快听一致；SongBloom S1先行还是直接S2；是否接受新矩阵60秒训练预算；是否接受SongBloom在WSB的固定参考输入另作标注。**其余默认沿用270/30、三个单reward、单LR3e-4和不启动定时任务。身份不明的“Jukebox”先不跑。
+待落实的实现细节：**模型版本是否与同事快听一致；SongBloom S1先行还是直接S2；新矩阵60秒训练预算；SongBloom在WSB的固定参考输入另作标注。**模型名单已确认；其他默认沿用270/30、三个单reward、单LR3e-4和不启动定时任务。私有模型只占位，不运行。先完成用户要求的页面整理，不用未实现的trainer排空作业。
 
 ### 一手资料入口
 
@@ -228,4 +228,4 @@ S2 比 S1 更直接测试声音质量的可优化性，工程成本也更高。�
 - [SongBloom 论文](https://arxiv.org/abs/2506.07634)；[作者项目页](https://cypress-yang.github.io/SongBloom_demo/)；[论文代码入口，当前404](https://github.com/Cypress-Yang/SongBloom)；[另一历史代码入口，当前404](https://github.com/tencent-ailab/SongBloom)；[作者权重入口，当前401](https://huggingface.co/CypressYang/SongBloom)。社区副本只作为明确标注的恢复线索，不能替代作者版本证明。
 - [Flow-GRPO 论文及官方实现](https://github.com/yifan123/flow_grpo)。这里借鉴的是方法与算法实现，不声称它已经支持上述音乐模型。
 - [SongBench 官方维度定义](https://github.com/Tencent/SongBench)；[SongEval 官方仓库](https://github.com/ASLP-lab/SongEval)。
-- [CMI-Pref](https://huggingface.co/datasets/HaiwenXia/cmi-pref)；[WildSongBench](https://huggingface.co/datasets/m-a-p/WildSongBench)；[OpenAI Jukebox 与当前许可](https://github.com/openai/jukebox)。
+- [CMI-Pref](https://huggingface.co/datasets/HaiwenXia/cmi-pref)；[WildSongBench](https://huggingface.co/datasets/m-a-p/WildSongBench)。私有占位不提供内部模型来源或实现信息。

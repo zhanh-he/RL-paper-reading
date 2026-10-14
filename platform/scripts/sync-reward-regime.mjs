@@ -13,6 +13,12 @@ assert.equal(value.rewards.length, 3);
 assert.deepEqual(value.rewards.map((r) => r.id), ['richness', 'songbench', 'songbench-arrangement']);
 assert.equal(value.reward_selection.third_reward, 'SongBench-Arrangement');
 assert.ok(value.models.every((m) => m.mos === null));
+assert.deepEqual(value.models.map((m) => m.id), ['yue2', 'heartmula', 'diffrhythm2', 'songbloom', 'muse', 'private', 'acestep']);
+assert.ok(value.models.every((m) => m.team_listening_estimate === null ||
+  (Number.isFinite(m.team_listening_estimate) && m.team_listening_estimate >= 1 && m.team_listening_estimate <= 5)));
+assert.match(value.expansion.listening_estimates, /not formal/);
+assert.equal(value.models.find((m) => m.id === 'private').source, null);
+assert.equal(value.expansion.new_training_submitted, false);
 const rendered = JSON.stringify(value, null, 2) + '\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(target, 'utf8'), rendered);
 else fs.writeFileSync(target, rendered);
@@ -26,7 +32,7 @@ const progressTarget = new URL('../site/demos/data/reward-regime-progress.json',
 const progressJSON = JSON.stringify(progress, null, 2)+'\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(progressTarget, 'utf8'), progressJSON);
 else fs.writeFileSync(progressTarget, progressJSON);
-console.log('SP/AI protocol: six approved arms, LR3e-4, verified trace/all-30 validation, MOS not measured.');
+console.log('SP/AI: six executed/submitted arms, seven-model roster, LR3e-4; team estimates distinct from unmeasured formal MOS.');
 const recoverySource=new URL('../../music-gen/reward-regime-study/recovery.json',import.meta.url);
 if(fs.existsSync(recoverySource)) {
   const recovery=JSON.parse(fs.readFileSync(recoverySource));

@@ -36,37 +36,29 @@
       "sources": [{"label":"代码 / release / TODO","url":"https://github.com/HeartMuLa/heartlib"},{"label":"3B 权重","url":"https://huggingface.co/HeartMuLa/HeartMuLa-oss-3B-happy-new-year"},{"label":"论文","url":"https://arxiv.org/abs/2601.10547"},{"label":"独立 MuLaCover","url":"https://github.com/HeartMuLa/MuLaCover"}]
     },
     {
-      "id": "songgen", "name": "SongGen · Mixed / A-V", "family": "ar", "architecture": "Single-stage AR + XCodec · mixed / dual-track",
-      "input": "text + lyrics + optional reference voice；论文使用 3 秒 voice clip。参考声色克隆不等同于保留原 vocal waveform 的 Vocal2song。",
-      "release": "mixed_pro / interleaving A-V 权重、推理与 training guide 公开。",
-      "license": "代码 Apache-2.0；mixed_pro 模型卡的权重许可栏仍待补充，不能仅据代码许可替权重下结论。",
-      "posttrain": "有训练代码，适合检验多 codebook / dual-track GRPO；先核验可生成长度和显存，不能直接承诺与当前 60 秒 demo 同等能力。本站未训练。",
-      "sources": [{"label":"代码 / training guide","url":"https://github.com/LiuZH-19/SongGen"},{"label":"mixed_pro 权重","url":"https://huggingface.co/LiuZH-19/SongGen_mixed_pro"},{"label":"论文","url":"https://arxiv.org/abs/2502.13128"}]
-    },
-    {
-      "id": "acestep15", "name": "ACE-Step · 1.5", "family": "flow", "architecture": "LM planner + DiT / flow audio generation",
-      "input": "caption / tags + lyrics；另有 reference audio、cover、repaint 等任务。具体条件与能力依 DiT checkpoint / task 模式而定。",
-      "release": "推理、base / SFT / turbo 与 XL 模型、LoRA training tutorial 公开；不把官方 intrinsic RL 宣传等同于外部 SongEval-GRPO recipe。",
-      "license": "代码与主模型卡 MIT；依赖组件单独核查。",
-      "posttrain": "论文区分 captioner GRPO、generator LM GRPO 与 DiT intrinsic alignment；主 Table 1 使用 no-RL 配置，不能据其分数归因 RL。LoRA 教程不等于外部 scorer GRPO；DiT 需要有效 flow 轨迹目标，planner-only 是另一实验。本站 Lyrics GRPO 未跑。",
-      "sources": [{"label":"代码 / LoRA guide","url":"https://github.com/ace-step/ACE-Step-1.5"},{"label":"权重 / model zoo","url":"https://huggingface.co/ACE-Step/Ace-Step1.5"},{"label":"论文 / no-RL 主评测","url":"https://arxiv.org/abs/2602.00744"}]
-    },
-    {
-      "id": "diffrhythm2", "name": "DiffRhythm · 2", "family": "flow", "architecture": "Semi-AR block flow matching",
-      "input": "公开推理样例使用歌词文件 + style/reference audio；不要把 DiffRhythm v1 的 text-style 更新自动归到 v2 release。",
+      "id": "diffrhythm2", "name": "DiffRhythm2", "family": "flow", "architecture": "Semi-AR block flow matching",
+      "input": "2026-10-14已读v2发布代码：lyrics + style_prompt；style_prompt为文件时用音频MuQ-MuLan，否则使用文字分支。本研究拟固定text-style，不混用v1接口。",
       "release": "v2 推理与权重公开；本次检查未见完整 v2 training recipe。v1 repo 另有 train 目录，不代表 v2 相同。",
       "license": "v2 官方声明代码及权重 Apache-2.0。",
       "posttrain": "结构化、长歌的 flow 基线候选；GRPO 需另实现块/轨迹采样概率与 KL，当前不能一键接现有 YuE2 训练器。本站未训练。",
       "sources": [{"label":"论文所列官方主仓库","url":"https://github.com/xiaomi-research/diffrhythm2"},{"label":"ASLP-lab 发布 fork","url":"https://github.com/ASLP-lab/DiffRhythm2"},{"label":"v2 权重","url":"https://huggingface.co/ASLP-lab/DiffRhythm2"},{"label":"v2 论文","url":"https://arxiv.org/abs/2510.22950"}]
     },
     {
-      "id": "songbloom", "name": "SongBloom", "family": "archive", "architecture": "AR sketching + diffusion refinement",
-      "input": "论文为完整歌曲生成的 interleaved AR / diffusion 方法。当前官方发布无法访问，native 输入能力需重新核验。",
+      "id": "songbloom", "name": "SongBloom", "family": "hybrid", "architecture": "AR sketching + diffusion refinement",
+      "input": "论文为structured lyrics + 10秒reference audio。不能把尚未取得权重的text条件版假装成原生能力；本研究仍待参考音频覆盖核验。",
       "release": "历史官方 release 有推理 / DPO 版本记录；2026-10-13 原 GitHub 返回 404、原 HF 权重未能公开访问。第三方 fork 不充作官方可用性证据。",
       "license": "当前官方许可与权重可下载性未核验；不建议据 fork 标签部署。",
-      "posttrain": "保留方法参照，不列为可立即训练模型。需先恢复官方权重/许可，再讨论 hybrid GRPO。本站未训练。",
+      "posttrain": "已列入用户确认的RL实验名单，但尚未提交训练。sketch-head-only与acoustic Flow-GRPO分开；必须恢复可核验权重/许可和音频输入，不用社区标签冒充官方发布证明。",
       "sources": [{"label":"论文","url":"https://arxiv.org/abs/2506.07634"}],
       "unavailable_sources": ["https://github.com/tencent-ailab/SongBloom", "https://github.com/Cypress-Yang/SongBloom", "https://huggingface.co/CypressYang/SongBloom"]
+    },
+    {
+      "id": "acestep15", "name": "ACE-Step · 1.5", "family": "flow", "architecture": "LM planner + DiT / flow audio generation",
+      "input": "caption / tags + lyrics；另有 reference audio、cover、repaint 等任务。具体条件与能力依 DiT checkpoint / task 模式而定。",
+      "release": "推理、base / SFT / turbo 与 XL 模型、LoRA training tutorial 公开；不把官方 intrinsic RL 宣传等同于外部 SongEval-GRPO recipe。",
+      "license": "代码与主模型卡 MIT；依赖组件单独核查。",
+      "posttrain": "按用户要求保留为最后优先级。论文区分captioner、generator LM与DiT的后训练；本站Lyrics GRPO未跑，不能把其他任务的推理归为本实验。",
+      "sources": [{"label":"代码 / LoRA guide","url":"https://github.com/ace-step/ACE-Step-1.5"},{"label":"权重 / model zoo","url":"https://huggingface.co/ACE-Step/Ace-Step1.5"},{"label":"论文 / no-RL 主评测","url":"https://arxiv.org/abs/2602.00744"}]
     }
   ],
   "rewards": [

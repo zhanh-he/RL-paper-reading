@@ -4,7 +4,10 @@
 New: [Open-model RL expansion plan, 2026-10-14](OPEN_MODEL_RL_PLAN_2026-10-14.md)
 records the proposed YuE2 / HeartMuLa / DiffRhythm2 / SongBloom routes,
 team-reported ten-input listening estimates, release checks and approval gates.
-The expansion is **awaiting review; no new training is authorized or launched**.
+The user has **confirmed the expanded roster and requested preparation**;
+no new-model training has been submitted. The latest request prioritizes the
+Lyrics2song-style demo organization. A generic private baseline is reserved
+without disclosing internal information; SongGen is removed and ACE-Step1.5 last.
 
 The versioned [protocol](protocol.json) was **approved for six formal training
 arms on 2026-10-14**, one learning rate **3e-4**, seed42, 270 training steps.
@@ -15,10 +18,11 @@ invented MOS values are presented as results.
 The approved core compares original YuE2 and Muse bases under spectral Richness,
 SongBench-Instrument, and SongBench-Arrangement. The user confirmed Arrangement
 as the third reward on 2026-10-14 and subsequently approved training. SongEval
-remains independent cross-evaluation, not an optimization arm. A controlled weaker
-checkpoint is preferable for isolating baseline quality, but needs independent
-train/valid listening, a weight hash and user approval. None of the quality bands
-or a MOS 4+ boundary has been established by our matched human evaluation.
+remains independent cross-evaluation, not an optimization arm. The expanded roster
+now prioritizes HeartMuLa, DiffRhythm2 and SongBloom rather than an artificially
+weakened checkpoint. Team-reported ten-input listening estimates are labeled
+separately from formal MOS. None of the quality bands or a MOS4+ boundary has been
+established by our matched human evaluation.
 
 [SongEval](https://github.com/ASLP-lab/SongEval) has no instrument head.
 [SongBench](https://github.com/Tencent/SongBench) Instrument concerns instrument
@@ -47,9 +51,10 @@ with paired condition-clustered intervals, are required to test them.
 
 ## Execution
 
-- YuE2 Richness: lab5090 PID3839302. Instrument then Arrangement follow in a
-  finite Bash queue PID3842776, sharing exact frozen baseline audio. Richness has
-  now completed270 plus all30 final validation conditions; Instrument is running.
+- YuE2 Richness / Instrument / Arrangement: all three reached270 on lab5090.
+  The collector has verified all270 checkpoint/log/audio bindings per arm and
+  all30 validation conditions at0/50/100/270. The finite queue completed;
+  these are training/validation results, not new-model results or human MOS.
 - Muse Richness: Gadi iv96 DGX-A100 job181243929; Instrument: iv96 job181226207;
   Arrangement: wa66 job181226209. All submitted priority1023, 1 GPU,
   8-hour walltime. Submitted does not mean running.

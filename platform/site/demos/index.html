@@ -18,7 +18,8 @@
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
-    <script type="module" src="./reward-regime.js?v=20261014-recovered-media"></script>
+    <link rel="stylesheet" href="./reward-regime.css?v=20261014-lyrics-layout" />
+    <script type="module" src="./reward-regime.js?v=20261014-lyrics-layout"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
   </head>
   <body>
@@ -71,35 +72,35 @@
       </section>
 
       <section class="lab-view" id="view-reward-regimes" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Reward regime study · Formal experiments</p><h2>SP / AI Rewards</h2></div><span class="state measured">已授权 · LR 3e-4</span></div>
-        <p class="section-copy" data-regime="updated"></p>
-        <p class="section-copy" data-regime="hypothesis"></p>
-        <div class="source-block"><strong>指标边界</strong><p>SongEval 没有 Instrument 维度。SongBench-Instrument 评乐器真实度与合成质量，不是乐器数量；SP Richness 是频谱层次代理。MOS 2–3 / 4+ 是待验证假设，不是已测标签。</p></div>
-        <nav class="model-links reference-entry-links"><a href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a href="./data/reward-regime-protocol.json" download>下载实验协议 JSON</a><a href="./data/cmi-pref-triple-9to1-split.json" download>下载冻结 CMI split</a><a href="./data/reward-regime-recovery.json" download>下载回收记录 · 全30条分数</a></nav>
-        <h3>Models</h3><div class="model-controls" data-regime="models" aria-label="Reward study models"></div><p class="section-copy" data-regime="model-note"></p>
-        <div class="table-scroll"><table><thead><tr><th>Experiment · LR3e-4</th><th>Reward definition</th><th>Run</th><th>Train steps</th><th>Valid · value (Δ vs baseline)</th><th>WSB test Δ</th></tr></thead><tbody data-regime="arms"></tbody></table></div>
-        <details open data-regime="training"><summary>Training · Reward / KL</summary>
-          <div class="model-controls" data-regime="reward-controls" aria-label="Training reward"></div>
-          <p class="section-copy" data-regime="trace-note"></p>
-          <div class="choral-training-plots" data-regime="plots">
-            <figure><figcaption>Reward · 单项目标 − shared penalty</figcaption><canvas data-regime="reward-chart" role="img" aria-label="Training reward"></canvas></figure>
-            <figure><figcaption>KL · 在线冻结参考 k3 估计</figcaption><canvas data-regime="kl-chart" role="img" aria-label="Training KL"></canvas></figure>
-          </div>
+        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · Reward comparison</p><h2>SP / AI Rewards GRPO</h2></div></div>
+        <div class="protocol-strip"><span><strong>270</strong> train</span><span><strong>30</strong> valid</span><span><strong>192</strong> WSB · sealed</span><span><strong>3e-4</strong> learning rate</span></div>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Models</span><div class="segmented" data-regime="models" role="group" aria-label="Reward study models"></div></div>
+        <p class="stage-context" data-regime="model-note"></p>
+        <div class="metric-controls replay-model-controls"><span class="control-label">Experiments</span><div class="segmented" data-regime="reward-controls" role="group" aria-label="Reward study experiments"></div><span class="state pending" data-regime="status"></span></div>
+        <div class="lyrics-protocol"><strong data-regime="reward-title"></strong><p data-regime="reward-definition"></p><p data-regime="train-protocol"></p></div>
+        <details open class="choral-deep-dive formal-training-details" data-regime="training"><summary>训练过程 · Reward / KL</summary>
+          <section class="choral-training" aria-label="Reward study training traces"><div class="choral-training-plots" data-regime="plots">
+            <figure><figcaption>Reward · 单项目标 − shared penalty <strong data-regime="reward-value"></strong></figcaption><canvas data-regime="reward-chart" role="img" aria-label="Training reward"></canvas></figure>
+            <figure><figcaption><span data-regime="kl-caption">KL · 在线冻结参考采样估计</span> <strong data-regime="kl-value"></strong></figcaption><canvas data-regime="kl-chart" role="img" aria-label="Training KL"></canvas></figure>
+          </div><p class="choral-training-note" data-regime="trace-note"></p></section>
         </details>
         <section class="regime-replay" aria-label="Reward study audio comparisons">
-          <h3>Baseline / GRPO</h3>
-          <div class="segmented" data-regime="replay-modes"><button type="button" data-mode="long" aria-pressed="true">Long replay · 30–60s</button><button type="button" data-mode="bad" aria-pressed="false">单项 reward · Badcase 候选</button></div>
-          <div class="model-controls" data-regime="example-controls"></div>
-          <div class="segmented" data-regime="step-controls"></div>
+          <div class="metric-controls"><span class="control-label">Replay</span><div class="segmented" data-regime="replay-modes" role="group" aria-label="Replay cohort"><button type="button" data-mode="long" aria-pressed="true">Long replay</button><button type="button" data-mode="bad" aria-pressed="false">Badcase · 候选</button></div></div>
+          <div class="metric-controls lyrics-example-controls"><span class="control-label">Sample</span><div class="segmented" data-regime="example-controls" role="group" aria-label="Reward study sample"></div><span data-regime="seed"></span></div>
+          <div class="source-grid"><div class="source-block"><span class="source-label">Input</span><strong data-regime="input"></strong><p data-regime="input-note"></p></div><div class="source-block"><span class="source-label">Reference output</span><strong>开放式生成 · 无唯一标准歌曲</strong><p data-regime="reference-note"></p></div></div>
+          <h3 class="subsection-heading" data-regime="replay-title">Long-form replay · target 60 seconds</h3>
+          <div class="stage-rail" data-regime="step-controls" role="group" aria-label="Reward study checkpoint"></div>
           <p class="section-copy" data-regime="replay-note"></p>
+          <div class="listen-bar"><strong>A/B 试听</strong><div class="segmented" role="group" aria-label="Reward study synchronized listening"><button type="button" data-regime-listen="baseline" aria-pressed="false">A · Baseline</button><button type="button" data-regime-listen="candidate" aria-pressed="false">B · GRPO</button></div><span data-regime="listen-status" aria-live="polite"></span></div>
           <div class="compare-grid" data-regime="media"></div>
-          <div class="table-scroll"><table><thead><tr><th>Metric · 原始 lossless 评分</th><th>A · Baseline</th><th>B · GRPO (Δ vs A)</th></tr></thead><tbody data-regime="pair-metrics"></tbody></table></div>
+          <details class="choral-deep-dive" data-regime="pair-details"><summary>当前试听对 · 客观分数与音频来源</summary><p class="section-copy">分数绑定压缩前原件，MP3 与原件哈希分别记录；长回放不是全30条短验证均值。</p><div class="table-scroll"><table><thead><tr><th>Metric · lossless 评分</th><th>A · Baseline</th><th>B · GRPO (Δ vs A)</th></tr></thead><tbody data-regime="pair-metrics"></tbody></table></div><div data-regime="audio-provenance"></div></details>
         </section>
-        <details><summary>Badcase 选择规则 · 全30条配对变化 / 95% CI</summary><p class="section-copy">候选为有意挑选的指标冲突样本，不是随机样本。自动分数不等于听感；CI仅重采样30条验证条件，单训练seed、未做多重比较校正。各reward及训练步数不同，不作横向胜负结论。长回放与短验证音频为不同推理长度，分数不可互相替代。</p><div class="table-scroll"><table><thead><tr><th>Arm · checkpoint</th><th>冲突候选 / N</th><th>目标 Δ [95% CI]</th><th>Instrumental Δ [95% CI]</th><th>Arrangement Δ [95% CI]</th><th>选择规则</th></tr></thead><tbody data-regime="case-audit"></tbody></table></div></details>
-        <details><summary>Full validation · 30/30 条交叉评分（不是测试集 / MOS）</summary><p class="section-copy">SP 为0–1代理，SongBench各列为原始0–10输出；不同指标不能横向比大小。Invalid 保留在30条分母中，不丢弃失败样本。</p><div class="table-scroll"><table><thead><tr><th>Arm</th><th>Step · N</th><th>SP Richness</th><th>Instrumental</th><th>Arrangement</th><th>Mixing</th><th>Musicality</th><th>Invalid</th></tr></thead><tbody data-regime="validation"></tbody></table></div></details>
-        <details open><summary>Reward definitions · SP / AI</summary><div class="table-scroll"><table><thead><tr><th>Reward</th><th>R</th><th>Meaning</th><th>Boundary / status</th></tr></thead><tbody data-regime="rewards"></tbody></table></div></details>
-        <details open><summary>CMI-Perf train / valid · WildSongBench sealed test</summary><div class="table-scroll"><table><tbody data-regime="data"></tbody></table></div></details>
-        <details><summary>GRPO · cross-reward evaluation · human listening · reward hacking</summary><div class="table-scroll"><table><tbody data-regime="design"></tbody></table></div></details>
+        <h3 class="subsection-heading" data-regime="validation-title">固定验证 · 30 conditions</h3><div class="table-scroll"><table><thead><tr><th>Step · N</th><th>Target reward</th><th>SP Richness</th><th>Instrumental</th><th>Arrangement</th><th>Mixing</th><th>Musicality</th><th>Invalid</th></tr></thead><tbody data-regime="validation"></tbody></table></div><p class="stage-context">每格为固定验证均值（Δ vs 同模型0步）。只有30/30条完整回执才显示均值；短验证与长回放分开，自动分不等于人类MOS。</p>
+        <details class="choral-deep-dive"><summary>本模型实验总表 · 提交与回收状态</summary><div class="table-scroll"><table><thead><tr><th>Experiment</th><th>Run</th><th>Train steps</th><th>Valid · value (Δ vs baseline)</th><th>WSB test</th></tr></thead><tbody data-regime="arms"></tbody></table></div></details>
+        <details class="choral-deep-dive"><summary>Badcase · 筛选规则与全30条配对变化</summary><p class="section-copy">事后挑选的指标冲突候选，不是随机样本或已证实的听感退化。CI重采样30条验证条件，单训练seed、未做多重比较校正。</p><div class="table-scroll"><table><thead><tr><th>Arm · checkpoint</th><th>冲突候选 / N</th><th>目标 Δ [95% CI]</th><th>Instrumental Δ [95% CI]</th><th>Arrangement Δ [95% CI]</th><th>选择规则</th></tr></thead><tbody data-regime="case-audit"></tbody></table></div></details>
+        <details class="choral-deep-dive"><summary>Reward definitions · SP / AI</summary><p class="section-copy">SongEval 没有 Instrument 子分；SongBench-Instrument评真实度，不是乐器计数。SP Richness 是频谱层次代理。</p><div class="table-scroll"><table><thead><tr><th>Reward</th><th>R</th><th>Meaning</th><th>Boundary / status</th></tr></thead><tbody data-regime="rewards"></tbody></table></div></details>
+        <details class="choral-deep-dive"><summary>Dataset Protocol · CMI-Pref / WildSongBench</summary><div class="table-scroll"><table><tbody data-regime="data"></tbody></table></div><div class="model-links"><a href="./data/cmi-pref-triple-9to1-split.json" download>下载冻结 split JSON</a><a href="#datasets" data-open-view="datasets" data-dataset-target="lyrics">完整 Dataset Protocol</a></div></details>
+        <details class="choral-deep-dive"><summary>模型来源、研究计划与复现记录</summary><p class="section-copy" data-regime="model-detail"></p><p class="section-copy" data-regime="hypothesis"></p><p class="section-copy" data-regime="updated"></p><div class="model-links reference-entry-links"><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/OPEN_MODEL_RL_PLAN_2026-10-14.md" target="_blank" rel="noreferrer">实验计划 MD</a><a data-regime="model-source" target="_blank" rel="noreferrer">模型来源</a><a href="./data/reward-regime-protocol.json" download>协议 JSON</a><a href="./data/reward-regime-recovery.json" download>试听与评分回执 JSON</a></div><div class="table-scroll"><table><tbody data-regime="design"></tbody></table></div></details>
       </section>
 
       <section class="lab-view" id="view-choral" hidden>
