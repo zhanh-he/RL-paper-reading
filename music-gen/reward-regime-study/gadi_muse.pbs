@@ -52,7 +52,8 @@ CUDA_VISIBLE_DEVICES="$service_gpu" "$python" "$code/launch_container_worker.py"
   --receipt-dir "$output/scorer" --port "$scorer_port" > "$output/scorer.log" 2>&1 &
 pids+=("$!")
 LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES="$service_gpu" \
-  "$root/envs/mucodec-py310-cu128/bin/python" "$root/src/MuCodec/deploy/mucodec_serve.py" \
+  "$root/envs/mucodec-py310-cu128/bin/python" "$code/mucodec_fixed_seed.py" \
+  --source "$root/src/MuCodec/deploy/mucodec_serve.py" \
   --model "$root/src/MuCodec/weights/mucodec.pt" --host 127.0.0.1 --port "$codec_port" > "$output/codec.log" 2>&1 &
 pids+=("$!")
 CUDA_VISIBLE_DEVICES="$service_gpu" "$train/swift" rollout \

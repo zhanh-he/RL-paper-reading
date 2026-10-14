@@ -46,7 +46,7 @@ def main():
                 ids = list(result.outputs[0].token_ids); codes = [n-low for n in ids if low<=n<=high]
                 meta = {'index':i,'seed':5101+i,'generated_ids':ids,'audio_tokens':codes,
                         'adapter_sha256':sha(adapter/'adapter_model.safetensors') if adapter else None,
-                        'valid_sha256': VALID_SHA, 'max_tokens':512, 'forced_length':False}
+                        'valid_sha256': VALID_SHA, 'max_tokens':512, 'forced_length':False,'decoder_seed':42}
                 if not codes:
                     meta['invalid'] = 'no AUDIO tokens'; meta['audio_sha256'] = None
                 else:

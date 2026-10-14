@@ -39,6 +39,7 @@
     "score_binding": "All rewards consume the same immutable private lossless audio per candidate, with SHA256 and duration; public MP3 is a separate listening copy.",
     "common_guards": "Invalid/nonfinite, <1 second or RMS<1e-5 => zero objective. Otherwise shared penalty = 0.5*min(1,near-fullscale sample fraction/0.01) + min(0.1,0.01*(max(0,RMS_dBFS+6)+max(0,-40-RMS_dBFS))). Near-fullscale thresholdabs(sample)>=0.999. Raw target, penalties and invalid rates separate; learned target divided by10, SP raw0-1. KL beta0.01 is a separate loss term, not included in plotted reward.",
     "sampling": "Unfiltered temperature1, top_p1, repetition1. YuE2 codec+EOS support with EOS masked for first200 actions; loss uses same support. Native BF16 sampling versus FP32 log-softmax remains numerical approximation, not bit-exact likelihood equality. Muse top_k=-1, study scheduler512 tokens per turn. Different native codec budgets between models disclosed.",
+    "muse_decoder": "Native MuCodec API and patched native chunk overlap; study-local wrapper fixes torch CPU/CUDA decoder seed42 within the existing inference lock for every request, restoring caller RNG state afterward. Shared native code is not edited. Validation uses identical decoder configuration. All270 train prompts <=1384 tokens; all30 valid <=952; plus512 completion and64 context margin fit2048.",
     "validation": "All frozen30 conditions; YuE2 checkpoints0/50/100/270, Muse0/270. Freeze seeds5101+index and same per-model baseline audio across reward arms. Partial validation is never reported as full mean.",
     "cross_scoring": "During training/validation: all SP components, all seven SongBench dimensions, peak/clipping/RMS. Independent SongEval, LUFS, lyric alignment and blind listening remain follow-up evaluation, not completed claims.",
     "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
@@ -52,8 +53,8 @@
     {"model": "yue2", "reward": "richness", "status": "running", "host": "lab5090", "process_id": 3839302},
     {"model": "yue2", "reward": "instrument", "status": "local-sequential-queue", "host": "lab5090", "controller_pid": 3842776},
     {"model": "yue2", "reward": "arrangement", "status": "local-sequential-queue", "host": "lab5090", "controller_pid": 3842776},
-    {"model": "muse", "reward": "richness", "status": "pbs-queued", "host": "gadi", "project": "wa66", "priority": 1023, "job_id": "181223774.gadi-pbs", "gpus": 1},
-    {"model": "muse", "reward": "instrument", "status": "pbs-queued", "host": "gadi", "project": "iv96", "priority": 1023, "job_id": "181223777.gadi-pbs", "gpus": 1},
-    {"model": "muse", "reward": "arrangement", "status": "pbs-queued", "host": "gadi", "project": "wa66", "priority": 1023, "job_id": "181223779.gadi-pbs", "gpus": 1}
+    {"model": "muse", "reward": "richness", "status": "pbs-queued", "host": "gadi", "project": "wa66", "priority": 1023, "job_id": "181226205.gadi-pbs", "gpus": 1},
+    {"model": "muse", "reward": "instrument", "status": "pbs-queued", "host": "gadi", "project": "iv96", "priority": 1023, "job_id": "181226207.gadi-pbs", "gpus": 1},
+    {"model": "muse", "reward": "arrangement", "status": "pbs-queued", "host": "gadi", "project": "wa66", "priority": 1023, "job_id": "181226209.gadi-pbs", "gpus": 1}
   ]
 }

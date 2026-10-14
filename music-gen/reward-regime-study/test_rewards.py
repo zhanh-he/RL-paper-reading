@@ -4,6 +4,19 @@ from rewards import spectral_richness, guard, objective
 
 
 class RewardTests(unittest.TestCase):
+    def test_codec_randomness_is_fixed_and_caller_rng_is_restored(self):
+        import torch
+        from mucodec_fixed_seed import install_fixed_seed
+        class Server:
+            def _decode_tokens(self, request):
+                return torch.randn(8)
+        install_fixed_seed(Server)
+        torch.manual_seed(123)
+        before=torch.get_rng_state().clone()
+        first=Server()._decode_tokens(None);second=Server()._decode_tokens(None)
+        self.assertTrue(torch.equal(first,second))
+        self.assertTrue(torch.equal(before,torch.get_rng_state()))
+
     def test_noise_does_not_win_tonality_gate(self):
         noise = np.random.default_rng(42).normal(0,.1,48000)
         self.assertEqual(spectral_richness(noise,48000)['tonality_gate'], 0.)

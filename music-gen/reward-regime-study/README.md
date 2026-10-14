@@ -44,8 +44,8 @@ with paired condition-clustered intervals, are required to test them.
 
 - YuE2 Richness: lab5090 PID3839302. Instrument then Arrangement follow in a
   finite Bash queue PID3842776, sharing exact frozen baseline audio.
-- Muse Richness: Gadi wa66 job181223774; Instrument: iv96 job181223777;
-  Arrangement: wa66 job181223779. All submitted priority1023, 1 Hopper GPU,
+- Muse Richness: Gadi wa66 job181226205; Instrument: iv96 job181226207;
+  Arrangement: wa66 job181226209. All submitted priority1023, 1 Hopper GPU,
   8-hour walltime. Submitted does not mean running.
   Each arm shares its80GB GPU between actor, native decoder and serialized
   reward/rollout services; this reduces the allocation requirement. Actual
@@ -69,6 +69,11 @@ multi-turn scheduler fixes512 tokens/turn; top-k filtering is disabled explicitl
 on both actor and rollout server. Validation uses all30 frozen prompts and
 seeds5101+index. YuE2 checkpoints0/50/100/270; Muse0/270. Current short validation
 rollouts are **not** the separately requested30-60-second listening demos.
+The study-local `mucodec_fixed_seed.py` freezes the native stochastic decoder
+to seed42 under its existing inference lock and restores caller RNG state.
+Shared MuCodec files are not edited. All300 Muse prompt token lengths were
+audited: training max1384, validation max952, so the512-token completion plus
+64-token context margin fits2048 without prompt truncation.
 After all three YuE2 arms finish, the same finite queue runs
 `render_yue2_replays.py`: three fixed validation examples, shared baseline and
 steps50/100/270 per arm, native750-1500 semantic-token duration constraints.
