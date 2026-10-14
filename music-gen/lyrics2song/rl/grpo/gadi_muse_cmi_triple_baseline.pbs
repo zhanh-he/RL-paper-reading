@@ -31,6 +31,16 @@ plugin="${MUSE_REWARD_PLUGIN:-$study/muse_cmi_rewards.py}"
 data="$study/data/muse-cmi-triple-train.jsonl"
 run="$study/outputs/${REWARD}_lr${LR}_${MODE}${RUN_TAG:+_$RUN_TAG}"
 mkdir -p "$run" "$PBS_JOBFS/tmp" "$PBS_JOBFS/cache"
+resume_args=()
+if [[ -n "${RESUME_CHECKPOINT:-}" ]]; then
+  [[ "$MODE" == train && -n "${RUN_TAG:-}" ]] || { echo 'Resume requires a separate tagged training run' >&2; exit 2; }
+  [[ "$RESUME_CHECKPOINT" == */checkpoint-180 ]] || { echo 'This recovery must resume step 180' >&2; exit 2; }
+  for artifact in adapter_model.safetensors optimizer.pt scheduler.pt rng_state.pth trainer_state.json; do
+    [[ -s "$RESUME_CHECKPOINT/$artifact" ]] || { echo "Missing resume artifact: $artifact" >&2; exit 2; }
+  done
+  resume_args=(--resume_from_checkpoint "$RESUME_CHECKPOINT" --resume_only_model false)
+  export MUSE_RESUME_CHECKPOINT="$RESUME_CHECKPOINT"
+fi
 export TMPDIR="$PBS_JOBFS/tmp"
 export XDG_CACHE_HOME="$PBS_JOBFS/cache/xdg"
 export HF_HOME=/g/data/wa66/hanyu/hf-cache
@@ -92,6 +102,13 @@ if os.environ.get('ALIGNED_LR') == '1':
                      'beta': 0.01, 'seed': 42, 'lora_rank': 8,
                      'invalid_output_policy': 'zero for missing AUDIO, nonfinite or under 1-second decoded audio; infrastructure errors fatal',
                      'reward_plugin_sha256': hashlib.sha256(pathlib.Path(os.environ['MUSE_REWARD_PLUGIN']).read_bytes()).hexdigest()})
+if os.environ.get('MUSE_RESUME_CHECKPOINT'):
+    checkpoint = pathlib.Path(os.environ['MUSE_RESUME_CHECKPOINT'])
+    assert json.loads((checkpoint / 'trainer_state.json').read_text())['global_step'] == 180
+    manifest.update({'fresh_base': False, 'resume_step': 180,
+                     'resume_checkpoint': str(checkpoint), 'restores_optimizer_scheduler_rng': True,
+                     'resume_artifact_sha256': {name: hashlib.sha256((checkpoint / name).read_bytes()).hexdigest()
+                        for name in ['adapter_model.safetensors', 'optimizer.pt', 'scheduler.pt', 'rng_state.pth', 'trainer_state.json']}})
 if path.exists():
     assert json.loads(path.read_text()) == manifest, 'Existing run has different configuration'
 else:
@@ -135,10 +152,26 @@ for port in "${ports[@]}"; do
   [[ "$ready" == true ]] || { echo "Service $port did not become ready" >&2; exit 1; }
 done
 
+if [[ -n "${RESUME_CHECKPOINT:-}" ]]; then
+  "$train_py" - "$codec_port" "$run/decoder-regression.json" <<'PY'
+import json, pathlib, urllib.request, sys
+# The former alignment condition left a 896-token final window at length 1664.
+request = urllib.request.Request(f'http://127.0.0.1:{sys.argv[1]}/v1/audio/decode',
+    data=json.dumps({'tokens': [0] * 1664, 'duration': 10.24, 'num_steps': 20}).encode(),
+    headers={'Content-Type': 'application/json'})
+with urllib.request.urlopen(request, timeout=600) as response:
+    result = json.load(response)
+assert result['token_count'] == 1664 and result['duration'] > 0
+result.pop('audio_base64')
+pathlib.Path(sys.argv[2]).write_text(json.dumps({'status': 'passed', **result}, indent=2) + '\n')
+PY
+fi
+
 steps=270
 save_steps=30
 if [[ "$MODE" == smoke ]]; then steps=2; save_steps=1; fi
 "$(dirname "$train_py")/swift" rlhf \
+  "${resume_args[@]}" \
   --rlhf_type grpo --model_type qwen3 --model "$MODEL" \
   --reward_funcs "$reward_name" --external_plugins "$plugin" \
   --tuner_type lora --lora_rank 8 --dataset "$data" \
@@ -157,6 +190,7 @@ if [[ "$MODE" == smoke ]]; then steps=2; save_steps=1; fi
 import hashlib, json, pathlib, sys
 root, steps = pathlib.Path(sys.argv[1]), int(sys.argv[2])
 records = [json.loads(line) for line in (root / 'rollouts.jsonl').read_text().splitlines() if line]
+resume = json.loads((root / 'experiment.json').read_text()).get('resume_step', 0)
 adapters = list((root / 'checkpoint').rglob('adapter_model.safetensors'))
 bound = []
 judged = 0
@@ -177,7 +211,8 @@ states = [json.loads(p.read_text()) for p in (root / 'checkpoint').rglob('traine
 actual_steps = max((state.get('global_step', 0) for state in states), default=0)
 invalid_path = root / 'invalid_outputs.jsonl'
 invalid_count = len(invalid_path.read_text().splitlines()) if invalid_path.exists() else 0
-receipt = {'status': 'training-complete' if adapters and actual_steps == steps and judged >= 2 * steps else 'incomplete',
+receipt = {'status': 'training-complete' if adapters and actual_steps == steps and judged >= 2 * (steps - resume) else 'incomplete',
+           'resume_step': resume, 'new_optimizer_steps_requested': steps - resume,
            'steps_requested': steps, 'rollout_records': len(records), 'bound_audio': bound,
            'actual_steps': actual_steps, 'judged_completions': judged, 'invalid_outputs': invalid_count,
            'adapter_checkpoints': len(adapters), 'validation_status': 'not-yet-evaluated'}

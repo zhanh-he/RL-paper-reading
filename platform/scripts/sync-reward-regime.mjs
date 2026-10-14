@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source = new URL('../../music-gen/reward-regime-study/protocol.json', import.meta.url);
+const target = new URL('../site/demos/data/reward-regime-protocol.json', import.meta.url);
+const value = JSON.parse(fs.readFileSync(source));
+assert.equal(value.training_authorized, false);
+assert.equal(value.runs.length, 0);
+assert.equal(value.rewards.length, 3);
+assert.ok(value.models.every((m) => m.mos === null));
+const rendered = JSON.stringify(value, null, 2) + '\n';
+if (process.argv.includes('--check')) assert.equal(fs.readFileSync(target, 'utf8'), rendered);
+else fs.writeFileSync(target, rendered);
+console.log('SP/AI protocol: proposal only, no training/results/MOS fabricated.');

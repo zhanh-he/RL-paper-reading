@@ -1,0 +1,12 @@
+--- generate.py
++++ generate.py
+@@ -154,7 +154,8 @@
+                 codes = torch.cat([codes, codes], -1)
+             codes = codes[:,:,0:min_samples]
+         codes_len = codes.shape[-1]
+-        if((codes_len - ovlp_frames) % hop_samples > 0):
++        # Align token windows, not the half-rate latent overlap frames.
++        if((codes_len - ovlp_samples) % hop_samples > 0):
+             len_codes=math.ceil((codes_len - ovlp_samples) / float(hop_samples)) * hop_samples + ovlp_samples
+             while(codes.shape[-1] < len_codes):
+                 codes = torch.cat([codes, codes], -1)

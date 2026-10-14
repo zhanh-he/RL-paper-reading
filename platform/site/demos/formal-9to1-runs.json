@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "protocol": "cmi-pref-triple-source-text-lyrics-baseline-9to1-v2",
-  "recovered_at": "2026-10-12",
+  "recovered_at": "2026-10-14",
   "train_conditions": 270,
   "valid_conditions": 30,
   "sealed_test_conditions": 121,
@@ -11480,11 +11480,1372 @@
       "job_id": "181035580.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:21.455765+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.89284992,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 2.63407993,
+          "sampled_kl": 0.00064196
+        },
+        {
+          "step": 3,
+          "reward": 3.54471016,
+          "sampled_kl": 0.00054683
+        },
+        {
+          "step": 4,
+          "reward": 2.4539299,
+          "sampled_kl": 0.00052674
+        },
+        {
+          "step": 5,
+          "reward": 2.25160003,
+          "sampled_kl": 0.00058276
+        },
+        {
+          "step": 6,
+          "reward": 3.3865099,
+          "sampled_kl": 0.00063596
+        },
+        {
+          "step": 7,
+          "reward": 3.04141998,
+          "sampled_kl": 0.00056271
+        },
+        {
+          "step": 8,
+          "reward": 3.53179002,
+          "sampled_kl": 0.00065649
+        },
+        {
+          "step": 9,
+          "reward": 3.33919001,
+          "sampled_kl": 0.00053557
+        },
+        {
+          "step": 10,
+          "reward": 1.54917002,
+          "sampled_kl": 0.00084515
+        },
+        {
+          "step": 11,
+          "reward": 2.85026002,
+          "sampled_kl": 0.0006542
+        },
+        {
+          "step": 12,
+          "reward": 2.85135007,
+          "sampled_kl": 0.00055195
+        },
+        {
+          "step": 13,
+          "reward": 2.64121008,
+          "sampled_kl": 0.00065546
+        },
+        {
+          "step": 14,
+          "reward": 2.6171298,
+          "sampled_kl": 0.0006918
+        },
+        {
+          "step": 15,
+          "reward": 2.73516989,
+          "sampled_kl": 0.00069834
+        },
+        {
+          "step": 16,
+          "reward": 3.07473993,
+          "sampled_kl": 0.00066493
+        },
+        {
+          "step": 17,
+          "reward": 2.74317002,
+          "sampled_kl": 0.0005708
+        },
+        {
+          "step": 18,
+          "reward": 2.89931989,
+          "sampled_kl": 0.0007095
+        },
+        {
+          "step": 19,
+          "reward": 2.55591011,
+          "sampled_kl": 0.00068305
+        },
+        {
+          "step": 20,
+          "reward": 2.90087986,
+          "sampled_kl": 0.00065318
+        },
+        {
+          "step": 21,
+          "reward": 3.55481005,
+          "sampled_kl": 0.00061845
+        },
+        {
+          "step": 22,
+          "reward": 3.39023018,
+          "sampled_kl": 0.0005661
+        },
+        {
+          "step": 23,
+          "reward": 3.17983007,
+          "sampled_kl": 0.00063508
+        },
+        {
+          "step": 24,
+          "reward": 2.46447992,
+          "sampled_kl": 0.00058133
+        },
+        {
+          "step": 25,
+          "reward": 2.67135,
+          "sampled_kl": 0.00069228
+        },
+        {
+          "step": 26,
+          "reward": 2.94148016,
+          "sampled_kl": 0.00062547
+        },
+        {
+          "step": 27,
+          "reward": 1.03051996,
+          "sampled_kl": 0.00067461
+        },
+        {
+          "step": 28,
+          "reward": 3.03368998,
+          "sampled_kl": 0.00061649
+        },
+        {
+          "step": 29,
+          "reward": 2.93017006,
+          "sampled_kl": 0.00082728
+        },
+        {
+          "step": 30,
+          "reward": 2.36808014,
+          "sampled_kl": 0.0007332
+        },
+        {
+          "step": 31,
+          "reward": 3.3125,
+          "sampled_kl": 0.00064136
+        },
+        {
+          "step": 32,
+          "reward": 3.69341993,
+          "sampled_kl": 0.00065587
+        },
+        {
+          "step": 33,
+          "reward": 2.95098019,
+          "sampled_kl": 0.00070528
+        },
+        {
+          "step": 34,
+          "reward": 2.15505004,
+          "sampled_kl": 0.00074414
+        },
+        {
+          "step": 35,
+          "reward": 2.34372997,
+          "sampled_kl": 0.00071596
+        },
+        {
+          "step": 36,
+          "reward": 2.3393898,
+          "sampled_kl": 0.00106115
+        },
+        {
+          "step": 37,
+          "reward": 3.01044989,
+          "sampled_kl": 0.00068241
+        },
+        {
+          "step": 38,
+          "reward": 2.66799021,
+          "sampled_kl": 0.00080919
+        },
+        {
+          "step": 39,
+          "reward": 3.39840984,
+          "sampled_kl": 0.00066896
+        },
+        {
+          "step": 40,
+          "reward": 2.65207005,
+          "sampled_kl": 0.00122579
+        },
+        {
+          "step": 41,
+          "reward": 2.13185,
+          "sampled_kl": 0.00072147
+        },
+        {
+          "step": 42,
+          "reward": 2.64346981,
+          "sampled_kl": 0.00065101
+        },
+        {
+          "step": 43,
+          "reward": 2.30720997,
+          "sampled_kl": 0.0008028
+        },
+        {
+          "step": 44,
+          "reward": 3.21107006,
+          "sampled_kl": 0.00067788
+        },
+        {
+          "step": 45,
+          "reward": 3.14986992,
+          "sampled_kl": 0.00063659
+        },
+        {
+          "step": 46,
+          "reward": 3.69582987,
+          "sampled_kl": 0.00069858
+        },
+        {
+          "step": 47,
+          "reward": 3.36153007,
+          "sampled_kl": 0.00062988
+        },
+        {
+          "step": 48,
+          "reward": 1.23231006,
+          "sampled_kl": 0.00090944
+        },
+        {
+          "step": 49,
+          "reward": 2.99532986,
+          "sampled_kl": 0.00076885
+        },
+        {
+          "step": 50,
+          "reward": 3.19449997,
+          "sampled_kl": 0.00073019
+        },
+        {
+          "step": 51,
+          "reward": 2.41919994,
+          "sampled_kl": 0.00069672
+        },
+        {
+          "step": 52,
+          "reward": 3.54637003,
+          "sampled_kl": 0.00068965
+        },
+        {
+          "step": 53,
+          "reward": 2.58207989,
+          "sampled_kl": 0.00081088
+        },
+        {
+          "step": 54,
+          "reward": 2.91848993,
+          "sampled_kl": 0.00078744
+        },
+        {
+          "step": 55,
+          "reward": 3.32539988,
+          "sampled_kl": 0.00080209
+        },
+        {
+          "step": 56,
+          "reward": 2.89514017,
+          "sampled_kl": 0.00073817
+        },
+        {
+          "step": 57,
+          "reward": 2.69427013,
+          "sampled_kl": 0.00076642
+        },
+        {
+          "step": 58,
+          "reward": 3.05825996,
+          "sampled_kl": 0.00072139
+        },
+        {
+          "step": 59,
+          "reward": 3.28443003,
+          "sampled_kl": 0.00081744
+        },
+        {
+          "step": 60,
+          "reward": 2.57577991,
+          "sampled_kl": 0.00070063
+        },
+        {
+          "step": 61,
+          "reward": 3.57705998,
+          "sampled_kl": 0.0007791
+        },
+        {
+          "step": 62,
+          "reward": 3.56423998,
+          "sampled_kl": 0.00070546
+        },
+        {
+          "step": 63,
+          "reward": 1.16074002,
+          "sampled_kl": 0.00118015
+        },
+        {
+          "step": 64,
+          "reward": 3.59939003,
+          "sampled_kl": 0.00068893
+        },
+        {
+          "step": 65,
+          "reward": 2.6452899,
+          "sampled_kl": 0.0007417
+        },
+        {
+          "step": 66,
+          "reward": 1.71536005,
+          "sampled_kl": 0.00083657
+        },
+        {
+          "step": 67,
+          "reward": 2.50613999,
+          "sampled_kl": 0.00103936
+        },
+        {
+          "step": 68,
+          "reward": 2.98308992,
+          "sampled_kl": 0.00095456
+        },
+        {
+          "step": 69,
+          "reward": 2.39420986,
+          "sampled_kl": 0.00086639
+        },
+        {
+          "step": 70,
+          "reward": 2.98935008,
+          "sampled_kl": 0.00071669
+        },
+        {
+          "step": 71,
+          "reward": 3.11141014,
+          "sampled_kl": 0.00080998
+        },
+        {
+          "step": 72,
+          "reward": 2.84933996,
+          "sampled_kl": 0.0008137
+        },
+        {
+          "step": 73,
+          "reward": 2.62088013,
+          "sampled_kl": 0.00098037
+        },
+        {
+          "step": 74,
+          "reward": 3.29475999,
+          "sampled_kl": 0.00078081
+        },
+        {
+          "step": 75,
+          "reward": 2.9787302,
+          "sampled_kl": 0.00073564
+        },
+        {
+          "step": 76,
+          "reward": 3.39766002,
+          "sampled_kl": 0.00083589
+        },
+        {
+          "step": 77,
+          "reward": 2.99252009,
+          "sampled_kl": 0.00088046
+        },
+        {
+          "step": 78,
+          "reward": 3.31693983,
+          "sampled_kl": 0.0008091
+        },
+        {
+          "step": 79,
+          "reward": 2.48393011,
+          "sampled_kl": 0.00095261
+        },
+        {
+          "step": 80,
+          "reward": 2.70999002,
+          "sampled_kl": 0.00090348
+        },
+        {
+          "step": 81,
+          "reward": 3.09669995,
+          "sampled_kl": 0.00081742
+        },
+        {
+          "step": 82,
+          "reward": 2.63737011,
+          "sampled_kl": 0.00089745
+        },
+        {
+          "step": 83,
+          "reward": 2.72539997,
+          "sampled_kl": 0.0009767
+        },
+        {
+          "step": 84,
+          "reward": 2.53383994,
+          "sampled_kl": 0.0008381
+        },
+        {
+          "step": 85,
+          "reward": 3.00348997,
+          "sampled_kl": 0.00095321
+        },
+        {
+          "step": 86,
+          "reward": 1.17399001,
+          "sampled_kl": 0.00099691
+        },
+        {
+          "step": 87,
+          "reward": 2.58862019,
+          "sampled_kl": 0.00084165
+        },
+        {
+          "step": 88,
+          "reward": 1.12152004,
+          "sampled_kl": 0.00129595
+        },
+        {
+          "step": 89,
+          "reward": 2.71480989,
+          "sampled_kl": 0.00102327
+        },
+        {
+          "step": 90,
+          "reward": 2.86281013,
+          "sampled_kl": 0.00211393
+        },
+        {
+          "step": 91,
+          "reward": 3.53203011,
+          "sampled_kl": 0.00094409
+        },
+        {
+          "step": 92,
+          "reward": 2.55792999,
+          "sampled_kl": 0.00096038
+        },
+        {
+          "step": 93,
+          "reward": 1.87914991,
+          "sampled_kl": 0.00086963
+        },
+        {
+          "step": 94,
+          "reward": 2.97565007,
+          "sampled_kl": 0.00101943
+        },
+        {
+          "step": 95,
+          "reward": 3.2390399,
+          "sampled_kl": 0.00083827
+        },
+        {
+          "step": 96,
+          "reward": 2.41595006,
+          "sampled_kl": 0.00098061
+        },
+        {
+          "step": 97,
+          "reward": 3.09722996,
+          "sampled_kl": 0.00095099
+        },
+        {
+          "step": 98,
+          "reward": 2.52670002,
+          "sampled_kl": 0.00114557
+        },
+        {
+          "step": 99,
+          "reward": 2.67891002,
+          "sampled_kl": 0.00102216
+        },
+        {
+          "step": 100,
+          "reward": 3.04119015,
+          "sampled_kl": 0.00088235
+        },
+        {
+          "step": 101,
+          "reward": 2.36653996,
+          "sampled_kl": 0.00135077
+        },
+        {
+          "step": 102,
+          "reward": 3.57690001,
+          "sampled_kl": 0.00085722
+        },
+        {
+          "step": 103,
+          "reward": 2.09179997,
+          "sampled_kl": 0.00114581
+        },
+        {
+          "step": 104,
+          "reward": 3.61406994,
+          "sampled_kl": 0.00082501
+        },
+        {
+          "step": 105,
+          "reward": 2.98968005,
+          "sampled_kl": 0.00088025
+        },
+        {
+          "step": 106,
+          "reward": 3.09574986,
+          "sampled_kl": 0.0008216
+        },
+        {
+          "step": 107,
+          "reward": 3.77075005,
+          "sampled_kl": 0.00076584
+        },
+        {
+          "step": 108,
+          "reward": 1.25432003,
+          "sampled_kl": 0.0009553
+        },
+        {
+          "step": 109,
+          "reward": 3.01770997,
+          "sampled_kl": 0.00097821
+        },
+        {
+          "step": 110,
+          "reward": 2.70811987,
+          "sampled_kl": 0.00123338
+        },
+        {
+          "step": 111,
+          "reward": 2.00249004,
+          "sampled_kl": 0.00093882
+        },
+        {
+          "step": 112,
+          "reward": 3.26847005,
+          "sampled_kl": 0.00082913
+        },
+        {
+          "step": 113,
+          "reward": 3.53393984,
+          "sampled_kl": 0.00084159
+        },
+        {
+          "step": 114,
+          "reward": 3.24480009,
+          "sampled_kl": 0.00101018
+        },
+        {
+          "step": 115,
+          "reward": 0.82612002,
+          "sampled_kl": 0.00246378
+        },
+        {
+          "step": 116,
+          "reward": 2.47618008,
+          "sampled_kl": 0.00111703
+        },
+        {
+          "step": 117,
+          "reward": 3.33087015,
+          "sampled_kl": 0.00083762
+        },
+        {
+          "step": 118,
+          "reward": 2.79684019,
+          "sampled_kl": 0.00144073
+        },
+        {
+          "step": 119,
+          "reward": 3.34975004,
+          "sampled_kl": 0.00089428
+        },
+        {
+          "step": 120,
+          "reward": 3.60088015,
+          "sampled_kl": 0.00089808
+        },
+        {
+          "step": 121,
+          "reward": 3.26918006,
+          "sampled_kl": 0.00099794
+        },
+        {
+          "step": 122,
+          "reward": 3.05875015,
+          "sampled_kl": 0.00088351
+        },
+        {
+          "step": 123,
+          "reward": 2.76698017,
+          "sampled_kl": 0.00116631
+        },
+        {
+          "step": 124,
+          "reward": 1.35946,
+          "sampled_kl": 0.00096632
+        },
+        {
+          "step": 125,
+          "reward": 3.39782,
+          "sampled_kl": 0.00122593
+        },
+        {
+          "step": 126,
+          "reward": 2.15522003,
+          "sampled_kl": 0.00107565
+        },
+        {
+          "step": 127,
+          "reward": 1.10527003,
+          "sampled_kl": 0.00172588
+        },
+        {
+          "step": 128,
+          "reward": 3.40120006,
+          "sampled_kl": 0.00095701
+        },
+        {
+          "step": 129,
+          "reward": 3.49349022,
+          "sampled_kl": 0.00084403
+        },
+        {
+          "step": 130,
+          "reward": 3.02948999,
+          "sampled_kl": 0.00094738
+        },
+        {
+          "step": 131,
+          "reward": 2.82283998,
+          "sampled_kl": 0.0011128
+        },
+        {
+          "step": 132,
+          "reward": 3.50610995,
+          "sampled_kl": 0.00107292
+        },
+        {
+          "step": 133,
+          "reward": 3.09101009,
+          "sampled_kl": 0.0010668
+        },
+        {
+          "step": 134,
+          "reward": 1.30150998,
+          "sampled_kl": 0.00105649
+        },
+        {
+          "step": 135,
+          "reward": 1.55760002,
+          "sampled_kl": 0.00134274
+        },
+        {
+          "step": 136,
+          "reward": 3.30076003,
+          "sampled_kl": 0.00102394
+        },
+        {
+          "step": 137,
+          "reward": 3.48027992,
+          "sampled_kl": 0.00095561
+        },
+        {
+          "step": 138,
+          "reward": 3.33314991,
+          "sampled_kl": 0.00402119
+        },
+        {
+          "step": 139,
+          "reward": 1.19008994,
+          "sampled_kl": 0.00664883
+        },
+        {
+          "step": 140,
+          "reward": 1.33030999,
+          "sampled_kl": 0.00109162
+        },
+        {
+          "step": 141,
+          "reward": 3.05643988,
+          "sampled_kl": 0.00093396
+        },
+        {
+          "step": 142,
+          "reward": 3.70485997,
+          "sampled_kl": 0.00089305
+        },
+        {
+          "step": 143,
+          "reward": 3.04392004,
+          "sampled_kl": 0.00116937
+        },
+        {
+          "step": 144,
+          "reward": 2.0904398,
+          "sampled_kl": 0.00221866
+        },
+        {
+          "step": 145,
+          "reward": 1.39524996,
+          "sampled_kl": 0.00099506
+        },
+        {
+          "step": 146,
+          "reward": 2.97723007,
+          "sampled_kl": 0.0009063
+        },
+        {
+          "step": 147,
+          "reward": 2.91503,
+          "sampled_kl": 0.00116107
+        },
+        {
+          "step": 148,
+          "reward": 3.39670992,
+          "sampled_kl": 0.00088771
+        },
+        {
+          "step": 149,
+          "reward": 3.27253008,
+          "sampled_kl": 0.00096389
+        },
+        {
+          "step": 150,
+          "reward": 2.88238001,
+          "sampled_kl": 0.00309236
+        },
+        {
+          "step": 151,
+          "reward": 3.31629992,
+          "sampled_kl": 0.00077409
+        },
+        {
+          "step": 152,
+          "reward": 3.36607003,
+          "sampled_kl": 0.00079574
+        },
+        {
+          "step": 153,
+          "reward": 2.6075201,
+          "sampled_kl": 0.00131564
+        },
+        {
+          "step": 154,
+          "reward": 3.14613008,
+          "sampled_kl": 0.00100863
+        },
+        {
+          "step": 155,
+          "reward": 3.30874014,
+          "sampled_kl": 0.00098375
+        },
+        {
+          "step": 156,
+          "reward": 3.08948994,
+          "sampled_kl": 0.00104903
+        },
+        {
+          "step": 157,
+          "reward": 2.71775007,
+          "sampled_kl": 0.00102572
+        },
+        {
+          "step": 158,
+          "reward": 3.11864996,
+          "sampled_kl": 0.00101757
+        },
+        {
+          "step": 159,
+          "reward": 2.98334002,
+          "sampled_kl": 0.00097312
+        },
+        {
+          "step": 160,
+          "reward": 1.11836004,
+          "sampled_kl": 0.00119376
+        },
+        {
+          "step": 161,
+          "reward": 3.11396003,
+          "sampled_kl": 0.00097728
+        },
+        {
+          "step": 162,
+          "reward": 3.54721999,
+          "sampled_kl": 0.00093229
+        },
+        {
+          "step": 163,
+          "reward": 1.93551993,
+          "sampled_kl": 0.00168754
+        },
+        {
+          "step": 164,
+          "reward": 2.78701019,
+          "sampled_kl": 0.00127934
+        },
+        {
+          "step": 165,
+          "reward": 2.88644004,
+          "sampled_kl": 0.00240788
+        },
+        {
+          "step": 166,
+          "reward": 2.62659001,
+          "sampled_kl": 0.00139968
+        },
+        {
+          "step": 167,
+          "reward": 2.68202019,
+          "sampled_kl": 0.00117981
+        },
+        {
+          "step": 168,
+          "reward": 3.0752902,
+          "sampled_kl": 0.01460263
+        },
+        {
+          "step": 169,
+          "reward": 2.72612,
+          "sampled_kl": 0.00100651
+        },
+        {
+          "step": 170,
+          "reward": 3.22476006,
+          "sampled_kl": 0.00102803
+        },
+        {
+          "step": 171,
+          "reward": 2.46483994,
+          "sampled_kl": 0.00136056
+        },
+        {
+          "step": 172,
+          "reward": 2.7023201,
+          "sampled_kl": 0.00101879
+        },
+        {
+          "step": 173,
+          "reward": 3.82349014,
+          "sampled_kl": 0.00081152
+        },
+        {
+          "step": 174,
+          "reward": 2.83201003,
+          "sampled_kl": 0.00111442
+        },
+        {
+          "step": 175,
+          "reward": 3.67827988,
+          "sampled_kl": 0.0016118
+        },
+        {
+          "step": 176,
+          "reward": 3.08858013,
+          "sampled_kl": 0.00094846
+        },
+        {
+          "step": 177,
+          "reward": 3.56757998,
+          "sampled_kl": 0.00207965
+        },
+        {
+          "step": 178,
+          "reward": 3.08300996,
+          "sampled_kl": 0.00115785
+        },
+        {
+          "step": 179,
+          "reward": 3.02762985,
+          "sampled_kl": 0.00097479
+        },
+        {
+          "step": 180,
+          "reward": 2.72927999,
+          "sampled_kl": 0.00108306
+        },
+        {
+          "step": 181,
+          "reward": 2.48945999,
+          "sampled_kl": 0.00092064
+        },
+        {
+          "step": 182,
+          "reward": 3.00029993,
+          "sampled_kl": 0.00109915
+        },
+        {
+          "step": 183,
+          "reward": 2.86750984,
+          "sampled_kl": 0.00123945
+        },
+        {
+          "step": 184,
+          "reward": 3.05097008,
+          "sampled_kl": 0.00106941
+        },
+        {
+          "step": 185,
+          "reward": 3.37263012,
+          "sampled_kl": 0.00087811
+        },
+        {
+          "step": 186,
+          "reward": 3.15338993,
+          "sampled_kl": 0.00101941
+        },
+        {
+          "step": 187,
+          "reward": 2.98096991,
+          "sampled_kl": 0.00128219
+        },
+        {
+          "step": 188,
+          "reward": 2.69318008,
+          "sampled_kl": 0.00140007
+        },
+        {
+          "step": 189,
+          "reward": 3.03173018,
+          "sampled_kl": 0.00190369
+        },
+        {
+          "step": 190,
+          "reward": 3.21746016,
+          "sampled_kl": 0.00132419
+        },
+        {
+          "step": 191,
+          "reward": 1.13227999,
+          "sampled_kl": 0.00205845
+        },
+        {
+          "step": 192,
+          "reward": 2.46044016,
+          "sampled_kl": 0.00109033
+        },
+        {
+          "step": 193,
+          "reward": 2.91584015,
+          "sampled_kl": 0.00133631
+        },
+        {
+          "step": 194,
+          "reward": 3.36987996,
+          "sampled_kl": 0.00086564
+        },
+        {
+          "step": 195,
+          "reward": 3.41933012,
+          "sampled_kl": 0.00110133
+        },
+        {
+          "step": 196,
+          "reward": 2.73484993,
+          "sampled_kl": 0.00144521
+        },
+        {
+          "step": 197,
+          "reward": 1.78338003,
+          "sampled_kl": 0.00094955
+        },
+        {
+          "step": 198,
+          "reward": 3.12931991,
+          "sampled_kl": 0.00139676
+        },
+        {
+          "step": 199,
+          "reward": 3.07629013,
+          "sampled_kl": 0.00275012
+        },
+        {
+          "step": 200,
+          "reward": 2.60236001,
+          "sampled_kl": 0.00099747
+        },
+        {
+          "step": 201,
+          "reward": 2.91442013,
+          "sampled_kl": 0.00099868
+        },
+        {
+          "step": 202,
+          "reward": 2.66652012,
+          "sampled_kl": 0.00256403
+        },
+        {
+          "step": 203,
+          "reward": 2.64861012,
+          "sampled_kl": 0.00114796
+        },
+        {
+          "step": 204,
+          "reward": 2.01831007,
+          "sampled_kl": 0.00095398
+        },
+        {
+          "step": 205,
+          "reward": 3.20173001,
+          "sampled_kl": 0.00093941
+        },
+        {
+          "step": 206,
+          "reward": 3.19269991,
+          "sampled_kl": 0.00089132
+        },
+        {
+          "step": 207,
+          "reward": 2.46288013,
+          "sampled_kl": 0.00169736
+        },
+        {
+          "step": 208,
+          "reward": 2.5624299,
+          "sampled_kl": 0.00110241
+        },
+        {
+          "step": 209,
+          "reward": 2.98004007,
+          "sampled_kl": 0.00108004
+        },
+        {
+          "step": 210,
+          "reward": 3.54768991,
+          "sampled_kl": 0.00089727
+        },
+        {
+          "step": 211,
+          "reward": 3.07349014,
+          "sampled_kl": 0.00110839
+        },
+        {
+          "step": 212,
+          "reward": 2.82160997,
+          "sampled_kl": 0.0009925
+        },
+        {
+          "step": 213,
+          "reward": 0.0,
+          "sampled_kl": 0.00201675
+        },
+        {
+          "step": 214,
+          "reward": 2.98034,
+          "sampled_kl": 0.00123373
+        },
+        {
+          "step": 215,
+          "reward": 3.57849002,
+          "sampled_kl": 0.00094201
+        },
+        {
+          "step": 216,
+          "reward": 3.24162006,
+          "sampled_kl": 0.00090217
+        },
+        {
+          "step": 217,
+          "reward": 2.67224979,
+          "sampled_kl": 0.00133203
+        },
+        {
+          "step": 218,
+          "reward": 3.38778996,
+          "sampled_kl": 0.00101104
+        },
+        {
+          "step": 219,
+          "reward": 1.63418996,
+          "sampled_kl": 0.00126322
+        },
+        {
+          "step": 220,
+          "reward": 1.21117997,
+          "sampled_kl": 0.00362022
+        },
+        {
+          "step": 221,
+          "reward": 3.57293987,
+          "sampled_kl": 0.00098329
+        },
+        {
+          "step": 222,
+          "reward": 1.62488997,
+          "sampled_kl": 0.00136231
+        },
+        {
+          "step": 223,
+          "reward": 3.35999012,
+          "sampled_kl": 0.00101303
+        },
+        {
+          "step": 224,
+          "reward": 2.82482004,
+          "sampled_kl": 0.00115845
+        },
+        {
+          "step": 225,
+          "reward": 2.96776009,
+          "sampled_kl": 0.00114437
+        },
+        {
+          "step": 226,
+          "reward": 2.92293,
+          "sampled_kl": 0.00105548
+        },
+        {
+          "step": 227,
+          "reward": 3.14310002,
+          "sampled_kl": 0.00126434
+        },
+        {
+          "step": 228,
+          "reward": 3.59298992,
+          "sampled_kl": 0.00112717
+        },
+        {
+          "step": 229,
+          "reward": 2.39190006,
+          "sampled_kl": 0.00109667
+        },
+        {
+          "step": 230,
+          "reward": 3.33473015,
+          "sampled_kl": 0.00140227
+        },
+        {
+          "step": 231,
+          "reward": 2.27064991,
+          "sampled_kl": 0.00093524
+        },
+        {
+          "step": 232,
+          "reward": 2.44791985,
+          "sampled_kl": 0.00127964
+        },
+        {
+          "step": 233,
+          "reward": 2.71886015,
+          "sampled_kl": 0.0009285
+        },
+        {
+          "step": 234,
+          "reward": 2.76106,
+          "sampled_kl": 0.00093422
+        },
+        {
+          "step": 235,
+          "reward": 3.24342012,
+          "sampled_kl": 0.00095456
+        },
+        {
+          "step": 236,
+          "reward": 2.78787994,
+          "sampled_kl": 0.00146242
+        },
+        {
+          "step": 237,
+          "reward": 2.86401987,
+          "sampled_kl": 0.00108209
+        },
+        {
+          "step": 238,
+          "reward": 2.5681901,
+          "sampled_kl": 0.00105369
+        },
+        {
+          "step": 239,
+          "reward": 3.20044994,
+          "sampled_kl": 0.00229089
+        },
+        {
+          "step": 240,
+          "reward": 2.67497993,
+          "sampled_kl": 0.00103536
+        },
+        {
+          "step": 241,
+          "reward": 3.07844019,
+          "sampled_kl": 0.00124889
+        },
+        {
+          "step": 242,
+          "reward": 3.11236,
+          "sampled_kl": 0.00116087
+        },
+        {
+          "step": 243,
+          "reward": 2.68158007,
+          "sampled_kl": 0.00092048
+        },
+        {
+          "step": 244,
+          "reward": 3.48270988,
+          "sampled_kl": 0.00095727
+        },
+        {
+          "step": 245,
+          "reward": 3.49925995,
+          "sampled_kl": 0.00080405
+        },
+        {
+          "step": 246,
+          "reward": 2.94743013,
+          "sampled_kl": 0.0012329
+        },
+        {
+          "step": 247,
+          "reward": 2.86849999,
+          "sampled_kl": 0.00122309
+        },
+        {
+          "step": 248,
+          "reward": 3.26844978,
+          "sampled_kl": 0.00109485
+        },
+        {
+          "step": 249,
+          "reward": 1.25014997,
+          "sampled_kl": 0.00520292
+        },
+        {
+          "step": 250,
+          "reward": 2.85472012,
+          "sampled_kl": 0.00097388
+        },
+        {
+          "step": 251,
+          "reward": 3.21256018,
+          "sampled_kl": 0.00548318
+        },
+        {
+          "step": 252,
+          "reward": 2.89270997,
+          "sampled_kl": 0.00143765
+        },
+        {
+          "step": 253,
+          "reward": 2.36554003,
+          "sampled_kl": 0.00144351
+        },
+        {
+          "step": 254,
+          "reward": 3.14597988,
+          "sampled_kl": 0.00091252
+        },
+        {
+          "step": 255,
+          "reward": 3.0151,
+          "sampled_kl": 0.0010787
+        },
+        {
+          "step": 256,
+          "reward": 3.04695988,
+          "sampled_kl": 0.00097135
+        },
+        {
+          "step": 257,
+          "reward": 3.93054986,
+          "sampled_kl": 0.00102704
+        },
+        {
+          "step": 258,
+          "reward": 2.99369001,
+          "sampled_kl": 0.00113834
+        },
+        {
+          "step": 259,
+          "reward": 3.08751011,
+          "sampled_kl": 0.00100032
+        },
+        {
+          "step": 260,
+          "reward": 2.76985002,
+          "sampled_kl": 0.00110344
+        },
+        {
+          "step": 261,
+          "reward": 3.19827986,
+          "sampled_kl": 0.00099169
+        },
+        {
+          "step": 262,
+          "reward": 2.84452009,
+          "sampled_kl": 0.00105417
+        },
+        {
+          "step": 263,
+          "reward": 3.06243992,
+          "sampled_kl": 0.00109568
+        },
+        {
+          "step": 264,
+          "reward": 3.76543999,
+          "sampled_kl": 0.00108066
+        },
+        {
+          "step": 265,
+          "reward": 3.42253017,
+          "sampled_kl": 0.00658968
+        },
+        {
+          "step": 266,
+          "reward": 3.88062,
+          "sampled_kl": 0.00080554
+        },
+        {
+          "step": 267,
+          "reward": 2.30472994,
+          "sampled_kl": 0.00130654
+        },
+        {
+          "step": 268,
+          "reward": 3.09872007,
+          "sampled_kl": 0.00085391
+        },
+        {
+          "step": 269,
+          "reward": 2.81315994,
+          "sampled_kl": 0.00123904
+        },
+        {
+          "step": 270,
+          "reward": 0.97052002,
+          "sampled_kl": 0.00390368
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11516,7 +12877,10 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
-      }
+      },
+      "failure_reason": null,
+      "invalid_output_count": 28,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-songeval-2e-5.json"
     },
     {
       "id": "muse-songeval-1e-4",
@@ -11528,11 +12892,1372 @@
       "job_id": "181035582.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:22.054231+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.77497005,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 2.86441994,
+          "sampled_kl": 0.00061864
+        },
+        {
+          "step": 3,
+          "reward": 3.10301018,
+          "sampled_kl": 0.00057985
+        },
+        {
+          "step": 4,
+          "reward": 3.47494984,
+          "sampled_kl": 0.00077922
+        },
+        {
+          "step": 5,
+          "reward": 2.68918991,
+          "sampled_kl": 0.00085353
+        },
+        {
+          "step": 6,
+          "reward": 3.48255014,
+          "sampled_kl": 0.00085842
+        },
+        {
+          "step": 7,
+          "reward": 3.04858017,
+          "sampled_kl": 0.00113473
+        },
+        {
+          "step": 8,
+          "reward": 2.77877998,
+          "sampled_kl": 0.00130803
+        },
+        {
+          "step": 9,
+          "reward": 1.56809998,
+          "sampled_kl": 0.00134828
+        },
+        {
+          "step": 10,
+          "reward": 2.44061995,
+          "sampled_kl": 0.00185667
+        },
+        {
+          "step": 11,
+          "reward": 2.91777992,
+          "sampled_kl": 0.00223142
+        },
+        {
+          "step": 12,
+          "reward": 3.00731993,
+          "sampled_kl": 0.00116244
+        },
+        {
+          "step": 13,
+          "reward": 3.00371981,
+          "sampled_kl": 0.00222306
+        },
+        {
+          "step": 14,
+          "reward": 2.76317,
+          "sampled_kl": 0.00160667
+        },
+        {
+          "step": 15,
+          "reward": 3.09470987,
+          "sampled_kl": 0.0012113
+        },
+        {
+          "step": 16,
+          "reward": 1.23750997,
+          "sampled_kl": 0.00207846
+        },
+        {
+          "step": 17,
+          "reward": 2.35268998,
+          "sampled_kl": 0.00139733
+        },
+        {
+          "step": 18,
+          "reward": 2.97116995,
+          "sampled_kl": 0.00194929
+        },
+        {
+          "step": 19,
+          "reward": 2.87986994,
+          "sampled_kl": 0.00148588
+        },
+        {
+          "step": 20,
+          "reward": 3.00246,
+          "sampled_kl": 0.00388317
+        },
+        {
+          "step": 21,
+          "reward": 2.93253994,
+          "sampled_kl": 0.00295645
+        },
+        {
+          "step": 22,
+          "reward": 3.68289995,
+          "sampled_kl": 0.00171874
+        },
+        {
+          "step": 23,
+          "reward": 2.49539995,
+          "sampled_kl": 0.00304835
+        },
+        {
+          "step": 24,
+          "reward": 2.42096996,
+          "sampled_kl": 0.00184883
+        },
+        {
+          "step": 25,
+          "reward": 2.36429,
+          "sampled_kl": 0.00344418
+        },
+        {
+          "step": 26,
+          "reward": 3.43806005,
+          "sampled_kl": 0.00215604
+        },
+        {
+          "step": 27,
+          "reward": 3.00547004,
+          "sampled_kl": 0.00302215
+        },
+        {
+          "step": 28,
+          "reward": 3.17402005,
+          "sampled_kl": 0.00202041
+        },
+        {
+          "step": 29,
+          "reward": 2.67007017,
+          "sampled_kl": 0.00541206
+        },
+        {
+          "step": 30,
+          "reward": 2.95861006,
+          "sampled_kl": 0.00355409
+        },
+        {
+          "step": 31,
+          "reward": 3.02907991,
+          "sampled_kl": 0.00375097
+        },
+        {
+          "step": 32,
+          "reward": 3.23122001,
+          "sampled_kl": 0.00277171
+        },
+        {
+          "step": 33,
+          "reward": 3.73385,
+          "sampled_kl": 0.00233944
+        },
+        {
+          "step": 34,
+          "reward": 1.41946006,
+          "sampled_kl": 0.00473411
+        },
+        {
+          "step": 35,
+          "reward": 2.24166012,
+          "sampled_kl": 0.00677637
+        },
+        {
+          "step": 36,
+          "reward": 3.39050007,
+          "sampled_kl": 0.00326473
+        },
+        {
+          "step": 37,
+          "reward": 3.3889699,
+          "sampled_kl": 0.00343243
+        },
+        {
+          "step": 38,
+          "reward": 3.25872993,
+          "sampled_kl": 0.0027742
+        },
+        {
+          "step": 39,
+          "reward": 3.65100002,
+          "sampled_kl": 0.00403737
+        },
+        {
+          "step": 40,
+          "reward": 3.0218401,
+          "sampled_kl": 0.00422186
+        },
+        {
+          "step": 41,
+          "reward": 3.36550999,
+          "sampled_kl": 0.00367614
+        },
+        {
+          "step": 42,
+          "reward": 3.02455997,
+          "sampled_kl": 0.00418992
+        },
+        {
+          "step": 43,
+          "reward": 3.02930021,
+          "sampled_kl": 0.00584732
+        },
+        {
+          "step": 44,
+          "reward": 3.24807,
+          "sampled_kl": 0.00367941
+        },
+        {
+          "step": 45,
+          "reward": 3.42031002,
+          "sampled_kl": 0.00348706
+        },
+        {
+          "step": 46,
+          "reward": 3.57616997,
+          "sampled_kl": 0.00418836
+        },
+        {
+          "step": 47,
+          "reward": 3.11912012,
+          "sampled_kl": 0.00294655
+        },
+        {
+          "step": 48,
+          "reward": 1.61510003,
+          "sampled_kl": 0.00310342
+        },
+        {
+          "step": 49,
+          "reward": 3.01177001,
+          "sampled_kl": 0.00410714
+        },
+        {
+          "step": 50,
+          "reward": 2.79446983,
+          "sampled_kl": 0.00572067
+        },
+        {
+          "step": 51,
+          "reward": 3.27557993,
+          "sampled_kl": 0.0052284
+        },
+        {
+          "step": 52,
+          "reward": 2.92279005,
+          "sampled_kl": 0.00413526
+        },
+        {
+          "step": 53,
+          "reward": 3.29328012,
+          "sampled_kl": 0.00594351
+        },
+        {
+          "step": 54,
+          "reward": 3.72514009,
+          "sampled_kl": 0.00721562
+        },
+        {
+          "step": 55,
+          "reward": 3.83541012,
+          "sampled_kl": 0.00547732
+        },
+        {
+          "step": 56,
+          "reward": 3.12240005,
+          "sampled_kl": 0.00537955
+        },
+        {
+          "step": 57,
+          "reward": 2.9732399,
+          "sampled_kl": 0.00404194
+        },
+        {
+          "step": 58,
+          "reward": 1.25813997,
+          "sampled_kl": 0.01059929
+        },
+        {
+          "step": 59,
+          "reward": 2.59535003,
+          "sampled_kl": 0.00692594
+        },
+        {
+          "step": 60,
+          "reward": 2.88433981,
+          "sampled_kl": 0.00511285
+        },
+        {
+          "step": 61,
+          "reward": 3.39401007,
+          "sampled_kl": 0.00427516
+        },
+        {
+          "step": 62,
+          "reward": 3.36543989,
+          "sampled_kl": 0.0057785
+        },
+        {
+          "step": 63,
+          "reward": 3.31338,
+          "sampled_kl": 0.0044204
+        },
+        {
+          "step": 64,
+          "reward": 3.22939014,
+          "sampled_kl": 0.00371157
+        },
+        {
+          "step": 65,
+          "reward": 2.92903996,
+          "sampled_kl": 0.00810034
+        },
+        {
+          "step": 66,
+          "reward": 3.64015007,
+          "sampled_kl": 0.00393202
+        },
+        {
+          "step": 67,
+          "reward": 2.95327997,
+          "sampled_kl": 0.00956236
+        },
+        {
+          "step": 68,
+          "reward": 3.43164015,
+          "sampled_kl": 0.00733021
+        },
+        {
+          "step": 69,
+          "reward": 3.71135998,
+          "sampled_kl": 0.00726167
+        },
+        {
+          "step": 70,
+          "reward": 3.38730001,
+          "sampled_kl": 0.00596346
+        },
+        {
+          "step": 71,
+          "reward": 3.00846004,
+          "sampled_kl": 0.00888665
+        },
+        {
+          "step": 72,
+          "reward": 3.52659988,
+          "sampled_kl": 0.0087192
+        },
+        {
+          "step": 73,
+          "reward": 3.39446998,
+          "sampled_kl": 0.00692322
+        },
+        {
+          "step": 74,
+          "reward": 3.43743992,
+          "sampled_kl": 0.00532014
+        },
+        {
+          "step": 75,
+          "reward": 3.07034016,
+          "sampled_kl": 0.00504409
+        },
+        {
+          "step": 76,
+          "reward": 2.99634004,
+          "sampled_kl": 0.0060441
+        },
+        {
+          "step": 77,
+          "reward": 3.21349001,
+          "sampled_kl": 0.00765495
+        },
+        {
+          "step": 78,
+          "reward": 1.72397995,
+          "sampled_kl": 0.0132096
+        },
+        {
+          "step": 79,
+          "reward": 3.25039005,
+          "sampled_kl": 0.01028867
+        },
+        {
+          "step": 80,
+          "reward": 3.74483991,
+          "sampled_kl": 0.00869817
+        },
+        {
+          "step": 81,
+          "reward": 3.02288008,
+          "sampled_kl": 0.00893095
+        },
+        {
+          "step": 82,
+          "reward": 3.57053995,
+          "sampled_kl": 0.00701592
+        },
+        {
+          "step": 83,
+          "reward": 3.10710001,
+          "sampled_kl": 0.00946211
+        },
+        {
+          "step": 84,
+          "reward": 3.03092003,
+          "sampled_kl": 0.01479836
+        },
+        {
+          "step": 85,
+          "reward": 2.94175005,
+          "sampled_kl": 0.0076965
+        },
+        {
+          "step": 86,
+          "reward": 3.28645992,
+          "sampled_kl": 0.00823149
+        },
+        {
+          "step": 87,
+          "reward": 2.82944012,
+          "sampled_kl": 0.03739094
+        },
+        {
+          "step": 88,
+          "reward": 3.04662991,
+          "sampled_kl": 0.01292371
+        },
+        {
+          "step": 89,
+          "reward": 3.13967991,
+          "sampled_kl": 0.02205172
+        },
+        {
+          "step": 90,
+          "reward": 2.56011009,
+          "sampled_kl": 0.02022664
+        },
+        {
+          "step": 91,
+          "reward": 3.24275994,
+          "sampled_kl": 0.01296672
+        },
+        {
+          "step": 92,
+          "reward": 2.71417999,
+          "sampled_kl": 0.03302848
+        },
+        {
+          "step": 93,
+          "reward": 2.60928011,
+          "sampled_kl": 0.01832386
+        },
+        {
+          "step": 94,
+          "reward": 2.36405993,
+          "sampled_kl": 0.0184314
+        },
+        {
+          "step": 95,
+          "reward": 3.39978004,
+          "sampled_kl": 0.01249305
+        },
+        {
+          "step": 96,
+          "reward": 3.10819006,
+          "sampled_kl": 0.00707205
+        },
+        {
+          "step": 97,
+          "reward": 3.57025003,
+          "sampled_kl": 0.01797582
+        },
+        {
+          "step": 98,
+          "reward": 2.17591,
+          "sampled_kl": 0.01085338
+        },
+        {
+          "step": 99,
+          "reward": 2.61457014,
+          "sampled_kl": 0.01313455
+        },
+        {
+          "step": 100,
+          "reward": 3.36367011,
+          "sampled_kl": 0.00557292
+        },
+        {
+          "step": 101,
+          "reward": 2.92647004,
+          "sampled_kl": 0.02263233
+        },
+        {
+          "step": 102,
+          "reward": 2.99590993,
+          "sampled_kl": 0.0080049
+        },
+        {
+          "step": 103,
+          "reward": 2.70880985,
+          "sampled_kl": 0.01247887
+        },
+        {
+          "step": 104,
+          "reward": 3.00628996,
+          "sampled_kl": 0.00878961
+        },
+        {
+          "step": 105,
+          "reward": 3.15802002,
+          "sampled_kl": 0.00599615
+        },
+        {
+          "step": 106,
+          "reward": 3.25118995,
+          "sampled_kl": 0.00730219
+        },
+        {
+          "step": 107,
+          "reward": 3.63178992,
+          "sampled_kl": 0.00634535
+        },
+        {
+          "step": 108,
+          "reward": 3.44792986,
+          "sampled_kl": 0.00645286
+        },
+        {
+          "step": 109,
+          "reward": 2.80630994,
+          "sampled_kl": 0.01112935
+        },
+        {
+          "step": 110,
+          "reward": 3.37114,
+          "sampled_kl": 0.00873313
+        },
+        {
+          "step": 111,
+          "reward": 3.7007699,
+          "sampled_kl": 0.00701289
+        },
+        {
+          "step": 112,
+          "reward": 3.18452001,
+          "sampled_kl": 0.00959387
+        },
+        {
+          "step": 113,
+          "reward": 2.62447,
+          "sampled_kl": 0.01877033
+        },
+        {
+          "step": 114,
+          "reward": 3.77448988,
+          "sampled_kl": 0.01048574
+        },
+        {
+          "step": 115,
+          "reward": 2.80662012,
+          "sampled_kl": 0.02124383
+        },
+        {
+          "step": 116,
+          "reward": 2.90200996,
+          "sampled_kl": 0.011857
+        },
+        {
+          "step": 117,
+          "reward": 1.95518005,
+          "sampled_kl": 0.04337433
+        },
+        {
+          "step": 118,
+          "reward": 2.89257002,
+          "sampled_kl": 0.01594617
+        },
+        {
+          "step": 119,
+          "reward": 3.08576012,
+          "sampled_kl": 0.01681907
+        },
+        {
+          "step": 120,
+          "reward": 2.85272002,
+          "sampled_kl": 0.01422301
+        },
+        {
+          "step": 121,
+          "reward": 2.68530989,
+          "sampled_kl": 0.0117005
+        },
+        {
+          "step": 122,
+          "reward": 3.17758989,
+          "sampled_kl": 0.02287648
+        },
+        {
+          "step": 123,
+          "reward": 2.88082004,
+          "sampled_kl": 0.03534662
+        },
+        {
+          "step": 124,
+          "reward": 2.92428994,
+          "sampled_kl": 0.00977948
+        },
+        {
+          "step": 125,
+          "reward": 3.21483994,
+          "sampled_kl": 0.01002832
+        },
+        {
+          "step": 126,
+          "reward": 2.97202015,
+          "sampled_kl": 0.01330189
+        },
+        {
+          "step": 127,
+          "reward": 2.84982014,
+          "sampled_kl": 0.01653968
+        },
+        {
+          "step": 128,
+          "reward": 3.12596989,
+          "sampled_kl": 0.01185837
+        },
+        {
+          "step": 129,
+          "reward": 3.64279985,
+          "sampled_kl": 0.00861311
+        },
+        {
+          "step": 130,
+          "reward": 3.75796986,
+          "sampled_kl": 0.00671713
+        },
+        {
+          "step": 131,
+          "reward": 2.91949987,
+          "sampled_kl": 0.00955738
+        },
+        {
+          "step": 132,
+          "reward": 3.93348002,
+          "sampled_kl": 0.00872573
+        },
+        {
+          "step": 133,
+          "reward": 2.69957995,
+          "sampled_kl": 0.00742903
+        },
+        {
+          "step": 134,
+          "reward": 1.18849003,
+          "sampled_kl": 0.01433529
+        },
+        {
+          "step": 135,
+          "reward": 3.49629998,
+          "sampled_kl": 0.00984965
+        },
+        {
+          "step": 136,
+          "reward": 3.51778984,
+          "sampled_kl": 0.00918873
+        },
+        {
+          "step": 137,
+          "reward": 3.44970989,
+          "sampled_kl": 0.01272281
+        },
+        {
+          "step": 138,
+          "reward": 3.22939992,
+          "sampled_kl": 0.01480706
+        },
+        {
+          "step": 139,
+          "reward": 3.06375003,
+          "sampled_kl": 0.0186389
+        },
+        {
+          "step": 140,
+          "reward": 3.16173983,
+          "sampled_kl": 0.00713065
+        },
+        {
+          "step": 141,
+          "reward": 3.11269999,
+          "sampled_kl": 0.01016975
+        },
+        {
+          "step": 142,
+          "reward": 3.35537004,
+          "sampled_kl": 0.01060843
+        },
+        {
+          "step": 143,
+          "reward": 3.27025008,
+          "sampled_kl": 0.01653012
+        },
+        {
+          "step": 144,
+          "reward": 2.60330009,
+          "sampled_kl": 0.03003472
+        },
+        {
+          "step": 145,
+          "reward": 3.01757002,
+          "sampled_kl": 0.00719456
+        },
+        {
+          "step": 146,
+          "reward": 3.38785005,
+          "sampled_kl": 0.00915777
+        },
+        {
+          "step": 147,
+          "reward": 3.36434007,
+          "sampled_kl": 0.01514153
+        },
+        {
+          "step": 148,
+          "reward": 2.94168997,
+          "sampled_kl": 0.0123007
+        },
+        {
+          "step": 149,
+          "reward": 3.33997011,
+          "sampled_kl": 0.01055571
+        },
+        {
+          "step": 150,
+          "reward": 2.85500002,
+          "sampled_kl": 0.01375563
+        },
+        {
+          "step": 151,
+          "reward": 3.05623007,
+          "sampled_kl": 0.01438579
+        },
+        {
+          "step": 152,
+          "reward": 3.62204981,
+          "sampled_kl": 0.00926422
+        },
+        {
+          "step": 153,
+          "reward": 2.55328989,
+          "sampled_kl": 0.05470808
+        },
+        {
+          "step": 154,
+          "reward": 2.71066999,
+          "sampled_kl": 0.01103335
+        },
+        {
+          "step": 155,
+          "reward": 3.78203011,
+          "sampled_kl": 0.00913323
+        },
+        {
+          "step": 156,
+          "reward": 3.69010019,
+          "sampled_kl": 0.01953274
+        },
+        {
+          "step": 157,
+          "reward": 3.25320005,
+          "sampled_kl": 0.01248862
+        },
+        {
+          "step": 158,
+          "reward": 3.37470007,
+          "sampled_kl": 0.01351687
+        },
+        {
+          "step": 159,
+          "reward": 3.58342004,
+          "sampled_kl": 0.01116252
+        },
+        {
+          "step": 160,
+          "reward": 1.53649998,
+          "sampled_kl": 0.0207713
+        },
+        {
+          "step": 161,
+          "reward": 3.33683014,
+          "sampled_kl": 0.01122716
+        },
+        {
+          "step": 162,
+          "reward": 3.08788013,
+          "sampled_kl": 0.02440393
+        },
+        {
+          "step": 163,
+          "reward": 1.64015996,
+          "sampled_kl": 0.01255096
+        },
+        {
+          "step": 164,
+          "reward": 3.13007021,
+          "sampled_kl": 0.0253839
+        },
+        {
+          "step": 165,
+          "reward": 3.28013992,
+          "sampled_kl": 0.01470652
+        },
+        {
+          "step": 166,
+          "reward": 2.65231991,
+          "sampled_kl": 0.02207495
+        },
+        {
+          "step": 167,
+          "reward": 2.39320993,
+          "sampled_kl": 0.0098037
+        },
+        {
+          "step": 168,
+          "reward": 3.07598996,
+          "sampled_kl": 0.01266423
+        },
+        {
+          "step": 169,
+          "reward": 3.30064011,
+          "sampled_kl": 0.01384421
+        },
+        {
+          "step": 170,
+          "reward": 3.42471981,
+          "sampled_kl": 0.00940167
+        },
+        {
+          "step": 171,
+          "reward": 2.87065005,
+          "sampled_kl": 0.0090111
+        },
+        {
+          "step": 172,
+          "reward": 3.30031013,
+          "sampled_kl": 0.00781503
+        },
+        {
+          "step": 173,
+          "reward": 3.54679012,
+          "sampled_kl": 0.01419076
+        },
+        {
+          "step": 174,
+          "reward": 3.24078989,
+          "sampled_kl": 0.01203631
+        },
+        {
+          "step": 175,
+          "reward": 3.38644004,
+          "sampled_kl": 0.02827712
+        },
+        {
+          "step": 176,
+          "reward": 3.09861994,
+          "sampled_kl": 0.01585472
+        },
+        {
+          "step": 177,
+          "reward": 2.99708009,
+          "sampled_kl": 0.01284088
+        },
+        {
+          "step": 178,
+          "reward": 3.44823003,
+          "sampled_kl": 0.01265761
+        },
+        {
+          "step": 179,
+          "reward": 3.41441011,
+          "sampled_kl": 0.01083743
+        },
+        {
+          "step": 180,
+          "reward": 2.28786993,
+          "sampled_kl": 0.02996335
+        },
+        {
+          "step": 181,
+          "reward": 2.78521013,
+          "sampled_kl": 0.01291504
+        },
+        {
+          "step": 182,
+          "reward": 3.36178994,
+          "sampled_kl": 0.01542923
+        },
+        {
+          "step": 183,
+          "reward": 3.03218007,
+          "sampled_kl": 0.01197174
+        },
+        {
+          "step": 184,
+          "reward": 3.10280991,
+          "sampled_kl": 0.01677323
+        },
+        {
+          "step": 185,
+          "reward": 3.57228994,
+          "sampled_kl": 0.01079535
+        },
+        {
+          "step": 186,
+          "reward": 3.32210016,
+          "sampled_kl": 0.0093842
+        },
+        {
+          "step": 187,
+          "reward": 3.49318981,
+          "sampled_kl": 0.01678676
+        },
+        {
+          "step": 188,
+          "reward": 3.18738985,
+          "sampled_kl": 0.02844668
+        },
+        {
+          "step": 189,
+          "reward": 3.30975008,
+          "sampled_kl": 0.01758467
+        },
+        {
+          "step": 190,
+          "reward": 2.74899006,
+          "sampled_kl": 0.04218392
+        },
+        {
+          "step": 191,
+          "reward": 2.90783,
+          "sampled_kl": 0.0135419
+        },
+        {
+          "step": 192,
+          "reward": 2.52047014,
+          "sampled_kl": 0.01070425
+        },
+        {
+          "step": 193,
+          "reward": 3.11664009,
+          "sampled_kl": 0.01370593
+        },
+        {
+          "step": 194,
+          "reward": 3.53669,
+          "sampled_kl": 0.00822432
+        },
+        {
+          "step": 195,
+          "reward": 3.18721008,
+          "sampled_kl": 0.0310981
+        },
+        {
+          "step": 196,
+          "reward": 3.4388299,
+          "sampled_kl": 0.01444795
+        },
+        {
+          "step": 197,
+          "reward": 2.70688009,
+          "sampled_kl": 0.01686811
+        },
+        {
+          "step": 198,
+          "reward": 3.58904982,
+          "sampled_kl": 0.0087514
+        },
+        {
+          "step": 199,
+          "reward": 3.16759014,
+          "sampled_kl": 0.01702866
+        },
+        {
+          "step": 200,
+          "reward": 3.04702997,
+          "sampled_kl": 0.01024436
+        },
+        {
+          "step": 201,
+          "reward": 3.36220002,
+          "sampled_kl": 0.01729597
+        },
+        {
+          "step": 202,
+          "reward": 3.62173986,
+          "sampled_kl": 0.01989218
+        },
+        {
+          "step": 203,
+          "reward": 2.48520994,
+          "sampled_kl": 0.01668961
+        },
+        {
+          "step": 204,
+          "reward": 3.62953997,
+          "sampled_kl": 0.00953837
+        },
+        {
+          "step": 205,
+          "reward": 2.50504017,
+          "sampled_kl": 0.01914047
+        },
+        {
+          "step": 206,
+          "reward": 3.59268999,
+          "sampled_kl": 0.01586738
+        },
+        {
+          "step": 207,
+          "reward": 3.04418993,
+          "sampled_kl": 0.01307113
+        },
+        {
+          "step": 208,
+          "reward": 3.19984007,
+          "sampled_kl": 0.00994555
+        },
+        {
+          "step": 209,
+          "reward": 3.09057999,
+          "sampled_kl": 0.01519955
+        },
+        {
+          "step": 210,
+          "reward": 3.28740001,
+          "sampled_kl": 0.00957321
+        },
+        {
+          "step": 211,
+          "reward": 3.28060007,
+          "sampled_kl": 0.01486328
+        },
+        {
+          "step": 212,
+          "reward": 3.05716991,
+          "sampled_kl": 0.00947709
+        },
+        {
+          "step": 213,
+          "reward": 3.25426006,
+          "sampled_kl": 0.0107243
+        },
+        {
+          "step": 214,
+          "reward": 2.47178006,
+          "sampled_kl": 0.02818379
+        },
+        {
+          "step": 215,
+          "reward": 2.95798016,
+          "sampled_kl": 0.01852878
+        },
+        {
+          "step": 216,
+          "reward": 3.6208601,
+          "sampled_kl": 0.01040884
+        },
+        {
+          "step": 217,
+          "reward": 3.14336991,
+          "sampled_kl": 0.01701039
+        },
+        {
+          "step": 218,
+          "reward": 3.82850003,
+          "sampled_kl": 0.01090599
+        },
+        {
+          "step": 219,
+          "reward": 3.01388001,
+          "sampled_kl": 0.03325329
+        },
+        {
+          "step": 220,
+          "reward": 2.91456985,
+          "sampled_kl": 0.02043083
+        },
+        {
+          "step": 221,
+          "reward": 2.95494986,
+          "sampled_kl": 0.0223325
+        },
+        {
+          "step": 222,
+          "reward": 3.01270008,
+          "sampled_kl": 0.00995792
+        },
+        {
+          "step": 223,
+          "reward": 3.12838984,
+          "sampled_kl": 0.01246324
+        },
+        {
+          "step": 224,
+          "reward": 3.22229004,
+          "sampled_kl": 0.01384619
+        },
+        {
+          "step": 225,
+          "reward": 3.68020988,
+          "sampled_kl": 0.01167489
+        },
+        {
+          "step": 226,
+          "reward": 3.17882013,
+          "sampled_kl": 0.01258037
+        },
+        {
+          "step": 227,
+          "reward": 2.63788986,
+          "sampled_kl": 0.02337665
+        },
+        {
+          "step": 228,
+          "reward": 3.21678996,
+          "sampled_kl": 0.03206172
+        },
+        {
+          "step": 229,
+          "reward": 3.35112,
+          "sampled_kl": 0.01231882
+        },
+        {
+          "step": 230,
+          "reward": 3.41052008,
+          "sampled_kl": 0.01409356
+        },
+        {
+          "step": 231,
+          "reward": 2.89867997,
+          "sampled_kl": 0.01171018
+        },
+        {
+          "step": 232,
+          "reward": 2.37699008,
+          "sampled_kl": 0.02266559
+        },
+        {
+          "step": 233,
+          "reward": 3.47571993,
+          "sampled_kl": 0.00876332
+        },
+        {
+          "step": 234,
+          "reward": 3.42349005,
+          "sampled_kl": 0.01208905
+        },
+        {
+          "step": 235,
+          "reward": 2.93385983,
+          "sampled_kl": 0.01211623
+        },
+        {
+          "step": 236,
+          "reward": 2.62091017,
+          "sampled_kl": 0.02796065
+        },
+        {
+          "step": 237,
+          "reward": 2.77951002,
+          "sampled_kl": 0.01186967
+        },
+        {
+          "step": 238,
+          "reward": 3.48829985,
+          "sampled_kl": 0.02977744
+        },
+        {
+          "step": 239,
+          "reward": 2.98772001,
+          "sampled_kl": 0.02911745
+        },
+        {
+          "step": 240,
+          "reward": 3.32975006,
+          "sampled_kl": 0.01133137
+        },
+        {
+          "step": 241,
+          "reward": 3.17360997,
+          "sampled_kl": 0.01441398
+        },
+        {
+          "step": 242,
+          "reward": 1.68561995,
+          "sampled_kl": 0.0210772
+        },
+        {
+          "step": 243,
+          "reward": 3.31165981,
+          "sampled_kl": 0.01079709
+        },
+        {
+          "step": 244,
+          "reward": 3.21921015,
+          "sampled_kl": 0.01735703
+        },
+        {
+          "step": 245,
+          "reward": 3.44059992,
+          "sampled_kl": 0.0079332
+        },
+        {
+          "step": 246,
+          "reward": 2.86436987,
+          "sampled_kl": 0.01418838
+        },
+        {
+          "step": 247,
+          "reward": 3.18447018,
+          "sampled_kl": 0.01583317
+        },
+        {
+          "step": 248,
+          "reward": 3.4144001,
+          "sampled_kl": 0.01474944
+        },
+        {
+          "step": 249,
+          "reward": 3.77192998,
+          "sampled_kl": 0.00874957
+        },
+        {
+          "step": 250,
+          "reward": 3.16300011,
+          "sampled_kl": 0.0103433
+        },
+        {
+          "step": 251,
+          "reward": 3.45173001,
+          "sampled_kl": 0.01831001
+        },
+        {
+          "step": 252,
+          "reward": 2.5687499,
+          "sampled_kl": 0.02910591
+        },
+        {
+          "step": 253,
+          "reward": 3.51722002,
+          "sampled_kl": 0.0170508
+        },
+        {
+          "step": 254,
+          "reward": 3.2974,
+          "sampled_kl": 0.00995515
+        },
+        {
+          "step": 255,
+          "reward": 3.76189995,
+          "sampled_kl": 0.00946826
+        },
+        {
+          "step": 256,
+          "reward": 2.61317992,
+          "sampled_kl": 0.01298514
+        },
+        {
+          "step": 257,
+          "reward": 3.10754013,
+          "sampled_kl": 0.00928989
+        },
+        {
+          "step": 258,
+          "reward": 2.87608004,
+          "sampled_kl": 0.01630573
+        },
+        {
+          "step": 259,
+          "reward": 3.6782999,
+          "sampled_kl": 0.00997821
+        },
+        {
+          "step": 260,
+          "reward": 3.67440987,
+          "sampled_kl": 0.00974759
+        },
+        {
+          "step": 261,
+          "reward": 3.65644979,
+          "sampled_kl": 0.01420761
+        },
+        {
+          "step": 262,
+          "reward": 3.41379023,
+          "sampled_kl": 0.01126449
+        },
+        {
+          "step": 263,
+          "reward": 3.64397001,
+          "sampled_kl": 0.01172991
+        },
+        {
+          "step": 264,
+          "reward": 3.68303013,
+          "sampled_kl": 0.01602904
+        },
+        {
+          "step": 265,
+          "reward": 3.03037,
+          "sampled_kl": 0.02645802
+        },
+        {
+          "step": 266,
+          "reward": 3.50275993,
+          "sampled_kl": 0.01280487
+        },
+        {
+          "step": 267,
+          "reward": 3.66279006,
+          "sampled_kl": 0.00881659
+        },
+        {
+          "step": 268,
+          "reward": 3.05225992,
+          "sampled_kl": 0.0281176
+        },
+        {
+          "step": 269,
+          "reward": 3.27868009,
+          "sampled_kl": 0.01432208
+        },
+        {
+          "step": 270,
+          "reward": 3.00761986,
+          "sampled_kl": 0.02713389
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11564,7 +14289,10 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
-      }
+      },
+      "failure_reason": null,
+      "invalid_output_count": 10,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-songeval-1e-4.json"
     },
     {
       "id": "muse-songeval-3e-4",
@@ -11576,11 +14304,1372 @@
       "job_id": "181035583.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:22.350387+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.67870998,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 3.09982014,
+          "sampled_kl": 0.00125398
+        },
+        {
+          "step": 3,
+          "reward": 3.40495014,
+          "sampled_kl": 0.00175731
+        },
+        {
+          "step": 4,
+          "reward": 2.93730998,
+          "sampled_kl": 0.00304664
+        },
+        {
+          "step": 5,
+          "reward": 1.60167003,
+          "sampled_kl": 0.00479482
+        },
+        {
+          "step": 6,
+          "reward": 3.04339004,
+          "sampled_kl": 0.00606928
+        },
+        {
+          "step": 7,
+          "reward": 2.88208008,
+          "sampled_kl": 0.00607348
+        },
+        {
+          "step": 8,
+          "reward": 2.75158,
+          "sampled_kl": 0.00542223
+        },
+        {
+          "step": 9,
+          "reward": 2.66238999,
+          "sampled_kl": 0.00706411
+        },
+        {
+          "step": 10,
+          "reward": 2.74889994,
+          "sampled_kl": 0.0123962
+        },
+        {
+          "step": 11,
+          "reward": 3.36643004,
+          "sampled_kl": 0.01307887
+        },
+        {
+          "step": 12,
+          "reward": 2.3828001,
+          "sampled_kl": 0.00844659
+        },
+        {
+          "step": 13,
+          "reward": 3.24043989,
+          "sampled_kl": 0.03060116
+        },
+        {
+          "step": 14,
+          "reward": 2.88488007,
+          "sampled_kl": 0.01302487
+        },
+        {
+          "step": 15,
+          "reward": 2.97246981,
+          "sampled_kl": 0.00589516
+        },
+        {
+          "step": 16,
+          "reward": 2.83079004,
+          "sampled_kl": 0.01887901
+        },
+        {
+          "step": 17,
+          "reward": 2.78600001,
+          "sampled_kl": 0.0137748
+        },
+        {
+          "step": 18,
+          "reward": 3.04510999,
+          "sampled_kl": 0.02041174
+        },
+        {
+          "step": 19,
+          "reward": 3.11985993,
+          "sampled_kl": 0.01522111
+        },
+        {
+          "step": 20,
+          "reward": 2.81218004,
+          "sampled_kl": 0.03051258
+        },
+        {
+          "step": 21,
+          "reward": 1.81764996,
+          "sampled_kl": 0.0371735
+        },
+        {
+          "step": 22,
+          "reward": 0.0,
+          "sampled_kl": 0.08689259
+        },
+        {
+          "step": 23,
+          "reward": 2.70941997,
+          "sampled_kl": 0.08260077
+        },
+        {
+          "step": 24,
+          "reward": 2.31418991,
+          "sampled_kl": 0.03198105
+        },
+        {
+          "step": 25,
+          "reward": 2.3655901,
+          "sampled_kl": 0.05172506
+        },
+        {
+          "step": 26,
+          "reward": 2.69915009,
+          "sampled_kl": 0.03480846
+        },
+        {
+          "step": 27,
+          "reward": 2.65967989,
+          "sampled_kl": 0.02872295
+        },
+        {
+          "step": 28,
+          "reward": 3.74585009,
+          "sampled_kl": 0.01742684
+        },
+        {
+          "step": 29,
+          "reward": 3.21083999,
+          "sampled_kl": 0.03741256
+        },
+        {
+          "step": 30,
+          "reward": 2.81129003,
+          "sampled_kl": 0.06330125
+        },
+        {
+          "step": 31,
+          "reward": 3.31991005,
+          "sampled_kl": 0.03683613
+        },
+        {
+          "step": 32,
+          "reward": 3.19545984,
+          "sampled_kl": 0.04632096
+        },
+        {
+          "step": 33,
+          "reward": 2.88358998,
+          "sampled_kl": 0.05814373
+        },
+        {
+          "step": 34,
+          "reward": 1.35627997,
+          "sampled_kl": 0.11658196
+        },
+        {
+          "step": 35,
+          "reward": 2.5234499,
+          "sampled_kl": 0.06408077
+        },
+        {
+          "step": 36,
+          "reward": 3.32382989,
+          "sampled_kl": 0.0417772
+        },
+        {
+          "step": 37,
+          "reward": 2.83497,
+          "sampled_kl": 0.06510364
+        },
+        {
+          "step": 38,
+          "reward": 3.02279997,
+          "sampled_kl": 0.05560156
+        },
+        {
+          "step": 39,
+          "reward": 3.45263004,
+          "sampled_kl": 0.04315599
+        },
+        {
+          "step": 40,
+          "reward": 2.45473003,
+          "sampled_kl": 0.07747748
+        },
+        {
+          "step": 41,
+          "reward": 2.77677011,
+          "sampled_kl": 0.0920463
+        },
+        {
+          "step": 42,
+          "reward": 2.50735998,
+          "sampled_kl": 0.09306411
+        },
+        {
+          "step": 43,
+          "reward": 2.4355998,
+          "sampled_kl": 0.14456697
+        },
+        {
+          "step": 44,
+          "reward": 2.24107003,
+          "sampled_kl": 0.20047085
+        },
+        {
+          "step": 45,
+          "reward": 3.24136996,
+          "sampled_kl": 0.02997399
+        },
+        {
+          "step": 46,
+          "reward": 1.87193,
+          "sampled_kl": 0.05232007
+        },
+        {
+          "step": 47,
+          "reward": 3.55397987,
+          "sampled_kl": 0.04481277
+        },
+        {
+          "step": 48,
+          "reward": 2.64061022,
+          "sampled_kl": 0.14348967
+        },
+        {
+          "step": 49,
+          "reward": 2.8204298,
+          "sampled_kl": 0.26004505
+        },
+        {
+          "step": 50,
+          "reward": 3.29946995,
+          "sampled_kl": 0.29911801
+        },
+        {
+          "step": 51,
+          "reward": 3.09559011,
+          "sampled_kl": 0.28248444
+        },
+        {
+          "step": 52,
+          "reward": 3.39215994,
+          "sampled_kl": 0.26057205
+        },
+        {
+          "step": 53,
+          "reward": 2.96471,
+          "sampled_kl": 0.24634491
+        },
+        {
+          "step": 54,
+          "reward": 2.37107992,
+          "sampled_kl": 0.43652999
+        },
+        {
+          "step": 55,
+          "reward": 3.30059004,
+          "sampled_kl": 0.34088928
+        },
+        {
+          "step": 56,
+          "reward": 2.87326002,
+          "sampled_kl": 0.45511362
+        },
+        {
+          "step": 57,
+          "reward": 2.45402002,
+          "sampled_kl": 0.35247642
+        },
+        {
+          "step": 58,
+          "reward": 3.10938978,
+          "sampled_kl": 0.34416285
+        },
+        {
+          "step": 59,
+          "reward": 3.15261984,
+          "sampled_kl": 0.23232558
+        },
+        {
+          "step": 60,
+          "reward": 2.57198,
+          "sampled_kl": 0.84231794
+        },
+        {
+          "step": 61,
+          "reward": 3.56268001,
+          "sampled_kl": 0.30644423
+        },
+        {
+          "step": 62,
+          "reward": 3.11591005,
+          "sampled_kl": 0.41464007
+        },
+        {
+          "step": 63,
+          "reward": 2.46006012,
+          "sampled_kl": 0.96965754
+        },
+        {
+          "step": 64,
+          "reward": 3.14780998,
+          "sampled_kl": 0.51558006
+        },
+        {
+          "step": 65,
+          "reward": 2.29421997,
+          "sampled_kl": 0.67780721
+        },
+        {
+          "step": 66,
+          "reward": 2.88708019,
+          "sampled_kl": 0.6593554
+        },
+        {
+          "step": 67,
+          "reward": 2.57578993,
+          "sampled_kl": 1.07883501
+        },
+        {
+          "step": 68,
+          "reward": 2.71254015,
+          "sampled_kl": 0.91685504
+        },
+        {
+          "step": 69,
+          "reward": 2.02005005,
+          "sampled_kl": 2.5593648
+        },
+        {
+          "step": 70,
+          "reward": 2.18797994,
+          "sampled_kl": 2.28720832
+        },
+        {
+          "step": 71,
+          "reward": 1.66892004,
+          "sampled_kl": 5.62342548
+        },
+        {
+          "step": 72,
+          "reward": 2.69667006,
+          "sampled_kl": 3.98951411
+        },
+        {
+          "step": 73,
+          "reward": 2.4258399,
+          "sampled_kl": 2.88406968
+        },
+        {
+          "step": 74,
+          "reward": 1.62487006,
+          "sampled_kl": 5.66609478
+        },
+        {
+          "step": 75,
+          "reward": 2.02998996,
+          "sampled_kl": 4.6653676
+        },
+        {
+          "step": 76,
+          "reward": 2.27104998,
+          "sampled_kl": 4.84225225
+        },
+        {
+          "step": 77,
+          "reward": 0.0,
+          "sampled_kl": 7.52068472
+        },
+        {
+          "step": 78,
+          "reward": 2.33433008,
+          "sampled_kl": 7.97767115
+        },
+        {
+          "step": 79,
+          "reward": 0.0,
+          "sampled_kl": 8.04519939
+        },
+        {
+          "step": 80,
+          "reward": 0.0,
+          "sampled_kl": 7.9320426
+        },
+        {
+          "step": 81,
+          "reward": 1.90461993,
+          "sampled_kl": 7.30996513
+        },
+        {
+          "step": 82,
+          "reward": 1.76486993,
+          "sampled_kl": 7.09725142
+        },
+        {
+          "step": 83,
+          "reward": 1.72553992,
+          "sampled_kl": 6.320158
+        },
+        {
+          "step": 84,
+          "reward": 1.82224,
+          "sampled_kl": 6.41053295
+        },
+        {
+          "step": 85,
+          "reward": 2.12620997,
+          "sampled_kl": 3.46894813
+        },
+        {
+          "step": 86,
+          "reward": 2.3642602,
+          "sampled_kl": 1.6624285
+        },
+        {
+          "step": 87,
+          "reward": 2.3010602,
+          "sampled_kl": 1.61560357
+        },
+        {
+          "step": 88,
+          "reward": 2.22445011,
+          "sampled_kl": 2.45500827
+        },
+        {
+          "step": 89,
+          "reward": 1.89066005,
+          "sampled_kl": 1.74460077
+        },
+        {
+          "step": 90,
+          "reward": 2.02766991,
+          "sampled_kl": 3.60352993
+        },
+        {
+          "step": 91,
+          "reward": 2.74318981,
+          "sampled_kl": 2.07377839
+        },
+        {
+          "step": 92,
+          "reward": 2.87120008,
+          "sampled_kl": 2.05241036
+        },
+        {
+          "step": 93,
+          "reward": 1.65210009,
+          "sampled_kl": 4.13617802
+        },
+        {
+          "step": 94,
+          "reward": 2.02490997,
+          "sampled_kl": 6.05826139
+        },
+        {
+          "step": 95,
+          "reward": 1.16372001,
+          "sampled_kl": 7.10749292
+        },
+        {
+          "step": 96,
+          "reward": 0.0,
+          "sampled_kl": 7.1043992
+        },
+        {
+          "step": 97,
+          "reward": 0.0,
+          "sampled_kl": 6.63554239
+        },
+        {
+          "step": 98,
+          "reward": 0.0,
+          "sampled_kl": 7.00739145
+        },
+        {
+          "step": 99,
+          "reward": 1.63627005,
+          "sampled_kl": 6.99353695
+        },
+        {
+          "step": 100,
+          "reward": 0.0,
+          "sampled_kl": 6.33957481
+        },
+        {
+          "step": 101,
+          "reward": 0.0,
+          "sampled_kl": 6.82854509
+        },
+        {
+          "step": 102,
+          "reward": 0.0,
+          "sampled_kl": 7.77026272
+        },
+        {
+          "step": 103,
+          "reward": 0.0,
+          "sampled_kl": 7.73012781
+        },
+        {
+          "step": 104,
+          "reward": 0.0,
+          "sampled_kl": 6.93432903
+        },
+        {
+          "step": 105,
+          "reward": 0.0,
+          "sampled_kl": 8.14131546
+        },
+        {
+          "step": 106,
+          "reward": 0.0,
+          "sampled_kl": 8.87170124
+        },
+        {
+          "step": 107,
+          "reward": 0.0,
+          "sampled_kl": 8.28349876
+        },
+        {
+          "step": 108,
+          "reward": 0.0,
+          "sampled_kl": 8.08872509
+        },
+        {
+          "step": 109,
+          "reward": 0.0,
+          "sampled_kl": 8.50176811
+        },
+        {
+          "step": 110,
+          "reward": 0.0,
+          "sampled_kl": 7.95367718
+        },
+        {
+          "step": 111,
+          "reward": 0.0,
+          "sampled_kl": 8.32382965
+        },
+        {
+          "step": 112,
+          "reward": 0.0,
+          "sampled_kl": 8.38248634
+        },
+        {
+          "step": 113,
+          "reward": 0.0,
+          "sampled_kl": 7.95359278
+        },
+        {
+          "step": 114,
+          "reward": 0.0,
+          "sampled_kl": 8.53126717
+        },
+        {
+          "step": 115,
+          "reward": 0.0,
+          "sampled_kl": 8.29399204
+        },
+        {
+          "step": 116,
+          "reward": 0.0,
+          "sampled_kl": 7.99304628
+        },
+        {
+          "step": 117,
+          "reward": 0.0,
+          "sampled_kl": 8.26311684
+        },
+        {
+          "step": 118,
+          "reward": 0.0,
+          "sampled_kl": 8.89959431
+        },
+        {
+          "step": 119,
+          "reward": 0.0,
+          "sampled_kl": 8.4605217
+        },
+        {
+          "step": 120,
+          "reward": 0.0,
+          "sampled_kl": 8.49696732
+        },
+        {
+          "step": 121,
+          "reward": 0.0,
+          "sampled_kl": 8.37711334
+        },
+        {
+          "step": 122,
+          "reward": 0.0,
+          "sampled_kl": 8.34657478
+        },
+        {
+          "step": 123,
+          "reward": 0.0,
+          "sampled_kl": 7.78506708
+        },
+        {
+          "step": 124,
+          "reward": 0.0,
+          "sampled_kl": 7.73682213
+        },
+        {
+          "step": 125,
+          "reward": 0.0,
+          "sampled_kl": 8.04994678
+        },
+        {
+          "step": 126,
+          "reward": 0.0,
+          "sampled_kl": 8.12819767
+        },
+        {
+          "step": 127,
+          "reward": 0.0,
+          "sampled_kl": 8.22272301
+        },
+        {
+          "step": 128,
+          "reward": 0.0,
+          "sampled_kl": 8.19419003
+        },
+        {
+          "step": 129,
+          "reward": 0.0,
+          "sampled_kl": 8.21325016
+        },
+        {
+          "step": 130,
+          "reward": 0.0,
+          "sampled_kl": 8.56612301
+        },
+        {
+          "step": 131,
+          "reward": 0.0,
+          "sampled_kl": 8.04797268
+        },
+        {
+          "step": 132,
+          "reward": 0.0,
+          "sampled_kl": 8.34410763
+        },
+        {
+          "step": 133,
+          "reward": 0.0,
+          "sampled_kl": 7.92460489
+        },
+        {
+          "step": 134,
+          "reward": 0.0,
+          "sampled_kl": 8.14417744
+        },
+        {
+          "step": 135,
+          "reward": 0.0,
+          "sampled_kl": 8.22588444
+        },
+        {
+          "step": 136,
+          "reward": 0.0,
+          "sampled_kl": 8.12051105
+        },
+        {
+          "step": 137,
+          "reward": 0.0,
+          "sampled_kl": 8.83659077
+        },
+        {
+          "step": 138,
+          "reward": 0.0,
+          "sampled_kl": 9.03114986
+        },
+        {
+          "step": 139,
+          "reward": 0.0,
+          "sampled_kl": 9.01279831
+        },
+        {
+          "step": 140,
+          "reward": 0.0,
+          "sampled_kl": 8.30595207
+        },
+        {
+          "step": 141,
+          "reward": 0.0,
+          "sampled_kl": 7.82293606
+        },
+        {
+          "step": 142,
+          "reward": 0.0,
+          "sampled_kl": 8.05697155
+        },
+        {
+          "step": 143,
+          "reward": 0.0,
+          "sampled_kl": 8.67965317
+        },
+        {
+          "step": 144,
+          "reward": 0.0,
+          "sampled_kl": 8.18717098
+        },
+        {
+          "step": 145,
+          "reward": 0.0,
+          "sampled_kl": 7.97728062
+        },
+        {
+          "step": 146,
+          "reward": 0.0,
+          "sampled_kl": 8.42670631
+        },
+        {
+          "step": 147,
+          "reward": 0.0,
+          "sampled_kl": 7.98211861
+        },
+        {
+          "step": 148,
+          "reward": 0.0,
+          "sampled_kl": 7.97078228
+        },
+        {
+          "step": 149,
+          "reward": 0.0,
+          "sampled_kl": 7.82142687
+        },
+        {
+          "step": 150,
+          "reward": 0.0,
+          "sampled_kl": 8.5391531
+        },
+        {
+          "step": 151,
+          "reward": 0.0,
+          "sampled_kl": 8.61459923
+        },
+        {
+          "step": 152,
+          "reward": 0.0,
+          "sampled_kl": 8.20753956
+        },
+        {
+          "step": 153,
+          "reward": 0.0,
+          "sampled_kl": 8.33885574
+        },
+        {
+          "step": 154,
+          "reward": 0.0,
+          "sampled_kl": 8.18480587
+        },
+        {
+          "step": 155,
+          "reward": 0.0,
+          "sampled_kl": 8.46034241
+        },
+        {
+          "step": 156,
+          "reward": 0.0,
+          "sampled_kl": 7.98044825
+        },
+        {
+          "step": 157,
+          "reward": 0.0,
+          "sampled_kl": 8.22834873
+        },
+        {
+          "step": 158,
+          "reward": 0.0,
+          "sampled_kl": 8.2870779
+        },
+        {
+          "step": 159,
+          "reward": 0.0,
+          "sampled_kl": 8.64255905
+        },
+        {
+          "step": 160,
+          "reward": 0.0,
+          "sampled_kl": 8.24809361
+        },
+        {
+          "step": 161,
+          "reward": 0.0,
+          "sampled_kl": 8.10792065
+        },
+        {
+          "step": 162,
+          "reward": 0.0,
+          "sampled_kl": 8.56646824
+        },
+        {
+          "step": 163,
+          "reward": 0.0,
+          "sampled_kl": 7.80391026
+        },
+        {
+          "step": 164,
+          "reward": 0.0,
+          "sampled_kl": 8.20304298
+        },
+        {
+          "step": 165,
+          "reward": 0.0,
+          "sampled_kl": 8.54584789
+        },
+        {
+          "step": 166,
+          "reward": 0.0,
+          "sampled_kl": 8.32344532
+        },
+        {
+          "step": 167,
+          "reward": 0.0,
+          "sampled_kl": 7.90602541
+        },
+        {
+          "step": 168,
+          "reward": 0.0,
+          "sampled_kl": 7.93839455
+        },
+        {
+          "step": 169,
+          "reward": 0.0,
+          "sampled_kl": 8.12546825
+        },
+        {
+          "step": 170,
+          "reward": 0.0,
+          "sampled_kl": 8.45218658
+        },
+        {
+          "step": 171,
+          "reward": 0.0,
+          "sampled_kl": 8.26645279
+        },
+        {
+          "step": 172,
+          "reward": 0.0,
+          "sampled_kl": 8.55840874
+        },
+        {
+          "step": 173,
+          "reward": 0.0,
+          "sampled_kl": 8.47844028
+        },
+        {
+          "step": 174,
+          "reward": 0.0,
+          "sampled_kl": 7.77764273
+        },
+        {
+          "step": 175,
+          "reward": 0.0,
+          "sampled_kl": 8.06419182
+        },
+        {
+          "step": 176,
+          "reward": 0.0,
+          "sampled_kl": 8.43541527
+        },
+        {
+          "step": 177,
+          "reward": 0.0,
+          "sampled_kl": 8.55670929
+        },
+        {
+          "step": 178,
+          "reward": 0.0,
+          "sampled_kl": 8.50662804
+        },
+        {
+          "step": 179,
+          "reward": 0.0,
+          "sampled_kl": 8.77285957
+        },
+        {
+          "step": 180,
+          "reward": 0.0,
+          "sampled_kl": 7.84443188
+        },
+        {
+          "step": 181,
+          "reward": 0.0,
+          "sampled_kl": 7.99335718
+        },
+        {
+          "step": 182,
+          "reward": 0.0,
+          "sampled_kl": 8.31869602
+        },
+        {
+          "step": 183,
+          "reward": 0.0,
+          "sampled_kl": 8.74537468
+        },
+        {
+          "step": 184,
+          "reward": 0.0,
+          "sampled_kl": 8.39496326
+        },
+        {
+          "step": 185,
+          "reward": 0.0,
+          "sampled_kl": 8.5411005
+        },
+        {
+          "step": 186,
+          "reward": 0.0,
+          "sampled_kl": 7.70340633
+        },
+        {
+          "step": 187,
+          "reward": 0.0,
+          "sampled_kl": 7.8989253
+        },
+        {
+          "step": 188,
+          "reward": 0.0,
+          "sampled_kl": 8.21736908
+        },
+        {
+          "step": 189,
+          "reward": 0.0,
+          "sampled_kl": 7.70431185
+        },
+        {
+          "step": 190,
+          "reward": 0.0,
+          "sampled_kl": 7.80221987
+        },
+        {
+          "step": 191,
+          "reward": 0.0,
+          "sampled_kl": 7.63095522
+        },
+        {
+          "step": 192,
+          "reward": 0.0,
+          "sampled_kl": 7.66423655
+        },
+        {
+          "step": 193,
+          "reward": 0.0,
+          "sampled_kl": 7.90283251
+        },
+        {
+          "step": 194,
+          "reward": 0.0,
+          "sampled_kl": 8.01313019
+        },
+        {
+          "step": 195,
+          "reward": 0.0,
+          "sampled_kl": 8.73016453
+        },
+        {
+          "step": 196,
+          "reward": 0.0,
+          "sampled_kl": 7.99958706
+        },
+        {
+          "step": 197,
+          "reward": 0.0,
+          "sampled_kl": 8.37399864
+        },
+        {
+          "step": 198,
+          "reward": 0.0,
+          "sampled_kl": 8.51143074
+        },
+        {
+          "step": 199,
+          "reward": 0.0,
+          "sampled_kl": 7.94695187
+        },
+        {
+          "step": 200,
+          "reward": 0.0,
+          "sampled_kl": 8.51050282
+        },
+        {
+          "step": 201,
+          "reward": 0.0,
+          "sampled_kl": 8.49348259
+        },
+        {
+          "step": 202,
+          "reward": 0.0,
+          "sampled_kl": 8.29111481
+        },
+        {
+          "step": 203,
+          "reward": 0.0,
+          "sampled_kl": 8.21873569
+        },
+        {
+          "step": 204,
+          "reward": 0.0,
+          "sampled_kl": 8.11706257
+        },
+        {
+          "step": 205,
+          "reward": 0.0,
+          "sampled_kl": 8.47457218
+        },
+        {
+          "step": 206,
+          "reward": 0.0,
+          "sampled_kl": 8.20869923
+        },
+        {
+          "step": 207,
+          "reward": 0.0,
+          "sampled_kl": 8.32519627
+        },
+        {
+          "step": 208,
+          "reward": 0.0,
+          "sampled_kl": 8.8673439
+        },
+        {
+          "step": 209,
+          "reward": 0.0,
+          "sampled_kl": 8.27163696
+        },
+        {
+          "step": 210,
+          "reward": 0.0,
+          "sampled_kl": 8.88482571
+        },
+        {
+          "step": 211,
+          "reward": 0.0,
+          "sampled_kl": 7.90394545
+        },
+        {
+          "step": 212,
+          "reward": 0.0,
+          "sampled_kl": 8.6931448
+        },
+        {
+          "step": 213,
+          "reward": 0.0,
+          "sampled_kl": 7.74057722
+        },
+        {
+          "step": 214,
+          "reward": 0.0,
+          "sampled_kl": 8.74161243
+        },
+        {
+          "step": 215,
+          "reward": 0.0,
+          "sampled_kl": 7.99031019
+        },
+        {
+          "step": 216,
+          "reward": 0.0,
+          "sampled_kl": 8.02208424
+        },
+        {
+          "step": 217,
+          "reward": 0.0,
+          "sampled_kl": 8.30011082
+        },
+        {
+          "step": 218,
+          "reward": 0.0,
+          "sampled_kl": 8.48463917
+        },
+        {
+          "step": 219,
+          "reward": 0.0,
+          "sampled_kl": 8.62340736
+        },
+        {
+          "step": 220,
+          "reward": 0.0,
+          "sampled_kl": 8.14362335
+        },
+        {
+          "step": 221,
+          "reward": 0.0,
+          "sampled_kl": 8.08060265
+        },
+        {
+          "step": 222,
+          "reward": 0.0,
+          "sampled_kl": 8.5962553
+        },
+        {
+          "step": 223,
+          "reward": 0.0,
+          "sampled_kl": 7.37905598
+        },
+        {
+          "step": 224,
+          "reward": 0.0,
+          "sampled_kl": 7.95216179
+        },
+        {
+          "step": 225,
+          "reward": 0.0,
+          "sampled_kl": 8.45812035
+        },
+        {
+          "step": 226,
+          "reward": 0.0,
+          "sampled_kl": 8.72779846
+        },
+        {
+          "step": 227,
+          "reward": 0.0,
+          "sampled_kl": 8.22014904
+        },
+        {
+          "step": 228,
+          "reward": 0.0,
+          "sampled_kl": 8.27535534
+        },
+        {
+          "step": 229,
+          "reward": 0.0,
+          "sampled_kl": 8.65607929
+        },
+        {
+          "step": 230,
+          "reward": 0.0,
+          "sampled_kl": 8.21203423
+        },
+        {
+          "step": 231,
+          "reward": 0.0,
+          "sampled_kl": 8.00622177
+        },
+        {
+          "step": 232,
+          "reward": 0.0,
+          "sampled_kl": 7.9372468
+        },
+        {
+          "step": 233,
+          "reward": 0.0,
+          "sampled_kl": 8.83565617
+        },
+        {
+          "step": 234,
+          "reward": 0.0,
+          "sampled_kl": 8.02158928
+        },
+        {
+          "step": 235,
+          "reward": 0.0,
+          "sampled_kl": 8.39036751
+        },
+        {
+          "step": 236,
+          "reward": 0.0,
+          "sampled_kl": 8.07467556
+        },
+        {
+          "step": 237,
+          "reward": 0.0,
+          "sampled_kl": 8.2121067
+        },
+        {
+          "step": 238,
+          "reward": 0.0,
+          "sampled_kl": 8.15855122
+        },
+        {
+          "step": 239,
+          "reward": 0.0,
+          "sampled_kl": 8.38204384
+        },
+        {
+          "step": 240,
+          "reward": 0.0,
+          "sampled_kl": 8.58105183
+        },
+        {
+          "step": 241,
+          "reward": 0.0,
+          "sampled_kl": 7.87532043
+        },
+        {
+          "step": 242,
+          "reward": 0.0,
+          "sampled_kl": 8.29559994
+        },
+        {
+          "step": 243,
+          "reward": 0.0,
+          "sampled_kl": 8.08771324
+        },
+        {
+          "step": 244,
+          "reward": 0.0,
+          "sampled_kl": 7.71355486
+        },
+        {
+          "step": 245,
+          "reward": 0.0,
+          "sampled_kl": 9.09421253
+        },
+        {
+          "step": 246,
+          "reward": 0.0,
+          "sampled_kl": 7.57531548
+        },
+        {
+          "step": 247,
+          "reward": 0.0,
+          "sampled_kl": 8.35949421
+        },
+        {
+          "step": 248,
+          "reward": 0.0,
+          "sampled_kl": 8.45660305
+        },
+        {
+          "step": 249,
+          "reward": 0.0,
+          "sampled_kl": 8.06154251
+        },
+        {
+          "step": 250,
+          "reward": 0.0,
+          "sampled_kl": 8.95411968
+        },
+        {
+          "step": 251,
+          "reward": 0.0,
+          "sampled_kl": 8.36948395
+        },
+        {
+          "step": 252,
+          "reward": 0.0,
+          "sampled_kl": 7.83296919
+        },
+        {
+          "step": 253,
+          "reward": 0.0,
+          "sampled_kl": 8.31102657
+        },
+        {
+          "step": 254,
+          "reward": 0.0,
+          "sampled_kl": 8.10322094
+        },
+        {
+          "step": 255,
+          "reward": 0.0,
+          "sampled_kl": 7.91293287
+        },
+        {
+          "step": 256,
+          "reward": 0.0,
+          "sampled_kl": 8.0116539
+        },
+        {
+          "step": 257,
+          "reward": 0.0,
+          "sampled_kl": 8.69888306
+        },
+        {
+          "step": 258,
+          "reward": 0.0,
+          "sampled_kl": 8.21604633
+        },
+        {
+          "step": 259,
+          "reward": 0.0,
+          "sampled_kl": 7.95412016
+        },
+        {
+          "step": 260,
+          "reward": 0.0,
+          "sampled_kl": 8.58837509
+        },
+        {
+          "step": 261,
+          "reward": 0.0,
+          "sampled_kl": 7.55383778
+        },
+        {
+          "step": 262,
+          "reward": 0.0,
+          "sampled_kl": 8.72102261
+        },
+        {
+          "step": 263,
+          "reward": 0.0,
+          "sampled_kl": 8.28251171
+        },
+        {
+          "step": 264,
+          "reward": 0.0,
+          "sampled_kl": 8.1757822
+        },
+        {
+          "step": 265,
+          "reward": 0.0,
+          "sampled_kl": 7.76404667
+        },
+        {
+          "step": 266,
+          "reward": 0.0,
+          "sampled_kl": 8.25632095
+        },
+        {
+          "step": 267,
+          "reward": 0.0,
+          "sampled_kl": 8.22609138
+        },
+        {
+          "step": 268,
+          "reward": 0.0,
+          "sampled_kl": 8.23154545
+        },
+        {
+          "step": 269,
+          "reward": 0.0,
+          "sampled_kl": 8.06613636
+        },
+        {
+          "step": 270,
+          "reward": 0.0,
+          "sampled_kl": 7.89259434
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11612,7 +15701,10 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
-      }
+      },
+      "failure_reason": null,
+      "invalid_output_count": 361,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-songeval-3e-4.json"
     },
     {
       "id": "muse-musecritic-2e-5",
@@ -11624,11 +15716,1372 @@
       "job_id": "181035584.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:22.806553+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.33906245,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 2.1804688,
+          "sampled_kl": 0.00064258
+        },
+        {
+          "step": 3,
+          "reward": 2.4390626,
+          "sampled_kl": 0.00059049
+        },
+        {
+          "step": 4,
+          "reward": 2.12109375,
+          "sampled_kl": 0.00061553
+        },
+        {
+          "step": 5,
+          "reward": 3.12968755,
+          "sampled_kl": 0.00064154
+        },
+        {
+          "step": 6,
+          "reward": 2.6468749,
+          "sampled_kl": 0.00054618
+        },
+        {
+          "step": 7,
+          "reward": 2.36484385,
+          "sampled_kl": 0.00066645
+        },
+        {
+          "step": 8,
+          "reward": 3.1328125,
+          "sampled_kl": 0.00064395
+        },
+        {
+          "step": 9,
+          "reward": 2.63750005,
+          "sampled_kl": 0.0006677
+        },
+        {
+          "step": 10,
+          "reward": 1.12812495,
+          "sampled_kl": 0.00064827
+        },
+        {
+          "step": 11,
+          "reward": 3.10468745,
+          "sampled_kl": 0.00063806
+        },
+        {
+          "step": 12,
+          "reward": 2.5140624,
+          "sampled_kl": 0.00061268
+        },
+        {
+          "step": 13,
+          "reward": 3.2109375,
+          "sampled_kl": 0.00069921
+        },
+        {
+          "step": 14,
+          "reward": 2.66875005,
+          "sampled_kl": 0.0006797
+        },
+        {
+          "step": 15,
+          "reward": 2.4765625,
+          "sampled_kl": 0.00061845
+        },
+        {
+          "step": 16,
+          "reward": 3.0484376,
+          "sampled_kl": 0.00065723
+        },
+        {
+          "step": 17,
+          "reward": 2.7015624,
+          "sampled_kl": 0.00057653
+        },
+        {
+          "step": 18,
+          "reward": 2.18437505,
+          "sampled_kl": 0.00054538
+        },
+        {
+          "step": 19,
+          "reward": 2.9921875,
+          "sampled_kl": 0.00061248
+        },
+        {
+          "step": 20,
+          "reward": 2.92499995,
+          "sampled_kl": 0.00060875
+        },
+        {
+          "step": 21,
+          "reward": 3.2640624,
+          "sampled_kl": 0.00073607
+        },
+        {
+          "step": 22,
+          "reward": 1.08281255,
+          "sampled_kl": 0.00059081
+        },
+        {
+          "step": 23,
+          "reward": 3.4312501,
+          "sampled_kl": 0.00062882
+        },
+        {
+          "step": 24,
+          "reward": 2.6187501,
+          "sampled_kl": 0.00062729
+        },
+        {
+          "step": 25,
+          "reward": 2.57343745,
+          "sampled_kl": 0.00063782
+        },
+        {
+          "step": 26,
+          "reward": 2.6703124,
+          "sampled_kl": 0.00065906
+        },
+        {
+          "step": 27,
+          "reward": 1.35781252,
+          "sampled_kl": 0.00069887
+        },
+        {
+          "step": 28,
+          "reward": 3.20859385,
+          "sampled_kl": 0.00060436
+        },
+        {
+          "step": 29,
+          "reward": 2.65312505,
+          "sampled_kl": 0.00062771
+        },
+        {
+          "step": 30,
+          "reward": 2.74531245,
+          "sampled_kl": 0.00074402
+        },
+        {
+          "step": 31,
+          "reward": 2.56718755,
+          "sampled_kl": 0.00064144
+        },
+        {
+          "step": 32,
+          "reward": 2.44453144,
+          "sampled_kl": 0.0006583
+        },
+        {
+          "step": 33,
+          "reward": 2.7742188,
+          "sampled_kl": 0.00070287
+        },
+        {
+          "step": 34,
+          "reward": 1.30312502,
+          "sampled_kl": 0.00074601
+        },
+        {
+          "step": 35,
+          "reward": 2.9312501,
+          "sampled_kl": 0.00067466
+        },
+        {
+          "step": 36,
+          "reward": 2.44609356,
+          "sampled_kl": 0.00086493
+        },
+        {
+          "step": 37,
+          "reward": 2.36406255,
+          "sampled_kl": 0.00106994
+        },
+        {
+          "step": 38,
+          "reward": 2.29999995,
+          "sampled_kl": 0.00067218
+        },
+        {
+          "step": 39,
+          "reward": 2.87031245,
+          "sampled_kl": 0.00071248
+        },
+        {
+          "step": 40,
+          "reward": 2.74687505,
+          "sampled_kl": 0.00079119
+        },
+        {
+          "step": 41,
+          "reward": 2.5171876,
+          "sampled_kl": 0.00082014
+        },
+        {
+          "step": 42,
+          "reward": 2.22265625,
+          "sampled_kl": 0.00061856
+        },
+        {
+          "step": 43,
+          "reward": 1.515625,
+          "sampled_kl": 0.00055953
+        },
+        {
+          "step": 44,
+          "reward": 2.41640615,
+          "sampled_kl": 0.00061513
+        },
+        {
+          "step": 45,
+          "reward": 2.2750001,
+          "sampled_kl": 0.00072082
+        },
+        {
+          "step": 46,
+          "reward": 2.39374995,
+          "sampled_kl": 0.00081352
+        },
+        {
+          "step": 47,
+          "reward": 2.1578126,
+          "sampled_kl": 0.00065696
+        },
+        {
+          "step": 48,
+          "reward": 0.0,
+          "sampled_kl": 0.00105255
+        },
+        {
+          "step": 49,
+          "reward": 3.3578124,
+          "sampled_kl": 0.00077536
+        },
+        {
+          "step": 50,
+          "reward": 2.76874995,
+          "sampled_kl": 0.00076209
+        },
+        {
+          "step": 51,
+          "reward": 2.90625,
+          "sampled_kl": 0.00076311
+        },
+        {
+          "step": 52,
+          "reward": 3.04921865,
+          "sampled_kl": 0.00066326
+        },
+        {
+          "step": 53,
+          "reward": 0.85781252,
+          "sampled_kl": 0.00086324
+        },
+        {
+          "step": 54,
+          "reward": 2.97890615,
+          "sampled_kl": 0.00074455
+        },
+        {
+          "step": 55,
+          "reward": 3.43281245,
+          "sampled_kl": 0.00080279
+        },
+        {
+          "step": 56,
+          "reward": 2.68437505,
+          "sampled_kl": 0.00067589
+        },
+        {
+          "step": 57,
+          "reward": 2.52890635,
+          "sampled_kl": 0.00073203
+        },
+        {
+          "step": 58,
+          "reward": 2.8359375,
+          "sampled_kl": 0.00063639
+        },
+        {
+          "step": 59,
+          "reward": 2.6390624,
+          "sampled_kl": 0.00076079
+        },
+        {
+          "step": 60,
+          "reward": 2.31640625,
+          "sampled_kl": 0.00073153
+        },
+        {
+          "step": 61,
+          "reward": 2.55937505,
+          "sampled_kl": 0.00069701
+        },
+        {
+          "step": 62,
+          "reward": 2.9000001,
+          "sampled_kl": 0.00070566
+        },
+        {
+          "step": 63,
+          "reward": 3.11406231,
+          "sampled_kl": 0.00091572
+        },
+        {
+          "step": 64,
+          "reward": 2.33281231,
+          "sampled_kl": 0.00072256
+        },
+        {
+          "step": 65,
+          "reward": 1.2507813,
+          "sampled_kl": 0.00096557
+        },
+        {
+          "step": 66,
+          "reward": 1.4609375,
+          "sampled_kl": 0.00081943
+        },
+        {
+          "step": 67,
+          "reward": 1.26406252,
+          "sampled_kl": 0.00097483
+        },
+        {
+          "step": 68,
+          "reward": 1.54218745,
+          "sampled_kl": 0.00099387
+        },
+        {
+          "step": 69,
+          "reward": 2.3375001,
+          "sampled_kl": 0.00079142
+        },
+        {
+          "step": 70,
+          "reward": 2.70781231,
+          "sampled_kl": 0.0007286
+        },
+        {
+          "step": 71,
+          "reward": 2.73984385,
+          "sampled_kl": 0.00075834
+        },
+        {
+          "step": 72,
+          "reward": 2.33281255,
+          "sampled_kl": 0.00095055
+        },
+        {
+          "step": 73,
+          "reward": 3.01874995,
+          "sampled_kl": 0.00077927
+        },
+        {
+          "step": 74,
+          "reward": 2.45703125,
+          "sampled_kl": 0.00084452
+        },
+        {
+          "step": 75,
+          "reward": 2.09609365,
+          "sampled_kl": 0.00070037
+        },
+        {
+          "step": 76,
+          "reward": 1.9234376,
+          "sampled_kl": 0.00072708
+        },
+        {
+          "step": 77,
+          "reward": 2.01953125,
+          "sampled_kl": 0.00092801
+        },
+        {
+          "step": 78,
+          "reward": 2.0390625,
+          "sampled_kl": 0.00072141
+        },
+        {
+          "step": 79,
+          "reward": 2.7726562,
+          "sampled_kl": 0.00104201
+        },
+        {
+          "step": 80,
+          "reward": 3.01250005,
+          "sampled_kl": 0.00082994
+        },
+        {
+          "step": 81,
+          "reward": 2.0773437,
+          "sampled_kl": 0.00096116
+        },
+        {
+          "step": 82,
+          "reward": 3.1937499,
+          "sampled_kl": 0.00106182
+        },
+        {
+          "step": 83,
+          "reward": 2.7718749,
+          "sampled_kl": 0.00086368
+        },
+        {
+          "step": 84,
+          "reward": 3.19843745,
+          "sampled_kl": 0.00074859
+        },
+        {
+          "step": 85,
+          "reward": 2.7265625,
+          "sampled_kl": 0.00082178
+        },
+        {
+          "step": 86,
+          "reward": 2.51875019,
+          "sampled_kl": 0.00079473
+        },
+        {
+          "step": 87,
+          "reward": 2.26875019,
+          "sampled_kl": 0.00076846
+        },
+        {
+          "step": 88,
+          "reward": 2.3421874,
+          "sampled_kl": 0.00093669
+        },
+        {
+          "step": 89,
+          "reward": 2.25546885,
+          "sampled_kl": 0.00104906
+        },
+        {
+          "step": 90,
+          "reward": 2.70781255,
+          "sampled_kl": 0.00093821
+        },
+        {
+          "step": 91,
+          "reward": 2.71406245,
+          "sampled_kl": 0.00077099
+        },
+        {
+          "step": 92,
+          "reward": 2.32421875,
+          "sampled_kl": 0.00088411
+        },
+        {
+          "step": 93,
+          "reward": 2.39296865,
+          "sampled_kl": 0.00080828
+        },
+        {
+          "step": 94,
+          "reward": 2.9921875,
+          "sampled_kl": 0.00070478
+        },
+        {
+          "step": 95,
+          "reward": 2.90625,
+          "sampled_kl": 0.000794
+        },
+        {
+          "step": 96,
+          "reward": 2.85468769,
+          "sampled_kl": 0.00086678
+        },
+        {
+          "step": 97,
+          "reward": 2.8609376,
+          "sampled_kl": 0.00101222
+        },
+        {
+          "step": 98,
+          "reward": 2.7953124,
+          "sampled_kl": 0.00091036
+        },
+        {
+          "step": 99,
+          "reward": 2.2203126,
+          "sampled_kl": 0.0008508
+        },
+        {
+          "step": 100,
+          "reward": 1.56718755,
+          "sampled_kl": 0.00081695
+        },
+        {
+          "step": 101,
+          "reward": 1.84765625,
+          "sampled_kl": 0.00118888
+        },
+        {
+          "step": 102,
+          "reward": 2.65312505,
+          "sampled_kl": 0.00070826
+        },
+        {
+          "step": 103,
+          "reward": 2.51250005,
+          "sampled_kl": 0.00093446
+        },
+        {
+          "step": 104,
+          "reward": 2.79999995,
+          "sampled_kl": 0.00098632
+        },
+        {
+          "step": 105,
+          "reward": 2.4124999,
+          "sampled_kl": 0.00073391
+        },
+        {
+          "step": 106,
+          "reward": 2.60625005,
+          "sampled_kl": 0.00079736
+        },
+        {
+          "step": 107,
+          "reward": 2.33124995,
+          "sampled_kl": 0.00080553
+        },
+        {
+          "step": 108,
+          "reward": 2.7249999,
+          "sampled_kl": 0.00068168
+        },
+        {
+          "step": 109,
+          "reward": 2.4703126,
+          "sampled_kl": 0.00111493
+        },
+        {
+          "step": 110,
+          "reward": 2.4234376,
+          "sampled_kl": 0.00165833
+        },
+        {
+          "step": 111,
+          "reward": 2.49531245,
+          "sampled_kl": 0.00083353
+        },
+        {
+          "step": 112,
+          "reward": 2.72968769,
+          "sampled_kl": 0.00079557
+        },
+        {
+          "step": 113,
+          "reward": 2.32343745,
+          "sampled_kl": 0.00089634
+        },
+        {
+          "step": 114,
+          "reward": 2.3921876,
+          "sampled_kl": 0.00102079
+        },
+        {
+          "step": 115,
+          "reward": 2.1265626,
+          "sampled_kl": 0.00096024
+        },
+        {
+          "step": 116,
+          "reward": 1.64687502,
+          "sampled_kl": 0.00175527
+        },
+        {
+          "step": 117,
+          "reward": 1.84921873,
+          "sampled_kl": 0.00097165
+        },
+        {
+          "step": 118,
+          "reward": 3.58906269,
+          "sampled_kl": 0.00172364
+        },
+        {
+          "step": 119,
+          "reward": 0.91562498,
+          "sampled_kl": 0.00102727
+        },
+        {
+          "step": 120,
+          "reward": 2.84843755,
+          "sampled_kl": 0.000959
+        },
+        {
+          "step": 121,
+          "reward": 2.1171875,
+          "sampled_kl": 0.00103396
+        },
+        {
+          "step": 122,
+          "reward": 2.05859375,
+          "sampled_kl": 0.00085547
+        },
+        {
+          "step": 123,
+          "reward": 2.4906249,
+          "sampled_kl": 0.00097652
+        },
+        {
+          "step": 124,
+          "reward": 2.68437505,
+          "sampled_kl": 0.00078705
+        },
+        {
+          "step": 125,
+          "reward": 1.89687502,
+          "sampled_kl": 0.00116527
+        },
+        {
+          "step": 126,
+          "reward": 2.2125001,
+          "sampled_kl": 0.0010447
+        },
+        {
+          "step": 127,
+          "reward": 1.61249995,
+          "sampled_kl": 0.00116394
+        },
+        {
+          "step": 128,
+          "reward": 2.7046876,
+          "sampled_kl": 0.00099867
+        },
+        {
+          "step": 129,
+          "reward": 2.79374981,
+          "sampled_kl": 0.00092579
+        },
+        {
+          "step": 130,
+          "reward": 2.89374995,
+          "sampled_kl": 0.0009476
+        },
+        {
+          "step": 131,
+          "reward": 2.1890626,
+          "sampled_kl": 0.00096212
+        },
+        {
+          "step": 132,
+          "reward": 3.5296874,
+          "sampled_kl": 0.00100815
+        },
+        {
+          "step": 133,
+          "reward": 3.0625,
+          "sampled_kl": 0.00125406
+        },
+        {
+          "step": 134,
+          "reward": 3.16875005,
+          "sampled_kl": 0.00081729
+        },
+        {
+          "step": 135,
+          "reward": 2.29374981,
+          "sampled_kl": 0.00130623
+        },
+        {
+          "step": 136,
+          "reward": 2.97109365,
+          "sampled_kl": 0.0007694
+        },
+        {
+          "step": 137,
+          "reward": 2.5562501,
+          "sampled_kl": 0.00095494
+        },
+        {
+          "step": 138,
+          "reward": 2.43281245,
+          "sampled_kl": 0.00138364
+        },
+        {
+          "step": 139,
+          "reward": 2.6796875,
+          "sampled_kl": 0.0007739
+        },
+        {
+          "step": 140,
+          "reward": 2.6500001,
+          "sampled_kl": 0.00074004
+        },
+        {
+          "step": 141,
+          "reward": 3.15156269,
+          "sampled_kl": 0.00093063
+        },
+        {
+          "step": 142,
+          "reward": 2.2734375,
+          "sampled_kl": 0.00086954
+        },
+        {
+          "step": 143,
+          "reward": 2.71640635,
+          "sampled_kl": 0.00104018
+        },
+        {
+          "step": 144,
+          "reward": 2.1859374,
+          "sampled_kl": 0.00131292
+        },
+        {
+          "step": 145,
+          "reward": 3.1390624,
+          "sampled_kl": 0.00090004
+        },
+        {
+          "step": 146,
+          "reward": 3.0625,
+          "sampled_kl": 0.00081182
+        },
+        {
+          "step": 147,
+          "reward": 2.72187495,
+          "sampled_kl": 0.0010735
+        },
+        {
+          "step": 148,
+          "reward": 2.25546885,
+          "sampled_kl": 0.00075245
+        },
+        {
+          "step": 149,
+          "reward": 1.28437495,
+          "sampled_kl": 0.00110146
+        },
+        {
+          "step": 150,
+          "reward": 2.7828126,
+          "sampled_kl": 0.0013427
+        },
+        {
+          "step": 151,
+          "reward": 2.12734365,
+          "sampled_kl": 0.0008854
+        },
+        {
+          "step": 152,
+          "reward": 2.8031249,
+          "sampled_kl": 0.00089315
+        },
+        {
+          "step": 153,
+          "reward": 0.98906249,
+          "sampled_kl": 0.00271792
+        },
+        {
+          "step": 154,
+          "reward": 2.5250001,
+          "sampled_kl": 0.00085648
+        },
+        {
+          "step": 155,
+          "reward": 3.12031245,
+          "sampled_kl": 0.0009829
+        },
+        {
+          "step": 156,
+          "reward": 2.11796856,
+          "sampled_kl": 0.00127335
+        },
+        {
+          "step": 157,
+          "reward": 2.4609375,
+          "sampled_kl": 0.00089086
+        },
+        {
+          "step": 158,
+          "reward": 2.59375,
+          "sampled_kl": 0.00158615
+        },
+        {
+          "step": 159,
+          "reward": 2.2820313,
+          "sampled_kl": 0.0009428
+        },
+        {
+          "step": 160,
+          "reward": 3.0093751,
+          "sampled_kl": 0.00150937
+        },
+        {
+          "step": 161,
+          "reward": 1.3046875,
+          "sampled_kl": 0.00099926
+        },
+        {
+          "step": 162,
+          "reward": 2.42109394,
+          "sampled_kl": 0.00091156
+        },
+        {
+          "step": 163,
+          "reward": 0.80703127,
+          "sampled_kl": 0.00103735
+        },
+        {
+          "step": 164,
+          "reward": 3.12031245,
+          "sampled_kl": 0.00129127
+        },
+        {
+          "step": 165,
+          "reward": 2.6109376,
+          "sampled_kl": 0.0012283
+        },
+        {
+          "step": 166,
+          "reward": 2.8765626,
+          "sampled_kl": 0.00093062
+        },
+        {
+          "step": 167,
+          "reward": 2.71406245,
+          "sampled_kl": 0.00087854
+        },
+        {
+          "step": 168,
+          "reward": 3.03437519,
+          "sampled_kl": 0.00120091
+        },
+        {
+          "step": 169,
+          "reward": 2.55937481,
+          "sampled_kl": 0.0010386
+        },
+        {
+          "step": 170,
+          "reward": 3.0609374,
+          "sampled_kl": 0.00085359
+        },
+        {
+          "step": 171,
+          "reward": 2.5546875,
+          "sampled_kl": 0.00096726
+        },
+        {
+          "step": 172,
+          "reward": 2.65625,
+          "sampled_kl": 0.00089796
+        },
+        {
+          "step": 173,
+          "reward": 2.7046876,
+          "sampled_kl": 0.00091102
+        },
+        {
+          "step": 174,
+          "reward": 3.2171874,
+          "sampled_kl": 0.00095359
+        },
+        {
+          "step": 175,
+          "reward": 2.2257812,
+          "sampled_kl": 0.00161756
+        },
+        {
+          "step": 176,
+          "reward": 2.16484356,
+          "sampled_kl": 0.00148257
+        },
+        {
+          "step": 177,
+          "reward": 2.09375,
+          "sampled_kl": 0.0016221
+        },
+        {
+          "step": 178,
+          "reward": 1.96249998,
+          "sampled_kl": 0.00126638
+        },
+        {
+          "step": 179,
+          "reward": 2.7421875,
+          "sampled_kl": 0.00090511
+        },
+        {
+          "step": 180,
+          "reward": 1.93593752,
+          "sampled_kl": 0.00113032
+        },
+        {
+          "step": 181,
+          "reward": 2.4921875,
+          "sampled_kl": 0.0007801
+        },
+        {
+          "step": 182,
+          "reward": 2.80781269,
+          "sampled_kl": 0.0010203
+        },
+        {
+          "step": 183,
+          "reward": 2.75,
+          "sampled_kl": 0.00106233
+        },
+        {
+          "step": 184,
+          "reward": 2.69453144,
+          "sampled_kl": 0.00092865
+        },
+        {
+          "step": 185,
+          "reward": 2.9859376,
+          "sampled_kl": 0.00094537
+        },
+        {
+          "step": 186,
+          "reward": 2.36406231,
+          "sampled_kl": 0.00098233
+        },
+        {
+          "step": 187,
+          "reward": 2.4929688,
+          "sampled_kl": 0.00137401
+        },
+        {
+          "step": 188,
+          "reward": 2.48984385,
+          "sampled_kl": 0.00112108
+        },
+        {
+          "step": 189,
+          "reward": 0.0,
+          "sampled_kl": 0.01055207
+        },
+        {
+          "step": 190,
+          "reward": 2.45078135,
+          "sampled_kl": 0.00149742
+        },
+        {
+          "step": 191,
+          "reward": 0.0,
+          "sampled_kl": 0.00366538
+        },
+        {
+          "step": 192,
+          "reward": 2.09453106,
+          "sampled_kl": 0.00104674
+        },
+        {
+          "step": 193,
+          "reward": 2.50234365,
+          "sampled_kl": 0.00129177
+        },
+        {
+          "step": 194,
+          "reward": 2.4445312,
+          "sampled_kl": 0.00086066
+        },
+        {
+          "step": 195,
+          "reward": 1.82421875,
+          "sampled_kl": 0.00126471
+        },
+        {
+          "step": 196,
+          "reward": 3.22187519,
+          "sampled_kl": 0.00113736
+        },
+        {
+          "step": 197,
+          "reward": 2.9375,
+          "sampled_kl": 0.00101573
+        },
+        {
+          "step": 198,
+          "reward": 2.2171874,
+          "sampled_kl": 0.00085515
+        },
+        {
+          "step": 199,
+          "reward": 2.52656245,
+          "sampled_kl": 0.00141285
+        },
+        {
+          "step": 200,
+          "reward": 2.86406231,
+          "sampled_kl": 0.00102514
+        },
+        {
+          "step": 201,
+          "reward": 2.640625,
+          "sampled_kl": 0.00088075
+        },
+        {
+          "step": 202,
+          "reward": 2.26484394,
+          "sampled_kl": 0.0011731
+        },
+        {
+          "step": 203,
+          "reward": 2.4992187,
+          "sampled_kl": 0.00105977
+        },
+        {
+          "step": 204,
+          "reward": 2.20781255,
+          "sampled_kl": 0.00083848
+        },
+        {
+          "step": 205,
+          "reward": 2.6171875,
+          "sampled_kl": 0.00112111
+        },
+        {
+          "step": 206,
+          "reward": 3.10625005,
+          "sampled_kl": 0.00081919
+        },
+        {
+          "step": 207,
+          "reward": 2.8609376,
+          "sampled_kl": 0.00118584
+        },
+        {
+          "step": 208,
+          "reward": 1.9617188,
+          "sampled_kl": 0.00085791
+        },
+        {
+          "step": 209,
+          "reward": 2.45624995,
+          "sampled_kl": 0.00091569
+        },
+        {
+          "step": 210,
+          "reward": 2.09062481,
+          "sampled_kl": 0.00094809
+        },
+        {
+          "step": 211,
+          "reward": 2.4304688,
+          "sampled_kl": 0.00100924
+        },
+        {
+          "step": 212,
+          "reward": 2.98749995,
+          "sampled_kl": 0.00081097
+        },
+        {
+          "step": 213,
+          "reward": 1.57343745,
+          "sampled_kl": 0.00115442
+        },
+        {
+          "step": 214,
+          "reward": 2.87031245,
+          "sampled_kl": 0.00107929
+        },
+        {
+          "step": 215,
+          "reward": 2.2874999,
+          "sampled_kl": 0.0010069
+        },
+        {
+          "step": 216,
+          "reward": 2.13750005,
+          "sampled_kl": 0.00084492
+        },
+        {
+          "step": 217,
+          "reward": 2.3601563,
+          "sampled_kl": 0.00129176
+        },
+        {
+          "step": 218,
+          "reward": 2.43984365,
+          "sampled_kl": 0.00096322
+        },
+        {
+          "step": 219,
+          "reward": 1.09531248,
+          "sampled_kl": 0.00211419
+        },
+        {
+          "step": 220,
+          "reward": 2.71562481,
+          "sampled_kl": 0.00110777
+        },
+        {
+          "step": 221,
+          "reward": 2.26328135,
+          "sampled_kl": 0.00117544
+        },
+        {
+          "step": 222,
+          "reward": 1.57500005,
+          "sampled_kl": 0.00160749
+        },
+        {
+          "step": 223,
+          "reward": 2.46875,
+          "sampled_kl": 0.00106046
+        },
+        {
+          "step": 224,
+          "reward": 2.61328125,
+          "sampled_kl": 0.00116731
+        },
+        {
+          "step": 225,
+          "reward": 3.75,
+          "sampled_kl": 0.0008285
+        },
+        {
+          "step": 226,
+          "reward": 2.8828125,
+          "sampled_kl": 0.00091452
+        },
+        {
+          "step": 227,
+          "reward": 2.4671874,
+          "sampled_kl": 0.0015077
+        },
+        {
+          "step": 228,
+          "reward": 2.62187481,
+          "sampled_kl": 0.00163503
+        },
+        {
+          "step": 229,
+          "reward": 2.85624981,
+          "sampled_kl": 0.00109089
+        },
+        {
+          "step": 230,
+          "reward": 3.1500001,
+          "sampled_kl": 0.00095172
+        },
+        {
+          "step": 231,
+          "reward": 2.8531251,
+          "sampled_kl": 0.00092495
+        },
+        {
+          "step": 232,
+          "reward": 3.1171875,
+          "sampled_kl": 0.00117135
+        },
+        {
+          "step": 233,
+          "reward": 2.8140626,
+          "sampled_kl": 0.00088755
+        },
+        {
+          "step": 234,
+          "reward": 2.4296875,
+          "sampled_kl": 0.0007914
+        },
+        {
+          "step": 235,
+          "reward": 2.421875,
+          "sampled_kl": 0.00099594
+        },
+        {
+          "step": 236,
+          "reward": 2.2882812,
+          "sampled_kl": 0.00126357
+        },
+        {
+          "step": 237,
+          "reward": 3.140625,
+          "sampled_kl": 0.00091898
+        },
+        {
+          "step": 238,
+          "reward": 2.5406251,
+          "sampled_kl": 0.00100176
+        },
+        {
+          "step": 239,
+          "reward": 2.77890635,
+          "sampled_kl": 0.00094863
+        },
+        {
+          "step": 240,
+          "reward": 2.2671876,
+          "sampled_kl": 0.00097196
+        },
+        {
+          "step": 241,
+          "reward": 1.31562495,
+          "sampled_kl": 0.00182445
+        },
+        {
+          "step": 242,
+          "reward": 2.5453124,
+          "sampled_kl": 0.00156796
+        },
+        {
+          "step": 243,
+          "reward": 1.16796875,
+          "sampled_kl": 0.00162307
+        },
+        {
+          "step": 244,
+          "reward": 2.0875001,
+          "sampled_kl": 0.00084066
+        },
+        {
+          "step": 245,
+          "reward": 2.91093731,
+          "sampled_kl": 0.00084675
+        },
+        {
+          "step": 246,
+          "reward": 2.65312505,
+          "sampled_kl": 0.00111735
+        },
+        {
+          "step": 247,
+          "reward": 2.91874981,
+          "sampled_kl": 0.00100282
+        },
+        {
+          "step": 248,
+          "reward": 3.4281249,
+          "sampled_kl": 0.00101785
+        },
+        {
+          "step": 249,
+          "reward": 1.32343745,
+          "sampled_kl": 0.00126534
+        },
+        {
+          "step": 250,
+          "reward": 2.7335937,
+          "sampled_kl": 0.00097923
+        },
+        {
+          "step": 251,
+          "reward": 2.63515615,
+          "sampled_kl": 0.00126751
+        },
+        {
+          "step": 252,
+          "reward": 2.74687505,
+          "sampled_kl": 0.00103543
+        },
+        {
+          "step": 253,
+          "reward": 1.41250002,
+          "sampled_kl": 0.00163342
+        },
+        {
+          "step": 254,
+          "reward": 2.6640625,
+          "sampled_kl": 0.00081497
+        },
+        {
+          "step": 255,
+          "reward": 2.36171865,
+          "sampled_kl": 0.0008307
+        },
+        {
+          "step": 256,
+          "reward": 2.3507812,
+          "sampled_kl": 0.00087659
+        },
+        {
+          "step": 257,
+          "reward": 2.3039062,
+          "sampled_kl": 0.00082039
+        },
+        {
+          "step": 258,
+          "reward": 2.57734394,
+          "sampled_kl": 0.001121
+        },
+        {
+          "step": 259,
+          "reward": 3.2953124,
+          "sampled_kl": 0.00092974
+        },
+        {
+          "step": 260,
+          "reward": 2.5562501,
+          "sampled_kl": 0.00087272
+        },
+        {
+          "step": 261,
+          "reward": 2.75468755,
+          "sampled_kl": 0.00132835
+        },
+        {
+          "step": 262,
+          "reward": 2.8046875,
+          "sampled_kl": 0.00091886
+        },
+        {
+          "step": 263,
+          "reward": 1.62656248,
+          "sampled_kl": 0.00124672
+        },
+        {
+          "step": 264,
+          "reward": 2.75,
+          "sampled_kl": 0.00135358
+        },
+        {
+          "step": 265,
+          "reward": 2.77031255,
+          "sampled_kl": 0.00143945
+        },
+        {
+          "step": 266,
+          "reward": 2.1007812,
+          "sampled_kl": 0.0015307
+        },
+        {
+          "step": 267,
+          "reward": 2.11406255,
+          "sampled_kl": 0.0010177
+        },
+        {
+          "step": 268,
+          "reward": 2.5250001,
+          "sampled_kl": 0.00091056
+        },
+        {
+          "step": 269,
+          "reward": 2.296875,
+          "sampled_kl": 0.00098809
+        },
+        {
+          "step": 270,
+          "reward": 2.6421876,
+          "sampled_kl": 0.00098969
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11660,7 +17113,10 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
-      }
+      },
+      "failure_reason": null,
+      "invalid_output_count": 31,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-musecritic-2e-5.json"
     },
     {
       "id": "muse-musecritic-1e-4",
@@ -11672,11 +17128,1372 @@
       "job_id": "181035587.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:23.312681+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.86249995,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 3.3109374,
+          "sampled_kl": 0.00062774
+        },
+        {
+          "step": 3,
+          "reward": 2.72187495,
+          "sampled_kl": 0.00057444
+        },
+        {
+          "step": 4,
+          "reward": 3.18281245,
+          "sampled_kl": 0.00072389
+        },
+        {
+          "step": 5,
+          "reward": 1.02499998,
+          "sampled_kl": 0.0008096
+        },
+        {
+          "step": 6,
+          "reward": 2.50234365,
+          "sampled_kl": 0.00073142
+        },
+        {
+          "step": 7,
+          "reward": 2.3890624,
+          "sampled_kl": 0.00083945
+        },
+        {
+          "step": 8,
+          "reward": 1.41562498,
+          "sampled_kl": 0.0011357
+        },
+        {
+          "step": 9,
+          "reward": 2.41093755,
+          "sampled_kl": 0.00105442
+        },
+        {
+          "step": 10,
+          "reward": 2.3265624,
+          "sampled_kl": 0.00146856
+        },
+        {
+          "step": 11,
+          "reward": 2.1781249,
+          "sampled_kl": 0.00106137
+        },
+        {
+          "step": 12,
+          "reward": 2.37968731,
+          "sampled_kl": 0.00113934
+        },
+        {
+          "step": 13,
+          "reward": 2.70624995,
+          "sampled_kl": 0.00189595
+        },
+        {
+          "step": 14,
+          "reward": 2.4937501,
+          "sampled_kl": 0.00138296
+        },
+        {
+          "step": 15,
+          "reward": 2.7578125,
+          "sampled_kl": 0.00122925
+        },
+        {
+          "step": 16,
+          "reward": 2.6578126,
+          "sampled_kl": 0.00165881
+        },
+        {
+          "step": 17,
+          "reward": 2.87968731,
+          "sampled_kl": 0.00129109
+        },
+        {
+          "step": 18,
+          "reward": 2.5531249,
+          "sampled_kl": 0.00322341
+        },
+        {
+          "step": 19,
+          "reward": 2.55781245,
+          "sampled_kl": 0.00176801
+        },
+        {
+          "step": 20,
+          "reward": 3.0078125,
+          "sampled_kl": 0.00204809
+        },
+        {
+          "step": 21,
+          "reward": 3.4593749,
+          "sampled_kl": 0.00239293
+        },
+        {
+          "step": 22,
+          "reward": 1.41562498,
+          "sampled_kl": 0.00237256
+        },
+        {
+          "step": 23,
+          "reward": 2.55781245,
+          "sampled_kl": 0.00313288
+        },
+        {
+          "step": 24,
+          "reward": 2.69843745,
+          "sampled_kl": 0.00187986
+        },
+        {
+          "step": 25,
+          "reward": 1.31093752,
+          "sampled_kl": 0.00296111
+        },
+        {
+          "step": 26,
+          "reward": 3.11406255,
+          "sampled_kl": 0.00212435
+        },
+        {
+          "step": 27,
+          "reward": 2.2890625,
+          "sampled_kl": 0.0035694
+        },
+        {
+          "step": 28,
+          "reward": 2.4468751,
+          "sampled_kl": 0.00189397
+        },
+        {
+          "step": 29,
+          "reward": 2.4703126,
+          "sampled_kl": 0.00426531
+        },
+        {
+          "step": 30,
+          "reward": 1.1023438,
+          "sampled_kl": 0.00490891
+        },
+        {
+          "step": 31,
+          "reward": 2.234375,
+          "sampled_kl": 0.00427414
+        },
+        {
+          "step": 32,
+          "reward": 1.9460938,
+          "sampled_kl": 0.00327109
+        },
+        {
+          "step": 33,
+          "reward": 2.8265624,
+          "sampled_kl": 0.00258193
+        },
+        {
+          "step": 34,
+          "reward": 2.44453144,
+          "sampled_kl": 0.00469055
+        },
+        {
+          "step": 35,
+          "reward": 3.12187481,
+          "sampled_kl": 0.00337964
+        },
+        {
+          "step": 36,
+          "reward": 2.87187505,
+          "sampled_kl": 0.00375069
+        },
+        {
+          "step": 37,
+          "reward": 3.1578126,
+          "sampled_kl": 0.00541488
+        },
+        {
+          "step": 38,
+          "reward": 2.3828125,
+          "sampled_kl": 0.00375093
+        },
+        {
+          "step": 39,
+          "reward": 2.60468745,
+          "sampled_kl": 0.00453482
+        },
+        {
+          "step": 40,
+          "reward": 1.87187493,
+          "sampled_kl": 0.00366336
+        },
+        {
+          "step": 41,
+          "reward": 2.82499981,
+          "sampled_kl": 0.00336153
+        },
+        {
+          "step": 42,
+          "reward": 2.37968755,
+          "sampled_kl": 0.00375231
+        },
+        {
+          "step": 43,
+          "reward": 2.73515606,
+          "sampled_kl": 0.00528552
+        },
+        {
+          "step": 44,
+          "reward": 2.70781255,
+          "sampled_kl": 0.00352808
+        },
+        {
+          "step": 45,
+          "reward": 3.30859375,
+          "sampled_kl": 0.00260229
+        },
+        {
+          "step": 46,
+          "reward": 2.50312495,
+          "sampled_kl": 0.00437574
+        },
+        {
+          "step": 47,
+          "reward": 2.98749995,
+          "sampled_kl": 0.0027859
+        },
+        {
+          "step": 48,
+          "reward": 2.87187505,
+          "sampled_kl": 0.00815554
+        },
+        {
+          "step": 49,
+          "reward": 2.890625,
+          "sampled_kl": 0.00350143
+        },
+        {
+          "step": 50,
+          "reward": 2.3109374,
+          "sampled_kl": 0.00680958
+        },
+        {
+          "step": 51,
+          "reward": 3.4593749,
+          "sampled_kl": 0.00819431
+        },
+        {
+          "step": 52,
+          "reward": 3.4390626,
+          "sampled_kl": 0.00658004
+        },
+        {
+          "step": 53,
+          "reward": 2.6390624,
+          "sampled_kl": 0.0091825
+        },
+        {
+          "step": 54,
+          "reward": 2.95781255,
+          "sampled_kl": 0.00659729
+        },
+        {
+          "step": 55,
+          "reward": 2.1468749,
+          "sampled_kl": 0.00858148
+        },
+        {
+          "step": 56,
+          "reward": 1.24687505,
+          "sampled_kl": 0.01098078
+        },
+        {
+          "step": 57,
+          "reward": 2.44062519,
+          "sampled_kl": 0.0052052
+        },
+        {
+          "step": 58,
+          "reward": 2.828125,
+          "sampled_kl": 0.00466275
+        },
+        {
+          "step": 59,
+          "reward": 2.68359375,
+          "sampled_kl": 0.00454227
+        },
+        {
+          "step": 60,
+          "reward": 3.109375,
+          "sampled_kl": 0.00496373
+        },
+        {
+          "step": 61,
+          "reward": 2.1554687,
+          "sampled_kl": 0.00483293
+        },
+        {
+          "step": 62,
+          "reward": 2.7203126,
+          "sampled_kl": 0.00419736
+        },
+        {
+          "step": 63,
+          "reward": 3.01093745,
+          "sampled_kl": 0.00509962
+        },
+        {
+          "step": 64,
+          "reward": 2.48671865,
+          "sampled_kl": 0.00304515
+        },
+        {
+          "step": 65,
+          "reward": 3.4593749,
+          "sampled_kl": 0.00724074
+        },
+        {
+          "step": 66,
+          "reward": 2.875,
+          "sampled_kl": 0.00358435
+        },
+        {
+          "step": 67,
+          "reward": 2.8375001,
+          "sampled_kl": 0.00711879
+        },
+        {
+          "step": 68,
+          "reward": 2.9312501,
+          "sampled_kl": 0.00724353
+        },
+        {
+          "step": 69,
+          "reward": 3.1390624,
+          "sampled_kl": 0.00868584
+        },
+        {
+          "step": 70,
+          "reward": 2.85390615,
+          "sampled_kl": 0.00391564
+        },
+        {
+          "step": 71,
+          "reward": 2.76250005,
+          "sampled_kl": 0.0089554
+        },
+        {
+          "step": 72,
+          "reward": 3.0062499,
+          "sampled_kl": 0.01024316
+        },
+        {
+          "step": 73,
+          "reward": 2.1421876,
+          "sampled_kl": 0.00504123
+        },
+        {
+          "step": 74,
+          "reward": 3.01875019,
+          "sampled_kl": 0.00419732
+        },
+        {
+          "step": 75,
+          "reward": 2.19843745,
+          "sampled_kl": 0.00511968
+        },
+        {
+          "step": 76,
+          "reward": 2.2726562,
+          "sampled_kl": 0.00380251
+        },
+        {
+          "step": 77,
+          "reward": 2.91093731,
+          "sampled_kl": 0.00711002
+        },
+        {
+          "step": 78,
+          "reward": 2.55234385,
+          "sampled_kl": 0.00411442
+        },
+        {
+          "step": 79,
+          "reward": 2.328125,
+          "sampled_kl": 0.00638982
+        },
+        {
+          "step": 80,
+          "reward": 3.18437505,
+          "sampled_kl": 0.00628165
+        },
+        {
+          "step": 81,
+          "reward": 2.3992188,
+          "sampled_kl": 0.00550326
+        },
+        {
+          "step": 82,
+          "reward": 2.09375,
+          "sampled_kl": 0.00590912
+        },
+        {
+          "step": 83,
+          "reward": 3.41718745,
+          "sampled_kl": 0.0068662
+        },
+        {
+          "step": 84,
+          "reward": 2.3375001,
+          "sampled_kl": 0.00446668
+        },
+        {
+          "step": 85,
+          "reward": 2.7874999,
+          "sampled_kl": 0.00557549
+        },
+        {
+          "step": 86,
+          "reward": 2.3125,
+          "sampled_kl": 0.00596468
+        },
+        {
+          "step": 87,
+          "reward": 2.74921894,
+          "sampled_kl": 0.00553359
+        },
+        {
+          "step": 88,
+          "reward": 2.79218745,
+          "sampled_kl": 0.0096858
+        },
+        {
+          "step": 89,
+          "reward": 2.4914062,
+          "sampled_kl": 0.0062463
+        },
+        {
+          "step": 90,
+          "reward": 3.0218749,
+          "sampled_kl": 0.0068247
+        },
+        {
+          "step": 91,
+          "reward": 3.01874995,
+          "sampled_kl": 0.01002611
+        },
+        {
+          "step": 92,
+          "reward": 3.51875019,
+          "sampled_kl": 0.00861061
+        },
+        {
+          "step": 93,
+          "reward": 3.2203126,
+          "sampled_kl": 0.00607006
+        },
+        {
+          "step": 94,
+          "reward": 2.48906231,
+          "sampled_kl": 0.00503558
+        },
+        {
+          "step": 95,
+          "reward": 3.5015626,
+          "sampled_kl": 0.00711242
+        },
+        {
+          "step": 96,
+          "reward": 2.89375019,
+          "sampled_kl": 0.00572519
+        },
+        {
+          "step": 97,
+          "reward": 2.5328126,
+          "sampled_kl": 0.00830807
+        },
+        {
+          "step": 98,
+          "reward": 2.57343745,
+          "sampled_kl": 0.00810773
+        },
+        {
+          "step": 99,
+          "reward": 2.66093755,
+          "sampled_kl": 0.00696805
+        },
+        {
+          "step": 100,
+          "reward": 1.04921877,
+          "sampled_kl": 0.00885266
+        },
+        {
+          "step": 101,
+          "reward": 2.49531269,
+          "sampled_kl": 0.00808553
+        },
+        {
+          "step": 102,
+          "reward": 3.4609375,
+          "sampled_kl": 0.00475274
+        },
+        {
+          "step": 103,
+          "reward": 2.9828124,
+          "sampled_kl": 0.00666466
+        },
+        {
+          "step": 104,
+          "reward": 2.5843749,
+          "sampled_kl": 0.00678643
+        },
+        {
+          "step": 105,
+          "reward": 2.3578124,
+          "sampled_kl": 0.00483903
+        },
+        {
+          "step": 106,
+          "reward": 2.1335938,
+          "sampled_kl": 0.00621016
+        },
+        {
+          "step": 107,
+          "reward": 3.05937505,
+          "sampled_kl": 0.0042592
+        },
+        {
+          "step": 108,
+          "reward": 2.9296875,
+          "sampled_kl": 0.00585842
+        },
+        {
+          "step": 109,
+          "reward": 2.12031245,
+          "sampled_kl": 0.0071597
+        },
+        {
+          "step": 110,
+          "reward": 2.83125019,
+          "sampled_kl": 0.00617105
+        },
+        {
+          "step": 111,
+          "reward": 3.19062495,
+          "sampled_kl": 0.00755988
+        },
+        {
+          "step": 112,
+          "reward": 2.37031245,
+          "sampled_kl": 0.00660496
+        },
+        {
+          "step": 113,
+          "reward": 3.01250005,
+          "sampled_kl": 0.00618842
+        },
+        {
+          "step": 114,
+          "reward": 2.8828125,
+          "sampled_kl": 0.01243634
+        },
+        {
+          "step": 115,
+          "reward": 2.81718755,
+          "sampled_kl": 0.0079384
+        },
+        {
+          "step": 116,
+          "reward": 1.9984374,
+          "sampled_kl": 0.00998056
+        },
+        {
+          "step": 117,
+          "reward": 2.3984375,
+          "sampled_kl": 0.00609152
+        },
+        {
+          "step": 118,
+          "reward": 2.43203115,
+          "sampled_kl": 0.00871971
+        },
+        {
+          "step": 119,
+          "reward": 2.125,
+          "sampled_kl": 0.00823068
+        },
+        {
+          "step": 120,
+          "reward": 2.265625,
+          "sampled_kl": 0.00905989
+        },
+        {
+          "step": 121,
+          "reward": 3.13749981,
+          "sampled_kl": 0.01050751
+        },
+        {
+          "step": 122,
+          "reward": 2.6468749,
+          "sampled_kl": 0.00970314
+        },
+        {
+          "step": 123,
+          "reward": 2.51171875,
+          "sampled_kl": 0.00912723
+        },
+        {
+          "step": 124,
+          "reward": 2.66093731,
+          "sampled_kl": 0.00779548
+        },
+        {
+          "step": 125,
+          "reward": 3.3203125,
+          "sampled_kl": 0.00964228
+        },
+        {
+          "step": 126,
+          "reward": 2.83281231,
+          "sampled_kl": 0.00789264
+        },
+        {
+          "step": 127,
+          "reward": 2.36406231,
+          "sampled_kl": 0.01028452
+        },
+        {
+          "step": 128,
+          "reward": 2.5796876,
+          "sampled_kl": 0.01330181
+        },
+        {
+          "step": 129,
+          "reward": 2.8218751,
+          "sampled_kl": 0.00796296
+        },
+        {
+          "step": 130,
+          "reward": 2.4835937,
+          "sampled_kl": 0.01066368
+        },
+        {
+          "step": 131,
+          "reward": 2.6796875,
+          "sampled_kl": 0.0124468
+        },
+        {
+          "step": 132,
+          "reward": 2.6015625,
+          "sampled_kl": 0.00841346
+        },
+        {
+          "step": 133,
+          "reward": 2.56484365,
+          "sampled_kl": 0.00578424
+        },
+        {
+          "step": 134,
+          "reward": 2.05937505,
+          "sampled_kl": 0.01049709
+        },
+        {
+          "step": 135,
+          "reward": 2.01171875,
+          "sampled_kl": 0.00828426
+        },
+        {
+          "step": 136,
+          "reward": 2.79453135,
+          "sampled_kl": 0.00726896
+        },
+        {
+          "step": 137,
+          "reward": 2.7984376,
+          "sampled_kl": 0.00928289
+        },
+        {
+          "step": 138,
+          "reward": 3.0296874,
+          "sampled_kl": 0.00780599
+        },
+        {
+          "step": 139,
+          "reward": 2.60859394,
+          "sampled_kl": 0.00851617
+        },
+        {
+          "step": 140,
+          "reward": 2.5640626,
+          "sampled_kl": 0.00398611
+        },
+        {
+          "step": 141,
+          "reward": 3.203125,
+          "sampled_kl": 0.00622296
+        },
+        {
+          "step": 142,
+          "reward": 2.5875001,
+          "sampled_kl": 0.00754995
+        },
+        {
+          "step": 143,
+          "reward": 1.42343748,
+          "sampled_kl": 0.03018977
+        },
+        {
+          "step": 144,
+          "reward": 2.3609376,
+          "sampled_kl": 0.0225425
+        },
+        {
+          "step": 145,
+          "reward": 2.88750005,
+          "sampled_kl": 0.00515552
+        },
+        {
+          "step": 146,
+          "reward": 2.90156245,
+          "sampled_kl": 0.00704948
+        },
+        {
+          "step": 147,
+          "reward": 3.2359376,
+          "sampled_kl": 0.01362452
+        },
+        {
+          "step": 148,
+          "reward": 2.5718751,
+          "sampled_kl": 0.00695609
+        },
+        {
+          "step": 149,
+          "reward": 2.6023438,
+          "sampled_kl": 0.01289759
+        },
+        {
+          "step": 150,
+          "reward": 2.3453126,
+          "sampled_kl": 0.04875372
+        },
+        {
+          "step": 151,
+          "reward": 2.5562501,
+          "sampled_kl": 0.00720704
+        },
+        {
+          "step": 152,
+          "reward": 2.89375019,
+          "sampled_kl": 0.00752119
+        },
+        {
+          "step": 153,
+          "reward": 1.90156245,
+          "sampled_kl": 0.01433593
+        },
+        {
+          "step": 154,
+          "reward": 3.53593731,
+          "sampled_kl": 0.00755649
+        },
+        {
+          "step": 155,
+          "reward": 2.640625,
+          "sampled_kl": 0.00731278
+        },
+        {
+          "step": 156,
+          "reward": 2.76093769,
+          "sampled_kl": 0.01036357
+        },
+        {
+          "step": 157,
+          "reward": 3.0453124,
+          "sampled_kl": 0.00809546
+        },
+        {
+          "step": 158,
+          "reward": 2.7593751,
+          "sampled_kl": 0.00633473
+        },
+        {
+          "step": 159,
+          "reward": 2.5703125,
+          "sampled_kl": 0.00619631
+        },
+        {
+          "step": 160,
+          "reward": 2.2734375,
+          "sampled_kl": 0.01052586
+        },
+        {
+          "step": 161,
+          "reward": 2.4515624,
+          "sampled_kl": 0.00697868
+        },
+        {
+          "step": 162,
+          "reward": 2.4984374,
+          "sampled_kl": 0.01208955
+        },
+        {
+          "step": 163,
+          "reward": 2.65234375,
+          "sampled_kl": 0.01189168
+        },
+        {
+          "step": 164,
+          "reward": 2.6546874,
+          "sampled_kl": 0.01404117
+        },
+        {
+          "step": 165,
+          "reward": 2.66796875,
+          "sampled_kl": 0.00778911
+        },
+        {
+          "step": 166,
+          "reward": 2.67500019,
+          "sampled_kl": 0.00900752
+        },
+        {
+          "step": 167,
+          "reward": 3.0562501,
+          "sampled_kl": 0.0084206
+        },
+        {
+          "step": 168,
+          "reward": 2.7515626,
+          "sampled_kl": 0.02401516
+        },
+        {
+          "step": 169,
+          "reward": 2.5374999,
+          "sampled_kl": 0.00830387
+        },
+        {
+          "step": 170,
+          "reward": 3.05937505,
+          "sampled_kl": 0.00946546
+        },
+        {
+          "step": 171,
+          "reward": 2.25,
+          "sampled_kl": 0.00957726
+        },
+        {
+          "step": 172,
+          "reward": 2.13046885,
+          "sampled_kl": 0.00870289
+        },
+        {
+          "step": 173,
+          "reward": 2.3656249,
+          "sampled_kl": 0.00836876
+        },
+        {
+          "step": 174,
+          "reward": 2.38593769,
+          "sampled_kl": 0.00886902
+        },
+        {
+          "step": 175,
+          "reward": 2.56718755,
+          "sampled_kl": 0.00799977
+        },
+        {
+          "step": 176,
+          "reward": 2.91796875,
+          "sampled_kl": 0.0130859
+        },
+        {
+          "step": 177,
+          "reward": 2.9468751,
+          "sampled_kl": 0.00883956
+        },
+        {
+          "step": 178,
+          "reward": 2.50312495,
+          "sampled_kl": 0.00829806
+        },
+        {
+          "step": 179,
+          "reward": 2.45781255,
+          "sampled_kl": 0.00717804
+        },
+        {
+          "step": 180,
+          "reward": 2.7046876,
+          "sampled_kl": 0.00871452
+        },
+        {
+          "step": 181,
+          "reward": 2.27265644,
+          "sampled_kl": 0.01155558
+        },
+        {
+          "step": 182,
+          "reward": 2.69218755,
+          "sampled_kl": 0.00802499
+        },
+        {
+          "step": 183,
+          "reward": 2.97343731,
+          "sampled_kl": 0.00835012
+        },
+        {
+          "step": 184,
+          "reward": 2.4609375,
+          "sampled_kl": 0.01237281
+        },
+        {
+          "step": 185,
+          "reward": 1.98593748,
+          "sampled_kl": 0.00829337
+        },
+        {
+          "step": 186,
+          "reward": 2.83125019,
+          "sampled_kl": 0.01469991
+        },
+        {
+          "step": 187,
+          "reward": 2.09687495,
+          "sampled_kl": 0.01194588
+        },
+        {
+          "step": 188,
+          "reward": 2.40625,
+          "sampled_kl": 0.01015605
+        },
+        {
+          "step": 189,
+          "reward": 2.31484365,
+          "sampled_kl": 0.01116489
+        },
+        {
+          "step": 190,
+          "reward": 2.04140615,
+          "sampled_kl": 0.0078808
+        },
+        {
+          "step": 191,
+          "reward": 2.59765625,
+          "sampled_kl": 0.00793318
+        },
+        {
+          "step": 192,
+          "reward": 2.8421874,
+          "sampled_kl": 0.01164514
+        },
+        {
+          "step": 193,
+          "reward": 2.96875,
+          "sampled_kl": 0.01149607
+        },
+        {
+          "step": 194,
+          "reward": 2.74531245,
+          "sampled_kl": 0.00635381
+        },
+        {
+          "step": 195,
+          "reward": 2.40312481,
+          "sampled_kl": 0.02110059
+        },
+        {
+          "step": 196,
+          "reward": 3.0078125,
+          "sampled_kl": 0.01017472
+        },
+        {
+          "step": 197,
+          "reward": 2.8687501,
+          "sampled_kl": 0.01274205
+        },
+        {
+          "step": 198,
+          "reward": 1.01874995,
+          "sampled_kl": 0.00738558
+        },
+        {
+          "step": 199,
+          "reward": 2.65312481,
+          "sampled_kl": 0.0089638
+        },
+        {
+          "step": 200,
+          "reward": 3.27812481,
+          "sampled_kl": 0.00545603
+        },
+        {
+          "step": 201,
+          "reward": 2.125,
+          "sampled_kl": 0.01027749
+        },
+        {
+          "step": 202,
+          "reward": 3.5015626,
+          "sampled_kl": 0.00818369
+        },
+        {
+          "step": 203,
+          "reward": 2.72890615,
+          "sampled_kl": 0.00958481
+        },
+        {
+          "step": 204,
+          "reward": 2.4468751,
+          "sampled_kl": 0.01004123
+        },
+        {
+          "step": 205,
+          "reward": 2.88750005,
+          "sampled_kl": 0.0072468
+        },
+        {
+          "step": 206,
+          "reward": 2.7265625,
+          "sampled_kl": 0.00772257
+        },
+        {
+          "step": 207,
+          "reward": 2.8296876,
+          "sampled_kl": 0.01972124
+        },
+        {
+          "step": 208,
+          "reward": 2.05781245,
+          "sampled_kl": 0.00711037
+        },
+        {
+          "step": 209,
+          "reward": 3.0718751,
+          "sampled_kl": 0.00669549
+        },
+        {
+          "step": 210,
+          "reward": 3.00468731,
+          "sampled_kl": 0.00735767
+        },
+        {
+          "step": 211,
+          "reward": 3.0999999,
+          "sampled_kl": 0.01214077
+        },
+        {
+          "step": 212,
+          "reward": 2.66953135,
+          "sampled_kl": 0.00640951
+        },
+        {
+          "step": 213,
+          "reward": 2.30937505,
+          "sampled_kl": 0.01942967
+        },
+        {
+          "step": 214,
+          "reward": 2.38593769,
+          "sampled_kl": 0.01237746
+        },
+        {
+          "step": 215,
+          "reward": 2.80937481,
+          "sampled_kl": 0.00637719
+        },
+        {
+          "step": 216,
+          "reward": 3.234375,
+          "sampled_kl": 0.00674317
+        },
+        {
+          "step": 217,
+          "reward": 2.9984374,
+          "sampled_kl": 0.02375701
+        },
+        {
+          "step": 218,
+          "reward": 2.49687505,
+          "sampled_kl": 0.00826297
+        },
+        {
+          "step": 219,
+          "reward": 1.18593752,
+          "sampled_kl": 0.01921625
+        },
+        {
+          "step": 220,
+          "reward": 2.33046865,
+          "sampled_kl": 0.01048583
+        },
+        {
+          "step": 221,
+          "reward": 2.37968755,
+          "sampled_kl": 0.01110557
+        },
+        {
+          "step": 222,
+          "reward": 1.80624998,
+          "sampled_kl": 0.00950352
+        },
+        {
+          "step": 223,
+          "reward": 3.10624981,
+          "sampled_kl": 0.01308655
+        },
+        {
+          "step": 224,
+          "reward": 2.8218751,
+          "sampled_kl": 0.01051599
+        },
+        {
+          "step": 225,
+          "reward": 2.98124981,
+          "sampled_kl": 0.00702613
+        },
+        {
+          "step": 226,
+          "reward": 2.921875,
+          "sampled_kl": 0.00704392
+        },
+        {
+          "step": 227,
+          "reward": 2.2249999,
+          "sampled_kl": 0.00975271
+        },
+        {
+          "step": 228,
+          "reward": 2.53437495,
+          "sampled_kl": 0.01474925
+        },
+        {
+          "step": 229,
+          "reward": 2.22265625,
+          "sampled_kl": 0.00582372
+        },
+        {
+          "step": 230,
+          "reward": 2.54999995,
+          "sampled_kl": 0.01085148
+        },
+        {
+          "step": 231,
+          "reward": 2.9437499,
+          "sampled_kl": 0.0059463
+        },
+        {
+          "step": 232,
+          "reward": 2.6789062,
+          "sampled_kl": 0.01104876
+        },
+        {
+          "step": 233,
+          "reward": 2.90546894,
+          "sampled_kl": 0.00914642
+        },
+        {
+          "step": 234,
+          "reward": 2.61484385,
+          "sampled_kl": 0.00904686
+        },
+        {
+          "step": 235,
+          "reward": 2.44453144,
+          "sampled_kl": 0.01081328
+        },
+        {
+          "step": 236,
+          "reward": 2.1242187,
+          "sampled_kl": 0.01678409
+        },
+        {
+          "step": 237,
+          "reward": 3.0,
+          "sampled_kl": 0.00680343
+        },
+        {
+          "step": 238,
+          "reward": 2.3531251,
+          "sampled_kl": 0.00768027
+        },
+        {
+          "step": 239,
+          "reward": 2.6421876,
+          "sampled_kl": 0.0097329
+        },
+        {
+          "step": 240,
+          "reward": 2.36328125,
+          "sampled_kl": 0.01611005
+        },
+        {
+          "step": 241,
+          "reward": 2.48906255,
+          "sampled_kl": 0.01558356
+        },
+        {
+          "step": 242,
+          "reward": 2.71562505,
+          "sampled_kl": 0.00804484
+        },
+        {
+          "step": 243,
+          "reward": 2.57421875,
+          "sampled_kl": 0.01132739
+        },
+        {
+          "step": 244,
+          "reward": 3.2437501,
+          "sampled_kl": 0.00749438
+        },
+        {
+          "step": 245,
+          "reward": 2.82343745,
+          "sampled_kl": 0.00703065
+        },
+        {
+          "step": 246,
+          "reward": 2.82500005,
+          "sampled_kl": 0.01173324
+        },
+        {
+          "step": 247,
+          "reward": 2.6890626,
+          "sampled_kl": 0.03137927
+        },
+        {
+          "step": 248,
+          "reward": 2.54218745,
+          "sampled_kl": 0.00845991
+        },
+        {
+          "step": 249,
+          "reward": 2.4773438,
+          "sampled_kl": 0.00776393
+        },
+        {
+          "step": 250,
+          "reward": 2.1109376,
+          "sampled_kl": 0.00652532
+        },
+        {
+          "step": 251,
+          "reward": 2.57499981,
+          "sampled_kl": 0.01046128
+        },
+        {
+          "step": 252,
+          "reward": 2.48671865,
+          "sampled_kl": 0.01701029
+        },
+        {
+          "step": 253,
+          "reward": 2.44921875,
+          "sampled_kl": 0.01495222
+        },
+        {
+          "step": 254,
+          "reward": 2.56718755,
+          "sampled_kl": 0.00745661
+        },
+        {
+          "step": 255,
+          "reward": 3.0015626,
+          "sampled_kl": 0.00822212
+        },
+        {
+          "step": 256,
+          "reward": 2.1789062,
+          "sampled_kl": 0.00821481
+        },
+        {
+          "step": 257,
+          "reward": 3.1500001,
+          "sampled_kl": 0.00573581
+        },
+        {
+          "step": 258,
+          "reward": 2.63359356,
+          "sampled_kl": 0.01448925
+        },
+        {
+          "step": 259,
+          "reward": 2.19921875,
+          "sampled_kl": 0.00911597
+        },
+        {
+          "step": 260,
+          "reward": 2.7562499,
+          "sampled_kl": 0.00892714
+        },
+        {
+          "step": 261,
+          "reward": 2.5789063,
+          "sampled_kl": 0.01193193
+        },
+        {
+          "step": 262,
+          "reward": 2.4609375,
+          "sampled_kl": 0.00633211
+        },
+        {
+          "step": 263,
+          "reward": 2.7421875,
+          "sampled_kl": 0.00954075
+        },
+        {
+          "step": 264,
+          "reward": 2.97343731,
+          "sampled_kl": 0.01446676
+        },
+        {
+          "step": 265,
+          "reward": 2.57500005,
+          "sampled_kl": 0.00934964
+        },
+        {
+          "step": 266,
+          "reward": 2.5875001,
+          "sampled_kl": 0.00768004
+        },
+        {
+          "step": 267,
+          "reward": 2.703125,
+          "sampled_kl": 0.01248577
+        },
+        {
+          "step": 268,
+          "reward": 3.0234375,
+          "sampled_kl": 0.00795296
+        },
+        {
+          "step": 269,
+          "reward": 2.48124981,
+          "sampled_kl": 0.00842753
+        },
+        {
+          "step": 270,
+          "reward": 2.8968749,
+          "sampled_kl": 0.01890355
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11708,7 +18525,10 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
-      }
+      },
+      "failure_reason": null,
+      "invalid_output_count": 11,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-musecritic-1e-4.json"
     },
     {
       "id": "muse-musecritic-3e-4",
@@ -11720,11 +18540,1019 @@
       "job_id": "181035591.gadi-pbs",
       "priority": 1023,
       "submitted_at": "2026-10-12T03:06:24.114699+00:00",
-      "status": "queued",
-      "verified_train_steps": 0,
+      "status": "verified-partial-failed",
+      "verified_train_steps": 200,
       "planned_steps": 270,
-      "train_curve": [],
-      "checkpoints": [],
+      "train_curve": [
+        {
+          "step": 1,
+          "reward": 2.2718749,
+          "sampled_kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 2.50234365,
+          "sampled_kl": 0.00094933
+        },
+        {
+          "step": 3,
+          "reward": 2.3671875,
+          "sampled_kl": 0.00153375
+        },
+        {
+          "step": 4,
+          "reward": 1.22343755,
+          "sampled_kl": 0.00346649
+        },
+        {
+          "step": 5,
+          "reward": 3.25,
+          "sampled_kl": 0.0031956
+        },
+        {
+          "step": 6,
+          "reward": 2.59687495,
+          "sampled_kl": 0.00469977
+        },
+        {
+          "step": 7,
+          "reward": 2.91718745,
+          "sampled_kl": 0.00747908
+        },
+        {
+          "step": 8,
+          "reward": 2.87812495,
+          "sampled_kl": 0.00969308
+        },
+        {
+          "step": 9,
+          "reward": 1.62031245,
+          "sampled_kl": 0.01091895
+        },
+        {
+          "step": 10,
+          "reward": 2.3679688,
+          "sampled_kl": 0.01192345
+        },
+        {
+          "step": 11,
+          "reward": 2.57343745,
+          "sampled_kl": 0.01134811
+        },
+        {
+          "step": 12,
+          "reward": 2.29296875,
+          "sampled_kl": 0.01063683
+        },
+        {
+          "step": 13,
+          "reward": 2.4906249,
+          "sampled_kl": 0.02148804
+        },
+        {
+          "step": 14,
+          "reward": 2.41953135,
+          "sampled_kl": 0.01414728
+        },
+        {
+          "step": 15,
+          "reward": 2.4140625,
+          "sampled_kl": 0.01273142
+        },
+        {
+          "step": 16,
+          "reward": 2.4281249,
+          "sampled_kl": 0.01491109
+        },
+        {
+          "step": 17,
+          "reward": 2.26796865,
+          "sampled_kl": 0.01591392
+        },
+        {
+          "step": 18,
+          "reward": 2.6328125,
+          "sampled_kl": 0.01891437
+        },
+        {
+          "step": 19,
+          "reward": 2.3515625,
+          "sampled_kl": 0.01368246
+        },
+        {
+          "step": 20,
+          "reward": 3.07421875,
+          "sampled_kl": 0.01221568
+        },
+        {
+          "step": 21,
+          "reward": 2.58906269,
+          "sampled_kl": 0.01577849
+        },
+        {
+          "step": 22,
+          "reward": 2.85625005,
+          "sampled_kl": 0.01726179
+        },
+        {
+          "step": 23,
+          "reward": 2.98124981,
+          "sampled_kl": 0.02231798
+        },
+        {
+          "step": 24,
+          "reward": 1.2578125,
+          "sampled_kl": 0.02586401
+        },
+        {
+          "step": 25,
+          "reward": 2.94999981,
+          "sampled_kl": 0.02124589
+        },
+        {
+          "step": 26,
+          "reward": 2.4773438,
+          "sampled_kl": 0.01790711
+        },
+        {
+          "step": 27,
+          "reward": 2.95000005,
+          "sampled_kl": 0.02057793
+        },
+        {
+          "step": 28,
+          "reward": 2.9609375,
+          "sampled_kl": 0.05891846
+        },
+        {
+          "step": 29,
+          "reward": 3.0953126,
+          "sampled_kl": 0.03015168
+        },
+        {
+          "step": 30,
+          "reward": 2.4078126,
+          "sampled_kl": 0.02164351
+        },
+        {
+          "step": 31,
+          "reward": 2.42499995,
+          "sampled_kl": 0.02984157
+        },
+        {
+          "step": 32,
+          "reward": 2.25390625,
+          "sampled_kl": 0.01958938
+        },
+        {
+          "step": 33,
+          "reward": 2.8671875,
+          "sampled_kl": 0.02248929
+        },
+        {
+          "step": 34,
+          "reward": 2.6109376,
+          "sampled_kl": 0.03413472
+        },
+        {
+          "step": 35,
+          "reward": 2.5140624,
+          "sampled_kl": 0.07299853
+        },
+        {
+          "step": 36,
+          "reward": 2.6859374,
+          "sampled_kl": 0.04052274
+        },
+        {
+          "step": 37,
+          "reward": 2.6968751,
+          "sampled_kl": 0.03754615
+        },
+        {
+          "step": 38,
+          "reward": 2.9906249,
+          "sampled_kl": 0.02658402
+        },
+        {
+          "step": 39,
+          "reward": 2.51874995,
+          "sampled_kl": 0.03913137
+        },
+        {
+          "step": 40,
+          "reward": 2.2671876,
+          "sampled_kl": 0.03267749
+        },
+        {
+          "step": 41,
+          "reward": 3.02265644,
+          "sampled_kl": 0.03965294
+        },
+        {
+          "step": 42,
+          "reward": 2.42656255,
+          "sampled_kl": 0.0370018
+        },
+        {
+          "step": 43,
+          "reward": 2.5539062,
+          "sampled_kl": 0.04031236
+        },
+        {
+          "step": 44,
+          "reward": 2.2171874,
+          "sampled_kl": 0.06506264
+        },
+        {
+          "step": 45,
+          "reward": 2.6257813,
+          "sampled_kl": 0.04012876
+        },
+        {
+          "step": 46,
+          "reward": 2.7718749,
+          "sampled_kl": 0.04238545
+        },
+        {
+          "step": 47,
+          "reward": 3.5015626,
+          "sampled_kl": 0.03074668
+        },
+        {
+          "step": 48,
+          "reward": 3.4593749,
+          "sampled_kl": 0.04977634
+        },
+        {
+          "step": 49,
+          "reward": 2.91093731,
+          "sampled_kl": 0.04901479
+        },
+        {
+          "step": 50,
+          "reward": 2.55781245,
+          "sampled_kl": 0.05772424
+        },
+        {
+          "step": 51,
+          "reward": 3.2265625,
+          "sampled_kl": 0.08406053
+        },
+        {
+          "step": 52,
+          "reward": 2.80000019,
+          "sampled_kl": 0.04830217
+        },
+        {
+          "step": 53,
+          "reward": 2.375,
+          "sampled_kl": 0.05396488
+        },
+        {
+          "step": 54,
+          "reward": 2.32500005,
+          "sampled_kl": 0.10127287
+        },
+        {
+          "step": 55,
+          "reward": 2.44843745,
+          "sampled_kl": 0.06759818
+        },
+        {
+          "step": 56,
+          "reward": 2.9515624,
+          "sampled_kl": 0.04859627
+        },
+        {
+          "step": 57,
+          "reward": 2.29921865,
+          "sampled_kl": 0.03863286
+        },
+        {
+          "step": 58,
+          "reward": 2.65312481,
+          "sampled_kl": 0.05508667
+        },
+        {
+          "step": 59,
+          "reward": 2.47187519,
+          "sampled_kl": 0.04695776
+        },
+        {
+          "step": 60,
+          "reward": 2.54999995,
+          "sampled_kl": 0.05079328
+        },
+        {
+          "step": 61,
+          "reward": 2.7874999,
+          "sampled_kl": 0.03343349
+        },
+        {
+          "step": 62,
+          "reward": 2.8812499,
+          "sampled_kl": 0.04129934
+        },
+        {
+          "step": 63,
+          "reward": 2.2109375,
+          "sampled_kl": 0.08276034
+        },
+        {
+          "step": 64,
+          "reward": 3.0875001,
+          "sampled_kl": 0.03367624
+        },
+        {
+          "step": 65,
+          "reward": 2.8453126,
+          "sampled_kl": 0.05934353
+        },
+        {
+          "step": 66,
+          "reward": 2.72968769,
+          "sampled_kl": 0.03920496
+        },
+        {
+          "step": 67,
+          "reward": 2.625,
+          "sampled_kl": 0.09450132
+        },
+        {
+          "step": 68,
+          "reward": 2.5304687,
+          "sampled_kl": 0.06958083
+        },
+        {
+          "step": 69,
+          "reward": 2.2804687,
+          "sampled_kl": 0.06658955
+        },
+        {
+          "step": 70,
+          "reward": 3.0406251,
+          "sampled_kl": 0.03936905
+        },
+        {
+          "step": 71,
+          "reward": 2.50234365,
+          "sampled_kl": 0.0844162
+        },
+        {
+          "step": 72,
+          "reward": 2.4781251,
+          "sampled_kl": 0.06445252
+        },
+        {
+          "step": 73,
+          "reward": 2.5460937,
+          "sampled_kl": 0.05149091
+        },
+        {
+          "step": 74,
+          "reward": 2.77890635,
+          "sampled_kl": 0.04650926
+        },
+        {
+          "step": 75,
+          "reward": 2.4124999,
+          "sampled_kl": 0.06154918
+        },
+        {
+          "step": 76,
+          "reward": 2.4460938,
+          "sampled_kl": 0.05640767
+        },
+        {
+          "step": 77,
+          "reward": 2.36250019,
+          "sampled_kl": 0.07491881
+        },
+        {
+          "step": 78,
+          "reward": 1.1328125,
+          "sampled_kl": 0.0481787
+        },
+        {
+          "step": 79,
+          "reward": 3.01093769,
+          "sampled_kl": 0.13725083
+        },
+        {
+          "step": 80,
+          "reward": 2.98749995,
+          "sampled_kl": 0.0961686
+        },
+        {
+          "step": 81,
+          "reward": 2.64531255,
+          "sampled_kl": 0.06348681
+        },
+        {
+          "step": 82,
+          "reward": 2.6640625,
+          "sampled_kl": 0.07436706
+        },
+        {
+          "step": 83,
+          "reward": 2.61249995,
+          "sampled_kl": 0.09594446
+        },
+        {
+          "step": 84,
+          "reward": 2.49687505,
+          "sampled_kl": 0.080742
+        },
+        {
+          "step": 85,
+          "reward": 3.2015624,
+          "sampled_kl": 0.06292957
+        },
+        {
+          "step": 86,
+          "reward": 2.55390644,
+          "sampled_kl": 0.06867863
+        },
+        {
+          "step": 87,
+          "reward": 2.70546865,
+          "sampled_kl": 0.06399345
+        },
+        {
+          "step": 88,
+          "reward": 3.2562499,
+          "sampled_kl": 0.09111356
+        },
+        {
+          "step": 89,
+          "reward": 2.79218745,
+          "sampled_kl": 0.08905903
+        },
+        {
+          "step": 90,
+          "reward": 2.5484376,
+          "sampled_kl": 0.06973505
+        },
+        {
+          "step": 91,
+          "reward": 3.1265626,
+          "sampled_kl": 0.09736767
+        },
+        {
+          "step": 92,
+          "reward": 2.46328115,
+          "sampled_kl": 0.06391951
+        },
+        {
+          "step": 93,
+          "reward": 3.45624995,
+          "sampled_kl": 0.05604213
+        },
+        {
+          "step": 94,
+          "reward": 2.8531251,
+          "sampled_kl": 0.07742524
+        },
+        {
+          "step": 95,
+          "reward": 2.33906245,
+          "sampled_kl": 0.06869549
+        },
+        {
+          "step": 96,
+          "reward": 2.796875,
+          "sampled_kl": 0.07650246
+        },
+        {
+          "step": 97,
+          "reward": 2.8984375,
+          "sampled_kl": 0.08556615
+        },
+        {
+          "step": 98,
+          "reward": 2.3031249,
+          "sampled_kl": 0.08907156
+        },
+        {
+          "step": 99,
+          "reward": 3.21406269,
+          "sampled_kl": 0.054961
+        },
+        {
+          "step": 100,
+          "reward": 2.8031249,
+          "sampled_kl": 0.05989011
+        },
+        {
+          "step": 101,
+          "reward": 2.82343745,
+          "sampled_kl": 0.08367586
+        },
+        {
+          "step": 102,
+          "reward": 3.3687501,
+          "sampled_kl": 0.06240094
+        },
+        {
+          "step": 103,
+          "reward": 2.33671856,
+          "sampled_kl": 0.0740811
+        },
+        {
+          "step": 104,
+          "reward": 2.9906249,
+          "sampled_kl": 0.07325422
+        },
+        {
+          "step": 105,
+          "reward": 3.23124981,
+          "sampled_kl": 0.05091128
+        },
+        {
+          "step": 106,
+          "reward": 2.73906231,
+          "sampled_kl": 0.0524654
+        },
+        {
+          "step": 107,
+          "reward": 2.90625,
+          "sampled_kl": 0.05330882
+        },
+        {
+          "step": 108,
+          "reward": 2.4281249,
+          "sampled_kl": 0.03862765
+        },
+        {
+          "step": 109,
+          "reward": 2.4390626,
+          "sampled_kl": 0.07713977
+        },
+        {
+          "step": 110,
+          "reward": 2.51796865,
+          "sampled_kl": 0.05767997
+        },
+        {
+          "step": 111,
+          "reward": 2.5,
+          "sampled_kl": 0.0626849
+        },
+        {
+          "step": 112,
+          "reward": 3.2750001,
+          "sampled_kl": 0.06075931
+        },
+        {
+          "step": 113,
+          "reward": 2.43437505,
+          "sampled_kl": 0.06608167
+        },
+        {
+          "step": 114,
+          "reward": 2.71406245,
+          "sampled_kl": 0.06770776
+        },
+        {
+          "step": 115,
+          "reward": 2.48046875,
+          "sampled_kl": 0.08271867
+        },
+        {
+          "step": 116,
+          "reward": 2.72968745,
+          "sampled_kl": 0.06719682
+        },
+        {
+          "step": 117,
+          "reward": 2.8187499,
+          "sampled_kl": 0.07586502
+        },
+        {
+          "step": 118,
+          "reward": 2.3117187,
+          "sampled_kl": 0.09171174
+        },
+        {
+          "step": 119,
+          "reward": 2.39296865,
+          "sampled_kl": 0.08492485
+        },
+        {
+          "step": 120,
+          "reward": 2.1875,
+          "sampled_kl": 0.06510888
+        },
+        {
+          "step": 121,
+          "reward": 2.7203126,
+          "sampled_kl": 0.05806627
+        },
+        {
+          "step": 122,
+          "reward": 2.36406231,
+          "sampled_kl": 0.06134593
+        },
+        {
+          "step": 123,
+          "reward": 3.35624981,
+          "sampled_kl": 0.07407251
+        },
+        {
+          "step": 124,
+          "reward": 2.7484374,
+          "sampled_kl": 0.05840216
+        },
+        {
+          "step": 125,
+          "reward": 2.3687501,
+          "sampled_kl": 0.08372767
+        },
+        {
+          "step": 126,
+          "reward": 2.7796874,
+          "sampled_kl": 0.08517949
+        },
+        {
+          "step": 127,
+          "reward": 2.37734365,
+          "sampled_kl": 0.08642674
+        },
+        {
+          "step": 128,
+          "reward": 2.5140624,
+          "sampled_kl": 0.07422773
+        },
+        {
+          "step": 129,
+          "reward": 2.49687505,
+          "sampled_kl": 0.05362198
+        },
+        {
+          "step": 130,
+          "reward": 2.40156245,
+          "sampled_kl": 0.04732161
+        },
+        {
+          "step": 131,
+          "reward": 2.78437519,
+          "sampled_kl": 0.06708972
+        },
+        {
+          "step": 132,
+          "reward": 3.06562495,
+          "sampled_kl": 0.08391662
+        },
+        {
+          "step": 133,
+          "reward": 2.87968755,
+          "sampled_kl": 0.07360673
+        },
+        {
+          "step": 134,
+          "reward": 2.72109365,
+          "sampled_kl": 0.05558351
+        },
+        {
+          "step": 135,
+          "reward": 2.2437501,
+          "sampled_kl": 0.07673837
+        },
+        {
+          "step": 136,
+          "reward": 3.4046874,
+          "sampled_kl": 0.04860205
+        },
+        {
+          "step": 137,
+          "reward": 2.8203125,
+          "sampled_kl": 0.0578948
+        },
+        {
+          "step": 138,
+          "reward": 2.671875,
+          "sampled_kl": 0.10410169
+        },
+        {
+          "step": 139,
+          "reward": 3.12031245,
+          "sampled_kl": 0.06569275
+        },
+        {
+          "step": 140,
+          "reward": 2.52812481,
+          "sampled_kl": 0.04053386
+        },
+        {
+          "step": 141,
+          "reward": 2.4671874,
+          "sampled_kl": 0.07820826
+        },
+        {
+          "step": 142,
+          "reward": 2.65703106,
+          "sampled_kl": 0.07307862
+        },
+        {
+          "step": 143,
+          "reward": 2.8734374,
+          "sampled_kl": 0.08531787
+        },
+        {
+          "step": 144,
+          "reward": 2.5476563,
+          "sampled_kl": 0.10328113
+        },
+        {
+          "step": 145,
+          "reward": 2.7203126,
+          "sampled_kl": 0.05005385
+        },
+        {
+          "step": 146,
+          "reward": 2.5796876,
+          "sampled_kl": 0.05566538
+        },
+        {
+          "step": 147,
+          "reward": 2.41718745,
+          "sampled_kl": 0.10694841
+        },
+        {
+          "step": 148,
+          "reward": 2.671875,
+          "sampled_kl": 0.0498555
+        },
+        {
+          "step": 149,
+          "reward": 1.9992187,
+          "sampled_kl": 0.1086752
+        },
+        {
+          "step": 150,
+          "reward": 3.21875,
+          "sampled_kl": 0.0997131
+        },
+        {
+          "step": 151,
+          "reward": 2.45781231,
+          "sampled_kl": 0.05770924
+        },
+        {
+          "step": 152,
+          "reward": 2.48749995,
+          "sampled_kl": 0.08417558
+        },
+        {
+          "step": 153,
+          "reward": 2.859375,
+          "sampled_kl": 0.0992794
+        },
+        {
+          "step": 154,
+          "reward": 2.1859374,
+          "sampled_kl": 0.08260478
+        },
+        {
+          "step": 155,
+          "reward": 2.4609375,
+          "sampled_kl": 0.0790081
+        },
+        {
+          "step": 156,
+          "reward": 2.22890615,
+          "sampled_kl": 0.1115059
+        },
+        {
+          "step": 157,
+          "reward": 2.7484374,
+          "sampled_kl": 0.08045941
+        },
+        {
+          "step": 158,
+          "reward": 2.56718755,
+          "sampled_kl": 0.0668953
+        },
+        {
+          "step": 159,
+          "reward": 2.9156251,
+          "sampled_kl": 0.07121577
+        },
+        {
+          "step": 160,
+          "reward": 2.55000019,
+          "sampled_kl": 0.06812797
+        },
+        {
+          "step": 161,
+          "reward": 2.3687501,
+          "sampled_kl": 0.05820996
+        },
+        {
+          "step": 162,
+          "reward": 2.1781249,
+          "sampled_kl": 0.070383
+        },
+        {
+          "step": 163,
+          "reward": 2.61406255,
+          "sampled_kl": 0.09180727
+        },
+        {
+          "step": 164,
+          "reward": 2.6328125,
+          "sampled_kl": 0.09402899
+        },
+        {
+          "step": 165,
+          "reward": 2.7437501,
+          "sampled_kl": 0.08853629
+        },
+        {
+          "step": 166,
+          "reward": 3.01093745,
+          "sampled_kl": 0.09404845
+        },
+        {
+          "step": 167,
+          "reward": 2.64374995,
+          "sampled_kl": 0.06909935
+        },
+        {
+          "step": 168,
+          "reward": 3.2515626,
+          "sampled_kl": 0.1014181
+        },
+        {
+          "step": 169,
+          "reward": 3.07343769,
+          "sampled_kl": 0.087221
+        },
+        {
+          "step": 170,
+          "reward": 2.8031249,
+          "sampled_kl": 0.08269604
+        },
+        {
+          "step": 171,
+          "reward": 2.2796874,
+          "sampled_kl": 0.08542642
+        },
+        {
+          "step": 172,
+          "reward": 2.4234376,
+          "sampled_kl": 0.07533889
+        },
+        {
+          "step": 173,
+          "reward": 2.5234375,
+          "sampled_kl": 0.04426048
+        },
+        {
+          "step": 174,
+          "reward": 2.8031249,
+          "sampled_kl": 0.06516913
+        },
+        {
+          "step": 175,
+          "reward": 2.4359374,
+          "sampled_kl": 0.12095076
+        },
+        {
+          "step": 176,
+          "reward": 2.8843751,
+          "sampled_kl": 0.07654876
+        },
+        {
+          "step": 177,
+          "reward": 2.3132813,
+          "sampled_kl": 0.1039748
+        },
+        {
+          "step": 178,
+          "reward": 3.2093749,
+          "sampled_kl": 0.06138046
+        },
+        {
+          "step": 179,
+          "reward": 2.4453125,
+          "sampled_kl": 0.04565585
+        },
+        {
+          "step": 180,
+          "reward": 3.1500001,
+          "sampled_kl": 0.09019402
+        },
+        {
+          "step": 181,
+          "reward": 2.703125,
+          "sampled_kl": 0.05829432
+        },
+        {
+          "step": 182,
+          "reward": 2.7734375,
+          "sampled_kl": 0.08849723
+        },
+        {
+          "step": 183,
+          "reward": 2.37031269,
+          "sampled_kl": 0.05820696
+        },
+        {
+          "step": 184,
+          "reward": 3.15156245,
+          "sampled_kl": 0.06384213
+        },
+        {
+          "step": 185,
+          "reward": 2.8828125,
+          "sampled_kl": 0.05322676
+        },
+        {
+          "step": 186,
+          "reward": 2.72187495,
+          "sampled_kl": 0.06801569
+        },
+        {
+          "step": 187,
+          "reward": 2.54218769,
+          "sampled_kl": 0.08013716
+        },
+        {
+          "step": 188,
+          "reward": 2.6890626,
+          "sampled_kl": 0.080332
+        },
+        {
+          "step": 189,
+          "reward": 2.9781251,
+          "sampled_kl": 0.09628244
+        },
+        {
+          "step": 190,
+          "reward": 3.0015626,
+          "sampled_kl": 0.07256829
+        },
+        {
+          "step": 191,
+          "reward": 2.58281255,
+          "sampled_kl": 0.08459618
+        },
+        {
+          "step": 192,
+          "reward": 2.6890626,
+          "sampled_kl": 0.10367157
+        },
+        {
+          "step": 193,
+          "reward": 2.70078135,
+          "sampled_kl": 0.09379054
+        },
+        {
+          "step": 194,
+          "reward": 3.25312519,
+          "sampled_kl": 0.05370916
+        },
+        {
+          "step": 195,
+          "reward": 2.35625005,
+          "sampled_kl": 0.10759066
+        },
+        {
+          "step": 196,
+          "reward": 3.1390624,
+          "sampled_kl": 0.0536346
+        },
+        {
+          "step": 197,
+          "reward": 2.7906251,
+          "sampled_kl": 0.06725425
+        },
+        {
+          "step": 198,
+          "reward": 2.9546876,
+          "sampled_kl": 0.05635351
+        },
+        {
+          "step": 199,
+          "reward": 2.7437501,
+          "sampled_kl": 0.09574586
+        },
+        {
+          "step": 200,
+          "reward": 3.5093751,
+          "sampled_kl": 0.07646488
+        }
+      ],
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
       "validation": {},
       "long_replays": {},
       "train_conditions": 270,
@@ -11756,6 +19584,18 @@
         "gadi_muse_cmi_triple_baseline.pbs": "a987ed4c96e2d4c7e7fdf8a680df1c7dc496df5f42702d8f15e541b331081b66",
         "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
         "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2"
+      },
+      "failure_reason": "[rank0]: RuntimeError: POST http://127.0.0.1:27956/v1/audio/decode failed: HTTP 500: {\"detail\":\"Decode failed: The size of tensor a (512) must match the size of tensor b (448) at non-singleton dimension 2\"}",
+      "invalid_output_count": 4,
+      "training_receipt": "../../../music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/muse-musecritic-3e-4.json",
+      "resume": {
+        "job_id": "181197557.gadi-pbs",
+        "project": "iv96",
+        "priority": 1023,
+        "from_step": 180,
+        "target_step": 270,
+        "status": "submitted-not-completed",
+        "restore_optimizer_scheduler_rng": true
       }
     }
   ],

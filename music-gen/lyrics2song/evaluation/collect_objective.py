@@ -14,19 +14,21 @@ METRICS = ['songbench_global_avg', 'songbench_musicality', 'songeval_global_avg'
            'songeval_musicality', 'audiobox_pq', 'mulan', 'allmusiccaps', 'control_overall', 'per']
 
 
-def cell(key, dataset, q3o_submitted=False):
+def cell(key, dataset, q3o_submitted=False, q3o_deferred=False):
     if dataset == 'cmi' and key in ['per', 'control_overall']:
         return {'status': 'not-applicable', 'value': None, 'scored': 0, 'reason':
             '全体 test 含越南语、爪哇语等；官方中英 G2P 未验证适用，不能报全体 PER。' if key == 'per' else
             'CMI-Pref 没有 WSB 的冻结逐条件 Q3O 属性/权重；不能套用另一个数据集的标注。'}
+    if key == 'control_overall' and q3o_deferred:
+        return {'status': 'deferred', 'value': None, 'scored': 0, 'reason': '用户要求暂缓 Q3O；权重保留，未启动评分。'}
     return {'status': 'resource-pending' if key == 'control_overall' and not q3o_submitted else 'pending', 'value': None,
             'scored': 0, 'reason': ('Q3O 已提交 Gadi 80GB GPU，尚未收齐评分。' if q3o_submitted else
             'Q3O 官方需 80 GB；5090 为 32 GB，尚未提交该 scorer。') if key == 'control_overall' else '尚未完成完整测试集。'}
 
 
-def aggregate(run, dataset, expected, q3o_submitted=False):
+def aggregate(run, dataset, expected, q3o_submitted=False, q3o_deferred=False):
     runs = [run] if isinstance(run, Path) else run
-    cells = {key: cell(key, dataset, q3o_submitted) for key in METRICS}
+    cells = {key: cell(key, dataset, q3o_submitted, q3o_deferred) for key in METRICS}
     chunks = [f for root in runs for f in sorted((root / 'evaluation').glob('chunk_*.json'))]
     rows = [r for f in chunks for r in json.loads(f.read_text())['rows']]
     if len({r.get('adapter_sha256') for r in rows}) > 1:
@@ -133,7 +135,12 @@ def main():
     for dataset, count in [('wsb', 192), ('cmi', 121)]:
         data['datasets'][dataset] = {'conditions': count, 'rows': []}
         for ident, label, status in arms:
-            result = aggregate([r / ident / dataset for r in a.runs], dataset, count, bool(a.execution) and ident.startswith('yue2-'))
+            training = next((r for r in data.get('execution', {}).get('muse_training', []) if r['id'] == ident), None)
+            if training:
+                status = 'training-complete-not-evaluated' if training['verified_train_steps'] == 270 else 'training-resume-pending'
+            result = aggregate([r / ident / dataset for r in a.runs], dataset, count,
+                               bool(a.execution) and ident.startswith('yue2-'),
+                               bool(data.get('execution', {}).get('q3o_deferred')))
             data['datasets'][dataset]['rows'].append({'id': ident, 'system': label, 'step': 0 if ident.endswith('baseline') else 270,
                 'status': 'evaluating' if result['generated_candidates'] else status, **result})
     write(a.output, data)

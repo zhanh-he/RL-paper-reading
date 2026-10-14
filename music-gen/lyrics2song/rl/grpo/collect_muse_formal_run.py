@@ -30,8 +30,10 @@ def collect(root):
     logs = list(root.glob("checkpoint/v*/logging.jsonl"))
     if len(logs) != 1:
         raise ValueError(f"Expected one training log, found {len(logs)}")
-    curve = []
-    for line in logs[0].open():
+    resume_step = experiment.get('resume_step', 0)
+    prefix = collect(Path(experiment['resume_checkpoint']).parents[2]) if resume_step else None
+    curve = prefix['train_curve'][:resume_step] if prefix else []
+    for line in logs[0].read_text().splitlines():
         row = json.loads(line)
         if "reward" not in row:
             continue
@@ -41,13 +43,15 @@ def collect(root):
         if not all(math.isfinite(row[k]) for k in ("reward", "kl")):
             raise ValueError(f"Nonfinite Muse curve at {step}")
         curve.append({"step": step, "reward": row["reward"], "sampled_kl": row["kl"]})
-    rollouts = [json.loads(line) for line in (root / "rollouts.jsonl").open()]
-    if len(rollouts) != len(curve):
+    rollouts = [json.loads(line) for line in (root / "rollouts.jsonl").read_text().splitlines()]
+    if len(rollouts) != len(curve) - resume_step:
         raise ValueError("Training curve and rollout count differ")
     recorded = {}
+    invalid_path = root / 'invalid_outputs.jsonl'
+    invalid = {r['request_id']: r for r in (json.loads(line) for line in invalid_path.read_text().splitlines())} if invalid_path.exists() else {}
     if experiment["reward"] == "songeval":
         for path in root.glob("songeval_scoring/*/bindings.jsonl"):
-            for line in path.open():
+            for line in path.read_text().splitlines():
                 binding = json.loads(line)
                 recorded[binding["audio_path"]] = binding["audio_sha256"]
     else:
@@ -55,12 +59,22 @@ def collect(root):
         if receipt.exists():
             for binding in json.loads(receipt.read_text())["bound_audio"]:
                 recorded[str(root / binding["audio_path"])] = binding["sha256"]
-    bindings = []
-    for step, (row, point) in enumerate(zip(rollouts, curve), 1):
+    bindings = [r for r in prefix['audio_bindings'] if r['step'] <= resume_step] if prefix else []
+    for step, (row, point) in enumerate(zip(rollouts, curve[resume_step:]), resume_step + 1):
         rewards = []
         for index in (0, 1):
-            audio = Path(row[f"audio_path_{index}"])
+            audio_text = row[f"audio_path_{index}"]
+            audio = Path(audio_text)
             reward = row[f"reward_{index}"]
+            if not audio_text:
+                request_id = row[f'completion_{index}_request_id']
+                rejection = invalid.get(request_id)
+                if reward != 0 or not rejection or rejection['reward'] != 0:
+                    raise ValueError(f'Unexplained missing audio at step {step}, rollout {index}')
+                bindings.append({'step': step, 'rollout': index, 'status': 'invalid-output-zero',
+                                 'reason': rejection['reason'], 'invalid_receipt_sha256': digest(invalid_path)})
+                rewards.append(reward)
+                continue
             if not audio.is_file() or not math.isfinite(reward):
                 raise ValueError(f"Missing audio or reward at step {step}, rollout {index}")
             actual = digest(audio)
@@ -73,6 +87,8 @@ def collect(root):
             raise ValueError(f"Rollout and logged reward differ at step {step}")
     checkpoints = sorted({int(path.parent.name.removeprefix("checkpoint-"))
                           for path in root.rglob("adapter_model.safetensors")})
+    if prefix:
+        checkpoints = sorted(set(checkpoints) | {s for s in prefix['checkpoints'] if s <= resume_step})
     complete = len(curve) == 270 and 270 in checkpoints
     errors = [line.strip() for line in (root / "train.log").read_text(errors="replace").split("\n")
               if any(key in line for key in ("ValueError:", "RuntimeError:", "OutOfMemoryError:"))]
@@ -91,7 +107,10 @@ def collect(root):
         "valid_conditions": 30, "verified_train_steps": len(curve), "train_curve": curve,
         "checkpoints": checkpoints, "failure_reason": failure, "validation": {},
         "audio_bindings": bindings, "experiment_sha256": digest(root / "experiment.json"),
+        "invalid_output_count": sum(r.get('status') == 'invalid-output-zero' for r in bindings),
         "validation_status": "not-yet-evaluated",
+        "resume_step": resume_step,
+        "restores_optimizer_scheduler_rng": experiment.get('restores_optimizer_scheduler_rng', False),
     }
 
 

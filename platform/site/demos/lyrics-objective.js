@@ -31,10 +31,13 @@ function render() {
       const cell = r.metrics[m.key];
       let text = '待评估';
       if (cell.status === 'not-applicable') text = 'n/a';
+      else if (cell.status === 'deferred') text = '暂缓';
       else if (cell.status === 'complete') text = format(m.key, cell.value);
       else if (cell.status === 'resource-pending') text = '待 80 GB';
       else if (cell.scored > 0) text = `待完成 (${cell.scored}/${cell.expected})`;
       else if (r.status === 'waiting-for-training') text = '待 checkpoint';
+      else if (r.status === 'training-complete-not-evaluated') text = '训练完成 · 评估未提交';
+      else if (r.status === 'training-resume-pending') text = '待续跑完成';
       else if (r.status === 'not-submitted') text = '未提交';
       return { text, status: cell.status, reason: cell.reason };
     })])));
@@ -44,11 +47,14 @@ function render() {
       ? '本站完整目标为 192 条 × 2 候选，每候选 4 次 ASR，按官方 PER / edits / phoneme length / candidate index 规则选择；其余指标共用同一首。YuE2 使用 legacy benchmark VAE、完整 symbolic planning 和 9000 semantic-token 上限，保留截断。尚未完整覆盖的均分不发布。'
       : '121 个官方 test 条件（125 偏好票），不使用偏好音频当唯一 ground truth。每条件两个固定种子，质量/对齐指标报告全部 242 候选的均值，不按质量挑最好一首。全体多语言 PER 与缺少冻结属性权重的 Q3O 标 n/a；不把英文 G2P 套在越南语、爪哇语等歌词上。';
   const productionJobs = measured.execution?.kaya.cmi_quality_jobs || [];
+  const fullCampaign = measured.execution?.kaya.full_cmi_campaign;
   const submitted = measured.execution
-    ? ` · Gadi wa66 / iv96：12 个完整分片 + 首四条 80GB 评分任务已提交${measured.execution.gadi.preparation_completed ? '，冻结评测环境准备完成' : ''} · Kaya：20 首跨机核验已完成（不重复计入总分）；新增 CMI ${productionJobs.filter((j) => j.recovered).length}/${productionJobs.length} 组已回收`
+    ? ` · Gadi wa66 / iv96：13 个 WSB 全量分片/续评任务${measured.execution.gadi.queue_snapshot ? '回收时全部排队' : '已提交'} · Kaya：${fullCampaign?.recovered_chunks ?? 0} 个新增批次 / ${fullCampaign?.recovered_candidates ?? 0} 候选评分已回收，另有 ${productionJobs.filter((j) => j.recovered).length} 个前缀批次；跨机核验不重复计入总分${measured.execution.q3o_deferred ? ' · Q3O 暂缓，不启动' : ''}`
     : '';
-  const fullCmi = measured.execution?.lab5090.full_cmi_conditions;
-  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN')} · 5090 ${fullCmi ? 'CMI test 全量 121 条 × 7 设置 × 2 候选' : '首四条候选生成'}${measured.queue_running_at_collection ? '运行中' : fullCmi ? '回收时未运行' : measured.execution?.lab5090.generated_reserved_candidates ? '已完成' : '未运行'}${submitted} · 提交记录不代表 GPU 已开始运行 · Muse 正式臂等待训练 checkpoint`;
+  const generated = measured.datasets.cmi.rows.filter((r) => r.id.startsWith('yue2-')).reduce((n, r) => n + r.generated_candidates, 0);
+  const museRecords = measured.execution?.muse_training || [];
+  const museDone = museRecords.filter((r) => r.verified_train_steps === 270).length;
+  $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN', {timeZone: 'Australia/Perth'})} AWST · CMI 全量生成 ${generated}/1694 (${(100*generated/1694).toFixed(1)}%) · 5090 ${measured.queue_running_at_collection ? '运行中' : '回收时未运行'}${submitted} · 提交不代表完成；Muse ${museDone}/6 臂训练完成${museRecords.some((r) => r.resume) ? '、从 180 续跑已提交' : ''}，独立评估尚未提交`;
   const diagnostics = measured.datasets[dataset].rows.flatMap((r) => (r.diagnostic_rows || []).map((sample) => ({ system: r.system, ...sample })));
   $('diagnostics').hidden = published || !diagnostics.length;
   $('diagnostic-head').replaceChildren(tr(['Experiment', 'Candidate · duration', ...official.metrics.map((m) => `${m.label} ${m.lowerIsBetter ? '↓' : '↑'}`)], true));

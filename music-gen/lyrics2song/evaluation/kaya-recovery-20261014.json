@@ -1,0 +1,181 @@
+{
+  "scope": "partial full-cohort progress, not final means",
+  "chunks": [
+    {
+      "arm": "yue2-baseline",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "fd5309aa916048472aeec1d0fd91f4886fb65e7530202d38523db1fdcddc4a6a",
+      "merged_chunk_sha256": "f0c55de4c5b43b3513846a10158be89b0441c4d8e4901bf6cb932db73e181d57"
+    },
+    {
+      "arm": "yue2-baseline",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "298c4a5953e436bd5a2b64b963bbd055246be830d1677499777a99990a1692b7",
+      "merged_chunk_sha256": "82cbfa5e74688a9128365a29b703ff01f5bdad63056d84965524a58b431e7992"
+    },
+    {
+      "arm": "yue2-baseline",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "5bb8db936acf0de190185f44d6ac90b3a7ca23106058ebdc2365f95f86ad5492",
+      "merged_chunk_sha256": "db7d71c166a020cbffd0c8b345735cdd9f42c2926b65bae7776d1b81edaec781"
+    },
+    {
+      "arm": "yue2-baseline",
+      "chunk": "chunk_016_020.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "b184ca05d4446dbb91bffd37fcac19227d1895c0a69f8bdd247791056812b9a2",
+      "merged_chunk_sha256": "6327736c22adaacef6fbb5471090a421eada1cf73d2aec512c33ceb798437a54"
+    },
+    {
+      "arm": "yue2-musecritic-1e-4",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "f197f0477fd8d6ca98a3c184e735359ad23b031995fab68c6c45ca34887f521c",
+      "merged_chunk_sha256": "4e025dbeadeebc623d844566c78629477d7754b35ee2f8f47bdea2ebfa389882"
+    },
+    {
+      "arm": "yue2-musecritic-1e-4",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "5761f7c4922cc5a0e400e098e02743e2ecab2cef7f34cbf4d7a74ee0610eed7b",
+      "merged_chunk_sha256": "da27ccf078bc14bea3285558da8416149f5a61ab559f1f81f395f43acfa7e873"
+    },
+    {
+      "arm": "yue2-musecritic-1e-4",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "edbc13c5840a6b653d31d69988125d6eba79b3cf85727a0a19d58a35daedff99",
+      "merged_chunk_sha256": "0ee4b4f33fcecdd35cac36417266f8232589e177b5de9462d1e594e02d285cdf"
+    },
+    {
+      "arm": "yue2-musecritic-2e-5",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "ec712d1a9fd97b48beb110d723c6dae92092c2a7cdf92b57d7b4dd4461119cd4",
+      "merged_chunk_sha256": "f3f6a144af1540d527003893a9b0078267af22cf27f6b92956345242b798f90c"
+    },
+    {
+      "arm": "yue2-musecritic-2e-5",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "91a1f81ab21647fb69cfac335c49a0cd79f89da5edca6a4ed1ec4419f1f1c6e3",
+      "merged_chunk_sha256": "75c7259ebcfd8d964576c7192cd823eeb524a0892016a6138e5626e2bfa1ee99"
+    },
+    {
+      "arm": "yue2-musecritic-2e-5",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "2af9f64287d016c4d2456f98d3f5723cefcdf2517d3a9cee3c1388584e4c44e6",
+      "merged_chunk_sha256": "15726ce1253746062875a5b3fabf802aac796cfa284f375834988607bea6364c"
+    },
+    {
+      "arm": "yue2-musecritic-2e-5",
+      "chunk": "chunk_016_020.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "3dacd20556e4e88d8f4f560c481538f307edcbda2ab2e4f6ac2ef01f737b376c",
+      "merged_chunk_sha256": "e7f7e1097cb7129a73f95a923e018a2cd3e13746ba5d305efa202255225370c5"
+    },
+    {
+      "arm": "yue2-musecritic-3e-4",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "fc49e3ec6a3d984879d34a36e02d32fc8dede49f69316f01ccea8f24421a895a",
+      "merged_chunk_sha256": "ed4a941025b09609cb90cea1212847cf1f98226207e693b61777f72afd47027b"
+    },
+    {
+      "arm": "yue2-musecritic-3e-4",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "a6f1db3be383c01927adb8523ae1c663621d2f2efdfbebdfe2b80bf79dfef879",
+      "merged_chunk_sha256": "f86d1b115f683f8eb23aee2e841e79c9f77a733ebc89a29778e0f95f557816dc"
+    },
+    {
+      "arm": "yue2-musecritic-3e-4",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "af6ae1d8a8b21a1ca366fc987c90bba06be63a93611580f7759d9b8fe99df678",
+      "merged_chunk_sha256": "b3d6e15bf8025ae6295e40380f0202550f40ba944a0b1e8b2355a8815bada322"
+    },
+    {
+      "arm": "yue2-songeval-1e-4",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "91c4a553f555293d57cc6586cc9e9aab3dca6511c60032884f62c9dbfa91299f",
+      "merged_chunk_sha256": "c43e745730c03c148c2f45d3d13e12fb1eb47edada942d9fc84a7470c4aedabc"
+    },
+    {
+      "arm": "yue2-songeval-1e-4",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "b621ca597690d6405f60f0b6d49d55a61bc872968532037491f2eb389731a564",
+      "merged_chunk_sha256": "208ddd877e4c5e42567b75ccba82c4ccd37306ecf4658d5625ccadce1c2b8acc"
+    },
+    {
+      "arm": "yue2-songeval-1e-4",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "4685e3c3391ca163c0ecc7878e84160a44e0fd73a91070fe3377d8287c7e970e",
+      "merged_chunk_sha256": "8af46a4451ef1b856a634f54d8f3d1beb582b5aa18f77182c6b4c4a2f3f3fb0d"
+    },
+    {
+      "arm": "yue2-songeval-1e-4",
+      "chunk": "chunk_016_020.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "522f6421a35340c9fe885a094b5ecd98526c3d5d3a963755add52b50f0992573",
+      "merged_chunk_sha256": "b49fb9b150b858a3379bd9d0c2647f9f861b59c80ae53abe13a882b1b82696de"
+    },
+    {
+      "arm": "yue2-songeval-2e-5",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "46fb71de9617d84faecd8574dbd6f499c008d2c44f1482b7e868678609704a2f",
+      "merged_chunk_sha256": "6a2618e719ed05e1509b084933866c8af167618a4634c0d8d9370400feb642e7"
+    },
+    {
+      "arm": "yue2-songeval-2e-5",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "8fcfb4ec6d2159c20c08b98f69ee601333b5fa0e06314b825d3c50b068751491",
+      "merged_chunk_sha256": "299b151546b12e183dc00a86024190585b2045507281fba2966ac080f93335cc"
+    },
+    {
+      "arm": "yue2-songeval-2e-5",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "969baad946bb5d615b694a17c78bde467e742a4244fab2e99e717ea736f80bcf",
+      "merged_chunk_sha256": "1bc1888139b3d60394398820ca9d4a1e9377945fd5693f43fad66bcd8ad3c8dd"
+    },
+    {
+      "arm": "yue2-songeval-2e-5",
+      "chunk": "chunk_016_020.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "be465b525edad9013a259a707d428abc10a483b86ba029d503b54be9f66f59f1",
+      "merged_chunk_sha256": "c1c351665e4f91a3417e57315e038d49528adc01160323dfdb2b7cdf5ec11c39"
+    },
+    {
+      "arm": "yue2-songeval-3e-4",
+      "chunk": "chunk_004_008.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "4eb7a175cf757b9015beec8c84a1e7d19fc40ece7cbe8431ec7e415772b1bb0d",
+      "merged_chunk_sha256": "3190f16fe07fef52b332886d8448d8650825e50032c39c26084551f4c14c542f"
+    },
+    {
+      "arm": "yue2-songeval-3e-4",
+      "chunk": "chunk_008_012.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "b9353b4ff6ad0344de8b4d1f745b70d1dda1a228e6c0f2eb237de787129debe2",
+      "merged_chunk_sha256": "3b4d63b81fa2cfc2e66a63b0dd8699d284ab0d233c9481c92b41616f0ed27a80"
+    },
+    {
+      "arm": "yue2-songeval-3e-4",
+      "chunk": "chunk_012_016.json",
+      "candidates": 8,
+      "returned_chunk_sha256": "ace21eed8899aed26a1415f3f4f2aab6d71d8ed874f7b1f76e8badb7a366fea8",
+      "merged_chunk_sha256": "6d1029231b6be3558a5941218e2917db88c78a1d50c0e5f710c8c560418a63b1"
+    }
+  ],
+  "candidate_count": 200
+}

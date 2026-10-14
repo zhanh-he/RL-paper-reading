@@ -1,0 +1,45 @@
+{
+  "version": "proposal-20261014-v1",
+  "status": "awaiting-user-approval",
+  "training_authorized": false,
+  "title": "SP / AI Reward Regimes",
+  "hypothesis": "SP spectral-layer proxies may help lower-quality generators, while learned perceptual rewards may distinguish stronger generators. MOS 2-3 versus 4+ is a hypothesis, not a measured model label.",
+  "data": {
+    "train": "CMI-Pref triple-source frozen 270 conditions",
+    "valid": "CMI-Pref same frozen 30 conditions",
+    "test": "WildSongBench all 192 conditions, sealed for this new study until protocol approval and model/reward selection is frozen",
+    "split_url": "./data/cmi-pref-triple-9to1-split.json",
+    "modalities": "Native text + lyrics; reference audio remains reserved, not an RL target.",
+    "no_test_tuning": true,
+    "no_new_subset": true
+  },
+  "models": [
+    {"id": "yue2", "name": "YuE2-3B", "role": "Proposed stronger baseline", "mos": null, "status": "Awaiting approval", "note": "Use the original base, not an existing SongEval/MuseCritic-adapted checkpoint. MOS >=4 must be verified by blind listening.", "source": "https://github.com/multimodal-art-projection/YuE"},
+    {"id": "muse", "name": "Muse-0.6B", "role": "Proposed contrasting baseline", "mos": null, "status": "Awaiting approval", "note": "Use the original base. Its lower quality relative to YuE2 is not yet a matched human-MOS measurement.", "source": "https://github.com/yuhui1038/Muse"},
+    {"id": "weak", "name": "Controlled weaker Muse checkpoint", "role": "Optional third quality regime", "mos": null, "status": "Checkpoint not selected", "note": "Prefer a independently fixed weaker checkpoint of the same model family. Select using train/valid blind listening only, record weight hash; no test-based selection or inference-only distortion masquerading as a new model.", "source": null},
+    {"id": "songgen", "name": "SongGen Mixed Pro", "role": "Alternative candidate, not selected", "mos": null, "status": "Compatibility gate", "note": "Open weights and AR training code, but officially English-only and <=30 seconds. It is not a clean substitute for the complete multilingual protocol; do not silently filter CMI/WSB to English.", "source": "https://github.com/LiuZH-19/SongGen"},
+    {"id": "acestep", "name": "ACE-Step 1.5", "role": "Alternative candidate, not a weak label", "mos": null, "status": "Different policy family", "note": "Official report claims strong quality, so do not call it poor. Its acoustic flow/diffusion policy needs an appropriate trajectory-based GRPO formulation; AR-token GRPO cannot simply be reused. Optional independent extension, not the first urgent comparison.", "source": "https://github.com/ace-step/ACE-Step-1.5"}
+  ],
+  "rewards": [
+    {"id": "richness", "name": "SP Richness-v1 (proposed)", "status": "Definition awaiting approval", "definition": "G * (0.60 * layer_activity + 0.25 * layer_movement + 0.15 * active_frame_fraction)", "meaning": "Five-band spectral activity/movement with a spectral-flatness tonality gate; not instrument count or MOS.", "note": "Reuse the existing Richness-v0 raw core. Lyrics2song has no fixed vocal input: freeze a common vocal/accompaniment separator and apply SP to generated accompaniment. The original accompaniment-to-fixed-vocal loudness penalty cannot be copied unchanged. Freeze separation and common guardrails before training; label this adaptation v1.", "source": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/rl/grpo/train_lada_band.py"},
+    {"id": "songbench", "name": "SongBench-Instrument", "status": "Available metric; RL adapter not yet built", "definition": "R = Instrument (public scoring output may name this Instrumental)", "meaning": "Instrument realism, synthesis quality and acoustic fidelity, not the number of instruments.", "note": "Frozen SongBench checkpoint/frontend; log all seven dimensions for independent cross-reward evaluation. Arrangement is a separate optional orchestration reward, not secretly part of this arm.", "source": "https://github.com/Tencent/SongBench"},
+    {"id": "songeval", "name": "SongEval-Musicality (optional proxy)", "status": "Requires user confirmation", "definition": "R = Musicality", "meaning": "Holistic musical enjoyment, not an instrument-specific head.", "note": "SongEval has only Coherence, Musicality, Memorability, Clarity and Naturalness. SongEval-inst does not exist; use this broader proxy only after confirmation, or replace this arm with SongBench-Arrangement.", "source": "https://github.com/ASLP-lab/SongEval"}
+  ],
+  "design": {
+    "primary_matrix": "YuE2 / Muse x SP Richness / SongBench-Instrument / optional SongEval-Musicality",
+    "weak_model_extension": "Adds three arms only after a valid weak checkpoint is selected and approved",
+    "optimizer": "Proposed LoRA GRPO; frozen reference, beta=0.01, identical group size and schedule within each model",
+    "lr_grid": ["2e-5", "1e-4", "3e-4"],
+    "steps": 270,
+    "seeds": [42, 43, 44],
+    "selection": "Hyperparameters/checkpoints selected on all 30 validation conditions only. Test all 192 once the selection rule is frozen; report all preregistered arms, no best-on-test selection.",
+    "audio": "Same prompt/seed and frozen per-model baseline; 30-60 second native excerpts, no padding or repeated loops. Fix identical conditioning and decoding within model, document unavoidable cross-model differences.",
+    "score_binding": "All rewards consume the same immutable private lossless audio per candidate, with SHA256 and duration; public MP3 is a separate listening copy.",
+    "common_guards": "Freeze identical KL, silence/nonfinite, clipping and loudness policy for all arms before launch. Log raw target and any penalty separately; no arm-specific hidden guardrails.",
+    "cross_scoring": "Every arm scored by SP raw components, SongBench Instrument/Arrangement/Mixing/Musicality, all five SongEval dimensions, peak/clipping/LUFS, lyric alignment where language-supported.",
+    "human_test": "Blind paired A/B plus separate instrument-realism, arrangement-richness and overall MOS ratings; randomized order and level-matched listening copies kept separate from scored audio. Model quality bands determined from baseline listening, never reward predictions.",
+    "statistics": "Paired per-condition deltas, bootstrap confidence intervals clustered by condition and seed. Test interaction of baseline quality x reward family; account for reward saturation/ranking and multiple comparisons. Two differently architected models alone cannot establish a universal MOS threshold.",
+    "hacking_audit": "Noise layering, gain/clipping, duplicated layers, dense dissonant tones, empty or missing vocals, sparse accompaniment. An optimized score increase alone is not improvement; require blind ratings/cross-metric evidence. Synthetic attacks are diagnostics only, never counted as full benchmark outcomes."
+  },
+  "runs": []
+}

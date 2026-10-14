@@ -17,8 +17,9 @@
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
-    <script type="module" src="./lyrics-formal-v2.js?v=20261013-objective"></script>
-    <script type="module" src="./lyrics-objective.js?v=20261013-full-cohort"></script>
+    <script type="module" src="./lyrics-formal-v2.js?v=20261014-recovery"></script>
+    <script type="module" src="./reward-regime.js?v=20261014-proposal"></script>
+    <script type="module" src="./lyrics-objective.js?v=20261014-recovered-progress"></script>
   </head>
   <body>
     <header class="app-header">
@@ -35,7 +36,7 @@
     <main class="lab-main">
       <section class="lab-heading">
         <div>
-          <p class="eyebrow">Experiment evidence · research updated 13 Oct 2026</p>
+          <p class="eyebrow">Experiment evidence · research updated 14 Oct 2026</p>
           <h1>Music post-training replay</h1>
           <p class="lab-subtitle">逐样本对齐输入、基线、训练阶段与客观分数。先听，再核对 MIDI 与指标。</p>
         </div>
@@ -44,6 +45,7 @@
 
       <nav class="lab-tabs" aria-label="Experiment views">
         <button class="lab-tab" type="button" data-view="lyrics" aria-selected="true">Lyrics2song GRPO</button>
+        <button class="lab-tab" type="button" data-view="reward-regimes" aria-selected="false">SP / AI Rewards</button>
         <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal2song GRPO</button>
         <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
         <button class="lab-tab" type="button" data-view="overview" aria-selected="false">Overview</button>
@@ -66,6 +68,18 @@
           <div class="status-row"><span>人声输入 → 歌曲</span><span class="state measured">Mock：LaDA-Band 消融已测</span><small>Emma 单录音回放；Shanghai Formal 仅预留协议位，尚无公开结果</small></div>
           <div class="status-row"><span>以词生曲</span><span class="state measured">CMI-Pref 正式实验已回收</span><small>270/30 固定划分；逐步 reward / KL、独立验证与长片段试听见 Lyrics2song GRPO</small></div>
         </div>
+      </section>
+
+      <section class="lab-view" id="view-reward-regimes" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Reward regime study · Proposal</p><h2>SP / AI Rewards</h2></div><span class="state pending">待确认 · 未启动训练</span></div>
+        <p class="section-copy" data-regime="hypothesis"></p>
+        <div class="source-block"><strong>指标边界</strong><p>SongEval 没有 Instrument 维度。SongBench-Instrument 评乐器真实度与合成质量，不是乐器数量；SP Richness 是频谱层次代理。MOS 2–3 / 4+ 是待验证假设，不是已测标签。</p></div>
+        <nav class="model-links reference-entry-links"><a href="#lyrics" data-open-view="lyrics">Lyrics2song GRPO ↗</a><a href="./data/reward-regime-protocol.json" download>下载实验协议 JSON</a><a href="./data/cmi-pref-triple-9to1-split.json" download>下载冻结 CMI split</a></nav>
+        <h3>Models</h3><div class="model-controls" data-regime="models" aria-label="Reward study models"></div><p class="section-copy" data-regime="model-note"></p>
+        <div class="table-scroll"><table><thead><tr><th>Experiment</th><th>Reward definition</th><th>Run</th><th>Train steps</th><th>Valid Δ</th><th>WSB test Δ</th></tr></thead><tbody data-regime="arms"></tbody></table></div>
+        <details open><summary>Reward definitions · SP / AI</summary><div class="table-scroll"><table><thead><tr><th>Reward</th><th>R</th><th>Meaning</th><th>Boundary / status</th></tr></thead><tbody data-regime="rewards"></tbody></table></div></details>
+        <details open><summary>CMI-Perf train / valid · WildSongBench sealed test</summary><div class="table-scroll"><table><tbody data-regime="data"></tbody></table></div></details>
+        <details><summary>GRPO · cross-reward evaluation · human listening · reward hacking</summary><div class="table-scroll"><table><tbody data-regime="design"></tbody></table></div></details>
       </section>
 
       <section class="lab-view" id="view-choral" hidden>

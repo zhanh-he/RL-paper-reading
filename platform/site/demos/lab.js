@@ -148,7 +148,7 @@ function setView(view) {
     rewards: ['reward-catalog', 'choral'],
   };
   const [route, task] = aliases[view] || [view, 'lyrics'];
-  const chosen = ['overview', 'choral', 'lyrics', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
+  const chosen = ['overview', 'choral', 'lyrics', 'reward-regimes', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
   let hash = chosen;
   if (chosen === 'models' || chosen === 'reward-catalog') {
     const root = document.querySelector(`#view-${chosen}`);

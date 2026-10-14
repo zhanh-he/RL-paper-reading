@@ -39,7 +39,10 @@ try {
     assert.equal(await root.locator('[data-objective-origin="official"]').isDisabled(), true);
     assert.match(await root.locator('[data-objective="title"]').innerText(), /CMI-Pref/);
     await root.locator('[data-objective-dataset="wsb"]').click();
-    assert.equal(await root.locator('td[data-status="resource-pending"]').count(), report.execution ? 7 : 14);
+    if (report.execution?.q3o_deferred) {
+      assert.equal(await root.locator('td[data-status="deferred"]').count(), 14);
+      assert.equal(await root.locator('td[data-status="resource-pending"]').count(), 0);
+    } else assert.equal(await root.locator('td[data-status="resource-pending"]').count(), report.execution ? 7 : 14);
     assert.equal(await root.locator('td[data-status="not-applicable"]').count(), 0);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
     assert.equal(overflow, false, 'Horizontal page overflow');

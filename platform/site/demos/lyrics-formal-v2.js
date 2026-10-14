@@ -139,7 +139,7 @@ function select(next) {
     : arm.status === 'queued' ? '正式训练已提交 · 排队中'
     : `${arm.verified_train_steps} 步已核验${arm.status.includes('failed') ? ' · 中途失败' : ' · 固定验证尚待回收'}`;
   $('status').className = `state ${arm.status === 'verified-complete' ? 'measured' : 'diagnostic'}`;
-  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host}${arm.job_id ? ` · ${arm.project} · ${arm.job_id} · priority ${arm.priority}` : ''} · ${arm.failure_reason || '训练 / 验证与新客观 test 表分开；结果不代表已听辨的音质提升。'}`;
+  $('description').textContent = `${arm.model}-${arm.reward}-${arm.lr} · ${arm.host}${arm.job_id ? ` · ${arm.project} · ${arm.job_id} · priority ${arm.priority}` : ''} · ${arm.failure_reason || '训练 / 验证与新客观 test 表分开；结果不代表已听辨的音质提升。'}${arm.resume ? ` · 从 ${arm.resume.from_step} 恢复至 ${arm.resume.target_step}：${arm.resume.job_id} 已提交，尚未完成；不从头重训。` : ''}`;
   $('reward-title').textContent = `优化目标 · ${arm.reward} 五维均值`;
   $('reward-definition').textContent = arm.reward === 'SongEval'
     ? 'R = (Coherence + Musicality + Memorability + Clarity + Naturalness) / 5。SongEval 使用 MuQ 音频编码器与评分头评估音乐审美；coverage、乐器 richness、beat、歌词匹配、时长与削波没有独立 reward。训练与短片段验证使用 WAV 原件评分；网页只提供 MP3 试听副本。短片段分数不归到独立长音频上。'

@@ -21,10 +21,52 @@
     "container_image_sha256": "84e1b3c8f8187dffb8f0d0de223fe07336bf211fad2786de2338730bb3e4cb24",
     "container_source": "docker://python:3.12.11-bookworm",
     "container_preflight": "glibc 2.36; native Torch 2.10.0+cu128, YuE2/MuQ/SSL/ctypes imports passed; cc Debian 12.2.0-14+deb12u1",
-    "replaced_compiler_dependency_gpu_jobs": ["181125240.gadi-pbs", "181125241.gadi-pbs", "181125242.gadi-pbs", "181125243.gadi-pbs", "181125244.gadi-pbs", "181125245.gadi-pbs", "181125246.gadi-pbs", "181125247.gadi-pbs", "181125248.gadi-pbs", "181125250.gadi-pbs", "181125251.gadi-pbs", "181125252.gadi-pbs", "181125253.gadi-pbs"],
-    "replaced_pre_container_gpu_jobs": ["181124291.gadi-pbs", "181124292.gadi-pbs", "181124293.gadi-pbs", "181124294.gadi-pbs", "181124295.gadi-pbs", "181124296.gadi-pbs", "181124297.gadi-pbs", "181124298.gadi-pbs", "181124299.gadi-pbs", "181124300.gadi-pbs", "181124301.gadi-pbs", "181124302.gadi-pbs", "181124303.gadi-pbs"],
+    "replaced_compiler_dependency_gpu_jobs": [
+      "181125240.gadi-pbs",
+      "181125241.gadi-pbs",
+      "181125242.gadi-pbs",
+      "181125243.gadi-pbs",
+      "181125244.gadi-pbs",
+      "181125245.gadi-pbs",
+      "181125246.gadi-pbs",
+      "181125247.gadi-pbs",
+      "181125248.gadi-pbs",
+      "181125250.gadi-pbs",
+      "181125251.gadi-pbs",
+      "181125252.gadi-pbs",
+      "181125253.gadi-pbs"
+    ],
+    "replaced_pre_container_gpu_jobs": [
+      "181124291.gadi-pbs",
+      "181124292.gadi-pbs",
+      "181124293.gadi-pbs",
+      "181124294.gadi-pbs",
+      "181124295.gadi-pbs",
+      "181124296.gadi-pbs",
+      "181124297.gadi-pbs",
+      "181124298.gadi-pbs",
+      "181124299.gadi-pbs",
+      "181124300.gadi-pbs",
+      "181124301.gadi-pbs",
+      "181124302.gadi-pbs",
+      "181124303.gadi-pbs"
+    ],
     "dependency_repair": "PBS ended earlier GPU jobs on upstream preparation failures. All 13 have been freshly resubmitted against only the full-compiler preparation job; old dependency jobs never consumed GPUs.",
-    "replaced_gpu_jobs": ["181118803.gadi-pbs", "181118804.gadi-pbs", "181118805.gadi-pbs", "181118806.gadi-pbs", "181118807.gadi-pbs", "181118808.gadi-pbs", "181118809.gadi-pbs", "181118810.gadi-pbs", "181118811.gadi-pbs", "181118812.gadi-pbs", "181118813.gadi-pbs", "181118814.gadi-pbs", "181119192.gadi-pbs"],
+    "replaced_gpu_jobs": [
+      "181118803.gadi-pbs",
+      "181118804.gadi-pbs",
+      "181118805.gadi-pbs",
+      "181118806.gadi-pbs",
+      "181118807.gadi-pbs",
+      "181118808.gadi-pbs",
+      "181118809.gadi-pbs",
+      "181118810.gadi-pbs",
+      "181118811.gadi-pbs",
+      "181118812.gadi-pbs",
+      "181118813.gadi-pbs",
+      "181118814.gadi-pbs",
+      "181119192.gadi-pbs"
+    ],
     "gpu_queue": "gpuhopper",
     "submission_priority": 1023,
     "requested_gpu_count_per_job": 1,
@@ -33,28 +75,162 @@
     "shares_physical_queue_between_projects": true,
     "other_existing_jobs_preserved": true,
     "shards": [
-      {"task": 0, "project": "wa66", "job": "181128149.gadi-pbs", "wsb": [4, 19], "cmi": null},
-      {"task": 1, "project": "wa66", "job": "181128150.gadi-pbs", "wsb": [19, 35], "cmi": null},
-      {"task": 2, "project": "wa66", "job": "181128151.gadi-pbs", "wsb": [35, 51], "cmi": null},
-      {"task": 3, "project": "wa66", "job": "181128152.gadi-pbs", "wsb": [51, 66], "cmi": null},
-      {"task": 4, "project": "wa66", "job": "181128153.gadi-pbs", "wsb": [66, 82], "cmi": null},
-      {"task": 5, "project": "wa66", "job": "181128154.gadi-pbs", "wsb": [82, 98], "cmi": null},
-      {"task": 6, "project": "iv96", "job": "181128155.gadi-pbs", "wsb": [98, 113], "cmi": null},
-      {"task": 7, "project": "iv96", "job": "181128156.gadi-pbs", "wsb": [113, 129], "cmi": null},
-      {"task": 8, "project": "iv96", "job": "181128157.gadi-pbs", "wsb": [129, 145], "cmi": null},
-      {"task": 9, "project": "iv96", "job": "181128158.gadi-pbs", "wsb": [145, 160], "cmi": null},
-      {"task": 10, "project": "iv96", "job": "181128160.gadi-pbs", "wsb": [160, 176], "cmi": null},
-      {"task": 11, "project": "iv96", "job": "181128161.gadi-pbs", "wsb": [176, 192], "cmi": null}
+      {
+        "task": 0,
+        "project": "wa66",
+        "job": "181128149.gadi-pbs",
+        "wsb": [
+          4,
+          19
+        ],
+        "cmi": null
+      },
+      {
+        "task": 1,
+        "project": "wa66",
+        "job": "181128150.gadi-pbs",
+        "wsb": [
+          19,
+          35
+        ],
+        "cmi": null
+      },
+      {
+        "task": 2,
+        "project": "wa66",
+        "job": "181128151.gadi-pbs",
+        "wsb": [
+          35,
+          51
+        ],
+        "cmi": null
+      },
+      {
+        "task": 3,
+        "project": "wa66",
+        "job": "181128152.gadi-pbs",
+        "wsb": [
+          51,
+          66
+        ],
+        "cmi": null
+      },
+      {
+        "task": 4,
+        "project": "wa66",
+        "job": "181128153.gadi-pbs",
+        "wsb": [
+          66,
+          82
+        ],
+        "cmi": null
+      },
+      {
+        "task": 5,
+        "project": "wa66",
+        "job": "181128154.gadi-pbs",
+        "wsb": [
+          82,
+          98
+        ],
+        "cmi": null
+      },
+      {
+        "task": 6,
+        "project": "iv96",
+        "job": "181128155.gadi-pbs",
+        "wsb": [
+          98,
+          113
+        ],
+        "cmi": null
+      },
+      {
+        "task": 7,
+        "project": "iv96",
+        "job": "181128156.gadi-pbs",
+        "wsb": [
+          113,
+          129
+        ],
+        "cmi": null
+      },
+      {
+        "task": 8,
+        "project": "iv96",
+        "job": "181128157.gadi-pbs",
+        "wsb": [
+          129,
+          145
+        ],
+        "cmi": null
+      },
+      {
+        "task": 9,
+        "project": "iv96",
+        "job": "181128158.gadi-pbs",
+        "wsb": [
+          145,
+          160
+        ],
+        "cmi": null
+      },
+      {
+        "task": 10,
+        "project": "iv96",
+        "job": "181128160.gadi-pbs",
+        "wsb": [
+          160,
+          176
+        ],
+        "cmi": null
+      },
+      {
+        "task": 11,
+        "project": "iv96",
+        "job": "181128161.gadi-pbs",
+        "wsb": [
+          176,
+          192
+        ],
+        "cmi": null
+      }
     ],
     "staged_first_four_job": "181128162.gadi-pbs",
     "staged_first_four_project": "iv96",
-    "staged_first_four_wsb": [0, 4],
+    "staged_first_four_wsb": [
+      0,
+      4
+    ],
     "status_checked_at": "2026-10-13T06:08:24Z",
     "status_at_check": "Preparation COMPLETED, exit 0, 00:13:29; all 13 GPU jobs released to Q (scheduler queue), not running",
     "preparation_completed": true,
-    "gpu_jobs_at_check": {"queued": 13, "running": 0, "dependency_held": 0},
-    "account_available_ksu_at_check": {"wa66": 21.78, "iv96": 11.20},
-    "initial_status": "GPU jobs depend on successful preparation; not claimed as running"
+    "gpu_jobs_at_check": {
+      "queued": 13,
+      "running": 0,
+      "dependency_held": 0
+    },
+    "account_available_ksu_at_check": {
+      "wa66": 21.78,
+      "iv96": 11.2
+    },
+    "initial_status": "GPU jobs depend on successful preparation; not claimed as running",
+    "queue_snapshot": {
+      "wa66_evaluation": {
+        "queued": 6,
+        "running": 0
+      },
+      "iv96_evaluation": {
+        "queued": 7,
+        "running": 0
+      },
+      "priority": 1023,
+      "reason": "Insufficient ngpus",
+      "scheduler_start_estimate": null,
+      "shared_pool": true,
+      "queue_started_awst": "2026-10-13T13:55:47+08:00",
+      "scope": "manually verified snapshot, not live queue state"
+    }
   },
   "kaya": {
     "account": "ems011",
@@ -66,16 +242,65 @@
     "audit_scored_candidates": 20,
     "audit_max_absolute_difference": 0.00024318695068359375,
     "cmi_quality_jobs": [
-      {"arm": "yue2-songeval-1e-4", "job": "137626", "conditions": [0, 4], "candidates": 8, "status": "complete", "recovered": true, "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"},
-      {"arm": "yue2-musecritic-1e-4", "job": "137631", "conditions": [0, 4], "candidates": 8, "status": "complete", "recovered": true, "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"},
-      {"arm": "yue2-songeval-3e-4", "job": "137684", "replaced_job": "137667", "conditions": [0, 4], "candidates": 8, "status": "complete", "recovered": true, "gpu_memory_gb": 32, "status_at_submission_check": "COMPLETED, exit 0:0, 00:06:29 on k046; both OOM receipts retried, six completed SongBench receipts reused; exact bindings recovered to the original 5090 run"},
-      {"arm": "yue2-musecritic-3e-4", "job": "137679", "conditions": [0, 4], "candidates": 8, "status": "complete", "recovered": true, "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"}
+      {
+        "arm": "yue2-songeval-1e-4",
+        "job": "137626",
+        "conditions": [
+          0,
+          4
+        ],
+        "candidates": 8,
+        "status": "complete",
+        "recovered": true,
+        "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+      },
+      {
+        "arm": "yue2-musecritic-1e-4",
+        "job": "137631",
+        "conditions": [
+          0,
+          4
+        ],
+        "candidates": 8,
+        "status": "complete",
+        "recovered": true,
+        "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+      },
+      {
+        "arm": "yue2-songeval-3e-4",
+        "job": "137684",
+        "replaced_job": "137667",
+        "conditions": [
+          0,
+          4
+        ],
+        "candidates": 8,
+        "status": "complete",
+        "recovered": true,
+        "gpu_memory_gb": 32,
+        "status_at_submission_check": "COMPLETED, exit 0:0, 00:06:29 on k046; both OOM receipts retried, six completed SongBench receipts reused; exact bindings recovered to the original 5090 run"
+      },
+      {
+        "arm": "yue2-musecritic-3e-4",
+        "job": "137679",
+        "conditions": [
+          0,
+          4
+        ],
+        "candidates": 8,
+        "status": "complete",
+        "recovered": true,
+        "status_at_submission_check": "COMPLETED, exit 0:0; exact bindings recovered to the original 5090 run"
+      }
     ],
     "cmi_memory_repair": "SongEval-3e-4 had two full-song MuQ attention CUDA OOMs on a 16GB V100. Resubmitted on a 32GB V100 without cropping or changing scoring math. Explicit retries archive failed receipts and reuse completed receipts.",
     "cmi_transfer_pipeline": "dispatch_reserved_cmi.py transfers and submits exactly the three remaining reserved CMI chunks as generation completes, then exits; no recurring schedule or notification",
     "finite_transfer_pid_on_mac": 38321,
     "finite_transfer_receipt_on_mac": "/tmp/lyrics-cmi-quality-transfer-20261013.json",
-    "replaced_quality_jobs": ["137401", "137426"],
+    "replaced_quality_jobs": [
+      "137401",
+      "137426"
+    ],
     "quality_failure_reason": "Nested extras venv lacked parent Torch, then isolated runtime lacked rich; fixed parent-runtime path and explicit rich/submitit dependencies, resumed cached receipts",
     "gpu_partition": "gpu",
     "nice": 0,
@@ -85,25 +310,208 @@
     "audit_count_in_headline_cohort": false,
     "production_cmi_count_in_headline_cohort": true,
     "initial_status": "The 20-song numerical audit and all four new CMI production chunks completed; all 32 new CMI candidates recovered with exact hashes",
-    "full_cmi_campaign": {"generation_owner": "lab5090", "quality_owner": "kaya", "conditions": [0, 121], "arms": 7, "candidates": 1694, "verified_prefix": [0, 4], "remaining_candidates": 1638, "remaining_assignments": 210, "gpu": "V100 32GB", "native_batch_script": "kaya_cmi_quality.sbatch", "transport_pid_on_mac": 47036, "transport_receipt_on_mac": "/tmp/lyrics-full-cmi-dispatch-20261013.json", "automatic_result_recovery": false, "first_submission": {"job": "138312", "arm": "yue2-baseline", "conditions": [4, 8], "candidates": 8, "submitted_at": "2026-10-13T09:40:55.985611+00:00", "verified_state": "PENDING (Priority)", "completed": false}}
+    "full_cmi_campaign": {
+      "generation_owner": "lab5090",
+      "quality_owner": "kaya",
+      "conditions": [
+        0,
+        121
+      ],
+      "arms": 7,
+      "candidates": 1694,
+      "verified_prefix": [
+        0,
+        4
+      ],
+      "remaining_candidates": 1638,
+      "remaining_assignments": 210,
+      "gpu": "V100 32GB",
+      "native_batch_script": "kaya_cmi_quality.sbatch",
+      "transport_pid_on_mac": 47036,
+      "transport_receipt_on_mac": "/tmp/lyrics-full-cmi-dispatch-20261013.json",
+      "automatic_result_recovery": false,
+      "first_submission": {
+        "job": "138312",
+        "arm": "yue2-baseline",
+        "conditions": [
+          4,
+          8
+        ],
+        "candidates": 8,
+        "submitted_at": "2026-10-13T09:40:55.985611+00:00",
+        "verified_state": "PENDING (Priority)",
+        "completed": false
+      },
+      "submitted_chunks_at_recovery": 92,
+      "submitted_candidates_at_recovery": 736,
+      "recovered_chunks": 25,
+      "recovered_candidates": 200,
+      "completed_prefix_candidates": 56,
+      "waiting_for_generation": "yue2-songeval-2e-5-056-060"
+    }
   },
   "lab5090": {
     "queue_pid": 3629786,
     "completed_prefix_controller_pid": 3616468,
     "replaced_controller_pid": 3613175,
     "handoff": "Stopped only the owned shell controller; its in-flight generation child retains the lock and finishes normally before the new generation/MP3-only controller starts",
-    "reserved_wsb": [0, 4],
-    "reserved_cmi": [0, 4],
+    "reserved_wsb": [
+      0,
+      4
+    ],
+    "reserved_cmi": [
+      0,
+      4
+    ],
     "wsb_asr_failure": "Official Qwen3-ASR worker CUDA OOM on SongEval-3e-4; saved audio retained and scoring moved to Gadi",
     "role": "Generate the full 121-condition CMI cohort for all seven YuE2 arms; Kaya scores immutable MP3 chunks. The completed first-four prefix is reused. Gadi owns only WSB, so no duplicate CMI generation/scoring.",
     "status_at_check": "Full CMI generation RUNNING; first new candidate cmi_004_r0_s931005 completed, 274.9187 seconds",
-    "full_cmi_conditions": [0, 121],
-    "resume_conditions": [4, 121],
+    "full_cmi_conditions": [
+      0,
+      121
+    ],
+    "resume_conditions": [
+      4,
+      121
+    ],
     "scope_revision": "Initial first-four reservation ended; full CMI is now active rather than waiting for Gadi GPU availability",
-    "generated_reserved_candidates": {"wsb": 56, "cmi": 56}
+    "generated_reserved_candidates": {
+      "wsb": 56,
+      "cmi": 56
+    }
   },
   "arm_count": 7,
-  "arms": ["YuE2-Baseline", "YuE2-SongEval-2e-5", "YuE2-MuseCritic-2e-5", "YuE2-SongEval-1e-4", "YuE2-MuseCritic-1e-4", "YuE2-SongEval-3e-4", "YuE2-MuseCritic-3e-4"],
-  "cohorts": {"wsb_conditions": 192, "cmi_test_conditions": 121, "expected_total_candidates": 4382},
-  "recovery": "Manual user-requested recovery; never create cron or heartbeat monitors"
+  "arms": [
+    "YuE2-Baseline",
+    "YuE2-SongEval-2e-5",
+    "YuE2-MuseCritic-2e-5",
+    "YuE2-SongEval-1e-4",
+    "YuE2-MuseCritic-1e-4",
+    "YuE2-SongEval-3e-4",
+    "YuE2-MuseCritic-3e-4"
+  ],
+  "cohorts": {
+    "wsb_conditions": 192,
+    "cmi_test_conditions": 121,
+    "expected_total_candidates": 4382
+  },
+  "recovery": "Manual user-requested recovery; never create cron or heartbeat monitors",
+  "q3o_deferred": true,
+  "q3o_policy": "User deferred 2026-10-14; weights preserved; no Q3O worker launched by existing queues.",
+  "manual_recovery_at": "2026-10-14T02:29:22.845163+00:00",
+  "muse_training": [
+    {
+      "id": "muse-songeval-2e-5",
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
+      "resume": null,
+      "invalid_output_count": 28
+    },
+    {
+      "id": "muse-songeval-1e-4",
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
+      "resume": null,
+      "invalid_output_count": 10
+    },
+    {
+      "id": "muse-songeval-3e-4",
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
+      "resume": null,
+      "invalid_output_count": 361
+    },
+    {
+      "id": "muse-musecritic-2e-5",
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
+      "resume": null,
+      "invalid_output_count": 31
+    },
+    {
+      "id": "muse-musecritic-1e-4",
+      "status": "verified-training-complete",
+      "verified_train_steps": 270,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180,
+        210,
+        240,
+        270
+      ],
+      "resume": null,
+      "invalid_output_count": 11
+    },
+    {
+      "id": "muse-musecritic-3e-4",
+      "status": "verified-partial-failed",
+      "verified_train_steps": 200,
+      "checkpoints": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "resume": {
+        "job_id": "181197557.gadi-pbs",
+        "project": "iv96",
+        "priority": 1023,
+        "from_step": 180,
+        "target_step": 270,
+        "status": "submitted-not-completed",
+        "restore_optimizer_scheduler_rng": true
+      },
+      "invalid_output_count": 4
+    }
+  ]
 }

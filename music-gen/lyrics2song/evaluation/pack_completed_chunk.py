@@ -21,7 +21,7 @@ def verified_archive(run, chunk):
     return True
 
 
-def pack(run, chunk):
+def pack(run, chunk, *, require_q3o=True):
     if verified_archive(run, chunk):
         return
     data = json.loads(chunk.read_text())
@@ -33,7 +33,7 @@ def pack(run, chunk):
     for row in data['rows']:
         if not {'songbench', 'mulan', 'allmusiccaps'} <= set(row['metrics']) or 'supplementary' not in row:
             raise ValueError('Do not archive unscored audio')
-        if dataset == 'wsb' and ('q3o' not in row['metrics'] or row['metrics']['q3o']['status'] != 'complete'):
+        if dataset == 'wsb' and require_q3o and ('q3o' not in row['metrics'] or row['metrics']['q3o']['status'] != 'complete'):
             raise ValueError('Q3O must complete before removing the selected audio copy')
     exports = run / 'generation-receipts.json'
     generation = {r['id']: r for r in json.loads(exports.read_text())} if exports.exists() else {}
@@ -72,6 +72,7 @@ def pack(run, chunk):
     write(exports, sorted(generation.values(), key=lambda r: r['id']))
     write(destination.with_suffix('.json'), {'archive_sha256': sha(destination),
         'chunk_sha256': sha(chunk), 'files': inventory, 'dataset': dataset,
+        'q3o_deferred': dataset == 'wsb' and not require_q3o,
         'condition_indices': indices, 'scope': 'private full artifacts; public repo receives aggregates and MP3 only'})
     # Delete only the newly archived copies; incomplete chunks remain untouched.
     for directory in directories:

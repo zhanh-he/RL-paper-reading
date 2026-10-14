@@ -39,7 +39,7 @@ try {
   for (const arm of registry.arms) {
     await root.locator(`#formal-v2-controls button[data-id="${arm.id}"]`).click();
     if (arm.model === 'Muse') {
-      assert.match(await root.locator('#formal-v2-status').textContent(), /排队/);
+      assert.match(await root.locator('#formal-v2-status').textContent(), arm.status === 'queued' ? /排队/ : /步已核验/);
       assert.equal(await root.locator('#formal-v2-compare audio').count(), 0);
       assert.equal(await root.locator('[data-formal-listen]:enabled').count(), 0);
     }

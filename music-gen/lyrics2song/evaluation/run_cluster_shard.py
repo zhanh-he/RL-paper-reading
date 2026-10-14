@@ -44,6 +44,7 @@ def main():
     p.add_argument('--python', required=True)
     p.add_argument('--task', type=int, required=True)
     p.add_argument('--tasks', type=int, default=12)
+    p.add_argument('--enable-q3o', action='store_true', help='Deferred unless explicitly authorized')
     p.add_argument('--datasets', nargs='+', choices=['wsb', 'cmi'], default=['wsb'],
                    help='CMI production generation/quality is assigned to 5090/Kaya in this campaign')
     a = p.parse_args()
@@ -57,7 +58,7 @@ def main():
     import torch
     memory = torch.cuda.get_device_properties(0).total_memory
     if memory < 79 * (1 << 30):
-        raise RuntimeError('Full Q3O worker requires an 80GB-class GPU')
+        raise RuntimeError('This generation/ASR allocation requires an 80GB-class GPU; Q3O remains opt-in')
     code = Path(__file__).parent
     output = a.storage / f'shard_{a.task:02d}'
     bundle = a.work / 'wsb_metrics'
@@ -86,10 +87,10 @@ def main():
                 subprocess.run([a.python, '-u', str(code / 'score_objective.py'), '--bundle', str(bundle),
                     '--run', str(run), *common, '--extras-python', str(a.work / 'extras/bin/python'),
                     '--songeval', str(a.songeval)], check=True)
-                if dataset == 'wsb':
+                if dataset == 'wsb' and a.enable_q3o:
                     subprocess.run([a.python, '-u', str(code / 'score_q3o.py'), '--bundle', str(bundle),
                         '--chunk', str(run / 'evaluation' / f'chunk_{start:03d}_{stop:03d}.json')], check=True)
-                pack(run, chunk)
+                pack(run, chunk, require_q3o=a.enable_q3o)
     write(output / 'completion.json', {'status': 'complete', 'task': a.task, 'new_training': False})
 
 

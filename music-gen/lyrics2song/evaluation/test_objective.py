@@ -17,6 +17,11 @@ from dispatch_full_cmi import assignments
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_deferred_q3o_has_no_value_but_cmi_remains_na(self):
+        self.assertEqual(cell('control_overall', 'wsb', q3o_deferred=True)['status'], 'deferred')
+        self.assertIsNone(cell('control_overall', 'wsb', q3o_deferred=True)['value'])
+        self.assertEqual(cell('control_overall', 'cmi', q3o_deferred=True)['status'], 'not-applicable')
+
     def test_full_cmi_assignments_cover_all_121_conditions(self):
         tasks = assignments()
         self.assertEqual(len(tasks), 210)

@@ -242,6 +242,15 @@ button.source-link { padding: 0; border: 0; background: none; cursor: pointer; f
 .midi-empty p { margin: 3px 0 0; font-size: .76rem; line-height: 1.5; }
 .model-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .reference-controls { margin-top: 8px; }
+#view-reward-regimes [data-regime="models"] { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+#view-reward-regimes [data-regime="models"] button { padding: 8px 12px; min-height: 38px; border: 1px solid var(--line-strong); border-radius: 4px; background: var(--surface); color: var(--ink-muted); cursor: pointer; font: inherit; font-size: .82rem; }
+#view-reward-regimes [data-regime="models"] button[aria-pressed="true"] { background: var(--green-soft); color: var(--green-dark); }
+#view-reward-regimes .table-scroll { width: 100%; overflow-x: auto; margin: 12px 0 22px; }
+#view-reward-regimes table { width: 100%; min-width: 700px; border-collapse: collapse; font-size: .82rem; }
+#view-reward-regimes th, #view-reward-regimes td { border-bottom: 1px solid var(--line); padding: 12px; vertical-align: top; text-align: left; overflow-wrap: anywhere; }
+#view-reward-regimes th { background: var(--surface-muted); }
+#view-reward-regimes details { padding: 14px 0; border-top: 1px solid var(--line); }
+#view-reward-regimes summary { cursor: pointer; font-weight: 650; }
 .reference-entry-links { margin-bottom: 18px; }
 .lab-table.reference-table table { min-width: 980px; table-layout: fixed; }
 .reference-table th:first-child { width: 24%; }

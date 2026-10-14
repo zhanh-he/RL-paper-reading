@@ -32,6 +32,11 @@ PQ, MuQ-MuLan, AllMusicCaps, Q3O control and phoneme error rate (PER).
 - MuQ-MuLan / AllMusicCaps: audio similarity to requested **style text**, not lyrics.
 - Q3O: prompt-control score; official WSB requires 80 GB GPU. Submitted to
   Gadi Hopper allocations, never substituted with a smaller model on the 5090.
+  **Deferred by user on 2026-10-14:** both queued WSB entry points now skip Q3O
+  unless explicitly given `--enable-q3o`. Frozen assets remain in place. Core
+  SongBench/SongEval scores continue; Q3O must not block their archive/recovery.
+  Private archives retain both original candidates and scoring MP3s for future
+  authorized rescoring; an archive is not evidence of a completed Q3O score.
 - PER: corpus micro average, sum edits / sum reference phonemes, not mean of
   per-song percentages. Preserve incomplete lyrics and capped ASR outputs.
 

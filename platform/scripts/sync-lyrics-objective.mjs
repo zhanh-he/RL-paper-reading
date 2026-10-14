@@ -16,7 +16,7 @@ for (const [dataset, data] of Object.entries(local.datasets)) {
     for (const m of official.metrics) {
       const c = r.metrics[m.key];
       const expected = data.conditions * (dataset === 'wsb' ? 1 : 2);
-      if (!c || !['complete', 'pending', 'not-applicable', 'resource-pending'].includes(c.status)) throw new Error('Unknown metric state');
+      if (!c || !['complete', 'pending', 'not-applicable', 'resource-pending', 'deferred'].includes(c.status)) throw new Error('Unknown metric state');
       if (!Number.isInteger(c.scored) || c.scored < 0 || c.scored > expected) throw new Error('Invalid metric coverage');
       if (c.status === 'complete' && (!Number.isFinite(c.value) || c.expected !== expected || c.scored !== expected)) throw new Error('Premature complete metric');
       if (c.status !== 'complete' && c.value !== null) throw new Error('Partial mean published as complete');

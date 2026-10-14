@@ -18,6 +18,7 @@ def main():
     p.add_argument('--runs', type=Path, required=True)
     p.add_argument('--songeval', type=Path, required=True)
     p.add_argument('--python', required=True)
+    p.add_argument('--enable-q3o', action='store_true', help='Deferred unless explicitly authorized')
     a = p.parse_args()
     enter(a.work)
     balance(a.work)
@@ -54,9 +55,10 @@ def main():
             row['audio_path'] = str(audio.resolve())
         write(run / 'generation-receipts.json', exported)
         write(chunk, data)
-        subprocess.run([a.python, '-u', str(code / 'score_q3o.py'), '--bundle', str(bundle),
-                        '--chunk', str(chunk)], check=True)
-        pack(run, chunk)
+        if a.enable_q3o:
+            subprocess.run([a.python, '-u', str(code / 'score_q3o.py'), '--bundle', str(bundle),
+                            '--chunk', str(chunk)], check=True)
+        pack(run, chunk, require_q3o=a.enable_q3o)
     write(a.runs / 'completion.json', {'status': 'complete', 'conditions': [0, 4],
                                        'arms': ARMS, 'new_training': False})
 
