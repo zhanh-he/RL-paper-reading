@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-10-13",
+  "checked_at": "2026-10-14",
   "scope": "公开论文与官方发布核验；不是模型排行榜，也没有统计全领域的使用频率。后训练路线是本项目判断，不等于作者已发布 GRPO。",
   "models": [
     {
@@ -63,7 +63,7 @@
       "input": "structured lyrics + comma-separated description tags，或 lyrics + 前 10 秒参考音频。官方明确建议不要同时传 descriptions 和 prompt_audio_path；不能默认三模态联合有效。",
       "release": "官方 LeVo repo 与 v2-medium / v2-large 权重、推理和输入样例可访问；公布 SFT → offline / semi-online DPO 方法，不等于训练 recipe 全部公开。",
       "license": "SongGeneration 自定义许可：学术、研究、教育使用；第三方组件另有条款。",
-      "posttrain": "优先新增的开放权重竞品；先复现 native inference 再适配 LM policy / frozen renderer。v2 报告仍标 upcoming；2506.07520 是原 LeVo 论文，不当 v2 技术报告。本站未训练。",
+      "posttrain": "开放权重候选；先复现 native inference，再适配 LM policy / frozen renderer。2606.30642 已公开：SFT → offline controllability DPO → semi-online musicality DPO → modular extension；不是 GRPO。周期刷新 pair 并保护歌词与条件一致性，仍须独立验证。本站未训练。",
       "sources": [
         {
           "label": "官方 v2 代码 / 输入说明",
@@ -72,6 +72,10 @@
         {
           "label": "v2-medium 权重",
           "url": "https://huggingface.co/lglg666/SongGeneration-v2-medium"
+        },
+        {
+          "label": "LeVo 2 技术报告",
+          "url": "https://arxiv.org/abs/2606.30642"
         },
         {
           "label": "原 LeVo 论文",
@@ -91,7 +95,7 @@
       "input": "公开 3B 接口是 tags + lyrics。主 repo 的 reference audio conditioning 仍在 TODO；已发布的 MuLaCover 是单独的 audio/MIDI cover 流程，不能冒充 3B 原生接口。",
       "release": "3B / RL / happy-new-year checkpoints、codec 与推理公开；未核验完整 3B 训练/GRPO recipe。HeartTranscriptor 可独立做歌词转录。",
       "license": "官方声明 repo 与相关权重 Apache-2.0。",
-      "posttrain": "AR-GRPO 候选；需适配 codebook 序列概率、mask 和 reference policy。发布的 RL checkpoint 不证明我们自己的在线 GRPO 已接通。本站未训练。",
+      "posttrain": "论文为分维度 DPO 后参数合并，不是已披露 GRPO recipe。中文 Table 15 的 PER 改善而 SongEval Avg 下降，英语 Table 14 则 Avg 上升，说明多维 trade-off。我们若做 AR-GRPO 须另适配 codebook 概率与 mask；本站未训练。",
       "sources": [
         {
           "label": "代码 / release / TODO",
@@ -143,7 +147,7 @@
       "input": "caption / tags + lyrics；另有 reference audio、cover、repaint 等任务。具体条件与能力依 DiT checkpoint / task 模式而定。",
       "release": "推理、base / SFT / turbo 与 XL 模型、LoRA training tutorial 公开；不把官方 intrinsic RL 宣传等同于外部 SongEval-GRPO recipe。",
       "license": "代码与主模型卡 MIT；依赖组件单独核查。",
-      "posttrain": "快速推理与风格 LoRA 对照候选。训练 DiT 需要 diffusion/flow 的有效轨迹目标及 reference 约束，不能套 token GRPO 的 log-prob；仅训 planner 则是另一目标。本站 Lyrics GRPO 未跑。",
+      "posttrain": "论文区分 captioner GRPO、generator LM GRPO 与 DiT intrinsic alignment；主 Table 1 使用 no-RL 配置，不能据其分数归因 RL。LoRA 教程不等于外部 scorer GRPO；DiT 需要有效 flow 轨迹目标，planner-only 是另一实验。本站 Lyrics GRPO 未跑。",
       "sources": [
         {
           "label": "代码 / LoRA guide",
@@ -152,6 +156,10 @@
         {
           "label": "权重 / model zoo",
           "url": "https://huggingface.co/ACE-Step/Ace-Step1.5"
+        },
+        {
+          "label": "论文 / no-RL 主评测",
+          "url": "https://arxiv.org/abs/2602.00744"
         }
       ]
     },
@@ -166,7 +174,11 @@
       "posttrain": "结构化、长歌的 flow 基线候选；GRPO 需另实现块/轨迹采样概率与 KL，当前不能一键接现有 YuE2 训练器。本站未训练。",
       "sources": [
         {
-          "label": "v2 官方代码",
+          "label": "论文所列官方主仓库",
+          "url": "https://github.com/xiaomi-research/diffrhythm2"
+        },
+        {
+          "label": "ASLP-lab 发布 fork",
           "url": "https://github.com/ASLP-lab/DiffRhythm2"
         },
         {

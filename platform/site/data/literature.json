@@ -892,7 +892,7 @@
     "domain": "MusicGen(LLM)",
     "workstream": "Reward-n-RL",
     "title": "LeVo: High-Quality Song Generation with Multi-Preference Alignment",
-    "keywords": "LeVo；dual-track tokens；multi-preference DPO",
+    "keywords": "dual-track tokens；multi-preference DPO；parameter interpolation",
     "model_size": "LeLM 约 2B；diffusion 700M；MuEncoder 300M；VAE 150M",
     "model_params_b": "2",
     "generation_speed": "",
@@ -904,7 +904,7 @@
     "github_note": "",
     "demo_url": "https://levo-demo.github.io/",
     "web_url": "",
-    "zhanh_note": "LeVo 2025 的多维偏好 DPO 与模型合并是直接参照；官方共享代码入口现已可访问且包含 LeVo 2，复现时须固定对应版本，不能把新版训练说明归给旧论文。",
+    "zhanh_note": "LeVo 2025 的多维偏好 DPO 与模型合并是直接参照；官方共享代码入口现已可访问且包含 LeVo 2，复现时须固定对应版本，不能把新版训练说明归给旧论文。 2026-10-14 原文 §3.4：歌词、prompt、musicality 各自 DPO，再线性插值参数；不要把 LeVo 2 的 semi-online 流程归给 2025 论文。",
     "felix_note": "",
     "other_note": "Jiahao: 多偏好歌曲 DPO 与双轨生成是本项目直接参照；保留歌词、条件一致性及音质的多轴验收。 参考点：多目标奖励不稳定时，可先分别诊断歌词、匹配与音质，再决定合并策略；同时保留未优化维度的守门指标。 历史代码入口曾返回 404；2026-10-14 已恢复有效官方入口，注意版本。",
     "hanyu_note": "",
@@ -912,9 +912,9 @@
     "author_org_url": "https://arxiv.org/pdf/2506.07520",
     "source_order": 26,
     "keywords_list": [
-      "LeVo",
       "dual-track tokens",
-      "multi-preference DPO"
+      "multi-preference DPO",
+      "parameter interpolation"
     ]
   },
   {
@@ -3304,9 +3304,9 @@
     "other_rating": "",
     "zhanh_rating": "",
     "domain": "MusicGen(LLM)",
-    "workstream": "Other",
+    "workstream": "RL",
     "title": "HeartMuLa: A Family of Open Sourced Music Foundation Models",
-    "keywords": "HeartMuLa；HeartCodec；music foundation family",
+    "keywords": "multi-preference DPO；model merging；HeartCodec",
     "model_size": "global LM 3B + local decoder 300M；另有 7B 扩展",
     "model_params_b": "3.3",
     "generation_speed": "官方 README rough estimate：RTF ≈1.0",
@@ -3318,7 +3318,7 @@
     "github_note": "",
     "demo_url": "https://heartmula.github.io/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 §3.4.4 / Tables 14–16：分维度DPO再参数融合。中文 SongEval Avg 4.46→4.40，PER 0.1067→0.0806；英语 Avg 4.41→4.43。这是语言/指标依赖的 trade-off，不是DPO总有害或所有维度必涨；SongEval Avg 是自动分，不是人类MOS。",
     "felix_note": "",
     "other_note": "Jiahao: 标注器、语义表征、codec 与生成器构成开放音乐系统；独立人工集仍是检查评价闭环偏差的必要参照。 参考点：优先学习其“标注器—codec—生成器—评价器”闭环，但应另建独立人工集检查奖励偏差。",
     "hanyu_note": "",
@@ -3326,9 +3326,9 @@
     "author_org_url": "https://arxiv.org/pdf/2601.10547",
     "source_order": 97,
     "keywords_list": [
-      "HeartMuLa",
-      "HeartCodec",
-      "music foundation family"
+      "multi-preference DPO",
+      "model merging",
+      "HeartCodec"
     ]
   },
   {
@@ -3340,7 +3340,7 @@
     "domain": "MusicGen(LLM)",
     "workstream": "Reward-n-RL",
     "title": "LeVo 2: Stable and Melodious Song Generation via Hierarchical Representation Modeling and Progressive Post-Training",
-    "keywords": "LeVo 2；hierarchical representation；progressive post-training",
+    "keywords": "semi-online DPO；non-regression pairs；hierarchical LM",
     "model_size": "层次 LeLM 总计约 4B；diffusion 700M；encoder/VAE 另计",
     "model_params_b": "4",
     "generation_speed": "官方 H20 RTF：base 0.67 / large 0.82",
@@ -3352,7 +3352,7 @@
     "github_note": "",
     "demo_url": "https://levo-demo.github.io/levo_v2_demo/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 原文 III-E / Table II-III：SFT→offline controllability DPO→semi-online musicality DPO；每100步刷新生成器并约束歌词/条件非退化。OVL 为1–10专家MOS，不是1–5；半在线阶段 OVL 5.12→5.37、PER 9.19%→9.22%。官方建议避免冲突的 audio/text 联合输入，但训练包含联合条件。",
     "felix_note": "",
     "other_note": "Jiahao: 层次表示与渐进后训练兼顾歌曲稳定性和旋律；对 reward 随 policy 更新、非目标维度退化尤其相关。 参考点：偏好数据需要随策略更新，且必须用约束保护歌词和条件一致性，避免单项美学分数独大。",
     "hanyu_note": "",
@@ -3360,9 +3360,9 @@
     "author_org_url": "https://arxiv.org/pdf/2606.30642",
     "source_order": 98,
     "keywords_list": [
-      "LeVo 2",
-      "hierarchical representation",
-      "progressive post-training"
+      "semi-online DPO",
+      "non-regression pairs",
+      "hierarchical LM"
     ]
   },
   {
@@ -3510,7 +3510,7 @@
     "domain": "MusicGen(Mid)",
     "workstream": "Reward-n-RL",
     "title": "DiffRhythm+: Controllable and Flexible Full-Length Song Generation with Preference Optimization",
-    "keywords": "DiffRhythm+；multimodal control；preference optimization",
+    "keywords": "diffusion-DPO；multimodal conditioning；margin filtering",
     "model_size": "DiT 约 1.1B；VAE 另计",
     "model_params_b": "1.1",
     "generation_speed": "RTF 0.036–0.039",
@@ -3522,7 +3522,7 @@
     "github_note": "",
     "demo_url": "https://longwaytog0.github.io/DiffRhythmPlus/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 III-D：歌曲主要用SongEval，器乐用Audiobox并映射到1–5，再做margin筛选与diffusion-DPO。数值映射不等于跨任务偏好校准；原论文也提示Audiobox可能高估部分生成器。",
     "felix_note": "",
     "other_note": "Jiahao: 在全曲 latent 模型上加入多模态控制与偏好优化；需先确认条件表征和偏好排序的可比性。 参考点：先统一条件表征和评分尺度，再做 DPO；否则偏好训练容易把模态差异误当质量差异。",
     "hanyu_note": "",
@@ -3530,9 +3530,9 @@
     "author_org_url": "https://arxiv.org/pdf/2507.12890",
     "source_order": 103,
     "keywords_list": [
-      "DiffRhythm+",
-      "multimodal control",
-      "preference optimization"
+      "diffusion-DPO",
+      "multimodal conditioning",
+      "margin filtering"
     ]
   },
   {
@@ -3578,7 +3578,7 @@
     "domain": "MusicGen(Mid)",
     "workstream": "Reward-n-RL",
     "title": "DiffRhythm 2: Efficient and High Fidelity Song Generation via Block Flow Matching",
-    "keywords": "DiffRhythm 2；block flow matching；preference alignment",
+    "keywords": "block flow matching；CPPO；multi-preference alignment",
     "model_size": "block flow 1B + Music VAE 170M",
     "model_params_b": "1",
     "generation_speed": "120s 音频 / 25.6s；RTF 0.213",
@@ -3590,7 +3590,7 @@
     "github_note": "",
     "demo_url": "",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 §3.4：CPPO联合 musicality/lyrics 与 style/quality，仍有模型合并；不是GRPO。论文列Xiaomi主仓库，ASLP-lab为可访问的发布fork；偏好对规则需按实际阈值/实现复核，不能从简写推导完整采样算法。",
     "felix_note": "",
     "other_note": "Jiahao: block flow 位于全并行与逐 token AR 之间；可用于比较长曲生成成本及联合偏好筛选的效果。 参考点：对比全并行与 AR 时应加入 block flow 中间点；联合偏好门槛可减少单项奖励冲突。",
     "hanyu_note": "",
@@ -3598,9 +3598,9 @@
     "author_org_url": "https://arxiv.org/pdf/2510.22950",
     "source_order": 105,
     "keywords_list": [
-      "DiffRhythm 2",
       "block flow matching",
-      "preference alignment"
+      "CPPO",
+      "multi-preference alignment"
     ]
   },
   {
@@ -3678,13 +3678,13 @@
     "other_rating": "",
     "zhanh_rating": "",
     "domain": "MusicGen(LLM)",
-    "workstream": "Other",
+    "workstream": "Reward-n-RL",
     "title": "ACE-Step 1.5: Pushing the Boundaries of Open-Source Music Generation",
-    "keywords": "ACE-Step 1.5；LM-DiT planning；quality refinement",
+    "keywords": "GRPO；intrinsic alignment；distillation",
     "model_size": "DiT 约 2B；Qwen3-0.6B conditioner，planner 另计",
     "model_params_b": "2",
     "generation_speed": "240s 音轨 / 约 1s（蒸馏 DiT）",
-    "measurement_context": "A100，4-step adversarial distillation；不能当包含 LM planning、加载和所有 I/O 的端到端延迟。",
+    "measurement_context": "A100；§4.1 报告 50→8 sampling steps、Shift=3、无CFG；240s/约1s为作者蒸馏渲染主张，不能当包含 LM planning、加载和所有 I/O 的端到端延迟。",
     "model_size_url": "https://arxiv.org/pdf/2602.00744",
     "generation_speed_url": "https://arxiv.org/pdf/2602.00744",
     "paper_url": "https://arxiv.org/abs/2602.00744",
@@ -3692,7 +3692,7 @@
     "github_note": "",
     "demo_url": "https://ace-step.github.io/ace-step-v1.5.github.io/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 §2/4：captioner GRPO、generator LM GRPO与DiT intrinsic alignment分开；原文写DiffusionNTF，引用指向DiffusionNFT。Table 1明确1.7B LM+distilled DiT、no RL，不能将主表质量归因RL。",
     "felix_note": "",
     "other_note": "Jiahao: 规划与声学渲染的开放新版本；自动标注质量、SFT 和后训练各阶段应保存独立数据和效果证据。 参考点：最可借鉴的是把自动标注质量也当成可优化对象；同时记录每阶段样本去重关系与奖励来源。",
     "hanyu_note": "",
@@ -3700,9 +3700,9 @@
     "author_org_url": "https://arxiv.org/pdf/2602.00744",
     "source_order": 108,
     "keywords_list": [
-      "ACE-Step 1.5",
-      "LM-DiT planning",
-      "quality refinement"
+      "GRPO",
+      "intrinsic alignment",
+      "distillation"
     ]
   },
   {
@@ -3712,9 +3712,9 @@
     "other_rating": "",
     "zhanh_rating": "",
     "domain": "MusicGen(LLM)",
-    "workstream": "Other",
+    "workstream": "Reward-n-RL",
     "title": "Qwen-Music Technical Report",
-    "keywords": "Qwen-Music；melody planning；long-form synthesis",
+    "keywords": "iterative DPO；GSPO；Melody-CoT",
     "model_size": "Qwen-Music LLM 3B + DiT 1.3B；tokenizer 0.6B 另计",
     "model_params_b": "3",
     "generation_speed": "",
@@ -3726,7 +3726,7 @@
     "github_note": "",
     "demo_url": "",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 §3.2：supervised cold start→迭代离线DPO→在线GSPO；GSPO不是GRPO。使用内部musicality MOS与指令/歌词奖励，完整系统成绩不能替代等预算分阶段消融。",
     "felix_note": "",
     "other_note": "Jiahao: 以旋律 token 等中间规划提升歌曲可控性；适合和无规划、ABC 规划方案做等预算对照。 参考点：旋律 token 是比全局 CLAP 更细、比完整谱面更轻的规划接口，值得与 ABC 和无规划做等预算对照。",
     "hanyu_note": "",
@@ -3734,9 +3734,9 @@
     "author_org_url": "https://arxiv.org/pdf/2607.11699",
     "source_order": 109,
     "keywords_list": [
-      "Qwen-Music",
-      "melody planning",
-      "long-form synthesis"
+      "iterative DPO",
+      "GSPO",
+      "Melody-CoT"
     ]
   },
   {
@@ -3794,7 +3794,7 @@
     "github_note": "",
     "demo_url": "https://map-yue2.github.io/",
     "web_url": "",
-    "zhanh_note": "3.58B 统一 AR–NAR MoT，联合符号计划与音频生成；公开标准评测含两候选筛选，best-of-8 是额外预算，不是一次采样质量或后训练收益。",
+    "zhanh_note": "3.58B 统一 AR–NAR MoT，联合符号计划与音频生成；公开标准评测含两候选筛选，best-of-8 是额外预算，不是一次采样质量或后训练收益。 2026-10-14 §2/4、Appendix A.3：60k AR→40k joint→6k annealing，未报告生成器DPO/GRPO。标准为两候选PER筛选；Bo8联合Pareto筛选再0.10窗口，Global Avg 6.7316→6.9632但PER 0.0844→0.0979；重排序不是RL。",
     "felix_note": "",
     "other_note": "Felix: request 明确给 5/5。 Jiahao: 单个 AR-NAR MoT 联合生成可读乐谱和语义 token，再以 flow 渲染音频；公开底座可用于独立 reward/post-training 研究。 参考点：优先阅读统一 AR/flow 的注意力隔离和任务混合设计；这是相对 YuE 的架构变化，不只是版本升级。",
     "hanyu_note": "",
@@ -3828,7 +3828,7 @@
     "github_note": "",
     "demo_url": "https://selinacloudl.github.io/fulldit-demo/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 专项与整系统分开：专项FullDiT的M2a/M2b/M3编号不同于2607.20253，不能只按模型编号合并消融。EMDC扰动codec条件、不改目标；clean重建与corrupted鲁棒性存在权衡，不是OPD收益证据。",
     "felix_note": "",
     "other_note": "Jiahao: 整曲 token、歌词和描述条件的生成式 DiT renderer；与 Token Foundry 全系统互为专项/整体视角，需测试生成条件上的鲁棒性。 参考点：两阶段系统必须用“模型实际生成的条件”验证 renderer，不能只在完美编码条件上测重建。",
     "hanyu_note": "",
@@ -4224,7 +4224,7 @@
     "domain": "MusicGen(LLM)",
     "workstream": "Reward-n-RL",
     "title": "Pushing the Frontier of Full-Song Generation: Hierarchical Autoregressive Planning Meets Flow-Matching Rendering",
-    "keywords": "Token Foundry；hybrid-LM；flow-GRPO",
+    "keywords": "hybrid-LM；GRPO-OPD；EMDC",
     "model_size": "global LM 8B + local LM 0.4B + FullDiT 8B；codec 另计",
     "model_params_b": "8.4",
     "generation_speed": "",
@@ -4236,7 +4236,7 @@
     "github_note": "",
     "demo_url": "https://hifi-song-generation.github.io/",
     "web_url": "",
-    "zhanh_note": "",
+    "zhanh_note": "2026-10-14 v2/v3 PDF核查：DPO+chosen SFT→GRPO+RSFT→GRPO+冻结SFT教师OPD，teacher||student forward KL；没有隔离OPD收益的LM消融。FullDiT flow-GRPO另算。外部评价计数v2为2105、v3为2289，均为历史快照；训练/评测复用SongBench需独立验收。",
     "felix_note": "",
     "other_note": "Jiahao: 完整系统研究层次 LM、FullDiT、DPO、GRPO 和在线蒸馏；尤其适合研究稀疏奖励与稠密教师反馈如何互补。 参考点：值得同时研究“稀疏奖励 + 稠密教师反馈”和 renderer 自身 RL；上游与下游优化应分别做消融，不能只汇报整套系统提升。 请求中的“Lucky Dolphin”指这份完整系统资料；FullDiT 专项另列。",
     "hanyu_note": "",
@@ -4244,9 +4244,9 @@
     "author_org_url": "https://arxiv.org/pdf/2607.20253",
     "source_order": 124,
     "keywords_list": [
-      "Token Foundry",
       "hybrid-LM",
-      "flow-GRPO"
+      "GRPO-OPD",
+      "EMDC"
     ]
   },
   {
@@ -4599,18 +4599,18 @@
     "workstream": "Reward",
     "title": "WildSongBench: A Benchmark for Full-Song Music Generation",
     "keywords": "WildSongBench；full-song metrics；candidate selection",
-    "model_size": "主 MoT 约 3.58B；codec/vocoder 不包含",
-    "model_params_b": "3.58",
+    "model_size": "",
+    "model_params_b": "",
     "generation_speed": "",
     "measurement_context": "",
-    "model_size_url": "https://arxiv.org/pdf/2609.33757",
+    "model_size_url": "",
     "generation_speed_url": "",
     "paper_url": "https://arxiv.org/abs/2609.33757",
     "github_url": "",
     "github_note": "",
     "demo_url": "https://map-yue2.github.io/",
     "web_url": "https://huggingface.co/datasets/m-a-p/WildSongBench",
-    "zhanh_note": "这是 YuE2 工作随附的 benchmark 资源，不是另一篇独立 WSB 论文；192 prompts 不随附音频。评测必须明确候选 K、选样器及歌词 ASR 预算；它不是 beat GT。",
+    "zhanh_note": "这是 YuE2 工作随附的 benchmark 资源，不是另一篇独立 WSB 论文；192 prompts 不随附音频。评测必须明确候选 K、选样器及歌词 ASR 预算；它不是 beat GT。 2026-10-14 更正：3.58B属于YuE2生成器，不属于WSB数据集；移除误挂的模型规模。标准两候选和Bo8筛选必须区分，Bo8并未使全部指标同步改善。",
     "felix_note": "",
     "other_note": "Felix: request 明确给 5/5。 192 个中英歌词/风格 prompts，公开输入、种子与 evaluator；音频不随数据集分发。可做独立 test，但不同 best-of-K 和候选筛选协议会影响分数，metric 需先验证后才能当 reward。",
     "hanyu_note": "",
@@ -5125,6 +5125,74 @@
       "SFT-DPO interaction",
       "FFT vs LoRA",
       "small models"
+    ]
+  },
+  {
+    "id": "2024-ICLR-GKD-2306.13649",
+    "year": "2024",
+    "venue": "ICLR",
+    "other_rating": "",
+    "zhanh_rating": "",
+    "domain": "LLM",
+    "workstream": "RL",
+    "title": "On-policy Distillation of Language Models: Learning from Self-Generated Mistakes",
+    "keywords": "GKD；on-policy distillation；RL-GKD",
+    "model_size": "",
+    "model_params_b": "",
+    "generation_speed": "",
+    "measurement_context": "",
+    "model_size_url": "",
+    "generation_speed_url": "",
+    "paper_url": "https://openreview.net/pdf?id=3zKtaqxLhW",
+    "github_url": "",
+    "github_note": "",
+    "demo_url": "",
+    "web_url": "https://arxiv.org/abs/2306.13649",
+    "zhanh_note": "原文核查：GKD在学生自生成前缀上匹配教师分布，可选不同divergence并与RL结合。是Full-Song OPD的机制基础，不是音乐实验；on-policy不规定KL方向，密集教师信号不等于已校准音乐reward。首发2023，正式ICLR2024。",
+    "felix_note": "",
+    "other_note": "",
+    "hanyu_note": "",
+    "author_org": "Google DeepMind / Mila",
+    "author_org_url": "https://openreview.net/pdf?id=3zKtaqxLhW",
+    "source_order": 151,
+    "keywords_list": [
+      "GKD",
+      "on-policy distillation",
+      "RL-GKD"
+    ]
+  },
+  {
+    "id": "2026-arXiv-SCOUT-2609.38360",
+    "year": "2026",
+    "venue": "arXiv",
+    "other_rating": "",
+    "zhanh_rating": "",
+    "domain": "LLM",
+    "workstream": "RL",
+    "title": "On the Off-Policy Teacher in On-Policy Distillation",
+    "keywords": "SCOUT；teacher shift；student prefixes",
+    "model_size": "",
+    "model_params_b": "",
+    "generation_speed": "",
+    "measurement_context": "",
+    "model_size_url": "",
+    "generation_speed_url": "",
+    "paper_url": "https://arxiv.org/abs/2609.38360",
+    "github_url": "",
+    "github_note": "",
+    "demo_url": "",
+    "web_url": "",
+    "zhanh_note": "原文核查：学生前缀对教师是off-policy；SCOUT以可验证结果奖励周期更新教师的续写能力，学生继续OPD。数学/代码实验支持机制，尚无音乐实证；教师entropy只能作诊断，不能直接当正确概率或迁移成音乐verifier。",
+    "felix_note": "",
+    "other_note": "",
+    "hanyu_note": "",
+    "author_org": "Washington University in St. Louis",
+    "author_org_url": "https://arxiv.org/pdf/2609.38360",
+    "source_order": 152,
+    "keywords_list": [
+      "SCOUT",
+      "teacher shift",
+      "student prefixes"
     ]
   }
 ]

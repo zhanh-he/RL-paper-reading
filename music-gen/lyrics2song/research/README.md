@@ -6,6 +6,10 @@ field-wide usage frequency. No new model training is launched by this update.
 
 ## Online Reference
 
+- [Source-checked post-training reading map](2026-10-14-post-training-reading.md):
+  LeVo 2, YuE2 and Full-Song equations/results, version differences, OPD
+  foundations and teacher-side distribution shift. Paper evidence stays separate
+  from our experiment receipts.
 - [Models](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics-models):
   eight model families/releases, native inputs, code vs weights vs training
   recipes, separate licenses, and our assessment of post-training feasibility.
@@ -20,7 +24,8 @@ The editable source is [catalog.json](catalog.json). Each entry carries direct
 primary-source links. `platform/scripts/sync-lyrics-reference.mjs` validates and
 publishes it to `platform/site/demos/data/lyrics-reference.json`; the public JSON
 is downloadable from all three reference panels. Do not manually edit that copy.
-The shared literature CSV and contributor ratings are unchanged.
+The 2026-10-14 reading pass also updates shared literature metadata and adds two
+OPD references. Contributor ratings are unchanged.
 
 ## Decisions And Boundaries
 
