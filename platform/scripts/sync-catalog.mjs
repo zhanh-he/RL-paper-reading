@@ -18,6 +18,12 @@ const EXPECTED_HEADERS = [
   "workstream",
   "title",
   "keywords",
+  "model_size",
+  "model_params_b",
+  "generation_speed",
+  "measurement_context",
+  "model_size_url",
+  "generation_speed_url",
   "paper_url",
   "github_url",
   "github_note",
@@ -34,6 +40,10 @@ const EXPECTED_HEADERS = [
 
 const DOMAINS = new Set([
   "MusicGen",
+  "MusicGen(LLM)",
+  "MusicGen(Small)",
+  "MusicGen(Mid)",
+  "MusicGen(Large)",
   "MusicFoundation",
   "MusicEval",
   "MIR",
@@ -51,7 +61,7 @@ const DOMAINS = new Set([
 const WORKSTREAMS = new Set(["Reward", "RL", "Reward-n-RL", "Other"]);
 const RATING_PATTERN = /^(?:[0-5](?:\.5)?)\/5\*?$/;
 
-function parseCsv(input) {
+export function parseCsv(input) {
   const rows = [];
   let row = [];
   let field = "";
@@ -119,7 +129,7 @@ function validateUrl(value, rowNumber, field, errors) {
   }
 }
 
-function loadCatalog() {
+export function loadCatalog() {
   const parsed = parseCsv(fs.readFileSync(CSV_PATH, "utf8"));
   if (parsed.length < 2) throw new Error("The catalog CSV has no data rows");
 
@@ -171,6 +181,15 @@ function loadCatalog() {
     if (record.keywords_list.length > 3) {
       errors.push(`row ${rowNumber}: keywords must contain at most three terms`);
     }
+    if (record.model_params_b && (!/^\d+(?:\.\d+)?$/.test(record.model_params_b) || Number(record.model_params_b) <= 0)) {
+      errors.push(`row ${rowNumber}: model_params_b must be a positive number in billions`);
+    }
+    if (record.model_size && !record.model_size_url) {
+      errors.push(`row ${rowNumber}: reported model size requires a primary source`);
+    }
+    if (record.generation_speed && (!record.generation_speed_url || !record.measurement_context)) {
+      errors.push(`row ${rowNumber}: reported speed requires source and measurement context`);
+    }
     if (ids.has(record.id)) errors.push(`row ${rowNumber}: duplicate id ${record.id}`);
     if (titles.has(record.title)) {
       errors.push(`row ${rowNumber}: duplicate title ${record.title}`);
@@ -178,7 +197,7 @@ function loadCatalog() {
     ids.add(record.id);
     titles.add(record.title);
 
-    for (const field of ["paper_url", "github_url", "demo_url", "web_url", "author_org_url"]) {
+    for (const field of ["paper_url", "github_url", "demo_url", "web_url", "author_org_url", "model_size_url", "generation_speed_url"]) {
       validateUrl(record[field], rowNumber, field, errors);
     }
     return record;
@@ -202,11 +221,10 @@ function writeOrCheck(filePath, next) {
   fs.writeFileSync(filePath, next);
 }
 
-const catalog = loadCatalog();
-const publicCatalog = catalog.map(({ obsidian_target, ...record }) => record);
-const json = `${JSON.stringify(publicCatalog, null, 2)}\n`;
-writeOrCheck(JSON_PATH, json);
-
-console.log(
-  `${CHECK_ONLY ? "Checked" : "Built"} ${catalog.length} literature records successfully.`
-);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const catalog = loadCatalog();
+  const publicCatalog = catalog.map(({ obsidian_target, ...record }) => record);
+  const json = `${JSON.stringify(publicCatalog, null, 2)}\n`;
+  writeOrCheck(JSON_PATH, json);
+  console.log(`${CHECK_ONLY ? "Checked" : "Built"} ${catalog.length} literature records successfully.`);
+}

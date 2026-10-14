@@ -8,12 +8,12 @@
       content="Interactive Huawei RL literature catalog for music reward and reinforcement learning research."
     />
     <title>Huawei RL Literature Catalog</title>
-    <link rel="stylesheet" href="./assets/styles.css?v=20261014" />
+    <link rel="stylesheet" href="./assets/styles.css?v=20261014-sync" />
     <script
       defer
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
     ></script>
-    <script type="module" src="./assets/app.js"></script>
+    <script type="module" src="./assets/app.js?v=20261014-sync"></script>
   </head>
   <body>
     <header class="app-header">
@@ -75,12 +75,22 @@
             <kbd>/</kbd>
           </label>
 
-          <label class="select-control">
-            <span>Domain</span>
-            <select id="domain-filter" aria-label="Filter by domain">
-              <option value="">All domains</option>
-            </select>
-          </label>
+          <div class="select-control domain-control">
+            <span class="filter-label">Domain</span>
+            <details id="domain-menu" class="domain-menu">
+              <summary aria-label="Filter domains" aria-controls="domain-filter">
+                <span id="domain-summary">All domains</span>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
+              </summary>
+              <div class="domain-popover">
+                <div class="domain-actions">
+                  <button id="domains-all" class="icon-button" type="button" title="Select all domains" aria-label="Select all domains"><i data-lucide="check-check" aria-hidden="true"></i></button>
+                  <button id="domains-none" class="icon-button" type="button" title="Clear domain selection" aria-label="Clear domain selection"><i data-lucide="square" aria-hidden="true"></i></button>
+                </div>
+                <fieldset id="domain-filter"><legend class="sr-only">Visible domains</legend></fieldset>
+              </div>
+            </details>
+          </div>
 
           <label class="select-control">
             <span>Year</span>
@@ -186,6 +196,9 @@
                 </button>
               </th>
               <th class="keywords-column optional-wide" scope="col">Core terms</th>
+              <th class="metrics-column optional-wide" scope="col">
+                <button class="sort-button" type="button" data-sort="model_params_b">规模 / 速度 <i data-lucide="chevrons-up-down" aria-hidden="true"></i></button>
+              </th>
               <th class="links-column" scope="col">Links</th>
               <th class="value-column optional-wide" scope="col">Direct project value</th>
               <th class="organization-column" scope="col">
@@ -224,6 +237,10 @@
         <section>
           <h3>Direct project value</h3>
           <div id="detail-notes" class="note-stack"></div>
+        </section>
+        <section>
+          <h3>规模 / 速度</h3>
+          <div id="detail-metrics" class="note-stack"></div>
         </section>
         <section>
           <h3>主要作者</h3>

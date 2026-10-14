@@ -1,0 +1,2029 @@
+{
+  "checked_at": "2026-10-14",
+  "scope": "Shared catalog semantic audit and quantitative model registry",
+  "evidence_boundary": "All rows were structurally reviewed; model classifications and selected technical claims were cross-checked against primary PDFs/official resources. This is not a full reproduction or a line-by-line review of every paper.",
+  "taxonomy": "MusicFoundation = music-understanding representations; MusicGen(LLM) = token LM / LM+renderer system (not necessarily pretrained text LLM); non-LM reference generator: Small <1B, Mid 1–3B, Large >3B. Unknown scope remains MusicGen.",
+  "speed_boundary": "Reported author measurements, not local benchmark. RTF direction, hardware, duration, sampling budget, modules and candidate K must be read from context. Unknowns stay blank.",
+  "changes": [
+    {
+      "id": "2025-ISMIR-STAGE-Stemmed-Accompaniment-Generation",
+      "source": "https://arxiv.org/abs/2504.05690",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "zhanh_note": {
+          "before": "已用 Beat This + `mir_eval` F1 评价 generated stem；证明 plain beat detection/F1 不是新贡献，必须增加 drift、meter ambiguity、robustness 和 human fit。",
+          "after": "已有 Beat This + mir_eval F1 的 generated-stem 评价先例。我们的差异应由局部漂移、节拍歧义、confidence calibration 与独立人类 rhythmic-fit 证据建立，而非仅换 detector。"
+        }
+      }
+    },
+    {
+      "id": "2026-AAAI-Multi-Metric-Preference-Alignment-Generative-Speech-Restoration",
+      "source": "https://ojs.aaai.org/index.php/AAAI/article/view/40775",
+      "changes": {
+        "zhanh_note": {
+          "before": "80K preference pairs 只在 perceptual quality、signal fidelity、content consistency 与 timbre preservation 四类指标一致判优时接纳 chosen；跨 AR、masked generation、flow matching 做 DPO，且有主客观评价与 single-metric ablation，是我们 multi-reward pair filtering 和防 reward hacking 的直接 speech 先例。",
+          "after": "80K 自动 preference pairs 以四类互补指标构造一致判优样本，再对三类生成式 speech restoration 架构做 DPO；适合借鉴 non-inferiority / unanimous pair selection，但不能据此宣称 DPO 对所有噪声免疫。"
+        }
+      }
+    },
+    {
+      "id": "2024-ICML-MusicRL-Aligning-Music-Generation-to-Human-Preferences",
+      "source": "https://proceedings.mlr.press/v235/cideron24a.html",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2026-ICLR-Generative-Adversarial-Post-Training-Music-Reward-Hacking",
+      "source": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e6731a1d3eddafeb8c94669a1d82fc5d-Abstract-Conference.html",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "zhanh_note": {
+          "before": "音乐 reward hacking 的最直接公开证据：coherence reward 上升但简单和弦重复、diversity collapse，且 KL + rules 不足；要求检查真实 policy trajectories。",
+          "after": "在人机实时和弦交互任务中，coherence proxy 优化可伴随重复和多样性坍缩，GAPT 提供缓解证据；这支持音乐 policy-trajectory 审计，不等于所有 full-song GRPO 都已验证同一机制。"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-CMI-RewardBench-and-CMI-RM",
+      "source": "https://arxiv.org/abs/2603.00610",
+      "changes": {
+        "zhanh_note": {
+          "before": "110K pseudo + 4,027 expert preferences、23 generators；是 holistic musicality/alignment 强 baseline，并留下 local temporal structure 与 head disentanglement 缺口。",
+          "after": "110K pseudo pairs 与 4,027 expert pairs；CMI-Pref 涉及 23 个生成器。适合 learned musicality/alignment baseline 与 disagreement mining；它没有替我们建立 beat-specific gold 或 policy-shift 安全性。"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-MuseCritic-Multi-Aspect-Song-Rewards",
+      "source": "https://arxiv.org/abs/2608.11755",
+      "changes": {
+        "zhanh_note": {
+          "before": "五维 learned song reward；Music Arena 71.35% 是 overall preference 而非 beat。与 explicit BeatReward 互补，不能用 Musicality/Coherence 替代 rhythm-specific labels。",
+          "after": "SongEval 五维审美 reward + Muse 下游 GRPO。Music Arena preference accuracy 评价整体偏好，Coherence/Structure 不是 beat correctness；不能因局部节拍扰动排名较弱就宣称整体评测失败。"
+        }
+      }
+    },
+    {
+      "id": "2026-ACL-Muse-Reproducible-Long-Form-Song-Generation",
+      "source": "https://arxiv.org/abs/2601.03973",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "主配置 Qwen3-0.6B；规模消融 1.7B/4B/8B；codec 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.6"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2601.03973"
+        },
+        "zhanh_note": {
+          "before": "公开 0.6B 模型、116K song data、训练/推理/评价 pipeline；是 public post-training backbone，但 full mix 需先过 frozen separator bridge。",
+          "after": "公开紧凑 AR 底座适合可复现的 post-training；原论文为 SFT，116K 合成歌曲是论文报告规模，数据发布完整性须另核验。后续 MuseCritic GRPO 不应归入 Muse 原论文。"
+        }
+      }
+    },
+    {
+      "id": "2026-CVPR-GRPO-Guard-Regulated-Clipping",
+      "source": "https://openaccess.thecvf.com/content/CVPR2026/html/Wang_GRPO-Guard_Mitigating_Implicit_Over-Optimization_in_Flow_Matching_via_Regulated_Clipping_CVPR_2026_paper.html",
+      "changes": {
+        "zhanh_note": {
+          "before": "揭示 proxy 上升、gold quality 下降的 optimizer-side 机制；即使底座不是 flow，也必须迁移 proxy/gold trajectory 与 clipping/ratio audit。",
+          "after": "在 flow matching 中分析并缓解隐式 overoptimization。可借鉴 proxy/gold trajectory 与 ratio/clipping 审计；其 flow 机制不能未经验证直接套到 AR codec-token GRPO。"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-LeVo-SongGeneration-Traditional-Instruments-KB",
+      "source": "https://arxiv.org/abs/2506.07520",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "LeLM 约 2B；diffusion 700M；MuEncoder 300M；VAE 150M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "2"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.07520"
+        },
+        "github_url": {
+          "before": "",
+          "after": "https://github.com/levo-demo/LeVo"
+        },
+        "zhanh_note": {
+          "before": "最接近 song-level multi-preference DPO；可借鉴多维偏好拆分与 dual-track tokens；官方 GitHub 于 2026-09-02 返回 404，故暂不列死链接。",
+          "after": "LeVo 2025 的多维偏好 DPO 与模型合并是直接参照；官方共享代码入口现已可访问且包含 LeVo 2，复现时须固定对应版本，不能把新版训练说明归给旧论文。"
+        },
+        "other_note": {
+          "before": "Jiahao: 多偏好歌曲 DPO 与双轨生成是本项目直接参照；保留歌词、条件一致性及音质的多轴验收。 参考点：多目标奖励不稳定时，可先分别诊断歌词、匹配与音质，再决定合并策略；同时保留未优化维度的守门指标。 论文所列官方代码入口本次返回 404；保留可用 demo。",
+          "after": "Jiahao: 多偏好歌曲 DPO 与双轨生成是本项目直接参照；保留歌词、条件一致性及音质的多轴验收。 参考点：多目标奖励不稳定时，可先分别诊断歌词、匹配与音质，再决定合并策略；同时保留未优化维度的守门指标。 历史代码入口曾返回 404；2026-10-14 已恢复有效官方入口，注意版本。"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-Towards-Hallucination-Free-Music",
+      "source": "https://arxiv.org/abs/2508.05011",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2025-IJCAI-NotaGen-Advancing-Musicality-in-Symbolic-Music-Generation",
+      "source": "https://arxiv.org/abs/2502.18008",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "NotaGen 516M；MuPT 550M / MET 505M 为对照"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.516"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2502.18008"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-UP-RLHF-Diverse-Reward-LoRA-Ensembles",
+      "source": "https://arxiv.org/abs/2401.00243",
+      "changes": {
+        "zhanh_note": {
+          "before": "支持用异构 reward ensemble 估计不确定性并保守优化；tracker 投票仍不等于正确。",
+          "after": "异构 reward ensembles 提供不确定性证据与保守优化思路；多个 tracker 一致不等于排序正确，仍需要 pair-direction calibration 与 shared-blind-spot stress tests。"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-MuQ-Eval",
+      "source": "https://arxiv.org/abs/2603.22677",
+      "changes": {
+        "zhanh_note": {
+          "before": "最像 music DNSMOS/UTMOS 的开放 per-sample quality predictor；可用于 Best-of-K 和 DPO quality gate，但对结构扰动不敏感。",
+          "after": "音乐 per-sample quality predictor，可作独立 quality gate 或评测候选；质量预测、局部错拍辨别、以及作为在线优化 reward 的安全性是三项不同资格，需要分别验证。"
+        }
+      }
+    },
+    {
+      "id": "2026-ICASSP-MR-FlowDPO",
+      "source": "https://arxiv.org/abs/2512.10264",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "Flow-400M / MelodyFlow-1B 两个 reference models"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2512.10264"
+        }
+      }
+    },
+    {
+      "id": "2023-arXiv-SingSong-Generating-Musical-Accompaniments-from-Singing",
+      "source": "https://arxiv.org/abs/2301.12662",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-HAFM-Music-Accompaniment-Generation",
+      "source": "https://arxiv.org/abs/2604.09054",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2026-PMLR-Detecting-Whisper-Hallucinations-Local-Confidence-Contrasts",
+      "source": "https://proceedings.mlr.press/v309/corpataux26a.html",
+      "changes": {
+        "zhanh_note": {
+          "before": "用 acoustic confidence 加相邻 token 的 Local Confidence Drop 构造轻量可解释 detector，在 FLEURS 上达到 0.64 AP 并显著优于 baseline。与 BeatReward v6 的 confidence-gated 思路高度同构：低 confidence 时拒绝把 ASR/PER 结果送入 pair construction 或 RL。",
+          "after": "轻量 local confidence contrasts 用于 ASR hallucination detection；可借鉴 verifier 的拒绝机制，但 ASR acoustic confidence 不是 BeatReward pair correctness，不能直接迁移阈值或校准概率。"
+        }
+      }
+    },
+    {
+      "id": "2024-ICLR-MAGNeT-2401.04577",
+      "source": "https://arxiv.org/abs/2401.04577",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "300M small / 1.5B large"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.5"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "相对 AR 基线约 7× 加速"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "论文特定解码/重打分配置；相对加速不是统一硬件绝对延迟。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2401.04577"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2401.04577"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-2402.04825",
+      "source": "https://arxiv.org/abs/2402.04825",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "U-Net 907M；VAE 133M；文本编码器另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.907"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "95s 音频 / 8s 生成"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "A100 40GB，44.1kHz stereo，论文摘要及推理效率；非本地测量。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2402.04825"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2402.04825"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-2-2404.10301",
+      "source": "https://arxiv.org/abs/2404.10301",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 1.1B；AE 157M；CLAP 125M；论文总计约 1.3B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.1"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2404.10301"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-Open-2407.14358",
+      "source": "https://arxiv.org/abs/2407.14358",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 1.057B；AE 156M；T5 109M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.057"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2407.14358"
+        }
+      }
+    },
+    {
+      "id": "2024-ICML-MusicFlow-2410.20478",
+      "source": "https://arxiv.org/abs/2410.20478",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "FM+FM 330M（84M+246M）；LM+FM 对照 546M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.33"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "NFE 约为 MusicGen 的 20%（特定 FAD 点）"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "Figure 3 是网络求值次数，不是 wall-clock speed；不能把较少 NFE 当成 5× 实测加速。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2410.20478"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2410.20478"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-MelodyFlow-2407.03648",
+      "source": "https://arxiv.org/abs/2407.03648",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 400M small / 1B medium"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2407.03648"
+        }
+      }
+    },
+    {
+      "id": "2025-IJCAI-QA-MDT-OpenMusic-2405.15863",
+      "source": "https://www.ijcai.org/proceedings/2025/1126",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "QA-MDT 675M；U-Net 对照 1B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.675"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2405.15863"
+        }
+      }
+    },
+    {
+      "id": "2025-ICLR-Presto-2410.05167",
+      "source": "https://arxiv.org/abs/2410.05167",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "Stable Audio Open 底座；层蒸馏减少有效计算，参数总数未独立核验"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "32s mono/stereo：230/435ms"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "A100 40GB，44.1kHz，Presto-LS；作者报告，不含冷启动。层数减少不自动等于存储参数减少。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2410.05167"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2410.05167"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-Stable-Audio-Open-Small-ARC-2505.08175",
+      "source": "https://arxiv.org/abs/2505.08175",
+      "changes": {
+        "model_size": {
+          "before": "",
+          "after": "DiT 340M；AE 156M；T5 109M；判别器 274M 仅训练"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.34"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "约 12s stereo / 75ms"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "H100，44.1kHz；作者摘要近似值。该文 RTF 定义为 audio duration / latency（越高越快）。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2505.08175"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2505.08175"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Stable-Audio-3-2605.17991",
+      "source": "https://arxiv.org/abs/2605.17991",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT small 459M / medium 1.4B / large 2.7B；SAME 108M/852M 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.4"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "H200 表 1：0.44 / 1.31 / 1.80s"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "分别对应 small / medium / large；这些延迟不能直接除以各型号最大支持时长，须按评测输出长度解释。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2605.17991"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2605.17991"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-Seed-Music-2409.09214",
+      "source": "https://arxiv.org/abs/2409.09214",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-SongCreator-2409.06029",
+      "source": "https://arxiv.org/abs/2409.06029",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DSLM 约 600M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.6"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2409.06029"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-YuE-2503.08638",
+      "source": "https://arxiv.org/abs/2503.08638",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "发布主配置 Stage-1 LM 7B + Stage-2 LM 1B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "7"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.08638"
+        }
+      }
+    },
+    {
+      "id": "2025-ICML-SongGen-2502.13128",
+      "source": "https://arxiv.org/abs/2502.13128",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "官方模型说明 1.3B；English <=30s"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.3"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://github.com/LiuZH-19/SongGen"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-InspireMusic-2503.00084",
+      "source": "https://arxiv.org/abs/2503.00084",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "LM 0.5B/1.5B；含 flow 的表中总计 0.8B/1.8B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.5"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.00084"
+        }
+      }
+    },
+    {
+      "id": "2025-NeurIPS-SongBloom-2506.07634",
+      "source": "https://arxiv.org/abs/2506.07634",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "SongBloom-tiny 1.3B / full 2B（联合 LM & diffusion）"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "2"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "SongBloom-full / full-ft：RTF↓ 1.649"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "Table 2，36 Euler diffusion steps、CFG 1.5、top-k200 / temp0.9；RTF定义及推理硬件未完整注明，不从训练用16×A100推断推理卡，不换算统一实时倍率。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.07634"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.07634"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-HeartMuLa-2601.10547",
+      "source": "https://arxiv.org/abs/2601.10547",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "global LM 3B + local decoder 300M；另有 7B 扩展"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "3.3"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "官方 README rough estimate：RTF ≈1.0"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "官方 TODO 的近似估计；未绑定具体 checkpoint、硬件、时长、precision/batch。不是与论文表同条件的 benchmark，不据此做速度排名。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2601.10547"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://github.com/HeartMuLa/heartlib"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-LeVo-2-2606.30642",
+      "source": "https://arxiv.org/abs/2606.30642",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "层次 LeLM 总计约 4B；diffusion 700M；encoder/VAE 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "4"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "官方 H20 RTF：base 0.67 / large 0.82"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "来源为共享官方 repo 当前发布版本；pure inference，排除 model loading，版本不等于 LeVo 2025。RTF=time/audio。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2606.30642"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://github.com/levo-demo/LeVo"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Shao-2605.01790",
+      "source": "https://arxiv.org/abs/2605.01790",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "backbone LM 约 1.6B + SR LM 约 1.8B；codec 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.6"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2605.01790"
+        }
+      }
+    },
+    {
+      "id": "2026-Web-MiniMax-Music-3-22",
+      "source": "https://github.com/MiniMax-AI/MiniMax-Music3",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2503.01183",
+      "source": "https://arxiv.org/abs/2503.01183",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 约 1.1B；VAE 157M 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.1"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "RTF 0.037（95s）/ 0.034（285s）"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "RTX 4090，原论文 Table 2；RTF=time/audio，越低越快。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.01183"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.01183"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-ACE-Step-2506.00045",
+      "source": "https://arxiv.org/abs/2506.00045",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Large)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "主生成模型 3.5B；codec/辅助模块另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "3.5"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "15.63× 实时"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "RTX 4090，原论文 Table 2；该文称 RTF，但定义是 audio/time，与其他论文 time/audio 相反。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.00045"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.00045"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "原版本 3.5B flow 音乐生成器；不是仅凭名字归为 music-understanding foundation。其速度表使用 audio/time 的 RTF↑，与 DiffRhythm 等 RTF↓ 定义相反，必须先统一口径。"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2507.12890",
+      "source": "https://arxiv.org/abs/2507.12890",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 约 1.1B；VAE 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.1"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "RTF 0.036–0.039"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "RTX 4090；原论文效率比较，RTF=time/audio，测试控制条件不同会改变延迟。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2507.12890"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2507.12890"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-JAM-2507.20880",
+      "source": "https://arxiv.org/abs/2507.20880",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "flow generator 530M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.53"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2507.20880"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2-2510.22950",
+      "source": "https://arxiv.org/abs/2510.22950",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "block flow 1B + Music VAE 170M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "120s 音频 / 25.6s；RTF 0.213"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "RTX 4090，Table 6；block-size ablation 还有 0.154 等值，不能与最终配置混用。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2510.22950"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2510.22950"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-WanSong-2607.14749",
+      "source": "https://arxiv.org/abs/2607.14749",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(Large)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "总规模接近 25B；MoE activated 参数不能据此推定"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "25"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2607.14749"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-MusiCoT-Mureka-2503.19611",
+      "source": "https://arxiv.org/abs/2503.19611",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "semantic LM 约 1B + diffusion renderer 约 1B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "RTF 0.27"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "RTX 4090，论文 Table 1；RTF=time/audio；commercial API timing 不可当同硬件比较。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.19611"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2503.19611"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-ACE-Step-1-5-2602.00744",
+      "source": "https://arxiv.org/abs/2602.00744",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 约 2B；Qwen3-0.6B conditioner，planner 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "2"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "240s 音轨 / 约 1s（蒸馏 DiT）"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "A100，4-step adversarial distillation；不能当包含 LM planning、加载和所有 I/O 的端到端延迟。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2602.00744"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2602.00744"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Qwen-Music-2607.11699",
+      "source": "https://arxiv.org/abs/2607.11699",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "Qwen-Music LLM 3B + DiT 1.3B；tokenizer 0.6B 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "3"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2607.11699"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Step-Audio-3-Music-2609.16034",
+      "source": "https://arxiv.org/abs/2609.16034",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "最终 renderer DiT 0.9B；tokenizer 0.6B；LM 总规模未核验"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2609.16034"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-YuE2-2609.33757",
+      "source": "https://arxiv.org/abs/2609.33757",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "主 MoT 约 3.58B；codec/vocoder 不包含"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "3.58"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2609.33757"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "3.58B 统一 AR–NAR MoT，联合符号计划与音频生成；公开标准评测含两候选筛选，best-of-8 是额外预算，不是一次采样质量或后训练收益。"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-FullDiT-2608.08787",
+      "source": "https://arxiv.org/abs/2608.08787",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Large)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "完整 renderer 8B；受控消融另为 1.5B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "8"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2608.08787"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-JASCO-2406.10970",
+      "source": "https://arxiv.org/abs/2406.10970",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "JASCO Transformer 330M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.33"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2406.10970"
+        }
+      }
+    },
+    {
+      "id": "2025-ICML-MuseControlLite-2506.18729",
+      "source": "https://arxiv.org/abs/2506.18729",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "85M 可训练 conditioner；整套模型约 1.4B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.4"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2506.18729"
+        }
+      }
+    },
+    {
+      "id": "2024-ISMIR-MusicGen-Style-2407.12563",
+      "source": "https://arxiv.org/abs/2407.12563",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "MusicGen medium 1.5B；参考编码器另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.5"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2407.12563"
+        }
+      }
+    },
+    {
+      "id": "2024-ICML-DITTO-2401.12179",
+      "source": "https://arxiv.org/abs/2401.12179",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "主实验 small diffusion <18M（不含所有控制链开销）"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2401.12179"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-DITTO-2-2405.20289",
+      "source": "https://arxiv.org/abs/2405.20289",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "主 diffusion 41M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.041"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "相对标准 DITTO 超过 10× 加速"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "作者报告特定 (20,20) baseline；optimization budget 和采样配置不同，不是绝对通用速度。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2405.20289"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2405.20289"
+        }
+      }
+    },
+    {
+      "id": "2026-ACL-SegTune-2510.18416",
+      "source": "https://arxiv.org/abs/2510.18416",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "DiT 约 1.1B + Qwen3-4B duration planner + encoder 0.6B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.1"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2510.18416"
+        }
+      }
+    },
+    {
+      "id": "2024-arXiv-SongComposer-2402.17645",
+      "source": "https://arxiv.org/abs/2402.17645",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "InternLM2-7B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "7"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2402.17645"
+        }
+      }
+    },
+    {
+      "id": "2025-AAAI-Text2midi-2412.16526",
+      "source": "https://arxiv.org/abs/2412.16526",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Small)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "总计 272M；可训练 159M"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.272"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2412.16526"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-MIDI-LLM-2511.03942",
+      "source": "https://arxiv.org/abs/2511.03942",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "Llama-3.2-1B 初始化；扩展 MIDI 词表后 Table 2 报 1.5B"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.5"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "3.33× 实时（bf16, batch1）；11.48×（batch4）"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "L40S，2K token sequence；作者 RTF↑ 是 MIDI 时长/time，不是波形渲染速度。fp8 另为 4.02/14.17。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2511.03942"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2511.03942"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "符号生成模型：1B 是初始化底座名称，扩展 MIDI vocabulary 后主评测表参数为 1.5B；RTF 指 MIDI 生成而非最终波形合成。可借鉴数据/编码设计，不直接对标音频生成速度。"
+        }
+      }
+    },
+    {
+      "id": "2025-EMNLP-Findings-VersBand-2504.19062",
+      "source": "https://arxiv.org/abs/2504.19062",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "VocalBand 基于 Qwen-7B；其他流水线模块另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "7"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2504.19062"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-ComposerFlow-MIDI-informed-SAG-2602.22029",
+      "source": "https://arxiv.org/abs/2602.22029",
+      "changes": {
+        "domain": {
+          "before": "MusicGen",
+          "after": "MusicGen(Mid)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "MIDI-SAG 表中约 1.3B；其他作曲/SVS 模块另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "1.3"
+        },
+        "generation_speed": {
+          "before": "",
+          "after": "120s song：MIDI-SAG 40s；四模块总计 53.2s"
+        },
+        "measurement_context": {
+          "before": "",
+          "after": "单 RTX 3090，Appendix Table 8；总计为 10+0.2+3+40 的串行求和，未包含未报告 I/O/加载开销。"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2602.22029"
+        },
+        "generation_speed_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2602.22029"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Alibaba-Token-Foundry-2607.20253",
+      "source": "https://arxiv.org/abs/2607.20253",
+      "changes": {
+        "domain": {
+          "before": "MusicFoundation",
+          "after": "MusicGen(LLM)"
+        },
+        "model_size": {
+          "before": "",
+          "after": "global LM 8B + local LM 0.4B + FullDiT 8B；codec 另计"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "8.4"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2607.20253"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-Bradley-Terry-and-Multi-Objective-Reward-Modeling-Are-Complementary",
+      "source": "https://arxiv.org/abs/2507.07375",
+      "changes": {
+        "zhanh_note": {
+          "before": "共享 embedding 联合训练 BT 偏好与多属性回归，互相补强 scoring 和 OOD 抗 hacking；直接支持显式 beat/coverage 维度与 learned overall judge 的联合研究。",
+          "after": "联合 BT 偏好与多属性回归在论文所测 scoring/OOD 场景互补；可启发保留 beat/coverage 显式维度，但不证明该融合已在音乐 policy shift 上可靠。"
+        }
+      }
+    },
+    {
+      "id": "2026-Web-WildSongBench-A-Benchmark-for-Full-Song-Music-Generation",
+      "source": "https://arxiv.org/abs/2609.33757",
+      "changes": {
+        "model_size": {
+          "before": "",
+          "after": "主 MoT 约 3.58B；codec/vocoder 不包含"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "3.58"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2609.33757"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "这是 YuE2 工作随附的 benchmark 资源，不是另一篇独立 WSB 论文；192 prompts 不随附音频。评测必须明确候选 K、选样器及歌词 ASR 预算；它不是 beat GT。"
+        }
+      }
+    },
+    {
+      "id": "2024-ICLR-MERT-Music-Understanding",
+      "source": "https://proceedings.iclr.cc/paper_files/paper/2024/file/33dffa2e3d2ab74a783d1a8c292f66d9-Paper-Conference.pdf",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2024-ICLR-MERT-Music-Understanding"
+        },
+        "year": {
+          "before": "",
+          "after": "2024"
+        },
+        "venue": {
+          "before": "",
+          "after": "ICLR"
+        },
+        "domain": {
+          "before": "",
+          "after": "MusicFoundation"
+        },
+        "workstream": {
+          "before": "",
+          "after": "Other"
+        },
+        "title": {
+          "before": "",
+          "after": "MERT: Acoustic Music Understanding Model with Large-Scale Self-supervised Training"
+        },
+        "keywords": {
+          "before": "",
+          "after": "MERT；RVQ-VAE+CQT；masked pretraining"
+        },
+        "model_size": {
+          "before": "",
+          "after": "95M / 330M encoder"
+        },
+        "model_params_b": {
+          "before": "",
+          "after": "0.33"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://proceedings.iclr.cc/paper_files/paper/2024/file/33dffa2e3d2ab74a783d1a8c292f66d9-Paper-Conference.pdf"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://proceedings.iclr.cc/paper_files/paper/2024/file/33dffa2e3d2ab74a783d1a8c292f66d9-Paper-Conference.pdf"
+        },
+        "github_url": {
+          "before": "",
+          "after": "https://github.com/yizhilll/MERT"
+        },
+        "web_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2306.00107"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "音乐理解/表征底座，不是音乐生成器或现成 MOS reward。可用于特征、任务 probe 和独立诊断；embedding similarity 是否反映 rhythmic-fit 仍须验证。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "University of Manchester / Sheffield"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://proceedings.iclr.cc/paper_files/paper/2024/file/33dffa2e3d2ab74a783d1a8c292f66d9-Paper-Conference.pdf"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-MuQ-Music-Representation",
+      "source": "https://arxiv.org/abs/2501.01108",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2025-arXiv-MuQ-Music-Representation"
+        },
+        "year": {
+          "before": "",
+          "after": "2025"
+        },
+        "venue": {
+          "before": "",
+          "after": "arXiv"
+        },
+        "domain": {
+          "before": "",
+          "after": "MusicFoundation"
+        },
+        "workstream": {
+          "before": "",
+          "after": "Other"
+        },
+        "title": {
+          "before": "",
+          "after": "MuQ: Self-Supervised Music Representation Learning with Mel Residual Vector Quantization"
+        },
+        "keywords": {
+          "before": "",
+          "after": "MuQ；Mel-RVQ；MuQ-MuLan"
+        },
+        "model_size_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2501.01108"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2501.01108"
+        },
+        "github_url": {
+          "before": "",
+          "after": "https://github.com/tencent-ailab/MuQ"
+        },
+        "web_url": {
+          "before": "",
+          "after": "https://huggingface.co/OpenMuQ"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "音乐理解 SSL encoder 与对比学习 MuQ-MuLan；不等于 MuQ-Eval 质量预测器，也不是 beat verifier。代码 MIT、发布权重 CC-BY-NC 4.0，分别核验许可。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "SJTU"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2501.01108"
+        }
+      }
+    },
+    {
+      "id": "2025-EMNLP-Rewarding-the-Unlikely-GRPO",
+      "source": "https://aclanthology.org/2025.emnlp-main.1298/",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2025-EMNLP-Rewarding-the-Unlikely-GRPO"
+        },
+        "year": {
+          "before": "",
+          "after": "2025"
+        },
+        "venue": {
+          "before": "",
+          "after": "EMNLP"
+        },
+        "domain": {
+          "before": "",
+          "after": "LLM"
+        },
+        "workstream": {
+          "before": "",
+          "after": "RL"
+        },
+        "title": {
+          "before": "",
+          "after": "Rewarding the Unlikely: Lifting GRPO Beyond Distribution Sharpening"
+        },
+        "keywords": {
+          "before": "",
+          "after": "unlikeliness reward；rank bias；pass@N"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2025.emnlp-main.1298/"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "在有可靠 verifier 的 theorem proving 中分析 GRPO rank bias 并提高稀有正确解权重；启发同时测 support@K 与 diversity，不证明不可靠音乐 reward 也应给稀有高分加权。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "CMU"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2025.emnlp-main.1298.pdf"
+        }
+      }
+    },
+    {
+      "id": "2026-ACL-MDP-GRPO",
+      "source": "https://aclanthology.org/2026.acl-long.1982/",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2026-ACL-MDP-GRPO"
+        },
+        "year": {
+          "before": "",
+          "after": "2026"
+        },
+        "venue": {
+          "before": "",
+          "after": "ACL"
+        },
+        "domain": {
+          "before": "",
+          "after": "LLM"
+        },
+        "workstream": {
+          "before": "",
+          "after": "RL"
+        },
+        "title": {
+          "before": "",
+          "after": "MDP-GRPO: Stabilized Group Relative Policy Optimization for Multi-Constraint Instruction Following"
+        },
+        "keywords": {
+          "before": "",
+          "after": "MDP-GRPO；low-variance amplification；dual anchor"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2026.acl-long.1982/"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "解释低离散度/同质 group 的 normalization 问题；可用于我们的 ties、raw reward spread 与梯度放大诊断，但不能自动修复排序方向错误。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "University of Tehran"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2026.acl-long.1982.pdf"
+        }
+      }
+    },
+    {
+      "id": "2026-EACL-Online-Difficulty-Filtering-RORL",
+      "source": "https://aclanthology.org/2026.eacl-long.30/",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2026-EACL-Online-Difficulty-Filtering-RORL"
+        },
+        "year": {
+          "before": "",
+          "after": "2026"
+        },
+        "venue": {
+          "before": "",
+          "after": "EACL"
+        },
+        "domain": {
+          "before": "",
+          "after": "LLM"
+        },
+        "workstream": {
+          "before": "",
+          "after": "RL"
+        },
+        "title": {
+          "before": "",
+          "after": "Online Difficulty Filtering for Reasoning Oriented Reinforcement Learning"
+        },
+        "keywords": {
+          "before": "",
+          "after": "difficulty filtering；reward variance；RLVR curriculum"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2026.eacl-long.30/"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "用中等难度过滤提高 verifier-based reasoning RL 的效率；音乐中 reward 可分性与方向正确性须分开资格验证，不能照搬成功概率阈值。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "NAVER Cloud"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://aclanthology.org/2026.eacl-long.30.pdf"
+        }
+      }
+    },
+    {
+      "id": "2025-arXiv-Music-Tagging-Classifier-Group-Chains",
+      "source": "https://arxiv.org/abs/2501.05050",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2025-arXiv-Music-Tagging-Classifier-Group-Chains"
+        },
+        "year": {
+          "before": "",
+          "after": "2025"
+        },
+        "venue": {
+          "before": "",
+          "after": "ICASSP"
+        },
+        "domain": {
+          "before": "",
+          "after": "MIR"
+        },
+        "workstream": {
+          "before": "",
+          "after": "Reward"
+        },
+        "title": {
+          "before": "",
+          "after": "Music Tagging with Classifier Group Chains"
+        },
+        "keywords": {
+          "before": "",
+          "after": "classifier group chains；tag dependency；MTG-Jamendo"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2501.05050"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "建模 genre/mood/instrument 标签组之间的依赖，可启发条件一致性评测；tagging 性能不是主观音乐质量、乐器数量或 post-training reward 有效性。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "LY Corporation"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2501.05050"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-Qwen3.5-Omni-Technical-Report",
+      "source": "https://arxiv.org/abs/2604.15804",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2026-arXiv-Qwen3.5-Omni-Technical-Report"
+        },
+        "year": {
+          "before": "",
+          "after": "2026"
+        },
+        "venue": {
+          "before": "",
+          "after": "arXiv"
+        },
+        "domain": {
+          "before": "",
+          "after": "AudioLLM"
+        },
+        "workstream": {
+          "before": "",
+          "after": "Other"
+        },
+        "title": {
+          "before": "",
+          "after": "Qwen3.5-Omni Technical Report"
+        },
+        "keywords": {
+          "before": "",
+          "after": "Hybrid Attention MoE；ARIA；omni-modality"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2604.15804"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "通用多模态理解与流式语音系统的工程/后训练参考；不是音乐生成论文，也不能凭音频理解能力把它当已验证的音乐 judge。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "Alibaba Qwen"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2604.15804"
+        }
+      }
+    },
+    {
+      "id": "2026-arXiv-SFT-DPO-Interaction-Small-LMs",
+      "source": "https://arxiv.org/abs/2603.20100",
+      "changes": {
+        "id": {
+          "before": "",
+          "after": "2026-arXiv-SFT-DPO-Interaction-Small-LMs"
+        },
+        "year": {
+          "before": "",
+          "after": "2026"
+        },
+        "venue": {
+          "before": "",
+          "after": "arXiv"
+        },
+        "domain": {
+          "before": "",
+          "after": "LLM"
+        },
+        "workstream": {
+          "before": "",
+          "after": "RL"
+        },
+        "title": {
+          "before": "",
+          "after": "An Empirical Study of SFT-DPO Interaction and Parameterization in Small Language Models"
+        },
+        "keywords": {
+          "before": "",
+          "after": "SFT-DPO interaction；FFT vs LoRA；small models"
+        },
+        "paper_url": {
+          "before": "",
+          "after": "https://arxiv.org/abs/2603.20100"
+        },
+        "zhanh_note": {
+          "before": "",
+          "after": "GPT-2 规模特定任务显示强 SFT 与参数化选择影响很大；小规模 DPO/LoRA 增益依赖设置，不能推导出 full fine-tuning 对所有音乐底座都更好。"
+        },
+        "author_org": {
+          "before": "",
+          "after": "Stanford"
+        },
+        "author_org_url": {
+          "before": "",
+          "after": "https://arxiv.org/pdf/2603.20100"
+        }
+      }
+    }
+  ],
+  "missing_speed": [
+    {
+      "id": "2025-ISMIR-STAGE-Stemmed-Accompaniment-Generation",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-ICML-MusicRL-Aligning-Music-Generation-to-Human-Preferences",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-ICLR-Generative-Adversarial-Post-Training-Music-Reward-Hacking",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-ACL-Muse-Reproducible-Long-Form-Song-Generation",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-arXiv-LeVo-SongGeneration-Traditional-Instruments-KB",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-arXiv-Towards-Hallucination-Free-Music",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-IJCAI-NotaGen-Advancing-Musicality-in-Symbolic-Music-Generation",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-ICASSP-MR-FlowDPO",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2023-arXiv-SingSong-Generating-Musical-Accompaniments-from-Singing",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-HAFM-Music-Accompaniment-Generation",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-2-2404.10301",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-Open-2407.14358",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-MelodyFlow-2407.03648",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-IJCAI-QA-MDT-OpenMusic-2405.15863",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-Seed-Music-2409.09214",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-SongCreator-2409.06029",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-arXiv-YuE-2503.08638",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-ICML-SongGen-2502.13128",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-arXiv-InspireMusic-2503.00084",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-Shao-2605.01790",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-Web-MiniMax-Music-3-22",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-arXiv-JAM-2507.20880",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-WanSong-2607.14749",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-Qwen-Music-2607.11699",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-Step-Audio-3-Music-2609.16034",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-YuE2-2609.33757",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-FullDiT-2608.08787",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-JASCO-2406.10970",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-ICML-MuseControlLite-2506.18729",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-ISMIR-MusicGen-Style-2407.12563",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-ICML-DITTO-2401.12179",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-ACL-SegTune-2510.18416",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2024-arXiv-SongComposer-2402.17645",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-AAAI-Text2midi-2412.16526",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2025-EMNLP-Findings-VersBand-2504.19062",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    },
+    {
+      "id": "2026-arXiv-Alibaba-Token-Foundry-2607.20253",
+      "status": "No defensible quantitative speed registered; not evidence of slow inference."
+    }
+  ],
+  "quantitative_counts": {
+    "sizeDescriptions": 48,
+    "numericReferenceParams": 45,
+    "speedOrEfficiencyReports": 18
+  },
+  "records": 151,
+  "validation": {
+    "stableExistingIdsPreserved": 143,
+    "personalRatingsAndLegacyReviewerNotesUnchanged": true,
+    "records": 151,
+    "quantitativeReferenceSize": 45
+  }
+}

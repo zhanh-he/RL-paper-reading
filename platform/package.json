@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test:catalog": "node --test scripts/test-catalog-maintenance.mjs",
     "build": "node scripts/sync-catalog.mjs && node scripts/sync-lyrics-reference.mjs && node scripts/sync-lyrics-objective.mjs && node scripts/sync-reward-regime.mjs && node scripts/sync-choral-curves.mjs && node scripts/sync-yue2-curves.mjs && node scripts/build-experiment-demo.mjs && node scripts/check-formal-replays.mjs && node scripts/check-public-audio.mjs",
     "check": "node scripts/sync-catalog.mjs --check && node scripts/sync-lyrics-reference.mjs --check && node scripts/sync-lyrics-objective.mjs --check && node scripts/sync-reward-regime.mjs --check && node scripts/sync-choral-curves.mjs --check && node scripts/sync-yue2-curves.mjs --check && node scripts/build-experiment-demo.mjs --check && node scripts/check-formal-replays.mjs && node scripts/check-public-audio.mjs",
     "serve": "python3 -m http.server 4173 --directory site"

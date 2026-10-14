@@ -6,18 +6,29 @@
 
 - Shared GitHub checkout on the Mac mini: `/Users/jollibear/Documents/huawei-rl-paper-reading`
 - Obsidian catalog: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/Huawei RL 文献目录.md`
-- Obsidian reading cards: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/articles/`
+- Obsidian reading cards: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/` (flat; `type/status` distinguish paper/resource/map)
 - Obsidian maintenance protocol: `/Users/jollibear/Work/pkb/30-projects/huawei-rl/1 Literature/Huawei RL 文献库维护约定.md`
 
-## Weekly Sync Procedure
+## Paired Literature Sync Procedure
+
+Shared metadata is maintained primarily in GitHub. Core insights, detailed reading and private summaries live in Obsidian. New shared literature is synchronized in the same maintenance task when the vault is available; weekly maintenance remains a reconciliation pass, not a reason to leave new records inconsistent. UI-only catalog changes do not rewrite notes.
 
 1. Pull/rebase the GitHub repository and process the three request files under `upd_request/`.
 2. Treat `platform/data/literature.csv` as the shared catalog source; run `npm --prefix platform run build` and `npm --prefix platform run check`.
 3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
-4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and independently attributed Zhanh/Other/Hanyu project notes. The current shared schema uses `other_rating` (migrated from `felix_rating`), attributed `other_note`, and first-author `author_org` / `author_org_url`; retain legacy Felix judgments separately. MusicFoundation marks general music/song systems and MusicGen marks compact/task-specific generation and methods.
+4. Keep year, venue, ratings, labels, title, keywords, public links, author affiliations, quantitative size/speed/context and independent reviewer judgments aligned. `MusicFoundation` now means understanding representations; generation uses `MusicGen(LLM)` or sourced Small/Mid/Large size tiers, with `MusicGen` as unknown-scope fallback. Previous taxonomy in historical snapshots is superseded, not rewritten.
 5. Preserve Obsidian-only wikilinks, internal project context, experiments, private paths, and detailed notes. Never publish those fields into `platform/site/data/literature.json`.
 6. Update the Obsidian note timestamps and maintenance log. Do not delete older notes or unrelated local changes.
 7. Push GitHub changes normally. The Obsidian vault remains local and is synchronized through its own existing workflow.
+
+Run the scoped synchronizer after preparing the catalog's shared markers and preserving its historical snapshot:
+
+```bash
+node platform/scripts/sync-obsidian.mjs --vault /Users/jollibear/Work/pkb --write
+node platform/scripts/sync-obsidian.mjs --vault /Users/jollibear/Work/pkb
+```
+
+The second command is read-only and fails if shared blocks/table differ. `--reading-pack` accepts an archived JSON request for initial detailed entries; `--report` writes a private receipt. Existing prose and original ratings are preserved outside the current shared block. Never publish that private receipt or vault contents. Follow vault `AGENTS.md` and check Obsidian Sync before/after edits when available.
 
 ## Preserved Former README
 

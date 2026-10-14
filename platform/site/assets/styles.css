@@ -345,6 +345,37 @@ h1 {
   flex-basis: 130px;
 }
 
+.domain-control { flex-basis: 190px; }
+.domain-menu { position: relative; }
+.domain-menu summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  height: 42px; padding: 0 10px; cursor: pointer; list-style: none;
+  border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface);
+}
+.domain-menu summary::-webkit-details-marker { display: none; }
+.domain-menu summary > span { margin: 0; color: var(--ink); font-size: 0.82rem; font-weight: 400; }
+.domain-menu summary svg { width: 16px; height: 16px; flex: 0 0 16px; }
+.domain-menu summary:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.domain-popover {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 30;
+  width: 260px; max-width: calc(100vw - 24px); max-height: min(480px, 65vh); overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--line-strong); border-radius: 6px;
+  box-shadow: 0 8px 24px #14251b24;
+}
+.domain-actions { display: flex; justify-content: flex-end; border-bottom: 1px solid var(--line); padding: 4px; }
+#domain-filter { margin: 0; padding: 6px; border: 0; }
+.domain-option { display: flex; align-items: center; gap: 9px; padding: 8px; cursor: pointer; }
+.domain-option:hover { background: var(--canvas); }
+.domain-option input { width: 16px; height: 16px; margin: 0; accent-color: var(--green); flex: 0 0 16px; }
+.domain-option span { font-size: 0.82rem; font-weight: 400; color: var(--ink); margin: 0; }
+.domain-option small { margin-left: auto; color: var(--ink-muted); }
+.filter-chip-removable { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.filter-chip-removable svg { width: 12px; height: 12px; }
+.metrics-column { width: 210px; }
+.metric-size, .metric-speed { margin: 0 0 6px; line-height: 1.5; font-size: 0.76rem; }
+.metric-speed, .metric-context { color: var(--ink-muted); }
+.metric-source { color: var(--green); }
+
 .filter-group {
   flex: 1 1 auto;
   min-width: 0;
@@ -598,7 +629,11 @@ tbody tr:hover td {
   background: #edf0ee;
 }
 
-.tag-domain-musicgen {
+.tag-domain-musicgen,
+.tag-domain-musicgen-llm-,
+.tag-domain-musicgen-small-,
+.tag-domain-musicgen-mid-,
+.tag-domain-musicgen-large- {
   color: #0f624d;
   background: #dff2e9;
 }

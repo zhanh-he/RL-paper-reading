@@ -17,12 +17,15 @@ request. Pages CMS remains optional for accounts allowed to authorize its GitHub
 
 ## Field rules
 
-- `domain`: one of `MusicFoundation`, `MusicGen`, `MusicEval`, `MIR`, `AudioGen`, `Speech`, `SpeechEnhance`,
+- `domain`: one of `MusicFoundation`, `MusicGen(LLM)`, `MusicGen(Small)`, `MusicGen(Mid)`, `MusicGen(Large)`, `MusicGen`, `MusicEval`, `MIR`, `AudioGen`, `Speech`, `SpeechEnhance`,
   `AudioLLM`, `LLM`, `CV`, `MachineLearning`, `SourceSep`, `Multimodal`, or `Other`.
 - `workstream`: one of `Reward`, `RL`, `Reward-n-RL`, or `Other`.
 - `other_rating` and `zhanh_rating`: blank or a value such as `4/5` or `4.5/5`; append `*` when the rating is provisional and awaiting reread. `other_rating` replaces the former Felix column; identify its contributor in `other_note`. A missing score stays blank.
 - `zhanh_note`, legacy `felix_note`, `other_note`, and `hanyu_note`: independently attributed project judgments. Start shared Other notes with the contributor's name, for example `Felix:` or `Jiahao:`.
-- `MusicFoundation` covers general music/song foundation systems, including AR, diffusion and hybrid models. `MusicGen` covers compact/task-specific generation, control, editing and post-training. Classification follows research scope, not employer size.
+- `MusicFoundation` means music-understanding representations (MERT/MuQ), not music generators. `MusicGen(LLM)` means token language models or LM+renderer systems, regardless of size and whether text-pretrained. Non-LM generators use `Small` (<1B), `Mid` (1–3B) or `Large` (>3B) based on a sourced reference configuration. Unknown/ambiguous scopes stay `MusicGen`; company size and product marketing are not evidence.
+- `model_size`: reference version and component-wise parameter count; distinguish main generator, encoder, codec, renderer and trainable adapters. `model_params_b` is an optional positive numerical reference in billions used for sorting; its scope must match the textual description. A family may have several sizes, so its domain never replaces the component list.
+- `generation_speed`: author-reported latency, RTF or explicitly labeled relative speed/NFE; not a locally measured benchmark. `measurement_context` must disclose hardware, duration, sampling/precision/batch where known, component scope, RTF direction and any missing conditions. NFE is not wall-clock speed. Never infer end-to-end timing from renderer-only claims.
+- `model_size_url` and `generation_speed_url` are mandatory primary-source links whenever the corresponding quantitative text is filled. Missing/unverified quantities stay blank, not zero. Different-paper timings are not a fair speed leaderboard.
 - `author_org`: short institution/team names for the first-listed author only; multiple affiliations of that author may be retained. Collective resources use their official team. `author_org_url` links the supporting primary source. Unverified affiliations are marked `待核验`.
 - `year`: publication year for a paper, or documented release year for a resource. Undated/inaccessible Web leads may leave it blank; do not substitute the year they were added to this catalog.
 - `keywords`: at most three useful terms separated with `；`.

@@ -8,6 +8,12 @@ const CSV_HEADERS = [
   "workstream",
   "title",
   "keywords",
+  "model_size",
+  "model_params_b",
+  "generation_speed",
+  "measurement_context",
+  "model_size_url",
+  "generation_speed_url",
   "paper_url",
   "github_url",
   "demo_url",
@@ -23,6 +29,8 @@ const CSV_HEADERS = [
 const elements = {
   search: document.querySelector("#search-input"),
   domain: document.querySelector("#domain-filter"),
+  domainMenu: document.querySelector("#domain-menu"),
+  domainSummary: document.querySelector("#domain-summary"),
   year: document.querySelector("#year-filter"),
   venue: document.querySelector("#venue-filter"),
   zhanh: document.querySelector("#zhanh-filter"),
@@ -44,6 +52,7 @@ const elements = {
   detailLabels: document.querySelector("#detail-labels"),
   detailKeywords: document.querySelector("#detail-keywords"),
   detailNotes: document.querySelector("#detail-notes"),
+  detailMetrics: document.querySelector("#detail-metrics"),
   detailOrganization: document.querySelector("#detail-organization"),
   detailLinks: document.querySelector("#detail-links"),
   toast: document.querySelector("#toast")
@@ -52,6 +61,7 @@ const elements = {
 const state = {
   catalog: [],
   filtered: [],
+  excludedDomains: new Set(),
   filters: {
     search: "",
     domain: "",
@@ -104,7 +114,27 @@ function populateSelect(select, values) {
 }
 
 function hydrateFilters() {
-  populateSelect(elements.domain, optionValues("domain"));
+  const domains = optionValues("domain");
+  state.excludedDomains = new Set([...state.excludedDomains].filter((value) => domains.includes(value)));
+  if (state.filters.domain) {
+    const included = state.filters.domain === "MusicGen"
+      ? domains.filter((domain) => domain.startsWith("MusicGen"))
+      : [state.filters.domain];
+    if (included.some((domain) => domains.includes(domain))) {
+      state.excludedDomains = new Set(domains.filter((domain) => !included.includes(domain)));
+    }
+    state.filters.domain = "";
+  }
+  for (const domain of domains) {
+    const label = el("label", "domain-option");
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.dataset.domain = domain;
+    input.setAttribute("aria-label", domain);
+    const count = state.catalog.filter((record) => record.domain === domain).length;
+    label.append(input, el("span", "", domain), el("small", "", String(count)));
+    elements.domain.append(label);
+  }
   populateSelect(elements.year, optionValues("year", true));
   populateSelect(elements.venue, optionValues("venue"));
   populateSelect(elements.zhanh, optionValues("zhanh_rating", true));
@@ -120,11 +150,17 @@ function readUrlState() {
   state.sort = params.get("sort") || "source_order";
   if (state.sort === "felix_rating") state.sort = "other_rating";
   state.direction = params.get("dir") === "desc" ? "desc" : "asc";
+  state.excludedDomains = new Set(params.getAll("exclude"));
 }
 
 function syncControls() {
   elements.search.value = state.filters.search;
-  elements.domain.value = state.filters.domain;
+  for (const checkbox of elements.domain.querySelectorAll("input")) {
+    checkbox.checked = !state.excludedDomains.has(checkbox.dataset.domain);
+  }
+  const total = optionValues("domain").length;
+  const visible = total - state.excludedDomains.size;
+  elements.domainSummary.textContent = state.excludedDomains.size ? `${visible} / ${total} domains` : "All domains";
   elements.year.value = state.filters.year;
   elements.venue.value = state.filters.venue;
   elements.zhanh.value = state.filters.zhanh;
@@ -143,6 +179,7 @@ function updateUrl() {
   for (const [key, value] of Object.entries(state.filters)) {
     if (value) params.set(key, value);
   }
+  for (const domain of [...state.excludedDomains].sort(collator.compare)) params.append("exclude", domain);
   if (state.sort !== "source_order") params.set("sort", state.sort);
   if (state.direction !== "asc") params.set("dir", state.direction);
   const query = params.toString();
@@ -158,6 +195,9 @@ function recordSearchText(record) {
   return [
     record.title,
     record.keywords,
+    record.model_size,
+    record.generation_speed,
+    record.measurement_context,
     record.zhanh_note,
     record.felix_note,
     record.other_note,
@@ -177,6 +217,7 @@ function matchesFilters(record) {
   const query = filter.search.trim().toLocaleLowerCase();
   if (query && !recordSearchText(record).includes(query)) return false;
   if (filter.domain && record.domain !== filter.domain) return false;
+  if (state.excludedDomains.has(record.domain)) return false;
   if (filter.year && record.year !== filter.year) return false;
   if (filter.venue && record.venue !== filter.venue) return false;
   if (filter.workstream && record.workstream !== filter.workstream) return false;
@@ -192,7 +233,13 @@ function matchesFilters(record) {
 function compareRecords(left, right) {
   const key = state.sort;
   let result;
-  if (key === "other_rating" || key === "zhanh_rating") {
+  if (key === "model_params_b") {
+    if (!left[key] || !right[key]) {
+      if (!left[key] && !right[key]) return left.source_order - right.source_order;
+      return left[key] ? -1 : 1;
+    }
+    result = Number(left[key]) - Number(right[key]);
+  } else if (key === "other_rating" || key === "zhanh_rating") {
     result = ratingValue(left[key]) - ratingValue(right[key]);
   } else if (key === "year" || key === "source_order") {
     result = Number(left[key]) - Number(right[key]);
@@ -306,6 +353,12 @@ function makeRow(record) {
   titleCell.append(titleButton);
 
   const keywordsCell = el("td", "keywords optional-wide", record.keywords);
+  const metricsCell = el("td", "metrics-column optional-wide");
+  metricsCell.append(
+    el("p", "metric-size", record.model_size || (record.domain.startsWith("MusicGen") ? "规模待核验" : "")),
+    el("p", "metric-speed", record.generation_speed || (record.domain.startsWith("MusicGen") ? "速度未核验" : ""))
+  );
+  metricsCell.title = record.measurement_context || "";
   const linksCell = el("td", "links-column");
   const linkList = el("div", "link-list");
   for (const definition of resourceDefinition(record)) {
@@ -327,6 +380,7 @@ function makeRow(record) {
     workstreamCell,
     titleCell,
     keywordsCell,
+    metricsCell,
     linksCell,
     valueCell,
     organizationCell
@@ -349,6 +403,23 @@ function renderActiveFilters() {
   for (const [key, value] of Object.entries(state.filters)) {
     if (value) elements.activeFilters.append(el("span", "filter-chip", `${labels[key]}: ${value}`));
   }
+  for (const domain of [...state.excludedDomains].sort(collator.compare)) {
+    const chip = el("button", "filter-chip filter-chip-removable");
+    chip.type = "button";
+    chip.title = `Restore ${domain}`;
+    chip.setAttribute("aria-label", `Restore ${domain}`);
+    chip.append(document.createTextNode(`Excluded: ${domain}`));
+    const icon = document.createElement("i");
+    icon.dataset.lucide = "x";
+    icon.setAttribute("aria-hidden", "true");
+    chip.append(icon);
+    chip.addEventListener("click", () => {
+      state.excludedDomains.delete(domain);
+      syncControls();
+      render();
+    });
+    elements.activeFilters.append(chip);
+  }
 }
 
 function updateSortHeaders() {
@@ -370,6 +441,7 @@ function updateSortHeaders() {
 }
 
 function render() {
+  syncControls();
   state.filtered = state.catalog.filter(matchesFilters).sort(compareRecords);
   elements.body.replaceChildren(...state.filtered.map(makeRow));
   elements.tableState.hidden = state.filtered.length > 0;
@@ -396,6 +468,22 @@ function openDetails(record) {
   );
   elements.detailKeywords.textContent = record.keywords || "No terms recorded";
   elements.detailNotes.replaceChildren(...makeProjectNotes(record));
+  elements.detailMetrics.replaceChildren();
+  for (const [label, value, source] of [
+    ["参数量", record.model_size, record.model_size_url],
+    ["生成速度", record.generation_speed, record.generation_speed_url]
+  ]) {
+    const paragraph = el("p", "", `${label}: ${value || (record.domain.startsWith("MusicGen") ? "未核验 / 未报告" : "未登记 / 不适用")}`);
+    if (source) {
+      const link = el("a", "metric-source", "source");
+      link.href = source;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      paragraph.append(document.createTextNode(" "), link);
+    }
+    elements.detailMetrics.append(paragraph);
+  }
+  if (record.measurement_context) elements.detailMetrics.append(el("p", "metric-context", record.measurement_context));
   elements.detailOrganization.replaceChildren(makeOrganization(record));
   elements.detailLinks.replaceChildren(
     ...resourceDefinition(record).map((definition) => makeResourceLink(record, definition))
@@ -435,19 +523,40 @@ function resetFilters() {
   for (const key of Object.keys(state.filters)) state.filters[key] = "";
   state.sort = "source_order";
   state.direction = "asc";
+  state.excludedDomains.clear();
   syncControls();
   render();
 }
 
 function bindEvents() {
   const selects = {
-    domain: elements.domain,
     year: elements.year,
     venue: elements.venue,
     zhanh: elements.zhanh,
     other: elements.other,
     organization: elements.organization
   };
+  elements.domain.addEventListener("change", (event) => {
+    const checkbox = event.target.closest("input[data-domain]");
+    if (!checkbox) return;
+    if (checkbox.checked) state.excludedDomains.delete(checkbox.dataset.domain);
+    else state.excludedDomains.add(checkbox.dataset.domain);
+    render();
+  });
+  document.querySelector("#domains-all").addEventListener("click", () => {
+    state.excludedDomains.clear();
+    render();
+  });
+  document.querySelector("#domains-none").addEventListener("click", () => {
+    state.excludedDomains = new Set(optionValues("domain"));
+    render();
+  });
+  document.addEventListener("click", (event) => {
+    if (!event.composedPath().includes(elements.domainMenu)) elements.domainMenu.open = false;
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") elements.domainMenu.open = false;
+  });
   elements.search.addEventListener("input", () => {
     state.filters.search = elements.search.value;
     render();

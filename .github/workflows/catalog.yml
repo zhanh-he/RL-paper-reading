@@ -31,6 +31,7 @@ jobs:
         run: |
           npm --prefix platform run build
           npm --prefix platform run check
+          npm --prefix platform run test:catalog
           git diff --check
 
       - name: Require generated files in pull requests
