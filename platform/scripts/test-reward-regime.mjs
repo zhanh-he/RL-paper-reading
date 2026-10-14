@@ -22,7 +22,7 @@ try {
       assert.match(await root.locator('[data-regime="model-note"]').textContent(), /MOS 未测/);
       const name = await button.textContent();
       if (['HeartMuLa', 'DiffRhythm2', 'SongBloom', 'Private baseline', 'ACE-Step 1.5'].includes(name)) {
-        assert.equal(await root.locator('[data-regime="plots"]').isVisible(), false);
+        assert.equal(await root.locator('[data-regime="plots"]').isVisible(), name === 'DiffRhythm2');
         assert.equal(await root.locator('audio').count(), 0);
         assert.match(await root.locator('[data-regime="validation"]').textContent(), /n\/a/);
         assert.equal(await root.locator('[data-regime-listen="baseline"]').isDisabled(), true);
@@ -30,12 +30,25 @@ try {
       }
     }
     const data = await page.evaluate(async () => (await fetch('./data/reward-regime-protocol.json')).json());
-    assert.equal(data.training_authorized, true); assert.equal(data.runs.length, 6);
+    assert.equal(data.training_authorized, true); assert.equal(data.runs.length, 15);
     assert.deepEqual(data.design.lr_grid,['3e-4']);
     assert.equal(data.rewards[2].name, 'SongBench-Arrangement');
     assert.equal(await root.locator('audio').count(), 0);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth+1));
     await root.locator('[data-regime="models"] button').first().click();
+    assert.equal(await root.locator('[data-regime="example-controls"] button').count(),5);
+    const originalLyrics = await root.locator('[data-regime="lyrics-content"]').textContent();
+    assert.ok(originalLyrics.length > 50);
+    for (const [i,count] of [[3,2],[4,5]]) {
+      await root.locator('[data-regime="example-controls"] button').nth(i).click();
+      assert.match(await root.locator('[data-regime="text-content"]').textContent(),new RegExp(`exactly ${count} accompaniment`));
+      assert.equal(await root.locator('[data-regime="lyrics-content"]').textContent(),originalLyrics);
+      assert.match(await root.locator('[data-regime="seed"]').textContent(),/5101/);
+      assert.equal(await root.locator('audio').count(),0);
+      assert.match(await root.locator('[data-regime="input-note"]').textContent(),/不计入全30条验证/);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    }
+    await root.locator('[data-regime="example-controls"] button').first().click();
     const canvas=root.locator('[data-regime="reward-chart"]');
     await canvas.waitFor({state:'visible'});
     assert.match(await canvas.getAttribute('aria-description'), /Step 50/);
@@ -98,7 +111,7 @@ try {
     await root.locator('[data-regime="reward-controls"] button').first().click();
     await root.locator('[data-mode="long"]').click();
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-    const folds=root.locator('details:not([data-regime="training"])');
+    const folds=root.locator('details:not([data-regime="training"]):not(.regime-lyrics)');
     assert.ok((await folds.evaluateAll((items)=>items.filter(e=>e.open).length))===0);
     await page.evaluate(()=>window.scrollTo(0,0));
     await page.screenshot({ path: `${output}/${width}.png`, fullPage: true });

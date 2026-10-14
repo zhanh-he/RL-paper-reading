@@ -1,6 +1,16 @@
 # 开放歌曲模型的 RL 路线与质量分层实验
 
-**状态：模型名单已确认，用户已要求准备新增RL实验；新增训练尚未提交，当前按最新请求优先重组online demo。核验日期：2026-10-14。**
+**状态更新：用户已正式授权启动。DiffRhythm2 已有真实优化更新；HeartMuLa / SongBloom 的准备已成功，六个GPU任务已排队。核验日期：2026-10-14 AWST。**
+
+## 本次执行变更
+
+- 启动证据、任务ID、版本、边界见[执行记录](runs/2026-10-14-open-head-startup/README.md)。后文保留先前设计推导，不把“拟实现”字样当作最新状态。
+- 今晚首轮选择**受限输出头**：HeartMuLa 的 codebook0_head、DiffRhythm2 的 DiT proj_out、SongBloom 的最终 sketch classifier；均 rank8/alpha16、LR3e-4、270步、G2、beta0.01，原生60秒预算。它们不是完整backbone微调，不能用阴性结果断言某模型无法RL。
+- DiffRhythm2 使用官方Flow-GRPO SDE helper，31次随机转移/block，重算完整block高斯log-prob；冻结上游特征后，输出头的条件概率可精确重算。首步重算差0、参考KL0、梯度非零已核验。KL是按latent维度归一化的条件高斯KL；不称波形KL或与token KL同单位。主要baseline是同配置SDE；ODE部署迁移对照仍未完成。
+- SongBloom 使用社区恢复的150s base，不是DPO版；作者原端点仍不可独立匹配。365个重复VAE别名仅在逐tensor完全相等后删除，其余strict加载通过。固定300条reference的哈希与解码检查已通过，不公开源音频。
+- 每个文字条件实验固定五个试听case：原valid0/10/20，加同valid0歌词、同seed5101的2类/5类乐器改写探针。原三首不额外限制数量。改写探针不进入正式train/30valid/test，也不将自动reward解释为真实乐器计数。
+- SongBloom不吃Text，因此数量提示遵循为n/a；改用五个独立原生条件0/10/20/1/2，避免重复音频充数。原始Text仍展示，并注明未输入模型。
+- 无定时任务、无夜间Codex监控。有限训练、验证、推理脚本继续自行执行，等待用户手动回收。
 
 本文保留新增实验技术路线，不替换已有 [六臂协议](protocol.json)，也不是训练完成记录。后续用户已确认HeartMuLa / DiffRhythm2 / SongBloom名单并移除SongGen，ACE-Step1.5留在最后；新增模型仍需完成各自真实训练接入，尚未提交。已有结果继续按原协议归档，不把旧短片段结果冒充下面的新对照。
 

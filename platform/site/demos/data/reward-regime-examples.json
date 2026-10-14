@@ -1,0 +1,399 @@
+{
+  "schema": 1,
+  "data_sha256": "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f",
+  "display_indices": [
+    0,
+    10,
+    20,
+    30,
+    31
+  ],
+  "display_indices_by_model": {
+    "songbloom": [
+      0,
+      10,
+      20,
+      1,
+      2
+    ]
+  },
+  "selection": "Three original examples retained; paired count-2/count-5 probes reuse valid0 lyrics and seed5101; no score-based selection. SongBloom uses five distinct native conditions0/10/20/1/2 because it does not consume Text.",
+  "attribution": {
+    "dataset": "CMI-Pref",
+    "authors": "Haiwen Xia et al.",
+    "url": "https://huggingface.co/datasets/HaiwenXia/cmi-pref",
+    "revision": "5282fbe784e326014894b299cb22645cd7d56057",
+    "license": "CC BY-NC-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "changes": "Original text/lyrics unchanged in0..29; style instructions appended only in30/31. No reference audio redistributed."
+  },
+  "inputs": [
+    {
+      "index": 0,
+      "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3",
+      "style": "west coast hip hop rap\nmale rappers",
+      "lyrics": "[Verse]\nBreak dance is back\nOh yeah\nIt’s here (ooh-yeah!)\nGet ready to move\nLet’s make it clear\nShow your style\nDon't hold back\nNo fear\nParty all night\nLet's cheer\nLet's cheer\n\n[Verse 2]\nOn the floor\nWe twist and spin (spin-spin!)\nFeel the rhythm\nLet’s begin\nShow your moves\nLet the fun begin\nBreak dance fever\nFeel it within\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Verse 3]\nThe beat is hot\nThe floor’s on fire (fire-fire!)\nKeep on groovin’\nNever tire\nDance to the drum\nLet’s rise higher\nSweat and smiles\nOur desire\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Bridge]\nRound and round\nWe'll never stop (never stop!)\nTo the top\nWe’re gonna pop\nFeel the groove\nLet it drop (drop-drop)\nBreak dance moves\nMake it pop",
+      "seed": 5101,
+      "base_valid_index": 0,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 1,
+      "condition_id": "03d96f25126a6e80b3d6600c32ea8ff52c2ab86fafa2a402f314102875d50d25",
+      "style": "spanish guitar, Flamenco",
+      "lyrics": "[Verse]\nOnce a leader fierce and bold\nFrom the ashes of wars untold\nReborn with a blade so keen\nIn a land of mystic sheen\n\n[Verse 2]\nWielding steel with dancer's grace\nSpellbound foes in enchanted place\nFrom the past to future's brink\nIn shadows where spirits think\n\n[Chorus]\nHe dances on graves of ancient doom\nWith a rapier's kiss amidst night's gloom\nA general's soul in a world so wild\nBy fate’s hand he's beguiled\n\n[Verse 3]\nIn battles where dragons soar\nHe cuts paths 'cross heaven’s door\nGlimmering like the stars above\nA warrior's heart combined with love\n\n[Bridge]\nEchoes of the old world steer\nHis steps in this new frontier\nHistory's ghost in battle’s thrill\nReflected in each swing’s skill\n\n[Verse 4]\nHis legend grows on whispers’ wind\nIn allies’ dreams and foe’s chagrin\nIn a realm where heroes thrive\nA general dances still alive",
+      "seed": 5102,
+      "base_valid_index": 1,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 2,
+      "condition_id": "1b1d971d9bad5c5ddd66cf16e1a7fc1e5eab19d520c99165057d6f42377531ee",
+      "style": "dance rock electric",
+      "lyrics": "[Verse]\nMelina's eyes dark like midnight\nLinda and Leonie by her side\nTim and Yasin nowhere in sight\nMinho’s track shaking the tide\n\n[Verse 2]\nTurning 25 tonight it’s here\nStray Kids blasting loud and clear\nDancing wild without a fear\nLit like fire with friends so near\n\n[Chorus]\nBorn for this moment party queen\nBright lights flashing wild scene\nDark hair flowing dancing sheen\nLiving life it’s a dream\n\n[Verse 3]\nLaughing loud no room for sorrow\nEvery step into tomorrow\nBeats pounding hearts they borrow\nEnergy high no need to follow\n\n[Chorus]\nBorn for this moment party queen\nBright lights flashing wild scene\nDark hair flowing dancing sheen\nLiving life it’s a dream\n\n[Bridge]\nCheers and yells echo the night\nCelebration full no fight\nFriends together feels so right\nMelina glowing in the light",
+      "seed": 5103,
+      "base_valid_index": 2,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 3,
+      "condition_id": "1bd60a2df2ab303cb08724133ab013a0c9099cf8ba06489dcd048ee747457c67",
+      "style": "downtempo",
+      "lyrics": "[Verse]\nIn the dark we hide and shiver\nMonsters chase they make us quiver\nWalls close in we're trapped and scared\nWishing we could be repaired\n\n[Verse 2]\nSCPs and horrors creeping\nIn our dreams they leave us weeping\nSilent cries no one to save\nBuried in this endless grave\n\n[Chorus]\nWe just want to live to breathe\nEscape the shadows that deceive\nWe're the victims they do hunt\nAll we want is one more chance\n\n[Verse 3]\nEvery footstep feels like thunder\nHearts in turmoil minds asunder\nFaces twisted in the night\nWe just want to find the light\n\n[Bridge]\nLocked in dungeons nightmares lace\nDesperate runs the frantic chase\nMonsters love to see us cower\nWishing for one final hour\n\n[Chorus]\nWe just want to live to breathe\nEscape the shadows that deceive\nWe're the victims they do hunt\nAll we want is one more chance",
+      "seed": 5104,
+      "base_valid_index": 3,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 4,
+      "condition_id": "23e4011f26457e99583d69ba7f9f1190ea7d1488e7a0c9dacae8b13c4a1df647",
+      "style": "rhythmic pop",
+      "lyrics": "[Verse]\nSunny skies call your name Baba\nDance with the groove feel the fame Baba\nYou light up the room with your smile\nStay a while let's make this life worthwhile\n\n[Verse 2]\nMorning light wakes us up Baba\nNo more dreams time to jump Baba\nFollow your heart let your spirit be\nLive a little live wild and free\n\n[Chorus]\nBaba Baba let's take flight\nWe'll conquer the world tonight\nBaba Baba feel the beat\nLife is a journey so sweet\n\n[Verse 3]\nStarry nights oh so bright Baba\nTogether we'll be all right Baba\nHand in hand we walk this lane\nLaugh a little through the pain\n\n[Bridge]\nThrough the highs and the lows Baba\nEverywhere the wind blows Baba\nSide by side through thick and thin\nWith you I always win\n\n[Chorus]\nBaba Baba let's take flight\nWe'll conquer the world tonight\nBaba Baba feel the beat\nLife is a journey so sweet",
+      "seed": 5105,
+      "base_valid_index": 4,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 5,
+      "condition_id": "2ed3299961a1020910c9dcebb2820b1faa935ba557e8d395939e2a84db53bff8",
+      "style": "Rock, pop",
+      "lyrics": "I was angry with my friend:\nI told my wrath, my wrath did end.\nI was angry with my foe:\nI told it not, my wrath did grow.\n\nAnd I watered it in fears,\nNight and morning with my tears;\nAnd I sunned it with smiles,\nAnd with soft deceitful wiles.\n\nAnd it grew both day and night,\nTill it bore an apple bright.\nAnd my foe beheld it shine.\nAnd he knew that it was mine,\n\nAnd into my garden stole\nWhen the night had veiled the pole;\nIn the morning glad I see\nMy foe outstretched beneath the tree.",
+      "seed": 5106,
+      "base_valid_index": 5,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 6,
+      "condition_id": "37595532da3cb930c5ac5773e3fef624c9333c179e01911e189beec37951dc0f",
+      "style": "disco electric",
+      "lyrics": "[Verse]\nRaindrops falling all around\nPuddles dance without a sound\nUmbrella spins like a merry-go-round\nIn your eyes my love I've found\n\n[Verse 2]\nSidewalk shines in city lights\nWeaving stories in the night\nSplashing love in every sight\nYour smile's my heart's delight\n\n[Chorus]\nDancing in the rain with you\nEvery drop feels like it’s new\nTwistin' shadows two by two\nFinding love in skies of blue\n\n[Bridge]\nStormy weather's lost its gloom\nAs we waltz beneath the moon\nMelody of love\nA tune\nFalling for you way too soon\n\n[Verse 3]\nWater's sparkle on your skin\nGliding gently\nLet’s begin\nEvery moment feels a win\nRainy days\nOur secret kin\n\n[Chorus]\nDancing in the rain with you\nEvery drop feels like it’s new\nTwistin' shadows two by two\nFinding love in skies of blue",
+      "seed": 5107,
+      "base_valid_index": 6,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 7,
+      "condition_id": "3853265abbb0d88c15ab3217e636536c05a424bc098434c3bcc83b3e328c2e27",
+      "style": "Calm guitar and quiet piano",
+      "lyrics": "[Verse]\nSuper Mario in the field so green\nJumpin' high like you've never seen\nFrom the pipes to the country scene\nBouncing on tractors like a dream\n\n[Verse 2]\nWith a plunger and a plumber's hat\nHe's flipping tractors just like that\nMushroom power in every chat\nMaking Goombas run like scat\n\n[Chorus]\nJumping high and never slow\nThrough the rows watch him go\nStars and coins make him glow\nSuper Mario stealing the show\n\n[Bridge]\nHis mustache sways in the breeze\nDodging Koopas with such ease\nFinding Yoshi in the trees\nRide to victory if you please\n\n[Verse 3]\nPrincess Peach just cheers him on\nFrom the dawn to break of dawn\nIn this field where he's reborn\nEvery tractor's overthrown\n\n[Chorus]\nJumping high and never slow\nThrough the rows watch him go\nStars and coins make him glow\nSuper Mario stealing the show",
+      "seed": 5108,
+      "base_valid_index": 7,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 8,
+      "condition_id": "45fc7f3fad9324904aaafe72909886e2e446888f00706664fb4d0d13f7c62061",
+      "style": "r&b",
+      "lyrics": "[Verse]\nStumbling through the streets at night\nFound a penny shinin' bright\nDropped it down a wishing well\nWhere it landed no one can tell\n\n[Verse 2]\nChasing rainbows after dark\nBought a map but lost the park\nSaw a girl with neon wings\nFelt the rush of crazy things\n\n[Chorus]\nLost and found in this wild town\nOur hearts beat fast we're never down\nSpinning around to the city sound\nEvery corner a treasure unbound\n\n[Bridge]\nDancing shadows lights collide\nEyes meet hearts no place to hide\nUnwritten stories fill the air\nNo regrets no time to spare\n\n[Verse 3]\nWhispers echo in the night\nHaunted dreams but feels so right\nBroken glass and fallen stars\nFound the music in the scars\n\n[Chorus]\nLost and found in this wild town\nOur hearts beat fast we're never down\nSpinning around to the city sound\nEvery corner a treasure unbound",
+      "seed": 5109,
+      "base_valid_index": 8,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 9,
+      "condition_id": "5187b55b03f974563d847662922e1e190f4fc59982dab72c9e2bbba2ee7010ea",
+      "style": "Irish tavern shanty",
+      "lyrics": "[Magical intro]\n[Female voice]\nOooooh aaaaah\n\n[Verse 1]\n[Female Voice]\nI will tell you about gods of old\nA story from pages untold\nThere was a magical place\nA tavern between our worlds and space\n\n[Verse 2]\nThe meat in there was a sight to behold\nIt was so good, no Norns could have fortold\nPeople swarmed just to get a taste\nOf this wonderful drink of honey, nothing to waste\n\n[Chorus 1]\n[Female singer]\nWhat is the greatest place between worlds?\n\n[Male Choir]\nMEADGARDEN\n\n[Female singer]\nWhere the gods drink in joy!\n\n[Male Choir]\nMEADGARDEN\n\n[Female singer]\nAre you ready to sacrifice it all?\n\n[Male Choir]\nMEADGARDEN\n\n[Verse 3]\nThor was there to challenge the stubborn\nThunder and lightning in his shrug\nSurprised was he as he swallowed it all\nwith one chug\nHe stood up and yelled pour me another mug!\n\n[Bridge]\nWe rise our horn for this tavern\nThe greatest of them all\nFrom the gods they have earned\nA place for them in the halls\n\n[Chorus 2]\n[Female singer]\nWhat is the greatest place between worlds?\n\n[Male Choir]\nMEADGARDEN\n\n[Female singer]\nWhere the gods drink in joy\n\n[Male Choir]\nMEADGARDEN\n\n[Female singer]\nAre you ready to sacrifice in..\n\n[Male Choir]\nMEADGARDEN",
+      "seed": 5110,
+      "base_valid_index": 9,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 10,
+      "condition_id": "542db1f21983754388d0e781267471913643fc3824e4bbb6029d33ae4ecbb06d",
+      "style": "Deep house, analog synths, smooth bass, airy pads, hypnotic groove, vocal chops, late-night vibe, 118 bpm.",
+      "lyrics": "[Intro]\n[Smooth bassline rolls in with airy pads and subtle vocal chops, setting a dark, hypnotic vibe.]\n\n[Verse 1]\nNight falls, we drift into the sound,\nLost in the beat, there’s no way out.\nFeel the rhythm, taking control,\nLet it pull you deep, feel the flow.\n\n[Chorus - Hypnotic and simple]\nIn the midnight flow, let it go,\nLose yourself, just take it slow,\nIn the dark, we’re free to move,\nCaught up in this endless groove.\n(Midnight flow...)\n(Let it go...)\n\n[Verse 2]\nLights low, shadows on the wall,\nEchoes of you, I hear it all.\nOne more breath, we fall in time,\nWe’re drifting, babe, we cross the line.\n\n[Chorus - Repeat, building in energy]\nIn the midnight flow, let it go,\nLose yourself, just take it slow,\nIn the dark, we’re free to move,\nCaught up in this endless groove.\n(Midnight flow...)\n(Let it go...)\n\n[Bridge - Instrumental with vocal chops and airy pads, creating a trance-like build]\n[The groove deepens, with vocal chops weaving in and out, as bass and synths rise subtly, keeping a smooth vibe.]\n\n[Final Chorus - Climactic but still smooth, keeping that deep vibe]\nIn the midnight flow, let it go,\nLose yourself, just take it slow,\nIn the dark, we’re free to move,\nCaught up in this endless groove.\n(Midnight flow...)\n(Let it go...)\n\n[Outro]\n[Airy pads fade out, leaving the smooth bass and vocal echoes lingering softly into the night.]",
+      "seed": 5111,
+      "base_valid_index": 10,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 11,
+      "condition_id": "553c2c5735e99ff7acab9689e4892abb0afe7c471ed75b7864beedd78ae38987",
+      "style": "uplifting pop melodic",
+      "lyrics": "[Verse]\nWoke up in a world so strange\nLayers deep in endless change\nThoughts collide and minds rearrange\nIn this place where rules estrange\n\n[Verse]\nStreets are shifting under feet\nEchoes chase with every beat\nLost in a maze with no retreat\nBut I won’t taste defeat\n\n[Chorus]\nDream within a dream so high\nSpread wings and touch the sky\nThrough the clouds I’ll learn to fly\nIn this dream we never die\n\n[Verse]\nMirrors show a million faces\nBlurring lines in hidden places\nTime stands still but still it races\nBreaking free from known embraces\n\n[Bridge]\nFalling through dimensions clear\nFading shadows disappear\nIn this dream I have no fear\nEverything I hold is near\n\n[Chorus]\nDream within a dream so high\nSpread wings and touch the sky\nThrough the clouds I’ll learn to fly\nIn this dream we never die",
+      "seed": 5112,
+      "base_valid_index": 11,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 12,
+      "condition_id": "663037e06fc01406c3497a4e2c680d2eed5f435cecaefdab21ed7c1afa2592e9",
+      "style": "Slow pop bossanova",
+      "lyrics": "[Verse]\nIm chasing something fragile beats with life\nA reason a wish whisper of hope strife\nIn this monotonous landscape I walk\nWith shadows I've shaped trying to block\n\n[Verse 2]\nEach step feels like a silent prayer\nRunning from fears that linger in air\nHeart on fire but feet on the ground\nIn the silence where dreams are found\n\n[Chorus]\nI will soar high through the night\nStars my compass fears take flight\nWhispers of hope in the winds that blow\nIn this dark world I brightly glow\n\n[Verse 3]\nEchoes of laughter fill my mind\nFragments of time I'm trying to find\nIn this maze of grey and stone\nI won't let dreams turn into bone\n\n[Bridge]\nRoad ahead winding and long\nIn my heart beats a song\nLost but found in moments past\nFuture calls me to the last\n\n[Chorus]\nI will soar high through the night\nStars my compass fears take flight\nWhispers of hope in the winds that blow\nIn this dark world I brightly glow (yeah)\n\nTonight, I will soar high through the night\nStars my compass fears take flight\nWhispers of hope in the winds that blow\nIn this dark world I brightly glow",
+      "seed": 5113,
+      "base_valid_index": 12,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 13,
+      "condition_id": "715302495c23e84e8929d4d76d5bc231c094bc657d49a1a999092a3f2acb1a94",
+      "style": "(house: 0.8), (dance: 0.6), (trance: 0.1), (ambient:0.3), (melodic:0.3), (input audio: 2.1)",
+      "lyrics": "**robo**\n\n[melodic interlude]\n\n[chorus]\n(you can just stay hidden)\n\n[drop]\n\n[chorus]\n(ahhh) (oooh)  \n\n[melodic interlude]\n\n[drop]\n\n[verse (whispering input audio voice)]\n(it's all about you)\n\n[chorus]\n(ahhh) (oooh)  \n\n\n[short-melodic-interlude]\n\n[heavy-drop]\n\n[end]\n\n*UH!*\n\n**robo**\n\n[melodic interlude]\n\n[drop]\n\n[chorus]\n(ahhh) (oooh)  \n\n[melodic interlude]\n\n[drop]\n\n[verse]\n\n[chorus]\n(ahhh) (oooh)  \n\n\n[short-melodic-interlude]\n\n[heavy-drop]\n\n[end]\n\n*UH!*\n\n**robo**\n\n[melodic interlude]\n\n[drop]\n\n[chorus]\n(ahhh) (oooh)  \n\n[melodic interlude]\n\n[drop]\n\n[chorus]\n(ahhh) (oooh)  \n\n\n[short-melodic-interlude]\n\n[heavy-drop]\n\n[end]\n\n*UH!*\n\n**robo**\n\n[melodic interlude]\n\n[drop]\n\n[chorus]\n(ahhh) (oooh)  \n\n[melodic interlude]\n\n[drop]\n\n[verse]\n(it's all about you, you can just stay hidden) (cuz we are the peeps that's hidden)\n\n[chorus]\n(ahhh) (oooh)  \n\n\n[short-melodic-interlude]\n\n[heavy-drop]\n\n[end]\n\n*UH!*",
+      "seed": 5114,
+      "base_valid_index": 13,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 14,
+      "condition_id": "7a9d93cb840352573072c3aad219d568e34c5fe74b8175207a7a15e723f91d33",
+      "style": "Folk metal",
+      "lyrics": "[Verso 1]\nLa luna está muerta, el cielo está negro\nLa ciudad duerme, pero yo estoy despierto\nHay un ruido en la oscuridad, un susurro que me llama\nY siento que la noche me va a consumir\n\n[Coro]\nNoche sangrienta, noche de dolor\nDonde los fantasmas bailan y lloran\nNoche sangrienta, noche de miedo\nDonde la oscuridad me tiene atrapado\n\n[Verso 2]\nRecuerdo tu rostro, tu sonrisa cruel\nLa forma en que me mirabas, con ojos de hiel\nMe hiciste creer que todo estaba bien\nPero ahora solo queda la sangre en la piel\n\n[Coro]\nNoche sangrienta, noche de dolor\nDonde los fantasmas bailan y lloran\nNoche sangrienta, noche de miedo\nDonde la oscuridad me tiene atrapado\n\n[Puente]\nLuces parpadean, sombras se deslizan\nEn este infierno, encontraré mi salida\nEcos de lamentos, retumban en mi mente\nSin tu sombra, por fin seré valiente\n\n[Coro]\nNoche sangrienta, noche de dolor\nDonde los fantasmas bailan y lloran\nNoche sangrienta, noche de miedo\nDonde la oscuridad me tiene atrapado",
+      "seed": 5115,
+      "base_valid_index": 14,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 15,
+      "condition_id": "88137ad58ae3183f5561b8a0f19ca9073e0d069cec5cf6a1db5c7a0a1de511db",
+      "style": "sentimental pop smooth",
+      "lyrics": "[Verse]\nSaw you standing by the old oak tree\nRosemary with eyes that sparkled free\nThoughts of love like waves across the sea\nWhen you smile the world is right with me\n\n[Verse 2]\nIn the garden where the roses bloom\nEvery petal whispers through the gloom\nHolding hands beneath the silver moon\nIn your eyes I find my heart’s own tune\n\n[Chorus]\nRosemary your name’s a melody\nEchoes softly through eternity\nGeorge’s heart was made for you to see\nEvery moment's pure serenity\n\n[Verse 3]\nMoments dance like shadows on the wall\nLaughing winds and summer’s gentle call\nWhisper secrets in our twilight hall\nIn your love I find I have it all\n\n[Verse 4]\nEvery sunrise paints your silhouette\nMorning dew your eyes I can’t forget\nBound by fate and love without regret\nMemories like sun so warm and set\n\n[Chorus]\nRosemary your name’s a melody\nEchoes softly through eternity\nGeorge’s heart was made for you to see\nEvery moment’s pure serenity",
+      "seed": 5116,
+      "base_valid_index": 15,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 16,
+      "condition_id": "8c0d6877a156c34360240c9b3906f53aa6cfda48c221278690395bff212c304b",
+      "style": "sound effects, cartoon, circus",
+      "lyrics": "welcome to the halloween era, where the spontaneous genious slows down the era \nmagnificent roustest\n conquer the conciuos magnificent primes\nrosting the land\nmonsters among us we are their living friend\nif we say yes they will come \nmaybe you know eachother for a while\nmaybe we can peace the heartland\n\nmonsters between us landing my voice coming over this genie era of a song\n\nmonsters will follow as long as you lead no blame on others for the black of you",
+      "seed": 5117,
+      "base_valid_index": 16,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 17,
+      "condition_id": "a670bc027861bf4acda973c0c7a25a89145442f5ecd1cdacce9927c0b11f85c6",
+      "style": "electric gritty blues rock",
+      "lyrics": "[Verse]\nMidnight hits us hard\nWandering down these streets\nLove burns wild inside\nDrowning in this heat\n\n[Verse 2]\nShadows talk to me\nWhispering your name\nLost in a smoky haze\nHeart's feelin' the blame\n\n[Chorus]\nCaught in a blaze\nHoney\nFire in our veins\nRunning through the night\nGirl\nTearing up the chains\n\n[Verse 3]\nYour kiss like dynamite\nExplodes in my soul\nRipping through the silence\nMaking me whole\n\n[Verse 4]\nEchoes of that laughter\nRinging in my ears\nCan't shake off the longing\nDrenched in all these tears\n\n[Chorus]\nCaught in a blaze\nHoney\nFire in our veins\nRunning through the night\nGirl\nTearing up the chains",
+      "seed": 5118,
+      "base_valid_index": 17,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 18,
+      "condition_id": "adaeb1c957ed91598cd33c11e789110655aa5214ca81d94b93f1ab5afccfd055",
+      "style": "electronic dance",
+      "lyrics": "[Verse]\nLights are flashing in your eyes\nFeel the rhythm in disguise\nBass is pumping through the floor\nDance until you can't no more\n\n[Verse 2]\nColors blend and start to glow\nBody moving feeling flow\nIn this moment we are free\nLost in sound eternally\n\n[Chorus]\nFeel the beat take over you\nHeartbeat syncs with something new\nEvery move a story told\nIn this dance we're uncontrolled\n\n[Verse 3]\nMusic lifts us to the stars\nIn this world there are no bars\nWe can fly above the ground\nOn these waves we're always bound\n\n[Bridge]\nElectric pulses in the air\nFeel the rush without a care\nClose your eyes and just believe\nIn this beat we all achieve\n\n[Chorus]\nFeel the beat take over you\nHeartbeat syncs with something new\nEvery move a story told\nIn this dance we're uncontrolled",
+      "seed": 5119,
+      "base_valid_index": 18,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 19,
+      "condition_id": "b31fc12175251f6f57a9b938af587ba874f895ed42765d97074f2b72535f309a",
+      "style": "Glam rock, krautrock",
+      "lyrics": "[Verse]\nGot my flu jab today armor on\nFeeling like a warrior strong\nAny flu trying to step on me\nGonna get the right jab wait and see\n\n[Verse 2]\nVirus you better run and hide\nI've got science by my side\nAntibodies in me don't play\nGonna keep you far away\n\n[Chorus]\nI'm a flu fighter watch me go\nStaying healthy head to toe\nNo sniffles no coughs no sore\nFlu season you've been warned for sure\n\n[Verse 3]\nNeedles quick like a lightning flash\nNo more tissues no more trash\nGot a shield that you can't break\nFlu season ain't no piece of cake\n\n[Bridge]\nEvery year I suit up strong\nGot the rhythm feeling prolonged\nHealthy days won't be denied\nFlu fighter ready for the ride\n\n[Chorus]\nI'm a flu fighter watch me go\nStaying healthy head to toe\nNo sniffles no coughs no sore\nFlu season you've been warned for sure",
+      "seed": 5120,
+      "base_valid_index": 19,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 20,
+      "condition_id": "baf0c81276743e0f2f44d4c89af8a5c93c698547273f9ee45ec37dfdbc0ed1d4",
+      "style": "classical, classical piano",
+      "lyrics": "Toàn bộ vũ trụ \nđều vận hành \ndựa trên nhân quảa.\nMọi khổ đau \nhay sung sướng \ncũng do nghiệp mà sinhh..\nHiểu nhân quả \nvà ý thức về vô thườngg\nlà điều tiên quyếtt\nĐây gọi là \nđứng trước ngưỡng cửaa\ncủa thực hànhhh..\n\nBao nghiệp xấu đã gâyy\ntừ vô thuỷ đến nayy\nChẳng thể biết \nchúng lúc nào sẽ nở\nVô thường chắc chắn đến \nmà vô phương chống đỡ..\nÔi sinh tử luân hồii\nthật kinh sợ biết baooo!\n\nKhi thực sự sợ vô thường,\n giác ngộ là điều duy nhấtt\nđáng khát khaooo\nVượt lên cả mọi mong cầu \ndanh lợi, tiền tài, tình yêu \nvà sức khoẻ..\nTu tập để giải thoátt\nbiến thành ưu tiên số mộtt\nĐó chính là bước vào\ncánh cửa của thực hànhh..\n\nMột nghiệp tốt \nbắt đầu từ tâm tốtt\nMột nghiệp xấu \nbắt đầu từ tâm hiểu biết sai lầmm\nTốt hay xấu \nđều xuất phát từ tâmm\nLàm việc với tâm \nlà ưu tiên của người trí tuệ..\n\nHãy chúc thầm \nbất cứ khi nào có thể\nTrong cầu thang, \nbãi đỗ xe, \nvới một người lạ gặp trên đường…\nHãy bắt đầu \ntừ những người mình yêu thươngg\nVà phát triển \ntới những người mình không thíchh..\n\nNuôi dưỡng biết ơn \ntừ những điều nhỏ nhấtt\nMà thông thường \nta thấy chúng đương nhiênn\nBiết ơn cả sai lầm, đau khổ \nvà những người là nhân duyên \nĐã mang đến cho ta \nbài học trưởng thành và chấp nhậnn...\n\nKhi đau khổ, \nchẳng hạn như tức giận\nHãy hỏi mình: \nđau khổ này đến từ đâu?\nNhận ra vô minh, \nchứ không phải cái bên ngoài\n là nơi nó bắt đầuu\nTập thói quen \nquay vào bên trong giải quyếttt..\n\nChúc thầm, phóng sinh… \nlà tạo ra nghiệp thiệnn\nLuôn kiểm tra động cơ, \nlà trì giới nghiêm minhh\nLuôn quay vào sửa bên trong, \nlà tinh tấn hết mìnhh\nHạn chế phản ứng với bên ngoài, \nlà thực hành nhẫn nhụcc..\n\nLàm tất cả những điều trên,\n đã bắt đầu hạnh phúcc\nNhưng chỉ tạm thời, \nvì sự thiếu trí tuệ vẫn còn..\nVào lúc này, \nhiểu Sự thậtt\nlà điều buộc phải làm\nĐể thấy khổ hoàn toàn đến từ ngã chấpp..\n\nCần hiểu đúng về \nVô ngã, Duyên sinh, Không có thật\nNhận ra Biết là bản tính của tâm\nBiến những điều này\n thành nhận thức của mìnhh\nSuy ngẫm về chúng \ntừ kinh nghiệm trong đời sốngg\n\nNhững giải thích trên\n là vô cùng ngắn gọnn\nGợi ý cho hành giảa \ncác bước đii\nNhưng học và hiểu chúng thôi \ncũng chẳng có ích gìii\nNếu hiểu biếtt\nkhông đi kèm kinh nghiệmm..\n\nĐiều đặc biệt \ncủa con đường Trong Suốtt\nLà khéo léo \nvà không bị ngăn ngạii\ntrong pháp thực hànhh\nBiến hiểu biết \nthành chứng nghiệm \nthông qua đời sống bình thườngg..\nHợp nhất thiền địnhh\nvà hành động \ntrong từng kinh nghiệm nhỏo..\n\nCả trí tuệ và tình thương \nđều vẹn tròn đầy đủu..\nCả sức mạnh và phương tiện \nđều diệu dụng viên thônggg..\nLúc giúp người thì oai lực vô cùngg\nLúc tĩnh lặng thì chiếu soi rạng rỡ...\n\nXin đảnh lễ\nCon đường siêu vượt lên sinh tử....",
+      "seed": 5121,
+      "base_valid_index": 20,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 21,
+      "condition_id": "bbf07fa8ddc9d6c182964a788762f99c42ca638f2c3028c2925bb6e9d1f7336c",
+      "style": "lo-fi electronic dreamy",
+      "lyrics": "[Verse]\nI found my love deep in the sea\nUnder waves of mystery\nLobster claws and amber eyes\nHeartbeats echo ocean skies\n\n[Chorus]\nCrimson kisses in the tide\nFeel the pull and lose your pride\nSalt and sand between our toes\nWhere this strange romance grows\n\n[Verse 2]\nWe dance beneath the moon's embrace\nTangles of seaweed in our space\nClaw in hand we sway and spin\nWaves crash out and draw us in\n\n[Chorus]\nCrimson kisses in the tide\nFeel the pull and lose your pride\nSalt and sand between our toes\nWhere this strange romance grows\n\n[Bridge]\nGlimpses of a love so rare\nWhispers of the ocean air\nNothing's quite as wild and free\nAs this lobster love by the sea\n\n[Chorus]\nCrimson kisses in the tide\nFeel the pull and lose your pride\nSalt and sand between our toes\nWhere this strange romance grows",
+      "seed": 5122,
+      "base_valid_index": 21,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 22,
+      "condition_id": "bdaee322a688c613967dc2d7df3b403c44fd77bece7b01dc0a1fa18be154e138",
+      "style": "90s rap",
+      "lyrics": "[Verse]\nciao sono Jacopo er meglio de roma e d'italia. sono forte e magico. tutti mi vogliono come amico dajeeee\nfaccio molte cose e sono bravo a scuola , sport e vivo una bella vità. dajeee. fai come me ...ama la vita.\n\nHo undici anni ma già conosco la vita...guido droni e gommoni e sono figo... dajee",
+      "seed": 5123,
+      "base_valid_index": 22,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 23,
+      "condition_id": "c878206f43d72fa5c513d8458d726211178c40d85205954462a67aeebda8b9f2",
+      "style": "electric 80's rock gritty",
+      "lyrics": "[Verse]\nAsh in the air we breathe smoke\nFlames licking the trees broke\nCities fall concrete crack\nReality fading heart attack\n\n[Verse 2]\nNeon lights flash in the night haze\nSkies ablaze industrial maze\nFires rage through the endless sprawl\nFeel the heat watch us all fall\n\n[Chorus]\nThe world is burning can't you see\nEverything lost nothing's free\nToxins rise from the sea\nHold your breath let it be\n\n[Verse 3]\nSirens wail streets empty cold\nVoices silenced young and old\nAshes scatter memories lost\nTruth incinerated at any cost\n\n[Bridge]\nFaces in shadows eyes of fear\nWhispered secrets that no one hear\nDesperation fuels the light\nChasing day through darkest night\n\n[Verse 4]\nRuins stand where towers once gleamed\nBroken dreams bound and seamed\nEchoes of a world gone mad\nHollow lives trace what we had",
+      "seed": 5124,
+      "base_valid_index": 23,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 24,
+      "condition_id": "ca136457921aaa3148b8b02a101209157e27dbccd4719704969c3e656ac8247a",
+      "style": "vocoder vocals futuristic percussive electronic",
+      "lyrics": "[Verse]\nMetal bricks like soldiers rise\nIn the dawn of steel and wires\nMachines whisper future's cries\nIn the heart where hope aspires\n\n[Verse 2]\nElectric hums in rhythm strong\nGears align where they belong\nDreams built night and day so long\nIn a land of steel song\n\n[Chorus]\nSteel and circuits come alive\nBuilding dreams from nine to five\nIn this factory we strive\nElectric dreams will thrive\n\n[Bridge]\nClouds of smoke and sparks ignite\nWithin walls so cold yet bright\nFuture’s glimmer in the night\nMachines dancing in the light\n\n[Verse 3]\nBuilders of an iron age\nHands and hearts on every stage\nBlueprints covered in steel's wage\nHistories written page by page\n\n[Chorus]\nSteel and circuits come alive\nBuilding dreams from nine to five\nIn this factory we strive\nElectric dreams will thrive",
+      "seed": 5125,
+      "base_valid_index": 24,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 25,
+      "condition_id": "cabca60e4851a19ab359391e1448e930eeafc7c54b3c8568afa2d6509500e380",
+      "style": "Turkish rock, sad, slow",
+      "lyrics": "Seni çok sevdim\nAma halâ geçmedi\nUzakta durdun\nHasret bitmedi\nYüzüm güldü\nİçim dinmedi\nBeni ara sor\nSeni her andığımda \nCanım minnetteydi\nKendi kendime ettim\nBen bunları hak ettim\nMadem sormuyorsun\nSen beni mahvettin\nSeni çok sevdim\nBoynumu eğdim\nMadem yoksun\nZaten yoktun\nSeni unutamam\nCan içim\nHalâ geçmedin\nSeni çok sevdim\nAma halâ geçmedi\nUzakta durdun\nHasret bitmedi\nYüzüm güldü\nİçim dinmedi\nBeni ara sor\nSeni her andığımda \nCanım minnetteydi\nKendi kendime ettim\nBen bunları hak ettim\nMadem sormuyorsun\nSen beni mahvettin\nSeni çok sevdim\nBoynumu eğdim\nMadem yoksun\nZaten yoktun\nSeni unutamam\nCan içim\nHalâ geçmedin",
+      "seed": 5126,
+      "base_valid_index": 25,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 26,
+      "condition_id": "d680439d98329c58da912f50b5cc923443f0b872a191f987dc40ec7ecfe76ae8",
+      "style": "Dark pop",
+      "lyrics": "Garis yang Memudar\"\n\nDi antara bayang dan terang yang samar,\nAda tempat di mana semua tercampur dan kabur.\nTak ada hitam putih, tak ada benar salah,\nAku melangkah di jalan yang penuh tanda tanya.\n\nApakah aku pahlawan atau hanya ilusi?\nSaat semua tindakan bercampur ambiguitas pasti.\nGaris di antara baik dan jahat semakin pudar,\nKehilangan arah di dunia yang kelam dan liar.\n\nGaris yang memudar, siapa yang benar?\nDalam dunia ini, niat suci bisa menyamar.\nMimpi dan dosa bertemu dalam satu warna,\nTak ada kepastian di balik semua bara.\n\nSetiap pilihan adalah pedang bermata dua,\nAntara menyelamatkan atau malah menghancurkan asa.\nAku berjuang, tapi tak tahu apa yang kubela,\nDalam kabut moral ini, aku mencari makna.\n\nApakah cahaya bisa lahir dari kegelapan?\nSaat niat baik terjerat dalam bayangan.\nMungkin aku terikat dalam takdir yang keliru,\nTapi garis ini, tak pernah jelas atau lurus.\n\n(Chorus)\nGaris yang memudar, siapa yang benar?\nDalam dunia ini, niat suci bisa menyamar.\nMimpi dan dosa bertemu dalam satu warna,\nTak ada kepastian di balik semua bara.\n\nDi ujung batas, aku berdiri sendiri,\nMempertanyakan tujuan di balik mimpi.\nMungkin baik dan jahat hanyalah dua sisi,\nDari koin yang berputar tanpa henti.\n\nGaris yang memudar, tak ada hitam atau putih,\nHanya abu-abu dalam setiap langkah yang ku pijak.\nApakah aku pahlawan, atau malah penghancur jiwa?\nDi dunia ini, tak ada jawaban yang sempurna.",
+      "seed": 5127,
+      "base_valid_index": 26,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 27,
+      "condition_id": "dd4cfa34f3036c356c42d963dbfc6731dfc58121cf12704f938d14adade495b3",
+      "style": "Slow Afrobeat rhythm with warm bass, soft percussion, and gentle guitar riffs. R&b vocals are smooth and soulful,",
+      "lyrics": "Intro (Soft Guitar and Light Percussion):\n(Repeated words: “Feel you, feel you, feel you… still feel you, feel you, feel you…”)\n(Background harmonies: “Still feel you…”)\n\n(“Feel you… yeah, I still feel you…”)\n(Soft scatting: “Da-da, mmm, feel you…”)\n\n(The guitar and vocals create a warm, introspective groove, building the feeling of a memory that won’t fade.)\n\nVerse 1\nI tried to move on, keep it all in the past,\nBut I feel your touch in every breath I take.\nCan’t shake the echoes of things that we had,\nYour scent, your smile, all the memories I can’t shake.\n\n(Background: “Memories I can’t shake…”)\n\nPre-Chorus\nI’m out here pretending, actin’ brand new,\nBut you left a shadow I can’t see through.\nGot me lost in this space where you used to be,\nStill feel you right here, haunting me.\n\n(“Still feel you… haunting me…”)\n\nChorus\nI still feel you, baby, in every beat,\nLike a rhythm I can’t forget, can’t delete.\nYou left your mark, yeah, you cut so deep,\nStill feel you, babe, even in my sleep.\n\n(Ad-libs: “Oh, so deep…” “Can’t shake you…”)\n\nVerse 2\nWe had a love, yeah, it burned so strong,\nNow it’s just ashes, but they linger on.\nEvery song I play, every word I hear,\nBrings me back, wishin’ you were still here.\n\n(Background: “Wishin’ you were here…”)\n\nPre-Chorus\nFriends say, “move on, let it be,”\nBut you’re in my skin, you’re a part of me.\nFeels like a ghost that I can’t release,\nStill feel you here, givin’ me no peace.\n\n(“Givin’ me no peace…”)\n\nChorus\nI still feel you, baby, in every beat,\nLike a rhythm I can’t forget, can’t delete.\nYou left your mark, yeah, you cut so deep,\nStill feel you, babe, even in my sleep.\n\n(Ad-libs: “Yeah, it’s so deep…” “Can’t let go…”)\n\nBridge (Soft Scatting and Guitar)\n(Scatting: “Da-da-da, yeah, mmm…”)\n(“Wish you’d let me be…”)\nThe guitar riff gently plays under the scat lines, adding a reflective and melancholic feel.\n\nChorus (Extended Harmonies and Deep Ad-libs)\nI still feel you, baby, in every beat,\nLike a rhythm I can’t forget, can’t delete.\nYou left your mark, yeah, you cut so deep,\nStill feel you, babe, even in my sleep.\n\n(Ad-libs: “Won’t let me go…” “So deep…”)\n\nOutro (Guitar and Soft Scatting Fading Out)\n(“Still feel you, yeah… can’t let go…”)\n(Scatting: “Da-da-da…”)\nThe guitar and scatting fade out, leaving a lingering sense of unresolved emotion.",
+      "seed": 5128,
+      "base_valid_index": 27,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 28,
+      "condition_id": "f1af01f1789683f0c78fde428b0e5ab077349bc0597b6995e49483813dd1349b",
+      "style": "pop",
+      "lyrics": "[Verse]\nYears in my room with hands held high\nPretending to blast through the sky\nCamera rolling laughter in frame\nDreaming of power fueling my name\n\n[Verse 2]\nSaw the glow in midnight's shroud\nIn my heart I screamed so loud\nEnergy swirling fingers in place\nFinally real I met its embrace\n\n[Chorus]\nKamehameha in all its might\nTook me high into the light\nYears of dreaming led to this\nNo more pretending feel the bliss\n\n[Verse 3]\nNeighbors stared in wide-eyed shock\nAs power ripped through ticking clock\nLifelong quest to channel that force\nFinally achieved no turning off course\n\n[Chorus]\nKamehameha in all its might\nTook me high into the light\nYears of dreaming led to this\nNo more pretending feel the bliss\n\n[Bridge]\nJokes and laughs all gone away\nNow they see my power play\nTraining hard in silent hours\nHarnessing these newfound powers",
+      "seed": 5129,
+      "base_valid_index": 28,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 29,
+      "condition_id": "faf1cc10e9f465c7915218d3e4caaf85147b79c4438bb70f37191eab39f4ff8b",
+      "style": "ethereal ambient new age",
+      "lyrics": "[Verse]\nIn the void of endless night no need to fear the lack of light\nCrystals hum a silent tune whisper secrets to the moon\n\n[Verse 2]\nGeometric shapes they glide dancing with the cosmic tide\nFeel the pull of sacred space elevate and find your place\n\n[Chorus]\nMerkaba carries you so high lifting you into the sky\nEnergy begins to flow let the crystal magic grow\n\n[Verse 3]\nIn the stillness of this dream nothing’s ever as it seems\nClose your eyes and let it be merge with cosmic energy\n\n[Bridge]\nStars align in perfect form souls untwine and then transform\nFeel the rhythm of the sphere guiding you away from here\n\n[Chorus]\nMerkaba carries you so high lifting you into the sky\nEnergy begins to flow let the crystal magic grow",
+      "seed": 5130,
+      "base_valid_index": 29,
+      "kind": "original-validation",
+      "requested_count": null,
+      "scope": "Unmodified CMI validation condition; no exact instrument-count constraint"
+    },
+    {
+      "index": 30,
+      "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3",
+      "style": "west coast hip hop rap\nmale rappers\nUse exactly 2 accompaniment instrument families, excluding the singing voice: drums, electric bass. Do not add any other accompaniment instrument families.",
+      "lyrics": "[Verse]\nBreak dance is back\nOh yeah\nIt’s here (ooh-yeah!)\nGet ready to move\nLet’s make it clear\nShow your style\nDon't hold back\nNo fear\nParty all night\nLet's cheer\nLet's cheer\n\n[Verse 2]\nOn the floor\nWe twist and spin (spin-spin!)\nFeel the rhythm\nLet’s begin\nShow your moves\nLet the fun begin\nBreak dance fever\nFeel it within\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Verse 3]\nThe beat is hot\nThe floor’s on fire (fire-fire!)\nKeep on groovin’\nNever tire\nDance to the drum\nLet’s rise higher\nSweat and smiles\nOur desire\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Bridge]\nRound and round\nWe'll never stop (never stop!)\nTo the top\nWe’re gonna pop\nFeel the groove\nLet it drop (drop-drop)\nBreak dance moves\nMake it pop",
+      "original_style": "west coast hip hop rap\nmale rappers",
+      "seed": 5101,
+      "base_valid_index": 0,
+      "kind": "instrument-count-probe",
+      "requested_count": 2,
+      "instrument_families": [
+        "drums",
+        "electric bass"
+      ],
+      "adaptation": "Use exactly 2 accompaniment instrument families, excluding the singing voice: drums, electric bass. Do not add any other accompaniment instrument families.",
+      "scope": "Modified listening probe only; excluded from train, all-30 validation and sealed test"
+    },
+    {
+      "index": 31,
+      "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3",
+      "style": "west coast hip hop rap\nmale rappers\nUse exactly 5 accompaniment instrument families, excluding the singing voice: drums, electric bass, piano, electric guitar, strings. Do not add any other accompaniment instrument families.",
+      "lyrics": "[Verse]\nBreak dance is back\nOh yeah\nIt’s here (ooh-yeah!)\nGet ready to move\nLet’s make it clear\nShow your style\nDon't hold back\nNo fear\nParty all night\nLet's cheer\nLet's cheer\n\n[Verse 2]\nOn the floor\nWe twist and spin (spin-spin!)\nFeel the rhythm\nLet’s begin\nShow your moves\nLet the fun begin\nBreak dance fever\nFeel it within\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Verse 3]\nThe beat is hot\nThe floor’s on fire (fire-fire!)\nKeep on groovin’\nNever tire\nDance to the drum\nLet’s rise higher\nSweat and smiles\nOur desire\n\n[Chorus]\nTake your chance\nTake your chance\nShow your moves in a dance trance\nEverybody\nLet’s advance\nBreak the floor\nTake your chance\n\n[Bridge]\nRound and round\nWe'll never stop (never stop!)\nTo the top\nWe’re gonna pop\nFeel the groove\nLet it drop (drop-drop)\nBreak dance moves\nMake it pop",
+      "original_style": "west coast hip hop rap\nmale rappers",
+      "seed": 5101,
+      "base_valid_index": 0,
+      "kind": "instrument-count-probe",
+      "requested_count": 5,
+      "instrument_families": [
+        "drums",
+        "electric bass",
+        "piano",
+        "electric guitar",
+        "strings"
+      ],
+      "adaptation": "Use exactly 5 accompaniment instrument families, excluding the singing voice: drums, electric bass, piano, electric guitar, strings. Do not add any other accompaniment instrument families.",
+      "scope": "Modified listening probe only; excluded from train, all-30 validation and sealed test"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-14T12:05:15.766183+00:00",
+  "updated_at": "2026-10-14T13:05:21.016534+00:00",
   "runs": [
     {
       "model": "yue2",
@@ -4248,6 +4248,43 @@
         }
       ],
       "complete": true
+    },
+    {
+      "model": "diffrhythm2",
+      "reward": "richness",
+      "steps": 5,
+      "complete": false,
+      "validation": [],
+      "trace": [
+        {
+          "step": 1,
+          "reward": 0.03492013766264823,
+          "kl": 0
+        },
+        {
+          "step": 2,
+          "reward": 0.22316988569244625,
+          "kl": 2.4202844616370307e-7
+        },
+        {
+          "step": 3,
+          "reward": 0,
+          "kl": 4.5047000450543366e-7
+        },
+        {
+          "step": 4,
+          "reward": 0,
+          "kl": 8.723029842550395e-7
+        },
+        {
+          "step": 5,
+          "reward": 0,
+          "kl": 0.0000012145153290502022
+        }
+      ],
+      "snapshot_at": "2026-10-14T13:05:21.016534+00:00",
+      "kl_unit": "Exact conditional Gaussian KL per latent dimension, averaged over sampled transitions",
+      "scope": "Verified first5 updates only; not a final score or full validation mean"
     }
   ],
   "scope": "Training trace plus all-30 validation receipts. Not WildSongBench test or human MOS."

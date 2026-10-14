@@ -5,12 +5,13 @@ const $ = (id) => root.querySelector(`[data-regime="${id}"]`);
 const checkpoints = [0, 50, 100, 270];
 const rewardKey = (id) => ({ songbench: 'instrument', 'songbench-arrangement': 'arrangement' })[id] || id;
 const rewardName = (key) => ({ richness: 'SP-Richness', instrument: 'SongBench-Instrument', arrangement: 'SongBench-Arrangement' })[key] || key;
-const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', complete: '已核验完成' };
+const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', 'preparation-submitted': '准备链已提交 · 非GPU训练', complete: '已核验完成' };
 const marks = new Map(['reward', 'kl'].map((key) => [key, createMilestones($(`${key}-chart`), 270)]));
 const fmt = (value) => Number.isFinite(value) ? value.toFixed(4) : 'n/a';
+const fmtKL = (value) => Number.isFinite(value) && value !== 0 && Math.abs(value) < .0001 ? value.toExponential(2) : fmt(value);
 const delta = (value, baseline) => Number.isFinite(value) && Number.isFinite(baseline)
   ? `${fmt(value)} (${value >= baseline ? '+' : ''}${fmt(value - baseline)})` : fmt(value);
-let protocol, progress, recovery;
+let protocol, progress, recovery, examples;
 let selected = 'yue2', target = 'richness', replayMode = 'long', example = 0, replayStep = 270, badId = 0;
 
 const model = () => protocol.models.find((m) => m.id === selected);
@@ -60,7 +61,7 @@ function chart(key, points) {
   for (let i = 0; i < 4; i++) {
     const value = low + (high - low) * i / 3, yy = y(value);
     ctx.strokeStyle = '#dde4df'; ctx.beginPath(); ctx.moveTo(39, yy); ctx.lineTo(width - 12, yy); ctx.stroke();
-    ctx.fillStyle = '#59615c'; ctx.textAlign = 'right'; ctx.fillText(value.toFixed(key === 'kl' ? 4 : 2), 35, yy + 4);
+    ctx.fillStyle = '#59615c'; ctx.textAlign = 'right'; ctx.fillText(key === 'kl' ? fmtKL(value) : value.toFixed(2), 35, yy + 4);
   }
   ctx.textAlign = 'center'; ctx.fillStyle = '#59615c';
   for (const step of [0, 50, 100, 200, 270]) ctx.fillText(String(step), x(step), height - 8);
@@ -85,13 +86,13 @@ function draw() {
   $('plots').hidden = !trace.length;
   for (const key of ['reward', 'kl']) {
     marks.get(key).set(trace.filter((p) => [1, 5, 25, 50, 100, 270].includes(p.step)).map((p) => ({
-      step: p.step, label: `Step ${p.step}\n${key === 'kl' ? 'Sampled KL' : 'Reward'} ${p[key].toFixed(6)}（日志原值）`,
+      step: p.step, label: `Step ${p.step}\n${key === 'kl' ? 'KL' : 'Reward'} ${key === 'kl' ? fmtKL(p[key]) : p[key].toFixed(6)}（日志原值）`,
     })));
-    $(`${key}-value`).textContent = trace.length ? `末步 ${fmt(trace.at(-1)[key])}` : '';
+    $(`${key}-value`).textContent = trace.length ? `末步 ${key === 'kl' ? fmtKL(trace.at(-1)[key]) : fmt(trace.at(-1)[key])}` : '';
     if (trace.length) chart(key, trace);
   }
   $('trace-note').textContent = trace.length
-    ? `${run.steps}/270 步已核验。浅线为原值，实线为10步滚动均值；Reward不含KL loss。右图为训练rollout上的冻结参考采样估计，不是离线探针或测试分数。`
+    ? `${run.steps}/270 步已核验。浅线为原值，实线为10步滚动均值；Reward不含KL loss。${selected === 'diffrhythm2' ? '右图为采样状态上解析条件高斯KL，按latent维度归一化；不是波形KL。' : '右图为训练rollout上的冻结参考采样估计。'} 这不是离线探针或测试分数。`
     : `${model().status}。尚无本模型、本目标的已核验日志，不显示替代曲线。`;
 }
 
@@ -173,23 +174,29 @@ function renderMedia() {
   $('replay-title').textContent = replayMode === 'long' ? 'Long-form replay · target 60 seconds' : 'Badcase · 原始短验证片段';
   $('input').textContent = model().input;
   $('reference-note').textContent = selected === 'private' ? '未公开输入或生成结果。'
-    : selected === 'songbloom' ? '拟使用固定参考音频；当前资源待核验，参考歌曲不是唯一正确输出。'
+    : selected === 'songbloom' ? '原生使用固定参考音频与歌词；准备链须校验全部300条参考资源后才启动训练。不公开原始reference；它不是唯一正确输出。'
       : '本轮不输入参考音频；各reward共享同模型的冻结起点。';
   const ownsRecovery = recovery.model === selected;
-  let a, b;
+  let a, b, inputRow;
   if (replayMode === 'long') {
     const available = ownsRecovery ? recovery.long_replays.filter((r) => r.reward === target) : [];
     const baselines = ownsRecovery ? recovery.baseline : [];
-    const indices = baselines.length ? [...new Set(baselines.map((r) => r.index))] : [0, 10, 20];
+    const indices = examples.display_indices_by_model?.[selected] || examples.display_indices;
     if (!indices.includes(example)) example = indices[0];
-    controls($('example-controls'), indices.map((i, n) => [i, `Sample ${n + 1}`, !baselines.length]), example, (i) => { example = i; renderMedia(); });
+    controls($('example-controls'), indices.map((i, n) => {
+      const count = examples.inputs.find((r) => r.index === i).requested_count;
+      return [i, `Sample ${n + 1}${count ? ` · ${count} 类` : ''}`];
+    }), example, (i) => { example = i; renderMedia(); });
+    inputRow = examples.inputs.find((r) => r.index === example);
     a = baselines.find((r) => r.index === example)?.asset;
     const steps = [...new Set([...checkpoints, ...available.map((r) => r.step)])].sort((x, y) => x - y);
     controls($('step-controls'), steps.map((s) => [s, `${s} steps`, s === 0 ? !a : !available.some((r) => r.index === example && r.step === s)]),
       replayStep, (s) => { replayStep = s; renderMedia(); });
     b = replayStep === 0 ? a : available.find((r) => r.index === example && r.step === replayStep)?.asset;
-    $('input-note').textContent = a ? `CMI valid #${example + 1} · 固定条件 · seed ${5101 + example}` : '本模型尚无已回收的固定条件试听样本。';
-    if (a) $('seed').textContent = `CMI valid #${example + 1} · seed ${5101 + example}`;
+    $('input-note').textContent = inputRow.kind === 'instrument-count-probe'
+      ? `改写试听探针 · 原始 valid #${inputRow.base_valid_index + 1} · seed ${inputRow.seed} · 不计入全30条验证`
+      : `CMI valid #${example + 1} · 原始条件 · seed ${inputRow.seed}`;
+    $('seed').textContent = `seed ${inputRow.seed}${a ? '' : ' · 音频待回收'}`;
     $('replay-note').textContent = b
       ? '冻结baseline与当前checkpoint使用同一条件和seed。原生长回放，不循环或补齐；训练/全量短验证的分数不归到这段长音频。图像来自MP3，评分绑定原件。'
       : `${model().status}。${a ? 'A保留已核验的同模型baseline；B长回放尚未回收。' : '音频和可视化均未用其他实验替代。'}`;
@@ -199,6 +206,7 @@ function renderMedia() {
     controls($('example-controls'), cases.map((r, i) => [i, `Valid #${r.index + 1} · step ${r.step}`]), badId, (i) => { badId = i; renderMedia(); });
     const item = cases[badId];
     if (item) {
+      inputRow = examples.inputs.find((r) => r.index === item.index);
       a = item.baseline; b = item.candidate; replayStep = item.step;
       controls($('step-controls'), [[item.step, `${item.step} steps`]], replayStep, () => {});
       $('seed').textContent = `CMI valid #${item.index + 1} · seed ${item.seed}`;
@@ -209,6 +217,16 @@ function renderMedia() {
       $('replay-note').textContent = '没有已回收的指标冲突候选；不把“尚未回收”解释为没有reward hacking。';
     }
   }
+  $('text-content').textContent = selected === 'private' ? '私有对照输入未公开。' : inputRow?.style || '本实验暂无已归档样本。';
+  $('lyrics-content').textContent = selected === 'private' ? '未公开。' : inputRow?.lyrics || 'n/a';
+  $('count-note').textContent = selected === 'songbloom'
+    ? 'Text 为数据集原始条件，但此版本不输入Text；乐器数量提示遵循为 n/a。这里固定五个独立原生条件（valid0/10/20/1/2），不拿相同音频重复充数。'
+    : inputRow?.requested_count
+    ? `恰好 ${inputRow.requested_count} 类伴奏乐器（不含人声；鼓组算一类）。Sample 4/5 使用相同原始歌词和 seed，仅改写配器要求；这是提示遵循探针，不代表已测得真实乐器数量。`
+    : 'Sample 1–3 保留原始提示，不额外规定乐器数量；其中部分提示列出了乐器。Sample 4/5 明确规定数量，单独作为试听探针。';
+  const attribution = document.createElement('a'); attribution.href = examples.attribution.url;
+  attribution.textContent = 'CMI-Pref · Haiwen Xia et al. · CC BY-NC-SA 4.0';
+  $('input-attribution').replaceChildren(attribution);
   compare(a, b); draw();
 }
 
@@ -218,7 +236,7 @@ function tables() {
     const baseline = data?.validation.find((v) => v.step === 0), latest = data?.validation.at(-1);
     const valid = latest && baseline ? `Step ${latest.step} · ${delta(latest.mean, baseline.mean)} · ${latest.n}/30` : '待全量30条验证';
     return row([`${model().name}-${rewardName(key)}-3e-4`, run
-      ? `${data?.complete ? '已核验完成' : statusNames[run.status] || run.status} · ${run.host}${run.project ? ` / ${run.project}` : ''}${run.job_id ? ` · ${run.job_id}` : ''}`
+      ? `${data?.complete ? '已核验完成' : statusNames[run.status] || run.status} · ${run.host}${run.project ? ` / ${run.project}` : ''}${run.job_id ? ` · ${run.job_id}` : run.preparation_job_id ? ` · 准备任务 ${run.preparation_job_id}` : ''}`
       : model().status, run ? `${data?.steps || 0}/270` : '未提交', run ? valid : 'n/a', '封存 · 未运行']);
   }));
   const run = measuredRun(), baseline = run?.validation.find((v) => v.step === 0);
@@ -252,8 +270,9 @@ function render() {
     : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。' : '评和声框架与配器编排，不是简单计数。'} 三臂都使用同一削波/RMS guard；KL为独立loss项。`;
   $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
     ? `CMI-Pref 270 train / 30 valid · LR3e-4 · seed42 · 组大小2 · β0.01。${selected === 'yue2' ? 'PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : 'ms-swift / TRL + vLLM，512 completion-token预算；尚在PBS排队。'}`
-    : `${model().input} · ${model().status}。暂无已生效训练配置，不把旧模型的token预算或KL算法归给本模型。`;
-  $('kl-caption').textContent = 'KL · 在线冻结参考采样估计';
+    : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`
+      : `${model().input} · ${model().status}。暂无已生效训练配置。`;
+  $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : 'KL · 在线冻结参考采样估计';
   $('model-detail').textContent = `${model().name}：${model().note}`;
   $('model-source').hidden = !model().source;
   if (model().source) $('model-source').href = model().source; else $('model-source').removeAttribute('href');
@@ -269,8 +288,9 @@ try {
   protocol = await load('./data/reward-regime-protocol.json');
   progress = await load('./data/reward-regime-progress.json');
   recovery = await load('./data/reward-regime-recovery.json');
-  if (!protocol.training_authorized || protocol.runs.length !== 6) throw new Error('Approved executed matrix mismatch');
-  $('updated').textContent = `已核验快照 ${new Date(progress.updated_at).toLocaleString('zh-CN', { timeZone: 'Australia/Perth' })} AWST · 快照不是远端实时状态。新增模型占位不代表已提交；不显示合成曲线。`;
+  examples = await load('./data/reward-regime-examples.json');
+  if (!protocol.training_authorized || protocol.runs.length < 6) throw new Error('Approved executed matrix mismatch');
+  $('updated').textContent = `已核验快照 ${new Date(progress.updated_at).toLocaleString('zh-CN', { timeZone: 'Australia/Perth' })} AWST · 不是远端实时状态。准备链、排队和真实更新分开标注；未回收日志不显示替代曲线。`;
   $('hypothesis').textContent = '研究问题：不同起点模型对SP与AI reward的响应是否不同？团队快听只提供分层假设；自动分数与同事的十输入估分均不是本站正式MOS或可听提升结论。';
   $('models').replaceChildren(...protocol.models.map((m) => {
     const b = button(m.id, m.name, selected, (value) => { selected = value; replayStep = 270; render(); }); b.dataset.model = m.id; return b;

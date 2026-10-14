@@ -1,6 +1,6 @@
 {
-  "version": "approved-20261014-v3",
-  "status": "yue2-three-arms-complete-muse-queued-expansion-preparation",
+  "version": "approved-20261014-v4-head-extension",
+  "status": "yue2-complete-diffrhythm2-training-heartmula-songbloom-gpu-queued",
   "training_authorized": true,
   "reward_selection": {
     "confirmed_by": "user",
@@ -15,7 +15,7 @@
     "valid": "CMI-Pref same frozen 30 conditions",
     "test": "WildSongBench all 192 conditions, sealed: no test generation or reward-based test selection in this urgent training phase",
     "split_url": "./data/cmi-pref-triple-9to1-split.json",
-    "modalities": "Native text + lyrics; reference audio remains reserved, not an RL target.",
+    "modalities": "YuE2/Muse/HeartMuLa/DiffRhythm2 use native text/tags + lyrics. SongBloom uses native10s reference audio + structured lyrics, not text; all300 reference files must pass byte/decode verification before launch.",
     "no_test_tuning": true,
     "no_new_subset": true
   },
@@ -38,10 +38,10 @@
       "role": "中间质量档候选",
       "mos": null,
       "team_listening_estimate": 3.5,
-      "status": "名单已确认 · 训练接入待完成，未提交",
+      "status": "Gadi iv96 三臂已提交 · GPU排队",
       "input": "Tags + lyrics",
-      "readiness": "adapter-required",
-      "note": "代码/权重 Apache-2.0。候选为oss-3B happy-new-year与固定HeartCodec，先核对团队试听版本；需要global/local全部码本的teacher-forcing log-prob，不能直接复用YuE2 trainer。当前没有本研究训练或音频结果。",
+      "readiness": "queued",
+      "note": "Apache-2.0官方happy-new-year3B / 20260123 HeartCodec，权重已在5090/Gadi校验。首轮仅codebook0输出头rank8 LoRA，冻结global/local/codec；不是完整主干GRPO。Gadi准备任务181261941已成功，三个3e-4目标已提交；尚无GPU训练验收或音频结果。",
       "source": "https://github.com/HeartMuLa/heartlib"
     },
     {
@@ -50,10 +50,10 @@
       "role": "较低快听起点 · 连续策略",
       "mos": null,
       "team_listening_estimate": 3,
-      "status": "名单已确认 · Flow-GRPO 接入待完成，未提交",
+      "status": "5090正式更新已开始 · 其余两目标串行",
       "input": "Style text + lyrics",
-      "readiness": "adapter-required",
-      "note": "v2代码/权重Apache-2.0，非DiffRhythm v1。发布代码支持MuQ-MuLan文字或音频style分支；本轮拟固定文字。确定性ODE需要有明确转移概率的随机策略适配、ODE/SDE双baseline与条件KL验证。当前未跑新训练。",
+      "readiness": "training",
+      "note": "v2作者权重与decoder哈希已核验。首轮仅DiT proj_out输出头rank8 LoRA；冻结transformer/MuQ/decoder。官方Flow-GRPO SDE helper、每block31次随机转移；首步log-prob重算差0、参考KL0、有限非零梯度已通过。配对baseline使用同SDE，不把原生ODE对照冒充已完成。",
       "source": "https://github.com/ASLP-lab/DiffRhythm2"
     },
     {
@@ -62,10 +62,10 @@
       "role": "较低快听起点 · 混合策略",
       "mos": null,
       "team_listening_estimate": 3,
-      "status": "名单已确认 · 发布版本与参考音频待恢复，未提交",
+      "status": "Gadi wa66 三臂已提交 · GPU排队",
       "input": "Reference audio + structured lyrics",
-      "readiness": "source-blocked",
-      "note": "原代码入口404、作者HF入口401；社区副本仅作恢复线索，来源/许可和权重SHA仍需核验。原生接口需要参考音频。sketch-head GRPO与acoustic Flow-GRPO是不同路线；没有用其他模型替代其结果。",
+      "readiness": "queued",
+      "note": "社区恢复150s base、非DPO版，LFS哈希已校验；不能声称与不可访问作者端点或团队快听版本独立匹配。按源码学术用途许可准备。仅sketch最终输出头rank8 LoRA，冻结AR/flow/VAE；CPU严格加载通过，仅移除365个逐tensor完全相等的重复VAE别名。任务181261942已成功，300条reference已下载、哈希/解码核验；Text不输入本模型，数量prompt探针不适用。",
       "source": "https://arxiv.org/abs/2506.07634"
     },
     {
@@ -114,8 +114,9 @@
       "songbloom"
     ],
     "preparation_requested": true,
-    "new_training_submitted": false,
-    "priority": "Online demo organization first, following Lyrics2song GRPO presentation",
+    "new_training_submitted": true,
+    "scope": "DiffRhythm2 formal updates verified; HeartMuLa/SongBloom preparation complete and six GPU jobs queued, not running claims",
+    "priority": "Launch authorized; no scheduled tasks or overnight Codex monitoring",
     "plan_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/OPEN_MODEL_RL_PLAN_2026-10-14.md",
     "private_model_policy": "Generic unavailable placeholder only; no internal architecture, weights or audio disclosed",
     "listening_estimates": "Team-reported quick listening on ten shared inputs, not formal or externally published MOS. Exact checkpoints and per-item ratings not yet archived."
@@ -151,7 +152,8 @@
   ],
   "design": {
     "primary_matrix": "YuE2 / Muse x SP Richness / SongBench-Instrument / SongBench-Arrangement",
-    "weak_model_extension": "Confirmed additions: HeartMuLa / DiffRhythm2 / SongBloom. New-model adapters and source/input gates remain incomplete; no new training submitted. ACE-Step1.5 deferred; SongGen removed.",
+    "weak_model_extension": "Authorized native60s restricted-head extension: HeartMuLa codebook0_head / DiffRhythm2 DiT proj_out / SongBloom final sketch classifier. Rank8 alpha16, G2, AdamW3e-4, beta.01,270 conditions. Exact conditional categorical KL for discrete heads; Gaussian KL per latent dimension for DiffRhythm2. Not full-backbone RL and not an equal-capacity comparison with YuE2. ACE-Step1.5 deferred; SongGen removed.",
+    "display_examples": "Five fixed listening cases per text-conditioned experiment: original valid0/10/20 plus paired count2/count5 style probes, both reusing valid0 lyrics and seed5101. No score-based selection; modified probes excluded from formal train/30valid/test. Native SongBloom ignores Text: count adherence n/a, five distinct native conditions0/10/20/1/2 instead. Full inputs/attribution in reward-regime-examples.json. YuE2 five-case inference queued as181262106.gadi-pbs.",
     "optimizer": "LoRA GRPO, group size 2, frozen reference beta=0.01. YuE2: PyTorch/PEFT rank4 alpha8, AdamW constant3e-4, single group update; ratio clipping is inactive at that first gradient. Muse: ms-swift/TRL + vLLM rank8, native scheduler. Compare reward arms within model, not implementation equality across models.",
     "lr_grid": [
       "3e-4"
@@ -254,6 +256,99 @@
       "priority": 1023,
       "job_id": "181226209.gadi-pbs",
       "gpus": 1
+    },
+    {
+      "model": "diffrhythm2",
+      "reward": "richness",
+      "status": "running",
+      "host": "lab5090",
+      "queue_pid": 3860601,
+      "training_scope": "restricted DiT proj_out head; native60s SDE",
+      "kl_unit": "Gaussian conditional KL / latent dimension"
+    },
+    {
+      "model": "diffrhythm2",
+      "reward": "instrument",
+      "status": "local-sequential-queue",
+      "host": "lab5090",
+      "queue_pid": 3860601,
+      "training_scope": "restricted DiT proj_out head; native60s SDE",
+      "kl_unit": "Gaussian conditional KL / latent dimension"
+    },
+    {
+      "model": "diffrhythm2",
+      "reward": "arrangement",
+      "status": "local-sequential-queue",
+      "host": "lab5090",
+      "queue_pid": 3860601,
+      "training_scope": "restricted DiT proj_out head; native60s SDE",
+      "kl_unit": "Gaussian conditional KL / latent dimension"
+    },
+    {
+      "model": "heartmula",
+      "reward": "richness",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "iv96",
+      "job_id": "181262219.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "codebook0 head only; native60s",
+      "kl_unit": "Exact categorical KL / codebook0 action"
+    },
+    {
+      "model": "heartmula",
+      "reward": "instrument",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "iv96",
+      "job_id": "181262220.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "codebook0 head only; native60s",
+      "kl_unit": "Exact categorical KL / codebook0 action"
+    },
+    {
+      "model": "heartmula",
+      "reward": "arrangement",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "iv96",
+      "job_id": "181262221.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "codebook0 head only; native60s",
+      "kl_unit": "Exact categorical KL / codebook0 action"
+    },
+    {
+      "model": "songbloom",
+      "reward": "richness",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "wa66",
+      "job_id": "181262549.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "final sketch head only; native60s",
+      "kl_unit": "Exact categorical KL / sketch action"
+    },
+    {
+      "model": "songbloom",
+      "reward": "instrument",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "wa66",
+      "job_id": "181262550.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "final sketch head only; native60s",
+      "kl_unit": "Exact categorical KL / sketch action"
+    },
+    {
+      "model": "songbloom",
+      "reward": "arrangement",
+      "status": "pbs-queued",
+      "host": "gadi",
+      "project": "wa66",
+      "job_id": "181262551.gadi-pbs",
+      "priority": 1023,
+      "training_scope": "final sketch head only; native60s",
+      "kl_unit": "Exact categorical KL / sketch action"
     }
   ]
 }

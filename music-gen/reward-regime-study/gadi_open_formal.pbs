@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=12:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+set -euo pipefail
+: "${MODEL:?}" "${REWARD:?}"
+export ROOT=/scratch/iv96/hm6416/open-music-rl-20261014
+study=/scratch/iv96/hm6416/reward-regimes-20261014
+work=/scratch/iv96/hm6416/wsb-objective-20261013
+bundle="$work/wsb_metrics"
+base=/g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python
+port=$((43000+${PBS_JOBID%%.*}%1000))
+export SCORER_URL="http://127.0.0.1:$port" OMP_NUM_THREADS=4 TMPDIR="$PBS_JOBFS"
+export HF_HOME="$ROOT/hf-cache" HF_HUB_OFFLINE=1
+export PATH="$bundle/bin:$PATH"
+"$base" "$ROOT/code/container_command.py" "$work/container-runtime.json" \
+  "$bundle/.venvs/metrics/bin/python" "$study/code/reward_server.py" \
+  --bundle "$bundle" --deps "$study/deps" --separator "$study/models/955717e8-8726e21a.th" \
+  --receipt-dir "$ROOT/outputs/$MODEL-$REWARD-3e-4/scorer" --port "$port" \
+  > "$ROOT/logs/scorer-$MODEL-$REWARD.log" 2>&1 &
+scorer=$!
+trap 'kill "$scorer" 2>/dev/null || true' EXIT
+for _ in $(seq 1 180); do
+  curl -fsS "$SCORER_URL/health" >/dev/null && break
+  kill -0 "$scorer" || exit 1
+  sleep 5
+done
+curl -fsS "$SCORER_URL/health" >/dev/null
+"$base" "$ROOT/code/container_command.py" "$work/container-runtime.json" \
+  /bin/bash "$ROOT/code/run_open_formal.sh" "$MODEL" "$REWARD"

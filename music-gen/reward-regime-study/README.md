@@ -2,17 +2,21 @@
 
 [Public experiments](https://zhanh-he.github.io/RL-paper-reading/demos/#reward-regimes).
 New: [Open-model RL expansion plan, 2026-10-14](OPEN_MODEL_RL_PLAN_2026-10-14.md)
-records the proposed YuE2 / HeartMuLa / DiffRhythm2 / SongBloom routes,
+records the YuE2 / HeartMuLa / DiffRhythm2 / SongBloom routes,
 team-reported ten-input listening estimates, release checks and approval gates.
-The user has **confirmed the expanded roster and requested preparation**;
-no new-model training has been submitted. The latest request prioritizes the
-Lyrics2song-style demo organization. A generic private baseline is reserved
+The user has **authorized formal training**. DiffRhythm2 has real verified
+updates on5090; HeartMuLa and SongBloom have six Gadi GPU jobs queued after
+successful asset/environment preparation. These new routes train restricted
+output heads, not full backbones. See the [launch record](runs/2026-10-14-open-head-startup/README.md).
+The demo shows actual Text/lyrics and five fixed listening cases. A generic private baseline is reserved
 without disclosing internal information; SongGen is removed and ACE-Step1.5 last.
 
 The versioned [protocol](protocol.json) was **approved for six formal training
 arms on 2026-10-14**, one learning rate **3e-4**, seed42, 270 training steps.
 [Progress](progress.json) contains checkpoint-verified traces and only complete
-30-condition validation means, with receipt hashes. No synthetic curves or
+30-condition validation means, with receipt hashes. The separately archived
+first-five DiffRhythm2 updates are merged by the site build as a clearly partial
+startup trace, never a validation mean. No synthetic curves or
 invented MOS values are presented as results.
 
 The approved core compares original YuE2 and Muse bases under spectral Richness,

@@ -18,8 +18,8 @@
     <script type="module" src="./vocal-lada-inline.js?v=20261006-richness-v0"></script>
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
-    <link rel="stylesheet" href="./reward-regime.css?v=20261014-lyrics-layout" />
-    <script type="module" src="./reward-regime.js?v=20261014-lyrics-layout"></script>
+    <link rel="stylesheet" href="./reward-regime.css?v=20261014-five-inputs" />
+    <script type="module" src="./reward-regime.js?v=20261014-five-inputs"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
   </head>
   <body>
@@ -87,7 +87,7 @@
         <section class="regime-replay" aria-label="Reward study audio comparisons">
           <div class="metric-controls"><span class="control-label">Replay</span><div class="segmented" data-regime="replay-modes" role="group" aria-label="Replay cohort"><button type="button" data-mode="long" aria-pressed="true">Long replay</button><button type="button" data-mode="bad" aria-pressed="false">Badcase · 候选</button></div></div>
           <div class="metric-controls lyrics-example-controls"><span class="control-label">Sample</span><div class="segmented" data-regime="example-controls" role="group" aria-label="Reward study sample"></div><span data-regime="seed"></span></div>
-          <div class="source-grid"><div class="source-block"><span class="source-label">Input</span><strong data-regime="input"></strong><p data-regime="input-note"></p></div><div class="source-block"><span class="source-label">Reference output</span><strong>开放式生成 · 无唯一标准歌曲</strong><p data-regime="reference-note"></p></div></div>
+          <div class="source-grid"><div class="source-block"><span class="source-label">Input</span><strong data-regime="input"></strong><p data-regime="input-note"></p><span class="source-label">Text · style prompt</span><pre data-regime="text-content"></pre><details class="regime-lyrics" open><summary>Lyrics · 完整歌词</summary><pre data-regime="lyrics-content"></pre></details><small data-regime="input-attribution"></small></div><div class="source-block"><span class="source-label">Reference output</span><strong>开放式生成 · 无唯一标准歌曲</strong><p data-regime="reference-note"></p><p class="stage-context" data-regime="count-note"></p></div></div>
           <h3 class="subsection-heading" data-regime="replay-title">Long-form replay · target 60 seconds</h3>
           <div class="stage-rail" data-regime="step-controls" role="group" aria-label="Reward study checkpoint"></div>
           <p class="section-copy" data-regime="replay-note"></p>

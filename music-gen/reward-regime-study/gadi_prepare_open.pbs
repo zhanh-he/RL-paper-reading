@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#PBS -q copyq
+#PBS -l ncpus=1,mem=8GB,walltime=02:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+set -euo pipefail
+bash /scratch/iv96/hm6416/open-music-rl-20261014/code/prepare_submit_gadi.sh "$MODEL" "$PROJECT"

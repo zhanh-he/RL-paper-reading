@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=04:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+set -euo pipefail
+root=/g/data/wa66/hanyu/YuE2-posttrain
+study=/scratch/iv96/hm6416/open-music-rl-20261014
+export HF_HUB_OFFLINE=1 HF_HOME=/g/data/wa66/hanyu/hf-cache OMP_NUM_THREADS=4
+export PATH=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics/bin:$PATH
+"$root/.venv/bin/python" -u "$study/code/render_yue2_replays.py" \
+  --model "$root/models/YuE2-3B" --vae "$root/models/YuE2-Vae" --data "$study/data.json" \
+  --root "$study" --examples-json "$study/display-examples.json" --skip-scoring

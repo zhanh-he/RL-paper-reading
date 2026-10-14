@@ -18,9 +18,15 @@ def main():
     p.add_argument('--rewards',nargs='+',choices=['richness','instrument','arrangement'],default=['richness','instrument','arrangement'])
     p.add_argument('--steps',nargs='+',type=int,default=[50,100,270])
     p.add_argument('--skip-scoring',action='store_true')
+    p.add_argument('--examples-json',type=Path)
     a=p.parse_args()
     if sha(a.data)!=training.DATA_SHA:raise ValueError('Frozen data changed')
     rows=json.loads(a.data.read_text())['valid'];assert len(rows)==30
+    if a.examples_json:
+        examples=json.loads(a.examples_json.read_text())
+        by_index={r['index']:r for r in examples['inputs']}
+        cases=[(i,by_index[i],by_index[i]['seed']) for i in examples['display_indices']]
+    else: cases=[(i,rows[i],5101+i) for i in [0,10,20]]
     training.SAMPLING={**training.SAMPLING,'min_tokens':750,'max_tokens':1500}
     common=a.root/'replays'/'yue2-baseline'
     adapter_model=None;adapter_names={}
@@ -40,29 +46,29 @@ def main():
             elif name not in adapter_names:
                 adapter_model.load_adapter(adapter,adapter_name=name)
             adapter_names[name]=True;adapter_model.set_adapter(name)
-        for index in [0,10,20]:
+        for index,row,seed in cases:
             folder=(common if not adapter else a.root/'replays'/f'yue2-{reward}'/f'{step:06d}')/f'{index:03d}'
-            if not (folder/'rollout.json').exists():training.sample(pipe,rows[index],5101+index,folder)
+            if not (folder/'rollout.json').exists():training.sample(pipe,row,seed,folder)
             metadata=json.loads((folder/'rollout.json').read_text())
             if sha(folder/'audio.flac')!=metadata['audio_sha256']:raise ValueError('Audio changed')
             sr=sf.info(folder/'audio.flac').samplerate
             mp3=folder/'audio.mp3'
             if not mp3.exists():
                 subprocess.run(['ffmpeg','-nostdin','-v','error','-i',str(folder/'audio.flac'),'-codec:a','libmp3lame','-b:a','192k','-ar','48000',str(mp3)],check=True)
-            manifest.append({'reward':reward,'step':step,'valid_index':index,'seed':5101+index,
+            manifest.append({'reward':reward,'step':step,'valid_index':index,'seed':seed,
                 'original_sha256':metadata['audio_sha256'],'mp3_sha256':sha(mp3),
                 'seconds':metadata['seconds'],'source_sample_rate':sr,'sampling':training.SAMPLING,
                 'adapter_sha256':sha(adapter/'adapter_model.safetensors') if adapter else None,
-                'truncated':metadata['truncated'],'scope':'Three fixed validation listening examples, not full benchmark means',
+                'truncated':metadata['truncated'],'scope':row.get('scope','Original fixed validation listening example, not a full benchmark mean'),
                 'normalization':False,'source_path':str(folder/'audio.flac'),'mp3_path':str(mp3)})
         training.offload(pipe)
-        results=[] if a.skip_scoring else score_remote(a.scorer,[Path(r['source_path']) for r in manifest[-3:]],reward if adapter else 'richness')
-        for entry,result in zip(manifest[-3:],results):
+        results=[] if a.skip_scoring else score_remote(a.scorer,[Path(r['source_path']) for r in manifest[-len(cases):]],reward if adapter else 'richness')
+        for entry,result in zip(manifest[-len(cases):],results):
             entry['score']=result
             entry['all_objectives']={key:objective(result,key) for key in ['richness','instrument','arrangement']}
         training.write(a.root/'replays'/'private-manifest.json',{'rows':manifest,'data_sha256':training.DATA_SHA})
     training.write(a.root/'replays'/('completion.json' if len(a.rewards)==3 else f'completion-{a.rewards[0]}.json'),
-                   {'examples_per_checkpoint':3,'paired_outputs':len(manifest),'public_format':'MP3','rewards':a.rewards,'steps':a.steps})
+                   {'examples_per_checkpoint':len(cases),'paired_outputs':len(manifest),'public_format':'MP3','rewards':a.rewards,'steps':a.steps})
 
 
 if __name__=='__main__':main()
