@@ -6,6 +6,11 @@ field-wide usage frequency. No new model training is launched by this update.
 
 ## Online Reference
 
+- [Subjective / weakly verifiable control reading map](2026-10-14-subjective-control-reading.md):
+  29 papers plus the SongBench resource across CV, speech/SVS and music;
+  GSRM actor-vs-judge RL, VIBE/NFT, RRPO, FPO, and qualified mathematics.
+  New catalog entries have no inferred ratings; this adds no experiments.
+
 - [BRPO, NFT and reward-validity decisions](2026-10-14-brpo-nft-reward-validity.md):
   source-checked comparison with DPO/GRPO, the two-candidate qualification,
   conditional priorities and explicit limits. This reading adds no experiments.
