@@ -6,6 +6,10 @@ available adapter checkpoints and rollout audio hashes. Explicit rejected output
 keep their recorded zero reward and rejection receipt, not an invented audio hash.
 These are **training receipts**, not validation/test results or audible improvements.
 Independent Muse inference remains paused; no new listening audio is fabricated.
+Completion is not successful generation: Muse-SongEval-3e-4 has 361/540 explicitly
+rejected zero-score outputs (no AUDIO / nonfinite / under one second), versus
+28/540 at 2e-5 and 10/540 at 1e-4. MuseCritic has 31/540 and 11/540 at the two
+completed rates. These are training diagnostics, not human MOS or test metrics.
 
 MuseCritic 3e-4 stopped at logged step 200; its last saved state is step 180.
 MuCodec's padding guard compared token lengths against 128 latent overlap frames
