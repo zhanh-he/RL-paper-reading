@@ -56,7 +56,8 @@ ToCa: Token-wise Feature Caching (ICLR2025)
 Pushing the Frontier of Full-Song Generation: Hierarchical Autoregressive Planning Meets Flow-Matching Rendering
 https://www.alphaxiv.org/pdf/2607.20253#pdf-section-0
 
-对了，把felix打分那一栏改成“Other”吧，以后就只有zhanh，和other的request。然后，在每篇东西最后一栏加入“主要作者”。一般就是“Tongyi”，“QUML”，“Tecent”之类的组织粗略名字就好。只要第一作者的单位，如果很多单位的话。嘉豪给我建议了很多篇文章：
+对了，把felix打分那一栏改成“Other”吧，以后就只有zhanh，和other的request（留一个位置给hanyu）。然后，在每篇东西最后一栏加入“主要作者”。一般就是“Tongyi”，“QUML”，“Tecent”之类的组织粗略名字就好。只要第一作者的单位，如果很多单位的话。嘉豪给我建议了很多篇文章，推荐的理由都在Update request other txt里面。你根据嘉豪的推荐收纳到我们的库里。
+
 # Text-to-Music 研究资料包
 
 检索截止：2026-09-29。范围：2024 年至今的主要技术报告、开放模型及关键专项研究。
@@ -145,4 +146,4 @@ SongBloom 2026 期刊扩展仅核验出版方摘要；MiniMax Music 3 主要依�
 - [47 VersBand](research/47_VersBand.pdf) · 2025-04
 - [48 ComposerFlow / MIDI-informed SAG](research/48_ComposerFlow_MIDI_informed_SAG.pdf) · 2026-02
 
-你要把这些文章查漏补缺添加到我们的文献库里面。先不打分重要性。关于MusicGen我打算留给那些“小模型”，然后大公司做的就叫做“MusicLM”，当然你会有更好的区分方式。
+你要把这些文章查漏补缺添加到我们的文献库里面。先不打分重要性。关于MusicGen我打算留给那些“小模型”，然后大公司做的就叫做“MusicLM”，当然你会有更好的区分方式。认真研读这些文件做出整理。
