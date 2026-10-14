@@ -435,7 +435,7 @@ h1 {
 
 table {
   width: 100%;
-  min-width: 1480px;
+  min-width: 1690px;
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
@@ -494,7 +494,7 @@ tbody tr:hover td {
 }
 
 .domain-column {
-  width: 112px;
+  width: 148px;
 }
 
 .workstream-column {
@@ -515,6 +515,15 @@ tbody tr:hover td {
 
 .value-column {
   width: 370px;
+}
+
+.organization-column {
+  width: 174px;
+}
+
+.organization-name {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .sort-button {
@@ -592,6 +601,11 @@ tbody tr:hover td {
 .tag-domain-musicgen {
   color: #0f624d;
   background: #dff2e9;
+}
+
+.tag-domain-musicfoundation {
+  color: #426833;
+  background: #e9f0df;
 }
 
 .tag-domain-musiceval,
@@ -724,7 +738,8 @@ tbody tr:hover td {
   color: var(--zhanh-note);
 }
 
-.author-felix {
+.author-felix,
+.author-other {
   color: var(--felix-note);
 }
 
@@ -969,7 +984,8 @@ dialog::backdrop {
   }
 
   .optional-wide,
-  .felix-column,
+  .other-column,
+  .organization-column,
   .domain-column,
   .workstream-column,
   .links-column {

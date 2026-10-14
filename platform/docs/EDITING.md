@@ -5,7 +5,7 @@ generated from it. `README.md` stays short and is maintained manually as the tea
 
 ## Recommended no-install workflow
 
-1. Open your stable request file in `upd_request/`: [Zhanh](../../upd_request/Update_request_zhanh.txt), [Felix](../../upd_request/Update_request_felix.txt), or [Hanyu](../../upd_request/Update_request_hanyu.txt).
+1. Open your stable request file in `upd_request/`: [Zhanh](../../upd_request/Update_request_zhanh.txt), [Other](../../upd_request/Update_request_other.txt) (Felix, Jiahao and other contributors), or [Hanyu](../../upd_request/Update_request_hanyu.txt) (reserved).
 2. Add papers, method ideas, rating changes or corrections below the marker. Keep each person's rating and judgment attributed.
 3. Commit the TXT through GitHub's normal web editor. No GitHub App is required.
 4. The maintainer/agent verifies the request, archives the original in `upd_request/done_requests/` with an AWST timestamp and processing receipt, then recreates the blank TXT at the stable path.
@@ -17,11 +17,14 @@ request. Pages CMS remains optional for accounts allowed to authorize its GitHub
 
 ## Field rules
 
-- `domain`: one of `MusicGen`, `MusicEval`, `MIR`, `AudioGen`, `Speech`, `SpeechEnhance`,
+- `domain`: one of `MusicFoundation`, `MusicGen`, `MusicEval`, `MIR`, `AudioGen`, `Speech`, `SpeechEnhance`,
   `AudioLLM`, `LLM`, `CV`, `MachineLearning`, `SourceSep`, `Multimodal`, or `Other`.
 - `workstream`: one of `Reward`, `RL`, `Reward-n-RL`, or `Other`.
-- `felix_rating` and `zhanh_rating`: blank or a value such as `4/5` or `4.5/5`; append `*` when the rating is provisional and awaiting reread.
-- `zhanh_note`, `felix_note`, and `hanyu_note`: independently attributed project judgments. Never put one person's interpretation in the other person's field.
+- `other_rating` and `zhanh_rating`: blank or a value such as `4/5` or `4.5/5`; append `*` when the rating is provisional and awaiting reread. `other_rating` replaces the former Felix column; identify its contributor in `other_note`. A missing score stays blank.
+- `zhanh_note`, legacy `felix_note`, `other_note`, and `hanyu_note`: independently attributed project judgments. Start shared Other notes with the contributor's name, for example `Felix:` or `Jiahao:`.
+- `MusicFoundation` covers general music/song foundation systems, including AR, diffusion and hybrid models. `MusicGen` covers compact/task-specific generation, control, editing and post-training. Classification follows research scope, not employer size.
+- `author_org`: short institution/team names for the first-listed author only; multiple affiliations of that author may be retained. Collective resources use their official team. `author_org_url` links the supporting primary source. Unverified affiliations are marked `待核验`.
+- `year`: publication year for a paper, or documented release year for a resource. Undated/inaccessible Web leads may leave it blank; do not substitute the year they were added to this catalog.
 - `keywords`: at most three useful terms separated with `；`.
 - URL columns: blank or complete `https://` links.
 - `github_note`: use `unofficial` only when the linked repository is unofficial.

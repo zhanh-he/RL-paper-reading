@@ -19,7 +19,7 @@ Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds 
 ## Literature And Updates
 
 1. 在 [interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) 搜索、筛选和排序文献。
-2. 修改请求写进 [`upd_request/`](upd_request/) 里自己的 TXT：[Zhanh](upd_request/Update_request_zhanh.txt)、[Felix](upd_request/Update_request_felix.txt)、[Hanyu](upd_request/Update_request_hanyu.txt)。完成的请求归档在 [`done_requests/`](upd_request/done_requests/)；这次搬目录没有处理待办内容。新实验方法直接归入所属任务的 `rl/`，不再维护第二套请求目录。
+2. 修改请求写进 [`upd_request/`](upd_request/) 的 TXT：[Zhanh](upd_request/Update_request_zhanh.txt)、[Other](upd_request/Update_request_other.txt)（Felix、Jiahao 等同事）、[Hanyu](upd_request/Update_request_hanyu.txt)（预留）。在 Other request 标明推荐人和评分；完成的请求带时间戳归档到 [`done_requests/`](upd_request/done_requests/)。新实验方法直接归入所属任务的 `rl/`。
 3. 团队可以直接编辑 [`platform/data/literature.csv`](platform/data/literature.csv)。`platform/site/data/literature.json` 是生成文件，不要手改；具体字段见 [editing guide](platform/docs/EDITING.md)。
 
 The repository is public. Do not commit private Obsidian notes, restricted datasets, model checkpoints, credentials or audio without redistribution rights. Published paper results, local measurements and proposed experiments must be labeled separately.
@@ -27,6 +27,8 @@ The repository is public. Do not commit private Obsidian notes, restricted datas
 Public audio is MP3 only, including GitHub release assets: 192 kbps / 48 kHz, without loudness normalization. Keep lossless scoring originals outside the repository; record their hashes separately from MP3 listening copies. Build checks reject other audio formats.
 
 ## Labels
-- Domain：`MusicGen / MusicEval / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / MachineLearning / SourceSep / Multimodal / Other`
+- Domain：`MusicFoundation / MusicGen / MusicEval / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / MachineLearning / SourceSep / Multimodal / Other`
 - Workstream：`Reward / RL / Reward-n-RL / Other`
-- Zhanh 与 Felix 的星级分别由本人维护；`*` 表示评分存疑、等待重读。三人的解读颜色为 Zhanh 深红、Felix 绿色、Hanyu 蓝色。
+- `MusicFoundation` 是通用音乐／歌曲底座；`MusicGen` 是紧凑或专项生成、控制、编辑和后训练方法。
+- 星级分为 Zhanh 与 Other；Other 保留推荐人姓名，未评分留空，`*` 表示等待重读。解读颜色为 Zhanh 深红、Other／Felix 绿色、Hanyu 蓝色。
+- 最后一栏“主要作者”列出第一作者单位，支持搜索、筛选、排序；点击单位可查看核验来源。

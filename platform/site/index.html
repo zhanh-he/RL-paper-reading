@@ -8,7 +8,7 @@
       content="Interactive Huawei RL literature catalog for music reward and reinforcement learning research."
     />
     <title>Huawei RL Literature Catalog</title>
-    <link rel="stylesheet" href="./assets/styles.css?v=20260929" />
+    <link rel="stylesheet" href="./assets/styles.css?v=20261014" />
     <script
       defer
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
@@ -119,10 +119,17 @@
           </label>
 
           <label class="select-control select-compact">
-            <span>Felix</span>
-            <select id="felix-filter" aria-label="Filter by Felix rating">
+            <span>Other</span>
+            <select id="other-filter" aria-label="Filter by Other rating">
               <option value="">All ratings</option>
               <option value="unrated">Unrated</option>
+            </select>
+          </label>
+
+          <label class="select-control">
+            <span>主要作者</span>
+            <select id="organization-filter" aria-label="Filter by author organization">
+              <option value="">All organizations</option>
             </select>
           </label>
 
@@ -157,9 +164,9 @@
                   Year / Venue <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
                 </button>
               </th>
-              <th class="rating-column felix-column" scope="col">
-                <button class="sort-button" type="button" data-sort="felix_rating">
-                  Felix <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+              <th class="rating-column other-column" scope="col">
+                <button class="sort-button" type="button" data-sort="other_rating">
+                  Other <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
                 </button>
               </th>
               <th class="rating-column zhanh-column" scope="col">
@@ -181,6 +188,11 @@
               <th class="keywords-column optional-wide" scope="col">Core terms</th>
               <th class="links-column" scope="col">Links</th>
               <th class="value-column optional-wide" scope="col">Direct project value</th>
+              <th class="organization-column" scope="col">
+                <button class="sort-button" type="button" data-sort="author_org">
+                  主要作者 <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody id="catalog-body"></tbody>
@@ -212,6 +224,10 @@
         <section>
           <h3>Direct project value</h3>
           <div id="detail-notes" class="note-stack"></div>
+        </section>
+        <section>
+          <h3>主要作者</h3>
+          <p id="detail-organization"></p>
         </section>
         <nav id="detail-links" class="detail-links" aria-label="Literature links"></nav>
       </div>

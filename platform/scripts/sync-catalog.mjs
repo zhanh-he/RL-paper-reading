@@ -12,7 +12,7 @@ const EXPECTED_HEADERS = [
   "id",
   "year",
   "venue",
-  "felix_rating",
+  "other_rating",
   "zhanh_rating",
   "domain",
   "workstream",
@@ -25,12 +25,16 @@ const EXPECTED_HEADERS = [
   "web_url",
   "zhanh_note",
   "felix_note",
+  "other_note",
   "hanyu_note",
+  "author_org",
+  "author_org_url",
   "obsidian_target"
 ];
 
 const DOMAINS = new Set([
   "MusicGen",
+  "MusicFoundation",
   "MusicEval",
   "MIR",
   "AudioGen",
@@ -147,10 +151,10 @@ function loadCatalog() {
       .map((item) => item.trim())
       .filter(Boolean);
 
-    for (const field of ["year", "venue", "domain", "workstream", "title"]) {
+    for (const field of ["venue", "domain", "workstream", "title"]) {
       if (!record[field]) errors.push(`row ${rowNumber}: ${field} is required`);
     }
-    if (!/^\d{4}$/.test(record.year)) {
+    if (!(record.year === "" && record.venue.startsWith("Web")) && !/^\d{4}$/.test(record.year)) {
       errors.push(`row ${rowNumber}: year must contain four digits`);
     }
     if (!DOMAINS.has(record.domain)) {
@@ -159,7 +163,7 @@ function loadCatalog() {
     if (!WORKSTREAMS.has(record.workstream)) {
       errors.push(`row ${rowNumber}: unsupported workstream ${record.workstream}`);
     }
-    for (const field of ["felix_rating", "zhanh_rating"]) {
+    for (const field of ["other_rating", "zhanh_rating"]) {
       if (record[field] && !RATING_PATTERN.test(record[field])) {
         errors.push(`row ${rowNumber}: invalid ${field} ${record[field]}`);
       }
@@ -174,7 +178,7 @@ function loadCatalog() {
     ids.add(record.id);
     titles.add(record.title);
 
-    for (const field of ["paper_url", "github_url", "demo_url", "web_url"]) {
+    for (const field of ["paper_url", "github_url", "demo_url", "web_url", "author_org_url"]) {
       validateUrl(record[field], rowNumber, field, errors);
     }
     return record;

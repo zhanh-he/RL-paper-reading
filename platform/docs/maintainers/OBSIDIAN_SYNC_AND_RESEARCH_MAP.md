@@ -14,7 +14,7 @@
 1. Pull/rebase the GitHub repository and process the three request files under `upd_request/`.
 2. Treat `platform/data/literature.csv` as the shared catalog source; run `npm --prefix platform run build` and `npm --prefix platform run check`.
 3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
-4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and independently attributed Zhanh/Felix/Hanyu project notes.
+4. Keep GitHub fields and the Obsidian table aligned for year, venue, ratings, labels, title, keywords, public links, and independently attributed Zhanh/Other/Hanyu project notes. The current shared schema uses `other_rating` (migrated from `felix_rating`), attributed `other_note`, and first-author `author_org` / `author_org_url`; retain legacy Felix judgments separately. MusicFoundation marks general music/song systems and MusicGen marks compact/task-specific generation and methods.
 5. Preserve Obsidian-only wikilinks, internal project context, experiments, private paths, and detailed notes. Never publish those fields into `platform/site/data/literature.json`.
 6. Update the Obsidian note timestamps and maintenance log. Do not delete older notes or unrelated local changes.
 7. Push GitHub changes normally. The Obsidian vault remains local and is synchronized through its own existing workflow.

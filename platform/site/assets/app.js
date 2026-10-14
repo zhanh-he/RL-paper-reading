@@ -2,7 +2,7 @@ const DATA_URL = "./data/literature.json";
 const CSV_HEADERS = [
   "year",
   "venue",
-  "felix_rating",
+  "other_rating",
   "zhanh_rating",
   "domain",
   "workstream",
@@ -14,7 +14,10 @@ const CSV_HEADERS = [
   "web_url",
   "zhanh_note",
   "felix_note",
-  "hanyu_note"
+  "other_note",
+  "hanyu_note",
+  "author_org",
+  "author_org_url"
 ];
 
 const elements = {
@@ -23,7 +26,8 @@ const elements = {
   year: document.querySelector("#year-filter"),
   venue: document.querySelector("#venue-filter"),
   zhanh: document.querySelector("#zhanh-filter"),
-  felix: document.querySelector("#felix-filter"),
+  other: document.querySelector("#other-filter"),
+  organization: document.querySelector("#organization-filter"),
   workstream: document.querySelector("#workstream-filter"),
   clear: document.querySelector("#clear-filters"),
   copy: document.querySelector("#copy-view"),
@@ -40,6 +44,7 @@ const elements = {
   detailLabels: document.querySelector("#detail-labels"),
   detailKeywords: document.querySelector("#detail-keywords"),
   detailNotes: document.querySelector("#detail-notes"),
+  detailOrganization: document.querySelector("#detail-organization"),
   detailLinks: document.querySelector("#detail-links"),
   toast: document.querySelector("#toast")
 };
@@ -54,7 +59,8 @@ const state = {
     venue: "",
     workstream: "",
     zhanh: "",
-    felix: ""
+    other: "",
+    organization: ""
   },
   sort: "source_order",
   direction: "asc"
@@ -102,15 +108,17 @@ function hydrateFilters() {
   populateSelect(elements.year, optionValues("year", true));
   populateSelect(elements.venue, optionValues("venue"));
   populateSelect(elements.zhanh, optionValues("zhanh_rating", true));
-  populateSelect(elements.felix, optionValues("felix_rating", true));
+  populateSelect(elements.other, optionValues("other_rating", true));
+  populateSelect(elements.organization, optionValues("author_org"));
 }
 
 function readUrlState() {
   const params = new URLSearchParams(window.location.search);
   for (const key of Object.keys(state.filters)) {
-    state.filters[key] = params.get(key) ?? "";
+    state.filters[key] = params.get(key) ?? (key === "other" ? params.get("felix") : null) ?? "";
   }
   state.sort = params.get("sort") || "source_order";
+  if (state.sort === "felix_rating") state.sort = "other_rating";
   state.direction = params.get("dir") === "desc" ? "desc" : "asc";
 }
 
@@ -120,7 +128,8 @@ function syncControls() {
   elements.year.value = state.filters.year;
   elements.venue.value = state.filters.venue;
   elements.zhanh.value = state.filters.zhanh;
-  elements.felix.value = state.filters.felix;
+  elements.other.value = state.filters.other;
+  elements.organization.value = state.filters.organization;
   for (const button of elements.workstream.querySelectorAll("button")) {
     button.setAttribute(
       "aria-pressed",
@@ -151,7 +160,9 @@ function recordSearchText(record) {
     record.keywords,
     record.zhanh_note,
     record.felix_note,
+    record.other_note,
     record.hanyu_note,
+    record.author_org,
     record.domain,
     record.workstream,
     record.year,
@@ -170,17 +181,18 @@ function matchesFilters(record) {
   if (filter.venue && record.venue !== filter.venue) return false;
   if (filter.workstream && record.workstream !== filter.workstream) return false;
   if (filter.zhanh && record.zhanh_rating !== filter.zhanh) return false;
-  if (filter.felix === "unrated" && record.felix_rating) return false;
-  if (filter.felix && filter.felix !== "unrated" && record.felix_rating !== filter.felix) {
+  if (filter.other === "unrated" && record.other_rating) return false;
+  if (filter.other && filter.other !== "unrated" && record.other_rating !== filter.other) {
     return false;
   }
+  if (filter.organization && record.author_org !== filter.organization) return false;
   return true;
 }
 
 function compareRecords(left, right) {
   const key = state.sort;
   let result;
-  if (key === "felix_rating" || key === "zhanh_rating") {
+  if (key === "other_rating" || key === "zhanh_rating") {
     result = ratingValue(left[key]) - ratingValue(right[key]);
   } else if (key === "year" || key === "source_order") {
     result = Number(left[key]) - Number(right[key]);
@@ -215,6 +227,7 @@ function makeProjectNotes(record, compact = false) {
   const notes = [
     ["Zhanh", record.zhanh_note, "zhanh"],
     ["Felix", record.felix_note, "felix"],
+    ["Other", record.other_note, "other"],
     ["Hanyu", record.hanyu_note, "hanyu"]
   ].filter(([, note]) => Boolean(note));
 
@@ -258,15 +271,26 @@ function makeResourceLink(record, definition) {
   return link;
 }
 
+function makeOrganization(record) {
+  const node = el(record.author_org_url ? "a" : "span", "organization-name", record.author_org || "待核验");
+  if (record.author_org_url) {
+    node.href = record.author_org_url;
+    node.target = "_blank";
+    node.rel = "noreferrer";
+    node.title = "First author's affiliation source";
+  }
+  return node;
+}
+
 function makeRow(record) {
   const row = document.createElement("tr");
   row.dataset.id = record.id;
 
   const yearCell = el("td", "year-venue");
-  yearCell.append(el("strong", "", record.year), el("span", "", record.venue));
+  yearCell.append(el("strong", "", record.year || "待核验"), el("span", "", record.venue));
 
-  const felixCell = el("td", "rating-column felix-column");
-  felixCell.append(makeRating(record.felix_rating));
+  const otherCell = el("td", "rating-column other-column");
+  otherCell.append(makeRating(record.other_rating));
   const zhanhCell = el("td", "rating-column zhanh-column");
   zhanhCell.append(makeRating(record.zhanh_rating));
 
@@ -292,17 +316,20 @@ function makeRow(record) {
   const noteStack = el("div", "note-stack note-stack-compact");
   noteStack.append(...makeProjectNotes(record, true));
   valueCell.append(noteStack);
+  const organizationCell = el("td", "organization-column");
+  organizationCell.append(makeOrganization(record));
 
   row.append(
     yearCell,
-    felixCell,
+    otherCell,
     zhanhCell,
     domainCell,
     workstreamCell,
     titleCell,
     keywordsCell,
     linksCell,
-    valueCell
+    valueCell,
+    organizationCell
   );
   return row;
 }
@@ -316,7 +343,8 @@ function renderActiveFilters() {
     venue: "Venue",
     workstream: "Workstream",
     zhanh: "Zhanh",
-    felix: "Felix"
+    other: "Other",
+    organization: "主要作者"
   };
   for (const [key, value] of Object.entries(state.filters)) {
     if (value) elements.activeFilters.append(el("span", "filter-chip", `${labels[key]}: ${value}`));
@@ -358,16 +386,17 @@ function render() {
 }
 
 function openDetails(record) {
-  elements.detailMeta.textContent = `${record.year} · ${record.venue}`;
+  elements.detailMeta.textContent = `${record.year || "待核验"} · ${record.venue}`;
   elements.detailTitle.textContent = record.title;
   elements.detailLabels.replaceChildren(
     makeTag(record.domain, "domain"),
     makeTag(record.workstream, "workstream"),
     makeRating(record.zhanh_rating),
-    makeRating(record.felix_rating)
+    makeRating(record.other_rating)
   );
   elements.detailKeywords.textContent = record.keywords || "No terms recorded";
   elements.detailNotes.replaceChildren(...makeProjectNotes(record));
+  elements.detailOrganization.replaceChildren(makeOrganization(record));
   elements.detailLinks.replaceChildren(
     ...resourceDefinition(record).map((definition) => makeResourceLink(record, definition))
   );
@@ -416,7 +445,8 @@ function bindEvents() {
     year: elements.year,
     venue: elements.venue,
     zhanh: elements.zhanh,
-    felix: elements.felix
+    other: elements.other,
+    organization: elements.organization
   };
   elements.search.addEventListener("input", () => {
     state.filters.search = elements.search.value;

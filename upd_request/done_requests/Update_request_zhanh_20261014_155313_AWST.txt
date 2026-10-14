@@ -1,0 +1,154 @@
+Update requests by Zhanh
+
+Add new requests below this line, then commit the file through GitHub.
+---
+
+Multi-Metric Preference Alignment for Generative Speech Restoration
+这篇5/5分。很接近我们的想法，也讨论了in-paragdiam的问题
+
+
+SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training
+这篇4/5分，是本质层面的。google deepmind的分析
+
+
+RLHF 大模型对齐算法“填坑”史：从 PPO 到 DAPO (无公式版)
+https://zhuanlan.zhihu.com/p/1967271772702376530
+这个博客给2/5分。
+
+
+看完能和外婆解释的PPO, DPO, GRPO强化学习
+https://zhuanlan.zhihu.com/p/1984387073625593089
+这个博客也给2/5分。原理解释
+
+
+felix分享的这些放进去.felix给5/5
+开源 以词生曲 Reward ：CMI-reward, 【在开源数据集上验证reward 模型的效果】
+以词生曲 全维度Benchmark: WildSongBench 【看看metric能否拿来当reward】
+以词生曲模型：Yue2
+RL框架：miles, trl
+RL tutorial： https://huggingface.co/learn/deep-rl-course/， https://walkinglabs.github.io/hands-on-modern-rl/
+
+
+还有这几篇，都很棒，查漏补缺。这几篇felix给5/5
+https://arxiv.org/pdf/2608.11755
+https://arxiv.org/pdf/2603.00610
+https://arxiv.org/pdf/2402.04229
+https://arxiv.org/pdf/2508.05011
+https://arxiv.org/pdf/2508.17229
+
+
+z这几篇也加进去，zhanh的。暂且没有评分。
+https://arxiv.org/pdf/2411.12843
+https://arxiv.org/pdf/2608.17804
+https://arxiv.org/abs/2507.07375
+https://openreview.net/attachment?id=dvHfSKI965&name=originally_submitted_PDF
+https://arxiv.org/pdf/2508.12165
+https://www.dailydoseofds.com/rl-course-part-10/
+https://eu.36kr.com/zh/p/3957481215786115
+https://zhuanlan.zhihu.com/p/2030762111979234665
+https://zhuanlan.zhihu.com/p/2079745899316749216
+https://zhuanlan.zhihu.com/p/2062125803085860914
+
+最近还有一个不同topic但是很有趣的：
+ToCa: Token-wise Feature Caching (ICLR2025)
+
+这一篇是jiahao推荐的，非常好的一篇，这篇叫做Lucky Dolphin
+Pushing the Frontier of Full-Song Generation: Hierarchical Autoregressive Planning Meets Flow-Matching Rendering
+https://www.alphaxiv.org/pdf/2607.20253#pdf-section-0
+
+对了，把felix打分那一栏改成“Other”吧，以后就只有zhanh，和other的request（留一个位置给hanyu）。然后，在每篇东西最后一栏加入“主要作者”。一般就是“Tongyi”，“QUML”，“Tecent”之类的组织粗略名字就好。只要第一作者的单位，如果很多单位的话。嘉豪给我建议了很多篇文章，推荐的理由都在Update request other txt里面。你根据嘉豪的推荐收纳到我们的库里。
+
+# Text-to-Music 研究资料包
+
+检索截止：2026-09-29。范围：2024 年至今的主要技术报告、开放模型及关键专项研究。
+
+- [分类汇总幻灯片：88 页](slides/Text_to_Music_2024_2026.pdf)
+- [研究索引与横向对照：10 页](00_研究索引.pdf)
+- [49 项研究合订本：98 页](全部研究合订本.pdf)
+- `research/`：49 份独立报告，每份两页。
+- `manifest.json`：编号、分类、报告路径和来源链接。
+- `研究内容.json`：可编辑的逐项内容与来源。
+
+## 阅读约定
+
+每项研究在幻灯片中占 1–2 页；另有分类、数据工程、后训练、评测与选读页。
+研究条目不等于互相独立的模型家族：例如 FullDiT 专项和 Token Foundry 完整系统属于同一谱系。
+论文事实、作者自报效果和调研判断分开呈现。未披露的细节不作猜测，未进行统一训练/推理/盲听复测。
+SongBloom 2026 期刊扩展仅核验出版方摘要；MiniMax Music 3 主要依据官方仓库。
+不把跨数据集、跨硬件、跨采样预算的自报指标合成总榜，也不把代码开放等同于数据或商用许可开放。
+
+## 逐项目录
+
+### A 通用音乐与音频
+
+- [01 MAGNeT](research/01_MAGNeT.pdf) · 2024-01
+- [02 Stable Audio：时长条件生成](research/02_Stable_Audio.pdf) · 2024-02
+- [03 Stable Audio 2](research/03_Stable_Audio_2.pdf) · 2024-04
+- [04 Stable Audio Open](research/04_Stable_Audio_Open.pdf) · 2024-07
+- [05 MusicFlow](research/05_MusicFlow.pdf) · 2024 / ICML
+- [06 MelodyFlow](research/06_MelodyFlow.pdf) · 2024-07
+- [07 QA-MDT / OpenMusic](research/07_QA_MDT_OpenMusic.pdf) · 2024-05；后续修订
+- [08 Presto](research/08_Presto.pdf) · 2024-10 / ICLR 2025
+- [09 Stable Audio Open Small / ARC](research/09_Stable_Audio_Open_Small_ARC.pdf) · 2025-05
+- [10 Stable Audio 3](research/10_Stable_Audio_3.pdf) · 2026-05
+
+### B 离散与混合歌曲模型
+
+- [11 Seed-Music](research/11_Seed_Music.pdf) · 2024-09
+- [12 SongCreator](research/12_SongCreator.pdf) · 2024-09
+- [13 YuE](research/13_YuE.pdf) · 2025-03 报告；1 月开放
+- [14 SongGen](research/14_SongGen.pdf) · 2025-02 / ICML
+- [15 InspireMusic](research/15_InspireMusic.pdf) · 2025-03
+- [16 LeVo / SongGeneration](research/16_LeVo_SongGeneration.pdf) · 2025-06
+- [17 SongBloom](research/17_SongBloom.pdf) · 2025-06；2026 期刊扩展
+- [18 HeartMuLa](research/18_HeartMuLa.pdf) · 2026-01
+- [19 LeVo 2](research/19_LeVo_2.pdf) · 2026-06 报告
+- [20 Muse](research/20_Muse.pdf) · 2026-01
+- [21 Shao](research/21_Shao.pdf) · 2026-05
+- [22 MiniMax Music 3](research/22_MiniMax_Music_3.pdf) · 2026-08 公开项目
+- [49 Alibaba Token Foundry：完整歌曲系统](research/49_Alibaba_Token_Foundry.pdf) · 2026-07；按最新报告核验
+
+### C 连续 flow 歌曲模型
+
+- [23 DiffRhythm](research/23_DiffRhythm.pdf) · 2025-03
+- [24 ACE-Step](research/24_ACE_Step.pdf) · 2025-06 报告
+- [25 DiffRhythm+](research/25_DiffRhythm.pdf) · 2025-07
+- [26 JAM](research/26_JAM.pdf) · 2025-07
+- [27 DiffRhythm 2](research/27_DiffRhythm_2.pdf) · 2025-10
+- [28 WanSong](research/28_WanSong.pdf) · 2026-07
+
+### D 显式规划与混合推理
+
+- [29 MusiCoT / Mureka](research/29_MusiCoT_Mureka.pdf) · 2025-03
+- [30 ACE-Step 1.5](research/30_ACE_Step_1_5.pdf) · 2026-02
+- [31 Qwen-Music](research/31_Qwen_Music.pdf) · 2026-07；9 月 v3
+- [32 Step-Audio 3 Music](research/32_Step_Audio_3_Music.pdf) · 2026-09
+- [33 YuE2](research/33_YuE2.pdf) · 2026-09-26
+
+### E 控制、编辑与后训练
+
+- [34 MusicRL](research/34_MusicRL.pdf) · 2024-02
+- [35 歌曲歌词幻觉的 RL 缓解](research/35_RL.pdf) · 2025-08
+- [36 FullDiT](research/36_FullDiT.pdf) · 2026-08
+- [37 JASCO](research/37_JASCO.pdf) · 2024-06
+- [38 MuseControlLite](research/38_MuseControlLite.pdf) · 2025-06 / ICML
+- [39 MusicGen-Style](research/39_MusicGen_Style.pdf) · 2024-07 / ISMIR
+- [40 DITTO](research/40_DITTO.pdf) · 2024-01
+- [41 DITTO-2](research/41_DITTO_2.pdf) · 2024-05
+- [42 SegTune](research/42_SegTune.pdf) · 2025-10；2026 修订
+
+### F 符号音乐与组合系统
+
+- [43 SongComposer](research/43_SongComposer.pdf) · 2024-02
+- [44 Text2midi](research/44_Text2midi.pdf) · 2024-12 / AAAI 2025
+- [45 NotaGen](research/45_NotaGen.pdf) · 2025-02 / IJCAI
+- [46 MIDI-LLM](research/46_MIDI_LLM.pdf) · 2025-11
+- [47 VersBand](research/47_VersBand.pdf) · 2025-04
+- [48 ComposerFlow / MIDI-informed SAG](research/48_ComposerFlow_MIDI_informed_SAG.pdf) · 2026-02
+
+你要把这些文章查漏补缺添加到我们的文献库里面。先不打分重要性。关于MusicGen我打算留给那些“小模型”，然后大公司做的就叫做“MusicLM”，当然你会有更好的区分方式。认真研读这些文件做出整理。
+
+processed_at: 2026-10-14T15:53:13+08:00
+status: completed_with_unverified_web_metadata
+original_sha256: e0d0825294a74dffcc93a05cf3819918a18669368082b500bd5886a3340f59c6
+result: Applied explicit Zhanh/relayed Felix ratings; migrated Felix rating to Other; added author organizations and their sources, filters and exports; verified 49 music-research items plus RL resources; retained five inaccessible Zhihu leads with clearly unverified metadata. The OpenReview attachment was resolved to the official ICML 2026 TSRL paper. Catalog grew from 81 to 143 records.

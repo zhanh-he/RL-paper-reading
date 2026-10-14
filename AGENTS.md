@@ -17,12 +17,16 @@ This file is the first-read instruction for any agent working in this repository
 - Run `npm --prefix platform run build` after catalog changes and `npm --prefix platform run check` before committing.
 - Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `platform/docs/EDITING.md`; keep `keywords` to at most three useful terms.
 - A trailing `*` marks a provisional rating pending reread, for example `4/5*`.
-- Keep `zhanh_note`, `felix_note`, and `hanyu_note` separately attributed. Never fill or change another contributor's note, and never change Felix's rating unless Felix requested it; preserve each person's independent judgment.
+- Ratings use `zhanh_rating` and `other_rating`. The latter includes explicit ratings from Felix, Jiahao and other contributors; identify the rater in `other_note`. Preserve existing ratings when a request provides no new score.
+- Keep `zhanh_note`, legacy `felix_note`, `other_note`, and `hanyu_note` separately attributed. A request explicitly relaying another person's rating is sufficient evidence to record that rating; do not infer ratings from enthusiastic wording or research-pack ranks.
+- `author_org` is the first-listed author's institution(s) as stated in the paper, or the official owning team for a collective paper/resource. Use `author_org_url` for its primary source. Never replace an academic first author with a sponsoring company merely for convenience.
+- `MusicFoundation` denotes general music/song foundation systems; `MusicGen` denotes compact or task-specific generators, control/editing and post-training methods. Company size alone is not a classifier. Keep at most two visible topic labels (domain + workstream).
+- Inaccessible reading leads may be retained as explicitly unverified Web entries with blank year and ratings. Never invent their titles, author affiliations, publication dates, code or demos.
 
 ## Update Request Protocol
 
 1. Synchronize with `origin/main` before editing. Rebase or fast-forward; preserve concurrent work.
-2. For an update-processing task, check all three `upd_request/Update_request_*.txt` files. Treat a placeholder-only file as `no-action`; an unrelated structural task must leave pending text untouched.
+2. For an update-processing task, check the Zhanh, Other and reserved Hanyu `upd_request/Update_request_*.txt` files. Other is the shared intake for Felix, Jiahao and other contributors. Treat a placeholder-only file as `no-action`; an unrelated structural task must leave pending text untouched.
 3. For literature requests, verify title, year, venue, publication status, and links against primary sources. Do not invent code/demo links.
 4. Apply changes to the shared CSV and, when explicitly requested or during the weekly sync, the Obsidian vault.
 5. Archive the original request in `upd_request/done_requests/` with an AWST timestamp. Preserve its text verbatim and append `processed_at`, `status`, and a concise result summary.
