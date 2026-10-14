@@ -13,7 +13,7 @@ try {
     const root = page.locator('#view-reward-regimes');
     await root.locator('[data-regime="models"] button').first().waitFor();
     assert.equal(await root.isVisible(), true);
-    assert.equal(await root.locator('[data-regime="models"] button').count(), 5);
+    assert.equal(await root.locator('[data-regime="models"] button').count(), 6);
     for (const button of await root.locator('[data-regime="models"] button').all()) {
       await button.click();
       assert.equal(await button.getAttribute('aria-pressed'), 'true');

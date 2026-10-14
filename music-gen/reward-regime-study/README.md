@@ -23,6 +23,10 @@ policy-likelihood implementation from AR-token GRPO. [SongGen](https://github.co
 has open AR training code/weights but officially supports English <=30 seconds;
 silently restricting the full multilingual dataset would invalidate the shared
 protocol. These are alternatives, not models with assigned MOS values.
+For a distinct older-model candidate, consider [original YuE](https://github.com/multimodal-art-projection/YuE/tree/YuE-v1)
+with its released stage-1 weights. Its quality tier still requires matched CMI
+train/valid blind listening, and its two-stage codec/log-prob pipeline needs a
+separate GRPO adapter and memory assessment. It is proposed, not launched.
 
 Use all frozen 270 CMI train / 30 valid conditions. Reserve all 192 WSB conditions
 for this new study until selection and analysis are frozen. Existing WSB

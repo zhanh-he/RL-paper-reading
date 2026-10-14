@@ -42,6 +42,15 @@
       "source": null
     },
     {
+      "id": "yue1",
+      "name": "YuE 1 (candidate)",
+      "role": "Recommended older-model alternative",
+      "mos": null,
+      "status": "Baseline and GRPO adapter gate",
+      "note": "Original-generation YuE has open inference and stage-1 weights. It is a more plausible weaker candidate than calling ACE-Step 1.5 poor, but no MOS 2-3 label is established. Freeze checkpoint and use CMI train/valid blind listening to verify the quality regime. Its stage-1/stage-2 codec pipeline needs a new teacher-forcing/log-prob adapter and memory budget; do not reuse YuE2 GRPO unchanged or silently alter language membership.",
+      "source": "https://github.com/multimodal-art-projection/YuE/tree/YuE-v1"
+    },
+    {
       "id": "songgen",
       "name": "SongGen Mixed Pro",
       "role": "Alternative candidate, not selected",
