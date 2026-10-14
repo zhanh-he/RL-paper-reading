@@ -79,3 +79,26 @@ No new experiments, human scores or optimizer superiority claims are introduced
 by this reading update. The [interactive literature catalog](https://zhanh-he.github.io/RL-paper-reading/)
 is the shared metadata entry; the [research map](README.md) describes native
 interfaces and reproduction boundaries.
+
+
+## 2026-10-14 focused-reading addendum
+
+This addendum records public method details and limitations, not new generation, human listening or training results. Existing catalog IDs and contributor ratings are unchanged; the catalog now includes 155 entries. It does not replace the earlier version-specific analysis above.
+
+| Source | Verified method boundary | What remains unproven |
+|---|---|---|
+| [MusicRL v1](https://arxiv.org/html/2402.04229v1) | KL-regularized REINFORCE with a value baseline; RU applies task then user reward | A baseline network does not make it PPO; static RM accuracy does not guarantee optimization validity |
+| [LeVo2 v1, III-E](https://arxiv.org/pdf/2606.30642v1#page=7) | Eight candidates per lyric are described alongside three conditioning modes; semi-online uses ten and refreshes every 100 steps | The offline wording does not unambiguously establish eight per mode / 24 total; code or author confirmation is needed |
+| [FullSong v3, Eq.17–19](https://arxiv.org/pdf/2607.20253v3#page=13) | OPD includes temperature T, valid response positions M and T²; renderer reward divides by batch std without mean subtraction | Specific T/mask implementation and ViSQOL reference construction remain unresolved; no isolated LM-OPD gain |
+| [WanSong v1, 3.4](https://arxiv.org/html/2607.14749v1) | Dimension-specific human-preference RMs; DPO followed by differentiable ReFL | Not GRPO, and the global/detail rationale is not a universal music result |
+| [CMI v3](https://arxiv.org/html/2603.00610v3) / [SongEval v1](https://arxiv.org/html/2505.10793v1) | Short-clip candidate selection and full-song aesthetic prediction are distinct evaluation tasks | Dataset, scorer checkpoint and training-safe reward are not interchangeable; multiple heads are not independent gold |
+| [Flow-GRPO v5](https://arxiv.org/html/2505.05470v5) | Marginal-matching ODE-to-SDE conversion; KL/group conditions affect stability | Image group-size and step-budget findings do not specify optimal music settings |
+| [Writing-Zero v2](https://arxiv.org/html/2506.00103v2) | Pairwise GenRM followed by dynamic-reference BRPO; Eq.11 uses +1 only when all voting conditions prefer the candidate | Label-verifiable judge training is not objective artistic truth; the zero-expectation assertion requires voting/tie assumptions |
+| [DiffusionNFT v2](https://arxiv.org/html/2509.16117v2) | Forward noising, implicit positive/negative velocity fitting, and EMA sampling policy; ICLR 2026 Oral | Likelihood-free updates do not correct a misspecified reward; transformed r in [0,1] is not calibrated human probability |
+| [Reward overoptimization](https://proceedings.mlr.press/v202/gao23h.html) / [WildSongBench card](https://huggingface.co/datasets/m-a-p/WildSongBench) | Best-of-N can expose proxy-tail errors; WSB results include candidate/ASR selection budgets | Gold RM is not human truth, and automatic reference scores are not human preference labels |
+
+For DiffusionNFT, verified official resources are [code](https://github.com/NVlabs/DiffusionNFT) and the [current NVIDIA project page](https://research.nvidia.com/labs/cosmos-lab/diffusionnft/). Its first preprint was in 2025; the accepted venue is ICLR 2026 Oral. Writing-Zero remains an arXiv entry here: no verified official code, demo or formal venue is supplied.
+
+### Evaluation implications, not an experiment authorization
+
+Compare systems by updated module, feedback source, candidate construction, update operator, data freshness, constraints and independent evaluation. Fixed-distribution pairwise validity, Best-of-K selection pressure and on-policy trajectories answer different questions. A monotone score transform preserves ranks but can change standardized GRPO advantages; the optimizer is not rank-only. These are methodological distinctions, not newly measured music gains or a guarantee that any combination of rewards prevents collapse.
