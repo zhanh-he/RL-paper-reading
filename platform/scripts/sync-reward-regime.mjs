@@ -27,3 +27,27 @@ const progressJSON = JSON.stringify(progress, null, 2)+'\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(progressTarget, 'utf8'), progressJSON);
 else fs.writeFileSync(progressTarget, progressJSON);
 console.log('SP/AI protocol: six approved arms, LR3e-4, verified trace/all-30 validation, MOS not measured.');
+const recoverySource=new URL('../../music-gen/reward-regime-study/recovery.json',import.meta.url);
+if(fs.existsSync(recoverySource)) {
+  const recovery=JSON.parse(fs.readFileSync(recoverySource));
+  assert.equal(recovery.schema,1);
+  assert.ok(recovery.audits.every((r)=>r.n===30));
+  for(const receipt of recovery.validation_receipts) {
+    assert.equal(receipt.n,30);assert.equal(receipt.rows.length,30);
+    assert.ok(receipt.rows.every((r,i)=>r.index===i&&r.seed===5101+i&&r.source_audio_sha256.length===64));
+    const measured=progress.runs.find((r)=>r.reward===receipt.reward).validation.find((r)=>r.step===receipt.step);
+    const mean=receipt.rows.reduce((n,r)=>n+r.metrics.objective,0)/30;
+    assert.ok(Math.abs(mean-measured.mean)<1e-10,'Full validation receipt/curve mismatch');
+  }
+  for(const c of recovery.badcases) {
+    for(const [side,step] of [['baseline',0],['candidate',c.step]]) {
+      const receipt=recovery.validation_receipts.find((r)=>r.reward===c.reward&&r.step===step);
+      assert.equal(c[side].source_audio_sha256,receipt.rows[c.index].source_audio_sha256);
+    }
+    assert.ok(c.candidate.metrics.objective>c.baseline.metrics.objective);
+  }
+  const recoveryTarget=new URL('../site/demos/data/reward-regime-recovery.json',import.meta.url);
+  const encoded=JSON.stringify(recovery,null,2)+'\n';
+  if(process.argv.includes('--check'))assert.equal(fs.readFileSync(recoveryTarget,'utf8'),encoded);
+  else fs.writeFileSync(recoveryTarget,encoded);
+}

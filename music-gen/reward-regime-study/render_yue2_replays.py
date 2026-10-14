@@ -15,6 +15,9 @@ def main():
     p.add_argument('--model',type=Path,required=True);p.add_argument('--vae',type=Path,required=True)
     p.add_argument('--data',type=Path,required=True);p.add_argument('--root',type=Path,required=True)
     p.add_argument('--scorer',default='http://127.0.0.1:43140')
+    p.add_argument('--rewards',nargs='+',choices=['richness','instrument','arrangement'],default=['richness','instrument','arrangement'])
+    p.add_argument('--steps',nargs='+',type=int,default=[50,100,270])
+    p.add_argument('--skip-scoring',action='store_true')
     a=p.parse_args()
     if sha(a.data)!=training.DATA_SHA:raise ValueError('Frozen data changed')
     rows=json.loads(a.data.read_text())['valid'];assert len(rows)==30
@@ -24,10 +27,10 @@ def main():
     pipe=YuE2Pipeline.from_pretrained(a.model,vae=a.vae,device='cuda',backend='torch-eager',memory_budget_gib=32,progress=False)
     base=pipe._load_model().eval()
     arms=[('baseline',0,None)]
-    for reward in ['richness','instrument','arrangement']:
+    for reward in a.rewards:
         output=a.root/f'yue2-{reward}-lr3e4-seed42'
         if not (output/'completion.json').exists():raise ValueError('Training must finish before replay stage')
-        arms.extend((reward,step,output/'checkpoints'/f'step_{step:06d}'/'adapter') for step in [50,100,270])
+        arms.extend((reward,step,output/'checkpoints'/f'step_{step:06d}'/'adapter') for step in a.steps)
     manifest=[]
     for reward,step,adapter in arms:
         if adapter:
@@ -53,12 +56,13 @@ def main():
                 'truncated':metadata['truncated'],'scope':'Three fixed validation listening examples, not full benchmark means',
                 'normalization':False,'source_path':str(folder/'audio.flac'),'mp3_path':str(mp3)})
         training.offload(pipe)
-        results=score_remote(a.scorer,[Path(r['source_path']) for r in manifest[-3:]],reward if adapter else 'richness')
+        results=[] if a.skip_scoring else score_remote(a.scorer,[Path(r['source_path']) for r in manifest[-3:]],reward if adapter else 'richness')
         for entry,result in zip(manifest[-3:],results):
             entry['score']=result
             entry['all_objectives']={key:objective(result,key) for key in ['richness','instrument','arrangement']}
         training.write(a.root/'replays'/'private-manifest.json',{'rows':manifest,'data_sha256':training.DATA_SHA})
-    training.write(a.root/'replays'/'completion.json',{'examples_per_checkpoint':3,'paired_outputs':len(manifest),'public_format':'MP3'})
+    training.write(a.root/'replays'/('completion.json' if len(a.rewards)==3 else f'completion-{a.rewards[0]}.json'),
+                   {'examples_per_checkpoint':3,'paired_outputs':len(manifest),'public_format':'MP3','rewards':a.rewards,'steps':a.steps})
 
 
 if __name__=='__main__':main()

@@ -25,7 +25,7 @@
       "name": "YuE2-3B",
       "role": "Stronger-baseline hypothesis",
       "mos": null,
-      "status": "Formal training on lab5090",
+      "status": "Richness270 complete; Instrument running; Arrangement queued",
       "note": "Original base, not an existing SongEval/MuseCritic-adapted checkpoint. MOS >=4 must be verified by blind listening.",
       "source": "https://github.com/multimodal-art-projection/YuE"
     },
@@ -157,15 +157,17 @@
     {
       "model": "yue2",
       "reward": "richness",
-      "status": "running",
+      "status": "complete",
       "host": "lab5090",
-      "process_id": 3839302
+      "verified_steps": 270,
+      "full_valid_n": 30
     },
     {
       "model": "yue2",
       "reward": "instrument",
-      "status": "local-sequential-queue",
+      "status": "running",
       "host": "lab5090",
+      "process_id": 3845665,
       "controller_pid": 3842776
     },
     {
@@ -180,10 +182,12 @@
       "reward": "richness",
       "status": "pbs-queued",
       "host": "gadi",
-      "project": "wa66",
+      "project": "iv96",
       "priority": 1023,
-      "job_id": "181226205.gadi-pbs",
-      "gpus": 1
+      "job_id": "181243929.gadi-pbs",
+      "gpus": 1,
+      "queue": "dgxa100",
+      "replaces_queued_job": "181226205.gadi-pbs"
     },
     {
       "model": "muse",
