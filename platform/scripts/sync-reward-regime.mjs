@@ -11,6 +11,8 @@ assert.equal(value.framework_transition.ar_framework, 'TRL');
 assert.equal(value.framework_transition.flow_framework, 'Miles-Diffusion');
 assert.equal(value.framework_transition.parallel_flow_framework_comparison, false);
 assert.equal(value.framework_transition.full_flow_lifecycle_accepted, false);
+assert.equal(value.framework_transition.public_page_url, 'https://zhanh-he.github.io/RL-paper-reading/demos/frameworks.html');
+assert.ok(fs.existsSync(new URL('../site/demos/frameworks.html', import.meta.url)));
 assert.equal(new Set(value.runs.map((r) => `${r.model}-${r.reward}`)).size, 15);
 assert.ok(value.runs.every((r) => ['yue2', 'muse', 'heartmula', 'diffrhythm2', 'songbloom'].includes(r.model)));
 assert.equal(value.rewards.length, 3);

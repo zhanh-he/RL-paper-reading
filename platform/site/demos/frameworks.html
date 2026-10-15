@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="音乐后训练框架决策：离散 AR 使用 TRL，连续 Flow-GRPO 使用 Miles-Diffusion。源码依据、稳定性、速度、显存与验收边界。" />
+    <title>TRL / Miles / VeRL | Music Post-Training Lab</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260929" />
+    <link rel="stylesheet" href="./frameworks.css?v=20261015" />
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="./#lyrics"><span class="brand-mark" aria-hidden="true">RL</span><span><strong>Music Post-Training Lab</strong><small>Framework decision record</small></span></a>
+      <nav class="header-actions" aria-label="页面导航"><a href="./#lyrics">返回实验</a></nav>
+    </header>
+    <main class="decision-main">
+      <header class="decision-heading">
+        <p class="decision-meta">研究决策 · 15 Oct 2026 · 源码核查 + 有限实测</p>
+        <h1>TRL / Miles / VeRL</h1>
+        <p class="decision-lead">本项目采用两条明确的训练路线：<strong>离散音频 token 的 AR 策略用 TRL；连续声学策略的 Flow-GRPO 用 Miles-Diffusion。</strong>不再并行维护 VeRL 对照路线。框架已选定，不代表所有模型已完成迁移。</p>
+      </header>
+      <nav class="decision-nav" aria-label="决策目录"><a href="#routes">模型路线</a><a href="#ar">AR：为什么选 TRL</a><a href="#flow">Flow：为什么选 Miles</a><a href="#evidence">实测与边界</a><a href="#sources">源码与回执</a></nav>
+
+      <section id="routes" aria-labelledby="routes-heading">
+        <h2 id="routes-heading">唯一选型，按策略类型分工</h2>
+        <dl class="decision-routes">
+          <div data-policy="ar" data-framework="TRL"><dt>Discrete AR · token GRPO</dt><dd>TRL + PEFT<small>YuE2 / Muse / HeartMuLa</small></dd></div>
+          <div data-policy="flow" data-framework="Miles-Diffusion"><dt>Continuous policy · Flow-GRPO</dt><dd>Miles-Diffusion + FSDP2<small>DiffRhythm2 / SongBloom · synchronous</small></dd></div>
+        </dl>
+        <p><strong>Miles-LLM ≠ Miles-Diffusion。</strong>前者的 AR LoRA 支持范围不能直接套用到后者。DiffRhythm2 虽按 block 自回归生成，但其被优化的声学动作是连续变量，因此走 Flow-GRPO。</p>
+        <div class="decision-table" role="region" aria-label="模型框架和验收状态" tabindex="0"><table>
+          <thead><tr><th>模型</th><th>已存在的实现 / 证据</th><th>选定路线</th><th>尚需验收</th></tr></thead>
+          <tbody>
+            <tr><td><strong>YuE2</strong>Discrete AR</td><td>已回收结果仍是 PyTorch + PEFT，不改标为 TRL。</td><td>TRL + 原生 semantic-token sampler / likelihood adapter</td><td>YuE2 的完整 TRL 更新与恢复链，尚未通过。</td></tr>
+            <tr><td><strong>Muse</strong>Discrete AR</td><td>现有 ms-swift/TRL + vLLM，多轮 scheduler 与原生 codec。</td><td>保留 TRL 路线及已核验的原生接口</td><td>逐版本记录，并核验 rollout / trainer 概率、mask 和权重同步；不以换框架替代实验验收。</td></tr>
+            <tr><td><strong>HeartMuLa</strong>8 codebooks</td><td>真实 TRL 0.24 GRPOTrainer，两次主干 LoRA 更新通过。</td><td>TRL + global/local 多码本 adapter</td><td>长片段、断点恢复和分布式；两步短验收不是正式训练完成。</td></tr>
+            <tr><td><strong>DiffRhythm2</strong>Block-AR flow</td><td>真实 DiT 主干与隔离上游 loss 的两步验收。</td><td>Miles-Diffusion · 主干 LoRA</td><td>完整 worker、音频 rollout、同步与恢复链。</td></tr>
+            <tr><td><strong>SongBloom</strong>Acoustic flow</td><td>真实 nar_dit 主干与隔离上游 loss 的两步验收。</td><td>Miles-Diffusion · AR planner / VAE 固定</td><td>完整 worker 链与预定时长；原生输入仍为 reference audio + lyrics。</td></tr>
+          </tbody>
+        </table></div>
+      </section>
+
+      <section id="ar" aria-labelledby="ar-heading">
+        <h2 id="ar-heading">AR：YuE2、Muse 为什么用 TRL</h2>
+        <p><strong>决定性源码依据：</strong>所审阅的 Miles-LLM 版本支持 HF-native FSDP2，但其 LoRA 校验要求 <code>train_backend == megatron</code>；FSDP LoRA 尚未实现。采用它不是简单替换 Trainer，还要验收 Megatron/Bridge、adapter 映射和 SGLang serving 的三方一致性。<a href="https://github.com/radixark/miles/blob/cf91d625b3074f480b31ddcfd6604298407899f3/miles/utils/lora/arguments.py" target="_blank" rel="noopener noreferrer">校验源码</a> · <a href="https://miles.radixark.com/docs/advanced/lora" target="_blank" rel="noopener noreferrer">官方 LoRA 说明</a></p>
+        <div class="decision-table" role="region" aria-label="AR 框架比较" tabindex="0"><table>
+          <thead><tr><th>关注点</th><th>TRL</th><th>Miles-LLM</th><th>本项目判断</th></tr></thead>
+          <tbody>
+            <tr><td><strong>稳定性</strong>策略一致性</td><td>兼容的 HF actor + PEFT；允许项目内接入原生采样及 log-prob。无需为采用 LoRA 强制转换到 Megatron。</td><td>有 TITO、恢复与训练/推理一致性工具；当前 LoRA 训练仍需要 Megatron 路线与 serving 映射。</td><td>选 TRL，减少音频模型移植面。这是工程风险判断，不是故障率对比实测。</td></tr>
+            <tr><td><strong>速度</strong>全链路</td><td>可用原生生成，也可用 vLLM。Muse 不必为了统一框架而退回 HF-only 生成。</td><td>SGLang、多机并行、异步调度具有大规模优势；不等于在小模型 / G2 / 单卡上必然更快。</td><td>没有 YuE2/Muse 的匹配吞吐对比，不填虚构倍数。先复用现有原生音频路径。</td></tr>
+            <tr><td><strong>显存</strong>单卡优先</td><td>PEFT 可关闭 adapter 计算基座 reference，前提是它确为所选参考策略；可避免额外常驻完整 reference。</td><td>支持 colocate / offload，但当前 AR LoRA 需要 Megatron；不能把 diffusion 的 FSDP2 LoRA 支持算到这里。</td><td>TRL + microbatch / checkpointing；codec 与 scorer 分阶段驻留。不是所有 TRL 配置都比 Miles 省显存。</td></tr>
+          </tbody>
+        </table></div>
+        <h3>不能交给默认值的四件事</h3>
+        <ol class="decision-list">
+          <li><strong>KL 必须显式启用。</strong>所审 TRL 0.24 默认 <code>beta=0</code>。本项目拟使用 <code>beta=0.01</code>，并核验 reference identity 与更新后漂移；采样 k3 KL 不是精确全词表 KL，也不是硬约束。</li>
+          <li><strong>采样与 loss 必须是同一个策略。</strong>YuE2 的 codec+EOS 支持集、最短长度 EOS mask、temperature / CFG、padding 和截断规则都要对齐，不能直接用全词表 teacher forcing 顶替。保留原生 token ID，不做音频 token 的文本往返转换。</li>
+          <li><strong>旧策略概率来自真实 rollout。</strong>Muse 需检查 vLLM 与 trainer 的 log-prob 差异及 LoRA 版本；HeartMuLa 的八个 codebook 都进入目标，不只训练 codebook0。</li>
+          <li><strong>换 TRL 不会自动让 clipping 生效。</strong>如果每组仅从旧策略更新一次，第一次梯度的 ratio 为 1，裁剪不会额外限制这次更新。loss normalization、更新次数和 scheduler 必须明确记录，不能只写“GRPO”。</li>
+        </ol>
+        <p>已验收的 HeartMuLa runner 固定在 TRL 0.24.0；Muse 保留其现有兼容环境，不为了版本号整齐而强制升级或降级。新的 TRL rollout API 不能冒充旧版已验收接口。<a href="https://huggingface.co/docs/trl/v0.24.0/grpo_trainer" target="_blank" rel="noopener noreferrer">TRL 0.24 官方文档</a></p>
+      </section>
+
+      <section id="flow" aria-labelledby="flow-heading">
+        <h2 id="flow-heading">Flow：为什么选 Miles-Diffusion，而不是 VeRL-Omni</h2>
+        <p>Miles-Diffusion 的 native model backend、batch、SDE 和 loss 接口，以及直接的同步 generate / update / sync 流程，更适合本项目保留原生音频语义、集中排错。<strong>这不是已测出 Miles 全面更快或更稳。</strong></p>
+        <div class="decision-table" role="region" aria-label="Flow 框架比较" tabindex="0"><table>
+          <thead><tr><th>关注点</th><th>Miles-Diffusion</th><th>VeRL-Omni</th><th>本项目取舍</th></tr></thead>
+          <tbody>
+            <tr><td><strong>稳定性</strong>音频接入</td><td>原生 backend 与细粒度 hooks；默认工厂仍启动 SGLang，引擎创建和音频 worker 需要项目扩展。</td><td>有 non-diffusers 路线、FSDP2 和恢复测试；当前文档要求上游 vLLM-Omni pipeline 支持。</td><td>只实现 Miles 的同步音频训练链，不同时维护第二套引擎 port。</td></tr>
+            <tr><td><strong>速度</strong>不套用图像结论</td><td>支持 LoRA-only 同步和分阶段 offload；尚无本项目全链路吞吐。</td><td>官方约 25% 提速针对 Qwen-Image 对原版 Flow-GRPO，不是相对 Miles 或音乐模型。</td><td>不宣称性能胜负；先减少新增组件和非必要调度。<a href="https://github.com/verl-project/verl-omni" target="_blank" rel="noopener noreferrer">官方性能口径</a></td></tr>
+            <tr><td><strong>显存</strong>能力不等于实测</td><td>FSDP2、LoRA、checkpointing、offload、关闭 LoRA 的基座 reference。</td><td>同样有 FSDP2、LoRA、checkpointing、offload、reference-in-actor。</td><td>没有已验证的显存胜者。单 GPU 的 FSDP 不会凭空产生跨卡分片节省。</td></tr>
+          </tbody>
+        </table></div>
+        <h3>已经纠正的两个比较口径</h3>
+        <p><strong>依赖：</strong>两套完整环境都涉及 Transformers 5.x 等新依赖，都会与部分原生 4.x 音频环境冲突。必须隔离环境，不能将“无依赖冲突”列为 Miles 的优势。</p>
+        <p><strong>KL：</strong>同一组 Flow-SDE 转移的源码核验中，两家默认 KL 都按 diffusion scale 而非包含步长的完整转移方差归一化。它可以是时间加权正则，但不能叫精确离散转移 KL。下表是 <strong>CPU 合成数值夹具</strong>，不是歌曲质量或完整框架测试。</p>
+        <div class="decision-table" role="region" aria-label="默认 KL 与精确单步 KL 的数值审计" tabindex="0"><table>
+          <thead><tr><th>|dt|</th><th>Miles 默认 KL / dim</th><th>VeRL 默认 KL / dim</th><th>精确单步 KL / dim</th></tr></thead>
+          <tbody class="numeric"><tr><td>0.1</td><td>0.005050126</td><td>0.005050126</td><td>0.050501250</td></tr><tr><td>0.01</td><td>0.000050501</td><td>0.000050501</td><td>0.005050109</td></tr></tbody>
+        </table></div>
+        <p>所选音频 port 将显式记录冻结 reference 的 conditional Gaussian KL / active latent dimension；rate-scaled 诊断另行命名，排除 padding 和零方差确定性步。两种 KL 的 beta 数值不可不加说明地互换。两个已审 loss 都使用维度平均 log-density ratio，而非联合高斯密度 ratio。</p>
+        <p class="decision-notice"><strong>仍未验收：</strong>完整 Miles 的音频 rollout → 评分 → 更新 → adapter 同步 → 再生成 → 保存恢复链。自定义 rollout flag 本身不替换默认引擎工厂，<code>train-only</code> 也不能冒充在线训练。通过隔离 loss 不等于通过此链。</p>
+      </section>
+
+      <section id="evidence" aria-labelledby="evidence-heading">
+        <h2 id="evidence-heading">实测记录，不当作框架排行榜</h2>
+        <div class="decision-table" role="region" aria-label="真实模型短验收的测量范围" tabindex="0"><table>
+          <thead><tr><th>模型</th><th>实际测试</th><th>Peak allocated / GiB</th><th>时间 / 秒</th></tr></thead>
+          <tbody>
+            <tr><td><strong>HeartMuLa</strong>约 4 秒音频</td><td>真实 TRL GRPOTrainer；G2、217 个 global/local 主干目标、8 codebooks、两次更新。</td><td class="numeric">26.025</td><td class="numeric">86.804 receipt elapsed</td></tr>
+            <tr><td><strong>SongBloom</strong>4.48 秒音频</td><td>60 个声学主干目标；两家隔离 loss 各两次更新，不含完整 Ray / serving 引擎。</td><td class="numeric">7.081</td><td class="numeric">8.963 timed section</td></tr>
+            <tr><td><strong>DiffRhythm2</strong>约 4 秒音频</td><td>112 个 DiT 主干目标；两家隔离 loss 各两次更新，重算当前参数下的历史。</td><td class="numeric">16.274</td><td class="numeric">7.556 timed section</td></tr>
+          </tbody>
+        </table></div>
+        <p>均不含冷 actor checkpoint 加载，各计时段也不是相同的完整训练服务。表中不是 Miles / VeRL 两套独立计时，不能计算框架加速比；PyTorch allocated 也不是整卡占用。不能据约 4 秒短验收保证 30–60 秒音频的显存或速度。</p>
+        <p>下一次正式提交之前，所选路线仍须通过真实非零主干梯度、两次 optimizer 更新、采样/训练概率一致性、reference identity / drift、optimizer + RNG + data cursor 恢复及预定时长资源检查。已有 head-only 消融保持“待替代”，不升级为主干训练结果。</p>
+      </section>
+
+      <section id="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">源码、版本与回执</h2>
+        <ul class="decision-sources">
+          <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/AR_FRAMEWORK_DECISION_2026-10-15.md" target="_blank" rel="noopener noreferrer">AR 决策完整 MD</a><small>TRL / Miles-LLM；模型适配与验收要求</small></li>
+          <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/FLOW_FRAMEWORK_DECISION_2026-10-15.md" target="_blank" rel="noopener noreferrer">Flow 决策完整 MD</a><small>Miles-Diffusion / VeRL-Omni；数值纠正</small></li>
+          <li><a href="https://github.com/radixark/miles/blob/cf91d625b3074f480b31ddcfd6604298407899f3/docs/user-guide/training-backend.md" target="_blank" rel="noopener noreferrer">Miles-LLM · backend matrix</a><small>cf91d625 · FSDP2 与 LoRA 范围分开核查</small></li>
+          <li><a href="https://github.com/huggingface/trl/tree/04fd1203af4fc1e629f58e0ac0d0c5bb95f82a45" target="_blank" rel="noopener noreferrer">TRL · 已验收 runner 对应源码</a><small>04fd1203 · v0.24.0，非笼统 latest</small></li>
+          <li><a href="https://github.com/radixark/miles_diffusion/tree/66f61901873a51be1de2072998090ac754fb18f3" target="_blank" rel="noopener noreferrer">Miles-Diffusion · 审阅源码</a><small>66f61901 · 选定同步 FSDP2 路线</small></li>
+          <li><a href="https://verl-omni.readthedocs.io/en/latest/contributing/integrating_a_non_diffusers_model.html" target="_blank" rel="noopener noreferrer">VeRL-Omni · non-diffusers 接入</a><small>审阅 pin f31a6116；非未来对照实验</small></li>
+          <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/heartmula-trl-receipt.json" target="_blank" rel="noopener noreferrer">HeartMuLa · TRL 原始回执</a><small>真实 Trainer、主干梯度、八码本与显存</small></li>
+          <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/framework-selection-kl.json" target="_blank" rel="noopener noreferrer">Flow KL · 原始数值回执</a><small>两家源码 SHA256 核验；CPU 夹具与 identity check</small></li>
+        </ul>
+      </section>
+      <footer class="decision-footer">本页是 2026-10-15 的决策快照，不是实时任务状态。本次没有新开训练或定时任务，也没有改动冻结数据划分。<a href="./#reward-regimes">返回 SP / AI Rewards 实验</a></footer>
+    </main>
+  </body>
+</html>

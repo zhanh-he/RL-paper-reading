@@ -3,6 +3,10 @@
 2026-10-15. This directory contains bounded compatibility work, not another
 formal training run. No scheduled task or automatic monitor is used.
 
+Public standalone page: [TRL / Miles / VeRL framework decisions](https://zhanh-he.github.io/RL-paper-reading/demos/frameworks.html).
+The [AR decision](AR_FRAMEWORK_DECISION_2026-10-15.md) records why YuE2/Muse stay
+on the TRL route, including the audited Miles-LLM Megatron-only LoRA constraint.
+
 ## Decision Boundary
 
 - Discrete AR: TRL is selected. HeartMuLa needs a native eight-codebook adapter;
