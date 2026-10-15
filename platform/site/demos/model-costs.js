@@ -9,14 +9,14 @@ const time=(value)=>{
 };
 const rate=(value)=>Number.isFinite(value)?value.toFixed(value<.01?4:3):'n/a';
 const cell=(main,sub)=>{const td=el('td');td.append(el('strong',main));if(sub)td.append(el('small',sub,'reference-category'));return td;};
-const labels={measured:'实测','linear-estimate':'线性估算','author-rate-estimate':'作者RTF换算',unsupported:'原生不支持'};
+const labels={measured:'实测','linear-estimate':'线性估算','author-rate-estimate':'作者RTF换算',unsupported:'原生不支持','boundary-unverified':'口径未核实 · 撤回外推'};
 let data,filter='all';
 function render(){
   const rows=data.timing.filter(r=>filter==='all'||(filter==='measured'?r.kind.startsWith('measured'):r.kind==='author-reference'));
   $('timing').replaceChildren(...rows.map(r=>{
     const model=data.models.find(m=>m.id===r.id),tr=el('tr');tr.dataset.costModel=r.id;
     const name=r.name||model.name;
-    const kind=r.kind==='measured-rollout-proxy'?'历史rollout实测 · 非纯服务基准':r.kind==='author-reference'?'文献 / 官方参考 · 非本站实测':r.kind==='unavailable'?'n/a · 当前checkpoint未测':'独立实测';
+    const kind=r.kind==='measured-rollout-proxy'?'训练worker / rollout实测 · 非纯推理':r.publish_duration_estimates===false?'官方声明 · 完整链路未核实':r.kind==='author-reference'?'文献 / 官方参考 · 非本站实测':r.kind==='unavailable'?'n/a · 当前checkpoint未测':'独立实测';
     tr.append(cell(name,kind),cell(r.hardware,r.backend));
     const direct=r.rows.filter(v=>[60,300].includes(v.target_seconds)&&Number.isFinite(v.rtf));
     tr.append(cell(Number.isFinite(r.median_rtf)?rate(r.median_rtf):direct.length?direct.map(v=>`${v.target_seconds}s: ${rate(v.rtf)}`).join(' / '):'n/a',r.n_label||(r.n?`n=${r.n}${r.median_rtf?' · 中位数':''}`:'')));
@@ -30,9 +30,16 @@ function render(){
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.costFilter===filter)));
 }
 try{
-  const response=await fetch('./data/model-costs.json?v=20261015-vllm',{cache:'no-store'});
+  const response=await fetch('./data/model-costs.json?v=20261015-boundaries',{cache:'no-store'});
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   data=await response.json();
+  $('timing-audit').replaceChildren(...data.timing_audit.sections.map(s=>{
+    const section=el('section');section.append(el('h4',s.title));
+    for(const statement of s.statements)section.append(el('p',statement,'section-copy'));
+    return section;
+  }),...data.timing_audit.sources.map(s=>{
+    const p=el('p'),a=el('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);return p;
+  }));
   $('parameters').replaceChildren(...data.models.map(m=>{
     const tr=el('tr');tr.dataset.costModel=m.id;
     const identity=cell(m.name,m.checkpoint);

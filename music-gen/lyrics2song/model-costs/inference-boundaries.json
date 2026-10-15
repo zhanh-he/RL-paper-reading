@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-15",
+  "status": "source-and-receipt-audit; no new GPU benchmark",
+  "sections": [
+    {
+      "title": "ACE 的0.5s /2.5s外推已撤回",
+      "statements": [
+        "此前两个数仅由官网240s音频/2s/A100线性折算，没有选择或实测任何0.6B/1.7B/4B planner配置。当前主表改为n/a；官方原始声明保留作来源，不能当完整LM+DiT+VAE或首音延迟的测量。300s外推原值是2.5s，不是2s。",
+        "本地精确参数审计的是v15-base：主模型2,393,872,518，另有文本编码器595,776,512、VAE168,695,426。可选标称1.7B planner实际1,854,243,840；它与0.6B文本编码器不是同一个组件。没有对4B XL或带该planner的整链做过有效60/300s测速。",
+        "原报告质量评估Table1指定1.7B LM+蒸馏DiT，但没有把网页2s声明绑定到完整可复现计时配置；不能据此推断2s已经包含该LM。"
+      ]
+    },
+    {
+      "title": "完整出曲、渲染与首音是三个指标",
+      "statements": [
+        "官方profile_inference.py在generate_music调用前后同步设备并测wall time。generate_music是阻塞调用，返回完整音频结果并在该调用内保存文件；启用LM时包含LM路径。该工具测的不是TTFA。pipeline_total_time字段只是内部LM与DiT时间相加，不替代外层wall time。",
+        "这个benchmark工具的正确计时方式不能反向证明网页2s就是用它测的。未找到把网页数字、原始回执、LM尺寸/开关、DiT版本、VAE及保存边界绑定起来的证据；既不能认定是全链路，也不能擅自说只是首音。"
+      ]
+    },
+    {
+      "title": "ACE 确有加速，但不是所有模块都走vLLM",
+      "statements": [
+        "推理代码可在thinking和全部CoT开关关闭时完全跳过planner；0.6B文本编码器仍是另一组件。LM启用且生成5Hz音频codes时，60/300s约需300/1500个codes，外加元数据tokens。",
+        "官方backend=vllm在llm_inference.py实际导入nanovllm，支持条件性的CUDA graph路径并可能回退eager；只加速planner，不自动加速DiT/VAE。不能把nano-vLLM、上游vLLM与vLLM-Omni当作同一实现。",
+        "Turbo经蒸馏用约8步且无需CFG；Base/SFT常规50步。整段latent可在少量扩散步骤中并行处理。优化后的采样步数、并行度、注意力内核与planner是否执行，比单看参数大小更能解释速度；这些事实不构成精确倍数或完整出曲时间的实测。"
+      ]
+    },
+    {
+      "title": "DiffRhythm2 的24秒不是1B网络的一次前向",
+      "statements": [
+        "本地发布配置为5Hz latent、block_size=10，即约2s/块。60s约30块；本轮worker的steps=32生成32个时间点，Euler循环实际31区间，每区间CFG条件/无条件各一次前向，约1860次短块DiT调用，另加text/context cache更新。此计数描述串行调用，不是与ACE整段前向的FLOPs比。",
+        "rollout用sample_block_cache，确有block KV cache。发布版prepare_model明确把JSON中的use_flex_attn=true覆盖为false；DiT走SDPA。不能说它完全没有优化，也不能把论文的FlexAttention配置当成当前实际配置。尚无证据表明该worker启用了torch.compile或CUDA graphs；SDPA底层实际kernel也未做profiler核验。",
+        "约23.86s是29/30条足长baseline的worker中位数；起点包括offload、首次style编码/缓存、模型CPU/GPU搬运，终点还包括VAE decode、私有FLAC写入与清理。它不是常驻GPU的优化纯采样器计时。没有阶段秒数，不能把差距定量归因给某一项。",
+        "300s约119.3s仍只是60s速率线性外推，未实际生成或测速。论文另报4090上120s音频/25.6s、32步，并注明FlexAttention；这提示当前worker有优化空间，但不同硬件/代码/边界不能相除得到加速比。论文该表的ACE-Step是1.0，不是ACE-Step1.5。"
+      ]
+    }
+  ],
+  "benchmark_contract": {
+    "status": "proposed; not launched",
+    "common_inputs": "Fixed text+lyrics, same seed list, batch1, actual60s/300s outputs; no early-stop padding",
+    "timing": "Synchronize devices around complete request-to-CPU-waveform wall time; record input encoding, optional planner, sampler, VAE and transfers separately. Record MP3 encoding/save separately and include it explicitly in service-ready totals. Cold load/compile/warmup and TTFA are separate metrics.",
+    "profiles": [
+      {"name":"ACE Base / LM-off", "planner":"off; text encoder remains", "dit":"v15-base 2B-class", "steps":50, "status":"unmeasured"},
+      {"name":"ACE Turbo / LM-off", "planner":"off; text encoder remains", "dit":"v15-turbo 2B-class", "steps":8, "status":"unmeasured"},
+      {"name":"ACE Turbo / LM1.7B nano-vLLM", "planner":"1.7B / thinking+audio codes enabled", "dit":"v15-turbo 2B-class", "steps":8, "status":"unmeasured"},
+      {"name":"DiffRhythm2 resident-GPU", "planner":"none; MuQ-MuLan conditioning separate", "dit":"same local1.136B core", "steps":32, "status":"unmeasured; retained existing worker timings are not this profile"}
+    ]
+  },
+  "sources": [
+    {"label":"ACE完整调用计时与LM初始化条件", "url":"https://github.com/ace-step/ACE-Step-1.5/blob/ca1e85fe9430179831e6bc6be790c332190a3866/profile_inference.py"},
+    {"label":"ACE生成完整音频、可选LM与文件保存", "url":"https://github.com/ace-step/ACE-Step-1.5/blob/ca1e85fe9430179831e6bc6be790c332190a3866/acestep/inference.py"},
+    {"label":"ACE nano-vLLM与5Hz code预算", "url":"https://github.com/ace-step/ACE-Step-1.5/blob/ca1e85fe9430179831e6bc6be790c332190a3866/acestep/llm_inference.py"},
+    {"label":"ACE原报告：蒸馏与质量评估配置", "url":"https://arxiv.org/html/2602.00744v2#S4.SS1"},
+    {"label":"Diff发布版loader覆盖FlexAttention", "url":"https://github.com/ASLP-lab/DiffRhythm2/blob/7804f821b797b4f276090e1a9dcd37e97d9915d5/inference.py#L84"},
+    {"label":"Diff分块循环、CFG双路与KV cache", "url":"https://github.com/ASLP-lab/DiffRhythm2/blob/7804f821b797b4f276090e1a9dcd37e97d9915d5/diffrhythm2/cfm.py"},
+    {"label":"本项目worker计时范围与Euler循环", "url":"https://github.com/zhanh-he/RL-paper-reading/blob/9f7626e/music-gen/reward-regime-study/backbone-rl/diff_audio.py"},
+    {"label":"Diff论文RTX4090速度表及其配置", "url":"https://arxiv.org/html/2510.22950v2#A2"}
+  ]
+}

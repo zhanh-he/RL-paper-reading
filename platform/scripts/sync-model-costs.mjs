@@ -65,8 +65,10 @@ for (const [id,raw] of [['diffrhythm2',local.diffrhythm2],['heartmula',historica
   const complete=raw.rows.filter(r=>Math.abs(r.seconds-60)<=.1);
   assert.ok(complete.length>0);
   const rate = median(complete.map(r=>r.generation_seconds/r.seconds));
-  timing.push({id,kind:raw.kind,hardware:raw.device,backend:id==='diffrhythm2'?'FP16 · native32 ODE steps / CFG2':'BF16 LM + FP32 HeartCodec · 历史rollout',
-    scope:raw.scope+`. Full receipt has${raw.rows.length} rows, including${raw.rows.length-complete.length} early stops. The60s statistics and300s extrapolation use only${complete.length} outputs within60±0.1s; early stops are not padded or relabeled60s.`,
+  timing.push({id,kind:id==='diffrhythm2'?'measured-rollout-proxy':raw.kind,hardware:raw.device,
+    backend:id==='diffrhythm2'?'训练worker · FP16 /SDPA /block KV cache /32时间点 /CFG双路，含搬运与落盘':'BF16 LM + FP32 HeartCodec · 历史rollout',
+    scope:raw.scope+`. Full receipt has${raw.rows.length} rows, including${raw.rows.length-complete.length} early stops. The60s statistics and300s extrapolation use only${complete.length} outputs within60±0.1s; early stops are not padded or relabeled60s.`+
+      (id==='diffrhythm2'?' NativeWorker timer includes offload/device transfers, first condition encode/cache, decode, FLAC save and cleanup. This is not an optimized resident-GPU pure-inference benchmark. Published loader disables FlexAttention despite checkpoint config=true; actual path is SDPA with block KV cache. Stage-specific seconds were not measured.':''),
     n:complete.length,n_label:`${complete.length}/${raw.rows.length}条约60s · 中位数`,median_rtf:rate,
     measured_audio_range:[Math.min(...raw.rows.map(r=>r.seconds)),Math.max(...raw.rows.map(r=>r.seconds))],
     rtf_range:[Math.min(...raw.rows.map(r=>r.generation_seconds/r.seconds)),Math.max(...raw.rows.map(r=>r.generation_seconds/r.seconds))],
@@ -95,8 +97,11 @@ for(const entry of read('published-speed-sources.json').entries.filter(e=>e.sele
   const rate=entry.normalization==='reciprocal'?1/entry.reported_rtf:
     entry.normalization==='wall_div_audio'?entry.reported_wall_seconds/entry.reported_audio_seconds:entry.reported_rtf;
   assert.ok(Number.isFinite(rate)&&rate>0);
-  timing.push({...entry,kind:'author-reference',median_rtf:rate,n:null,
-    rows:[60,300].map(seconds=>entry.max_output_seconds!==null&&seconds>entry.max_output_seconds?
+  const unverified=entry.publish_duration_estimates===false;
+  timing.push({...entry,kind:'author-reference',median_rtf:unverified?null:rate,claim_rtf:unverified?rate:undefined,n:null,
+    rows:[60,300].map(seconds=>unverified?
+      {target_seconds:seconds,wall_seconds:null,kind:'boundary-unverified',caveat:entry.duration_caveat}:
+      entry.max_output_seconds!==null&&seconds>entry.max_output_seconds?
       {target_seconds:seconds,wall_seconds:null,kind:'unsupported',arithmetic_only_seconds:rate*seconds,
         caveat:`官方上限${entry.max_output_seconds}s；RTF算术外推${Math.round(rate*seconds)}s不代表可生成该长度`}:
       {target_seconds:seconds,wall_seconds:rate*seconds,rtf:rate,kind:'author-rate-estimate',caveat:entry.duration_caveat})});
@@ -134,7 +139,7 @@ const value={schema:1,checked_at:'2026-10-15',title:'模型规模与推理等待
   definition:'RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.',
   scope:'Six exact local parameter/LoRA audits and local batch1 timing evidence, plus three selected published speed references (LeVo2-medium only; large archived). Backend compatibility, measured acceleration and explicitly conditional AR-only estimates are separated. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Not a speed leaderboard.',
   interpretation:'实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。',
-  models,timing,acceleration,
+  models,timing,acceleration,timing_audit:read('inference-boundaries.json'),
   references:[{label:'YuE2参数口径与MoT',url:'https://arxiv.org/html/2609.33757v1#A1.SS5'},
     {label:'DiffRhythm2官方4090测速：120s /25.6s /32steps；非本站5090',url:'https://arxiv.org/html/2510.22950v2#A2'},
     {label:'HeartMuLa官方RTF≈1.0，硬件未给，不代替本站记录',url:'https://github.com/HeartMuLa/heartlib#-todos'},

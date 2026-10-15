@@ -29,6 +29,13 @@ for(const arm of data.timing){
 assert.equal(data.timing.find(m=>m.id==='songbloom').rows[1].kind,'unsupported');
 assert.equal(data.timing.find(m=>m.id==='acestep15').kind,'unavailable');
 assert.equal(data.timing.find(m=>m.id==='acestep15-official').kind,'author-reference');
+const aceClaim=data.timing.find(m=>m.id==='acestep15-official');
+assert.equal(aceClaim.publish_duration_estimates,false);
+assert.equal(aceClaim.median_rtf,null);
+assert.ok(Math.abs(aceClaim.claim_rtf-2/240)<1e-12);
+assert.ok(aceClaim.rows.every(r=>r.wall_seconds===null&&r.kind==='boundary-unverified'));
+assert.equal(data.timing.find(m=>m.id==='diffrhythm2').kind,'measured-rollout-proxy');
+assert.equal(data.timing_audit.benchmark_contract.status,'proposed; not launched');
 assert.equal(data.timing.find(m=>m.id==='diffrhythm2').n,29);
 assert.equal(data.timing.find(m=>m.id==='heartmula').n,69);
 const musicgen=data.timing.find(m=>m.id==='musicgen-large-reference');
@@ -76,6 +83,8 @@ try{
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/3,580,352,576/);
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/13,484,032/);
     assert.match(await root.locator('[data-cost="timing"] [data-cost-model="songbloom"]').textContent(),/原生不支持/);
+    assert.match(await root.locator('[data-cost="timing"] [data-cost-model="acestep15-official"]').textContent(),/撤回外推/);
+    assert.doesNotMatch(await root.locator('[data-cost="timing"] [data-cost-model="acestep15-official"]').textContent(),/0分0\.50秒|0分2\.50秒/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await root.locator('[data-cost-filter="author"]').click();
     assert.equal(await root.locator('[data-cost="timing"] tr').count(),data.timing.filter(r=>r.kind==='author-reference').length);
@@ -88,6 +97,7 @@ try{
     assert.equal((await download.json()).models.length,6);
     await page.screenshot({path:`${output}/${width}.png`,fullPage:true});
     await root.locator('summary').first().click();
+    assert.match(await root.locator('[data-cost="timing-audit"]').textContent(),/nanovllm|nano-vLLM/);
     assert.match(await root.locator('[data-cost="evidence"]').textContent(),/初始化/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await root.locator('summary').nth(1).click();
