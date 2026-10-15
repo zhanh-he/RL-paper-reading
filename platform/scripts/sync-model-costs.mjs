@@ -91,14 +91,19 @@ if(localBloom){
     load_seconds:localBloom.model_load_seconds,duration_control:localBloom.duration_control,source:'songbloom-timing.json'});
 }
 timing.sort((a,b)=>models.findIndex(r=>r.id===a.id)-models.findIndex(r=>r.id===b.id));
-timing.push({id:'acestep15-official',name:'ACE-Step1.5 · 官方快配置参考',kind:'author-reference',
-  hardware:'A100 · 作者演示240s歌曲 /2s生成',backend:'官方快配置，未披露精确checkpoint/steps/planner范围；不是本站Base50-step计时',n:null,
-  median_rtf:2/240,scope:'官方项目页明确4-min song on A100 /2s。60/300s均为线性换算，不是实测，不用于预测当前Base RL模型。',
-  rows:[60,300].map(seconds=>({target_seconds:seconds,wall_seconds:seconds*2/240,rtf:2/240,kind:'author-rate-estimate'})),
-  source:'https://ace-step.github.io/ace-step-v1.5.github.io/'});
+for(const entry of read('published-speed-sources.json').entries){
+  const rate=entry.normalization==='reciprocal'?1/entry.reported_rtf:
+    entry.normalization==='wall_div_audio'?entry.reported_wall_seconds/entry.reported_audio_seconds:entry.reported_rtf;
+  assert.ok(Number.isFinite(rate)&&rate>0);
+  timing.push({...entry,kind:'author-reference',median_rtf:rate,n:null,
+    rows:[60,300].map(seconds=>entry.max_output_seconds!==null&&seconds>entry.max_output_seconds?
+      {target_seconds:seconds,wall_seconds:null,kind:'unsupported',arithmetic_only_seconds:rate*seconds,
+        caveat:`官方上限${entry.max_output_seconds}s；RTF算术外推${Math.round(rate*seconds)}s不代表可生成该长度`}:
+      {target_seconds:seconds,wall_seconds:rate*seconds,rtf:rate,kind:'author-rate-estimate',caveat:entry.duration_caveat})});
+}
 const value={schema:1,checked_at:'2026-10-15',title:'模型规模与推理等待时间',
   definition:'RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.',
-  scope:'Six exact local checkpoints, batch1. No new training, no training interruption. Independent Gadi A100 interactive timing;5090 CPU/meta audit and existing logs only. Models and hardware differ; not a speed leaderboard.',
+  scope:'Six exact local parameter/LoRA audits and local batch1 timing evidence, plus four separately labeled published speed references. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Independent Gadi A100 timings from the earlier finite audit; current MusicGen/LeVo2/ACE update is literature-only. Not a speed leaderboard.',
   interpretation:'实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。',
   models,timing,
   references:[{label:'YuE2参数口径与MoT',url:'https://arxiv.org/html/2609.33757v1#A1.SS5'},

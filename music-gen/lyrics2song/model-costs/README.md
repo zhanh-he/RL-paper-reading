@@ -47,6 +47,23 @@ No training was stopped or moved. On 5090, only metadata/CPU audits and existing
 
 ## Reproduction and Evidence
 
+### Published Speed Research: MusicGen / LeVo2 / ACE-Step1.5
+
+Added 2026-10-15, **not newly measured on our GPUs**. Structured facts, original RTF definitions, pinned README sources and normalized calculations are in `published-speed-sources.json`. They extend the latency table only, not the six locally audited parameter/LoRA rows.
+
+| Version | Hardware | Wall/audio RTF | Wait for 60s | Wait for 300s | Evidence |
+| --- | --- | ---: | --- | --- | --- |
+| MusicGen 3.3B /32kHz mono | A100 + EPYC7443P; VRAM unspecified | 2.5 | 2m30s estimate | 12m30s estimate | Diff-A-Riff Table2, 95s output benchmark |
+| LeVo2 v2-medium | H20 | 0.69 | 41.4s estimate | n/a, published maximum270s | Official version table |
+| LeVo2 v2-large | H20 | 0.82 | 49.2s estimate | n/a, published maximum270s | Official version table |
+| ACE-Step1.5 official fast configuration | A100 | 0.00833 derived | 0.50s estimate | 2.50s estimate | Official240s/2s graphic, exact pipeline boundary undisclosed |
+
+- **MusicGen inverse convention:** [Diff-A-Riff Table2](https://arxiv.org/html/2406.08384v1#S5.T2) reports `audio/wall=0.4`, not `wall/audio=0.4`. Our normalized RTF is `1/0.4=2.5`. The [official AudioCraft implementation](https://github.com/facebookresearch/audiocraft/blob/main/audiocraft/models/musicgen.py) handles durations over30s with rolling continuation (default stride18s, retaining12s context). Do not call these60/300s single-window measurements. Other sizes and optimized backends can differ. This is a comparison-paper baseline, not a Meta-standard speed guarantee.
+- **LeVo2 length boundary:** [pinned official README](https://github.com/levo-demo/LeVo/blob/653cbcf4716101834900c75b7d5da43b07e15d5b/README.md#model-versions) lists max4m30s for both v2 versions, excluding initialization from RTF. Pure multiplication for300s would yield207s/246s, but neither is a supported300s inference time. At the supported270s maximum the same rate converts to186.3s/221.4s; still estimates, not measured per-length results. Continuation would need separate implementation and timing.
+- **ACE configuration boundary:** [official project page](https://ace-step.github.io/ace-step-v1.5.github.io/) gives240s/2s/A100. The [pinned model zoo](https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/README.md) distinguishes Base/SFT50steps and Turbo8steps. The fast figure cannot fill the Base timing gap. Planner-on/off and diffusion steps affect total wait; neither a2-second SLA nor multiplying latency by50/8 is justified. The benchmark guide's example output is illustrative, not a measured result.
+
+No concurrent training was stopped or shared-GPU inference launched for this literature research. Cross-hardware/model-version figures are not a controlled speed leaderboard.
+
 - `audit_weights.py`: trusted local safetensors headers and meta/mmap native checkpoints. Header SHA256 is a header identity, **not a full weight-file hash**. Raw state element counts are not final unique parameter counts.
 - `audit_native.py`: native model construction and unique parameter/buffer shapes; explicit HF weight tying. `native-hf-final-counts.json` is the finalized HF receipt.
 - `native-heart-counts.json`, `native-songbloom-counts.json`: native construction receipts.

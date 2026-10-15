@@ -3,7 +3,7 @@
   "checked_at": "2026-10-15",
   "title": "模型规模与推理等待时间",
   "definition": "RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.",
-  "scope": "Six exact local checkpoints, batch1. No new training, no training interruption. Independent Gadi A100 interactive timing;5090 CPU/meta audit and existing logs only. Models and hardware differ; not a speed leaderboard.",
+  "scope": "Six exact local parameter/LoRA audits and local batch1 timing evidence, plus four separately labeled published speed references. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Independent Gadi A100 timings from the earlier finite audit; current MusicGen/LeVo2/ACE update is literature-only. Not a speed leaderboard.",
   "interpretation": "实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。",
   "models": [
     {
@@ -361,29 +361,162 @@
       "source": null
     },
     {
+      "id": "musicgen-large-reference",
+      "name": "MusicGen-large · 文献测速参考",
+      "hardware": "NVIDIA A100 + AMD EPYC 7443P · 显存未注明",
+      "backend": "论文3.3B text-to-music /32kHz mono；95s基准，非同条件歌词评测",
+      "reported_rtf": 0.4,
+      "reported_definition": "audio_seconds / wall_seconds",
+      "normalization": "reciprocal",
+      "calibration_audio_seconds": 95,
+      "native_window_seconds": 30,
+      "max_output_seconds": null,
+      "scope": "Diff-A-Riff Table2给出MusicGen 3.3B在A100上的95s基准。原文RTF=音频/耗时=0.4，本站必须取倒数为2.5；60/300s均为该速率外推，不是Meta标准或本站计时。CFG、batch及计时边界未逐项披露。AudioCraft原生30s窗口，长音频需滚动续写；默认stride18s，保留12s上下文；速度和长期结构均可能变化。",
+      "duration_caveat": "95s文献速率外推；分窗续写，非60/300s直接测速",
+      "source": "https://arxiv.org/html/2406.08384v1#S5.T2",
+      "sources": [
+        {
+          "label": "Diff-A-Riff Table2：硬件、95s及RTF反向定义",
+          "url": "https://arxiv.org/html/2406.08384v1#S5.T2"
+        },
+        {
+          "label": "Meta原生MusicGen长片段续写实现",
+          "url": "https://github.com/facebookresearch/audiocraft/blob/main/audiocraft/models/musicgen.py"
+        }
+      ],
+      "kind": "author-reference",
+      "median_rtf": 2.5,
+      "n": null,
+      "rows": [
+        {
+          "target_seconds": 60,
+          "wall_seconds": 150,
+          "rtf": 2.5,
+          "kind": "author-rate-estimate",
+          "caveat": "95s文献速率外推；分窗续写，非60/300s直接测速"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": 750,
+          "rtf": 2.5,
+          "kind": "author-rate-estimate",
+          "caveat": "95s文献速率外推；分窗续写，非60/300s直接测速"
+        }
+      ]
+    },
+    {
+      "id": "levo2-medium-reference",
+      "name": "LeVo2 · v2-medium",
+      "hardware": "NVIDIA H20 · 官方报告",
+      "backend": "SongGeneration-v2-medium；采样/优化细节未单列",
+      "reported_rtf": 0.69,
+      "reported_definition": "wall_seconds / audio_seconds",
+      "normalization": "identity",
+      "calibration_audio_seconds": null,
+      "max_output_seconds": 270,
+      "scope": "官方README列v2-medium RTF(H20)=0.69，不含模型加载；未说明测速片长。60s为速率换算，非本站实测。当前权重最长4m30s，300s超出官方支持范围；不得把0.69×300的算术外推当作可用300s生成时间。",
+      "duration_caveat": "官方RTF换算；非本站实测",
+      "source": "https://github.com/levo-demo/LeVo/blob/653cbcf4716101834900c75b7d5da43b07e15d5b/README.md#model-versions",
+      "kind": "author-reference",
+      "median_rtf": 0.69,
+      "n": null,
+      "rows": [
+        {
+          "target_seconds": 60,
+          "wall_seconds": 41.4,
+          "rtf": 0.69,
+          "kind": "author-rate-estimate",
+          "caveat": "官方RTF换算；非本站实测"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": null,
+          "kind": "unsupported",
+          "arithmetic_only_seconds": 206.99999999999997,
+          "caveat": "官方上限270s；RTF算术外推207s不代表可生成该长度"
+        }
+      ]
+    },
+    {
+      "id": "levo2-large-reference",
+      "name": "LeVo2 · v2-large",
+      "hardware": "NVIDIA H20 · 官方报告",
+      "backend": "SongGeneration-v2-large；采样/优化细节未单列",
+      "reported_rtf": 0.82,
+      "reported_definition": "wall_seconds / audio_seconds",
+      "normalization": "identity",
+      "calibration_audio_seconds": null,
+      "max_output_seconds": 270,
+      "scope": "官方README列v2-large RTF(H20)=0.82，不含模型加载；未说明测速片长。60s为速率换算。当前权重最长270s，不能承诺原生300s。需要更长输出时须另外设计续写并重测，不把拼接算成原生长曲。",
+      "duration_caveat": "官方RTF换算；非本站实测",
+      "source": "https://github.com/levo-demo/LeVo/blob/653cbcf4716101834900c75b7d5da43b07e15d5b/README.md#model-versions",
+      "kind": "author-reference",
+      "median_rtf": 0.82,
+      "n": null,
+      "rows": [
+        {
+          "target_seconds": 60,
+          "wall_seconds": 49.199999999999996,
+          "rtf": 0.82,
+          "kind": "author-rate-estimate",
+          "caveat": "官方RTF换算；非本站实测"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": null,
+          "kind": "unsupported",
+          "arithmetic_only_seconds": 245.99999999999997,
+          "caveat": "官方上限270s；RTF算术外推246s不代表可生成该长度"
+        }
+      ]
+    },
+    {
       "id": "acestep15-official",
       "name": "ACE-Step1.5 · 官方快配置参考",
+      "hardware": "NVIDIA A100 · 官方240s音频 /2s生成",
+      "backend": "蒸馏快配置参考，精确steps/planner/计时边界未披露；非本站Base50-step",
+      "reported_audio_seconds": 240,
+      "reported_wall_seconds": 2,
+      "reported_definition": "wall_seconds / audio_seconds",
+      "normalization": "wall_div_audio",
+      "calibration_audio_seconds": 240,
+      "max_output_seconds": 600,
+      "scope": "官方项目页给4分钟音频/2秒/A100。60/300s是固定RTF线性换算，不是这两档直接实测或端到端服务SLA；完整LM planning、VAE、保存是否全包含未明确。官方区分Base/SFT 50步与Turbo 8步，不能把快配置数字套到当前Base RL模型，也不能简单乘50/8预测Base耗时。Benchmark文档的Output example是假想输出示例，不用作测量证据。",
+      "duration_caveat": "240s宣传基准外推；完整规划/保存范围未明确",
+      "source": "https://ace-step.github.io/ace-step-v1.5.github.io/",
+      "sources": [
+        {
+          "label": "ACE-Step1.5官方项目页240s/2s/A100",
+          "url": "https://ace-step.github.io/ace-step-v1.5.github.io/"
+        },
+        {
+          "label": "官方Base/SFT/Turbo模型步数与600s支持",
+          "url": "https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/README.md"
+        },
+        {
+          "label": "官方端到端benchmark工具；示例输出不作实测",
+          "url": "https://github.com/ace-step/ACE-Step-1.5/blob/main/docs/en/BENCHMARK.md"
+        }
+      ],
       "kind": "author-reference",
-      "hardware": "A100 · 作者演示240s歌曲 /2s生成",
-      "backend": "官方快配置，未披露精确checkpoint/steps/planner范围；不是本站Base50-step计时",
-      "n": null,
       "median_rtf": 0.008333333333333333,
-      "scope": "官方项目页明确4-min song on A100 /2s。60/300s均为线性换算，不是实测，不用于预测当前Base RL模型。",
+      "n": null,
       "rows": [
         {
           "target_seconds": 60,
           "wall_seconds": 0.5,
           "rtf": 0.008333333333333333,
-          "kind": "author-rate-estimate"
+          "kind": "author-rate-estimate",
+          "caveat": "240s宣传基准外推；完整规划/保存范围未明确"
         },
         {
           "target_seconds": 300,
           "wall_seconds": 2.5,
           "rtf": 0.008333333333333333,
-          "kind": "author-rate-estimate"
+          "kind": "author-rate-estimate",
+          "caveat": "240s宣传基准外推；完整规划/保存范围未明确"
         }
-      ],
-      "source": "https://ace-step.github.io/ace-step-v1.5.github.io/"
+      ]
     }
   ],
   "references": [

@@ -16,7 +16,7 @@ function render(){
   $('timing').replaceChildren(...rows.map(r=>{
     const model=data.models.find(m=>m.id===r.id),tr=el('tr');tr.dataset.costModel=r.id;
     const name=r.name||model.name;
-    const kind=r.kind==='measured-rollout-proxy'?'历史rollout实测 · 非纯服务基准':r.kind==='author-reference'?'作者参考 · 非本站实测':r.kind==='unavailable'?'n/a · 当前checkpoint未测':'独立实测';
+    const kind=r.kind==='measured-rollout-proxy'?'历史rollout实测 · 非纯服务基准':r.kind==='author-reference'?'文献 / 官方参考 · 非本站实测':r.kind==='unavailable'?'n/a · 当前checkpoint未测':'独立实测';
     tr.append(cell(name,kind),cell(r.hardware,r.backend));
     const direct=r.rows.filter(v=>[60,300].includes(v.target_seconds)&&Number.isFinite(v.rtf));
     tr.append(cell(Number.isFinite(r.median_rtf)?rate(r.median_rtf):direct.length?direct.map(v=>`${v.target_seconds}s: ${rate(v.rtf)}`).join(' / '):'n/a',r.n_label||(r.n?`n=${r.n}${r.median_rtf?' · 中位数':''}`:'')));
@@ -30,7 +30,7 @@ function render(){
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.costFilter===filter)));
 }
 try{
-  const response=await fetch('./data/model-costs.json?v=20261015-native-timings',{cache:'no-store'});
+  const response=await fetch('./data/model-costs.json?v=20261015-published-speeds',{cache:'no-store'});
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   data=await response.json();
   $('parameters').replaceChildren(...data.models.map(m=>{
@@ -48,6 +48,7 @@ try{
     if(Number.isFinite(r.load_seconds))section.append(el('p',`模型初始化 ${time(r.load_seconds)}，与热推理分开；不含集群排队。`,'section-copy'));
     if(r.measured_audio_range)section.append(el('p',`实际片长 ${r.measured_audio_range.map(v=>v.toFixed(2)).join('–')}s；RTF范围 ${r.rtf_range.map(rate).join('–')}。`,'section-copy'));
     if(r.source){const a=el('a','来源 / 计时回执');a.href=r.source.startsWith('http')?r.source:`https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/model-costs/${r.source}`;a.target='_blank';a.rel='noopener noreferrer';section.append(a);}
+    for(const item of r.sources||[]){const p=el('p'),a=el('a',item.label);a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);section.append(p);}
     return section;
   }),...data.references.map(r=>{const p=el('p');const a=el('a',r.label);a.href=r.url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);return p;}));
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.costFilter;render();}));

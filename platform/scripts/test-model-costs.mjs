@@ -31,6 +31,17 @@ assert.equal(data.timing.find(m=>m.id==='acestep15').kind,'unavailable');
 assert.equal(data.timing.find(m=>m.id==='acestep15-official').kind,'author-reference');
 assert.equal(data.timing.find(m=>m.id==='diffrhythm2').n,29);
 assert.equal(data.timing.find(m=>m.id==='heartmula').n,69);
+const musicgen=data.timing.find(m=>m.id==='musicgen-large-reference');
+assert.equal(musicgen.reported_rtf,.4);
+assert.equal(musicgen.median_rtf,2.5);
+assert.deepEqual(musicgen.rows.map(r=>r.wall_seconds),[150,750]);
+for(const id of ['levo2-medium-reference','levo2-large-reference']){
+  const arm=data.timing.find(m=>m.id===id);
+  assert.equal(arm.max_output_seconds,270);
+  assert.equal(arm.rows[1].kind,'unsupported');
+  assert.equal(arm.rows[1].wall_seconds,null);
+  assert.equal(arm.kind,'author-reference');
+}
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const browser=await chromium.launch({headless:true,channel:'chrome'});
 const output=process.env.QA_OUTPUT||'/tmp/model-costs-qa';
@@ -45,7 +56,7 @@ try{
     await root.locator('[data-cost="parameters"] tr').last().waitFor();
     assert.equal(await root.isVisible(),true);
     assert.equal(await root.locator('[data-cost="parameters"] tr').count(),6);
-    assert.equal(await root.locator('[data-cost="timing"] tr').count(),7);
+    assert.equal(await root.locator('[data-cost="timing"] tr').count(),10);
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/3,580,352,576/);
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/13,484,032/);
     assert.match(await root.locator('[data-cost="timing"] [data-cost-model="songbloom"]').textContent(),/原生不支持/);
@@ -65,5 +76,5 @@ try{
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   }
   assert.deepEqual(errors,[]);
-  console.log('Six models / exact native and LoRA counts / seven evidence-separated timing rows / filters / JSON / desktop and mobile: PASS');
+  console.log('Six exact parameter audits / ten timing rows / MusicGen inverse RTF / LeVo2 length limit / filters / JSON / desktop and mobile: PASS');
 }finally{await browser.close();}
