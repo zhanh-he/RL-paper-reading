@@ -1,0 +1,149 @@
+{
+  "model": "YuE2-3B",
+  "device": "NVIDIA A100-SXM4-80GB",
+  "torch": "2.10.0+cu128",
+  "backend": "torch-eager",
+  "model_load_seconds": 74.17065518500749,
+  "rows": [
+    {
+      "target_seconds": 4,
+      "actual_audio_seconds": 4.038666666666667,
+      "wall_seconds": 50.20403829799034,
+      "rtf": 12.430844741991665,
+      "timing": {
+        "abc": {
+          "seconds": 37.778497538063675,
+          "prefill_seconds": 2.203673348063603,
+          "ttft_seconds": 2.723633036017418,
+          "output_tokens": 1240,
+          "content_tokens": 1239,
+          "output_tps": 32.822904054102196,
+          "prefix_tokens": 296,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "semantic": {
+          "seconds": 2.8953170980094,
+          "prefill_seconds": 0.07992696308065206,
+          "ttft_seconds": 0.08095775602851063,
+          "output_tokens": 101,
+          "content_tokens": 101,
+          "output_tps": 34.88391653868929,
+          "prefix_tokens": 1537,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "nar_seconds": 2.3459878449793905,
+        "vae_seconds": 7.16770713601727,
+        "load": {
+          "resolve_and_integrity_seconds": 12.238659785012715,
+          "mot_load_seconds": 0.7577345729805529
+        },
+        "e2e_seconds": 50.20227570901625
+      },
+      "semantic_tokens": 101,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "seed": 5101,
+      "warmup": true
+    },
+    {
+      "target_seconds": 60,
+      "actual_audio_seconds": 60.038666666666664,
+      "wall_seconds": 84.50505237397738,
+      "rtf": 1.407510477258723,
+      "timing": {
+        "abc": {
+          "seconds": 34.6594760469161,
+          "prefill_seconds": 0.03753650502767414,
+          "ttft_seconds": 0.03876303893048316,
+          "output_tokens": 1240,
+          "content_tokens": 1239,
+          "output_tps": 35.776651623974324,
+          "prefix_tokens": 296,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "semantic": {
+          "seconds": 41.87484618101735,
+          "prefill_seconds": 0.043116598040796816,
+          "ttft_seconds": 0.04389774799346924,
+          "output_tokens": 1501,
+          "content_tokens": 1501,
+          "output_tps": 35.84490778811342,
+          "prefix_tokens": 1537,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "nar_seconds": 2.9052197460550815,
+        "vae_seconds": 4.0905571460025385,
+        "load": {
+          "resolve_and_integrity_seconds": 12.238659785012715,
+          "mot_load_seconds": 0.7577345729805529
+        },
+        "e2e_seconds": 84.50407080398872
+      },
+      "semantic_tokens": 1501,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "seed": 5101,
+      "warmup": false
+    },
+    {
+      "target_seconds": 300,
+      "actual_audio_seconds": 300.03866666666664,
+      "wall_seconds": 271.02483757107984,
+      "rtf": 0.9032996999422737,
+      "timing": {
+        "abc": {
+          "seconds": 34.603635236038826,
+          "prefill_seconds": 0.03690634504891932,
+          "ttft_seconds": 0.0379788470454514,
+          "output_tokens": 1240,
+          "content_tokens": 1239,
+          "output_tps": 35.83438536274278,
+          "prefix_tokens": 296,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "semantic": {
+          "seconds": 209.1759148099227,
+          "prefill_seconds": 0.05112898501101881,
+          "ttft_seconds": 0.051855971920304,
+          "output_tokens": 7501,
+          "content_tokens": 7501,
+          "output_tps": 35.859769069570596,
+          "prefix_tokens": 1537,
+          "cfg_branches": 1,
+          "execution": "eager",
+          "attention": "sdpa"
+        },
+        "nar_seconds": 19.59012533898931,
+        "vae_seconds": 6.592135455925018,
+        "load": {
+          "resolve_and_integrity_seconds": 12.238659785012715,
+          "mot_load_seconds": 0.7577345729805529
+        },
+        "e2e_seconds": 271.0237406929955
+      },
+      "semantic_tokens": 7501,
+      "truncated": {
+        "abc": false,
+        "semantic": true
+      },
+      "seed": 5101,
+      "warmup": false
+    }
+  ],
+  "scope": "One fixed CMI valid condition; model load separate; native plan+semantic+NAR+VAE; no scoring or MP3 encoding",
+  "duration_control": "25 semantic tokens/s; EOS suppressed to target token budget, no looping waveform"
+}

@@ -1,0 +1,230 @@
+{
+  "host": "5090",
+  "scope": "Timing evidence only, no reward means or training claims",
+  "measurements": {
+    "diffrhythm2": {
+      "device": "RTX5090 32GB",
+      "kind": "measured",
+      "source": "/storage/zhanh_storage/backbone-rl-20261015/diff-formal/diffrhythm2-richness-lr3e4-beta5e2-seed42/valid_000000/receipt.json",
+      "source_sha256": "f1058aae8762bae5d016f7c29d42683ed436bbc1bc4536a2e5c311a6b86ada44",
+      "scope": "Native32-step ODE, CFG2; same zero adapter,30 fixed valid inputs; includes style embedding, transfers, decoder and private FLAC write; excludes scorer, training and model initialization",
+      "rows": [
+        {
+          "seconds": 60.0,
+          "generation_seconds": 24.050808902829885,
+          "seed": 5101,
+          "sha256": "8d2625212eb58baf2f12db5a1e0301ab96bab3370e56f623c62ed32e109c0f5a"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.848592988215387,
+          "seed": 5102,
+          "sha256": "93cf6e631c148df469809520d2d4c3c942b90e73b7d7fa1cd150677854c4efc1"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.83212556876242,
+          "seed": 5103,
+          "sha256": "44150679b753997afc20f19784afe65faaed21a1affe75d21a2cab6d042b5a1f"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.84796104207635,
+          "seed": 5104,
+          "sha256": "2ee34c329b08eefa419e1fa1898bacd337b093ec630256d8c619467cb0f2ed84"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.808796911500394,
+          "seed": 5105,
+          "sha256": "523bcd92c8862e35bee6af7a1ce4cf997cc49ade5caa33344a50b3d9db077404"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.847779316827655,
+          "seed": 5106,
+          "sha256": "649e5af02a04e5da937293507a37465030f9371cab293a854fd9f79699e1c726"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.840166687965393,
+          "seed": 5107,
+          "sha256": "2af825ea83371029fc516e5e34cafbf67d1399ccffe6fcef2679f537422dfa31"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.848438191227615,
+          "seed": 5108,
+          "sha256": "6584fe929575138394c804d0bc177fde4b13ada424a4b7ec77e52f67d95b82bb"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.90089074615389,
+          "seed": 5109,
+          "sha256": "02da2ffbf13be4d2b340ab647f971954dcec951e8a3f13da7eecf4747dba8d33"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.85593774355948,
+          "seed": 5110,
+          "sha256": "c18e13708b412b5d3c716edc2e3c6ef7cf8cb272fa14e54bc261b63c2dd34444"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.838676233775914,
+          "seed": 5111,
+          "sha256": "d236b7914fd6cc4118de44f5fc59de0e4f143a39b43d14ad7cbc246a4d7ee348"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.88924650847912,
+          "seed": 5112,
+          "sha256": "e6ba2dba581f2694d958099437230ef7d168eea586801baa25c187bbd5eb2079"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.893737831152976,
+          "seed": 5113,
+          "sha256": "e9277ed0e9af272dd6ece104c33f8ec6d328b7b7ef5df33a038763aee5e391e7"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.747634841129184,
+          "seed": 5114,
+          "sha256": "098ae476f596e9163bd9745f8207e2d6f44e0de885759d53a0b38fc92a86eabb"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.855802633799613,
+          "seed": 5115,
+          "sha256": "f932587c335ff80889b5047959488784d2055288600614d8e214dffda166a95f"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.87450892198831,
+          "seed": 5116,
+          "sha256": "f092de9375e8aafbd6d368c0aca5bbbbbcf493400517d70f6271aa4bdde50401"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.773339410312474,
+          "seed": 5117,
+          "sha256": "e4055bb89350357af35e34b81cd506793645cdcf195070cfdb1a0d5fc8fd20c1"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.741537834517658,
+          "seed": 5118,
+          "sha256": "3a2190929cdca6a54870fcbb2480f0f61d4a8991e34ffdc19c43adb58955e5cd"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.81421119067818,
+          "seed": 5119,
+          "sha256": "d79131ce0a0209ac0d2235e165e99dc7a7053e80eda170686779f5cf1ca75d9d"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.883963968604803,
+          "seed": 5120,
+          "sha256": "bb1035c5a6ec4d50168d405e2fd98707fbfc4af72b3425f0942ca32c7f50af60"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 37.485086780041456,
+          "seed": 5121,
+          "sha256": "d246fcbe0246d44ab95c4637c155c4dc564341839723aed4ca14905fe9468ace"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.930832408368587,
+          "seed": 5122,
+          "sha256": "a131d84a494efcdf00a54acafc3cd744082cbbe7e992f63136c556f91b19d985"
+        },
+        {
+          "seconds": 31.8,
+          "generation_seconds": 14.101967670023441,
+          "seed": 5123,
+          "sha256": "98626a885bfffca5c81e6e5b63ed22cc6b0b254f5ef9ec259bffbfa0fdace504"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.858034837991,
+          "seed": 5124,
+          "sha256": "9bb551382c9a70c812512531eaa76e6ac605a8c8739813a32b1472e9a29ed0bd"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.806581099517643,
+          "seed": 5125,
+          "sha256": "8185ffa916ef9e31011082bdc033122f053d42045b7de59544d88f15d3af6b44"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.857708889059722,
+          "seed": 5126,
+          "sha256": "fdf9dda484b6f436c4fa47dfb22d67adfd55202128541eb12119c0600da68e0c"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 24.147980359382927,
+          "seed": 5127,
+          "sha256": "4457ccab401a0f340cd438c4d11d87ad92c0c448f2451495cc941d91de0b75fc"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 24.298797965049744,
+          "seed": 5128,
+          "sha256": "7977d3982c6168c71eb94e389d78fd752161eb5a043e99c472f9e1d31d8e5f2d"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.890193663537502,
+          "seed": 5129,
+          "sha256": "0eff8cd0986cd33deb60f4b863f03ea41737dcf063ad72ea3337426d6199e2b7"
+        },
+        {
+          "seconds": 60.0,
+          "generation_seconds": 23.906812057830393,
+          "seed": 5130,
+          "sha256": "d3bcebb0b8bd99bfb072ef1065133295573cd4726168e60d7154bc40d1ab8749"
+        }
+      ]
+    },
+    "yue2-short-archive": {
+      "device": "RTX5090 32GB",
+      "kind": "measured-short-cold-reference",
+      "source": "/home/mengh/research/YuE2-posttrain/outputs/smoke_20260929/result.json",
+      "source_sha256": "657a0beb24a0669f9b74994825e171dc5c1a20970cc2bb8f08f130a3857ac2a8",
+      "timing": {
+        "abc": {},
+        "semantic": {
+          "seconds": 3.5162871768698096,
+          "prefill_seconds": 0.4728703759610653,
+          "ttft_seconds": 0.6331463479436934,
+          "output_tokens": 256,
+          "content_tokens": 256,
+          "output_tps": 72.80406494781538,
+          "prefix_tokens": 53,
+          "cfg_branches": 1,
+          "execution": "cuda_graph",
+          "attention": "flash"
+        },
+        "nar_seconds": 1.4379733870737255,
+        "vae_seconds": 3.663513182196766,
+        "load": {
+          "resolve_and_integrity_seconds": 9.564044791739434,
+          "mot_load_seconds": 0.22774414718151093
+        },
+        "e2e_seconds": 11.958402371965349
+      },
+      "rows": [
+        {
+          "seconds": 10.238666666666667,
+          "generation_seconds": 11.958402371965349
+        }
+      ],
+      "scope": "Historical10.24s truncated setup sample; not a60/300s benchmark and not new torch-eager setup"
+    }
+  }
+}

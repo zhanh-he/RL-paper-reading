@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261014-reward-regimes"></script>
+    <script type="module" src="./lab.js?v=20261015-model-costs"></script>
+    <link rel="stylesheet" href="./model-costs.css?v=20261015" />
+    <script type="module" src="./model-costs.js?v=20261015"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -55,8 +57,22 @@
         <button class="lab-tab" type="button" data-view="songeval" aria-selected="false">SongEval audit</button>
         <button class="lab-tab" type="button" data-view="datasets" aria-selected="false">Dataset Protocol</button>
         <button class="lab-tab" type="button" data-view="models" aria-selected="false">Models</button>
+        <button class="lab-tab" type="button" data-view="model-costs" aria-selected="false">Model Cost</button>
         <button class="lab-tab" type="button" data-view="reward-catalog" aria-selected="false">Rewards</button>
       </nav>
+
+      <section class="lab-view" id="view-model-costs" hidden>
+        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · batch 1 · 15 Oct 2026</p><h2>模型规模与推理等待时间</h2></div><a href="./data/model-costs.json" download>下载统计 JSON</a></div>
+        <p class="section-copy">RTF = 推理墙钟秒数 / 实际输出音频秒数，越小越快。热推理时间不含排队、下载、模型加载、reward评分与训练；不同硬件和配置不构成速度排行榜。</p>
+        <h3>真实参数与新计划 LoRA</h3>
+        <p class="section-copy">按原生模型唯一 nn.Parameters 计数，含冻结权重，不含固定buffer；共享权重只算一次。1B = 10亿，1M = 100万。LoRA按新主干计划 rank8 / alpha16 逐层形状核算，不是旧head-only参数。</p>
+        <div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 精确版本</th><th>生成模型参数</th><th>新计划 LoRA</th><th>另计组件 / 去重总量</th></tr></thead><tbody data-cost="parameters"></tbody></table></div>
+        <h3>一首歌要等多久</h3>
+        <p class="section-copy">“实测”对应真实计时样本；“估算”按所示RTF线性换算。60秒实测不自动变成300秒实测。官方快配置单独列出，不填入我们尚未测速的ACE Base。</p>
+        <div class="metric-controls"><span class="control-label">证据来源</span><div class="segmented" role="group" aria-label="Timing evidence"><button type="button" data-cost-filter="all" aria-pressed="true">全部</button><button type="button" data-cost-filter="measured" aria-pressed="false">本站实测</button><button type="button" data-cost-filter="author" aria-pressed="false">作者参考</button></div></div>
+        <div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 测量范围</th><th>硬件 / 推理配置</th><th>RTF</th><th>60秒歌曲</th><th>300秒歌曲</th></tr></thead><tbody data-cost="timing"></tbody></table></div>
+        <details class="choral-deep-dive"><summary>计时范围、样本量与复现来源</summary><div data-cost="evidence"></div><div class="reference-entry-links"><a href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/model-costs" target="_blank" rel="noopener noreferrer">审计代码与原始计时回执</a></div></details>
+      </section>
 
       <section class="lab-view" id="view-overview" hidden>
         <div class="section-intro"><div><p class="eyebrow">The short version</p><h2>What we actually learned</h2></div><p>把提升幅度和失败案例放在一起看。</p></div>

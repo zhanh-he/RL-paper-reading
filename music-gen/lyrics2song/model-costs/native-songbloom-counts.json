@@ -1,0 +1,6952 @@
+{
+  "cuda_used": false,
+  "family": "songbloom",
+  "components": {
+    "songbloom-pipeline": {
+      "unique_parameters": 2041068355,
+      "buffers": 38064,
+      "groups": {
+        "vae.vae": 168695426,
+        "model.bos_token": 1536,
+        "model.condition_provider": 683520,
+        "model.skeleton_emb": 25168896,
+        "model.ar_transformer": 1359066624,
+        "model.skeleton_classifier": 27543041,
+        "model.block_conv": 3935232,
+        "model.project_in": 99840,
+        "model.project_out": 98368,
+        "model.timestep_features": 128,
+        "model.to_timestep_embed": 2754048,
+        "model.nar_dit": 453021696
+      },
+      "parameter_shapes": {
+        "vae.vae.encoder.layers.0.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.0.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.0.weight_v": [
+          128,
+          2,
+          7
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.0.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.1.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.3.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.3.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.4.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.1.layers.4.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.1.layers.4.weight_v": [
+          128,
+          128,
+          4
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.0.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.1.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.3.alpha": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.3.beta": [
+          128
+        ],
+        "vae.vae.encoder.layers.2.layers.4.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.2.layers.4.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.2.layers.4.weight_v": [
+          256,
+          128,
+          8
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.0.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.1.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.2.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.3.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.0.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.0.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.1.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.2.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.3.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.1.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.0.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.1.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.2.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.3.bias": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.2.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.3.alpha": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.3.beta": [
+          256
+        ],
+        "vae.vae.encoder.layers.3.layers.4.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.3.layers.4.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.3.layers.4.weight_v": [
+          512,
+          256,
+          8
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.0.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.1.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.2.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.3.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.0.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.0.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.1.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.2.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.3.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.1.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.0.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.2.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.3.bias": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.2.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.3.alpha": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.3.beta": [
+          512
+        ],
+        "vae.vae.encoder.layers.4.layers.4.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.4.layers.4.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.4.layers.4.weight_v": [
+          1024,
+          512,
+          12
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.0.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.1.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.2.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.3.alpha": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.3.beta": [
+          1024
+        ],
+        "vae.vae.encoder.layers.5.layers.4.bias": [
+          2048
+        ],
+        "vae.vae.encoder.layers.5.layers.4.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.5.layers.4.weight_v": [
+          2048,
+          1024,
+          20
+        ],
+        "vae.vae.encoder.layers.6.alpha": [
+          2048
+        ],
+        "vae.vae.encoder.layers.6.beta": [
+          2048
+        ],
+        "vae.vae.encoder.layers.7.bias": [
+          128
+        ],
+        "vae.vae.encoder.layers.7.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.encoder.layers.7.weight_v": [
+          128,
+          2048,
+          3
+        ],
+        "vae.vae.decoder.layers.0.bias": [
+          2048
+        ],
+        "vae.vae.decoder.layers.0.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.0.weight_v": [
+          2048,
+          64,
+          7
+        ],
+        "vae.vae.decoder.layers.1.layers.0.alpha": [
+          2048
+        ],
+        "vae.vae.decoder.layers.1.layers.0.beta": [
+          2048
+        ],
+        "vae.vae.decoder.layers.1.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.1.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.1.weight_v": [
+          2048,
+          1024,
+          20
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.2.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.3.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.1.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.2.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.2.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.3.bias": [
+          1024
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.1.layers.4.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.vae.decoder.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.vae.decoder.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.1.weight_v": [
+          1024,
+          512,
+          12
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.0.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.2.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.3.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.2.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.0.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.1.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.2.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.3.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.3.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.0.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.1.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.2.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.2.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.3.bias": [
+          512
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.2.layers.4.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.0.alpha": [
+          512
+        ],
+        "vae.vae.decoder.layers.3.layers.0.beta": [
+          512
+        ],
+        "vae.vae.decoder.layers.3.layers.1.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.1.weight_v": [
+          512,
+          256,
+          8
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.0.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.1.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.2.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.3.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.2.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.0.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.1.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.2.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.3.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.3.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.0.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.1.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.2.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.2.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.3.bias": [
+          256
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.3.layers.4.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.0.alpha": [
+          256
+        ],
+        "vae.vae.decoder.layers.4.layers.0.beta": [
+          256
+        ],
+        "vae.vae.decoder.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.1.weight_v": [
+          256,
+          128,
+          8
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.3.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.4.layers.4.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.1.weight_v": [
+          128,
+          128,
+          4
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.3.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.0.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.0.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.2.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.2.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.3.bias": [
+          128
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.5.layers.4.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.vae.decoder.layers.6.alpha": [
+          128
+        ],
+        "vae.vae.decoder.layers.6.beta": [
+          128
+        ],
+        "vae.vae.decoder.layers.7.weight_g": [
+          2,
+          1,
+          1
+        ],
+        "vae.vae.decoder.layers.7.weight_v": [
+          2,
+          128,
+          7
+        ],
+        "model.bos_token": [
+          1536
+        ],
+        "model.condition_provider.conditioners.prompt_wav.output_proj.weight": [
+          1536,
+          64
+        ],
+        "model.condition_provider.conditioners.lyrics.blank_emb": [
+          1,
+          1536
+        ],
+        "model.condition_provider.conditioners.lyrics.output_proj.weight": [
+          330,
+          1536
+        ],
+        "model.condition_provider.conditioners.lyrics.sentence_idx_in_structure_emb.weight": [
+          50,
+          1536
+        ],
+        "model.skeleton_emb.weight": [
+          16386,
+          1536
+        ],
+        "model.ar_transformer.layers.0.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.0.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.0.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.0.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.0.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.0.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.0.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.0.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.0.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.1.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.1.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.1.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.1.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.1.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.1.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.1.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.1.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.1.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.2.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.2.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.2.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.2.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.2.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.2.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.2.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.2.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.2.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.3.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.3.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.3.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.3.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.3.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.3.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.3.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.3.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.3.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.4.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.4.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.4.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.4.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.4.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.4.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.4.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.4.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.4.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.5.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.5.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.5.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.5.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.5.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.5.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.5.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.5.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.5.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.6.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.6.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.6.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.6.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.6.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.6.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.6.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.6.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.6.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.7.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.7.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.7.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.7.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.7.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.7.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.7.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.7.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.7.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.8.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.8.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.8.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.8.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.8.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.8.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.8.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.8.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.8.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.9.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.9.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.9.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.9.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.9.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.9.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.9.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.9.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.9.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.10.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.10.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.10.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.10.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.10.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.10.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.10.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.10.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.10.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.11.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.11.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.11.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.11.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.11.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.11.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.11.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.11.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.11.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.12.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.12.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.12.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.12.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.12.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.12.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.12.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.12.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.12.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.13.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.13.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.13.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.13.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.13.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.13.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.13.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.13.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.13.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.14.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.14.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.14.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.14.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.14.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.14.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.14.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.14.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.14.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.15.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.15.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.15.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.15.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.15.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.15.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.15.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.15.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.15.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.16.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.16.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.16.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.16.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.16.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.16.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.16.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.16.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.16.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.17.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.17.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.17.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.17.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.17.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.17.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.17.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.17.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.17.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.18.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.18.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.18.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.18.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.18.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.18.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.18.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.18.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.18.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.19.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.19.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.19.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.19.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.19.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.19.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.19.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.19.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.19.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.20.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.20.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.20.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.20.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.20.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.20.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.20.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.20.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.20.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.21.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.21.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.21.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.21.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.21.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.21.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.21.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.21.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.21.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.22.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.22.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.22.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.22.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.22.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.22.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.22.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.22.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.22.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.23.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.23.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.23.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.23.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.23.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.23.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.23.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.23.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.23.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.24.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.24.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.24.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.24.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.24.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.24.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.24.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.24.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.24.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.25.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.25.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.25.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.25.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.25.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.25.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.25.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.25.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.25.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.26.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.26.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.26.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.26.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.26.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.26.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.26.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.26.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.26.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.27.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.27.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.27.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.27.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.27.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.27.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.27.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.27.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.27.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.28.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.28.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.28.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.28.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.28.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.28.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.28.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.28.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.28.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.29.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.29.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.29.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.29.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.29.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.29.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.29.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.29.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.29.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.30.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.30.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.30.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.30.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.30.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.30.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.30.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.30.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.30.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.31.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.31.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.31.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.31.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.31.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.31.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.31.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.31.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.31.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.32.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.32.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.32.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.32.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.32.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.32.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.32.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.32.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.32.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.33.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.33.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.33.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.33.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.33.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.33.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.33.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.33.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.33.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.34.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.34.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.34.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.34.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.34.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.34.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.34.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.34.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.34.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.35.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.35.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.35.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.35.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "model.ar_transformer.layers.35.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.35.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.ar_transformer.layers.35.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "model.ar_transformer.layers.35.input_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.layers.35.post_attention_layernorm.weight": [
+          1536
+        ],
+        "model.ar_transformer.norm.weight": [
+          1536
+        ],
+        "model.skeleton_classifier.0.weight": [
+          1536,
+          1536
+        ],
+        "model.skeleton_classifier.2.weight": [
+          16385,
+          1536
+        ],
+        "model.skeleton_classifier.2.bias": [
+          16385
+        ],
+        "model.block_conv.1.weight": [
+          1536,
+          1024
+        ],
+        "model.block_conv.1.bias": [
+          1536
+        ],
+        "model.block_conv.3.weight": [
+          1536,
+          1536
+        ],
+        "model.block_conv.3.bias": [
+          1536
+        ],
+        "model.project_in.weight": [
+          1536,
+          64
+        ],
+        "model.project_in.bias": [
+          1536
+        ],
+        "model.project_out.weight": [
+          64,
+          1536
+        ],
+        "model.project_out.bias": [
+          64
+        ],
+        "model.timestep_features.weight": [
+          128,
+          1
+        ],
+        "model.to_timestep_embed.0.weight": [
+          1536,
+          256
+        ],
+        "model.to_timestep_embed.2.weight": [
+          1536,
+          1536
+        ],
+        "model.to_timestep_embed.2.bias": [
+          1536
+        ],
+        "model.nar_dit.layers.0.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.0.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.0.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.0.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.0.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.0.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.0.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.1.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.1.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.1.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.1.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.1.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.1.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.1.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.2.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.2.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.2.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.2.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.2.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.2.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.2.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.3.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.3.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.3.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.3.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.3.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.3.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.3.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.4.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.4.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.4.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.4.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.4.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.4.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.4.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.5.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.5.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.5.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.5.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.5.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.5.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.5.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.6.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.6.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.6.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.6.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.6.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.6.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.6.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.7.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.7.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.7.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.7.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.7.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.7.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.7.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.8.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.8.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.8.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.8.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.8.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.8.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.8.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.9.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.9.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.9.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.9.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.9.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.9.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.9.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.10.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.10.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.10.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.10.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.10.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.10.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.10.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "model.nar_dit.layers.11.pre_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.11.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "model.nar_dit.layers.11.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "model.nar_dit.layers.11.ff_norm.gamma": [
+          1536
+        ],
+        "model.nar_dit.layers.11.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.11.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "model.nar_dit.layers.11.ff.ff.2.weight": [
+          1536,
+          6144
+        ]
+      },
+      "buffer_shapes": {
+        "model.ar_transformer.layers.0.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.1.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.2.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.3.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.4.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.5.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.6.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.7.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.8.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.9.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.10.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.11.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.12.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.13.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.14.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.15.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.16.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.17.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.18.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.19.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.20.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.21.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.22.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.23.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.24.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.25.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.26.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.27.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.28.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.29.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.30.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.31.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.32.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.33.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.34.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.layers.35.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.ar_transformer.rotary_emb.inv_freq": [
+          32
+        ],
+        "model.nar_dit.layers.0.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.0.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.1.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.1.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.2.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.2.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.3.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.3.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.4.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.4.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.5.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.5.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.6.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.6.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.7.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.7.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.8.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.8.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.9.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.9.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.10.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.10.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.11.pre_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.layers.11.ff_norm.beta": [
+          1536
+        ],
+        "model.nar_dit.rotary_pos_emb.inv_freq": [
+          16
+        ]
+      },
+      "lora": {
+        "rank": 8,
+        "modules": 60,
+        "parameters": 3096576,
+        "targets": {
+          "model.nar_dit.layers.0.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.0.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.0.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.0.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.0.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.1.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.1.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.1.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.1.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.1.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.2.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.2.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.2.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.2.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.2.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.3.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.3.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.3.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.3.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.3.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.4.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.4.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.4.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.4.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.4.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.5.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.5.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.5.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.5.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.5.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.6.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.6.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.6.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.6.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.6.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.7.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.7.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.7.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.7.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.7.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.8.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.8.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.8.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.8.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.8.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.9.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.9.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.9.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.9.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.9.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.10.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.10.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.10.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.10.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.10.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "model.nar_dit.layers.11.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "model.nar_dit.layers.11.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "model.nar_dit.layers.11.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.11.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "model.nar_dit.layers.11.ff.ff.2.weight": [
+            1536,
+            6144
+          ]
+        }
+      }
+    },
+    "songbloom-core": {
+      "unique_parameters": 1872372929,
+      "buffers": 38064,
+      "groups": {
+        "bos_token": 1536,
+        "condition_provider.conditioners": 683520,
+        "skeleton_emb.weight": 25168896,
+        "ar_transformer.layers": 1359065088,
+        "ar_transformer.norm": 1536,
+        "skeleton_classifier.0": 2359296,
+        "skeleton_classifier.2": 25183745,
+        "block_conv.1": 1574400,
+        "block_conv.3": 2360832,
+        "project_in.weight": 98304,
+        "project_in.bias": 1536,
+        "project_out.weight": 98304,
+        "project_out.bias": 64,
+        "timestep_features.weight": 128,
+        "to_timestep_embed.0": 393216,
+        "to_timestep_embed.2": 2360832,
+        "nar_dit.layers": 453021696
+      },
+      "parameter_shapes": {
+        "bos_token": [
+          1536
+        ],
+        "condition_provider.conditioners.prompt_wav.output_proj.weight": [
+          1536,
+          64
+        ],
+        "condition_provider.conditioners.lyrics.blank_emb": [
+          1,
+          1536
+        ],
+        "condition_provider.conditioners.lyrics.output_proj.weight": [
+          330,
+          1536
+        ],
+        "condition_provider.conditioners.lyrics.sentence_idx_in_structure_emb.weight": [
+          50,
+          1536
+        ],
+        "skeleton_emb.weight": [
+          16386,
+          1536
+        ],
+        "ar_transformer.layers.0.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.0.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.0.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.0.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.0.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.0.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.0.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.0.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.0.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.1.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.1.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.1.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.1.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.1.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.1.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.1.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.1.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.1.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.2.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.2.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.2.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.2.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.2.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.2.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.2.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.2.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.2.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.3.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.3.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.3.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.3.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.3.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.3.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.3.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.3.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.3.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.4.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.4.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.4.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.4.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.4.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.4.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.4.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.4.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.4.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.5.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.5.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.5.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.5.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.5.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.5.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.5.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.5.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.5.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.6.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.6.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.6.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.6.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.6.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.6.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.6.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.6.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.6.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.7.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.7.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.7.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.7.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.7.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.7.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.7.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.7.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.7.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.8.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.8.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.8.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.8.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.8.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.8.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.8.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.8.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.8.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.9.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.9.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.9.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.9.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.9.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.9.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.9.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.9.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.9.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.10.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.10.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.10.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.10.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.10.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.10.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.10.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.10.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.10.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.11.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.11.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.11.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.11.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.11.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.11.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.11.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.11.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.11.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.12.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.12.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.12.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.12.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.12.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.12.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.12.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.12.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.12.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.13.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.13.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.13.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.13.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.13.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.13.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.13.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.13.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.13.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.14.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.14.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.14.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.14.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.14.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.14.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.14.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.14.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.14.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.15.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.15.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.15.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.15.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.15.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.15.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.15.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.15.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.15.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.16.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.16.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.16.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.16.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.16.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.16.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.16.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.16.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.16.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.17.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.17.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.17.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.17.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.17.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.17.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.17.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.17.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.17.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.18.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.18.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.18.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.18.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.18.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.18.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.18.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.18.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.18.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.19.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.19.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.19.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.19.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.19.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.19.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.19.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.19.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.19.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.20.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.20.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.20.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.20.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.20.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.20.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.20.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.20.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.20.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.21.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.21.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.21.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.21.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.21.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.21.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.21.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.21.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.21.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.22.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.22.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.22.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.22.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.22.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.22.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.22.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.22.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.22.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.23.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.23.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.23.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.23.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.23.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.23.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.23.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.23.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.23.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.24.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.24.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.24.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.24.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.24.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.24.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.24.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.24.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.24.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.25.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.25.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.25.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.25.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.25.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.25.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.25.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.25.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.25.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.26.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.26.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.26.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.26.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.26.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.26.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.26.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.26.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.26.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.27.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.27.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.27.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.27.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.27.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.27.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.27.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.27.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.27.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.28.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.28.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.28.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.28.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.28.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.28.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.28.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.28.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.28.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.29.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.29.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.29.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.29.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.29.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.29.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.29.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.29.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.29.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.30.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.30.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.30.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.30.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.30.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.30.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.30.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.30.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.30.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.31.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.31.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.31.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.31.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.31.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.31.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.31.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.31.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.31.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.32.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.32.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.32.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.32.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.32.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.32.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.32.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.32.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.32.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.33.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.33.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.33.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.33.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.33.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.33.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.33.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.33.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.33.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.34.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.34.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.34.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.34.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.34.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.34.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.34.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.34.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.34.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.35.self_attn.q_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.35.self_attn.k_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.35.self_attn.v_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.35.self_attn.o_proj.weight": [
+          1536,
+          1536
+        ],
+        "ar_transformer.layers.35.mlp.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.35.mlp.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "ar_transformer.layers.35.mlp.down_proj.weight": [
+          1536,
+          6144
+        ],
+        "ar_transformer.layers.35.input_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.layers.35.post_attention_layernorm.weight": [
+          1536
+        ],
+        "ar_transformer.norm.weight": [
+          1536
+        ],
+        "skeleton_classifier.0.weight": [
+          1536,
+          1536
+        ],
+        "skeleton_classifier.2.weight": [
+          16385,
+          1536
+        ],
+        "skeleton_classifier.2.bias": [
+          16385
+        ],
+        "block_conv.1.weight": [
+          1536,
+          1024
+        ],
+        "block_conv.1.bias": [
+          1536
+        ],
+        "block_conv.3.weight": [
+          1536,
+          1536
+        ],
+        "block_conv.3.bias": [
+          1536
+        ],
+        "project_in.weight": [
+          1536,
+          64
+        ],
+        "project_in.bias": [
+          1536
+        ],
+        "project_out.weight": [
+          64,
+          1536
+        ],
+        "project_out.bias": [
+          64
+        ],
+        "timestep_features.weight": [
+          128,
+          1
+        ],
+        "to_timestep_embed.0.weight": [
+          1536,
+          256
+        ],
+        "to_timestep_embed.2.weight": [
+          1536,
+          1536
+        ],
+        "to_timestep_embed.2.bias": [
+          1536
+        ],
+        "nar_dit.layers.0.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.0.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.0.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.0.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.0.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.0.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.0.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.1.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.1.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.1.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.1.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.1.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.1.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.1.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.2.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.2.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.2.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.2.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.2.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.2.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.2.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.3.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.3.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.3.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.3.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.3.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.3.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.3.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.4.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.4.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.4.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.4.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.4.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.4.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.4.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.5.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.5.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.5.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.5.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.5.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.5.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.5.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.6.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.6.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.6.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.6.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.6.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.6.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.6.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.7.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.7.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.7.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.7.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.7.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.7.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.7.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.8.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.8.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.8.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.8.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.8.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.8.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.8.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.9.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.9.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.9.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.9.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.9.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.9.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.9.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.10.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.10.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.10.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.10.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.10.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.10.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.10.ff.ff.2.weight": [
+          1536,
+          6144
+        ],
+        "nar_dit.layers.11.pre_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.11.self_attn.to_qkv.weight": [
+          4608,
+          1536
+        ],
+        "nar_dit.layers.11.self_attn.to_out.weight": [
+          1536,
+          1536
+        ],
+        "nar_dit.layers.11.ff_norm.gamma": [
+          1536
+        ],
+        "nar_dit.layers.11.ff.ff.0.up_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.11.ff.ff.0.gate_proj.weight": [
+          6144,
+          1536
+        ],
+        "nar_dit.layers.11.ff.ff.2.weight": [
+          1536,
+          6144
+        ]
+      },
+      "buffer_shapes": {
+        "ar_transformer.layers.0.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.1.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.2.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.3.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.4.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.5.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.6.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.7.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.8.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.9.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.10.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.11.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.12.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.13.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.14.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.15.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.16.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.17.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.18.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.19.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.20.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.21.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.22.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.23.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.24.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.25.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.26.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.27.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.28.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.29.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.30.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.31.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.32.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.33.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.34.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.layers.35.self_attn.rotary_emb.inv_freq": [
+          32
+        ],
+        "ar_transformer.rotary_emb.inv_freq": [
+          32
+        ],
+        "nar_dit.layers.0.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.0.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.1.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.1.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.2.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.2.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.3.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.3.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.4.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.4.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.5.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.5.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.6.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.6.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.7.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.7.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.8.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.8.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.9.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.9.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.10.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.10.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.11.pre_norm.beta": [
+          1536
+        ],
+        "nar_dit.layers.11.ff_norm.beta": [
+          1536
+        ],
+        "nar_dit.rotary_pos_emb.inv_freq": [
+          16
+        ]
+      },
+      "lora": {
+        "rank": 8,
+        "modules": 60,
+        "parameters": 3096576,
+        "targets": {
+          "nar_dit.layers.0.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.0.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.0.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.0.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.0.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.1.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.1.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.1.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.1.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.1.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.2.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.2.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.2.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.2.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.2.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.3.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.3.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.3.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.3.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.3.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.4.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.4.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.4.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.4.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.4.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.5.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.5.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.5.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.5.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.5.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.6.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.6.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.6.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.6.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.6.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.7.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.7.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.7.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.7.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.7.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.8.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.8.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.8.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.8.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.8.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.9.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.9.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.9.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.9.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.9.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.10.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.10.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.10.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.10.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.10.ff.ff.2.weight": [
+            1536,
+            6144
+          ],
+          "nar_dit.layers.11.self_attn.to_qkv.weight": [
+            4608,
+            1536
+          ],
+          "nar_dit.layers.11.self_attn.to_out.weight": [
+            1536,
+            1536
+          ],
+          "nar_dit.layers.11.ff.ff.0.up_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.11.ff.ff.0.gate_proj.weight": [
+            6144,
+            1536
+          ],
+          "nar_dit.layers.11.ff.ff.2.weight": [
+            1536,
+            6144
+          ]
+        }
+      }
+    },
+    "songbloom-vae": {
+      "unique_parameters": 168695426,
+      "buffers": 0,
+      "groups": {
+        "vae.encoder": 84281344,
+        "vae.decoder": 84414082
+      },
+      "parameter_shapes": {
+        "vae.encoder.layers.0.bias": [
+          128
+        ],
+        "vae.encoder.layers.0.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.0.weight_v": [
+          128,
+          2,
+          7
+        ],
+        "vae.encoder.layers.1.layers.0.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.0.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.1.layers.0.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.0.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.0.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.1.layers.1.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.1.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.1.layers.1.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.1.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.1.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.1.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.1.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.1.layers.3.alpha": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.3.beta": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.4.bias": [
+          128
+        ],
+        "vae.encoder.layers.1.layers.4.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.1.layers.4.weight_v": [
+          128,
+          128,
+          4
+        ],
+        "vae.encoder.layers.2.layers.0.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.0.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.2.layers.0.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.0.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.0.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.2.layers.1.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.1.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.2.layers.1.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.1.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.1.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.2.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.encoder.layers.2.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.encoder.layers.2.layers.3.alpha": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.3.beta": [
+          128
+        ],
+        "vae.encoder.layers.2.layers.4.bias": [
+          256
+        ],
+        "vae.encoder.layers.2.layers.4.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.2.layers.4.weight_v": [
+          256,
+          128,
+          8
+        ],
+        "vae.encoder.layers.3.layers.0.layers.0.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.0.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.1.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.0.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.encoder.layers.3.layers.0.layers.2.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.2.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.3.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.0.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.0.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.encoder.layers.3.layers.1.layers.0.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.0.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.1.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.1.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.encoder.layers.3.layers.1.layers.2.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.2.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.3.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.1.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.1.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.encoder.layers.3.layers.2.layers.0.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.0.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.1.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.2.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.encoder.layers.3.layers.2.layers.2.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.2.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.3.bias": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.2.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.2.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.encoder.layers.3.layers.3.alpha": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.3.beta": [
+          256
+        ],
+        "vae.encoder.layers.3.layers.4.bias": [
+          512
+        ],
+        "vae.encoder.layers.3.layers.4.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.3.layers.4.weight_v": [
+          512,
+          256,
+          8
+        ],
+        "vae.encoder.layers.4.layers.0.layers.0.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.0.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.1.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.0.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.encoder.layers.4.layers.0.layers.2.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.2.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.3.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.0.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.0.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.encoder.layers.4.layers.1.layers.0.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.0.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.1.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.1.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.encoder.layers.4.layers.1.layers.2.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.2.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.3.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.1.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.1.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.encoder.layers.4.layers.2.layers.0.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.0.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.2.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.encoder.layers.4.layers.2.layers.2.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.2.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.3.bias": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.2.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.2.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.encoder.layers.4.layers.3.alpha": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.3.beta": [
+          512
+        ],
+        "vae.encoder.layers.4.layers.4.bias": [
+          1024
+        ],
+        "vae.encoder.layers.4.layers.4.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.4.layers.4.weight_v": [
+          1024,
+          512,
+          12
+        ],
+        "vae.encoder.layers.5.layers.0.layers.0.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.0.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.1.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.0.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.encoder.layers.5.layers.0.layers.2.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.2.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.3.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.0.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.0.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.encoder.layers.5.layers.1.layers.0.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.0.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.1.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.1.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.encoder.layers.5.layers.1.layers.2.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.2.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.3.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.1.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.1.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.encoder.layers.5.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.1.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.2.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.encoder.layers.5.layers.2.layers.2.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.2.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.3.bias": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.2.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.2.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.encoder.layers.5.layers.3.alpha": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.3.beta": [
+          1024
+        ],
+        "vae.encoder.layers.5.layers.4.bias": [
+          2048
+        ],
+        "vae.encoder.layers.5.layers.4.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.encoder.layers.5.layers.4.weight_v": [
+          2048,
+          1024,
+          20
+        ],
+        "vae.encoder.layers.6.alpha": [
+          2048
+        ],
+        "vae.encoder.layers.6.beta": [
+          2048
+        ],
+        "vae.encoder.layers.7.bias": [
+          128
+        ],
+        "vae.encoder.layers.7.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.encoder.layers.7.weight_v": [
+          128,
+          2048,
+          3
+        ],
+        "vae.decoder.layers.0.bias": [
+          2048
+        ],
+        "vae.decoder.layers.0.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.decoder.layers.0.weight_v": [
+          2048,
+          64,
+          7
+        ],
+        "vae.decoder.layers.1.layers.0.alpha": [
+          2048
+        ],
+        "vae.decoder.layers.1.layers.0.beta": [
+          2048
+        ],
+        "vae.decoder.layers.1.layers.1.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.1.weight_g": [
+          2048,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.1.weight_v": [
+          2048,
+          1024,
+          20
+        ],
+        "vae.decoder.layers.1.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.1.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.2.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.decoder.layers.1.layers.2.layers.2.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.2.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.3.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.2.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.2.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.decoder.layers.1.layers.3.layers.0.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.0.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.1.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.3.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.decoder.layers.1.layers.3.layers.2.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.2.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.3.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.3.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.3.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.decoder.layers.1.layers.4.layers.0.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.0.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.1.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.4.layers.1.weight_v": [
+          1024,
+          1024,
+          7
+        ],
+        "vae.decoder.layers.1.layers.4.layers.2.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.2.beta": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.3.bias": [
+          1024
+        ],
+        "vae.decoder.layers.1.layers.4.layers.3.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.1.layers.4.layers.3.weight_v": [
+          1024,
+          1024,
+          1
+        ],
+        "vae.decoder.layers.2.layers.0.alpha": [
+          1024
+        ],
+        "vae.decoder.layers.2.layers.0.beta": [
+          1024
+        ],
+        "vae.decoder.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.1.weight_g": [
+          1024,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.1.weight_v": [
+          1024,
+          512,
+          12
+        ],
+        "vae.decoder.layers.2.layers.2.layers.0.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.0.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.1.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.2.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.decoder.layers.2.layers.2.layers.2.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.2.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.3.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.2.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.2.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.decoder.layers.2.layers.3.layers.0.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.0.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.1.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.3.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.decoder.layers.2.layers.3.layers.2.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.2.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.3.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.3.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.3.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.decoder.layers.2.layers.4.layers.0.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.0.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.1.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.4.layers.1.weight_v": [
+          512,
+          512,
+          7
+        ],
+        "vae.decoder.layers.2.layers.4.layers.2.alpha": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.2.beta": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.3.bias": [
+          512
+        ],
+        "vae.decoder.layers.2.layers.4.layers.3.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.2.layers.4.layers.3.weight_v": [
+          512,
+          512,
+          1
+        ],
+        "vae.decoder.layers.3.layers.0.alpha": [
+          512
+        ],
+        "vae.decoder.layers.3.layers.0.beta": [
+          512
+        ],
+        "vae.decoder.layers.3.layers.1.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.1.weight_g": [
+          512,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.1.weight_v": [
+          512,
+          256,
+          8
+        ],
+        "vae.decoder.layers.3.layers.2.layers.0.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.0.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.1.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.2.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.decoder.layers.3.layers.2.layers.2.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.2.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.3.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.2.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.2.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.decoder.layers.3.layers.3.layers.0.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.0.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.1.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.3.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.decoder.layers.3.layers.3.layers.2.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.2.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.3.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.3.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.3.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.decoder.layers.3.layers.4.layers.0.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.0.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.1.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.4.layers.1.weight_v": [
+          256,
+          256,
+          7
+        ],
+        "vae.decoder.layers.3.layers.4.layers.2.alpha": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.2.beta": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.3.bias": [
+          256
+        ],
+        "vae.decoder.layers.3.layers.4.layers.3.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.3.layers.4.layers.3.weight_v": [
+          256,
+          256,
+          1
+        ],
+        "vae.decoder.layers.4.layers.0.alpha": [
+          256
+        ],
+        "vae.decoder.layers.4.layers.0.beta": [
+          256
+        ],
+        "vae.decoder.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.1.weight_g": [
+          256,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.1.weight_v": [
+          256,
+          128,
+          8
+        ],
+        "vae.decoder.layers.4.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.4.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.4.layers.3.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.3.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.4.layers.3.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.3.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.3.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.4.layers.4.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.4.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.4.layers.4.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.4.layers.4.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.4.layers.4.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.5.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.1.weight_v": [
+          128,
+          128,
+          4
+        ],
+        "vae.decoder.layers.5.layers.2.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.2.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.5.layers.2.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.2.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.2.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.5.layers.3.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.3.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.5.layers.3.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.3.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.3.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.5.layers.4.layers.0.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.0.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.1.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.1.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.4.layers.1.weight_v": [
+          128,
+          128,
+          7
+        ],
+        "vae.decoder.layers.5.layers.4.layers.2.alpha": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.2.beta": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.3.bias": [
+          128
+        ],
+        "vae.decoder.layers.5.layers.4.layers.3.weight_g": [
+          128,
+          1,
+          1
+        ],
+        "vae.decoder.layers.5.layers.4.layers.3.weight_v": [
+          128,
+          128,
+          1
+        ],
+        "vae.decoder.layers.6.alpha": [
+          128
+        ],
+        "vae.decoder.layers.6.beta": [
+          128
+        ],
+        "vae.decoder.layers.7.weight_g": [
+          2,
+          1,
+          1
+        ],
+        "vae.decoder.layers.7.weight_v": [
+          2,
+          128,
+          7
+        ]
+      },
+      "buffer_shapes": {},
+      "lora": {
+        "rank": 8,
+        "modules": 0,
+        "parameters": 0,
+        "targets": {}
+      }
+    }
+  }
+}

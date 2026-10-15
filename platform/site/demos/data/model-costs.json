@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "checked_at": "2026-10-15",
+  "title": "模型规模与推理等待时间",
+  "definition": "RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.",
+  "scope": "Six exact local checkpoints, batch1. No new training, no training interruption. Independent Gadi A100 interactive timing;5090 CPU/meta audit and existing logs only. Models and hardware differ; not a speed leaderboard.",
+  "interpretation": "实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。",
+  "models": [
+    {
+      "id": "yue2",
+      "name": "YuE2",
+      "checkpoint": "YuE2-3B · AR/NAR MoT",
+      "parameters": 3580352576,
+      "lora_parameters": 8716288,
+      "lora_modules": 196,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.2434477559117351,
+      "plan": "新计划：仅 semantic AR attention+MLP；NAR / VAE 固定。TRL迁移尚未提交。旧 q/v rank4 为802,816参数，不能替代此新计划数值。",
+      "components": "VAE 132,616,130；完整 MoT+VAE 3,712,968,706。固定位置编码50,331,648不计参数。",
+      "parameter_evidence": "Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded",
+      "source": "https://huggingface.co/m-a-p/YuE2-3B"
+    },
+    {
+      "id": "muse",
+      "name": "Muse",
+      "checkpoint": "Muse-0.6b · Qwen3",
+      "parameters": 612555776,
+      "lora_parameters": 5046272,
+      "lora_modules": 196,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.8238061247176943,
+      "plan": "新正式任务：rank8 all-linear attention+MLP；tied embedding / output head只计一次，codec固定。",
+      "components": "MuCodec 1,487,044,418；LM+已加载codec 2,099,600,194。",
+      "parameter_evidence": "Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded",
+      "source": "https://huggingface.co/bolshyC/Muse-0.6b"
+    },
+    {
+      "id": "diffrhythm2",
+      "name": "DiffRhythm2",
+      "checkpoint": "ASLP-lab v2 · DiT",
+      "parameters": 1136249664,
+      "lora_parameters": 6029312,
+      "lora_modules": 112,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.5306326761650862,
+      "plan": "已验收并启动：112个DiT attention+MLP模块；rank8 / alpha16。",
+      "components": "另有Music VAE decoder和MuQ-MuLan条件编码器；不把它们算进1.1362B主干，也不冒称已核完整整链总数。",
+      "parameter_evidence": "Native loaded-model count + safetensors shape cross-check",
+      "source": "https://huggingface.co/ASLP-lab/DiffRhythm2"
+    },
+    {
+      "id": "heartmula",
+      "name": "HeartMuLa",
+      "checkpoint": "oss-3B-happy-new-year",
+      "parameters": 3938113536,
+      "lora_parameters": 13484032,
+      "lora_modules": 217,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.3423982543097508,
+      "plan": "新正式任务：217个global/local attention+MLP模块，8个codebook参与loss；codec固定。",
+      "components": "HeartCodec 1,655,308,877；完整LM+codec 5,593,422,413。含codec内flow网络，固定buffer不计。",
+      "parameter_evidence": "Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded",
+      "source": "https://huggingface.co/HeartMuLa/HeartMuLa-oss-3B-happy-new-year"
+    },
+    {
+      "id": "songbloom",
+      "name": "SongBloom",
+      "checkpoint": "社区恢复 full-150s · 36 AR / 12 NAR",
+      "parameters": 1872372929,
+      "lora_parameters": 3096576,
+      "lora_modules": 60,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.16538243808373285,
+      "plan": "形状核验的新计划：60个nar_dit线性模块；AR planner / VAE固定；完整Miles worker尚未提交。",
+      "components": "VAE 168,695,426；去重整链 2,041,068,355。原checkpoint重复VAE别名与38,064个buffer不计。",
+      "parameter_evidence": "Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded",
+      "source": "https://arxiv.org/abs/2506.07634"
+    },
+    {
+      "id": "acestep15",
+      "name": "ACE-Step1.5",
+      "checkpoint": "v15-base · 非XL / 非Turbo",
+      "parameters": 2393872518,
+      "lora_parameters": 10223616,
+      "lora_modules": 264,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_percent": 0.4270743710505306,
+      "plan": "形状核验的新计划：decoder self/cross-attention+MLP，264模块；尚未提交RL，不借用Turbo测速。",
+      "components": "Text encoder 595,776,512 + VAE168,695,426：无planner整链3,158,344,456；可选1.7B planner实为1,854,243,840，总计5,012,588,296。",
+      "parameter_evidence": "Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded",
+      "source": "https://huggingface.co/ACE-Step/acestep-v15-base"
+    }
+  ],
+  "timing": [
+    {
+      "id": "yue2",
+      "kind": "measured",
+      "hardware": "NVIDIA A100-SXM4-80GB",
+      "backend": "torch-eager",
+      "scope": "One fixed CMI valid condition; model load separate; native plan+semantic+NAR+VAE; no scoring or MP3 encoding",
+      "n": 2,
+      "rows": [
+        {
+          "target_seconds": 60,
+          "actual_audio_seconds": 60.038666666666664,
+          "wall_seconds": 84.50505237397738,
+          "rtf": 1.407510477258723,
+          "timing": {
+            "abc": {
+              "seconds": 34.6594760469161,
+              "prefill_seconds": 0.03753650502767414,
+              "ttft_seconds": 0.03876303893048316,
+              "output_tokens": 1240,
+              "content_tokens": 1239,
+              "output_tps": 35.776651623974324,
+              "prefix_tokens": 296,
+              "cfg_branches": 1,
+              "execution": "eager",
+              "attention": "sdpa"
+            },
+            "semantic": {
+              "seconds": 41.87484618101735,
+              "prefill_seconds": 0.043116598040796816,
+              "ttft_seconds": 0.04389774799346924,
+              "output_tokens": 1501,
+              "content_tokens": 1501,
+              "output_tps": 35.84490778811342,
+              "prefix_tokens": 1537,
+              "cfg_branches": 1,
+              "execution": "eager",
+              "attention": "sdpa"
+            },
+            "nar_seconds": 2.9052197460550815,
+            "vae_seconds": 4.0905571460025385,
+            "load": {
+              "resolve_and_integrity_seconds": 12.238659785012715,
+              "mot_load_seconds": 0.7577345729805529
+            },
+            "e2e_seconds": 84.50407080398872
+          },
+          "semantic_tokens": 1501,
+          "truncated": {
+            "abc": false,
+            "semantic": true
+          },
+          "seed": 5101,
+          "warmup": false
+        },
+        {
+          "target_seconds": 300,
+          "actual_audio_seconds": 300.03866666666664,
+          "wall_seconds": 271.02483757107984,
+          "rtf": 0.9032996999422737,
+          "timing": {
+            "abc": {
+              "seconds": 34.603635236038826,
+              "prefill_seconds": 0.03690634504891932,
+              "ttft_seconds": 0.0379788470454514,
+              "output_tokens": 1240,
+              "content_tokens": 1239,
+              "output_tps": 35.83438536274278,
+              "prefix_tokens": 296,
+              "cfg_branches": 1,
+              "execution": "eager",
+              "attention": "sdpa"
+            },
+            "semantic": {
+              "seconds": 209.1759148099227,
+              "prefill_seconds": 0.05112898501101881,
+              "ttft_seconds": 0.051855971920304,
+              "output_tokens": 7501,
+              "content_tokens": 7501,
+              "output_tps": 35.859769069570596,
+              "prefix_tokens": 1537,
+              "cfg_branches": 1,
+              "execution": "eager",
+              "attention": "sdpa"
+            },
+            "nar_seconds": 19.59012533898931,
+            "vae_seconds": 6.592135455925018,
+            "load": {
+              "resolve_and_integrity_seconds": 12.238659785012715,
+              "mot_load_seconds": 0.7577345729805529
+            },
+            "e2e_seconds": 271.0237406929955
+          },
+          "semantic_tokens": 7501,
+          "truncated": {
+            "abc": false,
+            "semantic": true
+          },
+          "seed": 5101,
+          "warmup": false
+        }
+      ],
+      "load_seconds": 74.17065518500749,
+      "duration_control": "25 semantic tokens/s; EOS suppressed to target token budget, no looping waveform",
+      "source": "yue2-timing.json"
+    },
+    {
+      "id": "muse",
+      "kind": "measured",
+      "hardware": "NVIDIA A100-SXM4-80GB",
+      "backend": "Transformers SDPA BF16 + native MuCodec HTTP FP16 diffusion20steps",
+      "scope": "One fixed CMI valid condition; warm LM+decoder API including transfer/base64; load, queue, scorer and MP3 encode excluded",
+      "n": 1,
+      "rows": [
+        {
+          "target_seconds": 60,
+          "actual_audio_seconds": 60,
+          "wall_seconds": 58.79675351793412,
+          "rtf": 0.9799458919655687,
+          "lm_seconds": 40.63747915602289,
+          "decode_api_seconds": 18.159064154024236,
+          "decoder_inference_seconds": 17.79508686065674,
+          "warmup": false,
+          "audio_tokens": 1500,
+          "all_generated_tokens": 1512,
+          "seed": 5101,
+          "generated_tokens_sha256": "47bf161679ac15bacff9228efd2b74efb9269335a1f93770c75b84c71505a9b7"
+        }
+      ],
+      "load_seconds": 21.95276316604577,
+      "duration_control": "Native25Hz audio codes; EOS suppressed to audio-token target; no waveform loops",
+      "source": "muse-timing.json"
+    },
+    {
+      "id": "diffrhythm2",
+      "kind": "measured",
+      "hardware": "RTX5090 32GB",
+      "backend": "FP16 · native32 ODE steps / CFG2",
+      "scope": "Native32-step ODE, CFG2; same zero adapter,30 fixed valid inputs; includes style embedding, transfers, decoder and private FLAC write; excludes scorer, training and model initialization",
+      "n": 30,
+      "median_rtf": 0.39761372193849337,
+      "measured_audio_range": [
+        31.8,
+        60
+      ],
+      "rtf_range": [
+        0.395692297241961,
+        0.6247514463340242
+      ],
+      "rows": [
+        {
+          "target_seconds": 60,
+          "actual_audio_seconds": 60,
+          "wall_seconds": 23.855870188679546,
+          "rtf": 0.39761372193849337,
+          "kind": "measured"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": 119.284116581548,
+          "rtf": 0.39761372193849337,
+          "kind": "linear-estimate",
+          "caveat": "未执行300s，长上下文可能非线性变慢"
+        }
+      ],
+      "source": "timing-5090.json"
+    },
+    {
+      "id": "heartmula",
+      "kind": "measured-rollout-proxy",
+      "hardware": "NVIDIA H200 / Gadi gpuhopper",
+      "backend": "BF16 LM + FP32 HeartCodec · 历史rollout",
+      "scope": "Historical native60s-budget head-only rollouts, not new backbone training speed. Includes native global/local generation, HeartCodec, action/logp collection and policy-record save; excludes scoring, updates and initialization. Native precision from archived backend: BF16 generator, FP32 codec; global action distribution FP32, CFG1.5, local topk50.",
+      "n": 72,
+      "median_rtf": 0.47248087740419853,
+      "measured_audio_range": [
+        48.8,
+        60.08
+      ],
+      "rtf_range": [
+        0.4636686332390232,
+        0.6272941308245484
+      ],
+      "rows": [
+        {
+          "target_seconds": 60,
+          "actual_audio_seconds": 60.08,
+          "wall_seconds": 28.367959476541728,
+          "rtf": 0.47248087740419853,
+          "kind": "measured"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": 141.74426322125956,
+          "rtf": 0.47248087740419853,
+          "kind": "linear-estimate",
+          "caveat": "超默认240s，尚未验证原生300s输出"
+        }
+      ],
+      "source": "timing-heart.json"
+    },
+    {
+      "id": "songbloom",
+      "kind": "author-reference",
+      "hardware": "作者未注明测速GPU",
+      "backend": "论文 full / 36 diffusion steps，不是本站8步smoke",
+      "n": null,
+      "median_rtf": 1.649,
+      "scope": "论文Table2报告RTF1.649，未明确测速硬件和时段；不可作本站跨硬件排行。60s是按该比率换算，不是本站实测。",
+      "rows": [
+        {
+          "target_seconds": 60,
+          "wall_seconds": 98.94,
+          "rtf": 1.649,
+          "kind": "author-rate-estimate"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": null,
+          "kind": "unsupported",
+          "caveat": "本checkpoint上限150s，不把拼接或线性算术伪装成原生300s"
+        }
+      ],
+      "source": "https://arxiv.org/html/2506.07634v1#S6"
+    },
+    {
+      "id": "acestep15",
+      "kind": "unavailable",
+      "hardware": "n/a · 未取得有效计时",
+      "backend": "尚无本checkpoint的完整推理计时",
+      "scope": "不以训练更新耗时或Turbo宣传速度填充Base的RTF。",
+      "n": 0,
+      "rows": [],
+      "load_seconds": null,
+      "duration_control": null,
+      "source": null
+    },
+    {
+      "id": "acestep15-official",
+      "name": "ACE-Step1.5 · 官方快配置参考",
+      "kind": "author-reference",
+      "hardware": "A100 · 作者演示240s歌曲 /2s生成",
+      "backend": "官方快配置，未披露精确checkpoint/steps/planner范围；不是本站Base50-step计时",
+      "n": null,
+      "median_rtf": 0.008333333333333333,
+      "scope": "官方项目页明确4-min song on A100 /2s。60/300s均为线性换算，不是实测，不用于预测当前Base RL模型。",
+      "rows": [
+        {
+          "target_seconds": 60,
+          "wall_seconds": 0.5,
+          "rtf": 0.008333333333333333,
+          "kind": "author-rate-estimate"
+        },
+        {
+          "target_seconds": 300,
+          "wall_seconds": 2.5,
+          "rtf": 0.008333333333333333,
+          "kind": "author-rate-estimate"
+        }
+      ],
+      "source": "https://ace-step.github.io/ace-step-v1.5.github.io/"
+    }
+  ],
+  "references": [
+    {
+      "label": "YuE2参数口径与MoT",
+      "url": "https://arxiv.org/html/2609.33757v1#A1.SS5"
+    },
+    {
+      "label": "DiffRhythm2官方4090测速：120s /25.6s /32steps；非本站5090",
+      "url": "https://arxiv.org/html/2510.22950v2#A2"
+    },
+    {
+      "label": "HeartMuLa官方RTF≈1.0，硬件未给，不代替本站记录",
+      "url": "https://github.com/HeartMuLa/heartlib#-todos"
+    },
+    {
+      "label": "SongBloom原生150s上限与RTF",
+      "url": "https://arxiv.org/html/2506.07634v1#S5.SS2"
+    },
+    {
+      "label": "ACE-Step1.5区分base与turbo；不从“每首<2s”虚构RTF",
+      "url": "https://github.com/ace-step/ACE-Step-1.5"
+    }
+  ]
+}

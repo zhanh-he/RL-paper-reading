@@ -1,0 +1,591 @@
+{
+  "host": "gadi",
+  "scope": "Timing evidence only, no reward means or training claims",
+  "measurements": {
+    "heartmula": {
+      "device": "NVIDIA H200 / Gadi gpuhopper",
+      "kind": "measured-rollout-proxy",
+      "job_id": "181262219.gadi-pbs",
+      "exec_host": "gadi-gpu-h200-0029",
+      "rows": [
+        {
+          "seconds": 60.08,
+          "generation_seconds": 37.68783137993887,
+          "seed": 420002,
+          "sha256": "61175fde7dc14c6204dfcb5f4cf8c3b2f2237408f2eece0ef0a66a55893a94ff",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000001/0/rollout.json",
+          "source_sha256": "d5f480c626bef6af5a27b756b90f478f2a0082106983e9fee10f600d6ae91d43"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.17170542385429,
+          "seed": 420003,
+          "sha256": "90cd511a708088da32a87b834fb995addc1cd6704c90be1d8dfbc4c96eac7165",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000001/1/rollout.json",
+          "source_sha256": "e1f9ed745bd1ca87e3f9d4343a8b73b01d3c22759a40c38462e96270deae598a"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.280012983828783,
+          "seed": 420004,
+          "sha256": "c8db9f0e01255a25c5d0553568aea84c457377f6b4cefb909a48ab567b3b40af",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000002/0/rollout.json",
+          "source_sha256": "ff717ab02d4ce2a68895c4790e07581d5a46862af0b2e4f21810688c0ac7a9fd"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.2905132221058,
+          "seed": 420005,
+          "sha256": "c913e819d85ac9ab90325bc139c43997e70f89a35ab07eca844b4a6e4a0e6b01",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000002/1/rollout.json",
+          "source_sha256": "8a438f6ee839545a98cabd00444a7f73947be1ce769388acaf28ccd21ba237a4"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.354499673936516,
+          "seed": 420006,
+          "sha256": "9dffa6486d595b60aa2fa26670cb79941c4bfa3adbfd66a35b12fed3fe41a304",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000003/0/rollout.json",
+          "source_sha256": "3b199c585fcbdf820e1cc5b68d601dc7af6a3407bf87e51b6b816c790e848cd5"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.236337364884093,
+          "seed": 420007,
+          "sha256": "efb016959c5267159f79b51c83511a94d3e0b0654583f864b87e1905320682de",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000003/1/rollout.json",
+          "source_sha256": "8e9fe6e8fb4529af184f4c8bc96493728696f83a2ece8ba8a1ff57acdf2e752c"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.53110160981305,
+          "seed": 420008,
+          "sha256": "9eb71a861d60b74a2f0cd7b80d574d23f5ca31baa65a902b797f742101ae0548",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000004/0/rollout.json",
+          "source_sha256": "1300b93a07307980a94ce6db8dc8c4f3addc176fbee05597eac36fa1145d015c"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.327815900091082,
+          "seed": 420009,
+          "sha256": "5307ab726183a75219315f28fb32d4d3fc160c94ab21884094adb91162d5ce4b",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000004/1/rollout.json",
+          "source_sha256": "1732affc7fc8d31205520bd652d4f346bd55f663bd2142efe4060230c5f5dc1d"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.78455237718299,
+          "seed": 420010,
+          "sha256": "f489f1b1bd15ea47b90201eadd6c7fa4091b321bc7c1f1ce47736eb8f85e5727",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000005/0/rollout.json",
+          "source_sha256": "9de22056d83b5625ff12f5e73259f3437ef9dfb84aa5f4554d3b3da07348e258"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.21434832504019,
+          "seed": 420011,
+          "sha256": "547a1948710e9af6dda0692cd0d1182b65c9e9c36b1a566a99c28d05e2da9ad9",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000005/1/rollout.json",
+          "source_sha256": "d91d265096ac6b5ca9547c1300596034bba0152dc0b8370462e9538342e8f4be"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.782962823985144,
+          "seed": 420012,
+          "sha256": "a541474ed27adb2b7a8089e4afb413bdf1d75162620c6ad86b5818be1132ce63",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000006/0/rollout.json",
+          "source_sha256": "bf7240372750e6986742cd98cffda1e4e001585a125dc1aed2065a2ece672558"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.267767541110516,
+          "seed": 420013,
+          "sha256": "2cb88e7e4a8a851f7b1e1f4f62533b6afa59f2d3ca80bc2d981a3027a698b2b7",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000006/1/rollout.json",
+          "source_sha256": "dfd25c734e03cc2e7c7898b7ef3d74d900ad71e3b1bf8a87929a3e39a4027614"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 30.09898813511245,
+          "seed": 420014,
+          "sha256": "a87fe813450896821bf1d5b0e443edec73752ee0177c14fad0b06774f4ebbc2d",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000007/0/rollout.json",
+          "source_sha256": "55086a4c5ae455edeaaf6f07c9ffaac9bdc82364c9ec82052d69014acfb78f6b"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.228828566148877,
+          "seed": 420015,
+          "sha256": "8535a77c2fdd50367644cd2b97a085fd5ca8ce9657b496e745f7968a6af5e5e8",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000007/1/rollout.json",
+          "source_sha256": "42c94a92d15d8edd0a4e525e91f6c62906d2e338fd7ab5f606006a04482db3d2"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.45093045802787,
+          "seed": 420016,
+          "sha256": "d236c5b27172b03f0c4c1b613779ca4b155ef41b6034f160c61db04aa9022812",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000008/0/rollout.json",
+          "source_sha256": "68bf0bdb3506bff0a5f335c1f21e79dbc3e98d1cf7e2fe19df589bcfeb6d7866"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.211117330938578,
+          "seed": 420017,
+          "sha256": "38fcf48b21ab826c22a7876b60cc328b22fc1c0c416a8c5bb9277fd8617dd2db",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000008/1/rollout.json",
+          "source_sha256": "e84ea2a899f1e580d8f4187e25ba25f9f4ca00ebacc623c8df6bfcc120aaa805"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.50712596718222,
+          "seed": 420018,
+          "sha256": "2125d36fa2f4ff933e2f3816cb7a581c764b1dbc91af16b295f74db021a3926a",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000009/0/rollout.json",
+          "source_sha256": "7e326720307fd6b18dab51a603916b342905493ad31e873f63cc26651c1c619a"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.170576293952763,
+          "seed": 420019,
+          "sha256": "9b9b7962fc9daba87031694e8788c3c572c3403a01d4a64457e2643f800640de",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000009/1/rollout.json",
+          "source_sha256": "fd8255279a033eb442bde17ee829f0c1ce52dec2ba6921f486415c4ae108e25d"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.505941682960838,
+          "seed": 420020,
+          "sha256": "069332a53afcd515678426258f1df837c4ed6328d2e4f31088638466cd782bc7",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000010/0/rollout.json",
+          "source_sha256": "46a5492d2c29c5b7981ee5b15dcd4e527bc94a10332bc483b10c36e1a0588789"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.265541141852736,
+          "seed": 420021,
+          "sha256": "c18287376188d9830380195fc7b2eab338d45cf971f11b50f4bfd38c1c0a57f6",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000010/1/rollout.json",
+          "source_sha256": "154031523268e5394c093a0123759077af3273fbe28783ea8ce7394ae7b55e06"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.41965495608747,
+          "seed": 420022,
+          "sha256": "a8b27cd651ccc80847eac103ee42702d8ea62ab78a942833c85b33851bdf80f4",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000011/0/rollout.json",
+          "source_sha256": "40fea4250c632f69825eea756b2ad23db3a37f20b76cb963a02a1e9a4d55ade4"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.2913565330673,
+          "seed": 420023,
+          "sha256": "a4615bee8d3126de576b3ce0e207201017f8dd14c46a1cbc7ca0bc72b9a5e570",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000011/1/rollout.json",
+          "source_sha256": "ce42658284735760bcd8becf3320984d1d3673afc4b9b29fa1c264780ad65bdd"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.43996828305535,
+          "seed": 420024,
+          "sha256": "f7efb5e027f8b6bcb056dbf5b539dda8dc5a7bcda057e61013ce21ffe3949466",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000012/0/rollout.json",
+          "source_sha256": "0b2b46d96dd1cbf3c0e0783dd53020dad3ca6ed2a1a00d06120ea2112892d88f"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.376274216920137,
+          "seed": 420025,
+          "sha256": "6ddc912130028fa95fe6daee247c20b42624de89be203d7b8bd7cecd65d8c8d1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000012/1/rollout.json",
+          "source_sha256": "d1106b2b5b4684734a5b2d5f6c64326dd894ac123c733ccc174a004f1e15cf86"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.551020102808252,
+          "seed": 420026,
+          "sha256": "167245e63d2145eb33336817ad24e75bc554e020e9aaef5835662a4ec2f54037",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000013/0/rollout.json",
+          "source_sha256": "104d1d692d92f95cc84d54ba68dfe13a757d441294abdbc3d95f123c518d1c1c"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.228619890054688,
+          "seed": 420027,
+          "sha256": "c1adea71c48a913f3f8192eef9f8ae0c00af6fb68638f4db300c5060cdb46bd5",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000013/1/rollout.json",
+          "source_sha256": "b3cc54d4359f4d1507f400c031005424d145f81cc0b124cda5d65035d3bae611"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.576263828901574,
+          "seed": 420028,
+          "sha256": "c039c87ba1fe4a7f16bb46b1bdc4c7d0dc98ee0573ecba21a7bf0dc18cc47fdb",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000014/0/rollout.json",
+          "source_sha256": "3ae697e14096b03fef78ca0bf748688d7709afb79c42739661dd73f5ccdf89a5"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.340720487991348,
+          "seed": 420029,
+          "sha256": "f5a8acce752fb027fd92d13bfa1a21ecab94c1fe6fd75c585117239681d8da32",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000014/1/rollout.json",
+          "source_sha256": "c7e7d71008bcb81146d9a9d0270b3648ca25ee74b9a5dfaed390f2ecbd91ecdd"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.555524033028632,
+          "seed": 420030,
+          "sha256": "056fd732931fdc20f61463c46fde792b25144f5b398f12675d84f1424e3a6edb",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000015/0/rollout.json",
+          "source_sha256": "fb9f9a5202f3b9e15e0988629660aeaf1d9105ad7b244a11c8821c2a14b8a8bd"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.272985797841102,
+          "seed": 420031,
+          "sha256": "18b3b225ef9aa1d0d1104f1362f45cbfa37843acfe3b0ad557303c8d811c36b0",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000015/1/rollout.json",
+          "source_sha256": "81ebfdecc5b01602089f30a0488c482bb7caed49e1b9ad6e7797c4e2f9bd936a"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.84304227307439,
+          "seed": 420032,
+          "sha256": "48466230288fbc8a3824ad980fcf37522b9c8f22d963b28bbc50ef728d973168",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000016/0/rollout.json",
+          "source_sha256": "3bd7f5ceca911bc2b48dc7c6a32ed1534acbb7f54108ce86697a35c26fb8e88b"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.21546348091215,
+          "seed": 420033,
+          "sha256": "1f7d3f399e317be4564997f3c8e883b3008f9d97a412f5117c6c174455bee5dd",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000016/1/rollout.json",
+          "source_sha256": "4d3c8a876da3c07f29bf623fd766fa8f3dde902ea11afd1e9590a38870d874a5"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.441478302003816,
+          "seed": 420034,
+          "sha256": "0cd79e1cef674daa6b31c2dcb2704ac84614e662c53839db7d2eda6dc578a915",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000017/0/rollout.json",
+          "source_sha256": "28881c65dc778cf45df100eff937a2a0cb05e4e13c515b7827124cfde65d8646"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.22883230005391,
+          "seed": 420035,
+          "sha256": "a7da45ccd08ec88b80e6a246da7490e142a56f633664f52e7fd8583186a4d369",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000017/1/rollout.json",
+          "source_sha256": "e1736e1ac83d3e3a13fb1a8a0ca66c5a54d52ab411e39eeae0f81a2ba7c7eb57"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.364525884157047,
+          "seed": 420036,
+          "sha256": "5f3eaf5c82c8d96a3a6f7275a1a720445b4704a57802380e86c5b07de214efb1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000018/0/rollout.json",
+          "source_sha256": "85b5ff1984ea165fc5ae9f7a9cfa9e3120df9da54c423bb82f9f8997dc4d5014"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.288388651097193,
+          "seed": 420037,
+          "sha256": "81e003bb3887d9f779570ba9c89ed6f2fb7056bcb01f99b51fbc9ada987d1739",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000018/1/rollout.json",
+          "source_sha256": "150526a5b3bf99674d680c29d8c19120cf3db4fec251d4f4c6c52e8055983abf"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.51966843288392,
+          "seed": 420038,
+          "sha256": "80be4c1cdd3eec8a51dbf1e13427f659e6d374f47d56f4cf01498f4cf638d6bd",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000019/0/rollout.json",
+          "source_sha256": "0eb680741e6414924ff516eca48e9af6203109305e90f09ece4f72e33c9927cd"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.318550463067368,
+          "seed": 420039,
+          "sha256": "5969183fdccfe3846a833087e793ede88719ffd009c0b7ad276eed9350b93d00",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000019/1/rollout.json",
+          "source_sha256": "21dd912cb802f547b80d1246ae9d77225e4a14fabf9632719dca4e3e66b24185"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.51565001788549,
+          "seed": 420040,
+          "sha256": "c0152ea4f7c4dff0ef2a92d70eb5e140771e6370bd4248f0b594baca97813ee3",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000020/0/rollout.json",
+          "source_sha256": "57515a14b72d21ad1a41d90fe2b987d3e5ddb8cca27db1c913d629280d274682"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.33397541102022,
+          "seed": 420041,
+          "sha256": "8ce265cf0444ac868a912b27f73652006b504e347b1e9e750f5cc16071aca57c",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000020/1/rollout.json",
+          "source_sha256": "a9e3e77eec93957147d779f2891f83456e1f10c9119fab94e189d601f7fadf4c"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.433597499039024,
+          "seed": 420042,
+          "sha256": "4e95321776a081a0dd98828a72603febf93a9e08911e02a29b4a9de632337cc4",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000021/0/rollout.json",
+          "source_sha256": "80386547a5118733ca6ba6504d672e73de0128eacd0aef20028c83a7ed934b9f"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.27114708488807,
+          "seed": 420043,
+          "sha256": "d7d6312a1ac73ad1cc07423bea914fba7de432de6db60d05d87b98080e281f79",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000021/1/rollout.json",
+          "source_sha256": "95407b5ac1833389764875774ef2297563e5969bc3910a7b35ed28c1a989233e"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.53971889708191,
+          "seed": 420044,
+          "sha256": "389d5a813e4c1eb6927e340a952bc66fdcbd60f0c1a17f5e7f8676e907ab4b7a",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000022/0/rollout.json",
+          "source_sha256": "df4bc0ca092547f219c903b5dfab2b3d65479c025a502959f09cc53e8bc4c2b1"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.259467718889937,
+          "seed": 420045,
+          "sha256": "7ac5ceeb60659769b4692fd84d6c6a82e05f14795401cfdfb8e344575ae57b74",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000022/1/rollout.json",
+          "source_sha256": "8cf524b7c651573c40f2a445337934a21219d9b82b34d8d4ad258bd3f50fa73a"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.562127336859703,
+          "seed": 420046,
+          "sha256": "94fb9be60f301b0998c6273300bcf2b1fb1f6a0e6b77c4402d1366cb0f59b880",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000023/0/rollout.json",
+          "source_sha256": "df7813fb27166afcd0dfce122af228cd2c6cb04afed50316e89782254cd42e4a"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.302585833938792,
+          "seed": 420047,
+          "sha256": "1de0f0598d2f67ec093ef487c6550db2967c1ad1a4d5bfab44a26a8fd518c6b7",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000023/1/rollout.json",
+          "source_sha256": "ad3e985b75e8577d50e26dff33c41718c7adfbfea71f5ccaac042763a8136867"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.405106991995126,
+          "seed": 420048,
+          "sha256": "737fb8e65cf7deabbb01559de7101e45c07f4223292ac89ccbd086c661be508d",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000024/0/rollout.json",
+          "source_sha256": "486c2ecfc58115058876a30331af3afd49ed5e1ae8d763a2f515e76e7ddd076e"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.21662156493403,
+          "seed": 420049,
+          "sha256": "d4fa958b21e5e14c0b7ee3436e48db8257e2448d47c028a37e1be79ae747aec6",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000024/1/rollout.json",
+          "source_sha256": "bc1a2c5c93c8292903259b6b4c6f3cd7eec214f5742b8a4c9f88dd7a53ea76e7"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.771954454947263,
+          "seed": 420050,
+          "sha256": "964a0569a26a594f8c823f0ea0ba48602dc1c5214e484ced08d1feef508ab7d1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000025/0/rollout.json",
+          "source_sha256": "8cfeaafb923661f127c9d37f977fc972f91ade167d0d4aa1c60339b8a314383d"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.326921769883484,
+          "seed": 420051,
+          "sha256": "3b188930b579f6be73b428a58c91b7b320ede92ebe6ebda148483c399c1f3e8a",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000025/1/rollout.json",
+          "source_sha256": "d9247faa6527ee10c2b1a571d64bd6f977049a1ba77a40e773d2feb0be163157"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.47384587302804,
+          "seed": 420052,
+          "sha256": "fbc6ccedf3d7c0e24f7b2a0b537423c8e96150eda28696ebd6b0364e0915f9ff",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000026/0/rollout.json",
+          "source_sha256": "3ca6197c761356aaddb4a5806c4a3ff98cb27467f08ab3c3fea40c5a29e2f931"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.31638673809357,
+          "seed": 420053,
+          "sha256": "db98279d277c74f261a425e9918b8cd5ca00702cfe91eb2b7b05a37bfec7434e",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000026/1/rollout.json",
+          "source_sha256": "631367126694e61f5b1a42dd4f044a3f6c65127e33b0c9c41e2a8deaaafbe9e5"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 29.141253650886938,
+          "seed": 420054,
+          "sha256": "42affee88111f96bc4899f076e7ee989cd3d98c3c230db02fd650350c1301e0e",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000027/0/rollout.json",
+          "source_sha256": "ca0ae5abfd32581fe92c45de4a19125075ce77dd8b0cb3f0ca223b579d41b47b"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.257932785898447,
+          "seed": 420055,
+          "sha256": "61ed75456085effe8eeb99160f7a60de8a100c1fb7a549347b63393640813c38",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000027/1/rollout.json",
+          "source_sha256": "e067f8d5cdfcb13e3774e4abc08efaa8701e66ca32d3eb32b857baa039ad4aaa"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.57258091098629,
+          "seed": 420056,
+          "sha256": "f6a06eeb1141fef60c65b2f3cbb86c3bb691cda75e24672efd7b2128f1d1df1f",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000028/0/rollout.json",
+          "source_sha256": "1437601d4f0881de91cac31d1ee74735e18b0891bd1d8ef6ae057a4344c7d063"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.37139306892641,
+          "seed": 420057,
+          "sha256": "d925d2ce6e69afbe80d7e32eb0342f524f5adb66049b5bafa7a4262b6fdc5932",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000028/1/rollout.json",
+          "source_sha256": "35927277ae50724c44ffad4fa8e192d002cf183aa809e936865c3581ba72980e"
+        },
+        {
+          "seconds": 48.8,
+          "generation_seconds": 22.62702930206433,
+          "seed": 420058,
+          "sha256": "fdc2989cd64cd2ca1855a9ba86501fd04b7e9de12c2c8635159472b9d5868380",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000029/0/rollout.json",
+          "source_sha256": "445021d48d7d0f903298488c8ed50d962eadf74612b28376c39e5ddbebaea50c"
+        },
+        {
+          "seconds": 56.32,
+          "generation_seconds": 26.750671146903187,
+          "seed": 420059,
+          "sha256": "fbbd43977a6745745174a9f47370921bbc077a64c2b33dce543c3bd792850dda",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000029/1/rollout.json",
+          "source_sha256": "631f8a886fad5bf4944c61e9bf2adda357f121bb0070ff3302b288a720fe5f68"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.49408837221563,
+          "seed": 420060,
+          "sha256": "8afb3ef806210e2274e7c821194982b079b7f4146beb90861e627a551559929d",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000030/0/rollout.json",
+          "source_sha256": "0449ea52cd62de0b5a96755e7a387a9f97727a519035bedc3866a4ac7b30a02e"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.20718255499378,
+          "seed": 420061,
+          "sha256": "dd75143e881f204950dd20759c84755e7e88a72318890f2a47c24153116e0b35",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000030/1/rollout.json",
+          "source_sha256": "96993e5b65fd9e301ffac9e72e94c01ac45a0024d9458f5982bbf4af423e0d89"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.677778313867748,
+          "seed": 420062,
+          "sha256": "a0f55c0ea28bcdaf987e50bd2055e3ecea5d55515c84e57d5fb8f4c82939842e",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000031/0/rollout.json",
+          "source_sha256": "10922fad3768fa88b9e020a353ee4335a27e363a2ba794fcc7b87dbf459d932d"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.36113620805554,
+          "seed": 420063,
+          "sha256": "0d93dcda2deae7dbd1454723666b396fecdb0ac44315b1e7d4513acfbbc81c47",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000031/1/rollout.json",
+          "source_sha256": "a3747fd0ae6d2ffc6e32e1f6b3eb75efc896bf77f438891e947755be7e557f68"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.503516874974594,
+          "seed": 420064,
+          "sha256": "7b3937d4e8e9d17b074365cc0263a296af5ce4b78ff7043563b8797958db1416",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000032/0/rollout.json",
+          "source_sha256": "b5cc1b4ac9df539ee4cafc9599f1af15e151f4cee14bcc934812899e8c1aa0c6"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.399526346009225,
+          "seed": 420065,
+          "sha256": "4dc7e6f231cf9586527a7382776ca65a5ad37b9627669a04aa8a4ea845dd6194",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000032/1/rollout.json",
+          "source_sha256": "e19d594076351e1cbef531c7894041e0157829be7d5d04e63db8cb427a20058d"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.572845882968977,
+          "seed": 420066,
+          "sha256": "3fdcf5e70ce2c2334a1b2acd8fbf229e7e0f4ff94e2c146229f6ad4cf4511f40",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000033/0/rollout.json",
+          "source_sha256": "d47236a223b41a2739c8682a3590e2515ca74193031ae03c7bee907c27ac79c1"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.39702801196836,
+          "seed": 420067,
+          "sha256": "e551f53bf7d1e58a7a043043106d07c1076552de45eefd854871a0dc11c0434b",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000033/1/rollout.json",
+          "source_sha256": "1d5b360c34601747ad04df7642cca5f7cc6e3ce7c73323a0cf642406d5e146b4"
+        },
+        {
+          "seconds": 56.96,
+          "generation_seconds": 27.632531156996265,
+          "seed": 420068,
+          "sha256": "17ad0e22a0987423c7f0e4ff4a5bbc349276b6fddb7bcf5facb99163b8db49d4",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000034/0/rollout.json",
+          "source_sha256": "68f1878fbf35ebac9c8356a7dcf018f1d8489dbe1671276ec566dfcebec83f81"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.343145549064502,
+          "seed": 420069,
+          "sha256": "410e63c634d39a591dd7b1320621787253dc3fd0e62132763559ac659df8ab2d",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000034/1/rollout.json",
+          "source_sha256": "b961f6f028dc110e4444f3ca37cdefdf3ebee8d77510acfa1d70f680d323efe8"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.527934928890318,
+          "seed": 420070,
+          "sha256": "5b6300db52288fc86d141f1d090c65f22c0e8a6417d751ce78a274ad437088d3",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000035/0/rollout.json",
+          "source_sha256": "6b4078e8d4ad2b54928437b2e92a9b23461404c1e0232ec9477d84014c3167e1"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.29288889397867,
+          "seed": 420071,
+          "sha256": "497a277232e04ea2a3c175ed9b0191593f97175c9fa47dbf0f79d682d56229d1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000035/1/rollout.json",
+          "source_sha256": "421052e35f9f1f06032d4597c2b4eb9f7c0d3b8c5b51858dccc9d685d197c398"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.535656105959788,
+          "seed": 420072,
+          "sha256": "34bf6bf3bcb97c186a0be50336a4c7582b0c3cf35ddc87ecb60b13a8179b99a1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000036/0/rollout.json",
+          "source_sha256": "7bbd682c458fc95ad4c778e79ddb68e05c05b0cb178d41217555ef37ec553359"
+        },
+        {
+          "seconds": 60.08,
+          "generation_seconds": 28.444638638058677,
+          "seed": 420073,
+          "sha256": "b910e17e6775a8cf182e8b613ff49c6f1dcdf332113031a3add651dd0bb26ca1",
+          "source": "/scratch/iv96/hm6416/open-music-rl-20261014/outputs/heartmula-richness-3e-4/train_rollouts/000036/1/rollout.json",
+          "source_sha256": "33a6f7facb3c3efd54dfab449d2867d59098eb97c6c4b6538128eb22e0967266"
+        }
+      ],
+      "scope": "Historical native60s-budget head-only rollouts, not new backbone training speed. Includes native global/local generation, HeartCodec, action/logp collection and policy-record save; excludes scoring, updates and initialization. Native precision from archived backend: BF16 generator, FP32 codec; global action distribution FP32, CFG1.5, local topk50."
+    }
+  }
+}

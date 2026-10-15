@@ -1,0 +1,110 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+
+const root = new URL('../../music-gen/lyrics2song/model-costs/', import.meta.url);
+const read = (name) => JSON.parse(fs.readFileSync(new URL(name, root)));
+const optional = (name) => fs.existsSync(new URL(name, root)) ? read(name) : null;
+const hf = read('native-hf-final-counts.json').components;
+const heart = read('native-heart-counts.json').components;
+const bloom = read('native-songbloom-counts.json').components;
+const weights = read('weight-audit.json').components;
+const native = { ...hf, ...heart, ...bloom,
+  'diffrhythm2-core': { unique_parameters: 1136249664, lora: weights['diffrhythm2-core'].lora_shape_plan } };
+const local = read('timing-5090.json').measurements;
+const historical = read('timing-heart.json').measurements;
+const codec = optional('mucodec-parameters.json');
+const median = (values) => {
+  const sorted = [...values].sort((a,b) => a-b), half = Math.floor(sorted.length/2);
+  return sorted.length % 2 ? sorted[half] : (sorted[half-1]+sorted[half])/2;
+};
+const records = [
+  ['yue2','YuE2','YuE2-3B · AR/NAR MoT','yue2-core',
+    '新计划：仅 semantic AR attention+MLP；NAR / VAE 固定。TRL迁移尚未提交。旧 q/v rank4 为802,816参数，不能替代此新计划数值。',
+    'VAE 132,616,130；完整 MoT+VAE 3,712,968,706。固定位置编码50,331,648不计参数。',
+    'https://huggingface.co/m-a-p/YuE2-3B'],
+  ['muse','Muse','Muse-0.6b · Qwen3','muse-core',
+    '新正式任务：rank8 all-linear attention+MLP；tied embedding / output head只计一次，codec固定。',
+    codec ? `MuCodec ${codec.unique_parameters.toLocaleString('en-US')}；LM+已加载codec ${(native['muse-core'].unique_parameters+codec.unique_parameters).toLocaleString('en-US')}。` : 'MuCodec独立列项，尚未取得原生加载参数回执；不能把0.6126B当整链总数。',
+    'https://huggingface.co/bolshyC/Muse-0.6b'],
+  ['diffrhythm2','DiffRhythm2','ASLP-lab v2 · DiT','diffrhythm2-core',
+    '已验收并启动：112个DiT attention+MLP模块；rank8 / alpha16。',
+    '另有Music VAE decoder和MuQ-MuLan条件编码器；不把它们算进1.1362B主干，也不冒称已核完整整链总数。',
+    'https://huggingface.co/ASLP-lab/DiffRhythm2'],
+  ['heartmula','HeartMuLa','oss-3B-happy-new-year','heartmula-core',
+    '新正式任务：217个global/local attention+MLP模块，8个codebook参与loss；codec固定。',
+    'HeartCodec 1,655,308,877；完整LM+codec 5,593,422,413。含codec内flow网络，固定buffer不计。',
+    'https://huggingface.co/HeartMuLa/HeartMuLa-oss-3B-happy-new-year'],
+  ['songbloom','SongBloom','社区恢复 full-150s · 36 AR / 12 NAR','songbloom-core',
+    '形状核验的新计划：60个nar_dit线性模块；AR planner / VAE固定；完整Miles worker尚未提交。',
+    'VAE 168,695,426；去重整链 2,041,068,355。原checkpoint重复VAE别名与38,064个buffer不计。',
+    'https://arxiv.org/abs/2506.07634'],
+  ['acestep15','ACE-Step1.5','v15-base · 非XL / 非Turbo','acestep-base',
+    '形状核验的新计划：decoder self/cross-attention+MLP，264模块；尚未提交RL，不借用Turbo测速。',
+    'Text encoder 595,776,512 + VAE168,695,426：无planner整链3,158,344,456；可选1.7B planner实为1,854,243,840，总计5,012,588,296。',
+    'https://huggingface.co/ACE-Step/acestep-v15-base'],
+];
+const models = records.map(([id,name,checkpoint,key,plan,components,url]) => {
+  const raw = native[key], parameters = raw.unique_parameters, lora = raw.lora.parameters;
+  assert.ok(Number.isSafeInteger(parameters) && parameters>0);
+  assert.ok(Number.isSafeInteger(lora) && lora>0 && raw.lora.modules>0);
+  return { id,name,checkpoint,parameters,lora_parameters:lora,lora_modules:raw.lora.modules,
+    lora_rank:8,lora_alpha:16,lora_percent:100*lora/parameters,plan,components,
+    parameter_evidence:key==='diffrhythm2-core' ? 'Native loaded-model count + safetensors shape cross-check' : 'Native unique nn.Parameters; meta construction, explicit HF tie_weights; fixed buffers excluded',
+    source:url };
+});
+const timing = [];
+for (const id of ['yue2','muse','acestep15']) {
+  const raw = optional(`${id==='acestep15'?'acestep':id}-timing.json`);
+  const rows = (raw?.rows || []).filter(r => !r.warmup && [60,300].includes(r.target_seconds));
+  timing.push({ id,kind:rows.length?'measured':'unavailable',hardware:raw?.device || 'n/a · 未取得有效计时',
+    backend:raw?.backend || '尚无本checkpoint的完整推理计时',scope:raw?.scope || '不以训练更新耗时或Turbo宣传速度填充Base的RTF。',
+    n:rows.length,rows,load_seconds:raw?.model_load_seconds ?? null,duration_control:raw?.duration_control ?? null,
+    source:rows.length?`${id==='acestep15'?'acestep':id}-timing.json`:null });
+}
+for (const [id,raw] of [['diffrhythm2',local.diffrhythm2],['heartmula',historical.heartmula]]) {
+  const rate = median(raw.rows.map(r=>r.generation_seconds/r.seconds));
+  timing.push({id,kind:raw.kind,hardware:raw.device,backend:id==='diffrhythm2'?'FP16 · native32 ODE steps / CFG2':'BF16 LM + FP32 HeartCodec · 历史rollout',
+    scope:raw.scope,n:raw.rows.length,median_rtf:rate,
+    measured_audio_range:[Math.min(...raw.rows.map(r=>r.seconds)),Math.max(...raw.rows.map(r=>r.seconds))],
+    rtf_range:[Math.min(...raw.rows.map(r=>r.generation_seconds/r.seconds)),Math.max(...raw.rows.map(r=>r.generation_seconds/r.seconds))],
+    rows:[{target_seconds:60,actual_audio_seconds:median(raw.rows.map(r=>r.seconds)),wall_seconds:median(raw.rows.map(r=>r.generation_seconds)),rtf:rate,
+           kind:'measured'},
+          {target_seconds:300,wall_seconds:rate*300,rtf:rate,kind:'linear-estimate',
+           caveat:id==='heartmula'?'超默认240s，尚未验证原生300s输出':'未执行300s，长上下文可能非线性变慢'}],
+    source:id==='diffrhythm2'?'timing-5090.json':'timing-heart.json'});
+}
+timing.push({id:'songbloom',kind:'author-reference',hardware:'作者未注明测速GPU',backend:'论文 full / 36 diffusion steps，不是本站8步smoke',n:null,
+  median_rtf:1.649,scope:'论文Table2报告RTF1.649，未明确测速硬件和时段；不可作本站跨硬件排行。60s是按该比率换算，不是本站实测。',
+  rows:[{target_seconds:60,wall_seconds:1.649*60,rtf:1.649,kind:'author-rate-estimate'},
+        {target_seconds:300,wall_seconds:null,kind:'unsupported',caveat:'本checkpoint上限150s，不把拼接或线性算术伪装成原生300s'}],
+  source:'https://arxiv.org/html/2506.07634v1#S6'});
+const localBloom=optional('songbloom-timing.json');
+if(localBloom){
+  const row=timing.find(r=>r.id==='songbloom');
+  const measured=localBloom.rows.filter(r=>!r.warmup&&r.target_seconds===60);
+  assert.equal(measured.length,1);
+  Object.assign(row,{kind:'measured',hardware:localBloom.device,backend:localBloom.backend,n:1,
+    median_rtf:undefined,scope:localBloom.scope,rows:[...measured,row.rows[1]],
+    load_seconds:localBloom.model_load_seconds,duration_control:localBloom.duration_control,source:'songbloom-timing.json'});
+}
+timing.sort((a,b)=>models.findIndex(r=>r.id===a.id)-models.findIndex(r=>r.id===b.id));
+timing.push({id:'acestep15-official',name:'ACE-Step1.5 · 官方快配置参考',kind:'author-reference',
+  hardware:'A100 · 作者演示240s歌曲 /2s生成',backend:'官方快配置，未披露精确checkpoint/steps/planner范围；不是本站Base50-step计时',n:null,
+  median_rtf:2/240,scope:'官方项目页明确4-min song on A100 /2s。60/300s均为线性换算，不是实测，不用于预测当前Base RL模型。',
+  rows:[60,300].map(seconds=>({target_seconds:seconds,wall_seconds:seconds*2/240,rtf:2/240,kind:'author-rate-estimate'})),
+  source:'https://ace-step.github.io/ace-step-v1.5.github.io/'});
+const value={schema:1,checked_at:'2026-10-15',title:'模型规模与推理等待时间',
+  definition:'RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.',
+  scope:'Six exact local checkpoints, batch1. No new training, no training interruption. Independent Gadi A100 interactive timing;5090 CPU/meta audit and existing logs only. Models and hardware differ; not a speed leaderboard.',
+  interpretation:'实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。',
+  models,timing,
+  references:[{label:'YuE2参数口径与MoT',url:'https://arxiv.org/html/2609.33757v1#A1.SS5'},
+    {label:'DiffRhythm2官方4090测速：120s /25.6s /32steps；非本站5090',url:'https://arxiv.org/html/2510.22950v2#A2'},
+    {label:'HeartMuLa官方RTF≈1.0，硬件未给，不代替本站记录',url:'https://github.com/HeartMuLa/heartlib#-todos'},
+    {label:'SongBloom原生150s上限与RTF',url:'https://arxiv.org/html/2506.07634v1#S5.SS2'},
+    {label:'ACE-Step1.5区分base与turbo；不从“每首<2s”虚构RTF',url:'https://github.com/ace-step/ACE-Step-1.5'}]};
+const output=new URL('../site/demos/data/model-costs.json',import.meta.url);
+const serialized=JSON.stringify(value,null,2)+'\n';
+if(process.argv.includes('--check'))assert.equal(fs.readFileSync(output,'utf8'),serialized);
+else fs.writeFileSync(output,serialized);
+console.log('Six-model parameter/LoRA counts and latency evidence verified; direct timing, extrapolation, author reference and unsupported durations separated.');

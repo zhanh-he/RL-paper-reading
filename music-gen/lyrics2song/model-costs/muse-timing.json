@@ -1,0 +1,39 @@
+{
+  "model": "Muse-0.6B",
+  "device": "NVIDIA A100-SXM4-80GB",
+  "torch": "2.8.0+cu128",
+  "backend": "Transformers SDPA BF16 + native MuCodec HTTP FP16 diffusion20steps",
+  "model_load_seconds": 21.95276316604577,
+  "rows": [
+    {
+      "target_seconds": 4,
+      "actual_audio_seconds": 4.0,
+      "wall_seconds": 19.359334965003654,
+      "rtf": 4.839833741250914,
+      "lm_seconds": 6.409593197051436,
+      "decode_api_seconds": 12.949620728031732,
+      "decoder_inference_seconds": 12.901073932647705,
+      "warmup": true,
+      "audio_tokens": 100,
+      "all_generated_tokens": 105,
+      "seed": 5101,
+      "generated_tokens_sha256": "3834912439238e8034388ebde4a36a6ba415fcd95c3ac350ab160aed80ba021e"
+    },
+    {
+      "target_seconds": 60,
+      "actual_audio_seconds": 60.0,
+      "wall_seconds": 58.79675351793412,
+      "rtf": 0.9799458919655687,
+      "lm_seconds": 40.63747915602289,
+      "decode_api_seconds": 18.159064154024236,
+      "decoder_inference_seconds": 17.79508686065674,
+      "warmup": false,
+      "audio_tokens": 1500,
+      "all_generated_tokens": 1512,
+      "seed": 5101,
+      "generated_tokens_sha256": "47bf161679ac15bacff9228efd2b74efb9269335a1f93770c75b84c71505a9b7"
+    }
+  ],
+  "scope": "One fixed CMI valid condition; warm LM+decoder API including transfer/base64; load, queue, scorer and MP3 encode excluded",
+  "duration_control": "Native25Hz audio codes; EOS suppressed to audio-token target; no waveform loops"
+}

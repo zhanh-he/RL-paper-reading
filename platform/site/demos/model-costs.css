@@ -1,0 +1,13 @@
+#view-model-costs h3 { margin: 28px 0 10px; font-size: 19px; }
+#view-model-costs .model-cost-table { min-width: 1120px; width: 100%; table-layout: fixed; }
+#view-model-costs th, #view-model-costs td { padding: 12px; border-bottom: 1px solid var(--line, #dce2e1); text-align: left; }
+#view-model-costs .model-cost-table th:first-child { width: 17%; }
+#view-model-costs .model-cost-table th:nth-child(2) { width: 22%; }
+#view-model-costs .model-cost-table th:nth-child(3) { width: 18%; }
+#view-model-costs .model-cost-table td { vertical-align: top; white-space: normal; overflow-wrap: anywhere; line-height: 1.6; }
+#view-model-costs .model-cost-table strong { display: block; font-size: 13px; font-weight: 600; }
+#view-model-costs .model-cost-table small { display: block; font-size: 11px; margin-top: 6px; line-height: 1.7; }
+#view-model-costs .model-cost-sources section { padding: 12px 0; border-bottom: 1px solid var(--line, #dce2e1); }
+#view-model-costs .table-scroll { max-width: 100%; overflow-x: auto; }
+#view-model-costs .model-cost-sources { overflow-wrap: anywhere; }
+#view-model-costs [data-cost="evidence"] section { padding: 12px 0; border-bottom: 1px solid var(--line, #dce2e1); }
