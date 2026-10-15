@@ -32,6 +32,20 @@
       "all_generated_tokens": 1512,
       "seed": 5101,
       "generated_tokens_sha256": "47bf161679ac15bacff9228efd2b74efb9269335a1f93770c75b84c71505a9b7"
+    },
+    {
+      "target_seconds": 300,
+      "actual_audio_seconds": 300.0,
+      "wall_seconds": 291.7003935740795,
+      "rtf": 0.9723346452469317,
+      "lm_seconds": 202.13327432703227,
+      "decode_api_seconds": 89.5663235289976,
+      "decoder_inference_seconds": 87.4996976852417,
+      "warmup": false,
+      "audio_tokens": 7500,
+      "all_generated_tokens": 7517,
+      "seed": 5101,
+      "generated_tokens_sha256": "5dde08bf13dd6ea297163cbf268f034207d5119bd44b2fa194ce9a05314555af"
     }
   ],
   "scope": "One fixed CMI valid condition; warm LM+decoder API including transfer/base64; load, queue, scorer and MP3 encode excluded",

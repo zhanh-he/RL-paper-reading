@@ -1,0 +1,20 @@
+{
+  "model": "SongBloom full-150s",
+  "device": "NVIDIA A100-SXM4-80GB",
+  "torch": "2.9.1+cu128",
+  "backend": "Native BF16 /36 Euler steps /CFG1.5; first call, no kernel warmup",
+  "model_load_seconds": 48.79090160294436,
+  "rows": [
+    {
+      "target_seconds": 60,
+      "actual_audio_seconds": 60.16,
+      "wall_seconds": 93.08114840800408,
+      "rtf": 1.547226536037302,
+      "warmup": false,
+      "seed": 5101,
+      "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3"
+    }
+  ],
+  "scope": "One CMI valid input, native10s audio condition + lyrics; includes condition read/resample/encode, AR/NAR and VAE, no file save. Model initialized but first call not warmed. No scorer or update.",
+  "duration_control": "Native cfg.max_dur=60; full checkpoint has150s limit; no300s claim"
+}

@@ -4,6 +4,8 @@
 #view-model-costs .model-cost-table th:first-child { width: 17%; }
 #view-model-costs .model-cost-table th:nth-child(2) { width: 22%; }
 #view-model-costs .model-cost-table th:nth-child(3) { width: 18%; }
+#view-model-costs .model-cost-table td:first-child { position: sticky; left: 0; z-index: 2; background: var(--surface, #fff); }
+#view-model-costs .model-cost-table th:first-child { position: sticky; left: 0; z-index: 3; background: #e9edea; }
 #view-model-costs .model-cost-table td { vertical-align: top; white-space: normal; overflow-wrap: anywhere; line-height: 1.6; }
 #view-model-costs .model-cost-table strong { display: block; font-size: 13px; font-weight: 600; }
 #view-model-costs .model-cost-table small { display: block; font-size: 11px; margin-top: 6px; line-height: 1.7; }

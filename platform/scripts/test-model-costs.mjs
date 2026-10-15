@@ -29,6 +29,8 @@ for(const arm of data.timing){
 assert.equal(data.timing.find(m=>m.id==='songbloom').rows[1].kind,'unsupported');
 assert.equal(data.timing.find(m=>m.id==='acestep15').kind,'unavailable');
 assert.equal(data.timing.find(m=>m.id==='acestep15-official').kind,'author-reference');
+assert.equal(data.timing.find(m=>m.id==='diffrhythm2').n,29);
+assert.equal(data.timing.find(m=>m.id==='heartmula').n,69);
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const browser=await chromium.launch({headless:true,channel:'chrome'});
 const output=process.env.QA_OUTPUT||'/tmp/model-costs-qa';
@@ -53,7 +55,8 @@ try{
     await root.locator('[data-cost-filter="measured"]').click();
     assert.equal(await root.locator('[data-cost="timing"] tr').count(),data.timing.filter(r=>r.kind.startsWith('measured')).length);
     await root.locator('[data-cost-filter="all"]').click();
-    const download=await page.request.get(new URL('data/model-costs.json',page.url()).href);
+    const href=await root.locator('a[download]').getAttribute('href');
+    const download=await page.request.get(new URL(href,page.url()).href);
     assert.equal(download.status(),200);
     assert.equal((await download.json()).models.length,6);
     await page.screenshot({path:`${output}/${width}.png`,fullPage:true});

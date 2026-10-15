@@ -105,6 +105,7 @@
       "backend": "torch-eager",
       "scope": "One fixed CMI valid condition; model load separate; native plan+semantic+NAR+VAE; no scoring or MP3 encoding",
       "n": 2,
+      "n_label": "2次计时 / 1条条件",
       "rows": [
         {
           "target_seconds": 60,
@@ -209,7 +210,8 @@
       "hardware": "NVIDIA A100-SXM4-80GB",
       "backend": "Transformers SDPA BF16 + native MuCodec HTTP FP16 diffusion20steps",
       "scope": "One fixed CMI valid condition; warm LM+decoder API including transfer/base64; load, queue, scorer and MP3 encode excluded",
-      "n": 1,
+      "n": 2,
+      "n_label": "2次计时 / 1条条件",
       "rows": [
         {
           "target_seconds": 60,
@@ -224,6 +226,20 @@
           "all_generated_tokens": 1512,
           "seed": 5101,
           "generated_tokens_sha256": "47bf161679ac15bacff9228efd2b74efb9269335a1f93770c75b84c71505a9b7"
+        },
+        {
+          "target_seconds": 300,
+          "actual_audio_seconds": 300,
+          "wall_seconds": 291.7003935740795,
+          "rtf": 0.9723346452469317,
+          "lm_seconds": 202.13327432703227,
+          "decode_api_seconds": 89.5663235289976,
+          "decoder_inference_seconds": 87.4996976852417,
+          "warmup": false,
+          "audio_tokens": 7500,
+          "all_generated_tokens": 7517,
+          "seed": 5101,
+          "generated_tokens_sha256": "5dde08bf13dd6ea297163cbf268f034207d5119bd44b2fa194ce9a05314555af"
         }
       ],
       "load_seconds": 21.95276316604577,
@@ -235,9 +251,10 @@
       "kind": "measured",
       "hardware": "RTX5090 32GB",
       "backend": "FP16 · native32 ODE steps / CFG2",
-      "scope": "Native32-step ODE, CFG2; same zero adapter,30 fixed valid inputs; includes style embedding, transfers, decoder and private FLAC write; excludes scorer, training and model initialization",
-      "n": 30,
-      "median_rtf": 0.39761372193849337,
+      "scope": "Native32-step ODE, CFG2; same zero adapter,30 fixed valid inputs; includes style embedding, transfers, decoder and private FLAC write; excludes scorer, training and model initialization. Full receipt has30 rows, including1 early stops. The60s statistics and300s extrapolation use only29 outputs within60±0.1s; early stops are not padded or relabeled60s.",
+      "n": 29,
+      "n_label": "29/30条约60s · 中位数",
+      "median_rtf": 0.397598962392658,
       "measured_audio_range": [
         31.8,
         60
@@ -250,14 +267,15 @@
         {
           "target_seconds": 60,
           "actual_audio_seconds": 60,
-          "wall_seconds": 23.855870188679546,
-          "rtf": 0.39761372193849337,
-          "kind": "measured"
+          "wall_seconds": 23.85593774355948,
+          "rtf": 0.397598962392658,
+          "kind": "measured",
+          "caveat": "29条足长输出；1条早停不混入60s统计"
         },
         {
           "target_seconds": 300,
-          "wall_seconds": 119.284116581548,
-          "rtf": 0.39761372193849337,
+          "wall_seconds": 119.2796887177974,
+          "rtf": 0.397598962392658,
           "kind": "linear-estimate",
           "caveat": "未执行300s，长上下文可能非线性变慢"
         }
@@ -269,9 +287,10 @@
       "kind": "measured-rollout-proxy",
       "hardware": "NVIDIA H200 / Gadi gpuhopper",
       "backend": "BF16 LM + FP32 HeartCodec · 历史rollout",
-      "scope": "Historical native60s-budget head-only rollouts, not new backbone training speed. Includes native global/local generation, HeartCodec, action/logp collection and policy-record save; excludes scoring, updates and initialization. Native precision from archived backend: BF16 generator, FP32 codec; global action distribution FP32, CFG1.5, local topk50.",
-      "n": 72,
-      "median_rtf": 0.47248087740419853,
+      "scope": "Historical native60s-budget head-only rollouts, not new backbone training speed. Includes native global/local generation, HeartCodec, action/logp collection and policy-record save; excludes scoring, updates and initialization. Native precision from archived backend: BF16 generator, FP32 codec; global action distribution FP32, CFG1.5, local topk50.. Full receipt has72 rows, including3 early stops. The60s statistics and300s extrapolation use only69 outputs within60±0.1s; early stops are not padded or relabeled60s.",
+      "n": 69,
+      "n_label": "69/72条约60s · 中位数",
+      "median_rtf": 0.4723081594027986,
       "measured_audio_range": [
         48.8,
         60.08
@@ -284,14 +303,15 @@
         {
           "target_seconds": 60,
           "actual_audio_seconds": 60.08,
-          "wall_seconds": 28.367959476541728,
-          "rtf": 0.47248087740419853,
-          "kind": "measured"
+          "wall_seconds": 28.376274216920137,
+          "rtf": 0.4723081594027986,
+          "kind": "measured",
+          "caveat": "69条足长输出；3条早停不混入60s统计"
         },
         {
           "target_seconds": 300,
-          "wall_seconds": 141.74426322125956,
-          "rtf": 0.47248087740419853,
+          "wall_seconds": 141.69244782083956,
+          "rtf": 0.4723081594027986,
           "kind": "linear-estimate",
           "caveat": "超默认240s，尚未验证原生300s输出"
         }
@@ -300,18 +320,20 @@
     },
     {
       "id": "songbloom",
-      "kind": "author-reference",
-      "hardware": "作者未注明测速GPU",
-      "backend": "论文 full / 36 diffusion steps，不是本站8步smoke",
-      "n": null,
-      "median_rtf": 1.649,
-      "scope": "论文Table2报告RTF1.649，未明确测速硬件和时段；不可作本站跨硬件排行。60s是按该比率换算，不是本站实测。",
+      "kind": "measured",
+      "hardware": "NVIDIA A100-SXM4-80GB",
+      "backend": "Native BF16 /36 Euler steps /CFG1.5; first call, no kernel warmup",
+      "n": 1,
+      "scope": "One CMI valid input, native10s audio condition + lyrics; includes condition read/resample/encode, AR/NAR and VAE, no file save. Model initialized but first call not warmed. No scorer or update.",
       "rows": [
         {
           "target_seconds": 60,
-          "wall_seconds": 98.94,
-          "rtf": 1.649,
-          "kind": "author-rate-estimate"
+          "actual_audio_seconds": 60.16,
+          "wall_seconds": 93.08114840800408,
+          "rtf": 1.547226536037302,
+          "warmup": false,
+          "seed": 5101,
+          "condition_id": "026639d06a3a63d1ee4c8c61a65ec8822555d20b8f647ccc82151467ac8fa6d3"
         },
         {
           "target_seconds": 300,
@@ -320,7 +342,10 @@
           "caveat": "本checkpoint上限150s，不把拼接或线性算术伪装成原生300s"
         }
       ],
-      "source": "https://arxiv.org/html/2506.07634v1#S6"
+      "source": "songbloom-timing.json",
+      "n_label": "1次计时 / 1条条件",
+      "load_seconds": 48.79090160294436,
+      "duration_control": "Native cfg.max_dur=60; full checkpoint has150s limit; no300s claim"
     },
     {
       "id": "acestep15",
@@ -329,6 +354,7 @@
       "backend": "尚无本checkpoint的完整推理计时",
       "scope": "不以训练更新耗时或Turbo宣传速度填充Base的RTF。",
       "n": 0,
+      "n_label": null,
       "rows": [],
       "load_seconds": null,
       "duration_control": null,

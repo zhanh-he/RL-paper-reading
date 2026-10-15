@@ -58,17 +58,20 @@ for (const id of ['yue2','muse','acestep15']) {
   const rows = (raw?.rows || []).filter(r => !r.warmup && [60,300].includes(r.target_seconds));
   timing.push({ id,kind:rows.length?'measured':'unavailable',hardware:raw?.device || 'n/a · 未取得有效计时',
     backend:raw?.backend || '尚无本checkpoint的完整推理计时',scope:raw?.scope || '不以训练更新耗时或Turbo宣传速度填充Base的RTF。',
-    n:rows.length,rows,load_seconds:raw?.model_load_seconds ?? null,duration_control:raw?.duration_control ?? null,
+    n:rows.length,n_label:rows.length?`${rows.length}次计时 / 1条条件`:null,rows,load_seconds:raw?.model_load_seconds ?? null,duration_control:raw?.duration_control ?? null,
     source:rows.length?`${id==='acestep15'?'acestep':id}-timing.json`:null });
 }
 for (const [id,raw] of [['diffrhythm2',local.diffrhythm2],['heartmula',historical.heartmula]]) {
-  const rate = median(raw.rows.map(r=>r.generation_seconds/r.seconds));
+  const complete=raw.rows.filter(r=>Math.abs(r.seconds-60)<=.1);
+  assert.ok(complete.length>0);
+  const rate = median(complete.map(r=>r.generation_seconds/r.seconds));
   timing.push({id,kind:raw.kind,hardware:raw.device,backend:id==='diffrhythm2'?'FP16 · native32 ODE steps / CFG2':'BF16 LM + FP32 HeartCodec · 历史rollout',
-    scope:raw.scope,n:raw.rows.length,median_rtf:rate,
+    scope:raw.scope+`. Full receipt has${raw.rows.length} rows, including${raw.rows.length-complete.length} early stops. The60s statistics and300s extrapolation use only${complete.length} outputs within60±0.1s; early stops are not padded or relabeled60s.`,
+    n:complete.length,n_label:`${complete.length}/${raw.rows.length}条约60s · 中位数`,median_rtf:rate,
     measured_audio_range:[Math.min(...raw.rows.map(r=>r.seconds)),Math.max(...raw.rows.map(r=>r.seconds))],
     rtf_range:[Math.min(...raw.rows.map(r=>r.generation_seconds/r.seconds)),Math.max(...raw.rows.map(r=>r.generation_seconds/r.seconds))],
-    rows:[{target_seconds:60,actual_audio_seconds:median(raw.rows.map(r=>r.seconds)),wall_seconds:median(raw.rows.map(r=>r.generation_seconds)),rtf:rate,
-           kind:'measured'},
+    rows:[{target_seconds:60,actual_audio_seconds:median(complete.map(r=>r.seconds)),wall_seconds:median(complete.map(r=>r.generation_seconds)),rtf:rate,
+           kind:'measured',caveat:`${complete.length}条足长输出；${raw.rows.length-complete.length}条早停不混入60s统计`},
           {target_seconds:300,wall_seconds:rate*300,rtf:rate,kind:'linear-estimate',
            caveat:id==='heartmula'?'超默认240s，尚未验证原生300s输出':'未执行300s，长上下文可能非线性变慢'}],
     source:id==='diffrhythm2'?'timing-5090.json':'timing-heart.json'});
@@ -83,7 +86,7 @@ if(localBloom){
   const row=timing.find(r=>r.id==='songbloom');
   const measured=localBloom.rows.filter(r=>!r.warmup&&r.target_seconds===60);
   assert.equal(measured.length,1);
-  Object.assign(row,{kind:'measured',hardware:localBloom.device,backend:localBloom.backend,n:1,
+  Object.assign(row,{kind:'measured',hardware:localBloom.device,backend:localBloom.backend,n:1,n_label:'1次计时 / 1条条件',
     median_rtf:undefined,scope:localBloom.scope,rows:[...measured,row.rows[1]],
     load_seconds:localBloom.model_load_seconds,duration_control:localBloom.duration_control,source:'songbloom-timing.json'});
 }

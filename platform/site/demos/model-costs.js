@@ -19,18 +19,18 @@ function render(){
     const kind=r.kind==='measured-rollout-proxy'?'历史rollout实测 · 非纯服务基准':r.kind==='author-reference'?'作者参考 · 非本站实测':r.kind==='unavailable'?'n/a · 当前checkpoint未测':'独立实测';
     tr.append(cell(name,kind),cell(r.hardware,r.backend));
     const direct=r.rows.filter(v=>[60,300].includes(v.target_seconds)&&Number.isFinite(v.rtf));
-    tr.append(cell(Number.isFinite(r.median_rtf)?rate(r.median_rtf):direct.length?direct.map(v=>`${v.target_seconds}s: ${rate(v.rtf)}`).join(' / '):'n/a',r.n?`n=${r.n}${r.median_rtf?' · 中位数':''}`:''));
+    tr.append(cell(Number.isFinite(r.median_rtf)?rate(r.median_rtf):direct.length?direct.map(v=>`${v.target_seconds}s: ${rate(v.rtf)}`).join(' / '):'n/a',r.n_label||(r.n?`n=${r.n}${r.median_rtf?' · 中位数':''}`:'')));
     for(const seconds of [60,300]){
       const sample=r.rows.find(v=>v.target_seconds===seconds);
       const type=sample?.kind||'measured';
-      tr.append(cell(time(sample?.wall_seconds),sample?[labels[type],sample.caveat].filter(Boolean).join(' · '):'尚无有效计时，未虚构RTF'));
+      tr.append(cell(time(sample?.wall_seconds),sample?[labels[type],type==='measured'&&Number.isFinite(sample.actual_audio_seconds)?`输出${sample.actual_audio_seconds.toFixed(2)}s`:null,sample.caveat].filter(Boolean).join(' · '):'尚无有效计时，未虚构RTF'));
     }
     return tr;
   }));
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.costFilter===filter)));
 }
 try{
-  const response=await fetch('./data/model-costs.json',{cache:'no-store'});
+  const response=await fetch('./data/model-costs.json?v=20261015-native-timings',{cache:'no-store'});
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   data=await response.json();
   $('parameters').replaceChildren(...data.models.map(m=>{
