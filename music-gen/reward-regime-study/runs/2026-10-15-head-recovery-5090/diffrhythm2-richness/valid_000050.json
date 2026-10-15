@@ -1,0 +1,1418 @@
+{
+  "step": 50,
+  "n": 30,
+  "mean_reward": 0.10309792929064243,
+  "rows": [
+    {
+      "audio_sha256": "e44d9b5ddb9e7dbd0b0965802980e558663dc55ca83ede8688ae7f69230d6ba7",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0706212813945828,
+        "layer_activity": 0.43410852713178294,
+        "layer_movement": 0.3611244857311249,
+        "active_fraction": 1.0,
+        "tonality_gate": 0.1410320758819581
+      },
+      "songbench": {
+        "Melody": 4.732154846191406,
+        "Arrangement": 4.587813854217529,
+        "Musicality": 4.131377696990967,
+        "Vocal": 5.911981105804443,
+        "Instrumental": 5.454634189605713,
+        "Mixing": 5.004139423370361,
+        "Structure": 4.506863117218018
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -19.939810507459285,
+        "peak": 0.54248046875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0706212813945828,
+      "index": 0,
+      "seed": 5101
+    },
+    {
+      "audio_sha256": "ea7ccc34a72a7748b818661056d2bc11b7c733650c12950088fce7d3fd38b1de",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.6728682170542636,
+        "layer_movement": 0.34943535923957825,
+        "active_fraction": 1.0,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.564265727996826,
+        "Arrangement": 6.324376583099365,
+        "Musicality": 4.8603339195251465,
+        "Vocal": 6.339670181274414,
+        "Instrumental": 5.877763271331787,
+        "Mixing": 5.818399906158447,
+        "Structure": 5.55256986618042
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -17.346450448583465,
+        "peak": 0.689453125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 1,
+      "seed": 5102
+    },
+    {
+      "audio_sha256": "9c69921cae78d67d7c682e4af15c083dde6f8543db461a69f98cb7c227c188fa",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.3963824289405685,
+        "layer_movement": 0.5169088840484619,
+        "active_fraction": 0.9116279069767442,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.862006664276123,
+        "Arrangement": 5.506291389465332,
+        "Musicality": 4.584921360015869,
+        "Vocal": 6.422523498535156,
+        "Instrumental": 6.488403797149658,
+        "Mixing": 5.837723731994629,
+        "Structure": 5.529811859130859
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -18.69684688912927,
+        "peak": 0.7099609375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 2,
+      "seed": 5103
+    },
+    {
+      "audio_sha256": "4e815a8de8871bd469d007c7a7e753ab0bdff3e71cff50a0cad42eaed2e2fb0a",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.22605636881148142,
+        "layer_activity": 0.5819121447028424,
+        "layer_movement": 0.3261469602584839,
+        "active_fraction": 0.9984496124031008,
+        "tonality_gate": 0.3894492149353028
+      },
+      "songbench": {
+        "Melody": 4.983207702636719,
+        "Arrangement": 4.92014217376709,
+        "Musicality": 4.314432144165039,
+        "Vocal": 5.280017852783203,
+        "Instrumental": 5.027087688446045,
+        "Mixing": 4.981649398803711,
+        "Structure": 5.079505443572998
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -16.705504686237774,
+        "peak": 0.6435546875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.22605636881148142,
+      "index": 3,
+      "seed": 5104
+    },
+    {
+      "audio_sha256": "1127e4f34487280df6e1349b7b7a2b90467232c52dfe5a8776188697cdd5ef29",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.5095607235142118,
+        "layer_movement": 0.5754035115242004,
+        "active_fraction": 0.9333333333333333,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.940784454345703,
+        "Arrangement": 5.816227912902832,
+        "Musicality": 5.0428547859191895,
+        "Vocal": 6.195423126220703,
+        "Instrumental": 6.397430419921875,
+        "Mixing": 5.735019207000732,
+        "Structure": 5.665106773376465
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -17.283706688029774,
+        "peak": 0.84423828125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 4,
+      "seed": 5105
+    },
+    {
+      "audio_sha256": "56c9576e7d31b0e6a4c8922b13f70f545b7cd44428aaaf594d7b47cb0c3a4428",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.45374677002583974,
+        "layer_movement": 0.6073455214500427,
+        "active_fraction": 0.9875968992248062,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.254951000213623,
+        "Arrangement": 5.019626617431641,
+        "Musicality": 4.66738224029541,
+        "Vocal": 5.5819220542907715,
+        "Instrumental": 5.501083850860596,
+        "Mixing": 5.532830238342285,
+        "Structure": 4.375221252441406
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.916200176125203,
+        "peak": 0.8251953125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 5,
+      "seed": 5106
+    },
+    {
+      "audio_sha256": "ea6d38f65142fa69ef6df956b80d126dd1f53f27db39da06d6869b88ef5e04f7",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.04223215591926202,
+        "layer_activity": 0.5322997416020672,
+        "layer_movement": 0.514597475528717,
+        "active_fraction": 0.9844961240310077,
+        "tonality_gate": 0.07089457511901864
+      },
+      "songbench": {
+        "Melody": 5.531806945800781,
+        "Arrangement": 5.574184417724609,
+        "Musicality": 4.928833961486816,
+        "Vocal": 5.8022236824035645,
+        "Instrumental": 5.611516952514648,
+        "Mixing": 5.151286602020264,
+        "Structure": 5.057847023010254
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -16.443660101847826,
+        "peak": 0.70751953125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.04223215591926202,
+      "index": 6,
+      "seed": 5107
+    },
+    {
+      "audio_sha256": "ff3d51e22111eeb69bd6663b0f310444d8f348621b0df34ed11eafc1f29dc2b4",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.34135685940241606,
+        "layer_activity": 0.44496124031007744,
+        "layer_movement": 0.10555440187454224,
+        "active_fraction": 0.9333333333333333,
+        "tonality_gate": 0.7876884102821351
+      },
+      "songbench": {
+        "Melody": 4.885880470275879,
+        "Arrangement": 4.62563419342041,
+        "Musicality": 4.8198041915893555,
+        "Vocal": 6.068434715270996,
+        "Instrumental": 5.609366416931152,
+        "Mixing": 5.001884460449219,
+        "Structure": 4.770571708679199
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -17.401920542064644,
+        "peak": 0.5625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.34135685940241606,
+      "index": 7,
+      "seed": 5108
+    },
+    {
+      "audio_sha256": "81ddde2687b3157e344c817b87126f49d52b384dc9ce5ea46fede2ec6207c218",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.43204134366925057,
+        "layer_movement": 0.42745527625083923,
+        "active_fraction": 0.7193798449612403,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.919340133666992,
+        "Arrangement": 6.015141487121582,
+        "Musicality": 5.1300811767578125,
+        "Vocal": 6.01428747177124,
+        "Instrumental": 5.770496845245361,
+        "Mixing": 5.838485240936279,
+        "Structure": 5.230351448059082
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -22.082977709061762,
+        "peak": 0.58984375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 8,
+      "seed": 5109
+    },
+    {
+      "audio_sha256": "c6cd037d924efc80ca9dc669bfe2b72a85ea6584a5bcdc5ef3208ae7d6e785aa",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.43219776847887437,
+        "layer_activity": 0.7250645994832041,
+        "layer_movement": 0.18411187827587128,
+        "active_fraction": 0.9922480620155039,
+        "tonality_gate": 0.686132824420929
+      },
+      "songbench": {
+        "Melody": 5.906741619110107,
+        "Arrangement": 5.810816764831543,
+        "Musicality": 5.341480255126953,
+        "Vocal": 6.832147121429443,
+        "Instrumental": 6.0701680183410645,
+        "Mixing": 5.622399806976318,
+        "Structure": 5.732314586639404
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -17.594869828617107,
+        "peak": 0.62060546875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.43219776847887437,
+      "index": 9,
+      "seed": 5110
+    },
+    {
+      "audio_sha256": "01cc20fb778b71e2d7a7e172cf21c850d4cf00fe1b1abbcb2ab1287743636be9",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.010978594575272482,
+        "layer_activity": 0.462015503875969,
+        "layer_movement": 0.4051026999950409,
+        "active_fraction": 0.993798449612403,
+        "tonality_gate": 0.02081034183502206
+      },
+      "songbench": {
+        "Melody": 4.389389991760254,
+        "Arrangement": 4.784676551818848,
+        "Musicality": 3.6885929107666016,
+        "Vocal": 5.134420394897461,
+        "Instrumental": 4.646639347076416,
+        "Mixing": 4.589000701904297,
+        "Structure": 4.331392765045166
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.903701336185607,
+        "peak": 0.662109375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.010978594575272482,
+      "index": 10,
+      "seed": 5111
+    },
+    {
+      "audio_sha256": "f1162a24e981ca8a3f60fe43089994ba82294fed8f3a68dd0d0c55950439e0ea",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.6583979328165374,
+        "layer_movement": 0.3502264618873596,
+        "active_fraction": 0.9922480620155039,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 6.342249870300293,
+        "Arrangement": 6.376612663269043,
+        "Musicality": 5.895825386047363,
+        "Vocal": 7.1745500564575195,
+        "Instrumental": 6.949619293212891,
+        "Mixing": 6.535341739654541,
+        "Structure": 6.065732955932617
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -17.53890722316765,
+        "peak": 0.787109375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 11,
+      "seed": 5112
+    },
+    {
+      "audio_sha256": "27c323d119543d48c959ecbc1747c386647c002b1f8fa223f2c850b98ff6570f",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.17441689037892524,
+        "layer_activity": 0.36795865633074937,
+        "layer_movement": 0.2493762969970703,
+        "active_fraction": 0.8682170542635659,
+        "tonality_gate": 0.4219574689865113
+      },
+      "songbench": {
+        "Melody": 5.294575214385986,
+        "Arrangement": 5.199633598327637,
+        "Musicality": 4.581373691558838,
+        "Vocal": 6.483649730682373,
+        "Instrumental": 5.972744941711426,
+        "Mixing": 5.616557598114014,
+        "Structure": 5.360044956207275
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -19.67478786454488,
+        "peak": 0.599609375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.17441689037892524,
+      "index": 12,
+      "seed": 5113
+    },
+    {
+      "audio_sha256": "b2bfdd1d764d84e5ed2c866e7f2f05229443072d08ef65018718d7796a07a189",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.8873385012919895,
+        "layer_movement": 0.3870859444141388,
+        "active_fraction": 0.9984496124031008,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.925024509429932,
+        "Arrangement": 5.804011821746826,
+        "Musicality": 3.911996364593506,
+        "Vocal": 4.822597980499268,
+        "Instrumental": 4.424696445465088,
+        "Mixing": 5.147507667541504,
+        "Structure": 5.6822638511657715
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -12.156532852316724,
+        "peak": 0.96533203125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 13,
+      "seed": 5114
+    },
+    {
+      "audio_sha256": "78366a8a09d40c0961162ccc21bbd8437dac36b194a601140e4da6dd1c23bbd8",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.786046511627907,
+        "layer_movement": 0.22050872445106506,
+        "active_fraction": 0.9968992248062015,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 3.67323637008667,
+        "Arrangement": 3.8929286003112793,
+        "Musicality": 2.607497215270996,
+        "Vocal": 2.66082763671875,
+        "Instrumental": 3.364450454711914,
+        "Mixing": 3.500178813934326,
+        "Structure": 3.9244978427886963
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.276291533333367,
+        "peak": 0.7900390625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 14,
+      "seed": 5115
+    },
+    {
+      "audio_sha256": "d4c1c0df5329694b82fa5d9583c4d52d19da505271cc64d6e7d3359d9bf26ad7",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.386283173568146,
+        "layer_activity": 0.4310077519379845,
+        "layer_movement": 0.11653579026460648,
+        "active_fraction": 0.8387596899224806,
+        "tonality_gate": 0.9340606689453126
+      },
+      "songbench": {
+        "Melody": 4.564261436462402,
+        "Arrangement": 4.4046220779418945,
+        "Musicality": 4.221631050109863,
+        "Vocal": 5.8177313804626465,
+        "Instrumental": 5.45977258682251,
+        "Mixing": 5.105170726776123,
+        "Structure": 4.626723766326904
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -24.593296268526352,
+        "peak": 0.401611328125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.386283173568146,
+      "index": 15,
+      "seed": 5116
+    },
+    {
+      "audio_sha256": "5b7d9b2dbb9752eba7fc5f4092531808b46f98ad7804be8328151bfe0a9ca523",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.24186046511627907,
+        "layer_movement": 0.10094957053661346,
+        "active_fraction": 0.3116279069767442,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 3.183206081390381,
+        "Arrangement": 3.22478985786438,
+        "Musicality": 3.1486711502075195,
+        "Vocal": 4.557434558868408,
+        "Instrumental": 4.06216287612915,
+        "Mixing": 3.418682098388672,
+        "Structure": 3.3137097358703613
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -21.97803148185045,
+        "peak": 0.69140625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 16,
+      "seed": 5117
+    },
+    {
+      "audio_sha256": "9c60c86fc6be0cb8e7fef26f00147e7854b2af90bed2bbfae954c671c609774c",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.3922480620155039,
+        "layer_movement": 0.4101537764072418,
+        "active_fraction": 0.8589147286821706,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.117123603820801,
+        "Arrangement": 5.100515842437744,
+        "Musicality": 4.490565776824951,
+        "Vocal": 6.261181831359863,
+        "Instrumental": 4.998701095581055,
+        "Mixing": 5.30848503112793,
+        "Structure": 5.096434593200684
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.56293827285025,
+        "peak": 0.7607421875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 17,
+      "seed": 5118
+    },
+    {
+      "audio_sha256": "e9191a3918dec6f9157330fa5d38fdb7094dadf0ef93b68d2a5070f06d7f1b5c",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.3638242894056848,
+        "layer_movement": 0.49710017442703247,
+        "active_fraction": 1.0,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.381163120269775,
+        "Arrangement": 5.599438190460205,
+        "Musicality": 4.625362396240234,
+        "Vocal": 5.8376030921936035,
+        "Instrumental": 5.922519683837891,
+        "Mixing": 5.652836799621582,
+        "Structure": 5.11947774887085
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -14.511047933773316,
+        "peak": 0.68359375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 18,
+      "seed": 5119
+    },
+    {
+      "audio_sha256": "24baa66db5a86faf01b0531cb0072f2ac9a2f52078ff1654fed82316b77dc385",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.38811369509043936,
+        "layer_movement": 0.26997482776641846,
+        "active_fraction": 1.0,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.590060234069824,
+        "Arrangement": 5.73825740814209,
+        "Musicality": 4.453932285308838,
+        "Vocal": 5.314480304718018,
+        "Instrumental": 5.43037223815918,
+        "Mixing": 4.723049640655518,
+        "Structure": 4.554534912109375
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.93968612668462,
+        "peak": 0.81787109375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 19,
+      "seed": 5120
+    },
+    {
+      "audio_sha256": "90e3b85e0117ab77d30e1a3fb20f0716ec25a49e97bab638a40d5f916d169d3d",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.1587241191687647,
+        "layer_activity": 0.48733850129198975,
+        "layer_movement": 0.1474265158176422,
+        "active_fraction": 0.6217054263565891,
+        "tonality_gate": 0.3756645679473878
+      },
+      "songbench": {
+        "Melody": 3.443758010864258,
+        "Arrangement": 3.780087947845459,
+        "Musicality": 2.875309944152832,
+        "Vocal": 3.232966661453247,
+        "Instrumental": 3.842362642288208,
+        "Mixing": 3.4816648960113525,
+        "Structure": 2.8902714252471924
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -29.99695598560555,
+        "peak": 0.57470703125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.1587241191687647,
+      "index": 20,
+      "seed": 5121
+    },
+    {
+      "audio_sha256": "322cf6a08b1c2e30a8f48b6fa7cc1d872f24ec0041a81946ed7b15d2a594196a",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.3946975542587378,
+        "layer_activity": 0.4925064599483204,
+        "layer_movement": 0.28711962699890137,
+        "active_fraction": 0.9875968992248062,
+        "tonality_gate": 0.7657735705375672
+      },
+      "songbench": {
+        "Melody": 4.869009017944336,
+        "Arrangement": 4.8835320472717285,
+        "Musicality": 4.369572639465332,
+        "Vocal": 5.676239967346191,
+        "Instrumental": 5.478669166564941,
+        "Mixing": 4.997475624084473,
+        "Structure": 4.7823805809021
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -14.14972725281664,
+        "peak": 0.6259765625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.3946975542587378,
+      "index": 21,
+      "seed": 5122
+    },
+    {
+      "audio_sha256": "8a6af26818c3761340a8425ad9f95681548e6faaf2d3edddb7237bfb465392ec",
+      "seconds": 32.4,
+      "richness": {
+        "raw": 0.012532832825911068,
+        "layer_activity": 0.3840996168582376,
+        "layer_movement": 0.4020175337791443,
+        "active_fraction": 0.8936781609195402,
+        "tonality_gate": 0.026951408386230558
+      },
+      "songbench": {
+        "Melody": 4.826249599456787,
+        "Arrangement": 4.703763008117676,
+        "Musicality": 3.91780948638916,
+        "Vocal": 4.925769329071045,
+        "Instrumental": 5.155411243438721,
+        "Mixing": 4.984408378601074,
+        "Structure": 4.1594767570495605
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -19.63560124411905,
+        "peak": 0.59619140625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.012532832825911068,
+      "index": 22,
+      "seed": 5123
+    },
+    {
+      "audio_sha256": "010ad8721b846198bdb10e3f47bdcd16f2c333c21fc4b722efea0662126e0832",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.4335917312661498,
+        "layer_movement": 0.4470634460449219,
+        "active_fraction": 0.9891472868217054,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.13226842880249,
+        "Arrangement": 5.490819454193115,
+        "Musicality": 4.466007232666016,
+        "Vocal": 5.877224922180176,
+        "Instrumental": 5.271748065948486,
+        "Mixing": 5.271019458770752,
+        "Structure": 4.772220611572266
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -18.22037470582281,
+        "peak": 0.71044921875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 23,
+      "seed": 5124
+    },
+    {
+      "audio_sha256": "4cbcf524d9cd8499c921682d2d3222a76f12434a744391303e73067a751b8a0a",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.5555555555555556,
+        "layer_movement": 0.4618176817893982,
+        "active_fraction": 0.9875968992248062,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.330571174621582,
+        "Arrangement": 5.391998291015625,
+        "Musicality": 4.547296524047852,
+        "Vocal": 5.229976654052734,
+        "Instrumental": 5.94594144821167,
+        "Mixing": 5.408515453338623,
+        "Structure": 4.99818229675293
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.675127354595475,
+        "peak": 0.73046875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 24,
+      "seed": 5125
+    },
+    {
+      "audio_sha256": "12f3fbc5c837229aed04bd4f1bb6f5ab60666756b563488eee38b9c6270af14b",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.5028423772609819,
+        "layer_movement": 0.24392233788967133,
+        "active_fraction": 0.9674418604651163,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 6.00438117980957,
+        "Arrangement": 6.22113037109375,
+        "Musicality": 5.161365509033203,
+        "Vocal": 5.834003448486328,
+        "Instrumental": 6.278432846069336,
+        "Mixing": 5.590559959411621,
+        "Structure": 5.30665922164917
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -18.46411096292663,
+        "peak": 0.734375
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 25,
+      "seed": 5126
+    },
+    {
+      "audio_sha256": "2a021bae92688fd789be6bcaa5e766aeb9a9bf10f05ee7c5965c32756cce64f4",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.5338501291989663,
+        "layer_movement": 0.42277130484580994,
+        "active_fraction": 0.9271317829457364,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.432465076446533,
+        "Arrangement": 5.422867298126221,
+        "Musicality": 4.197293281555176,
+        "Vocal": 4.129911422729492,
+        "Instrumental": 5.9276533126831055,
+        "Mixing": 5.569518089294434,
+        "Structure": 4.253139495849609
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -18.73902190249187,
+        "peak": 0.80517578125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 26,
+      "seed": 5127
+    },
+    {
+      "audio_sha256": "78fd8475bfb5c6ddfc24630bbc5b807b597ba9fcbf61119fb28c062431d03d6b",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.43851795956834194,
+        "layer_activity": 0.57984496124031,
+        "layer_movement": 0.24021084606647491,
+        "active_fraction": 0.9953488372093023,
+        "tonality_gate": 0.7869152188301087
+      },
+      "songbench": {
+        "Melody": 4.449418067932129,
+        "Arrangement": 4.766644477844238,
+        "Musicality": 3.951176404953003,
+        "Vocal": 5.409517765045166,
+        "Instrumental": 5.596577167510986,
+        "Mixing": 5.109895706176758,
+        "Structure": 4.168999671936035
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -19.343441499742276,
+        "peak": 0.66455078125
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.43851795956834194,
+      "index": 27,
+      "seed": 5128
+    },
+    {
+      "audio_sha256": "a6594508152b39d81c7ab80b4be2c8618414a048c6e1de63c6e5e1bed543ca42",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.0,
+        "layer_activity": 0.4082687338501292,
+        "layer_movement": 0.4743120074272156,
+        "active_fraction": 0.7875968992248062,
+        "tonality_gate": 0.0
+      },
+      "songbench": {
+        "Melody": 5.845859527587891,
+        "Arrangement": 5.986554145812988,
+        "Musicality": 5.031108856201172,
+        "Vocal": 6.655182361602783,
+        "Instrumental": 6.563393592834473,
+        "Mixing": 6.262228488922119,
+        "Structure": 5.275215148925781
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -20.512400565197172,
+        "peak": 0.72509765625
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.0,
+      "index": 28,
+      "seed": 5129
+    },
+    {
+      "audio_sha256": "f9959d017a24830fa05a89a14185b6b5da6b2028f46b7213d2503126286f6db1",
+      "seconds": 60.0,
+      "richness": {
+        "raw": 0.4043223203685569,
+        "layer_activity": 0.600516795865633,
+        "layer_movement": 0.17445893585681915,
+        "active_fraction": 1.0,
+        "tonality_gate": 0.7299227476119996
+      },
+      "songbench": {
+        "Melody": 5.331385135650635,
+        "Arrangement": 5.217113971710205,
+        "Musicality": 4.823127746582031,
+        "Vocal": 6.384262561798096,
+        "Instrumental": 5.072811126708984,
+        "Mixing": 4.814498424530029,
+        "Structure": 5.182525157928467
+      },
+      "guard": {
+        "invalid": false,
+        "reason": "",
+        "penalty": 0.0,
+        "clip_penalty": 0.0,
+        "loudness_penalty": 0.0,
+        "clipping_fraction": 0.0,
+        "rms_dbfs": -15.259268476455723,
+        "peak": 0.69482421875
+      },
+      "reward": "richness",
+      "scorer_identity": {
+        "reward_code_sha256": "32c9409ee7f34ce016c176858205c6031f531b874a8b824280f1860ba7d01bec",
+        "server_sha256": "79ae89af655770a26b1dd4ce0ec6da5b772970ea1e2b8a689ecfccf01590b205",
+        "separator": "htdemucs-955717e8",
+        "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+        "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+        "torch": "2.9.1+cu128",
+        "scored_format": "PCM24-FLAC",
+        "separator_shifts": 0,
+        "separator_overlap": 0.25,
+        "songbench_input": "whole mix",
+        "richness_input": "estimated accompaniment"
+      },
+      "mean": 0.4043223203685569,
+      "index": 29,
+      "seed": 5130
+    }
+  ],
+  "scope": "All30 native60-second-budget validation; not human MOS or WSB test"
+}

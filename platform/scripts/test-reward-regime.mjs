@@ -22,11 +22,30 @@ try {
       assert.match(await root.locator('[data-regime="model-note"]').textContent(), /MOS 未测/);
       const name = await button.textContent();
       if (['HeartMuLa', 'DiffRhythm2', 'SongBloom', 'Private baseline', 'ACE-Step 1.5'].includes(name)) {
-        assert.equal(await root.locator('[data-regime="plots"]').isVisible(), name === 'DiffRhythm2');
-        assert.equal(await root.locator('audio').count(), 0);
+        assert.equal(await root.locator('[data-regime="plots"]').isVisible(), ['HeartMuLa','DiffRhythm2','SongBloom'].includes(name));
+        if (['HeartMuLa','DiffRhythm2','SongBloom'].includes(name)) {
+          assert.match(await root.locator('[data-regime="model-note"]').textContent(), /Head-only.*待主干LoRA替代/);
+          assert.match(await root.locator('[data-regime="status"]').textContent(), /待替代/);
+        }
+        assert.equal(await root.locator('audio').count(), name === 'DiffRhythm2' ? 2 : 0);
         assert.match(await root.locator('[data-regime="validation"]').textContent(), /n\/a/);
-        assert.equal(await root.locator('[data-regime-listen="baseline"]').isDisabled(), true);
-        assert.equal(await root.locator('[data-regime-listen="candidate"]').isDisabled(), true);
+        assert.equal(await root.locator('[data-regime-listen="baseline"]').isDisabled(), name !== 'DiffRhythm2');
+        assert.equal(await root.locator('[data-regime-listen="candidate"]').isDisabled(), name !== 'DiffRhythm2');
+        if (name === 'DiffRhythm2') {
+          assert.match(await root.locator('[data-regime="replay-note"]').textContent(), /旧head-only消融/);
+          const audio=root.locator('[data-regime="media"] audio');
+          const baseline=await audio.first().getAttribute('src');
+          await root.locator('[data-regime="step-controls"]').getByRole('button',{name:'0 steps',exact:true}).click();
+          assert.equal(await audio.last().getAttribute('src'),baseline);
+          for (const step of [50,100]) {
+            await root.locator('[data-regime="step-controls"]').getByRole('button',{name:`${step} steps`,exact:true}).click();
+            assert.equal(await audio.first().getAttribute('src'),baseline);
+          }
+          await root.locator('[data-regime="reward-controls"] button').nth(1).click();
+          assert.equal(await root.locator('[data-regime="media"] audio').count(),1);
+          assert.equal(await root.locator('[data-regime="media"] audio').getAttribute('src'),baseline);
+          await root.locator('[data-regime="reward-controls"] button').first().click();
+        }
       }
     }
     const data = await page.evaluate(async () => (await fetch('./data/reward-regime-protocol.json')).json());
@@ -44,7 +63,8 @@ try {
       assert.match(await root.locator('[data-regime="text-content"]').textContent(),new RegExp(`exactly ${count} accompaniment`));
       assert.equal(await root.locator('[data-regime="lyrics-content"]').textContent(),originalLyrics);
       assert.match(await root.locator('[data-regime="seed"]').textContent(),/5101/);
-      assert.equal(await root.locator('audio').count(),0);
+      assert.equal(await root.locator('audio').count(),2);
+      await page.waitForFunction(()=>Array.from(document.querySelectorAll('[data-regime="media"] audio')).every(a=>Number.isFinite(a.duration)&&a.duration>=30));
       assert.match(await root.locator('[data-regime="input-note"]').textContent(),/不计入全30条验证/);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     }
@@ -107,7 +127,7 @@ try {
     assert.match(await root.locator('[data-regime="replay-note"]').textContent(),/短验证音频/);
     assert.equal(await media.locator('audio').count(),2);
     await root.locator('[data-regime="reward-controls"] button').nth(1).click();
-    assert.equal(await root.locator('[data-regime="example-controls"] button').count(),1);
+    assert.equal(await root.locator('[data-regime="example-controls"] button').count(),0);
     await root.locator('[data-regime="reward-controls"] button').first().click();
     await root.locator('[data-mode="long"]').click();
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));

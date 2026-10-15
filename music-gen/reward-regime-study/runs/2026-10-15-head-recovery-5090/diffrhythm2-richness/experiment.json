@@ -1,0 +1,36 @@
+{
+  "model": "diffrhythm2",
+  "reward": "richness",
+  "lr": 0.0003,
+  "beta": 0.01,
+  "seed": 42,
+  "group_size": 2,
+  "steps": 270,
+  "train_n": 270,
+  "valid_n": 30,
+  "seconds_budget": 60,
+  "data_sha256": "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f",
+  "assets_receipt_sha256": "fa1ecc1b0c46147328dcfb4e7dd047b594d11cb767a7f3752ac7b5aa3deb391b",
+  "source_sha256": {
+    "train_open_head_grpo.py": "7659c308d58159acc931d73d6a3872da861c99a81871cbe0ca9b72ea164d9e3c",
+    "open_head_policy.py": "c0dc4369883664e2d04e34a750849f3a422c2f63a01907cc9735d536a91db9c1",
+    "open_head_backends.py": "61eef608543a9b7a83f68b104404cf30dca632f4c3129b82c5f3a67110cd8276"
+  },
+  "policy": {
+    "policy": "DiT proj_out-only rank8 LoRA; frozen transformer, frontends and decoder",
+    "sampler": "Full native block sequence; all31 transitions/block stochastic; official Flow-GRPO SDE",
+    "steps_per_block": 31,
+    "noise_level": 0.1,
+    "cfg": 3.0,
+    "kl_unit": "conditional Gaussian KL per latent dimension, averaged over sampled transitions",
+    "logprob_unit": "sum over the complete block latent; no omitted variance terms",
+    "baseline": "same SDE/noise schedule, zero adapter; not deterministic ODE baseline",
+    "fake_stereo": false
+  },
+  "trainable_parameters": 16896,
+  "scope": "Restricted native output-head GRPO, not full backbone fine-tuning",
+  "framework": "PyTorch; DiffRhythm2 calls pinned official Flow-GRPO SDE; no TRL claimed",
+  "clipping": "One update/group: ratio clipping has no trust-region action at first gradient",
+  "test_run": false,
+  "started_at": "2026-10-14T12:54:11.805402+00:00"
+}

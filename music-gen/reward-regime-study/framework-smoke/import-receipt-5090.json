@@ -1,0 +1,34 @@
+{
+  "scope": "Import tests only, no GPU/model/optimizer pass claimed",
+  "python": "/storage/zhanh_storage/open-music-rl-20261014/envs/heartmula/bin/python",
+  "rows": [
+    {
+      "name": "miles_actor",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/backends/fsdp_utils/__init__.py\", line 17, in <module>\n    from .actor import FSDPTrainRayActor\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/backends/fsdp_utils/actor.py\", line 15, in <module>\n    from miles.utils import tracking_utils, train_metric_utils\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/utils/tracking_utils.py\", line 4, in <module>\n    import wandb\nModuleNotFoundError: No module named 'wandb'\n",
+      "seconds": 1.4597227172926068
+    },
+    {
+      "name": "miles_loss",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/backends/fsdp_utils/__init__.py\", line 17, in <module>\n    from .actor import FSDPTrainRayActor\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/backends/fsdp_utils/actor.py\", line 15, in <module>\n    from miles.utils import tracking_utils, train_metric_utils\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/miles/miles/utils/tracking_utils.py\", line 4, in <module>\n    import wandb\nModuleNotFoundError: No module named 'wandb'\n",
+      "seconds": 1.1879281727597117
+    },
+    {
+      "name": "verl_omni_loss",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/verl-omni/verl_omni/__init__.py\", line 24, in <module>\n    import verl_omni.agent_loop  # noqa: E402, F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/verl-omni/verl_omni/agent_loop/__init__.py\", line 19, in <module>\n    from verl_omni.pipelines.ltx2_flow_grpo.agent_loop import LTX2DiffusionSingleTurnAgentLoop\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/verl-omni/verl_omni/pipelines/__init__.py\", line 15, in <module>\n    from . import (\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/verl-omni/verl_omni/pipelines/bagel_flow_grpo/__init__.py\", line 15, in <module>\n    from .diffusers_training_adapter import BagelDiffusion\n  File \"/storage/zhanh_storage/framework-smoke-20261015/sources/verl-omni/verl_omni/pipelines/bagel_flow_grpo/diffusers_training_adapter.py\", line 29, in <module>\n    from tensordict import TensorDict\nModuleNotFoundError: No module named 'tensordict'\n",
+      "seconds": 1.0866801859810948
+    },
+    {
+      "name": "trl",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "seconds": 4.082687754184008
+    }
+  ]
+}

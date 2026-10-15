@@ -1,0 +1,30 @@
+{
+  "miles_loss": 5.050125764682889e-05,
+  "verl_policy_loss": 0.0,
+  "verl_plus_exact_transition_kl": 0.0005050124600529671,
+  "miles_reported_kl": 0.005050125997513533,
+  "exact_transition_kl_per_dimension": 0.050501249730587006,
+  "verl_metrics": {
+    "actor/ppo_kl": 0.0,
+    "actor/pg_clipfrac": 0.0,
+    "actor/pg_clipfrac_higher": 0.0,
+    "actor/pg_clipfrac_lower": 0.0,
+    "actor/ratio_mean": 1.0,
+    "actor/ratio_std": 0.0
+  },
+  "transport_note": "Audio tensor passed through Miles visual key only for isolated kernel audit; not a registered audio pipeline",
+  "logprob_note": "Both audited kernels use per-dimension mean log-density; not joint transition log-density",
+  "scope": "Isolated exact upstream loss/SDE kernels, CPU analytic fixture; no model training or perceptual result",
+  "finite_gradients": true,
+  "gradient_norms": [
+    0.08956044912338257,
+    0.0895581841468811
+  ],
+  "expected_kl_factor_for_dt_point1": 10.0,
+  "observed_exact_to_miles_kl_ratio": 9.999997971427183,
+  "sources": {
+    "miles/backends/fsdp_utils/sde_step_backend.py": "a4c199e868192c00c5f25ee4a8478d04d78e296e6c2b4cbe7d5fe9aaff63bbc2",
+    "miles/backends/fsdp_utils/loss_hub/flow_grpo.py": "9d67d7b451f8b0625f72e7c598e8ea93ffee73cb7516fc9d8ebeaed1a01f2dbf",
+    "verl_omni/trainer/diffusion/diffusion_algos.py": "1411e6facf4ceee0ef37f3d405fc2f983364bc7488f8867924c6fcf86c5d78a6"
+  }
+}

@@ -23,10 +23,28 @@ const rendered = JSON.stringify(value, null, 2) + '\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(target, 'utf8'), rendered);
 else fs.writeFileSync(target, rendered);
 const progress = JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/progress.json', import.meta.url)));
-const startup = JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/runs/2026-10-14-open-head-startup/progress.json', import.meta.url)));
-assert.equal(startup.complete, false); assert.equal(startup.steps, 5);
-progress.runs.push(startup);
-progress.updated_at = startup.snapshot_at;
+for (const name of ['5090', 'gadi']) {
+  const archived = JSON.parse(fs.readFileSync(new URL(`../../music-gen/reward-regime-study/runs/2026-10-15-head-recovery-${name}/progress.json`, import.meta.url)));
+  for (const run of archived.runs) {
+    assert.equal(run.complete, false);
+    assert.match(run.scope, /Head-only/);
+    const arm=value.runs.find(r=>r.model===run.model&&r.reward===run.reward);
+    assert.ok(arm); assert.equal(run.steps,arm.verified_steps);
+    run.kl_unit=arm.kl_unit;
+    if (run.model==='diffrhythm2') {
+      for (const point of run.validation) {
+        const path=`../../music-gen/reward-regime-study/runs/2026-10-15-head-recovery-5090/diffrhythm2-richness/valid_${String(point.step).padStart(6,'0')}.json`;
+        const receipt=JSON.parse(fs.readFileSync(new URL(path,import.meta.url)));
+        assert.equal(receipt.n,30);assert.equal(receipt.rows.length,30);
+        point.cross_means=Object.fromEntries(['SP_Richness','Instrumental','Arrangement','Mixing','Musicality'].map(key=>[key,
+          receipt.rows.reduce((sum,r)=>sum+(key==='SP_Richness'?r.richness.raw:r.songbench[key]),0)/30]));
+        point.invalid_n=receipt.rows.filter(r=>r.guard.invalid).length;
+      }
+    }
+    progress.runs.push(run);
+  }
+  if (archived.snapshot_at > progress.updated_at) progress.updated_at = archived.snapshot_at;
+}
 for (const run of progress.runs) {
   assert.equal(run.steps, run.trace.length);
   assert.ok(run.trace.every((p, i) => p.step === i+1 && Number.isFinite(p.reward) && Number.isFinite(p.kl)));
@@ -64,6 +82,21 @@ if(fs.existsSync(recoverySource)) {
       assert.equal(c[side].source_audio_sha256,receipt.rows[c.index].source_audio_sha256);
     }
     assert.ok(c.candidate.metrics.objective>c.baseline.metrics.objective);
+  }
+  for (const [id, record] of Object.entries(recovery.additional_models || {})) {
+    assert.equal(id, 'diffrhythm2'); assert.equal(record.model, id);
+    assert.equal(record.baseline.length, 3); assert.equal(record.long_replays.length, 6);
+    assert.match(record.scope, /Deprecated head-only/);
+    for (const row of [...record.baseline, ...record.long_replays]) {
+      assert.ok([0,50,100].includes(row.step)); assert.ok([0,10,20].includes(row.index));
+      assert.equal(row.seed, 5101+row.index);
+      const path=`../../music-gen/reward-regime-study/runs/2026-10-15-head-recovery-5090/diffrhythm2-richness/valid_${String(row.step).padStart(6,'0')}.json`;
+      const receipt=JSON.parse(fs.readFileSync(new URL(path,import.meta.url)));
+      assert.equal(receipt.n,30); assert.equal(receipt.rows.length,30);
+      const source=receipt.rows[row.index];
+      assert.equal(row.asset.source_audio_sha256, source.audio_sha256);
+      assert.ok(Math.abs(row.asset.metrics.objective-source.mean)<1e-10);
+    }
   }
   const recoveryTarget=new URL('../site/demos/data/reward-regime-recovery.json',import.meta.url);
   const encoded=JSON.stringify(recovery,null,2)+'\n';

@@ -5,7 +5,7 @@ const $ = (id) => root.querySelector(`[data-regime="${id}"]`);
 const checkpoints = [0, 50, 100, 270];
 const rewardKey = (id) => ({ songbench: 'instrument', 'songbench-arrangement': 'arrangement' })[id] || id;
 const rewardName = (key) => ({ richness: 'SP-Richness', instrument: 'SongBench-Instrument', arrangement: 'SongBench-Arrangement' })[key] || key;
-const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', 'preparation-submitted': '准备链已提交 · 非GPU训练', complete: '已核验完成' };
+const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', 'preparation-submitted': '准备链已提交 · 非GPU训练', complete: '已核验完成', 'head-failed': 'Head-only 失败 · 待替代', 'head-stopped': 'Head-only 已停止 · 待替代', 'head-cancelled': 'Head-only 未启动 · 已取消' };
 const marks = new Map(['reward', 'kl'].map((key) => [key, createMilestones($(`${key}-chart`), 270)]));
 const fmt = (value) => Number.isFinite(value) ? value.toFixed(4) : 'n/a';
 const fmtKL = (value) => Number.isFinite(value) && value !== 0 && Math.abs(value) < .0001 ? value.toExponential(2) : fmt(value);
@@ -17,6 +17,7 @@ let selected = 'yue2', target = 'richness', replayMode = 'long', example = 0, re
 const model = () => protocol.models.find((m) => m.id === selected);
 const experiment = () => `${model().name}-${rewardName(target)}-3e-4`;
 const measuredRun = (key = target) => progress.runs.find((r) => r.model === selected && r.reward === key);
+const selectedRecovery = () => recovery.model === selected ? recovery : recovery.additional_models?.[selected];
 
 function row(values, heading = false) {
   const tr = document.createElement('tr');
@@ -61,7 +62,10 @@ function chart(key, points) {
   for (let i = 0; i < 4; i++) {
     const value = low + (high - low) * i / 3, yy = y(value);
     ctx.strokeStyle = '#dde4df'; ctx.beginPath(); ctx.moveTo(39, yy); ctx.lineTo(width - 12, yy); ctx.stroke();
-    ctx.fillStyle = '#59615c'; ctx.textAlign = 'right'; ctx.fillText(key === 'kl' ? fmtKL(value) : value.toFixed(2), 35, yy + 4);
+    ctx.fillStyle = '#59615c'; ctx.textAlign = 'right';
+    ctx.font = key === 'kl' ? '10px system-ui' : '11px system-ui';
+    const axisLabel = key === 'kl' ? value === 0 ? '0' : Math.abs(value) < .001 ? value.toExponential(1) : value.toFixed(3) : value.toFixed(2);
+    ctx.fillText(axisLabel, 35, yy + 4);
   }
   ctx.textAlign = 'center'; ctx.fillStyle = '#59615c';
   for (const step of [0, 50, 100, 200, 270]) ctx.fillText(String(step), x(step), height - 8);
@@ -92,7 +96,7 @@ function draw() {
     if (trace.length) chart(key, trace);
   }
   $('trace-note').textContent = trace.length
-    ? `${run.steps}/270 步已核验。浅线为原值，实线为10步滚动均值；Reward不含KL loss。${selected === 'diffrhythm2' ? '右图为采样状态上解析条件高斯KL，按latent维度归一化；不是波形KL。' : '右图为训练rollout上的冻结参考采样估计。'} 这不是离线探针或测试分数。`
+    ? `${run.steps}/270 步已核验。${model().readiness === 'ablation' ? 'Head-only消融已停止，待主干LoRA替代。' : ''}浅线为原值，实线为10步滚动均值；Reward不含KL loss。${selected === 'diffrhythm2' ? '右图为采样状态上解析条件高斯KL，按latent维度归一化；不是波形KL。' : ['heartmula','songbloom'].includes(selected) ? '右图为head动作分布的解析categorical KL。' : '右图为训练rollout上的冻结参考采样估计。'} 这不是离线探针或测试分数。`
     : `${model().status}。尚无本模型、本目标的已核验日志，不显示替代曲线。`;
 }
 
@@ -171,16 +175,16 @@ function renderMedia() {
   if (!recovery) return;
   root.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === replayMode)));
   $('seed').textContent = '';
-  $('replay-title').textContent = replayMode === 'long' ? 'Long-form replay · target 60 seconds' : 'Badcase · 原始短验证片段';
+  $('replay-title').textContent = replayMode === 'long' ? selected === 'diffrhythm2' ? 'Head-only 消融回放 · 原生60秒预算' : 'Long-form replay · target 60 seconds' : 'Badcase · 原始短验证片段';
   $('input').textContent = model().input;
   $('reference-note').textContent = selected === 'private' ? '未公开输入或生成结果。'
     : selected === 'songbloom' ? '原生使用固定参考音频与歌词；准备链须校验全部300条参考资源后才启动训练。不公开原始reference；它不是唯一正确输出。'
       : '本轮不输入参考音频；各reward共享同模型的冻结起点。';
-  const ownsRecovery = recovery.model === selected;
+  const recovered = selectedRecovery();
   let a, b, inputRow;
   if (replayMode === 'long') {
-    const available = ownsRecovery ? recovery.long_replays.filter((r) => r.reward === target) : [];
-    const baselines = ownsRecovery ? recovery.baseline : [];
+    const available = recovered?.long_replays.filter((r) => r.reward === target) || [];
+    const baselines = recovered?.baseline || [];
     const indices = examples.display_indices_by_model?.[selected] || examples.display_indices;
     if (!indices.includes(example)) example = indices[0];
     controls($('example-controls'), indices.map((i, n) => {
@@ -189,6 +193,9 @@ function renderMedia() {
     }), example, (i) => { example = i; renderMedia(); });
     inputRow = examples.inputs.find((r) => r.index === example);
     a = baselines.find((r) => r.index === example)?.asset;
+    if (model().readiness === 'ablation' && replayStep !== 0 && available.length && !available.some((r) => r.step === replayStep)) {
+      replayStep = Math.max(...available.map((r) => r.step));
+    }
     const steps = [...new Set([...checkpoints, ...available.map((r) => r.step)])].sort((x, y) => x - y);
     controls($('step-controls'), steps.map((s) => [s, `${s} steps`, s === 0 ? !a : !available.some((r) => r.index === example && r.step === s)]),
       replayStep, (s) => { replayStep = s; renderMedia(); });
@@ -198,10 +205,11 @@ function renderMedia() {
       : `CMI valid #${example + 1} · 原始条件 · seed ${inputRow.seed}`;
     $('seed').textContent = `seed ${inputRow.seed}${a ? '' : ' · 音频待回收'}`;
     $('replay-note').textContent = b
-      ? '冻结baseline与当前checkpoint使用同一条件和seed。原生长回放，不循环或补齐；训练/全量短验证的分数不归到这段长音频。图像来自MP3，评分绑定原件。'
+      ? selected === 'diffrhythm2' ? '旧head-only消融，待主干LoRA替代；不是270步完成的主干实验。这里回收的就是0/50/100步完整验证中的已评分原始音频，不额外生成或补齐。冻结baseline与当前checkpoint条件和seed一致，均使用同一SDE基线。图像与试听来自MP3，分数绑定lossless原件。'
+      : '冻结baseline与当前checkpoint使用同一条件和seed。原生长回放，不循环或补齐；训练/全量短验证的分数不归到这段长音频。图像来自MP3，评分绑定原件。'
       : `${model().status}。${a ? 'A保留已核验的同模型baseline；B长回放尚未回收。' : '音频和可视化均未用其他实验替代。'}`;
   } else {
-    const cases = ownsRecovery ? recovery.badcases.filter((r) => r.reward === target) : [];
+    const cases = recovered?.badcases.filter((r) => r.reward === target) || [];
     if (badId >= cases.length) badId = 0;
     controls($('example-controls'), cases.map((r, i) => [i, `Valid #${r.index + 1} · step ${r.step}`]), badId, (i) => { badId = i; renderMedia(); });
     const item = cases[badId];
@@ -245,10 +253,10 @@ function tables() {
     const data = run?.validation.find((v) => v.step === step);
     return row([`${step} · ${data ? `${data.n}/30` : '未评测'}`, delta(data?.mean, baseline?.mean),
       ...['SP_Richness', 'Instrumental', 'Arrangement', 'Mixing', 'Musicality'].map((key) => delta(data?.cross_means?.[key], baseline?.cross_means?.[key])),
-      data ? `${data.invalid_n}/30` : 'n/a']);
+      Number.isInteger(data?.invalid_n) ? `${data.invalid_n}/30` : 'n/a']);
   }));
   const interval = (value) => `${value.mean_delta >= 0 ? '+' : ''}${fmt(value.mean_delta)} [${value.ci95.map(fmt).join(', ')}]`;
-  const audits = recovery.model === selected ? recovery.audits.filter((r) => r.reward === target) : [];
+  const audits = selectedRecovery()?.audits.filter((r) => r.reward === target) || [];
   $('case-audit').replaceChildren(...audits.map((r) => row([`${rewardName(r.reward)} · Step ${r.step}${r.complete_arm ? '' : ' · 中间checkpoint'}`,
     `${r.candidate_n}/${r.n}`, ...['objective', 'Instrumental', 'Arrangement'].map((key) => interval(r.statistics[key])), r.selection])));
   if (!audits.length) $('case-audit').append(row(['尚未回收本实验的候选筛选记录', 'n/a', 'n/a', 'n/a', 'n/a', '未用其他模型替代']));
@@ -259,7 +267,7 @@ function render() {
   controls($('reward-controls'), protocol.rewards.map((r) => [rewardKey(r.id), `${model().name}-${rewardName(rewardKey(r.id))}-3e-4`]),
     target, (value) => { target = value; render(); });
   const estimate = model().team_listening_estimate;
-  $('model-note').textContent = `${model().role}${Number.isFinite(estimate) ? ` · 团队十输入快听 ≈${estimate.toFixed(1)}（非正式MOS）` : ''} · 本站正式MOS 未测`;
+  $('model-note').textContent = `${model().readiness === 'ablation' ? 'Head-only 消融 · 待主干LoRA替代 · ' : ''}${model().role}${Number.isFinite(estimate) ? ` · 团队十输入快听 ≈${estimate.toFixed(1)}（非正式MOS）` : ''} · 本站正式MOS 未测`;
   const run = measuredRun(), submitted = protocol.runs.find((r) => r.model === selected && r.reward === target);
   $('status').textContent = run?.complete ? '270步 + 30/30验证已核验' : submitted ? statusNames[submitted.status] || submitted.status : model().status;
   $('status').className = `state ${run?.complete ? 'measured' : 'pending'}`;
@@ -272,7 +280,7 @@ function render() {
     ? `CMI-Pref 270 train / 30 valid · LR3e-4 · seed42 · 组大小2 · β0.01。${selected === 'yue2' ? 'PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : 'ms-swift / TRL + vLLM，512 completion-token预算；尚在PBS排队。'}`
     : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`
       : `${model().input} · ${model().status}。暂无已生效训练配置。`;
-  $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : 'KL · 在线冻结参考采样估计';
+  $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : ['heartmula','songbloom'].includes(selected) ? 'KL · 输出头 categorical / action' : 'KL · 在线冻结参考采样估计';
   $('model-detail').textContent = `${model().name}：${model().note}`;
   $('model-source').hidden = !model().source;
   if (model().source) $('model-source').href = model().source; else $('model-source').removeAttribute('href');

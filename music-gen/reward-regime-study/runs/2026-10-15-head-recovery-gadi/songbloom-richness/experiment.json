@@ -1,0 +1,38 @@
+{
+  "model": "songbloom",
+  "reward": "richness",
+  "lr": 0.0003,
+  "beta": 0.01,
+  "seed": 42,
+  "group_size": 2,
+  "steps": 270,
+  "train_n": 270,
+  "valid_n": 30,
+  "seconds_budget": 60,
+  "data_sha256": "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f",
+  "assets_receipt_sha256": "8c0e5c47762a6d73fe0fb1413f2a97986395779838476bd040924bda3c91dea9",
+  "source_sha256": {
+    "train_open_head_grpo.py": "7ab7d985233d374e4b5e09a25b060b5e9a7ddb523296fb92a1ac7f527d0ceb37",
+    "open_head_policy.py": "c0dc4369883664e2d04e34a750849f3a422c2f63a01907cc9735d536a91db9c1",
+    "open_head_backends.py": "745fe5a0b4e21fd75a7a61e69742b2f8a4a3ef7bd7b0f0994b058541e36725cc",
+    "load_songbloom.py": "ab880cce50b3ab1fec3e97dea3c03c0273a9eb8fb5841cb18277a3ce73f2f93e"
+  },
+  "policy": {
+    "policy": "S1 skeleton_classifier final-linear-only rank8 LoRA; frozen AR backbone/flow/VAE/conditioners",
+    "sampling": "full-support guided categorical sketch tokens; native frozen acoustic environment",
+    "kl_unit": "exact conditional categorical sketch-head KL, mean over actions",
+    "source": "Community-restored150s base, not independently matched to inaccessible author endpoint",
+    "checkpoint_compatibility": {
+      "strict": true,
+      "verified_duplicate_vae_aliases": 365,
+      "all_removed_tensors_exactly_equal_to_loaded_vae": true
+    },
+    "limitation": "Not acoustic Flow-GRPO, not full-backbone RL; reference audio is required"
+  },
+  "trainable_parameters": 143368,
+  "scope": "Restricted native output-head GRPO, not full backbone fine-tuning",
+  "framework": "PyTorch; DiffRhythm2 calls pinned official Flow-GRPO SDE; no TRL claimed",
+  "clipping": "One update/group: ratio clipping has no trust-region action at first gradient",
+  "test_run": false,
+  "started_at": "2026-10-14T23:44:12.102639+00:00"
+}

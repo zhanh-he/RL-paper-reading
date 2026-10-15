@@ -1,0 +1,32 @@
+{
+  "model": "heartmula",
+  "reward": "instrument",
+  "lr": 0.0003,
+  "beta": 0.01,
+  "seed": 42,
+  "group_size": 2,
+  "steps": 270,
+  "train_n": 270,
+  "valid_n": 30,
+  "seconds_budget": 60,
+  "data_sha256": "c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f",
+  "assets_receipt_sha256": "e34a2813a3e93ffd5ba286786d8f938dc0872d606f9ffeb0d2177d2c680b24ab",
+  "source_sha256": {
+    "train_open_head_grpo.py": "7ab7d985233d374e4b5e09a25b060b5e9a7ddb523296fb92a1ac7f527d0ceb37",
+    "open_head_policy.py": "c0dc4369883664e2d04e34a750849f3a422c2f63a01907cc9735d536a91db9c1",
+    "open_head_backends.py": "745fe5a0b4e21fd75a7a61e69742b2f8a4a3ef7bd7b0f0994b058541e36725cc"
+  },
+  "policy": {
+    "policy": "codebook0_head-only rank8 LoRA; frozen global backbone/local decoder/codec",
+    "global_sampling": "FP32 guided full-support categorical; temperature1, CFG1.5",
+    "local_sampling": "Native fixed topk50 residual-codebook environment; no trainable local parameters",
+    "kl_unit": "exact conditional categorical KL for codebook0, averaged over sampled frames",
+    "limitation": "Restricted discrete-head RL, not global/local backbone GRPO; no negative full-model conclusion"
+  },
+  "trainable_parameters": 90152,
+  "scope": "Restricted native output-head GRPO, not full backbone fine-tuning",
+  "framework": "PyTorch; DiffRhythm2 calls pinned official Flow-GRPO SDE; no TRL claimed",
+  "clipping": "One update/group: ratio clipping has no trust-region action at first gradient",
+  "test_run": false,
+  "started_at": "2026-10-14T23:41:47.870353+00:00"
+}

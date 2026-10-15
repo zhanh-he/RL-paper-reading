@@ -16,7 +16,8 @@ def load_module(name,filename):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--staging',type=Path,required=True);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--staging',type=Path,required=True)
+    p.add_argument('--additional-model',action='store_true');a=p.parse_args()
     report=json.loads((a.staging/'recovery.json').read_text())
     wave=load_module('regime_wave','render-wave-visuals.py');mel=load_module('regime_mel','render-mel-visuals.py')
     encpath=DEMO/'audio-encoding.json';encoding=json.loads(encpath.read_text())
@@ -37,7 +38,17 @@ def main():
             stem=Path(row[side]['audio']).stem
             row[side].update(wave=f'visuals/regimes/{stem}_wave.png',spectrum=f'visuals/regimes/{stem}_spectrum.png')
     encpath.write_text(json.dumps(encoding,indent=2,ensure_ascii=False)+'\n')
-    (ROOT/'music-gen/reward-regime-study/recovery.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
+    report_path=ROOT/'music-gen/reward-regime-study/recovery.json'
+    existing=json.loads(report_path.read_text()) if report_path.exists() else {}
+    if a.additional_model:
+        assert existing['model']!=report['model']
+        existing.setdefault('additional_models',{})[report['model']]=report
+        existing['audio_files'].update(report['audio_files'])
+        report=existing
+    elif existing.get('additional_models'):
+        report['additional_models']=existing['additional_models']
+        for model in existing['additional_models'].values():report['audio_files'].update(model['audio_files'])
+    report_path.write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
     print(f'Published {len(report["audio_files"])} hash-verified MP3s; black-floor mel0-24kHz, fixed wave[-1,1].')
 
 
