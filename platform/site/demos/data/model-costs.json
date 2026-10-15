@@ -3,7 +3,7 @@
   "checked_at": "2026-10-15",
   "title": "模型规模与推理等待时间",
   "definition": "RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.",
-  "scope": "Six exact local parameter/LoRA audits and local batch1 timing evidence, plus four separately labeled published speed references. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Independent Gadi A100 timings from the earlier finite audit; current MusicGen/LeVo2/ACE update is literature-only. Not a speed leaderboard.",
+  "scope": "Six exact local parameter/LoRA audits and local batch1 timing evidence, plus three selected published speed references (LeVo2-medium only; large archived). Backend compatibility, measured acceleration and explicitly conditional AR-only estimates are separated. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Not a speed leaderboard.",
   "interpretation": "实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。",
   "models": [
     {
@@ -406,6 +406,7 @@
     },
     {
       "id": "levo2-medium-reference",
+      "selected": true,
       "name": "LeVo2 · v2-medium",
       "hardware": "NVIDIA H20 · 官方报告",
       "backend": "SongGeneration-v2-medium；采样/优化细节未单列",
@@ -434,39 +435,6 @@
           "kind": "unsupported",
           "arithmetic_only_seconds": 206.99999999999997,
           "caveat": "官方上限270s；RTF算术外推207s不代表可生成该长度"
-        }
-      ]
-    },
-    {
-      "id": "levo2-large-reference",
-      "name": "LeVo2 · v2-large",
-      "hardware": "NVIDIA H20 · 官方报告",
-      "backend": "SongGeneration-v2-large；采样/优化细节未单列",
-      "reported_rtf": 0.82,
-      "reported_definition": "wall_seconds / audio_seconds",
-      "normalization": "identity",
-      "calibration_audio_seconds": null,
-      "max_output_seconds": 270,
-      "scope": "官方README列v2-large RTF(H20)=0.82，不含模型加载；未说明测速片长。60s为速率换算。当前权重最长270s，不能承诺原生300s。需要更长输出时须另外设计续写并重测，不把拼接算成原生长曲。",
-      "duration_caveat": "官方RTF换算；非本站实测",
-      "source": "https://github.com/levo-demo/LeVo/blob/653cbcf4716101834900c75b7d5da43b07e15d5b/README.md#model-versions",
-      "kind": "author-reference",
-      "median_rtf": 0.82,
-      "n": null,
-      "rows": [
-        {
-          "target_seconds": 60,
-          "wall_seconds": 49.199999999999996,
-          "rtf": 0.82,
-          "kind": "author-rate-estimate",
-          "caveat": "官方RTF换算；非本站实测"
-        },
-        {
-          "target_seconds": 300,
-          "wall_seconds": null,
-          "kind": "unsupported",
-          "arithmetic_only_seconds": 245.99999999999997,
-          "caveat": "官方上限270s；RTF算术外推246s不代表可生成该长度"
         }
       ]
     },
@@ -519,6 +487,197 @@
       ]
     }
   ],
+  "acceleration": {
+    "checked_at": "2026-10-15",
+    "omni_revision": "8201f614b4c213494e276f5eecd099d2b79b0090",
+    "scope": "Compatibility is not speed. A supported architecture, decoder-only language benchmark, throughput at high concurrency, and batch-one full-song latency are separate claims.",
+    "measurement_attempts": [
+      {
+        "host": "gadi",
+        "job_id": "181310624.gadi-pbs",
+        "status": "queued_then_withdrawn",
+        "gpu_benchmark_executed": false
+      },
+      {
+        "host": "kaya",
+        "job_id": "146358",
+        "status": "immediate_allocation_failed_nodes_busy",
+        "gpu_benchmark_executed": false
+      }
+    ],
+    "models": [
+      {
+        "id": "yue2",
+        "name": "YuE2",
+        "engine": "vLLM-Omni · 上游原生集成",
+        "support": "上游已支持；本机版本和长曲尚未验收",
+        "coverage": "ABC/semantic AR + 原生NAR/VAE集成。普通vLLM不能忽略MoT结构；需匹配Omni版本。",
+        "speedup_status": "n/a · 未做同条件端到端vLLM配对测速",
+        "source": "https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/recipes/m-a-p/YuE2-3B.md"
+      },
+      {
+        "id": "muse",
+        "name": "Muse",
+        "engine": "上游vLLM · 原生推理路线",
+        "support": "官方及本项目均已使用vLLM；新配对测速尚未运行",
+        "coverage": "Qwen3音频token LM；MuCodec diffusion/VAE仍单独运行。已有vLLM音频不等于已有可靠速度比。",
+        "speedup_status": "n/a · 无完整可比速度回执前不报倍数",
+        "source": "https://github.com/yuhui1038/Muse/blob/main/infer/README.md"
+      },
+      {
+        "id": "diffrhythm2",
+        "name": "DiffRhythm2",
+        "engine": "原生DiT / Flow推理",
+        "support": "不是可直接切换普通vLLM的AR任务",
+        "coverage": "DiT、ODE与Music VAE是主要生成路径。CUDA graphs、批处理或专门Omni移植须另测；不能把LLM加速倍数套上。",
+        "speedup_status": "n/a · 当前无已验收vLLM端到端适配",
+        "source": "https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/docs/models/supported_models.md"
+      },
+      {
+        "id": "heartmula",
+        "name": "HeartMuLa",
+        "engine": "原生global/local codebook模型",
+        "support": "未找到固定上游版本的端到端即用集成",
+        "coverage": "层级codebook生成与HeartCodec需要专用接口；不能因含Transformer就按普通Llama替换。",
+        "speedup_status": "n/a · 需要适配及实测",
+        "source": "https://github.com/HeartMuLa/heartlib"
+      },
+      {
+        "id": "songbloom",
+        "name": "SongBloom",
+        "engine": "原生AR planner + NAR DiT",
+        "support": "未找到固定上游版本的端到端即用集成",
+        "coverage": "可以研究AR planner移植，但DiT/VAE耗时不会随普通vLLM自动消失；当前无阶段计时足以推算加速。",
+        "speedup_status": "n/a · 不虚构2×/4×",
+        "source": "https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/docs/models/supported_models.md"
+      },
+      {
+        "id": "acestep15",
+        "name": "ACE-Step1.5",
+        "engine": "官方选项vllm = nano-vLLM",
+        "support": "可直接用于LM planner；不是上游vLLM包",
+        "coverage": "官方llm_inference.py实际导入nanovllm；DiT/VAE保持原生。没有planner时此项不提供LM加速。官方240s/2s快配置不能再当成HF基线乘加速倍数。",
+        "speedup_status": "n/a · 未见同配置PT对nano-vLLM的整曲速度比",
+        "source": "https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/acestep/llm_inference.py"
+      },
+      {
+        "id": "levo2-medium-reference",
+        "name": "LeVo2-medium",
+        "engine": "当前原生LeLM + diffusion codec",
+        "support": "未找到固定Omni版本的已合并官方适配",
+        "coverage": "Omni支持列表未列LeVo2；集成请求#3390仍open。需要层级混合/双轨token与codec接口适配，不等于不能移植。只保留medium；官方270s上限继续适用。",
+        "speedup_status": "n/a · 官方H20 RTF0.69不是vLLM对照结果",
+        "source": "https://github.com/vllm-project/vllm-omni/issues/3390"
+      },
+      {
+        "id": "musicgen-large-reference",
+        "name": "MusicGen-large",
+        "engine": "原生AudioCraft多码本AR",
+        "support": "未验证普通vLLM即用兼容",
+        "coverage": "EnCodec多码本delay与长片段续写需要专用实现；不能当作普通文本CausalLM。文献RTF2.5不是vLLM基线。",
+        "speedup_status": "n/a · 需要专用适配及配对测速",
+        "source": "https://github.com/facebookresearch/audiocraft/blob/main/audiocraft/models/musicgen.py"
+      }
+    ],
+    "projections": [
+      {
+        "id": "yue2",
+        "name": "YuE2",
+        "target_seconds": 60,
+        "hardware": "NVIDIA A100-SXM4-80GB",
+        "baseline_seconds": 84.50505237397738,
+        "ar_seconds": 76.53432222793344,
+        "unchanged_seconds": 7.970730146043934,
+        "ar_fraction": 0.9056774722679368,
+        "scenarios": [
+          {
+            "assumed_ar_speedup": 2,
+            "estimated_wall_seconds": 46.237891260010656,
+            "estimated_e2e_speedup": 1.827614756451112
+          },
+          {
+            "assumed_ar_speedup": 4,
+            "estimated_wall_seconds": 27.104310703027295,
+            "estimated_e2e_speedup": 3.11777168214571
+          }
+        ],
+        "ar_only_infinite_speedup_bound": 10.601921132146128,
+        "scope": "条件估算，非vLLM预测或实测。假设AR阶段2×/4×，其他阶段不变；AR无限快的上界也只对这个假设成立。YuE2-Omni还可能优化NAR，因此不是其完整后端上界。"
+      },
+      {
+        "id": "yue2",
+        "name": "YuE2",
+        "target_seconds": 300,
+        "hardware": "NVIDIA A100-SXM4-80GB",
+        "baseline_seconds": 271.02483757107984,
+        "ar_seconds": 243.7795500459615,
+        "unchanged_seconds": 27.24528752511833,
+        "ar_fraction": 0.8994730971179979,
+        "scenarios": [
+          {
+            "assumed_ar_speedup": 2,
+            "estimated_wall_seconds": 149.13506254809909,
+            "estimated_e2e_speedup": 1.8173113212975576
+          },
+          {
+            "assumed_ar_speedup": 4,
+            "estimated_wall_seconds": 88.19017503660871,
+            "estimated_e2e_speedup": 3.073186298344169
+          }
+        ],
+        "ar_only_infinite_speedup_bound": 9.947585883291307,
+        "scope": "条件估算，非vLLM预测或实测。假设AR阶段2×/4×，其他阶段不变；AR无限快的上界也只对这个假设成立。YuE2-Omni还可能优化NAR，因此不是其完整后端上界。"
+      },
+      {
+        "id": "muse",
+        "name": "Muse",
+        "target_seconds": 60,
+        "hardware": "NVIDIA A100-SXM4-80GB",
+        "baseline_seconds": 58.79675351793412,
+        "ar_seconds": 40.63747915602289,
+        "unchanged_seconds": 18.15927436191123,
+        "ar_fraction": 0.6911517511528539,
+        "scenarios": [
+          {
+            "assumed_ar_speedup": 2,
+            "estimated_wall_seconds": 38.478013939922675,
+            "estimated_e2e_speedup": 1.5280610275191422
+          },
+          {
+            "assumed_ar_speedup": 4,
+            "estimated_wall_seconds": 28.318644150916953,
+            "estimated_e2e_speedup": 2.0762559536604894
+          }
+        ],
+        "ar_only_infinite_speedup_bound": 3.2378360691140453,
+        "scope": "条件估算，非vLLM预测或实测。假设AR阶段2×/4×，其他阶段不变；AR无限快的上界也只对这个假设成立。YuE2-Omni还可能优化NAR，因此不是其完整后端上界。"
+      },
+      {
+        "id": "muse",
+        "name": "Muse",
+        "target_seconds": 300,
+        "hardware": "NVIDIA A100-SXM4-80GB",
+        "baseline_seconds": 291.7003935740795,
+        "ar_seconds": 202.13327432703227,
+        "unchanged_seconds": 89.56711924704723,
+        "ar_fraction": 0.6929482399745169,
+        "scenarios": [
+          {
+            "assumed_ar_speedup": 2,
+            "estimated_wall_seconds": 190.63375641056336,
+            "estimated_e2e_speedup": 1.5301612844781347
+          },
+          {
+            "assumed_ar_speedup": 4,
+            "estimated_wall_seconds": 140.1004378288053,
+            "estimated_e2e_speedup": 2.082080528046034
+          }
+        ],
+        "ar_only_infinite_speedup_bound": 3.2567798989883894,
+        "scope": "条件估算，非vLLM预测或实测。假设AR阶段2×/4×，其他阶段不变；AR无限快的上界也只对这个假设成立。YuE2-Omni还可能优化NAR，因此不是其完整后端上界。"
+      }
+    ]
+  },
   "references": [
     {
       "label": "YuE2参数口径与MoT",

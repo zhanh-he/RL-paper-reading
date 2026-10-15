@@ -30,7 +30,7 @@ function render(){
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.costFilter===filter)));
 }
 try{
-  const response=await fetch('./data/model-costs.json?v=20261015-published-speeds',{cache:'no-store'});
+  const response=await fetch('./data/model-costs.json?v=20261015-vllm',{cache:'no-store'});
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   data=await response.json();
   $('parameters').replaceChildren(...data.models.map(m=>{
@@ -52,5 +52,30 @@ try{
     return section;
   }),...data.references.map(r=>{const p=el('p');const a=el('a',r.label);a.href=r.url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);return p;}));
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.costFilter;render();}));
+  $('acceleration').replaceChildren(...data.acceleration.models.map(m=>{
+    const tr=el('tr');tr.dataset.accelerationModel=m.id;
+    tr.append(cell(m.name,m.engine),cell(m.support));
+    for(const seconds of [60,300]){
+      const row=m.measured_rows?.find(r=>r.target_seconds===seconds);
+      tr.append(cell(time(row?.wall_seconds),row?`实测输出${row.actual_audio_seconds.toFixed(2)}s`:
+        m.id==='levo2-medium-reference'&&seconds===300?'超官方270s上限':'尚无可比端到端计时'));
+    }
+    tr.append(cell(m.measured_rows?.length?m.measured_rows.map(r=>`${r.target_seconds}s: ${r.e2e_speedup.toFixed(2)}×`).join(' / '):'n/a',m.speedup_status));
+    return tr;
+  }));
+  $('projections').replaceChildren(...data.acceleration.projections.map(r=>{
+    const tr=el('tr');tr.append(cell(`${r.name} · ${r.target_seconds}s`,r.hardware),
+      cell(time(r.baseline_seconds),`AR ${(r.ar_fraction*100).toFixed(1)}%；其余${r.unchanged_seconds.toFixed(1)}s`));
+    for(const scenario of r.scenarios)tr.append(cell(time(scenario.estimated_wall_seconds),`条件估算 · 整链${scenario.estimated_e2e_speedup.toFixed(2)}×`));
+    tr.append(cell(`${r.ar_only_infinite_speedup_bound.toFixed(2)}×`,'仅AR无限快、其他阶段不变；不是完整Omni的上界'));
+    return tr;
+  }));
+  $('acceleration-evidence').replaceChildren(...data.acceleration.models.map(m=>{
+    const section=el('section');section.append(el('h4',m.name),el('p',m.coverage,'section-copy'));
+    if(m.measurement_scope)section.append(el('p',m.measurement_scope,'section-copy'));
+    const a=el('a','后端源码 / 支持状态来源');a.href=m.source;a.target='_blank';a.rel='noopener noreferrer';section.append(a);
+    if(m.receipt){const p=el('p'),link=el('a','本轮完整计时回执');link.href=`https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/model-costs/${m.receipt}`;link.target='_blank';link.rel='noopener noreferrer';p.append(link);section.append(p);}
+    return section;
+  }));
   render();
 }catch(error){const tr=el('tr'),td=el('td',`统计加载失败：${error.message}`);td.colSpan=5;tr.append(td);$('timing').replaceChildren(tr);}

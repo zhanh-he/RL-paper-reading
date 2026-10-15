@@ -62,7 +62,28 @@ Added 2026-10-15, **not newly measured on our GPUs**. Structured facts, original
 - **LeVo2 length boundary:** [pinned official README](https://github.com/levo-demo/LeVo/blob/653cbcf4716101834900c75b7d5da43b07e15d5b/README.md#model-versions) lists max4m30s for both v2 versions, excluding initialization from RTF. Pure multiplication for300s would yield207s/246s, but neither is a supported300s inference time. At the supported270s maximum the same rate converts to186.3s/221.4s; still estimates, not measured per-length results. Continuation would need separate implementation and timing.
 - **ACE configuration boundary:** [official project page](https://ace-step.github.io/ace-step-v1.5.github.io/) gives240s/2s/A100. The [pinned model zoo](https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/README.md) distinguishes Base/SFT50steps and Turbo8steps. The fast figure cannot fill the Base timing gap. Planner-on/off and diffusion steps affect total wait; neither a2-second SLA nor multiplying latency by50/8 is justified. The benchmark guide's example output is illustrative, not a measured result.
 
-No concurrent training was stopped or shared-GPU inference launched for this literature research. Cross-hardware/model-version figures are not a controlled speed leaderboard.
+No concurrent training was stopped or shared-GPU inference launched for this literature research. Cross-hardware/model-version figures are not a controlled speed leaderboard. The selected online LeVo2 version is now **v2-medium**; large remains in the source archive only.
+
+### vLLM Compatibility and Acceleration
+
+`vllm-support.json` records eight model-specific routes. The [pinned upstream Omni implementation](https://github.com/vllm-project/vllm-omni/tree/8201f614b4c213494e276f5eecd099d2b79b0090) includes a native YuE2 pipeline; our installed older runtimes do not automatically inherit it. Muse has an [official vLLM route](https://github.com/yuhui1038/Muse/tree/main/infer), already used in this project. ACE's [backend implementation](https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/acestep/llm_inference.py) imports **nano-vLLM**, not the upstream vLLM package; it handles the planner, not the DiT/VAE.
+
+LeVo2's upstream integration request [#3390](https://github.com/vllm-project/vllm-omni/issues/3390) remains open at this check. No ready full-song integration was identified in the pinned official Omni registry for LeVo2, HeartMuLa, SongBloom or DiffRhythm2. MusicGen's multi-codebook delay/continuation path also needs validation or adaptation. These are bounded compatibility findings, not claims that porting is impossible. Standard Transformer layers alone are insufficient evidence of an end-to-end compatible generator.
+
+**There is no verified matched vLLM speedup receipt yet.** The independent Gadi interactive request `181310624.gadi-pbs` remained queued during this update and was withdrawn without executing a GPU benchmark. Kaya's immediate interactive request `146358` failed because nodes were busy. No training was interrupted and no benchmark was left queued. `bench_muse_vllm.py` and `run_muse_vllm_bench.sh` are prepared but **not executed/accepted**. They use exact audio-code stopping, batch1, the same prompt/seed/sampling/decoder settings and separate initialization; both engine and codec must finish before publishing an end-to-end timing. A future validated `muse-vllm-timing.json` can populate the measured table; a warmup-only receipt cannot.
+
+The separate **conditional**, not measured or predicted-vLLM, table uses:
+
+`T_new = T_AR / assumed_AR_speedup + T_other`
+
+| Model / duration | Original measured wait | If AR were2x faster | If AR were4x faster |
+| --- | ---: | ---: | ---: |
+| YuE2 /60s | 84.51s | 46.24s /1.83x total | 27.10s /3.12x total |
+| YuE2 /300s | 271.02s | 149.14s /1.82x total | 88.19s /3.07x total |
+| Muse /60s | 58.80s | 38.48s /1.53x total | 28.32s /2.08x total |
+| Muse /300s | 291.70s | 190.63s /1.53x total | 140.10s /2.08x total |
+
+Only the AR stage changes in these scenarios; native codec/NAR/transfer time is held constant. Their hypothetical infinite-AR bounds are not global vLLM-Omni bounds: Omni may also optimize NAR. These scenarios are not a2x/4x promise, nor do they establish audible-quality parity. Batch throughput, cold compilation, concurrency and single-song latency must be reported separately. In particular, the nano-vLLM bundled README's256-sequence Qwen benchmark must not be reused as a music batch1 speedup.
 
 - `audit_weights.py`: trusted local safetensors headers and meta/mmap native checkpoints. Header SHA256 is a header identity, **not a full weight-file hash**. Raw state element counts are not final unique parameter counts.
 - `audit_native.py`: native model construction and unique parameter/buffer shapes; explicit HF weight tying. `native-hf-final-counts.json` is the finalized HF receipt.

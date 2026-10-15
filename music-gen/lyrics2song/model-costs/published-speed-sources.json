@@ -23,6 +23,7 @@
     },
     {
       "id": "levo2-medium-reference",
+      "selected": true,
       "name": "LeVo2 · v2-medium",
       "hardware": "NVIDIA H20 · 官方报告",
       "backend": "SongGeneration-v2-medium；采样/优化细节未单列",
@@ -37,6 +38,7 @@
     },
     {
       "id": "levo2-large-reference",
+      "selected": false,
       "name": "LeVo2 · v2-large",
       "hardware": "NVIDIA H20 · 官方报告",
       "backend": "SongGeneration-v2-large；采样/优化细节未单列",

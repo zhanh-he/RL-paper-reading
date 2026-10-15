@@ -13,7 +13,7 @@
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20261015-model-costs"></script>
     <link rel="stylesheet" href="./model-costs.css?v=20261015-native-timings" />
-    <script type="module" src="./model-costs.js?v=20261015-published-speeds"></script>
+    <script type="module" src="./model-costs.js?v=20261015-vllm"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -70,16 +70,21 @@
       </nav>
 
       <section class="lab-view" id="view-model-costs" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Local batch 1 / Published references · 15 Oct 2026</p><h2>模型规模与推理等待时间</h2></div><a href="./data/model-costs.json?v=20261015-published-speeds" download>下载统计 JSON</a></div>
+        <div class="section-intro"><div><p class="eyebrow">Local batch 1 / Published references · 15 Oct 2026</p><h2>模型规模与推理等待时间</h2></div><a href="./data/model-costs.json?v=20261015-vllm" download>下载统计 JSON</a></div>
         <p class="section-copy">RTF = 推理墙钟秒数 / 实际输出音频秒数，越小越快。本站热推理不含排队、下载、模型加载、reward评分与训练；文献项以各自范围为准。不同硬件和配置不构成速度排行榜。</p>
         <h3>真实参数与新计划 LoRA</h3>
         <p class="section-copy">按原生模型唯一 nn.Parameters 计数，含冻结权重，不含固定buffer；共享权重只算一次。主模型与外部codec / encoder分开列，整链总量见右栏。1B = 10亿，1M = 100万。LoRA按新主干计划 rank8 / alpha16 逐层形状核算，百分比以主模型为分母，不是旧head-only参数。</p>
         <div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 精确版本</th><th>生成模型参数</th><th>新计划 LoRA</th><th>另计组件 / 去重总量</th></tr></thead><tbody data-cost="parameters"></tbody></table></div>
         <h3>一首歌要等多久</h3>
-        <p class="section-copy">“实测”对应真实计时样本；“估算”按所示RTF线性换算。新增MusicGen、LeVo2 medium/large文献速度参考。LeVo2当前上限270秒，300秒不报可用耗时；ACE快配置与Base分开。不同来源不能当作同硬件速度排行榜。</p>
+        <p class="section-copy">“实测”对应真实计时样本；“估算”按所示RTF线性换算。LeVo2固定选择medium，large只保留在来源档案。LeVo2当前上限270秒，300秒不报可用耗时；ACE快配置与Base分开。不同来源不能当作同硬件速度排行榜。</p>
         <div class="metric-controls"><span class="control-label">证据来源</span><div class="segmented" role="group" aria-label="Timing evidence"><button type="button" data-cost-filter="all" aria-pressed="true">全部</button><button type="button" data-cost-filter="measured" aria-pressed="false">本站实测</button><button type="button" data-cost-filter="author" aria-pressed="false">文献 / 官方</button></div></div>
         <div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 测量范围</th><th>硬件 / 推理配置</th><th>RTF</th><th>60秒歌曲</th><th>300秒歌曲</th></tr></thead><tbody data-cost="timing"></tbody></table></div>
         <details class="choral-deep-dive"><summary>计时范围、样本量与复现来源</summary><div data-cost="evidence"></div><div class="reference-entry-links"><a href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/model-costs" target="_blank" rel="noopener noreferrer">审计代码与原始计时回执</a></div></details>
+        <h3>vLLM：接入状态与整曲提速</h3>
+        <p class="section-copy">模型能本地部署，不等于可直接切vLLM。下表只在有完整回执时给实测耗时和倍数；n/a不是零收益。本轮未取得独立GPU，新增配对测速尚未运行。普通vLLM、vLLM-Omni与ACE的nano-vLLM分别注明，批量吞吐不替代单曲延迟。</p>
+        <div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 加速后端</th><th>接入状态</th><th>vLLM · 60秒歌曲</th><th>vLLM · 300秒歌曲</th><th>整链提速</th></tr></thead><tbody data-cost="acceleration"></tbody></table></div>
+        <details class="choral-deep-dive"><summary>AR快2倍 / 4倍，整首歌能快多少？条件估算，不是vLLM实测</summary><p class="section-copy">T_new = T_AR / s + T_other。仅使用已有A100阶段计时，假设只加速AR，codec/NAR/传输等耗时不变。s=2或4是情景，不是声称vLLM能达到的倍数；“AR无限快”也只是该假设的上界。</p><div class="table-scroll"><table class="model-cost-table"><thead><tr><th>模型 / 目标片长</th><th>原实测等待</th><th>若AR快2倍</th><th>若AR快4倍</th><th>仅AR加速的条件上界</th></tr></thead><tbody data-cost="projections"></tbody></table></div></details>
+        <details class="choral-deep-dive"><summary>vLLM兼容性核验、未加速阶段与来源</summary><div data-cost="acceleration-evidence"></div></details>
       </section>
 
       <section class="lab-view" id="view-overview" hidden>

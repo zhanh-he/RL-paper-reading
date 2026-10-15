@@ -35,12 +35,23 @@ const musicgen=data.timing.find(m=>m.id==='musicgen-large-reference');
 assert.equal(musicgen.reported_rtf,.4);
 assert.equal(musicgen.median_rtf,2.5);
 assert.deepEqual(musicgen.rows.map(r=>r.wall_seconds),[150,750]);
-for(const id of ['levo2-medium-reference','levo2-large-reference']){
+for(const id of ['levo2-medium-reference']){
   const arm=data.timing.find(m=>m.id===id);
   assert.equal(arm.max_output_seconds,270);
   assert.equal(arm.rows[1].kind,'unsupported');
   assert.equal(arm.rows[1].wall_seconds,null);
   assert.equal(arm.kind,'author-reference');
+}
+assert.equal(data.timing.some(m=>m.id==='levo2-large-reference'),false);
+assert.equal(data.acceleration.models.length,8);
+assert.equal(data.acceleration.projections.length,4);
+for(const r of data.acceleration.projections){
+  assert.ok(r.ar_fraction>0&&r.ar_fraction<1);
+  for(const s of r.scenarios){
+    assert.equal(s.estimated_wall_seconds,r.ar_seconds/s.assumed_ar_speedup+r.unchanged_seconds);
+    assert.ok(s.estimated_e2e_speedup<s.assumed_ar_speedup);
+  }
+  assert.ok(r.scenarios[1].estimated_e2e_speedup<r.ar_only_infinite_speedup_bound);
 }
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const browser=await chromium.launch({headless:true,channel:'chrome'});
@@ -56,7 +67,12 @@ try{
     await root.locator('[data-cost="parameters"] tr').last().waitFor();
     assert.equal(await root.isVisible(),true);
     assert.equal(await root.locator('[data-cost="parameters"] tr').count(),6);
-    assert.equal(await root.locator('[data-cost="timing"] tr').count(),10);
+    assert.equal(await root.locator('[data-cost="timing"] tr').count(),9);
+    assert.equal(await root.locator('[data-cost="acceleration"] tr').count(),8);
+    assert.equal(await root.locator('[data-cost="projections"] tr').count(),4);
+    assert.equal(await root.locator('[data-cost="timing"] [data-cost-model="levo2-large-reference"]').count(),0);
+    assert.match(await root.locator('[data-acceleration-model="acestep15"]').textContent(),/nano-vLLM/);
+    assert.match(await root.locator('[data-acceleration-model="yue2"]').textContent(),/vLLM-Omni/);
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/3,580,352,576/);
     assert.match(await root.locator('[data-cost="parameters"]').textContent(),/13,484,032/);
     assert.match(await root.locator('[data-cost="timing"] [data-cost-model="songbloom"]').textContent(),/原生不支持/);
@@ -71,10 +87,13 @@ try{
     assert.equal(download.status(),200);
     assert.equal((await download.json()).models.length,6);
     await page.screenshot({path:`${output}/${width}.png`,fullPage:true});
-    await root.locator('summary').click();
+    await root.locator('summary').first().click();
     assert.match(await root.locator('[data-cost="evidence"]').textContent(),/初始化/);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    await root.locator('summary').nth(1).click();
+    assert.match(await root.locator('[data-cost="projections"]').textContent(),/条件估算/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   }
   assert.deepEqual(errors,[]);
-  console.log('Six exact parameter audits / ten timing rows / MusicGen inverse RTF / LeVo2 length limit / filters / JSON / desktop and mobile: PASS');
+  console.log('Six parameter audits / nine timing rows / LeVo2-medium selection / eight backend rows / conditional Amdahl scenarios / desktop and mobile: PASS');
 }finally{await browser.close();}

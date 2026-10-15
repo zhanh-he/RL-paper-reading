@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-15",
+  "omni_revision": "8201f614b4c213494e276f5eecd099d2b79b0090",
+  "scope": "Compatibility is not speed. A supported architecture, decoder-only language benchmark, throughput at high concurrency, and batch-one full-song latency are separate claims.",
+  "measurement_attempts": [
+    {"host":"gadi","job_id":"181310624.gadi-pbs","status":"queued_then_withdrawn","gpu_benchmark_executed":false},
+    {"host":"kaya","job_id":"146358","status":"immediate_allocation_failed_nodes_busy","gpu_benchmark_executed":false}
+  ],
+  "models": [
+    {"id":"yue2","name":"YuE2","engine":"vLLM-Omni · 上游原生集成","support":"上游已支持；本机版本和长曲尚未验收","coverage":"ABC/semantic AR + 原生NAR/VAE集成。普通vLLM不能忽略MoT结构；需匹配Omni版本。","speedup_status":"n/a · 未做同条件端到端vLLM配对测速","source":"https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/recipes/m-a-p/YuE2-3B.md"},
+    {"id":"muse","name":"Muse","engine":"上游vLLM · 原生推理路线","support":"官方及本项目均已使用vLLM；新配对测速尚未运行","coverage":"Qwen3音频token LM；MuCodec diffusion/VAE仍单独运行。已有vLLM音频不等于已有可靠速度比。","speedup_status":"n/a · 无完整可比速度回执前不报倍数","source":"https://github.com/yuhui1038/Muse/blob/main/infer/README.md"},
+    {"id":"diffrhythm2","name":"DiffRhythm2","engine":"原生DiT / Flow推理","support":"不是可直接切换普通vLLM的AR任务","coverage":"DiT、ODE与Music VAE是主要生成路径。CUDA graphs、批处理或专门Omni移植须另测；不能把LLM加速倍数套上。","speedup_status":"n/a · 当前无已验收vLLM端到端适配","source":"https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/docs/models/supported_models.md"},
+    {"id":"heartmula","name":"HeartMuLa","engine":"原生global/local codebook模型","support":"未找到固定上游版本的端到端即用集成","coverage":"层级codebook生成与HeartCodec需要专用接口；不能因含Transformer就按普通Llama替换。","speedup_status":"n/a · 需要适配及实测","source":"https://github.com/HeartMuLa/heartlib"},
+    {"id":"songbloom","name":"SongBloom","engine":"原生AR planner + NAR DiT","support":"未找到固定上游版本的端到端即用集成","coverage":"可以研究AR planner移植，但DiT/VAE耗时不会随普通vLLM自动消失；当前无阶段计时足以推算加速。","speedup_status":"n/a · 不虚构2×/4×","source":"https://github.com/vllm-project/vllm-omni/blob/8201f614b4c213494e276f5eecd099d2b79b0090/docs/models/supported_models.md"},
+    {"id":"acestep15","name":"ACE-Step1.5","engine":"官方选项vllm = nano-vLLM","support":"可直接用于LM planner；不是上游vLLM包","coverage":"官方llm_inference.py实际导入nanovllm；DiT/VAE保持原生。没有planner时此项不提供LM加速。官方240s/2s快配置不能再当成HF基线乘加速倍数。","speedup_status":"n/a · 未见同配置PT对nano-vLLM的整曲速度比","source":"https://github.com/ace-step/ACE-Step-1.5/blob/8ac1be141c6d0c818755e8c4306dc8f72438022c/acestep/llm_inference.py"},
+    {"id":"levo2-medium-reference","name":"LeVo2-medium","engine":"当前原生LeLM + diffusion codec","support":"未找到固定Omni版本的已合并官方适配","coverage":"Omni支持列表未列LeVo2；集成请求#3390仍open。需要层级混合/双轨token与codec接口适配，不等于不能移植。只保留medium；官方270s上限继续适用。","speedup_status":"n/a · 官方H20 RTF0.69不是vLLM对照结果","source":"https://github.com/vllm-project/vllm-omni/issues/3390"},
+    {"id":"musicgen-large-reference","name":"MusicGen-large","engine":"原生AudioCraft多码本AR","support":"未验证普通vLLM即用兼容","coverage":"EnCodec多码本delay与长片段续写需要专用实现；不能当作普通文本CausalLM。文献RTF2.5不是vLLM基线。","speedup_status":"n/a · 需要专用适配及配对测速","source":"https://github.com/facebookresearch/audiocraft/blob/main/audiocraft/models/musicgen.py"}
+  ]
+}

@@ -91,7 +91,7 @@ if(localBloom){
     load_seconds:localBloom.model_load_seconds,duration_control:localBloom.duration_control,source:'songbloom-timing.json'});
 }
 timing.sort((a,b)=>models.findIndex(r=>r.id===a.id)-models.findIndex(r=>r.id===b.id));
-for(const entry of read('published-speed-sources.json').entries){
+for(const entry of read('published-speed-sources.json').entries.filter(e=>e.selected!==false)){
   const rate=entry.normalization==='reciprocal'?1/entry.reported_rtf:
     entry.normalization==='wall_div_audio'?entry.reported_wall_seconds/entry.reported_audio_seconds:entry.reported_rtf;
   assert.ok(Number.isFinite(rate)&&rate>0);
@@ -101,11 +101,40 @@ for(const entry of read('published-speed-sources.json').entries){
         caveat:`官方上限${entry.max_output_seconds}s；RTF算术外推${Math.round(rate*seconds)}s不代表可生成该长度`}:
       {target_seconds:seconds,wall_seconds:rate*seconds,rtf:rate,kind:'author-rate-estimate',caveat:entry.duration_caveat})});
 }
+const acceleration=read('vllm-support.json');
+acceleration.projections=[];
+for(const id of ['yue2','muse']){
+  const raw=read(`${id}-timing.json`);
+  for(const row of raw.rows.filter(r=>!r.warmup)){
+    const ar=id==='yue2'?row.timing.abc.seconds+row.timing.semantic.seconds:row.lm_seconds;
+    const other=row.wall_seconds-ar;
+    assert.ok(other>0&&ar>0);
+    acceleration.projections.push({id,name:models.find(m=>m.id===id).name,
+      target_seconds:row.target_seconds,hardware:raw.device,baseline_seconds:row.wall_seconds,
+      ar_seconds:ar,unchanged_seconds:other,ar_fraction:ar/row.wall_seconds,
+      scenarios:[2,4].map(factor=>({assumed_ar_speedup:factor,estimated_wall_seconds:ar/factor+other,
+        estimated_e2e_speedup:row.wall_seconds/(ar/factor+other)})),
+      ar_only_infinite_speedup_bound:row.wall_seconds/other,
+      scope:'条件估算，非vLLM预测或实测。假设AR阶段2×/4×，其他阶段不变；AR无限快的上界也只对这个假设成立。YuE2-Omni还可能优化NAR，因此不是其完整后端上界。'});
+  }
+}
+const vllmMuse=optional('muse-vllm-timing.json');
+if(vllmMuse?.rows.some(r=>!r.warmup)){
+  assert.equal(vllmMuse.device,read('muse-timing.json').device,'Do not present a cross-hardware ratio as backend speedup');
+  const arm=acceleration.models.find(m=>m.id==='muse');
+  arm.measured_rows=vllmMuse.rows.filter(r=>!r.warmup).map(row=>{
+    const base=read('muse-timing.json').rows.find(r=>r.target_seconds===row.target_seconds);
+    return {...row,e2e_speedup:base.rtf/row.rtf,ar_speedup:base.lm_seconds/row.lm_seconds};
+  });
+  arm.speedup_status='端到端配对实测 · 相同型号A100 / 各长度单次，非交错重复';
+  arm.support=vllmMuse.backend;arm.measurement_scope=vllmMuse.scope;
+  arm.receipt='muse-vllm-timing.json';
+}
 const value={schema:1,checked_at:'2026-10-15',title:'模型规模与推理等待时间',
   definition:'RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.',
-  scope:'Six exact local parameter/LoRA audits and local batch1 timing evidence, plus four separately labeled published speed references. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Independent Gadi A100 timings from the earlier finite audit; current MusicGen/LeVo2/ACE update is literature-only. Not a speed leaderboard.',
+  scope:'Six exact local parameter/LoRA audits and local batch1 timing evidence, plus three selected published speed references (LeVo2-medium only; large archived). Backend compatibility, measured acceleration and explicitly conditional AR-only estimates are separated. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Not a speed leaderboard.',
   interpretation:'实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。',
-  models,timing,
+  models,timing,acceleration,
   references:[{label:'YuE2参数口径与MoT',url:'https://arxiv.org/html/2609.33757v1#A1.SS5'},
     {label:'DiffRhythm2官方4090测速：120s /25.6s /32steps；非本站5090',url:'https://arxiv.org/html/2510.22950v2#A2'},
     {label:'HeartMuLa官方RTF≈1.0，硬件未给，不代替本站记录',url:'https://github.com/HeartMuLa/heartlib#-todos'},
