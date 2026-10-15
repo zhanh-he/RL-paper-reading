@@ -8,6 +8,9 @@ formal training run. No scheduled task or automatic monitor is used.
 - Discrete AR: TRL is selected. HeartMuLa needs a native eight-codebook adapter;
   it is not an ordinary single-stream causal LM. YuE2's existing results remain
   **PyTorch + PEFT**, not retroactively relabeled TRL.
+- Continuous flow: **Miles-Diffusion is selected**, synchronous FSDP2. VeRL-Omni
+  is no longer an active second route or comparison experiment. See the
+  [final stability/speed/memory decision](FLOW_FRAMEWORK_DECISION_2026-10-15.md).
 - DiffRhythm2: block-autoregressive **continuous flow** policy. Adapt all DiT
   attention/MLP blocks, with Flow-GRPO, not token GRPO. Recompute text and clean
   history with current actor parameters; a rollout KV cache is not a training
@@ -87,24 +90,24 @@ Neither flow test runs a Ray/FSDP actor or SGLang/vLLM-Omni rollout engine. Thus
 these times and memory **cannot rank whole-framework throughput**. Native model
 trainability is established at this bounded scope; framework gate7 remains open.
 
-### Recommended Next Port
+### Selected Flow Framework
 
-Keep **TRL for AR**. For the first full Flow framework port, prioritize
-**Miles-Diffusion's native FSDP backend and custom rollout hooks**, retaining
-VeRL-Omni as the second route. This is an engineering priority, not a benchmark
-victory: Miles exposes model-backend, batch, rollout and SDE hooks, so the native
-audio forward paths tested here can be retained. Its default visual transport
-and scale-normalized KL still need explicit audio adapters and acceptance.
-VeRL-Omni's current full stack requires a separate Transformers5.x/vLLM0.30
-environment and a registered native audio rollout/pipeline; forcing that stack
-into the existing4.x generator environments is not an acceptable shortcut.
+Keep **TRL for AR** and use **Miles-Diffusion, synchronous FSDP2**, for both
+continuous-flow models. Do not keep a parallel VeRL-Omni implementation. The
+[decision record](FLOW_FRAMEWORK_DECISION_2026-10-15.md) separates measured facts
+from engineering judgment and details stability, speed, memory and open gates.
+No whole-framework speed or memory winner has been measured. Miles' native
+backend and narrower synchronous control loop are the project-specific reasons.
+Its default engine factory still starts SGLang: custom rollout hooks alone do
+not provide a working native audio worker. Engine creation, LoRA sync/offload,
+audio transport and exact conditional KL require explicit integration acceptance.
 
 The [5090](import-receipt-5090.json) and [Gadi](import-receipt-gadi.json) import
 probes record incomplete optional dependencies. Missing `wandb` or `tensordict`
 is an environment setup result, **not proof a framework cannot train audio**.
 No complete distributed-framework success is claimed, and no new formal training
-has been launched. The next decision is whether to finish the Miles audio port
-first or fund both complete framework paths before formal runs.
+has been launched. Only the selected Miles audio port receives further effort;
+the remaining gates are acceptance work, not another framework-choice decision.
 
 ### Flow Kernel Semantics
 
@@ -125,10 +128,18 @@ our exact one-step conditional KL or compared at equal beta without qualificatio
 Both audited policy kernels use mean log-density, not joint latent log-density.
 VeRL's `actor/ppo_kl` is old/current-policy drift, not a frozen-reference KL.
 
-Full VeRL-Omni currently pins Transformers5.13-5.14 and vLLM0.30, conflicting with
-the models' native Transformers4.x environments. Miles' current Flow-GRPO batch
-path hardcodes the `visual` stream. Neither is a ready-made audio model port.
-Do not upgrade the shared reward or native inference environments to hide this.
+Follow-up correction: VeRL's **default worker KL has the same scale convention**.
+The prior isolated comparison added exact conditional KL to VeRL's policy loss;
+it did not test that worker default. The [additional CPU audit](framework-selection-kl.json)
+checks both exact default definitions: identical0.005050126 atdt0.1 versus exact
+transition0.050501250, and identical0.000050501 atdt0.01 versus exact0.005050109.
+Identity checks are0. This is not a numerical advantage for either framework.
+
+Dependency correction: Miles' complete stack also pins Torch2.11 and
+Transformers5.12.1; VeRL-Omni pins Transformers5.13-5.14 and vLLM0.30. **Both**
+need isolated compatibility work against native4.x audio code. Miles' current
+Flow-GRPO batch path hardcodes the `visual` stream. Neither is a ready-made audio
+model port. Do not upgrade the shared reward or native inference environments.
 
 ## Acceptance Gates
 

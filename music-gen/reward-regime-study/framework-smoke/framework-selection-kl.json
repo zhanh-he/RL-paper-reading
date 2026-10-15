@@ -1,0 +1,58 @@
+{
+  "scope": "CPU analytic fixture, exact AST-isolated upstream kernels; no full framework import, GPU training, speed or memory comparison",
+  "pins": {
+    "miles": "66f61901873a51be1de2072998090ac754fb18f3",
+    "verl": "f31a6116119fd62a89554987f51ae279a567d66b"
+  },
+  "git_metadata_present": {
+    "miles": false,
+    "verl": false
+  },
+  "pinned_source_sha256_verified": true,
+  "torch": "2.10.0+cu128",
+  "cases": [
+    {
+      "dt_magnitude": 0.1,
+      "reference_velocity_shift": 0.0,
+      "miles_reported_kl": 0.0,
+      "verl_default_kl": 0.0,
+      "exact_transition_kl_per_dimension": 0.0,
+      "exact_to_default_ratio": null,
+      "finite_gradients": true
+    },
+    {
+      "dt_magnitude": 0.1,
+      "reference_velocity_shift": 0.1,
+      "miles_reported_kl": 0.005050125997513533,
+      "verl_default_kl": 0.005050125997513533,
+      "exact_transition_kl_per_dimension": 0.050501249730587006,
+      "exact_to_default_ratio": 9.999997971427183,
+      "finite_gradients": true
+    },
+    {
+      "dt_magnitude": 0.01,
+      "reference_velocity_shift": 0.0,
+      "miles_reported_kl": 0.0,
+      "verl_default_kl": 0.0,
+      "exact_transition_kl_per_dimension": 0.0,
+      "exact_to_default_ratio": null,
+      "finite_gradients": true
+    },
+    {
+      "dt_magnitude": 0.01,
+      "reference_velocity_shift": 0.1,
+      "miles_reported_kl": 5.050104664405808e-05,
+      "verl_default_kl": 5.050104664405808e-05,
+      "exact_transition_kl_per_dimension": 0.005050108768045902,
+      "exact_to_default_ratio": 100.00008125851575,
+      "finite_gradients": true
+    }
+  ],
+  "interpretation": "Both default Flow-SDE KL losses divide by diffusion scale squared, not full transition variance including abs(dt). This can be a rate-weighted regularizer; it is not exact discrete-transition KL. No stability winner follows from this test.",
+  "sources": {
+    "miles/miles/backends/fsdp_utils/sde_step_backend.py": "a4c199e868192c00c5f25ee4a8478d04d78e296e6c2b4cbe7d5fe9aaff63bbc2",
+    "miles/miles/backends/fsdp_utils/loss_hub/flow_grpo.py": "9d67d7b451f8b0625f72e7c598e8ea93ffee73cb7516fc9d8ebeaed1a01f2dbf",
+    "verl-omni/verl_omni/trainer/diffusion/diffusion_algos.py": "1411e6facf4ceee0ef37f3d405fc2f983364bc7488f8867924c6fcf86c5d78a6",
+    "verl-omni/verl_omni/pipelines/schedulers/flow_match_sde.py": "d3041878eb111790f4f55acedb9409fd434633898265d83d072f06f82b621589"
+  }
+}
