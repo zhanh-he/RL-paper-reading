@@ -14,12 +14,13 @@ try {
     await root.locator('[data-regime="models"] button').first().waitFor();
     assert.equal(await root.isVisible(), true);
     assert.deepEqual(await root.locator('[data-regime="models"] button').allTextContents(),
-      ['YuE2', 'HeartMuLa', 'DiffRhythm2', 'SongBloom', 'Muse', 'Private baseline', 'ACE-Step 1.5']);
+      ['YuE2', 'HeartMuLa', 'DiffRhythm2', 'SongBloom', 'Muse', 'ACE-Step 1.5', 'Private baseline']);
     for (const button of await root.locator('[data-regime="models"] button').all()) {
       await button.click();
       assert.equal(await button.getAttribute('aria-pressed'), 'true');
       assert.equal(await root.locator('[data-regime="arms"] tr').count(), 3);
       assert.match(await root.locator('[data-regime="model-note"]').textContent(), /MOS 未测/);
+      assert.match(await root.locator('[data-regime="backbone-status"]').textContent(), /LR3e-4.*β0.05/);
       const name = await button.textContent();
       if (['HeartMuLa', 'DiffRhythm2', 'SongBloom', 'Private baseline', 'ACE-Step 1.5'].includes(name)) {
         assert.equal(await root.locator('[data-regime="plots"]').isVisible(), ['HeartMuLa','DiffRhythm2','SongBloom'].includes(name));

@@ -22,7 +22,8 @@ def main():
     p.add_argument('--codec', required=True); p.add_argument('--reward', required=True)
     a = p.parse_args()
     if sha(a.valid) != VALID_SHA: raise ValueError('Frozen validation membership changed')
-    rows = [json.loads(line) for line in a.valid.read_text().splitlines()]
+    with a.valid.open(encoding='utf-8') as source:
+        rows = [json.loads(line) for line in source if line.strip()]
     if len(rows) != 30: raise ValueError('Full validation requires all 30 conditions')
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams

@@ -34,7 +34,7 @@
             <tr><td><strong>YuE2</strong>Discrete AR</td><td>已回收结果仍是 PyTorch + PEFT，不改标为 TRL。</td><td>TRL + 原生 semantic-token sampler / likelihood adapter</td><td>YuE2 的完整 TRL 更新与恢复链，尚未通过。</td></tr>
             <tr><td><strong>Muse</strong>Discrete AR</td><td>现有 ms-swift/TRL + vLLM，多轮 scheduler 与原生 codec。</td><td>保留 TRL 路线及已核验的原生接口</td><td>逐版本记录，并核验 rollout / trainer 概率、mask 和权重同步；不以换框架替代实验验收。</td></tr>
             <tr><td><strong>HeartMuLa</strong>8 codebooks</td><td>真实 TRL 0.24 GRPOTrainer，两次主干 LoRA 更新通过。</td><td>TRL + global/local 多码本 adapter</td><td>长片段、断点恢复和分布式；两步短验收不是正式训练完成。</td></tr>
-            <tr><td><strong>DiffRhythm2</strong>Block-AR flow</td><td>真实 DiT 主干与隔离上游 loss 的两步验收。</td><td>Miles-Diffusion · 主干 LoRA</td><td>完整 worker、音频 rollout、同步与恢复链。</td></tr>
+            <tr><td><strong>DiffRhythm2</strong>Block-AR flow</td><td>实际 Miles FSDP2 actor + 原生 Ray 音频 worker：两次主干更新、哈希同步与冷 actor 恢复通过。</td><td>Miles-Diffusion · 主干 LoRA</td><td>正式全270步与30条验证尚未完成；5090已启动原生60秒验证。</td></tr>
             <tr><td><strong>SongBloom</strong>Acoustic flow</td><td>真实 nar_dit 主干与隔离上游 loss 的两步验收。</td><td>Miles-Diffusion · AR planner / VAE 固定</td><td>完整 worker 链与预定时长；原生输入仍为 reference audio + lyrics。</td></tr>
           </tbody>
         </table></div>
@@ -53,7 +53,7 @@
         </table></div>
         <h3>不能交给默认值的四件事</h3>
         <ol class="decision-list">
-          <li><strong>KL 必须显式启用。</strong>所审 TRL 0.24 默认 <code>beta=0</code>。本项目拟使用 <code>beta=0.01</code>，并核验 reference identity 与更新后漂移；采样 k3 KL 不是精确全词表 KL，也不是硬约束。</li>
+          <li><strong>KL 必须显式启用。</strong>所审 TRL 0.24 默认 <code>beta=0</code>。用户现已批准新主干轮 <code>beta=0.05</code>、恒定 <code>LR=3e-4</code>（与当前 YuE2 SP/AI 组一致）。既有短验收和历史实验仍保留原 <code>beta=0.01</code>，不重标旧曲线。核验 reference identity 与更新后漂移；采样 k3 KL 不是精确全词表 KL，也不是硬约束。</li>
           <li><strong>采样与 loss 必须是同一个策略。</strong>YuE2 的 codec+EOS 支持集、最短长度 EOS mask、temperature / CFG、padding 和截断规则都要对齐，不能直接用全词表 teacher forcing 顶替。保留原生 token ID，不做音频 token 的文本往返转换。</li>
           <li><strong>旧策略概率来自真实 rollout。</strong>Muse 需检查 vLLM 与 trainer 的 log-prob 差异及 LoRA 版本；HeartMuLa 的八个 codebook 都进入目标，不只训练 codebook0。</li>
           <li><strong>换 TRL 不会自动让 clipping 生效。</strong>如果每组仅从旧策略更新一次，第一次梯度的 ratio 为 1，裁剪不会额外限制这次更新。loss normalization、更新次数和 scheduler 必须明确记录，不能只写“GRPO”。</li>
@@ -80,7 +80,7 @@
           <tbody class="numeric"><tr><td>0.1</td><td>0.005050126</td><td>0.005050126</td><td>0.050501250</td></tr><tr><td>0.01</td><td>0.000050501</td><td>0.000050501</td><td>0.005050109</td></tr></tbody>
         </table></div>
         <p>所选音频 port 将显式记录冻结 reference 的 conditional Gaussian KL / active latent dimension；rate-scaled 诊断另行命名，排除 padding 和零方差确定性步。两种 KL 的 beta 数值不可不加说明地互换。两个已审 loss 都使用维度平均 log-density ratio，而非联合高斯密度 ratio。</p>
-        <p class="decision-notice"><strong>仍未验收：</strong>完整 Miles 的音频 rollout → 评分 → 更新 → adapter 同步 → 再生成 → 保存恢复链。自定义 rollout flag 本身不替换默认引擎工厂，<code>train-only</code> 也不能冒充在线训练。通过隔离 loss 不等于通过此链。</p>
+        <p class="decision-notice"><strong>DiffRhythm2 完整链已验收：</strong>实际 Miles FSDP2 actor 与原生 Ray 音频 worker 完成 rollout → 评分 → 两次主干更新 → 哈希同步 → 再生成 → 冷 actor 保存恢复。LR两步均为3e-4、β0.05；identity KL=0，第二步KL≈2.75e-5 / latent dimension。仅证明单GPU链路可用，不证明长训练稳定或音质提升；SongBloom 的完整链仍未验收。</p>
       </section>
 
       <section id="evidence" aria-labelledby="evidence-heading">
@@ -94,7 +94,7 @@
           </tbody>
         </table></div>
         <p>均不含冷 actor checkpoint 加载，各计时段也不是相同的完整训练服务。表中不是 Miles / VeRL 两套独立计时，不能计算框架加速比；PyTorch allocated 也不是整卡占用。不能据约 4 秒短验收保证 30–60 秒音频的显存或速度。</p>
-        <p>下一次正式提交之前，所选路线仍须通过真实非零主干梯度、两次 optimizer 更新、采样/训练概率一致性、reference identity / drift、optimizer + RNG + data cursor 恢复及预定时长资源检查。已有 head-only 消融保持“待替代”，不升级为主干训练结果。</p>
+        <p>新增 DiffRhythm2 完整 worker 回执与上表隔离测试分开。主干梯度、采样概率差、reference identity/drift、optimizer、RNG与游标恢复均已核验；正式阶段先做全30条原生60秒验证。已有 head-only 消融保持“待替代”，不升级为主干训练结果。</p>
       </section>
 
       <section id="sources" aria-labelledby="sources-heading">
@@ -108,9 +108,10 @@
           <li><a href="https://verl-omni.readthedocs.io/en/latest/contributing/integrating_a_non_diffusers_model.html" target="_blank" rel="noopener noreferrer">VeRL-Omni · non-diffusers 接入</a><small>审阅 pin f31a6116；非未来对照实验</small></li>
           <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/heartmula-trl-receipt.json" target="_blank" rel="noopener noreferrer">HeartMuLa · TRL 原始回执</a><small>真实 Trainer、主干梯度、八码本与显存</small></li>
           <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/framework-smoke/framework-selection-kl.json" target="_blank" rel="noopener noreferrer">Flow KL · 原始数值回执</a><small>两家源码 SHA256 核验；CPU 夹具与 identity check</small></li>
+          <li><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/backbone-rl/README.md" target="_blank" rel="noopener noreferrer">新主干轮 · 参数、完整 Miles 回执与提交记录</a><small>恒定LR3e-4 / β0.05；真实任务状态与历史曲线分开</small></li>
         </ul>
       </section>
-      <footer class="decision-footer">本页是 2026-10-15 的决策快照，不是实时任务状态。本次没有新开训练或定时任务，也没有改动冻结数据划分。<a href="./#reward-regimes">返回 SP / AI Rewards 实验</a></footer>
+      <footer class="decision-footer">本页是 2026-10-15 的决策及启动快照，不是实时任务状态。用户已批准正式主干轮；没有创建定时任务，也没有改动冻结数据划分。<a href="./#reward-regimes">返回 SP / AI Rewards 实验</a></footer>
     </main>
   </body>
 </html>

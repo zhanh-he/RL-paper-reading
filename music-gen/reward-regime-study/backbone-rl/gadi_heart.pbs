@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=160GB,jobfs=20GB,walltime=12:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N backbone-heart
+set -euo pipefail
+: "${REGIME_REWARD:?}"
+module purge
+module load python3/3.11.7 cuda/12.8.0
+study=/scratch/wa66/hm6416/backbone-rl-20261015
+root=/scratch/iv96/hm6416/open-music-rl-20261014
+smoke=/scratch/iv96/hm6416/framework-smoke-20261015
+work=/scratch/iv96/hm6416/wsb-objective-20261013
+bundle="$work/wsb_metrics"
+resources=/scratch/iv96/hm6416/reward-regimes-20261014
+base=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin/python
+code="$study/code"
+output="$study/outputs/heartmula-${REGIME_REWARD}-lr3e4-beta5e2-seed42"
+port=$((43000+${PBS_JOBID%%.*}%1000))
+export PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 OMP_NUM_THREADS=4
+export HF_HOME="$root/hf-cache" NLTK_DATA="$root/nltk_data" TMPDIR="$PBS_JOBFS"
+export TOKENIZERS_PARALLELISM=false PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export PATH="$bundle/bin:$PATH"
+export PYTHONPATH="$smoke/python-deps:$code"
+mkdir -p "$output"
+"$base" "$code/launch_container_worker.py" --work "$work" \
+  --python "$bundle/.venvs/metrics/bin/python" --script "$code/reward_server.py" \
+  --bundle "$bundle" --deps "$resources/deps" --separator "$resources/models/955717e8-8726e21a.th" \
+  --receipt-dir "$output/scorer" --port "$port" > "$output/scorer.log" 2>&1 &
+scorer=$!
+trap 'kill "$scorer" 2>/dev/null || true; wait "$scorer" 2>/dev/null || true' EXIT
+ready=false
+for _ in $(seq 1 180); do
+  if curl -fsS "http://127.0.0.1:$port/health" >/dev/null; then ready=true; break; fi
+  kill -0 "$scorer" || exit 1
+  sleep 5
+done
+[[ "$ready" == true ]] || exit 1
+common=(--assets "$root/assets/heartmula" --source "$root/sources/heartlib" \
+  --trl "$smoke/sources/trl" --data "$root/data.json" --scorer "http://127.0.0.1:$port" \
+  --reward "$REGIME_REWARD" --dtype float32)
+"$base" "$code/container_command.py" "$work/container-runtime.json" \
+  "$root/envs/heartmula/bin/python" -u "$code/train_heart_trl.py" "${common[@]}" \
+  --seconds 4 --steps 2 --acceptance-only --output "$output/acceptance" > "$output/acceptance.log" 2>&1
+resume=()
+if [[ -f "$output/experiment.json" ]]; then resume+=(--resume); fi
+"$base" "$code/container_command.py" "$work/container-runtime.json" \
+  "$root/envs/heartmula/bin/python" -u "$code/train_heart_trl.py" "${common[@]}" \
+  --seconds 60 --steps 270 --output "$output" "${resume[@]}" > "$output/train.log" 2>&1

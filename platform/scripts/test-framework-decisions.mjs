@@ -51,7 +51,9 @@ try {
     }
     await decision.locator('h1').scrollIntoViewIfNeeded();
     assert.ok(await decision.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-    assert.equal(await decision.locator('.decision-sources a').count(), 8);
+    assert.match(await decision.locator('#flow').textContent(), /DiffRhythm2 完整链已验收/);
+    assert.match(await decision.locator('#ar').textContent(), /beta=0.05/);
+    assert.equal(await decision.locator('.decision-sources a').count(), 9);
     assert.deepEqual(errors, []);
     assert.deepEqual(failed, []);
     await decision.screenshot({ path: `${output}/frameworks-${width}.png`, fullPage: true });

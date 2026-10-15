@@ -1,0 +1,78 @@
+diff --git a/miles/backends/fsdp_utils/actor.py b/miles/backends/fsdp_utils/actor.py
+index d005792..f47ec5f 100644
+--- a/miles/backends/fsdp_utils/actor.py
++++ b/miles/backends/fsdp_utils/actor.py
+@@ -28,13 +28,6 @@ from miles.utils.train_data_utils import (
+ 
+ from . import checkpoint
+ from .device_move import move_model, move_optimizer, sleep_frozen_model, wake_up_frozen_model
+-from .diffusion_update_weight_utils import (
+-    DiffusionUpdateWeightFromDistributed,
+-    DiffusionUpdateWeightFromTensor,
+-    DiffusionUpdateWeightFromTensorLoRA,
+-    DiffusionUpdateWeightFromTensorLoRAIPC,
+-    DiffusionUpdateWeightLoRADistributed,
+-)
+ from .ema import EMAOptimizer, reshard_model
+ from .input_dtype_policy import apply_input_dtype_policy
+ from .loss_hub import DiffusionLossContext, flow_grpo_loss_formula, prepare_flow_grpo_batch
+@@ -204,9 +197,20 @@ class FSDPTrainRayActor(TrainRayActor):
+             )
+         checkpoint_payload = checkpoint.load(self)
+ 
+-        # sglang-d now supports /update_weights_from_tensor (PR #20464).
++        # Native audio workers implement the same sync boundary without SGLang.
++        native_updater = getattr(args, "native_weight_updater_path", None)
++        if not args.train_only and native_updater is None:
++            from .diffusion_update_weight_utils import (
++                DiffusionUpdateWeightFromDistributed,
++                DiffusionUpdateWeightFromTensor,
++                DiffusionUpdateWeightFromTensorLoRA,
++                DiffusionUpdateWeightFromTensorLoRAIPC,
++                DiffusionUpdateWeightLoRADistributed,
++            )
+         if self.args.train_only:
+             self.weight_updater = None
++        elif native_updater is not None:
++            self.weight_updater = load_function(native_updater)(self.args, self.models)
+         elif self.args.use_lora:
+             if self.args.colocate:
+                 if self.args.lora_ipc_weight_sync:
+diff --git a/miles/backends/fsdp_utils/model_loader.py b/miles/backends/fsdp_utils/model_loader.py
+index ca61e39..c95f42a 100644
+--- a/miles/backends/fsdp_utils/model_loader.py
++++ b/miles/backends/fsdp_utils/model_loader.py
+@@ -11,7 +11,6 @@ import torch.distributed as dist
+ from . import checkpoint
+ from .device_move import move_model
+ from .mixed_precision import compile_param_dtype_maps, parse_dtype_from_str
+-from .sequence_parallel.plan import apply_sequence_parallel
+ 
+ logger = logging.getLogger(__name__)
+ 
+@@ -65,6 +64,7 @@ def load_fsdp_models(
+         del full_state
+         train_pipeline_config.postprocess_model_after_materialize(model)
+         if parallel_state.get_optional_mesh("sp") is not None:
++            from .sequence_parallel.plan import apply_sequence_parallel
+             apply_sequence_parallel(
+                 model,
+                 parallel_state,
+diff --git a/miles/backends/fsdp_utils/parallel.py b/miles/backends/fsdp_utils/parallel.py
+index 16a113e..8095b39 100644
+--- a/miles/backends/fsdp_utils/parallel.py
++++ b/miles/backends/fsdp_utils/parallel.py
+@@ -20,7 +20,12 @@ def build_fsdp_meshes(
+     """Build the FSDP hybrid-shard and DP/SP views."""
+     world_mesh = init_device_mesh(device_type, (world_size,), mesh_dim_names=("world",))
+ 
+-    shard_view = world_mesh._unflatten(0, (dp_replicate, world_size // dp_replicate), ("dp_replicate", "fsdp"))
++    if hasattr(world_mesh, "_unflatten"):
++        shard_view = world_mesh._unflatten(0, (dp_replicate, world_size // dp_replicate), ("dp_replicate", "fsdp"))
++    else:
++        if sp_size != 1:
++            raise ValueError("This torch compatibility path supports no sequence parallelism")
++        shard_view = init_device_mesh(device_type, (dp_replicate, world_size // dp_replicate), mesh_dim_names=("dp_replicate", "fsdp"))
+     # A degree-1 replicate axis would all-reduce over a single rank every bucket.
+     fsdp_mesh = shard_view if dp_replicate > 1 else shard_view["fsdp"]
+     meshes = {"world": world_mesh, "fsdp": fsdp_mesh, "dp": world_mesh}
