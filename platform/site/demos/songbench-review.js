@@ -41,7 +41,7 @@ function audio(){
   }));
 }
 try{
-  const response=await fetch('./data/songbench-review.json?v=20261020');if(!response.ok)throw Error(`HTTP ${response.status}`);data=await response.json();
+  const response=await fetch('./data/songbench-review.json?v=20261020-pristine-muse-launch',{cache:'no-store'});if(!response.ok)throw Error(`HTTP ${response.status}`);data=await response.json();
   const inputResponse=await fetch('./data/reward-regime-examples.json');if(!inputResponse.ok)throw Error(`Inputs HTTP ${inputResponse.status}`);inputs=(await inputResponse.json()).inputs;
   $('priorities').replaceChildren(...data.priorities.map(row=>{const tr=el('tr');for(const text of row)tr.append(el('td',text));return tr;}));
   $('execution').textContent=data.execution;$('launch-link').href=data.launch_url;
