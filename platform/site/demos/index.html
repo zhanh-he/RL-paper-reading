@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script type="module" src="./lab.js?v=20261020-model-plan"></script>
-    <link rel="stylesheet" href="./model-costs.css?v=20261020-model-plan" />
+    <link rel="stylesheet" href="./model-costs.css?v=20261020-mean7" />
     <script type="module" src="./model-costs.js?v=20261020-model-plan"></script>
+    <script type="module" src="./songbench-review.js?v=20261020-mean7"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -468,6 +469,20 @@
             <p class="model-links"><a href="#lyrics-model-plan" data-open-view="lyrics-model-plan">下一步 · 同口径测速与实验计划</a></p>
           </section>
           <section data-model-panel="plan" hidden>
+            <section data-songbench-review>
+              <div class="section-intro"><div><p class="eyebrow">优先计划 · 20 Oct 2026 · 新训练待批准</p><h3>SongBench Mean7 · 唯一 reward</h3></div><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/SONGBENCH_MEAN7_PRIORITY_PLAN_2026-10-20.md" target="_blank" rel="noopener noreferrer">审读优先实验计划 MD ↗</a></div>
+              <p class="section-copy"><strong>R = (Vocal + Instrumental + Melody + Structure + Arrangement + Mixing + Musicality) / 7。</strong>七维等权均值是本研究约定，不混SP/SongEval或额外响度/削波惩罚；KL单独放在loss里。用户已确认目标，下面的新训练矩阵尚待批准。</p>
+              <p class="section-copy">沿用冻结CMI 270 train /30 valid /121 test；192条WildSongBench外测另行冻结执行。P1固定LR3e-4、beta0.05、G2、rank8/alpha16、270步、seed42；全30验证0/50/100/270，目标原生60s，不能用旧短rollout或head-only填入。</p>
+              <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>优先级</th><th>实验</th><th>理由 / 验收缺口</th></tr></thead><tbody data-sb="priorities"></tbody></table></div>
+              <h4>有意义的历史结果 · 已回收</h4>
+              <p class="section-copy">下面六组均核验270步、完整30/30验证和音频SHA绑定；它们训练的是单子项/SP减guard，<strong>不是Mean7训练</strong>。七维均值为同批音频的事后交叉评分，不是人类MOS、独立裁判或test结果。Diff是主干新轮，不是旧head-only。</p>
+              <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>模型 / 历史目标</th><th>训练 / 完整验证</th><th>Mean7 · baseline →270</th><th>Δ [95% CI]</th></tr></thead><tbody data-sb="results"></tbody></table></div>
+              <p class="stage-context">CI按30条件配对bootstrap，单训练seed、未做多重比较校正。YuE2为beta0.01/rank4/短rollout；Diff为beta0.05/rank8/60s预算，不作同配置模型质量因果比较。</p>
+              <details class="choral-deep-dive"><summary>已回收历史训练曲线 · 左Reward / 右KL</summary><div class="metric-controls"><div class="segmented" role="group" aria-label="Historical audited run" data-sb="runs"></div></div><p class="stage-context" data-sb="curve-note"></p><div class="choral-training-plots"><figure><figcaption>历史优化目标 · 减guard</figcaption><canvas data-sb="reward-chart" role="img" aria-label="Historical training reward"></canvas></figure><figure><figcaption>训练KL · 非离线探针</figcaption><canvas data-sb="kl-chart" role="img" aria-label="Historical training reference KL"></canvas></figure></div><p class="stage-context">曲线为10步窗口均值；圆点为1/5/25/50/100/270步原日志，悬停可见值。KL单位随模型注明，不跨模型直接比大小。</p></details>
+              <details class="choral-deep-dive"><summary>Diff主干历史试听 · 五个固定example / 20条已有MP3</summary><p class="section-copy">固定valid0/10/20/1/2，无按分数挑选。A始终为同一冻结baseline，B/C/D为各单目标270步。这里仅转码已评分原件，没有新推理；试听和Mean7上升均不自动等于改善。</p><div class="metric-controls"><div class="segmented" role="group" aria-label="Recovered fixed example" data-sb="examples"></div></div><details class="choral-deep-dive"><summary>当前输入 · Text + lyrics</summary><p data-sb="text"></p><pre class="songbench-lyrics" data-sb="lyrics"></pre><p class="stage-context">CMI-Pref · Haiwen Xia et al. · CC BY-NC-SA 4.0；原始text/lyrics未修改，未分发reference audio。</p></details><div class="songbench-audio-grid" data-sb="audio"></div></details>
+              <details class="choral-deep-dive"><summary>失败记录 / 回收凭据 / 查漏补缺</summary><p class="section-copy" data-sb="failures"></p><p class="section-copy">不回收错误split、head-only、失败mock或局部均值作正式结果。新Mean7 scorer应冻结MuQ/frontend与head身份、直接评分原混音，不调用SP分离器；验证技术失败不被伪装成0分。YuE2原生TRL桥与60s训练尚未验收。独立SongEval、歌词匹配、盲听和全量test需补齐，未完成不宣称听感提高。</p><div class="model-links"><a href="./data/songbench-review.json" download>回收统计 / 曲线 / MP3绑定 JSON ↓</a><a data-sb="audit-link" target="_blank" rel="noopener noreferrer">完整CPU审计凭据 ↗</a></div></details>
+            </section>
+            <details class="choral-deep-dive"><summary>后续 · ACE / Diff 同口径计时计划（未启动）</summary>
             <div class="section-intro"><div><p class="eyebrow">Proposed · 20 Oct 2026 · 未启动</p><h3>Experiment Plan · 先统一计时，再决定训练预算</h3></div><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/lyrics2song/model-costs/EXPERIMENT_PLAN_2026-10-20.md" target="_blank" rel="noopener noreferrer">审读完整计划 MD ↗</a></div>
             <p class="section-copy" data-cost-plan="summary"></p>
             <h4>待测配置 · 版本和LM开关固定</h4>
@@ -477,6 +492,7 @@
             <h4>每首歌必须交付的指标</h4>
             <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>指标</th><th>计时边界 / 汇总口径</th></tr></thead><tbody data-cost-plan="metrics"></tbody></table></div>
             <h4>实验约束</h4><ul data-cost-plan="rules"></ul>
+            </details>
             <p class="stage-context">这里只发布计划与现有证据；未启动新测速、RL训练、交互GPU申请或定时任务。</p>
           </section>
         </div>

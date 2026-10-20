@@ -1,5 +1,16 @@
 # Backbone RL Round: 2026-10-15
 
+## Verified Recovery, 2026-10-20
+
+The launch table below is a historical snapshot, not current scheduler status.
+Diff's three arms all completed270 updates with full30-condition validation
+at0/50/100/270 and verified score/audio/checkpoint bindings. Muse/Heart's six
+jobs failed before training on missing `generate_objective` during scorer
+bootstrap; none remains queued. [Recovery and five-example MP3 replays](../runs/2026-10-20-songbench-review/README.md).
+The user confirmed a new pure seven-head mean reward, but its
+[execution matrix](../SONGBENCH_MEAN7_PRIORITY_PLAN_2026-10-20.md) awaits approval.
+Do not relabel these guarded single-head/SP runs as Mean7 experiments.
+
 This is the newly authorized backbone round, not a relabeling of old head-only
 ablations or the earlier YuE2 SongEval mock sweep.
 

@@ -1,0 +1,205 @@
+{
+  "scope": "Historical Diff backbone subhead/SP comparison; not SongBench mean7 training. Fixed valid0/10/20/1/2; no score selection. MP3 export only; no new generation.",
+  "rows": [
+    {
+      "arm": "baseline",
+      "step": 0,
+      "index": 0,
+      "seconds": 60.0,
+      "source_audio_sha256": "8d2625212eb58baf2f12db5a1e0301ab96bab3370e56f623c62ed32e109c0f5a",
+      "public_mp3_sha256": "f84cd9078eee1a92d393769e36a870ffead4a3c1a1ba437a7ee69905af11e281",
+      "url": "./audio/songbench-review-20261020/baseline-000.mp3",
+      "mean7": 4.728230340140207
+    },
+    {
+      "arm": "baseline",
+      "step": 0,
+      "index": 10,
+      "seconds": 60.0,
+      "source_audio_sha256": "d236b7914fd6cc4118de44f5fc59de0e4f143a39b43d14ad7cbc246a4d7ee348",
+      "public_mp3_sha256": "aaa6e258c3643cd190260f4ab89d1f2605edc0c891e7ce580c842b8bbcb512ea",
+      "url": "./audio/songbench-review-20261020/baseline-010.mp3",
+      "mean7": 4.879534312656948
+    },
+    {
+      "arm": "baseline",
+      "step": 0,
+      "index": 20,
+      "seconds": 60.0,
+      "source_audio_sha256": "d246fcbe0246d44ab95c4637c155c4dc564341839723aed4ca14905fe9468ace",
+      "public_mp3_sha256": "4f003f947d26b9cb190e77f3fbe7338766d1b0e9635b827730eff644f0cfcabc",
+      "url": "./audio/songbench-review-20261020/baseline-020.mp3",
+      "mean7": 3.266167538506644
+    },
+    {
+      "arm": "baseline",
+      "step": 0,
+      "index": 1,
+      "seconds": 60.0,
+      "source_audio_sha256": "93cf6e631c148df469809520d2d4c3c942b90e73b7d7fa1cd150677854c4efc1",
+      "public_mp3_sha256": "f13670aa464cf0e61cfd70f2906a525f833a052fbe2de20be30cdd18679adb49",
+      "url": "./audio/songbench-review-20261020/baseline-001.mp3",
+      "mean7": 5.432694298880441
+    },
+    {
+      "arm": "baseline",
+      "step": 0,
+      "index": 2,
+      "seconds": 60.0,
+      "source_audio_sha256": "44150679b753997afc20f19784afe65faaed21a1affe75d21a2cab6d042b5a1f",
+      "public_mp3_sha256": "728ab365c7bfd9ca5524ec4cad72799e573f722c4596dc4441355e3828cac537",
+      "url": "./audio/songbench-review-20261020/baseline-002.mp3",
+      "mean7": 5.157839502607073
+    },
+    {
+      "arm": "richness",
+      "step": 270,
+      "index": 0,
+      "seconds": 60.0,
+      "source_audio_sha256": "8df039d8b42df895a1e2fade262e7e25cf2c226e72a82a6c526de0f1a696baaf",
+      "public_mp3_sha256": "7b31c768caf088a88d90c6172eb56d5f77f72fe20ad94eab2bea5c5b1f8eee12",
+      "url": "./audio/songbench-review-20261020/richness-270-000.mp3",
+      "mean7": 4.7116812978472025
+    },
+    {
+      "arm": "richness",
+      "step": 270,
+      "index": 10,
+      "seconds": 60.0,
+      "source_audio_sha256": "9e2a1f7a0299521c0c830cef6919c0026739afbb1f96bc5ad462fa9b688b9278",
+      "public_mp3_sha256": "6d91c2d737b34a76fb9a00fe34a2c9ae6b490371464f26a720826d21e2c59dc7",
+      "url": "./audio/songbench-review-20261020/richness-270-010.mp3",
+      "mean7": 4.7301192964826315
+    },
+    {
+      "arm": "richness",
+      "step": 270,
+      "index": 20,
+      "seconds": 60.0,
+      "source_audio_sha256": "ee72f972c6cc1f29dd2318bab864b68d536e1b5f6c234b17594e8fe0dc1ad6ce",
+      "public_mp3_sha256": "3c2be8f3edcf76f69f43baf0af638005ed65358780942fe65f2bcca7436e6d08",
+      "url": "./audio/songbench-review-20261020/richness-270-020.mp3",
+      "mean7": 2.981262683868408
+    },
+    {
+      "arm": "richness",
+      "step": 270,
+      "index": 1,
+      "seconds": 60.0,
+      "source_audio_sha256": "d7ee6e11228db69681a72a4f1d16dea2389be5046e6d65b9d5e49eed4fdd5758",
+      "public_mp3_sha256": "4d74c15981cf6d4854b318997cbc0d12c654b9958912fd459d5f7cee7f03b8d2",
+      "url": "./audio/songbench-review-20261020/richness-270-001.mp3",
+      "mean7": 5.508090768541608
+    },
+    {
+      "arm": "richness",
+      "step": 270,
+      "index": 2,
+      "seconds": 60.0,
+      "source_audio_sha256": "40f7b3d36b91e8fa4dce6171925fa5292225a2ff714449231b20c4bb0091275b",
+      "public_mp3_sha256": "d1d51a187f3c308f30f906df9f21f54f9a3184538cce98bd28f1cce15c1763b0",
+      "url": "./audio/songbench-review-20261020/richness-270-002.mp3",
+      "mean7": 5.4143112046378
+    },
+    {
+      "arm": "instrument",
+      "step": 270,
+      "index": 0,
+      "seconds": 60.0,
+      "source_audio_sha256": "e54bf4fd44476088568058d103b056c1056c3a26bdd6e77bbfee36107f21cc42",
+      "public_mp3_sha256": "16e14da7500625035972fa508c8ac552dfce223dd3fd5eeae23a22278b184f76",
+      "url": "./audio/songbench-review-20261020/instrument-270-000.mp3",
+      "mean7": 4.7212227412632535
+    },
+    {
+      "arm": "instrument",
+      "step": 270,
+      "index": 10,
+      "seconds": 60.0,
+      "source_audio_sha256": "abd6bd2f0951b1426e865042f264551b2efc163af06f1e1072b7098e5f1ad52f",
+      "public_mp3_sha256": "8cd48338b7f6087359589fc3deeed495164f24d8b9b200dd230c849ef598c7bf",
+      "url": "./audio/songbench-review-20261020/instrument-270-010.mp3",
+      "mean7": 5.029194491250174
+    },
+    {
+      "arm": "instrument",
+      "step": 270,
+      "index": 20,
+      "seconds": 60.0,
+      "source_audio_sha256": "0d3bebb4aafa7af370e839c4ca52a957c483e76ebe53c2223e95611a13398fe4",
+      "public_mp3_sha256": "ca02b8a0d2ae275d036957bd25c0619c40abe974db633791b7577f45a635484c",
+      "url": "./audio/songbench-review-20261020/instrument-270-020.mp3",
+      "mean7": 3.137955597468785
+    },
+    {
+      "arm": "instrument",
+      "step": 270,
+      "index": 1,
+      "seconds": 60.0,
+      "source_audio_sha256": "1dc51997a9c87575fb9aea9fa6826d19fa30082699f983ab16670ce1d192d774",
+      "public_mp3_sha256": "9600f081c555c84234398459b51230bfb01f61aab725d98430d07e7b9de8d63c",
+      "url": "./audio/songbench-review-20261020/instrument-270-001.mp3",
+      "mean7": 5.504799774714878
+    },
+    {
+      "arm": "instrument",
+      "step": 270,
+      "index": 2,
+      "seconds": 60.0,
+      "source_audio_sha256": "4b52a79e9f55680c13f5a54cece03f1c0d3365275675328960c253f31b916cf2",
+      "public_mp3_sha256": "d9b1baa411d5c8e51c2d8c790b7a4d627a949a5095259c1e497f318bd4fa0ad6",
+      "url": "./audio/songbench-review-20261020/instrument-270-002.mp3",
+      "mean7": 5.723282677786691
+    },
+    {
+      "arm": "arrangement",
+      "step": 270,
+      "index": 0,
+      "seconds": 60.0,
+      "source_audio_sha256": "d85415a76819edb7653ad1ecc50aee11198912872c82e72997afcf8d6ba1e030",
+      "public_mp3_sha256": "82f0fa5ef24a5d1b8f30723de139dceb49b95c6e1bbb4f245fc9b33550ba55f2",
+      "url": "./audio/songbench-review-20261020/arrangement-270-000.mp3",
+      "mean7": 4.967618192945208
+    },
+    {
+      "arm": "arrangement",
+      "step": 270,
+      "index": 10,
+      "seconds": 60.0,
+      "source_audio_sha256": "ddeab3f5ff441e3f7ac601972553e37161f6ab4ab665f2cfe8bff5bffa788dac",
+      "public_mp3_sha256": "f4664005686a745529615056dfd00c6c2f49e7d0ccc8eee83a6a127e1d6ba8be",
+      "url": "./audio/songbench-review-20261020/arrangement-270-010.mp3",
+      "mean7": 5.166921615600586
+    },
+    {
+      "arm": "arrangement",
+      "step": 270,
+      "index": 20,
+      "seconds": 60.0,
+      "source_audio_sha256": "4bd0b17a0046fb3cbf5b859cce9f6c7d89774b54853480ae2d48864407bb91e7",
+      "public_mp3_sha256": "b01c581dbd6d99237311ced1aba410d7df250a9cb876269229f79d4beb16ff83",
+      "url": "./audio/songbench-review-20261020/arrangement-270-020.mp3",
+      "mean7": 3.5504274368286133
+    },
+    {
+      "arm": "arrangement",
+      "step": 270,
+      "index": 1,
+      "seconds": 60.0,
+      "source_audio_sha256": "6c70b252944ec4456d80f804bd21e561f3877344e213fc49e674691b558231fa",
+      "public_mp3_sha256": "79d6a7b1481269deed20bfe944104849fc4a9b0319f47e1dc2f3e836471f5a97",
+      "url": "./audio/songbench-review-20261020/arrangement-270-001.mp3",
+      "mean7": 5.789960180010114
+    },
+    {
+      "arm": "arrangement",
+      "step": 270,
+      "index": 2,
+      "seconds": 60.0,
+      "source_audio_sha256": "dff07ee68f7dc2241a29ce62c15950f718a645339d82a43dfa2087074368ad9b",
+      "public_mp3_sha256": "1b172adccdb0ebd3381de34e26235f91a7df58f346b684d1d0246216d8485959",
+      "url": "./audio/songbench-review-20261020/arrangement-270-002.mp3",
+      "mean7": 5.883969783782959
+    }
+  ]
+}

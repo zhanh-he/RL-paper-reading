@@ -125,7 +125,7 @@ try{
     await page.screenshot({path:`${output}/${width}-plan.png`,fullPage:true});
     await page.reload();
     assert.equal(await plan.isVisible(),true);
-    await plan.locator('[data-cost-plan="profiles"] tr').last().waitFor();
+    await plan.locator('[data-cost-plan="profiles"] tr').last().waitFor({state:'attached'});
     await page.locator('[data-reference-task="vocal"]').first().click();
     assert.equal(await plan.isVisible(),false);
     await page.locator('[data-reference-task="lyrics"]').first().click();

@@ -21,3 +21,9 @@
 [data-model-panel="plan"] h4 { margin: 26px 0 10px; font-size: 16px; }
 [data-cost-plan="rules"] { padding-left: 22px; }
 [data-cost-plan="rules"] li { margin: 12px 0; line-height: 1.8; overflow-wrap: anywhere; }
+.songbench-audio-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.songbench-audio-grid section { min-width: 0; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.songbench-audio-grid audio { width: 100%; }
+.songbench-lyrics { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.7; max-height: 360px; overflow-y: auto; }
+[data-songbench-review] .segmented { flex-wrap: wrap; }
+@media(max-width:600px) { .songbench-audio-grid { grid-template-columns: minmax(0,1fr); } }
