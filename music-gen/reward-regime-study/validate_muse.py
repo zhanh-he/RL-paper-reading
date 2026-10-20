@@ -25,6 +25,8 @@ def main():
     with a.valid.open(encoding='utf-8') as source:
         rows = [json.loads(line) for line in source if line.strip()]
     if len(rows) != 30: raise ValueError('Full validation requires all 30 conditions')
+    from check_muse_base import check
+    base_identity = check(a.model)
     from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
     from vllm.lora.request import LoRARequest
@@ -32,7 +34,8 @@ def main():
     low = tokenizer.convert_tokens_to_ids('<AUDIO_0>'); high = tokenizer.convert_tokens_to_ids('<AUDIO_16383>')
     if high-low != 16383: raise ValueError('Audio vocabulary changed')
     engine = LLM(model=str(a.model), trust_remote_code=True, dtype='bfloat16', enforce_eager=True,
-                 max_model_len=4096, gpu_memory_utilization=.2, max_num_seqs=2, enable_lora=True, max_lora_rank=8)
+                 max_model_len=2048, gpu_memory_utilization=.2, max_num_seqs=2,
+                 kv_cache_memory_bytes=1073741824, enable_lora=True, max_lora_rank=8)
     for step, folder, adapter in [(0,a.baseline,None),(270,a.output/'valid_000270',a.adapter)]:
         folder.mkdir(parents=True, exist_ok=True)
         with (folder/'generation.lock').open('a') as lock:
@@ -48,6 +51,7 @@ def main():
                 meta = {'index':i,'seed':5101+i,'generated_ids':ids,'audio_tokens':codes,
                         'adapter_sha256':sha(adapter/'adapter_model.safetensors') if adapter else None,
                         'valid_sha256': VALID_SHA, 'max_tokens':512, 'forced_length':False,'decoder_seed':42}
+                meta['base_model_sha256'] = base_identity['model_sha256']
                 if not codes:
                     meta['invalid'] = 'no AUDIO tokens'; meta['audio_sha256'] = None
                 else:
@@ -65,6 +69,8 @@ def main():
         valid_paths=[]; results=[]; indexes=[]
         for i in range(30):
             meta=json.loads((folder/f'{i:03d}'/'generation.json').read_text())
+            if meta.get('base_model_sha256') != base_identity['model_sha256']:
+                raise ValueError('Frozen baseline/validation base identity mismatch')
             if meta.get('invalid'):
                 results.append({'index':i,'mean':0.,'invalid':meta['invalid'],'audio_sha256':None})
             else:

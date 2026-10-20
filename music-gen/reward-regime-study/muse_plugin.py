@@ -1,10 +1,12 @@
 """Canonical FLAC rewards on the existing Muse multi-turn GRPO integration."""
 import importlib.util
+import json
 import os
 import sys
 from pathlib import Path
 import soundfile as sf
 import numpy as np
+import torch
 from swift.rewards import orms
 from swift.rollout.multi_turn import multi_turns
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -23,6 +25,7 @@ multi_turns['regime_scheduler'] = RegimeScheduler
 
 class RegimeRM(aligned.InvalidOutputGuard, aligned.original.base.MusecriticRM):
     def _decode_completion_to_wav(self, completion, request_id, index, local_batch_size=1):
+        torch.cuda.empty_cache()
         source = Path(super()._decode_completion_to_wav(completion, request_id, index, local_batch_size))
         samples, sr = sf.read(source, dtype='float32')
         if not np.isfinite(samples).all():
@@ -33,6 +36,10 @@ class RegimeRM(aligned.InvalidOutputGuard, aligned.original.base.MusecriticRM):
 
     def _score_audios(self, paths, request_ids):
         rows = score_remote(os.environ['REGIME_SCORER'], paths, os.environ['REGIME_REWARD'])
+        if os.environ.get('REGIME_BINDINGS'):
+            with Path(os.environ['REGIME_BINDINGS']).open('a') as target:
+                for request_id, row in zip(request_ids, rows):
+                    target.write(json.dumps(dict(request_id=request_id, **row), allow_nan=False)+'\n')
         return [{'reward': r['mean'], 'reward_scores': {'SP_Richness': r['richness']['raw'],
                  **r['songbench'], 'Shared_penalty': r['guard']['penalty']}, 'infer_critic': '', 'error': None} for r in rows]
 

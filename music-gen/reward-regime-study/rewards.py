@@ -54,6 +54,14 @@ def guard(audio, sr):
 
 
 def objective(result, reward):
+    if reward == 'mean7':
+        dimensions = ['Vocal', 'Instrumental', 'Melody', 'Structure', 'Arrangement', 'Mixing', 'Musicality']
+        values = [float(result['songbench'][key]) for key in dimensions]
+        if not all(math.isfinite(value) for value in values):
+            raise ValueError('Missing/nonfinite SongBench head')
+        return sum(values)/7
+    if reward not in ['richness', 'instrument', 'arrangement']:
+        raise ValueError('Unknown objective')
     if result['guard']['invalid']:
         return 0.
     if reward == 'richness':

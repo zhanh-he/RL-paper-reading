@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=96GB,jobfs=20GB,walltime=12:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N muse-pristine-3arm
+set -euo pipefail
+: "${REGIME_REWARD:?}"
+module purge
+module load python3/3.11.7 cuda/12.8.0
+study=/scratch/wa66/hm6416/songbench-priority-20261020
+root=/g/data/wa66/hanyu/vocal2accomp-muse
+old="$root/experiments/cmi_aligned_lr_20261012"
+code="$study/code"
+bundle=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics
+resources=/scratch/iv96/hm6416/reward-regimes-20261014
+train=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin
+python="$train/python"
+output="$study/outputs/muse-${REGIME_REWARD}-lr3e4-beta5e2-seed42"
+mkdir -p "$output" "$PBS_JOBFS/cache"
+exec 9>"$output/training.lock"
+flock -n 9 || { echo 'Another job owns this exact arm'; exit 1; }
+"$python" "$code/check_muse_base.py" --model "$root/models/Muse-0.6b" --output "$output/base-identity.json"
+"$python" "$code/formal_inputs.py" --train "$old/data/muse-cmi-triple-train.jsonl" \
+  --valid "$old/data/muse-cmi-triple-valid.jsonl" --manifest "$output/experiment.json" --reward "$REGIME_REWARD"
+IFS=, read -r -a devices <<< "${CUDA_VISIBLE_DEVICES:-0}"
+train_gpu="${devices[0]}"
+port=$((24000+${PBS_JOBID%%.*}%1800*5))
+rollout_port=$port; codec_port=$((port+1)); scorer_port=$((port+2)); group_port=$((port+3))
+export MASTER_PORT=$((port+4)) NPROC_PER_NODE=1
+export PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 HF_HOME=/g/data/wa66/hanyu/hf-cache OMP_NUM_THREADS=4
+export TMPDIR="$PBS_JOBFS" XDG_CACHE_HOME="$PBS_JOBFS/cache" TRITON_CACHE_DIR="$PBS_JOBFS/triton"
+export MUSE_BASE_PLUGIN="$code/muse_native_plugin.py"
+export MUSE_ALIGNED_PLUGIN="$code/muse_cmi_aligned_rewards.py"
+export MUSE_MUCODEC_API_BASE="http://127.0.0.1:$codec_port"
+export MUSECRITIC_RM_AUDIO_DIR="$output/decoded" MUSE_ROLLOUT_RESULT_PATH="$output/rollouts.jsonl"
+export MUSE_GRPO_MAX_TOTAL_TOKENS=2048 MUSE_DECODE_DURATION=10.24 MUSE_DECODE_STEPS=20
+export MUSE_MUCODEC_MAX_WORKERS=1 MUSECRITIC_RM_STRICT=true
+export MUSE_INVALID_OUTPUT_LOG="$output/invalid_outputs.jsonl" MUSE_MIN_AUDIO_SECONDS=1
+export REGIME_SCORER="http://127.0.0.1:$scorer_port"
+export REGIME_BINDINGS="$output/reward-bindings.jsonl"
+pids=()
+cleanup() { for pid in "${pids[@]}"; do kill "$pid" 2>/dev/null || true; done; wait 2>/dev/null || true; }
+trap cleanup EXIT
+CUDA_VISIBLE_DEVICES="$train_gpu" "$python" "$code/launch_container_worker.py" \
+  --work /scratch/iv96/hm6416/wsb-objective-20261013 \
+  --python "$bundle/.venvs/metrics/bin/python" --script "$code/reward_server.py" \
+  --bundle "$bundle" --deps "$resources/deps" --separator "$resources/models/955717e8-8726e21a.th" \
+  --receipt-dir "$output/scorer" --port "$scorer_port" > "$output/scorer.log" 2>&1 &
+pids+=("$!")
+LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES="$train_gpu" \
+  "$root/envs/mucodec-py310-cu128/bin/python" "$code/mucodec_fixed_seed.py" \
+  --source "$root/src/MuCodec/deploy/mucodec_serve.py" \
+  --model "$root/src/MuCodec/weights/mucodec.pt" --host 127.0.0.1 --port "$codec_port" > "$output/codec.log" 2>&1 &
+pids+=("$!")
+for p in "$codec_port" "$scorer_port"; do
+  ready=false
+  for _ in $(seq 1 180); do
+    if curl -fsS "http://127.0.0.1:$p/health" >/dev/null; then ready=true; break; fi
+    for pid in "${pids[@]}"; do kill -0 "$pid" || exit 1; done
+    sleep 5
+  done
+  [[ "$ready" == true ]] || exit 1
+done
+CUDA_VISIBLE_DEVICES="$train_gpu" "$train/swift" rlhf \
+  --rlhf_type grpo --model_type qwen3 --model "$root/models/Muse-0.6b" \
+  --reward_funcs regime_rm --external_plugins "$code/muse_plugin.py" \
+  --tuner_type lora --lora_rank 8 --lora_alpha 16 --target_modules all-linear --seed 42 \
+  --dataset "$old/data/muse-cmi-triple-train.jsonl" --use_vllm true --vllm_mode colocate \
+  --vllm_gpu_memory_utilization .20 --vllm_max_num_seqs 2 --vllm_enforce_eager true \
+  --vllm_engine_kwargs '{"kv_cache_memory_bytes":1073741824}' \
+  --vllm_max_model_len 2048 --max_completion_length 512 --max_length 2048 \
+  --per_device_train_batch_size 2 --gradient_accumulation_steps 1 --num_generations 2 \
+  --gradient_checkpointing true --lora_dropout 0 \
+  --max_steps 270 --learning_rate 3e-4 --lr_scheduler_type constant --warmup_ratio 0 --beta .05 \
+  --save_steps 30 --logging_steps 1 --temperature 1 --repetition_penalty 1 --top_p 1 --top_k -1 \
+  --report_to none --output_dir "$output/checkpoint" > "$output/train.log" 2>&1
+adapter=$(find "$output/checkpoint" -path '*/checkpoint-270/adapter_model.safetensors')
+[[ -n "$adapter" && "$adapter" != *$'\n'* ]] || { echo 'Expected exactly one final checkpoint'; exit 1; }
+# The completed colocated trainer process released its inference engine.
+CUDA_VISIBLE_DEVICES="$train_gpu" "$python" -u "$code/validate_muse.py" \
+  --model "$root/models/Muse-0.6b" --valid "$old/data/muse-cmi-triple-valid.jsonl" \
+  --output "$output" --baseline "$study/outputs/shared-muse-baseline" --adapter "$(dirname "$adapter")" \
+  --scorer "$REGIME_SCORER" --codec "$MUSE_MUCODEC_API_BASE" --reward "$REGIME_REWARD" > "$output/validation.log" 2>&1
+printf '{"training_steps":270,"full_valid_conditions":30,"test_run":false}\n' > "$output/completion.json"

@@ -277,7 +277,7 @@ function render() {
     ? '伴奏频谱活动/变化与tonality gate，不是乐器数量或MOS。'
     : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。' : '评和声框架与配器编排，不是简单计数。'} 三臂都使用同一削波/RMS guard；KL为独立loss项。`;
   $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
-    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : '新轮 β0.05。ms-swift / TRL + vLLM，512 completion-token预算；尚在PBS排队。'}`
+    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='running'?'5090正式训练中；完整验证未回收。':`Gadi正式任务排队：${submitted?.job_id||'未提交'}。`}`}`
     : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`
       : `${model().input} · ${model().status}。暂无已生效训练配置。`;
   $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : ['heartmula','songbloom'].includes(selected) ? 'KL · 输出头 categorical / action' : 'KL · 在线冻结参考采样估计';

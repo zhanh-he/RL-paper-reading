@@ -28,6 +28,8 @@ def check(train, valid):
         for row in rows:
             if not row.get("messages") or row["messages"][0].get("role") != "user":
                 raise ValueError("Invalid native Muse messages")
+            if [m['role'] for m in row['messages']] != ['user', 'assistant']:
+                raise ValueError('This accepted colocate protocol requires one native user turn')
         report[split] = {"n": len(rows), "sha256": actual}
     return report
 
@@ -37,7 +39,8 @@ def main():
     parser.add_argument("--train", type=Path, required=True)
     parser.add_argument("--valid", type=Path, required=True)
     parser.add_argument("--manifest", type=Path)
-    parser.add_argument("--reward", choices=["richness", "instrument", "arrangement"])
+    parser.add_argument("--reward", choices=["richness", "instrument", "arrangement", "mean7"])
+    parser.add_argument("--steps", type=int, default=270)
     args = parser.parse_args()
     data = check(args.train, args.valid)
     if args.manifest:
@@ -46,7 +49,8 @@ def main():
         record = {
             "model": "Muse-0.6B", "framework": "ms-swift/TRL + vLLM",
             "reward": args.reward, "lr": 3e-4, "lr_scheduler": "constant",
-            "beta": 0.05, "seed": 42, "steps": 270, "group_size": 2,
+            "beta": 0.05, "seed": 42, "steps": args.steps, "group_size": 2,
+            "acceptance_only": args.steps != 270,
             "lora_rank": 8, "lora_alpha": 16, "target_modules": "all-linear backbone",
             "reference_kl": "sampled k3 over native completion-token masks",
             "data": data, "test_run": False,

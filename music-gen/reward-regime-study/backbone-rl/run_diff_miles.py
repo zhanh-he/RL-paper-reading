@@ -210,6 +210,8 @@ def main():
     parser.add_argument("--steps", type=int, default=270)
     parser.add_argument("--acceptance-only", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--rewards", nargs='+', choices=['richness','instrument','arrangement','mean7'],
+                        default=['richness','instrument','arrangement'])
     cli = parser.parse_args()
     for name in ["assets", "source", "data", "output"]:
         setattr(cli, name, getattr(cli, name).resolve())
@@ -231,8 +233,11 @@ def main():
     acceptance = cli.output/"acceptance"
     acceptance.mkdir(exist_ok=True)
     trainer, info = actor(worker, make_args(cli, acceptance, 2))
-    first = run_group(cli, worker, trainer, data, 0, acceptance, 4., "instrument")
-    second = run_group(cli, worker, trainer, data, 1, acceptance, 4., "instrument")
+    if 'mean7' in cli.rewards and cli.rewards != ['mean7']:
+        raise ValueError('Pure Mean7 uses its own scorer and separate experiment root')
+    acceptance_reward = 'mean7' if cli.rewards == ['mean7'] else 'instrument'
+    first = run_group(cli, worker, trainer, data, 0, acceptance, 4., acceptance_reward)
+    second = run_group(cli, worker, trainer, data, 1, acceptance, 4., acceptance_reward)
     if first["zero_reward_std"] or second["zero_reward_std"]:
         raise ValueError("Acceptance requires real non-tied reward groups")
     if second['kl'] <= 0:
@@ -252,7 +257,7 @@ def main():
     if cli.acceptance_only:
         ray.shutdown()
         return
-    for reward in ["richness", "instrument", "arrangement"]:
+    for reward in cli.rewards:
         output = cli.output/f"diffrhythm2-{reward}-lr3e4-beta5e2-seed42"
         if (output/"completion.json").exists() and cli.resume:
             continue

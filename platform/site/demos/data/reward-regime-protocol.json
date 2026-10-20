@@ -1,6 +1,6 @@
 {
   "version": "20261015-backbone-lr3e4-beta05",
-  "status": "20261020-diff-three-arms-verified-muse-heart-startup-failed-mean7-proposed",
+  "status": "20261020-original-muse-controls-running-and-queued-mean7-gated",
   "framework_transition": {
     "date_awst": "2026-10-15",
     "scope": "TRL selected for discrete AR; Miles-Diffusion synchronous FSDP2 selected as the single continuous Flow-GRPO route. VeRL-Omni audit is historical, not a future comparison arm.",
@@ -28,23 +28,23 @@
     "group_size": 2,
     "steps": 270,
     "priority": [
-      "diffrhythm2",
       "muse",
+      "diffrhythm2",
       "heartmula",
-      "acestep",
-      "songbloom"
+      "songbloom",
+      "acestep"
     ],
     "status_by_model": {
       "yue2": "当前曲线为已完成的 beta=0.01 历史轮；本次不改写或重标旧结果。",
       "diffrhythm2": "2026-10-20已回收：三臂均270步，0/50/100/270各30/30验证、训练/评分音频SHA绑定和最终checkpoint已核验。仍是旧SP/子项减guard，不是新Mean7训练。Models → Experiment Plan展示新回收曲线与试听。",
-      "muse": "2026-10-20确认：三个新主干任务均在scorer启动时因缺少generate_objective而退出，未训练；不再标排队。新Mean7方案待批准，先修依赖打包。",
-      "heartmula": "2026-10-20确认：三个新主干任务均在scorer启动时因缺少generate_objective而退出，未训练；不再标排队。新Mean7方案待批准。",
+      "muse": "2026-10-20原始非GRPO权重三臂重新正式启动：SP在5090训练，Instrument在Gadi wa66/Hopper、Arrangement在iv96/A100排队。权重SHA匹配官方原版；新主干LoRA 5,046,272参数；不是旧GRPO续训。旧scorer导入/同GPU NCCL/显存问题已修复并通过2步真实验收。完整验证和正式结果尚未回收。",
+      "heartmula": "上一轮三个主干任务在scorer启动时缺generate_objective退出，未训练。当前后置，未重新提交；优先补Muse三臂及Diff/YuE2 Mean7。",
       "acestep": "优先级在 HeartMuLa 之后；尚未提交训练。",
       "songbloom": "后续 Miles 声学主干接入；尚未提交新主干训练。",
       "private": "仅空白占位，不安排训练。"
     },
     "kl_units": "AR: sampled k3 KL per valid audio token. Flow: exact conditional Gaussian KL per active latent dimension, not joint waveform KL. Equal beta does not imply equal regularization strength.",
-    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/backbone-rl/README.md",
+    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/runs/2026-10-20-songbench-priority/README.md",
     "no_scheduled_tasks": true
   },
   "training_authorized": true,
@@ -117,13 +117,13 @@
     {
       "id": "muse",
       "name": "Muse",
-      "role": "已有小模型对照",
+      "role": "原始小模型对照 · 当前最优先",
       "mos": null,
       "team_listening_estimate": null,
-      "status": "2026-10-20确认：新轮三臂scorer启动失败 · 未训练",
+      "status": "原始非GRPO权重 · SP运行 / Instrument与Arrangement排队",
       "input": "Style text + lyrics",
-      "readiness": "blocked",
-      "note": "原始Muse-0.6B起点。Unicode JSONL解析已修复，但新提交又因scorer容器缺少generate_objective依赖在训练前退出，不是仍在排队。冻结270/30未变；不以旧实验或小LR音频填充。Mean7新方案见Models → Experiment Plan，待批准。",
+      "readiness": "training",
+      "note": "原始bolshyC/Muse-0.6b权重SHA c810b2a7…ff1b52，经5090/Gadi核验；不加载旧GRPO adapter或合并权重。新主干LoRA rank8/alpha16，5,046,272参数；LR3e-4/beta0.05/G2/270步。旧单项减guard比较保留512 completion tokens与10.24s codec协议，不冒充60s训练。全270/30冻结不变；完成后才回收正式结果，跨硬件baseline需统一核对。Muse Mean7后续单独接入，不复用含guard目标。",
       "source": "https://github.com/yuhui1038/Muse"
     },
     {
@@ -274,41 +274,46 @@
     {
       "model": "muse",
       "reward": "richness",
-      "status": "startup-failed",
-      "host": "gadi",
-      "project": "wa66",
-      "job_id": "181297781.gadi-pbs",
+      "status": "running",
+      "host": "lab5090",
+      "pid": 3982658,
       "lr": 0.0003,
       "beta": 0.05,
       "scheduler": "constant",
       "verified_steps": 0,
-      "failure": "Scorer import: missing generate_objective"
+      "supersedes_failed_job": "181297781.gadi-pbs",
+      "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
+      "kl_unit": "sampled k3 per native completion token"
     },
     {
       "model": "muse",
       "reward": "instrument",
-      "status": "startup-failed",
+      "status": "pbs-queued",
       "host": "gadi",
-      "project": "iv96",
-      "job_id": "181297782.gadi-pbs",
+      "project": "wa66",
+      "job_id": "181718185.gadi-pbs",
       "lr": 0.0003,
       "beta": 0.05,
       "scheduler": "constant",
       "verified_steps": 0,
-      "failure": "Scorer import: missing generate_objective"
+      "supersedes_failed_job": "181297782.gadi-pbs",
+      "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
+      "kl_unit": "sampled k3 per native completion token"
     },
     {
       "model": "muse",
       "reward": "arrangement",
-      "status": "startup-failed",
+      "status": "pbs-queued",
       "host": "gadi",
-      "project": "wa66",
-      "job_id": "181297783.gadi-pbs",
+      "project": "iv96",
+      "job_id": "181718187.gadi-pbs",
       "lr": 0.0003,
       "beta": 0.05,
       "scheduler": "constant",
       "verified_steps": 0,
-      "failure": "Scorer import: missing generate_objective"
+      "supersedes_failed_job": "181297783.gadi-pbs",
+      "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
+      "kl_unit": "sampled k3 per native completion token"
     },
     {
       "model": "diffrhythm2",

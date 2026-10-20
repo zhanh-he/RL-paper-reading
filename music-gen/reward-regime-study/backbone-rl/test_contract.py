@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import unittest
 
 ROOT = Path(__file__).resolve().parent
@@ -35,7 +36,10 @@ class ContractTest(unittest.TestCase):
     def test_captured_source_and_queue_parameters(self):
         receipt = json.loads((ROOT/'launch-receipt.json').read_text())
         for name, expected in receipt['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(), expected, name)
+            # This immutable receipt describes the original 2026-10-16 submission.
+            source = subprocess.check_output(['git', 'show',
+                'c65498a:music-gen/reward-regime-study/backbone-rl/'+name], cwd=ROOT)
+            self.assertEqual(hashlib.sha256(source).hexdigest(), expected, name)
         self.assertEqual(len(receipt['jobs']), 6)
         for job in receipt['jobs']:
             self.assertEqual(job['lr'], 3e-4)

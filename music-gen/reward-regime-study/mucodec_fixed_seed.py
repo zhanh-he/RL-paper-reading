@@ -11,9 +11,13 @@ def install_fixed_seed(server_class, seed=42):
 
     def decode(self, request):
         # The native endpoint already holds its inference lock around this call.
-        with torch.random.fork_rng(devices=list(range(torch.cuda.device_count()))):
-            torch.manual_seed(seed)
-            return original(self, request)
+        try:
+            with torch.random.fork_rng(devices=list(range(torch.cuda.device_count()))):
+                torch.manual_seed(seed)
+                return original(self, request)
+        finally:
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
 
     server_class._decode_tokens=decode
 

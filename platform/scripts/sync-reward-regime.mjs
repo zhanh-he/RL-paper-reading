@@ -31,7 +31,7 @@ assert.deepEqual(value.models.map((m) => m.id), ['yue2', 'heartmula', 'diffrhyth
 assert.equal(value.backbone_round.lr, 3e-4);
 assert.equal(value.backbone_round.beta, .05);
 assert.equal(value.backbone_round.scheduler, 'constant');
-assert.deepEqual(value.backbone_round.priority, ['diffrhythm2', 'muse', 'heartmula', 'acestep', 'songbloom']);
+assert.deepEqual(value.backbone_round.priority, ['muse', 'diffrhythm2', 'heartmula', 'songbloom', 'acestep']);
 assert.ok(value.runs.filter(r => r.model === 'muse').every(r => r.lr === 3e-4 && r.beta === .05 && r.scheduler === 'constant'));
 assert.ok(value.models.every((m) => m.team_listening_estimate === null ||
   (Number.isFinite(m.team_listening_estimate) && m.team_listening_estimate >= 1 && m.team_listening_estimate <= 5)));

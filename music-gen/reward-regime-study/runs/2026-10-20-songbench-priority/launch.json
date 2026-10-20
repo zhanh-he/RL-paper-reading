@@ -1,0 +1,277 @@
+{
+  "checked_at": "2026-10-20T09:43:02.906838+00:00",
+  "no_scheduled_tasks": true,
+  "source_sha256": {
+    "backbone-rl/lyric_frontend.py": "c222645c8ab74ae7320b2704fb85a4f12abde7ea9596d1ee95cb3d2558eef97c",
+    "backbone-rl/formal_inputs.py": "36274989c6cd7f0625b17c8d571cadbcd77112df213e2888e06e6eb42a09052f",
+    "backbone-rl/collect_launch_receipts.py": "c4def74024277474128740a4eb0b1e68503dac30f058a5ff0a67abb332249206",
+    "backbone-rl/test_formal_inputs.py": "47ebde9486e0db76361a03449d1f5883a55920ff53c2894402fbbc7dc93c4136",
+    "backbone-rl/train_heart_trl.py": "ad7337e98b879d05a5fb75ffa8efe32a92edba544f7b803e32ff6932a315fc67",
+    "backbone-rl/test_contract.py": "7b581d171d8b535b9e22d3b4b7b457e4456f22e96d3276340226c597e24fa746",
+    "backbone-rl/run_diff_miles.py": "3eb387e5bff3249a594e17dc4419d329986caea151b1cdf78789e2363dd26211",
+    "backbone-rl/collect_priority_launch.py": "15d67a08f02bd51ded4b9511e25089f69a099c94c1efd1b9833a9ddba8531a0e",
+    "backbone-rl/train_yue2_trl_mean7.py": "513f5f7885679f71b6d7fe7e979e10281a9f6e4b2ee24f3dcd7f4e71e0c78072",
+    "backbone-rl/test_lyric_frontend.py": "7ad267d99d67caeaf52a90c940b020809cd97590d9ee9e10445b3f39c481bafe",
+    "backbone-rl/diff_audio.py": "c87716d09cefe4676aa7f274a8f3359f1b9e4070603bc2692b84c5b968806c66",
+    "backbone-rl/gadi_muse.pbs": "146835dc85b24af911dae2182dd025eb73e6f6e9d62febb4e7bb41e0aa2606c9",
+    "backbone-rl/gadi_heart.pbs": "b7f388a8984ddc69538e0b492789d9ab049ea28f539970f248281414936d20c6",
+    "backbone-rl/gadi_muse_priority.pbs": "6d049e599e327e8709f2f87031c3aceaf19d0a963f23007b4b06d892f910ef76",
+    "backbone-rl/gadi_yue2_mean7.pbs": "c99fb7770ae9806dfc4422d39045d3200d303b6146724429577eaf153053d9f4",
+    "backbone-rl/run_diff_miles.sh": "1f2a48207011b70e3c7677d8c7e4ce226a121f6997b3b7013773df36d7575dc1",
+    "backbone-rl/run_muse_lab_priority.sh": "7e5771c8221928f885738a2619b3cb89ba94328a270b48ac657aefdbb585f282",
+    "backbone-rl/run_diff_mean7_lab.sh": "2004619557ebbe81d21c937a16253620893af7f9cf451ef3a657d1bb9c3333ca",
+    "backbone-rl/run_after_muse_lab.sh": "481d39c98c1d85cda29718174f1287fd71b4ef6d8e7d0a7cc58e1f8a8b155e1d",
+    "rewards.py": "fd4e9d9fbe4b598ffac938f55d41b1cccae00fa0e9748dc732b7ec0034a7d086",
+    "reward_server.py": "bf25742b5f155dec370ef9ec0984315f47b081f42bad5bf39e686d2f6796dc41",
+    "muse_plugin.py": "b69ce74ce59066acb4a6193aafbc843dcea1add3629c30edd118bd3df2796f40",
+    "mucodec_fixed_seed.py": "7ce18313c74ab8e41a397da37db83909c02b781a61fd6bea941ddc3d7ad28d0e",
+    "runtime_entry.py": "fe79bafac6d636cd83e489d0fe5cb3fcc0e17cebbcf5a114d3ebe52b9005aee4",
+    "validate_muse.py": "e615822c51f39125b9c42026f38333f0566544f09565f690372df4792a54c167",
+    "check_muse_base.py": "03ac2fd12cea12ea027690ef5887e86ff2e0500c3280899ac51823497ed7b2f7"
+  },
+  "base": {
+    "model": "bolshyC/Muse-0.6b",
+    "revision": "0fb6b5b0a33ec48d135f046ea09524e52e502a42",
+    "model_sha256": "c810b2a748579e06e960019f89a9cb98701e4ff545e2c760e8ceaa3343ff1b52",
+    "architectures": [
+      "Qwen3ForCausalLM"
+    ],
+    "config_sha256": "07b9c72027c46495149e60c909aae5355c9ea1e550f3ea015592a15c7bb9a2af",
+    "starting_from_grpo": false,
+    "resume_from_checkpoint": false,
+    "source": "https://huggingface.co/bolshyC/Muse-0.6b/tree/0fb6b5b0a33ec48d135f046ea09524e52e502a42"
+  },
+  "acceptance": {
+    "steps": 2,
+    "formal_training": false,
+    "trainable_parameters": 5046272,
+    "scored_audio_bindings_verified": 4,
+    "log_history": [
+      {
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "completions/clipped_ratio": 0.5,
+        "completions/max_length": 512.0,
+        "completions/mean_length": 415.0,
+        "completions/min_length": 318.0,
+        "epoch": 0.003703703703703704,
+        "frac_reward_zero_std": 0.0,
+        "grad_norm": 0.173828125,
+        "kl": 0.0,
+        "learning_rate": 0.0003,
+        "loss": 2.9802322387695312e-08,
+        "reward": 0.07950980961322784,
+        "reward_std": 0.11244384944438934,
+        "rewards/RegimeRM/mean": 0.07950980961322784,
+        "rewards/RegimeRM/std": 0.11244384944438934,
+        "step": 1,
+        "step_time": 27.57888373825699
+      },
+      {
+        "clip_ratio/high_max": 0.0,
+        "clip_ratio/high_mean": 0.0,
+        "clip_ratio/low_mean": 0.0,
+        "clip_ratio/low_min": 0.0,
+        "clip_ratio/region_mean": 0.0,
+        "completions/clipped_ratio": 0.5,
+        "completions/max_length": 512.0,
+        "completions/mean_length": 274.5,
+        "completions/min_length": 37.0,
+        "epoch": 0.007407407407407408,
+        "frac_reward_zero_std": 0.0,
+        "grad_norm": 0.43359375,
+        "kl": 0.0005053872591815889,
+        "learning_rate": 0.0003,
+        "loss": 2.3663043975830078e-05,
+        "reward": 0.06466744095087051,
+        "reward_std": 0.09145356714725494,
+        "rewards/RegimeRM/mean": 0.06466744095087051,
+        "rewards/RegimeRM/std": 0.09145356714725494,
+        "step": 2,
+        "step_time": 24.793858587741852
+      }
+    ],
+    "checkpoint_sha256": {
+      "adapter_config.json": "b847ca0bc780790c0bd60dcdf3f270d2669c58b134c210a0c6dab4592a7ce170",
+      "adapter_model.safetensors": "beb7b57550bf941ac2a7bd35ccc399abfaf23328d8262e067f94399e33fdc5ac",
+      "optimizer.pt": "fbe5801c5db50916596e90449b4951b9cfb374605214c4aa712249c4c4be300d",
+      "rng_state.pth": "5477fdb55875800e3fd067a2918bc64abfb6d47b6c306776a28fbc7fbf17cf5a",
+      "trainer_state.json": "36a512ae615c972325250d16e7de92779c19d59beab187016b9cb945cb01c56b"
+    },
+    "scorer_identity": {
+      "reward_code_sha256": "fd4e9d9fbe4b598ffac938f55d41b1cccae00fa0e9748dc732b7ec0034a7d086",
+      "server_sha256": "bf25742b5f155dec370ef9ec0984315f47b081f42bad5bf39e686d2f6796dc41",
+      "separator": "htdemucs-955717e8",
+      "separator_sha256": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4",
+      "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+      "muq_weights_sha256": "273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6",
+      "muq_config_sha256": "237335ee27d8fb951ce778701a12a79e06c51ae636dd786f97e45f51ce532543",
+      "frontend_sha256": "428037e06aa02713405fef0980b3b1034e8b437e3694cca52dfa632ca8eef222",
+      "torch": "2.9.1+cu128",
+      "scored_format": "PCM24-FLAC",
+      "separator_shifts": 0,
+      "separator_overlap": 0.25,
+      "songbench_input": "whole mix",
+      "richness_input": "estimated accompaniment",
+      "mean7_only": false
+    }
+  },
+  "muse": {
+    "pid": 3982658,
+    "status": "running",
+    "latest": {
+      "loss": 0.00243323,
+      "grad_norm": 0.08496094,
+      "learning_rate": 0.0003,
+      "completions/mean_length": 152.5,
+      "completions/min_length": 5.0,
+      "completions/max_length": 300.0,
+      "completions/clipped_ratio": 0.0,
+      "reward": 0.0,
+      "reward_std": 0.0,
+      "frac_reward_zero_std": 1.0,
+      "rewards/RegimeRM/mean": 0.0,
+      "rewards/RegimeRM/std": 0.0,
+      "kl": 0.00434324,
+      "clip_ratio/low_mean": 0.0,
+      "clip_ratio/low_min": 0.0,
+      "clip_ratio/high_mean": 0.0,
+      "clip_ratio/high_max": 0.0,
+      "clip_ratio/region_mean": 0.0,
+      "step_time": 23.80935313,
+      "epoch": 0.05,
+      "global_step/max_steps": "13/270",
+      "elapsed_time": "5m 25s",
+      "remaining_time": "1h 46m 56s",
+      "memory(GiB)": 6.89,
+      "train_speed(s/it)": 24.965529
+    },
+    "experiment": {
+      "model": "Muse-0.6B",
+      "framework": "ms-swift/TRL + vLLM",
+      "reward": "richness",
+      "lr": 0.0003,
+      "lr_scheduler": "constant",
+      "beta": 0.05,
+      "seed": 42,
+      "steps": 270,
+      "group_size": 2,
+      "acceptance_only": false,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "target_modules": "all-linear backbone",
+      "reference_kl": "sampled k3 over native completion-token masks",
+      "data": {
+        "train": {
+          "n": 270,
+          "sha256": "ff437d751d62742d92daf7ac56a678010c52d6c22def5624a8324301e6699be6"
+        },
+        "valid": {
+          "n": 30,
+          "sha256": "ed5c5f36af48ef6ce81d15c7b15b429fb250ec4a52a04a43e55d96ec3cafb59d"
+        }
+      },
+      "test_run": false,
+      "scored_audio": "private PCM24-FLAC; public MP3 only"
+    }
+  },
+  "diff": {
+    "pid": 3983215,
+    "status": "finite-dependency-queue",
+    "predecessor": "Muse-SP full training and validation",
+    "process": "3983215 bash /storage/zhanh_storage/songbench-priority-20261020/code/run_after_muse_lab.sh"
+  },
+  "gadi": [
+    {
+      "job_id": "181718185.gadi-pbs",
+      "model": "Muse",
+      "reward": "instrument",
+      "job_state": "Q",
+      "queue": "gpuhopper-exec",
+      "project": "wa66",
+      "Priority": 1023,
+      "Resource_List": {
+        "jobfs": "21474836480b",
+        "mem": "103079215104b",
+        "mpiprocs": 12,
+        "ncpus": 12,
+        "ngpus": 1,
+        "nodect": 1,
+        "place": "free",
+        "select": "1:ncpus=12:mpiprocs=12:mem=103079215104:job_tags=gpuhopper:jobfs=21474836480:ngpus=1",
+        "storage": "scratch/wa66+gdata/wa66+scratch/iv96",
+        "walltime": "12:00:00",
+        "wd": 1
+      },
+      "comment": "Not Running: Insufficient amount of resource: ngpus (R: 1 A: 0 T: 120)"
+    },
+    {
+      "job_id": "181718187.gadi-pbs",
+      "model": "Muse",
+      "reward": "arrangement",
+      "job_state": "Q",
+      "queue": "dgxa100-exec",
+      "project": "iv96",
+      "Priority": 1023,
+      "Resource_List": {
+        "jobfs": "21474836480b",
+        "mem": "103079215104b",
+        "mpiprocs": 16,
+        "ncpus": 16,
+        "ngpus": 1,
+        "nodect": 1,
+        "place": "free",
+        "select": "1:ncpus=16:mpiprocs=16:mem=103079215104:job_tags=dgxa100:jobfs=21474836480:ngpus=1",
+        "storage": "gdata/wa66+scratch/wa66+scratch/iv96",
+        "walltime": "12:00:00",
+        "wd": 1
+      },
+      "comment": "Not Running: Not enough free nodes available"
+    },
+    {
+      "job_id": "181718819.gadi-pbs",
+      "model": "YuE2",
+      "reward": "mean7",
+      "job_state": "Q",
+      "queue": "gpuhopper-exec",
+      "project": "wa66",
+      "Priority": 1023,
+      "Resource_List": {
+        "jobfs": "32212254720b",
+        "mem": "137438953472b",
+        "mpiprocs": 12,
+        "ncpus": 12,
+        "ngpus": 1,
+        "nodect": 1,
+        "place": "free",
+        "select": "1:ncpus=12:mpiprocs=12:mem=137438953472:job_tags=gpuhopper:jobfs=32212254720:ngpus=1",
+        "storage": "scratch/wa66+gdata/wa66+scratch/iv96",
+        "walltime": "24:00:00",
+        "wd": 1
+      }
+    }
+  ],
+  "superseded_held_jobs_deleted": [
+    "181714731",
+    "181714736",
+    "181714740"
+  ],
+  "scope": "Launch snapshot only. No completed formal Muse or Mean7 result; validation/test not yet available.",
+  "yue2_gate": {
+    "cpu_native_tokenizer_import": "passed on5090 and Gadi",
+    "gpu_native_grpo": "not yet accepted",
+    "queue": "2 native updates -> separate process resume2to3 -> fresh270 formal; any failed gate stops",
+    "max_semantic_tokens": 1500,
+    "seconds_budget": 60,
+    "framework": "TRL GRPOTrainer with project native rollout/likelihood adapter"
+  },
+  "duration_note": "Muse old SP/subhead controls use512 native completion tokens and10.24s fixed-seed codec, not the new Mean7 60s protocol. Cross-host baseline audio will be rechecked on recovery; do not imply bit-identical Gadi/5090 generation.",
+  "failures_repaired": [
+    "stdlib container entry replaces missing generate_objective dependency",
+    "single GPU uses colocated vLLM, not invalid same-device actor/server NCCL",
+    "bounded1GiB KV cache and codec/actor allocator-cache release prevent scorer/decode OOM"
+  ]
+}

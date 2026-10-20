@@ -44,6 +44,7 @@ try{
   const response=await fetch('./data/songbench-review.json?v=20261020');if(!response.ok)throw Error(`HTTP ${response.status}`);data=await response.json();
   const inputResponse=await fetch('./data/reward-regime-examples.json');if(!inputResponse.ok)throw Error(`Inputs HTTP ${inputResponse.status}`);inputs=(await inputResponse.json()).inputs;
   $('priorities').replaceChildren(...data.priorities.map(row=>{const tr=el('tr');for(const text of row)tr.append(el('td',text));return tr;}));
+  $('execution').textContent=data.execution;$('launch-link').href=data.launch_url;
   $('results').replaceChildren(...data.runs.map(run=>{const first=run.validation[0],last=run.validation.at(-1),tr=el('tr');for(const value of [
     `${run.model} · ${names[run.reward]} - guard`,`${run.updates}步 · 0/50/100/270各30/30`,
     `${fmt(first.means.SongBench_mean7)} → ${fmt(last.means.SongBench_mean7)}`,

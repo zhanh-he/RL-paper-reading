@@ -4,6 +4,15 @@ from rewards import spectral_richness, guard, objective
 
 
 class RewardTests(unittest.TestCase):
+    def test_mean7_is_only_the_raw_seven_head_mean(self):
+        keys=['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing','Musicality']
+        row={'songbench':dict(zip(keys,range(1,8))), 'guard':{'invalid':True,'penalty':100}}
+        self.assertEqual(objective(row,'mean7'),4.)
+        del row['songbench']['Structure']
+        with self.assertRaises(KeyError): objective(row,'mean7')
+        row['songbench']['Structure']=float('nan')
+        with self.assertRaises(ValueError): objective(row,'mean7')
+
     def test_codec_randomness_is_fixed_and_caller_rng_is_restored(self):
         import torch
         from mucodec_fixed_seed import install_fixed_seed

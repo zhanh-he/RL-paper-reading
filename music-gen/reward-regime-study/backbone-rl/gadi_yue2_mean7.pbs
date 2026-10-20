@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#PBS -q gpuhopper
+#PBS -l ncpus=12,ngpus=1,mem=128GB,jobfs=30GB,walltime=24:00:00
+#PBS -l storage=gdata/wa66+scratch/wa66+scratch/iv96
+#PBS -l wd
+#PBS -N yue2-mean7-trl
+set -euo pipefail
+module purge
+module load python3/3.12.13 cuda/12.8.0
+study=/scratch/wa66/hm6416/songbench-priority-20261020
+root=/g/data/wa66/hanyu/YuE2-posttrain
+code="$study/code"
+output="$study/outputs/yue2-mean7-lr3e4-beta5e2-seed42"
+python="$root/.venv/bin/python"
+mkdir -p "$output" "$PBS_JOBFS/cache"
+exec 9>"$output/training.lock"
+flock -n 9 || exit 1
+export PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=4
+export PYTHONPATH="$code:$study/yue-trl-deps:$study/sources/trl"
+export HF_HUB_OFFLINE=1 HF_HOME=/g/data/wa66/hanyu/hf-cache TOKENIZERS_PARALLELISM=false
+export TMPDIR="$PBS_JOBFS" XDG_CACHE_HOME="$PBS_JOBFS/cache" TRITON_CACHE_DIR="$PBS_JOBFS/triton"
+bundle=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics
+resources=/scratch/iv96/hm6416/reward-regimes-20261014
+port=$((41000+${PBS_JOBID%%.*}%8000))
+"$python" "$code/launch_container_worker.py" --work /scratch/iv96/hm6416/wsb-objective-20261013 \
+  --python "$bundle/.venvs/metrics/bin/python" --script "$code/reward_server.py" \
+  --bundle "$bundle" --deps "$resources/deps" --separator "$resources/models/955717e8-8726e21a.th" \
+  --mean7-only --receipt-dir "$output/scorer" --port "$port" > "$output/scorer.log" 2>&1 &
+scorer=$!
+cleanup(){ kill "$scorer" 2>/dev/null || true; wait "$scorer" 2>/dev/null || true; }
+trap cleanup EXIT
+ready=false
+for _ in $(seq 1 120); do
+  if curl -fsS "http://127.0.0.1:$port/health" >/dev/null 2>&1; then ready=true; break; fi
+  kill -0 "$scorer" || exit 1
+  sleep 5
+done
+[[ "$ready" == true ]] || exit 1
+args=(--model "$root/models/YuE2-3B" --vae "$root/models/YuE2-Vae"
+  --data "$root/examples/cmi-pref-triple-text-lyrics-9to1-v2.json" --scorer "http://127.0.0.1:$port" --max-tokens 1500)
+# Gates run in separate processes; failure blocks the fresh formal arm.
+"$python" -u "$code/train_yue2_trl_mean7.py" "${args[@]}" --output "$output/acceptance-2" \
+  --steps 2 --acceptance-only > "$output/acceptance.log" 2>&1
+checkpoint="$output/acceptance-2/checkpoints/checkpoint-2"
+[[ -f "$checkpoint/optimizer.pt" && -f "$checkpoint/rng_state.pth" ]] || exit 1
+"$python" -u "$code/train_yue2_trl_mean7.py" "${args[@]}" --output "$output/resume-3" \
+  --steps 3 --acceptance-only --resume "$checkpoint" > "$output/resume.log" 2>&1
+[[ -f "$output/resume-3/acceptance-complete.json" ]] || exit 1
+"$python" -u "$code/train_yue2_trl_mean7.py" "${args[@]}" --output "$output/formal" \
+  --steps 270 > "$output/train.log" 2>&1

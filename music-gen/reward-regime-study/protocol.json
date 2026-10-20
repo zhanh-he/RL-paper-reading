@@ -1,6 +1,6 @@
 {
   "version": "20261015-backbone-lr3e4-beta05",
-  "status": "20261020-diff-three-arms-verified-muse-heart-startup-failed-mean7-proposed",
+  "status": "20261020-original-muse-controls-running-and-queued-mean7-gated",
   "framework_transition": {
     "date_awst": "2026-10-15",
     "scope": "TRL selected for discrete AR; Miles-Diffusion synchronous FSDP2 selected as the single continuous Flow-GRPO route. VeRL-Omni audit is historical, not a future comparison arm.",
@@ -27,18 +27,18 @@
     "beta": 0.05,
     "group_size": 2,
     "steps": 270,
-    "priority": ["diffrhythm2", "muse", "heartmula", "acestep", "songbloom"],
+    "priority": ["muse", "diffrhythm2", "heartmula", "songbloom", "acestep"],
     "status_by_model": {
       "yue2": "当前曲线为已完成的 beta=0.01 历史轮；本次不改写或重标旧结果。",
       "diffrhythm2": "2026-10-20已回收：三臂均270步，0/50/100/270各30/30验证、训练/评分音频SHA绑定和最终checkpoint已核验。仍是旧SP/子项减guard，不是新Mean7训练。Models → Experiment Plan展示新回收曲线与试听。",
-      "muse": "2026-10-20确认：三个新主干任务均在scorer启动时因缺少generate_objective而退出，未训练；不再标排队。新Mean7方案待批准，先修依赖打包。",
-      "heartmula": "2026-10-20确认：三个新主干任务均在scorer启动时因缺少generate_objective而退出，未训练；不再标排队。新Mean7方案待批准。",
+      "muse": "2026-10-20原始非GRPO权重三臂重新正式启动：SP在5090训练，Instrument在Gadi wa66/Hopper、Arrangement在iv96/A100排队。权重SHA匹配官方原版；新主干LoRA 5,046,272参数；不是旧GRPO续训。旧scorer导入/同GPU NCCL/显存问题已修复并通过2步真实验收。完整验证和正式结果尚未回收。",
+      "heartmula": "上一轮三个主干任务在scorer启动时缺generate_objective退出，未训练。当前后置，未重新提交；优先补Muse三臂及Diff/YuE2 Mean7。",
       "acestep": "优先级在 HeartMuLa 之后；尚未提交训练。",
       "songbloom": "后续 Miles 声学主干接入；尚未提交新主干训练。",
       "private": "仅空白占位，不安排训练。"
     },
     "kl_units": "AR: sampled k3 KL per valid audio token. Flow: exact conditional Gaussian KL per active latent dimension, not joint waveform KL. Equal beta does not imply equal regularization strength.",
-    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/backbone-rl/README.md",
+    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/runs/2026-10-20-songbench-priority/README.md",
     "no_scheduled_tasks": true
   },
   "training_authorized": true,
@@ -59,7 +59,7 @@
     {"id": "heartmula", "name": "HeartMuLa", "role": "中间质量档候选", "mos": null, "team_listening_estimate": 3.5, "status": "Head-only 待替代 · 三臂已停止", "input": "Tags + lyrics", "readiness": "ablation", "note": "旧codebook0 head-only消融保留36/31/31步，checkpoint和评分音频SHA逐一核验；没有完整30条验证，不给局部最终均值。停止继续训练，待global/local注意力+MLP主干LoRA替代。TRL真实模型短smoke单独验收，不算本研究正式结果。", "source": "https://github.com/HeartMuLa/heartlib"},
     {"id": "diffrhythm2", "name": "DiffRhythm2", "role": "较低快听起点 · 连续策略", "mos": null, "team_listening_estimate": 3.0, "status": "Head-only 待替代 · 107步后失败", "input": "Style text + lyrics", "readiness": "ablation", "note": "旧proj_out-only消融保留107步；原生G2P遇到Unknown language: other而退出，不能算270步完成。0/50/100各30条验证已核验。其余两reward未启动并停止续排；未来改为DiT注意力+MLP主干LoRA Flow-GRPO，block-AR不等于离散token GRPO。", "source": "https://github.com/ASLP-lab/DiffRhythm2"},
     {"id": "songbloom", "name": "SongBloom", "role": "较低快听起点 · 混合策略", "mos": null, "team_listening_estimate": 3.0, "status": "Head-only 待替代 · 解码失败", "input": "Reference audio + structured lyrics", "readiness": "ablation", "note": "社区恢复150s base、非DPO版。旧sketch-head两臂各4步后遇短latent分块VAE解码UnboundLocalError；没有正式验证均值。第三臂已取消。未来训练nar_dit声学主干LoRA Flow-GRPO，AR规划器/VAE固定。全部300条reference已核验；Text不输入本模型。", "source": "https://arxiv.org/abs/2506.07634"},
-    {"id": "muse", "name": "Muse", "role": "已有小模型对照", "mos": null, "team_listening_estimate": null, "status": "2026-10-20确认：新轮三臂scorer启动失败 · 未训练", "input": "Style text + lyrics", "readiness": "blocked", "note": "原始Muse-0.6B起点。Unicode JSONL解析已修复，但新提交又因scorer容器缺少generate_objective依赖在训练前退出，不是仍在排队。冻结270/30未变；不以旧实验或小LR音频填充。Mean7新方案见Models → Experiment Plan，待批准。", "source": "https://github.com/yuhui1038/Muse"},
+    {"id": "muse", "name": "Muse", "role": "原始小模型对照 · 当前最优先", "mos": null, "team_listening_estimate": null, "status": "原始非GRPO权重 · SP运行 / Instrument与Arrangement排队", "input": "Style text + lyrics", "readiness": "training", "note": "原始bolshyC/Muse-0.6b权重SHA c810b2a7…ff1b52，经5090/Gadi核验；不加载旧GRPO adapter或合并权重。新主干LoRA rank8/alpha16，5,046,272参数；LR3e-4/beta0.05/G2/270步。旧单项减guard比较保留512 completion tokens与10.24s codec协议，不冒充60s训练。全270/30冻结不变；完成后才回收正式结果，跨硬件baseline需统一核对。Muse Mean7后续单独接入，不复用含guard目标。", "source": "https://github.com/yuhui1038/Muse"},
     {"id": "acestep", "name": "ACE-Step 1.5", "role": "后续候选 · HeartMuLa 之后", "mos": null, "team_listening_estimate": null, "status": "后续预留 · 未提交", "input": "Caption + lyrics; native task dependent", "readiness": "deferred", "note": "最新执行优先级为DiffRhythm2、Muse、HeartMuLa、ACE-Step1.5、其他。没有把它标为差模型，也没有把未提交的任务称为运行中。", "source": "https://github.com/ace-step/ACE-Step-1.5"},
     {"id": "private", "name": "Private baseline", "role": "不可获取的私有模型", "mos": null, "team_listening_estimate": null, "status": "仅保留位置 · 无公开权重或结果", "input": "Not disclosed", "readiness": "private", "note": "只作非公开对照的通用占位，选项卡固定最后。不公开模型内部信息，不索取文件，不安排本地RL，不填入替代音频、训练曲线或分数。", "source": null}
   ],
@@ -96,9 +96,9 @@
     {"model": "yue2", "reward": "richness", "status": "complete", "host": "lab5090", "verified_steps": 270, "full_valid_n": 30},
     {"model": "yue2", "reward": "instrument", "status": "complete", "host": "lab5090", "verified_steps": 270, "full_valid_n": 30},
     {"model": "yue2", "reward": "arrangement", "status": "complete", "host": "lab5090", "verified_steps": 270, "full_valid_n": 30},
-    {"model": "muse", "reward": "richness", "status": "startup-failed", "host": "gadi", "project": "wa66", "job_id": "181297781.gadi-pbs", "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "failure": "Scorer import: missing generate_objective"},
-    {"model": "muse", "reward": "instrument", "status": "startup-failed", "host": "gadi", "project": "iv96", "job_id": "181297782.gadi-pbs", "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "failure": "Scorer import: missing generate_objective"},
-    {"model": "muse", "reward": "arrangement", "status": "startup-failed", "host": "gadi", "project": "wa66", "job_id": "181297783.gadi-pbs", "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "failure": "Scorer import: missing generate_objective"},
+    {"model": "muse", "reward": "richness", "status": "running", "host": "lab5090", "pid": 3982658, "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "supersedes_failed_job": "181297781.gadi-pbs", "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode", "kl_unit": "sampled k3 per native completion token"},
+    {"model": "muse", "reward": "instrument", "status": "pbs-queued", "host": "gadi", "project": "wa66", "job_id": "181718185.gadi-pbs", "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "supersedes_failed_job": "181297782.gadi-pbs", "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode", "kl_unit": "sampled k3 per native completion token"},
+    {"model": "muse", "reward": "arrangement", "status": "pbs-queued", "host": "gadi", "project": "iv96", "job_id": "181718187.gadi-pbs", "lr": 0.0003, "beta": 0.05, "scheduler": "constant", "verified_steps": 0, "supersedes_failed_job": "181297783.gadi-pbs", "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode", "kl_unit": "sampled k3 per native completion token"},
     {"model": "diffrhythm2", "reward": "richness", "status": "head-failed", "host": "lab5090", "verified_steps": 107, "failure": "Native G2P Unknown language: other", "training_scope": "deprecated DiT proj_out head ablation; native60s SDE", "kl_unit": "Gaussian conditional KL / latent dimension"},
     {"model": "diffrhythm2", "reward": "instrument", "status": "head-cancelled", "host": "lab5090", "training_scope": "deprecated DiT proj_out head ablation; not started", "kl_unit": "Gaussian conditional KL / latent dimension"},
     {"model": "diffrhythm2", "reward": "arrangement", "status": "head-cancelled", "host": "lab5090", "training_scope": "deprecated DiT proj_out head ablation; not started", "kl_unit": "Gaussian conditional KL / latent dimension"},

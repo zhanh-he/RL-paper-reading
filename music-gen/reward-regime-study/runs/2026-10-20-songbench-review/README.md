@@ -1,7 +1,7 @@
 # Verified Historical Recovery, 2026-10-20
 
 These are historical SP/subhead controls, **not SongBench Mean7 training**.
-The newly approved reward definition and pending experiment matrix are in the
+The approved reward definition and current experiment matrix are in the
 [priority plan](../../SONGBENCH_MEAN7_PRIORITY_PLAN_2026-10-20.md).
 
 `verified-recovery.json` was emitted by the read-only CPU
@@ -14,7 +14,8 @@ at the first update, and30/30 conditions at0/50/100/270. Total3,960 audio
 bindings were checked. These are bindings, not3,960 independent songs; baselines
 are shared within each model. Checkpoint files were hashed, not GPU-reloaded.
 
-The actual remote code hashes match this repository:
+The actual historical remote code hashes match repository revision `e0dfd36`
+(new experiment sources are allowed to evolve without changing this receipt):
 
 | File | SHA256 |
 | --- | --- |
