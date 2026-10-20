@@ -2,6 +2,8 @@
 
 Audited 2026-10-15. [Online tables](https://zhanh-he.github.io/RL-paper-reading/demos/#model-costs) / [downloadable JSON](https://zhanh-he.github.io/RL-paper-reading/demos/data/model-costs.json).
 
+2026-10-20: [timing audit and proposed experiment plan](EXPERIMENT_PLAN_2026-10-20.md). Online navigation is now **Models > Lyrics2song > Model Cost / Experiment Plan**; the old `#model-costs` link remains compatible. The plan is source-controlled in `experiment-plan.json` and included in the public download. No new benchmark or training is launched by this update.
+
 ## True Parameters, Not Model Names
 
 The core column counts unique native `nn.Parameters`, including frozen weights, excluding fixed buffers. Shared weights count once. These are exact local checkpoint configurations, not estimates inferred from file sizes or names. `B = 10^9`, `M = 10^6`.

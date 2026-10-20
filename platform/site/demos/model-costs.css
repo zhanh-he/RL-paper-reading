@@ -13,3 +13,11 @@
 #view-model-costs .table-scroll { max-width: 100%; overflow-x: auto; }
 #view-model-costs .model-cost-sources { overflow-wrap: anywhere; }
 #view-model-costs [data-cost="evidence"] section { padding: 12px 0; border-bottom: 1px solid var(--line, #dce2e1); }
+[data-model-panel="plan"] .table-scroll { max-width: 100%; overflow-x: auto; }
+[data-model-panel="plan"] .model-plan-table { width: 100%; min-width: 740px; table-layout: fixed; border-collapse: collapse; }
+[data-model-panel="plan"] th, [data-model-panel="plan"] td { padding: 12px; border-bottom: 1px solid var(--line, #dce2e1); text-align: left; vertical-align: top; overflow-wrap: anywhere; line-height: 1.7; }
+[data-model-panel="plan"] th:first-child { width: 20%; }
+[data-model-panel="plan"] h3 { margin: 22px 0 10px; font-size: 19px; }
+[data-model-panel="plan"] h4 { margin: 26px 0 10px; font-size: 16px; }
+[data-cost-plan="rules"] { padding-left: 22px; }
+[data-cost-plan="rules"] li { margin: 12px 0; line-height: 1.8; overflow-wrap: anywhere; }

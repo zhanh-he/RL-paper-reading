@@ -142,13 +142,16 @@ function renderChoralDemo(data) {
 
 function setView(view) {
   const aliases = {
+    'model-costs': ['models', 'lyrics', 'costs'],
+    'lyrics-model-costs': ['models', 'lyrics', 'costs'],
+    'lyrics-model-plan': ['models', 'lyrics', 'plan'],
     'lyrics-models': ['models', 'lyrics'], 'vocal-models': ['models', 'vocal'],
     'lyrics-rewards': ['reward-catalog', 'lyrics'], 'vocal-rewards': ['reward-catalog', 'vocal'],
     'choral-models': ['models', 'choral'], 'choral-rewards': ['reward-catalog', 'choral'],
     rewards: ['reward-catalog', 'choral'],
   };
-  const [route, task] = aliases[view] || [view, 'lyrics'];
-  const chosen = ['overview', 'choral', 'lyrics', 'reward-regimes', 'songeval', 'vocal', 'datasets', 'models', 'model-costs', 'reward-catalog'].includes(route) ? route : 'lyrics';
+  const [route, task, modelSection = 'catalog'] = aliases[view] || [view, 'lyrics'];
+  const chosen = ['overview', 'choral', 'lyrics', 'reward-regimes', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
   let hash = chosen;
   if (chosen === 'models' || chosen === 'reward-catalog') {
     const root = document.querySelector(`#view-${chosen}`);
@@ -159,6 +162,11 @@ function setView(view) {
     for (const button of root.querySelectorAll('[data-reference-task]')) button.setAttribute('aria-pressed', String(button.dataset.referenceTask === task));
     root.querySelector('[data-reference-eyebrow]').textContent = `${{ lyrics: 'Lyrics2song', vocal: 'Vocal2song', choral: 'Choral transcription' }[task]} · ${chosen === 'models' ? 'model' : 'reward'} reference`;
     hash = `${task}-${chosen === 'models' ? 'models' : 'rewards'}`;
+    if (chosen === 'models') {
+      for (const panel of root.querySelectorAll('[data-model-panel]')) panel.hidden = panel.dataset.modelPanel !== modelSection;
+      for (const button of root.querySelectorAll('[data-model-section]')) button.setAttribute('aria-pressed', String(button.dataset.modelSection === modelSection));
+      if (task === 'lyrics' && modelSection !== 'catalog') hash = `lyrics-model-${modelSection}`;
+    }
   }
   for (const section of document.querySelectorAll('.lab-view')) {
     section.hidden = section.id !== `view-${chosen}`;
@@ -986,6 +994,9 @@ function renderSongEval(data) {
 }
 
 for (const tab of document.querySelectorAll('.lab-tab')) tab.addEventListener('click', () => setView(tab.dataset.view));
+for (const button of document.querySelectorAll('[data-model-section]')) button.addEventListener('click', () => {
+  setView(button.dataset.modelSection === 'catalog' ? 'lyrics-models' : `lyrics-model-${button.dataset.modelSection}`);
+});
 for (const button of document.querySelectorAll('[data-reference-task]')) button.addEventListener('click', () => {
   const family = button.closest('.lab-view').id === 'view-models' ? 'models' : 'rewards';
   setView(`${button.dataset.referenceTask}-${family}`);

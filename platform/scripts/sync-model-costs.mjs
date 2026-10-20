@@ -135,11 +135,11 @@ if(vllmMuse?.rows.some(r=>!r.warmup)){
   arm.support=vllmMuse.backend;arm.measurement_scope=vllmMuse.scope;
   arm.receipt='muse-vllm-timing.json';
 }
-const value={schema:1,checked_at:'2026-10-15',title:'模型规模与推理等待时间',
+const value={schema:1,checked_at:'2026-10-20',title:'模型规模与推理等待时间',
   definition:'RTF = wall-clock generation seconds / actual output audio seconds; lower is faster. 1B=1e9,1M=1e6. Parameters are unique nn.Parameters, not bytes or every checkpoint tensor.',
   scope:'Six exact local parameter/LoRA audits and local batch1 timing evidence, plus three selected published speed references (LeVo2-medium only; large archived). Backend compatibility, measured acceleration and explicitly conditional AR-only estimates are separated. Published batch sizes/timing boundaries are not assumed identical to ours. No training interruption. Not a speed leaderboard.',
   interpretation:'实测60s不等于实测300s。估算只按同口径RTF线性外推，忽略固定开销和长度非线性。模型加载、排队、下载、reward评分和训练更新不包含在热推理等待时间内；各回执注明额外范围。',
-  models,timing,acceleration,timing_audit:read('inference-boundaries.json'),
+  models,timing,acceleration,timing_audit:read('inference-boundaries.json'),experiment_plan:read('experiment-plan.json'),
   references:[{label:'YuE2参数口径与MoT',url:'https://arxiv.org/html/2609.33757v1#A1.SS5'},
     {label:'DiffRhythm2官方4090测速：120s /25.6s /32steps；非本站5090',url:'https://arxiv.org/html/2510.22950v2#A2'},
     {label:'HeartMuLa官方RTF≈1.0，硬件未给，不代替本站记录',url:'https://github.com/HeartMuLa/heartlib#-todos'},

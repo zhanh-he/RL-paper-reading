@@ -36,6 +36,10 @@ assert.ok(Math.abs(aceClaim.claim_rtf-2/240)<1e-12);
 assert.ok(aceClaim.rows.every(r=>r.wall_seconds===null&&r.kind==='boundary-unverified'));
 assert.equal(data.timing.find(m=>m.id==='diffrhythm2').kind,'measured-rollout-proxy');
 assert.equal(data.timing_audit.benchmark_contract.status,'proposed; not launched');
+assert.equal(data.experiment_plan.status,'proposed; not launched');
+assert.equal(new Set(data.experiment_plan.profiles.map(p=>p.id)).size,6);
+assert.equal(data.experiment_plan.phases.length,4);
+assert.equal(data.experiment_plan.metrics.length,5);
 assert.equal(data.timing.find(m=>m.id==='diffrhythm2').n,29);
 assert.equal(data.timing.find(m=>m.id==='heartmula').n,69);
 const musicgen=data.timing.find(m=>m.id==='musicgen-large-reference');
@@ -61,7 +65,8 @@ for(const r of data.acceleration.projections){
   assert.ok(r.scenarios[1].estimated_e2e_speedup<r.ar_only_infinite_speedup_bound);
 }
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
-const browser=await chromium.launch({headless:true,channel:'chrome'});
+// Use Playwright's isolated testing browser, never the user's installed Chrome.
+const browser=await chromium.launch({headless:true});
 const output=process.env.QA_OUTPUT||'/tmp/model-costs-qa';
 await fs.mkdir(output,{recursive:true});
 try{
@@ -73,6 +78,10 @@ try{
     const root=page.locator('#view-model-costs');
     await root.locator('[data-cost="parameters"] tr').last().waitFor();
     assert.equal(await root.isVisible(),true);
+    assert.equal(await page.locator('.lab-tab[data-view="models"]').getAttribute('aria-selected'),'true');
+    assert.equal(await page.locator('.lab-tab[data-view="model-costs"]').count(),0);
+    assert.equal(await root.locator('xpath=ancestor::*[@data-reference-panel="lyrics"]').count(),1);
+    assert.equal(new URL(page.url()).hash,'#lyrics-model-costs');
     assert.equal(await root.locator('[data-cost="parameters"] tr').count(),6);
     assert.equal(await root.locator('[data-cost="timing"] tr').count(),9);
     assert.equal(await root.locator('[data-cost="acceleration"] tr').count(),8);
@@ -103,6 +112,26 @@ try{
     await root.locator('summary').nth(1).click();
     assert.match(await root.locator('[data-cost="projections"]').textContent(),/条件估算/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    await page.locator('[data-model-section="plan"]').click();
+    const plan=page.locator('[data-model-panel="plan"]');
+    assert.equal(await plan.isVisible(),true);
+    assert.equal(await root.isVisible(),false);
+    assert.equal(new URL(page.url()).hash,'#lyrics-model-plan');
+    assert.equal(await plan.locator('[data-cost-plan="profiles"] tr').count(),6);
+    assert.equal(await plan.locator('[data-cost-plan="phases"] tr').count(),4);
+    assert.match(await plan.textContent(),/84次|共84次/);
+    assert.match(await plan.textContent(),/未启动/);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    await page.screenshot({path:`${output}/${width}-plan.png`,fullPage:true});
+    await page.reload();
+    assert.equal(await plan.isVisible(),true);
+    await plan.locator('[data-cost-plan="profiles"] tr').last().waitFor();
+    await page.locator('[data-reference-task="vocal"]').first().click();
+    assert.equal(await plan.isVisible(),false);
+    await page.locator('[data-reference-task="lyrics"]').first().click();
+    assert.equal(await page.locator('[data-model-panel="catalog"]').isVisible(),true);
+    await page.locator('[data-model-section="costs"]').click();
+    assert.equal(await root.isVisible(),true);
   }
   assert.deepEqual(errors,[]);
   console.log('Six parameter audits / nine timing rows / LeVo2-medium selection / eight backend rows / conditional Amdahl scenarios / desktop and mobile: PASS');

@@ -30,9 +30,24 @@ function render(){
   root.querySelectorAll('[data-cost-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.costFilter===filter)));
 }
 try{
-  const response=await fetch('./data/model-costs.json?v=20261015-boundaries',{cache:'no-store'});
+  const response=await fetch('./data/model-costs.json?v=20261020-plan',{cache:'no-store'});
   if(!response.ok)throw Error(`HTTP ${response.status}`);
   data=await response.json();
+  const plan=data.experiment_plan;
+  const planTarget=(name)=>document.querySelector(`[data-cost-plan="${name}"]`);
+  planTarget('summary').textContent=plan.summary;
+  for(const [name,fields] of [
+    ['profiles',['name','conditioning','sampling','purpose']],
+    ['phases',['name','budget','acceptance']],
+    ['metrics',['name','definition']],
+  ]){
+    planTarget(name).replaceChildren(...plan[name].map(item=>{
+      const row=el('tr');
+      for(const field of fields)row.append(el('td',item[field]));
+      return row;
+    }));
+  }
+  planTarget('rules').replaceChildren(...plan.rules.map(rule=>el('li',rule)));
   $('timing-audit').replaceChildren(...data.timing_audit.sections.map(s=>{
     const section=el('section');section.append(el('h4',s.title));
     for(const statement of s.statements)section.append(el('p',statement,'section-copy'));
@@ -85,4 +100,4 @@ try{
     return section;
   }));
   render();
-}catch(error){const tr=el('tr'),td=el('td',`统计加载失败：${error.message}`);td.colSpan=5;tr.append(td);$('timing').replaceChildren(tr);}
+}catch(error){const message=`统计加载失败：${error.message}`;const tr=el('tr'),td=el('td',message);td.colSpan=5;tr.append(td);$('timing').replaceChildren(tr);document.querySelector('[data-cost-plan="summary"]').textContent=message;}

@@ -1,0 +1,34 @@
+{
+  "version": "2026-10-20-v1",
+  "status": "proposed; not launched",
+  "summary": "先验证ACE与Diff的完整60s/300s延迟，再决定RL rollout预算。以同一张独占GPU、batch1、固定CMI验证输入做配对测试；不把官网宣传、首音延迟、渲染时间或线性估算混作整曲结果。当前未申请GPU或启动训练。",
+  "profiles": [
+    {"id":"ace-base-off", "name":"ACE 1.5 · Base", "conditioning":"LM-off；保留text encoder + 给定text/lyrics", "sampling":"2B-class v15-base；50步；原生CFG参数逐项记录", "purpose":"Base成本参照；精确参数已有审计，速度未测"},
+    {"id":"ace-turbo-off", "name":"ACE 1.5 · Turbo / LM-off", "conditioning":"LM-off；保留text encoder + 给定text/lyrics", "sampling":"2B-class v15-turbo；8步；无CFG", "purpose":"隔离planner开销；不借用Base的精确参数计数"},
+    {"id":"ace-turbo-torch", "name":"ACE 1.5 · Turbo / PyTorch", "conditioning":"1.7B planner；thinking + audio codes开启", "sampling":"同一Turbo /8步；planner用原生PyTorch", "purpose":"与nano-vLLM配对；保持LM、提示和采样配置一致"},
+    {"id":"ace-turbo-nano", "name":"ACE 1.5 · Turbo / nano-vLLM", "conditioning":"同一1.7B planner；非上游vLLM", "sampling":"同一Turbo /8步；nano-vLLM记录graph/eager实际路径", "purpose":"ACE整链主测；必须包含LM + text encoder + DiT + VAE"},
+    {"id":"diff-worker", "name":"DiffRhythm2 · 原worker", "conditioning":"同一MuQ-MuLan条件；记录冷/热条件cache", "sampling":"FP16 /32时间点 /Euler /CFG2 /SDPA /block cache", "purpose":"重现历史24秒范围；逐项计offload、搬运、解码与保存"},
+    {"id":"diff-resident", "name":"DiffRhythm2 · GPU常驻", "conditioning":"同一条件；不复用预生成音乐或latent", "sampling":"同一权重 /32时间点 /CFG2 /SDPA /block cache", "purpose":"Diff整链主测；无offload，与worker同边界比较"}
+  ],
+  "phases": [
+    {"name":"1 · 锁定与分解", "budget":"先1条CMI valid ×1 seed ×6配置 ×60/300s；纳入后续合格回执，不重复跑。先60s再300s。", "acceptance":"checkpoint/代码SHA、实际开关、真实片长、阶段计时、显存峰值齐全。OOM/早停/超时保留为失败，不补音频、不填估计值。"},
+    {"name":"2 · 配对主测", "budget":"Turbo +1.7B nano-vLLM 与 Diff常驻：5条输入 ×3 seeds ×2时长 ×2配置 =60次完整生成。另4配置只用其中1条 ×3 seeds ×2时长 =24次；共84次，非84首新数据。", "acceptance":"5条覆盖明确少乐器、明确多乐器、无数量约束；同输入同seed。每配置/时长报告N/计划N、median/p90、成功率和实际输出长度；未完成不充当全量。"},
+    {"name":"3 · 有证据才优化", "budget":"第一批不扫0.6/4B LM或4B XL。Diff compile/graph/FlexAttention只在原生兼容性与数值检查通过后，另立配置，不覆盖原回执。", "acceptance":"分开报告冷启动、编译和热延迟。先同硬件配对，再谈加速倍数；不把2倍/4倍情景当后端实测。"},
+    {"name":"4 · 决定RL预算", "budget":"按实测 rollout + reward + old/ref logp + update 成本估算270步；先G=2，G=4仅作成本情景。既有训练不因本计划被停止。", "acceptance":"Base/Turbo的可训练路径、采样策略与质量单独验收；速度不等于MOS。RL方案另行确认后启动，本页不提交任务。"}
+  ],
+  "metrics": [
+    {"name":"完整生成 T_wave / RTF", "definition":"已加载模型接收text/lyrics → 完整CPU waveform可用；前后同步CUDA，含tokenize/编码、LM、DiT/ODE、VAE和必要搬运。RTF=T_wave/实际片长，不含排队、初始化、reward、MP3导出。"},
+    {"name":"可播放交付 T_mp3", "definition":"同一起点 → MP3编码写入完成；192kbps /48kHz、不做响度归一化。单列导出耗时，公开只放MP3并记录原件/MP3各自SHA256。"},
+    {"name":"TTFA / 首音", "definition":"仅真正支持流式时记录首个可播放chunk与其时长，另列整曲完成时间；非流式填n/a。HTTP返回/任务ID/首个token不是首音。"},
+    {"name":"阶段与显存", "definition":"condition /planner /sampler /VAE /transfer /export秒数、NFE与块数、GPU max allocated/reserved及进程占用、冷加载/编译/短warmup耗时。阶段加和不强行替代总wall。"},
+    {"name":"结果可信度", "definition":"硬件/驱动/精度/steps/CFG/cache/graph/量化/版本完整；记录失败和提前结束。SongEval/SongBench离线评分与同输入盲听不计入推理RTF；自动分不当MOS。"}
+  ],
+  "rules": [
+    "资源：仅使用空闲5090或独占interactive GPU，不与现有训练抢卡。优先同一GPU完成ACE/Diff配对；放不下则整组换A100-80GB，不拼接跨卡加速比。新测试建议上限4 GPU小时，达到上限停下保留进度，不承诺完成时间。",
+    "正式运行前冻结5条CMI valid的ID、text、lyrics、长度版本、seeds=5101/5102/5103与清单SHA；3条有乐器数量/编配约束、2条无数量约束。60s/300s版本在运行前固定，不按输出或分数挑样。",
+    "相同text/lyrics只传模型公开支持的接口；所需原生audio/style条件另记，不冒充严格同模态比较。WildSongBench保持封存，不拿来调采样或选好听的例子。",
+    "300s不支持、OOM或提前结束就明示n/a/失败/实际片长；不循环、拼接、静音补足，不把119s外推列作实测。阶段同步profile单独运行，正式wall计时避免插桩额外同步扰动。",
+    "初始比较保留各模型官方采样预算，称作默认配置比较，而不是同质量对决。Base50步、Turbo8步、Diff32时间点不等价；CFG分支和block更新计入实际NFE，不能只比参数量。",
+    "所有新LoRA或FlowGRPO实验待成本与policy logprob一致性验收后另定；不因推理引擎可用就假设能直接训练，不更改已批准的LR/beta或重跑现有训练。"
+  ]
+}
