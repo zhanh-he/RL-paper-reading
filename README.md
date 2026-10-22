@@ -1,8 +1,10 @@
-# Music Post-Training Lab
+# RL Learning
 
-[Literature catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Live experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) · [Formal result recovery](music-gen/lyrics2song/rl/grpo/runs/2026-10-12-formal-recovery/README.md) · [Request an update](upd_request/) · [Editing guide](platform/docs/EDITING.md)
+[MusicGen / RL / Reward catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Music Transcription (AMT) catalog](https://zhanh-he.github.io/RL-paper-reading/amt/) · [Live experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) · [Request an update](upd_request/README.md) · [Editing guide](platform/docs/EDITING.md)
 
-This repository keeps the shared RL literature catalog and measured music post-training pilots. The [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) has audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately.
+One repository, two independent literature catalogs. MusicGen / RL / Reward covers music generation, evaluation, post-training and related methods. AMT covers automatic music transcription, multipitch estimation and voice assignment. Each has its own table, filters, export and update requests. The repository URL stays unchanged so existing links still work.
+
+The [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) keeps its audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately.
 
 ## Experiment Map
 
@@ -18,16 +20,16 @@ Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds 
 
 ## Literature And Updates
 
-1. 在 [interactive catalog](https://zhanh-he.github.io/RL-paper-reading/) 搜索、筛选和排序文献。
-2. 修改请求写进 [`upd_request/`](upd_request/) 的 TXT：[Zhanh](upd_request/Update_request_zhanh.txt)、[Other](upd_request/Update_request_other.txt)（Felix、Jiahao 等同事）、[Hanyu](upd_request/Update_request_hanyu.txt)（预留）。在 Other request 标明推荐人和评分；完成的请求带时间戳归档到 [`done_requests/`](upd_request/done_requests/)。新实验方法直接归入所属任务的 `rl/`。
-3. 团队可以直接编辑 [`platform/data/literature.csv`](platform/data/literature.csv)。`platform/site/data/literature.json` 是生成文件，不要手改；具体字段见 [editing guide](platform/docs/EDITING.md)。
+1. 选择 [MusicGen / RL / Reward](https://zhanh-he.github.io/RL-paper-reading/) 或 [AMT](https://zhanh-he.github.io/RL-paper-reading/amt/)，搜索、筛选、排序或导出。页面顶部可以切换目录。
+2. 修改请求按领域放到 [`upd_request/rl/`](upd_request/rl/) 或 [`upd_request/amt/`](upd_request/amt/)，各有 Zhanh、Other（Felix / Jiahao / 同事）、Hanyu 三个 TXT。[直接编辑入口](upd_request/README.md)不需要安装 GitHub App；标明推荐人及评分后提交即可。完成后按领域带时间戳归档，旧历史不动。
+3. 直接维护数据时，编辑 [RL CSV](platform/data/rl/literature.csv) 或 [AMT CSV](platform/data/amt/literature.csv)，不要手改生成的网页和 JSON；具体字段见 [editing guide](platform/docs/EDITING.md)。同一篇文章只保留一个主目录归属，ID、评分、个人解读和原文链接不能因迁移丢失。
 
 The repository is public. Do not commit private Obsidian notes, restricted datasets, model checkpoints, credentials or audio without redistribution rights. Published paper results, local measurements and proposed experiments must be labeled separately.
 
 Public audio is MP3 only, including GitHub release assets: 192 kbps / 48 kHz, without loudness normalization. Keep lossless scoring originals outside the repository; record their hashes separately from MP3 listening copies. Build checks reject other audio formats.
 
 ## Labels
-- Domain：`MusicGen(LLM) / MusicGen(Small) / MusicGen(Mid) / MusicGen(Large) / MusicGen / MusicFoundation / MusicEval / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / MachineLearning / SourceSep / Multimodal / Other`
+- Domain：`MusicGen(LLM) / MusicGen(Small) / MusicGen(Mid) / MusicGen(Large) / MusicGen / MusicFoundation / MusicEval / MusicTranscription / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / MachineLearning / SourceSep / Multimodal / Other`
 - Workstream：`Reward / RL / Reward-n-RL / Other`
 - `MusicFoundation` 留给 MERT/MuQ 等理解表征；`MusicGen(LLM)` 是语言模型/LM+渲染体系。非 LM 生成器按已核验参考配置分 Small <1B、Mid 1–3B、Large >3B；未知规模保留 MusicGen。这是目录约定，不是统一行业标准。
 - Domain 下拉框可多选，取消勾选即排除；筛选链接和 CSV 导出保留当前选择。

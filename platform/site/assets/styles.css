@@ -135,6 +135,11 @@ a {
   gap: 8px;
 }
 
+.catalog-switch { display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 0 clamp(12px, 3vw, 42px); border-bottom: 1px solid var(--line); }
+.catalog-switch a { padding: 14px 0 11px; color: var(--ink-muted); border-bottom: 3px solid transparent; text-decoration: none; font-size: .88rem; font-weight: 700; }
+.catalog-switch a[aria-current="page"] { color: var(--green-dark); border-bottom-color: var(--green); }
+.catalog-switch a:hover { color: var(--green-dark); }
+
 .button,
 .icon-button {
   min-height: 38px;

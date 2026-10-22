@@ -1,4 +1,7 @@
-const DATA_URL = "./data/literature.json";
+const CATALOG_ID = document.body.dataset.catalog;
+const SITE_ROOT = new URL(document.body.dataset.siteRoot, window.location.href);
+const DATA_URL = new URL(`data/${CATALOG_ID}-literature.json`, SITE_ROOT);
+const CATALOG_ROUTES = { rl: "./", amt: "amt/" };
 const CSV_HEADERS = [
   "year",
   "venue",
@@ -513,7 +516,7 @@ function exportFilteredCsv() {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = "huawei-rl-literature-filtered.csv";
+  anchor.download = `${CATALOG_ID}-literature-filtered.csv`;
   anchor.click();
   URL.revokeObjectURL(url);
   showToast(`Exported ${state.filtered.length} records`);
@@ -617,6 +620,18 @@ async function init() {
     const response = await fetch(DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     state.catalog = await response.json();
+    // Keep previously shared ?paper= links working after a paper changes catalog.
+    if (initialPaperId && !state.catalog.some((record) => record.id === initialPaperId)) {
+      const response = await fetch(new URL("data/literature.json", SITE_ROOT), { cache: "no-store" });
+      if (!response.ok) throw new Error(`Paper lookup HTTP ${response.status}`);
+      const record = (await response.json()).find((record) => record.id === initialPaperId);
+      if (record && record.catalog !== CATALOG_ID && Object.hasOwn(CATALOG_ROUTES, record.catalog)) {
+        const target = new URL(CATALOG_ROUTES[record.catalog], SITE_ROOT);
+        target.searchParams.set("paper", initialPaperId);
+        window.location.replace(target.href);
+        return;
+      }
+    }
     hydrateFilters();
     syncControls();
     elements.syncStatus.textContent = `${state.catalog.length} records · synced from GitHub`;

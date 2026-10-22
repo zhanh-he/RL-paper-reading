@@ -12,7 +12,7 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(DATE)) throw new Error("Invalid --date; expected
 const PROJECT = "30-projects/huawei-rl";
 const START = "<!-- shared-catalog:start -->";
 const END = "<!-- shared-catalog:end -->";
-const INLINE_FIELDS = ["id", "year", "venue", "domain", "workstream", "other_rating", "zhanh_rating"];
+const INLINE_FIELDS = ["id", "catalog", "year", "venue", "domain", "workstream", "other_rating", "zhanh_rating"];
 
 export function replaceSection(current, next) {
   const start = current.indexOf(START);
@@ -76,7 +76,7 @@ export function sharedSection(record, date = DATE) {
     `- 核心词汇：${record.keywords || "未登记"}`,
     `- 主要作者机构：${record.author_org || "待核验"}${record.author_org_url ? `；[核验来源](${record.author_org_url})` : ""}`,
     `- 公开入口：${links(record)}`,
-    `- [Online catalog 条目](https://zhanh-he.github.io/RL-paper-reading/?paper=${encodeURIComponent(record.id)})`, "",
+    `- [Online catalog 条目](https://zhanh-he.github.io/RL-paper-reading/${record.catalog === "amt" ? "amt/" : ""}?paper=${encodeURIComponent(record.id)})`, "",
     ...metrics, "", "### 共享项目价值与独立判断", "",
     ...(judgments(record).length ? judgments(record).flatMap((text) => [text, ""]) : ["尚未登记个人判断；未评分不代表不重要。", ""]),
     END].join("\n");
@@ -107,7 +107,7 @@ function newCard(record, pack) {
     }
   }
   lines.push("## 本地心得与待办", "", "- 待精读原文并记录适用条件、失败边界与可复现实验。", "- 论文报告、推荐人判断、我们的实验结果分别记录，不把它们混为同一证据。", "",
-    `相关：[[${PROJECT}/0 Project Brief/2026-10-14_Huawei_RL_Research_Synthesis_and_Reading_Priorities|当前研究总结]] · [[${PROJECT}/1 Literature/Huawei RL 文献目录|文献总目录]]`, "");
+    `相关：[[${PROJECT}/0 Project Brief/2026-10-14_Huawei_RL_Research_Synthesis_and_Reading_Priorities|当前研究总结]] · [[${PROJECT}/1 Literature/${record.catalog === "amt" ? "AMT 文献目录" : "Huawei RL 文献目录"}|文献目录]]`, "");
   return lines.join("\n");
 }
 
@@ -137,7 +137,9 @@ function main() {
   const write = args.includes("--write");
   const projectRoot = path.join(path.resolve(vault), PROJECT);
   if (!fs.existsSync(path.join(projectRoot, "AGENTS.md"))) throw new Error("Project rules missing; refusing to create a competing vault");
-  const records = loadCatalog();
+  const selectedCatalog = option("--catalog") || "all";
+  if (!["all", "rl", "amt"].includes(selectedCatalog)) throw new Error("--catalog must be rl, amt or all");
+  const records = loadCatalog(selectedCatalog === "all" ? undefined : selectedCatalog);
   const pack = readPack(option("--reading-pack"));
   const changes = [];
   for (const record of records) {
@@ -153,13 +155,17 @@ function main() {
       if (write) fs.writeFileSync(target, next);
     }
   }
-  const target = path.join(projectRoot, "1 Literature/Huawei RL 文献目录.md");
-  const current = fs.readFileSync(target, "utf8");
-  const table = `${START}\n${catalogTable(records)}\n${END}`;
-  if (!current.includes(START)) throw new Error("Catalog requires prepared shared markers; preserve its previous full snapshot before conversion");
-  const next = replaceSection(current, table);
-  if (next !== current) { changes.push({ note: path.relative(projectRoot, target), action: "updated-shared-table" }); if (write) fs.writeFileSync(target, next); }
-  const report = { synced_at: DATE, source: "platform/data/literature.csv", records: records.length, mode: write ? "write" : "check", changes };
+  for (const catalogId of selectedCatalog === "all" ? ["rl", "amt"] : [selectedCatalog]) {
+    const title = catalogId === "rl" ? "Huawei RL 文献目录" : "AMT 文献目录";
+    const target = path.join(projectRoot, "1 Literature", title + ".md");
+    const current = fs.existsSync(target) ? fs.readFileSync(target, "utf8") : "";
+    const body = current || `---\ntitle: ${JSON.stringify(title)}\ntype: literature-index\n---\n\n# ${title}\n\n${START}\n${END}\n`;
+    const table = `${START}\n${catalogTable(records.filter(r => r.catalog === catalogId))}\n${END}`;
+    if (!body.includes(START)) throw new Error("Catalog requires prepared shared markers; preserve its previous full snapshot before conversion");
+    const next = replaceSection(body, table);
+    if (next !== current) { changes.push({ note: path.relative(projectRoot, target), action: "updated-shared-table" }); if (write) fs.writeFileSync(target, next); }
+  }
+  const report = { synced_at: DATE, source: "platform/data/{rl,amt}/literature.csv", catalog: selectedCatalog, records: records.length, mode: write ? "write" : "check", changes };
   if (option("--report")) fs.writeFileSync(option("--report"), JSON.stringify(report, null, 2) + "\n");
   console.log(JSON.stringify({ records: records.length, mode: report.mode, changes: changes.length, newCards: changes.filter((x) => x.action === "created-reading-entry").length }, null, 2));
   if (!write && changes.length) process.exitCode = 1;

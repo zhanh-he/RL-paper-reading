@@ -13,8 +13,8 @@
 
 Shared metadata is maintained primarily in GitHub. Core insights, detailed reading and private summaries live in Obsidian. New shared literature is synchronized in the same maintenance task when the vault is available; weekly maintenance remains a reconciliation pass, not a reason to leave new records inconsistent. UI-only catalog changes do not rewrite notes.
 
-1. Pull/rebase the GitHub repository and process the three request files under `upd_request/`.
-2. Treat `platform/data/literature.csv` as the shared catalog source; run `npm --prefix platform run build` and `npm --prefix platform run check`.
+1. Pull/rebase the GitHub repository and process the relevant requests under `upd_request/rl/` or `upd_request/amt/`; also inspect the legacy root inboxes for stragglers.
+2. Treat `platform/data/rl/literature.csv` and `platform/data/amt/literature.csv` as the independent sources; run `npm --prefix platform run build` and `npm --prefix platform run check`. The Pages root is RL, `/amt/` is music transcription. The old combined JSON remains a compatibility endpoint only.
 3. Compare paper IDs/titles and shared metadata with the Obsidian catalog. Use `obsidian_target` to create or update the corresponding detailed reading card.
 4. Keep year, venue, ratings, labels, title, keywords, public links, author affiliations, quantitative size/speed/context and independent reviewer judgments aligned. `MusicFoundation` now means understanding representations; generation uses `MusicGen(LLM)` or sourced Small/Mid/Large size tiers, with `MusicGen` as unknown-scope fallback. Previous taxonomy in historical snapshots is superseded, not rewritten.
 5. Preserve Obsidian-only wikilinks, internal project context, experiments, private paths, and detailed notes. Never publish those fields into `platform/site/data/literature.json`.
@@ -29,6 +29,8 @@ node platform/scripts/sync-obsidian.mjs --vault /Users/jollibear/Work/pkb
 ```
 
 The second command is read-only and fails if shared blocks/table differ. `--reading-pack` accepts an archived JSON request for initial detailed entries; `--report` writes a private receipt. Existing prose and original ratings are preserved outside the current shared block. Never publish that private receipt or vault contents. Follow vault `AGENTS.md` and check Obsidian Sync before/after edits when available.
+
+Since 2026-10-22, the synchronizer writes two index blocks: the existing `Huawei RL 文献目录.md` for RL and `AMT 文献目录.md` for transcription. `--catalog rl`, `--catalog amt`, or the default `--catalog all` scopes a maintenance pass. Reading-card paths remain unchanged to preserve private wikilinks; this is not authorization to relocate an Obsidian project. AMT cards link directly to `/amt/?paper=...`; old root deep links are redirected by the public site. The repository split itself does not silently rewrite the private vault.
 
 ## Preserved Former README
 

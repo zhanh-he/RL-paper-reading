@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { loadCatalog, parseCsv } from "./sync-catalog.mjs";
+import { CATALOGS, loadCatalog, parseCsv, renderCatalogPage } from "./sync-catalog.mjs";
 import { catalogTable, replaceSection, sharedSection, updateFrontmatter } from "./sync-obsidian.mjs";
 
 const records = loadCatalog();
@@ -57,4 +61,61 @@ test("published JSON cannot reveal vault routing", () => {
   const json = JSON.parse(fs.readFileSync(new URL("../site/data/literature.json", import.meta.url), "utf8"));
   assert.equal(json.length, records.length);
   assert(json.every((r) => !Object.hasOwn(r, "obsidian_target")));
+});
+
+test("split catalogs are disjoint and have explicit ownership", () => {
+  const byId = new Map(records.map(record => [record.id, record]));
+  assert.equal(byId.size, records.length);
+  assert.equal(loadCatalog("rl").length + loadCatalog("amt").length, records.length);
+  assert(loadCatalog("amt").every(record => record.domain === "MusicTranscription"));
+  assert(loadCatalog("rl").every(record => record.domain !== "MusicTranscription"));
+  assert.throws(() => loadCatalog("unknown"), /Unknown catalog/);
+});
+
+test("each page and public dataset uses its own catalog, assets and request path", () => {
+  for (const [id, config] of Object.entries(CATALOGS)) {
+    const html = renderCatalogPage(id);
+    const target = new URL(`../site/${config.route}index.html`, import.meta.url);
+    assert.equal(fs.readFileSync(target, "utf8"), html);
+    assert(html.includes(`data-catalog="${id}"`));
+    assert(html.includes(`${config.base}assets/app.js`));
+    assert(html.includes(`main/upd_request/${id}`));
+    assert(html.includes('aria-current="page"'));
+    assert(!html.includes("{{"));
+    const json = JSON.parse(fs.readFileSync(new URL(`../site/data/${id}-literature.json`, import.meta.url), "utf8"));
+    assert.deepEqual(json.map(record => record.id), loadCatalog(id).map(record => record.id));
+    assert(json.every(record => record.catalog === id && !Object.hasOwn(record, "obsidian_target")));
+    for (const person of ["zhanh", "other", "hanyu"]) {
+      const request = fs.readFileSync(new URL(`../../upd_request/${id}/Update_request_${person}.txt`, import.meta.url), "utf8");
+      assert(request.startsWith(`Catalog: ${id.toUpperCase()}`));
+    }
+  }
+  const amt = loadCatalog("amt")[0];
+  assert(sharedSection(amt).includes(`/amt/?paper=${encodeURIComponent(amt.id)}`));
+});
+
+test("Obsidian sync scopes AMT independently and keeps private prose with two indexes", t => {
+  const vault = fs.mkdtempSync(path.join(os.tmpdir(), "catalog-vault-test-"));
+  t.after(() => fs.rmSync(vault, { recursive: true, force: true }));
+  const project = path.join(vault, "30-projects/huawei-rl");
+  const literature = path.join(project, "1 Literature");
+  fs.mkdirSync(literature, { recursive: true });
+  fs.writeFileSync(path.join(project, "AGENTS.md"), "Test fixture rules\n");
+  const rlIndex = path.join(literature, "Huawei RL 文献目录.md");
+  const original = `# RL index\n\nPrivate research prose stays.\n\n${start}\nold table\n${end}\n`;
+  fs.writeFileSync(rlIndex, original);
+  const run = (...args) => spawnSync(process.execPath, [fileURLToPath(new URL("./sync-obsidian.mjs", import.meta.url)), "--vault", vault, "--date", "2026-10-22", ...args], { encoding: "utf8" });
+  let result = run("--catalog", "amt", "--write");
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(fs.readFileSync(rlIndex, "utf8"), original);
+  const amtIndex = fs.readFileSync(path.join(literature, "AMT 文献目录.md"), "utf8");
+  for (const record of loadCatalog("amt")) assert(amtIndex.includes(record.title));
+  assert(!amtIndex.includes(loadCatalog("rl")[0].title));
+  result = run("--write");
+  assert.equal(result.status, 0, result.stderr);
+  assert(fs.readFileSync(rlIndex, "utf8").includes("Private research prose stays."));
+  assert(!fs.readFileSync(rlIndex, "utf8").includes(loadCatalog("amt")[0].title));
+  result = run();
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.equal(JSON.parse(result.stdout).changes, 0);
 });

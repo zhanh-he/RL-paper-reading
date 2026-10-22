@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Interactive Huawei RL literature catalog for music reward and reinforcement learning research."
+      content="Music generation, reinforcement learning and reward research"
     />
-    <title>Huawei RL Literature Catalog</title>
-    <link rel="stylesheet" href="./assets/styles.css?v=20261014-sync" />
+    <title>MusicGen / RL / Reward | RL Learning</title>
+    <link rel="stylesheet" href="./assets/styles.css?v=20261022-catalogs" />
     <script
       defer
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
     ></script>
-    <script type="module" src="./assets/app.js?v=20261014-sync"></script>
+    <script type="module" src="./assets/app.js?v=20261022-catalogs"></script>
   </head>
-  <body>
+  <body data-catalog="rl" data-site-root="./">
     <header class="app-header">
-      <a class="brand" href="./" aria-label="Huawei RL literature catalog home">
+      <a class="brand" href="./" aria-label="RL Learning home">
         <span class="brand-mark" aria-hidden="true">RL</span>
         <span>
-          <strong>Huawei RL Literature</strong>
-          <small>Music reward and post-training index</small>
+          <strong>RL Learning</strong>
+          <small>MusicGen / RL / Reward</small>
         </span>
       </a>
       <nav class="header-actions" aria-label="Catalog actions">
@@ -40,7 +40,7 @@
         </a>
         <a
           class="button button-primary"
-          href="https://github.com/zhanh-he/RL-paper-reading/tree/main/upd_request"
+          href="https://github.com/zhanh-he/RL-paper-reading/tree/main/upd_request/rl"
           target="_blank"
           rel="noreferrer"
         >
@@ -51,10 +51,14 @@
     </header>
 
     <main>
+      <nav class="catalog-switch" aria-label="Literature catalogs">
+        <a href="./" aria-current="page">MusicGen / RL / Reward</a>
+        <a href="./amt/" >Music Transcription (AMT)</a>
+      </nav>
       <section class="catalog-heading" aria-labelledby="catalog-title">
         <div>
           <p class="eyebrow">Shared research index</p>
-          <h1 id="catalog-title">Literature catalog</h1>
+          <h1 id="catalog-title">MusicGen / RL / Reward</h1>
         </div>
         <div class="catalog-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>

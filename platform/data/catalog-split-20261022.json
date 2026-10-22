@@ -1,0 +1,1079 @@
+{
+  "date": "2026-10-22",
+  "source_sha256": "e22da6e2371f419717cda831804c0f859cb8741b0f9144d144c93fdab38888b4",
+  "source_records": 174,
+  "field_order": [
+    "id",
+    "year",
+    "venue",
+    "other_rating",
+    "zhanh_rating",
+    "workstream",
+    "title",
+    "keywords",
+    "model_size",
+    "model_params_b",
+    "generation_speed",
+    "measurement_context",
+    "model_size_url",
+    "generation_speed_url",
+    "paper_url",
+    "github_url",
+    "github_note",
+    "demo_url",
+    "web_url",
+    "zhanh_note",
+    "felix_note",
+    "other_note",
+    "hanyu_note",
+    "author_org",
+    "author_org_url",
+    "obsidian_target"
+  ],
+  "records": [
+    {
+      "id": "2025-ICASSP-Accompaniment-Prompt-Adherence",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "399652f21a77538a6e49657f9408cf6e92e4bf4cb75dab3a8803ea6a86dea35e"
+    },
+    {
+      "id": "2025-ISMIR-STAGE-Stemmed-Accompaniment-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "2a06cfcfca7dc17b5123cd7f508c5e829ef758c539c37b084bc8aec7ee5dd1b3"
+    },
+    {
+      "id": "2026-arXiv-Post-Training-Speech-Enhancement-Language-Models-with-Perceptual-Rewards",
+      "catalog": "rl",
+      "prior_domain": "SpeechEnhance",
+      "preserved_fields_sha256": "7bb3c958236546622754715676aa19dc6e590b21d586a36b8565bcc4cd241afb"
+    },
+    {
+      "id": "2026-AAAI-Multi-Metric-Preference-Alignment-Generative-Speech-Restoration",
+      "catalog": "rl",
+      "prior_domain": "SpeechEnhance",
+      "preserved_fields_sha256": "7bda6c9496e4b115ec6a56721b6f10301e6b3a326530c4823c495fe874793943"
+    },
+    {
+      "id": "2024-ICML-MusicRL-Aligning-Music-Generation-to-Human-Preferences",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "96008559bc3942e0a0c38e1a555edcb947eb52a2bfe8e14f1d7a408e4f92367a"
+    },
+    {
+      "id": "2026-ICLR-Generative-Adversarial-Post-Training-Music-Reward-Hacking",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "c1de04a01371729d08bbedc6d101893a58a9ff57764f2ea90e3386b114e710b0"
+    },
+    {
+      "id": "2026-ISMIR-DDSynth-RL-Audio-Synthesizer-Inversion",
+      "catalog": "rl",
+      "prior_domain": "AudioGen",
+      "preserved_fields_sha256": "9b98927b6e511f3a11fc57f1be5f0eb630886e4af378fccb6125acb83fcb6f84"
+    },
+    {
+      "id": "2026-arXiv-CMI-RewardBench-and-CMI-RM",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "31d637d2c30853b63728be3f1a9e632df22e48a9a01e1c16a7ec7b08f67fd485"
+    },
+    {
+      "id": "2025-arXiv-SongEval-Song-Aesthetics-Evaluation",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "3c73a55887eb2ae4a8ffc0bab57770ed02e44e6e4df9cdf586929d80df41df87"
+    },
+    {
+      "id": "2025-ICASSP-Benchmarking-Music-Generation-Models-Metrics-Human-Preference",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "50f210081b2b49de941b5711fa02a9cbeb309d9946f0250f95a3ceba3dc46505"
+    },
+    {
+      "id": "2026-arXiv-MuseCritic-Multi-Aspect-Song-Rewards",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "1b70674bb1ce007885aa8e829d09a77f93fe8e0798b9ecf0d36062c24529d60f"
+    },
+    {
+      "id": "2026-ACL-Muse-Reproducible-Long-Form-Song-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "0b8de49c93119889a76bf987d46ff106fd0738f337fad5676959b3227db221fa"
+    },
+    {
+      "id": "2026-ICASSP-Automatic-Song-Aesthetics-Evaluation-Challenge",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "b9de7daeb9df0966cde63b3b61ab1315737f2767316e108c691e93af23b3331c"
+    },
+    {
+      "id": "2024-arXiv-Impact-of-Preference-Noise",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "43103a30bba839a74b9639f6fdd2eb409b9377ecb7d92361e63f9c4ee9b6f361"
+    },
+    {
+      "id": "2026-arXiv-AdaGRPO-Noise-Robust-Generative-Recommendation",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "f02fc08d3ae43e7dabd66a450cf83273f738e90b4321039b681db2cef711dd7c"
+    },
+    {
+      "id": "2022-NeurIPS-Defining-and-Characterizing-Reward-Hacking",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "7f0764d6c8d7bab0cdd282413551e0597e802d5cfe8abfdb06c3738d4bebd413"
+    },
+    {
+      "id": "2024-ICLR-Confronting-Composite-RM-Overoptimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "5137b2ba391927e8a61ad6c5668ce5cddf0daeebfaf4413d4ab3053e644bf003"
+    },
+    {
+      "id": "2024-NeurIPS-Scaling-Laws-Reward-Overoptimization-Direct-Alignment",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "90de5a7dd1c5c43c4ddfb2fe5c8aa4a021e1b619bc75e25fad43f1712f88b663"
+    },
+    {
+      "id": "2025-COLM-Off-Policy-Corrected-Reward-Modeling",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "afcb23d2ff55bc5315b067cb916a09c4c5ecec601c8893a2fcf8bf29b447b300"
+    },
+    {
+      "id": "2026-ACL-Omni-RewardBench",
+      "catalog": "rl",
+      "prior_domain": "Multimodal",
+      "preserved_fields_sha256": "26363db757a68e3ddfad3952062e237285326ded134ec76a4036e6b174531662"
+    },
+    {
+      "id": "2026-arXiv-FlowSE-GRPO",
+      "catalog": "rl",
+      "prior_domain": "SpeechEnhance",
+      "preserved_fields_sha256": "2a0e15725359a5e217dd9569f6c223b41c0413b7d4656902ecc024a08ff37bc3"
+    },
+    {
+      "id": "2026-CVPR-GRPO-Guard-Regulated-Clipping",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "c3795f8bc0c4dc5663d9108db830d23583d9cb0ff3aa1d35fd62a6c539542381"
+    },
+    {
+      "id": "2026-ISMIR-Genre-Bias-or-Aesthetic-Perception",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "cfc334920c5cf1c783b07fb4277876b1bd4ccb58bced8f413f03ad0c8e132b64"
+    },
+    {
+      "id": "2024-ISMIR-Beat-This-Accurate-Generalizable-Beat-Tracking",
+      "catalog": "rl",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "64f052b95c8040f05846b8a276d09fd3b6bcd34cb182fffca14f5a85510c3f00"
+    },
+    {
+      "id": "2026-arXiv-GDPO-Multi-Reward-Normalization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "f612ad3e75170e0d4b97559cbbe12bc917141d7de897934baa28ba2dd39dd9ea"
+    },
+    {
+      "id": "2025-arXiv-Aligning-Text-to-Music-Evaluation-with-Human-Preferences",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "739a932e7dba34afe7d375ec2ef5d0de86974cd028063b17b2f274c8e702ced6"
+    },
+    {
+      "id": "2025-arXiv-LeVo-SongGeneration-Traditional-Instruments-KB",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "241c571343ba0a63c472eae809dd539ec4429f70a9c0708464d1f8d2764c5787"
+    },
+    {
+      "id": "2025-arXiv-Towards-Hallucination-Free-Music",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "8ef82f0042508d09a6d56805afc2e8f64c5d36c01497a6fa23c78e203b335f8f"
+    },
+    {
+      "id": "2023-ICML-Scaling-Laws-for-Reward-Model-Overoptimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "e656ba65c981eea742645c40bf9567eb5e10ee44f40aceaf9a465b3cc729574f"
+    },
+    {
+      "id": "2024-ICLR-Reward-Model-Ensembles-Mitigate-Overoptimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "a73aa86d4b06cea105e759e1a87cbe3e9d8cb75a11dfc5f74221f761be5cc55f"
+    },
+    {
+      "id": "2024-NeurIPS-Provably-Mitigating-Overoptimization-RPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "392ca3cc0cad2128b99385d964f0e3a5681436835b5824e3bf04672150549dee"
+    },
+    {
+      "id": "2025-IJCAI-NotaGen-Advancing-Musicality-in-Symbolic-Music-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "8249a5b1a356318e2ca8abba66ab2da74f1d7f52d087a94bf2cac60e02b7b0ce"
+    },
+    {
+      "id": "2025-arXiv-Group-Sequence-Policy-Optimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "1a5c11461e7688ee7e0a79ccdfaf587b1177ff30b66c5adf11b7ef73e5a6f245"
+    },
+    {
+      "id": "2019-ICML-SelectiveNet",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "9907d28fceb466e2ee75130e8d6f50f9f2f129833f55588c4de87aabed5077c8"
+    },
+    {
+      "id": "2025-arXiv-RE-PO-Robust-Enhanced-Policy-Optimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "9983d29b627c7f14d16735510ad86f18dc92f1a407f3ddf7a266ea080fd6dc19"
+    },
+    {
+      "id": "2026-ICLR-Learning-from-Noisy-Preferences-Semi-DPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "f8bd68159a497be70d190a9fd31fd339224a88674e2a2772c554b6389241ac08"
+    },
+    {
+      "id": "2024-arXiv-UP-RLHF-Diverse-Reward-LoRA-Ensembles",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "b7754269d8b9cebbe88b123390311d5a6a4b6b0c2e7e895ea32177cee662c57b"
+    },
+    {
+      "id": "2024-CoLM-Helping-or-Herding-Reward-Ensembles",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "0526d3f76decd6e63f843bdc53c1e89b07d74ae480140bc5eeb987ccabbf8f31"
+    },
+    {
+      "id": "2025-ACL-T2A-Feedback",
+      "catalog": "rl",
+      "prior_domain": "AudioGen",
+      "preserved_fields_sha256": "a16695109bd623653f0242356d8d943c4f0f76f1abfe9d998d180d5f7e1132d9"
+    },
+    {
+      "id": "2023-NeurIPS-Direct-Preference-Optimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "620d7984349923624f3bad69994d2f1a1f552708545dd8692e3420061f082053"
+    },
+    {
+      "id": "2026-arXiv-Video-Models-Can-Reason-with-Verifiable-Rewards",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "3904960c44ac85f10695af4f84bd12c647954958b0cd491fe949c0f15acfbb9f"
+    },
+    {
+      "id": "2025-NeurIPS-Flow-GRPO-Flow-Matching-Online-RL",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "82cc5186c502b0c47625253a9413862e422f46d351f9026598d61e9c889bccb5"
+    },
+    {
+      "id": "2025-arXiv-Survey-Evaluation-Metrics-Music-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "102f9887856cda9b1aae0eec87f49881120b274055d2e76f7b8699c8ec6e6229"
+    },
+    {
+      "id": "Awesome RLVR Literature Review",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "173304a7be7e112cf1ecb0f981f70b998ea38c7fc56b5c41cdfa3e041de75418"
+    },
+    {
+      "id": "2026-arXiv-Is-One-Layer-Enough-Single-Transformer-Layer-RL",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "ac698dea4f9e43b1d89c3cd1a1c876677f214c4dc03608b9b1f53e8ba77d7968"
+    },
+    {
+      "id": "2026-arXiv-ADPO-Anchored-Ranking",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "9d38060b7afa8bec65c59c1bc2426059d22c6e3be75829deef73b49cdbec5f54"
+    },
+    {
+      "id": "2026-arXiv-GIFT-Group-Relative-Implicit-Fine-Tuning",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "ed08a57556e3d4cf427089f9582d30766e06615b05911939cf3490a9a374d7e2"
+    },
+    {
+      "id": "2026-ISMIR-Song-Aesthetics-Multi-Stem-Attention",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "2d39a1a72f5ae95e2835f70f3256a84b93bcb6c5f0d023f90025ea709e16442f"
+    },
+    {
+      "id": "2024-arXiv-Provably-Robust-DPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "62ea1b631f11c4fd9ff60a5df389c177b5750bdcd1b6d4a0d013305128aee021"
+    },
+    {
+      "id": "2025-arXiv-Noise-Corrected-GRPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "27ef4bedeb5067dcb2bb56324dfcb4c465765681c900fa88f5c35fda2d83fc88"
+    },
+    {
+      "id": "2024-NeurIPS-Geometric-Averaged-Preference-Optimization",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "88d450c76772e7a3d9e621d6f00612735df3ac7a4b1697ac24a686cc240fa76a"
+    },
+    {
+      "id": "2022-arXiv-Conformal-Risk-Control",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "c042542e330905d1a821ba76c94b0377ed1eac117c0f729bf75bff5abfaa1834"
+    },
+    {
+      "id": "2026-arXiv-Resonate-Online-Feedback-TTA",
+      "catalog": "rl",
+      "prior_domain": "AudioGen",
+      "preserved_fields_sha256": "d9422a9383aeb9495a2e60a50a2d89bfebdd85d3b434f8c1f1903182d7b727c5"
+    },
+    {
+      "id": "2026-arXiv-MuQ-Eval",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "a3e42a984646068212bcd7d8e1167e90f9cc600537f3e6c337ea2f6a0e1c32ce"
+    },
+    {
+      "id": "2026-arXiv-TuneJury",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "afb504c7e24ff03be35eb6fbd39c4ba63a35d40ee6e35d6f53ebe057a70c1bc7"
+    },
+    {
+      "id": "2026-DAFx-Adapting-Diffusion-Music-Synthesis-Voice-Conversion",
+      "catalog": "rl",
+      "prior_domain": "AudioGen",
+      "preserved_fields_sha256": "7fa98618c07ffaad0d5396d3911686a9b6cc6c1b30185b53d9f5d2e59d1b7a6e"
+    },
+    {
+      "id": "2023-OUP-Music-Recruits-the-Reward-System",
+      "catalog": "rl",
+      "prior_domain": "Other",
+      "preserved_fields_sha256": "f768d3c8f7c15d7c8ac473da0205962427f400442af535efe6ec55bc0428c2ac"
+    },
+    {
+      "id": "2026-ICML-SURF-Unsupervised-Remixing-Flow",
+      "catalog": "rl",
+      "prior_domain": "SourceSep",
+      "preserved_fields_sha256": "6ecd453f152315ea7966f2fb2ed338eeed567c75bfafe798673c17377ec55e68"
+    },
+    {
+      "id": "2024-arXiv-Survey-Foundation-Models-Music-Understanding",
+      "catalog": "rl",
+      "prior_domain": "AudioLLM",
+      "preserved_fields_sha256": "faffbad3cff0514696a450bdc645c7b2af300b5d432cb51b9ccbac6cf3605a52"
+    },
+    {
+      "id": "2026-ICASSP-MR-FlowDPO",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "73211d940ed128f11ef7ad1034696010db2c176125e85af00b2d5330e461ce57"
+    },
+    {
+      "id": "2023-arXiv-SingSong-Generating-Musical-Accompaniments-from-Singing",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "b7448568af1038d9e07c74daff42721315814eca6928b05fa1b818d5d49eaf51"
+    },
+    {
+      "id": "2026-arXiv-HAFM-Music-Accompaniment-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "9e3c63c9f1e7d132ca04688e160674d3140920d9d770d62787116a13dc83c8aa"
+    },
+    {
+      "id": "2026-arXiv-MaskDiff-AD",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "7925860ed25d3e49772d1169e16ea42a3c66f0ed92deb5113100976bc75afe5a"
+    },
+    {
+      "id": "2020-CNBlogs-AR-vs-NAR-Models",
+      "catalog": "rl",
+      "prior_domain": "Other",
+      "preserved_fields_sha256": "efdb180b61b11c775cc3a8390c161d859b8756da7e2c115495f650e37849df59"
+    },
+    {
+      "id": "2024-ICLR-In-Context-Exploration-Exploitation-RL",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "9d4df1d0bd3dcbf08c23cae3144c051eee806781a239572fb548962e698679a8"
+    },
+    {
+      "id": "2023-ICLR-In-Context-RL-Algorithm-Distillation",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "3df1fbd7c50ef7ac3e57b90db52040b1e0e781f27f5cfe751c681d921d9c7525"
+    },
+    {
+      "id": "2024-FAcCT-Careless-Whisper-Hallucination-Harms",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "a174895e2eb49ad6a45e2feef38acf133239ece05a88d68c686b06433bdb190a"
+    },
+    {
+      "id": "2025-ACL-Findings-Lost-in-Transcription-ASR-Hallucination",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "a3c0013dc8acce4356c51a28836cf64cd65f0dadcc16497a8aafdf8abfd8a911"
+    },
+    {
+      "id": "2026-Interspeech-Whisper-ASR-Hallucination-Detection-Model-Internals",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "b29581572f45c4ffc34098203e6cf9c5881acc38e26319447d0354c4e2076b69"
+    },
+    {
+      "id": "2026-Interspeech-Whisper-Hallucination-SAE-Steering",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "9a87a7aeefeb16bba4cfc9c0bf3cc9ea19102ae2698f7018fae9ea11f0287c68"
+    },
+    {
+      "id": "2026-PMLR-Detecting-Whisper-Hallucinations-Local-Confidence-Contrasts",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "d5d71abcae21394dee7b0210533ae5c9e942acf7e958847ad429aeb2982388a8"
+    },
+    {
+      "id": "2025-ICML-SFT-Memorizes-RL-Generalizes",
+      "catalog": "rl",
+      "prior_domain": "Multimodal",
+      "preserved_fields_sha256": "d8d5219263f388c6fdfc108be428bebc21e3d798d6cbc7f0fd8536f5daf33797"
+    },
+    {
+      "id": "2025-arXiv-The-Invisible-Leash-RLVR-Origin",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "0f5b76807e25c46b9b94dece40c0da2e3e568e0113494a7e656bc00a7a05db4b"
+    },
+    {
+      "id": "2026-ICLR-CHORD-On-Policy-RL-Off-Policy-Experts",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "b5ed0568962997c592bfb9d0722b044d46621fd9b45ce2dfd849fea00c20f7c3"
+    },
+    {
+      "id": "2026-arXiv-PawCT-Part-Aware-Choral-Transcription",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "39f6e316ff24ad446dbb811b39e5406c183477656e5afd61fd46ff6f58461a22"
+    },
+    {
+      "id": "2024-ISMIR-Note-Level-Transcription-Choral-Music",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "4657ef37613988621579dc14020cf24933d0c07e51ef9c519c61740c186589aa"
+    },
+    {
+      "id": "2026-ISMIR-MuScriptor-Multi-Instrument-Transcription",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "9cb898db13e1fd5cb37e34b26db55b2cc75abb9be7e5109cf2320a7cad53c411"
+    },
+    {
+      "id": "2022-ICLR-MT3-Multitrack-Music-Transcription",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "bdd0d0328a256584bf52a2a6ba1392b0b8a7440073a43d78aba90113a0b6010d"
+    },
+    {
+      "id": "2024-MLSP-YourMT3-Plus",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "c49a33732ab8a76b5dc673e555ae6261c75701c0f93e87a617143751729504b3"
+    },
+    {
+      "id": "2020-ISMIR-Multiple-F0-Vocal-Ensembles",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "f5cf00aa3dddc47f9117b39d8467d7844024a2c54f4401f348501783d5737cf2"
+    },
+    {
+      "id": "2022-TISMIR-Voice-Assignment-Vocal-Quartets",
+      "catalog": "amt",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "b69b5f76d2e9831c7c49efe7eb143e8e47545b500b1baf6fe08dca6031072f7d"
+    },
+    {
+      "id": "2024-ICLR-MAGNeT-2401.04577",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "2dd4fcf0e9d9ff08d57c0bdb72be05cea43207b4e94f1fd6a08d9f0ab9acaa51"
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-2402.04825",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "476c8937d89ad5a4c7d9031da4413020a03e6fc8663c6dbca4d699fe842ef0d6"
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-2-2404.10301",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "c61b2a542f34320a8f1f58d52651a270a7113cc3549667a85c47f8236c383eca"
+    },
+    {
+      "id": "2024-arXiv-Stable-Audio-Open-2407.14358",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "84cfe9dae6bedb6078d279668eb4f6a94623d95d1413b22c564a43a2ab14d804"
+    },
+    {
+      "id": "2024-ICML-MusicFlow-2410.20478",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "83325b55fd26c78a79f0fbbf711d4ad4e1e925dbe44c6a0ad132b7ec71b47f65"
+    },
+    {
+      "id": "2024-arXiv-MelodyFlow-2407.03648",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "cfc9d4d731558a460d4c249e7f867858d98355b559af3a6e71b3846046a285a7"
+    },
+    {
+      "id": "2025-IJCAI-QA-MDT-OpenMusic-2405.15863",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "46d6c2e6d82beef4471eb61dbfce5078c6b1681dfc26d6c44e8d222cbfb32d30"
+    },
+    {
+      "id": "2025-ICLR-Presto-2410.05167",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "6d6dcb25957d899233fc78d5032cf67fbd813a623b8797d3d82fc0630d5641e8"
+    },
+    {
+      "id": "2025-arXiv-Stable-Audio-Open-Small-ARC-2505.08175",
+      "catalog": "rl",
+      "prior_domain": "AudioGen",
+      "preserved_fields_sha256": "49ccab36c04939c890fd020856878e02e78e41f7538df7ba168983ea9983f4ee"
+    },
+    {
+      "id": "2026-arXiv-Stable-Audio-3-2605.17991",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "23f91691e9caf60a0bf3aa5f8c8626e43278318933e4ae2fd4516f7bc50e3e8e"
+    },
+    {
+      "id": "2024-arXiv-Seed-Music-2409.09214",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "23c176b5766aa144b611e694eace45e33814a55944932a40bee8502149a5884f"
+    },
+    {
+      "id": "2024-arXiv-SongCreator-2409.06029",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "80cdfc733fbbd68a16182ebd394b0b61a77cb131660cd88fac0b323085133053"
+    },
+    {
+      "id": "2025-arXiv-YuE-2503.08638",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "2b46b016b48c9363d9fd0d596f580496485355665900c0addd3086f02cff9fbe"
+    },
+    {
+      "id": "2025-ICML-SongGen-2502.13128",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "f964d6344146dc6321246b388a4fbf75ed804a5056985fff0cb4eba8b8a00995"
+    },
+    {
+      "id": "2025-arXiv-InspireMusic-2503.00084",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "4a348a21af49bdee73dd7146038297a19dd53a51203f005be3d7cbdb248f25c9"
+    },
+    {
+      "id": "2025-NeurIPS-SongBloom-2506.07634",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "c505b1781aa9fbb06ec6aa0a8bb392950fd4f1655399dbdfc3e2abf70b0a1d63"
+    },
+    {
+      "id": "2026-arXiv-HeartMuLa-2601.10547",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "c124da305a5861878a34c26b466131518cb0e892bba3b1e045b463ca2553ef09"
+    },
+    {
+      "id": "2026-arXiv-LeVo-2-2606.30642",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "5cda37c3750fffa857fe04efb3ff30cf3250b7509090255e57477ab273ed69e1"
+    },
+    {
+      "id": "2026-arXiv-Shao-2605.01790",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "3098949e1cccccb9e612ffa95c33cf7ab8382303c2d44f6f75ddbcd4c35d7518"
+    },
+    {
+      "id": "2026-Web-MiniMax-Music-3-22",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "03ea558a2531d533d549c20bb2f573d1289f593cee5468489c09cda7cc06261a"
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2503.01183",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "0c2bbb1f035d9c0951042b723d96c3bfc5d4d5cfb6562bdf2745f5ac3fc229bf"
+    },
+    {
+      "id": "2025-arXiv-ACE-Step-2506.00045",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Large)",
+      "preserved_fields_sha256": "260f544f3452aef104959c0720346e07188d07b194de1c7f9912e56126bd698c"
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2507.12890",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "68571911863ea6983e156f93a029b0e6cbd7dd4055a58ec7e5fd4ff54a5f1406"
+    },
+    {
+      "id": "2025-arXiv-JAM-2507.20880",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "87b80589ba3c69004401fc9cad256c87b4d23a3f4218ba5bd4430630ab186e56"
+    },
+    {
+      "id": "2025-arXiv-DiffRhythm-2-2510.22950",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "2c7e5be87635714b243e0e307a3c284d8dc913dc7b39a7677c5c54bc0ff24302"
+    },
+    {
+      "id": "2026-arXiv-WanSong-2607.14749",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Large)",
+      "preserved_fields_sha256": "2c9b107ae54f283262891ac4aa212299f6e4c1543163456d042195d50ab73d41"
+    },
+    {
+      "id": "2025-arXiv-MusiCoT-Mureka-2503.19611",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "fb4b2c7460c5895861a5a7893a634b7e9987de58ce883dec59153f00a9a49378"
+    },
+    {
+      "id": "2026-arXiv-ACE-Step-1-5-2602.00744",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "3b7a3c200751369da75c19edab2413241fee5da9d24e953648f6d6dfddaadbb1"
+    },
+    {
+      "id": "2026-arXiv-Qwen-Music-2607.11699",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "382277e42d606144668f26a37d3a5b0b443deedb72832af2cf2bac4866c6c1c1"
+    },
+    {
+      "id": "2026-arXiv-Step-Audio-3-Music-2609.16034",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "4527d51cef0dca4b30e8d882359e6e5191a851a82bceff44abc88801d7ab316f"
+    },
+    {
+      "id": "2026-arXiv-YuE2-2609.33757",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "1f2c5e22c5f722b5b1175146f197d0591e49ff99aabd72111a2e1cda6f2abca2"
+    },
+    {
+      "id": "2026-arXiv-FullDiT-2608.08787",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Large)",
+      "preserved_fields_sha256": "8d7fa469e84100e056164d18413a7c46be1ff5d0aeeebeb7251caf0984b40314"
+    },
+    {
+      "id": "2024-arXiv-JASCO-2406.10970",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "8f294a898e3553f8e5c781a68cffd7cdd34e747c24551683b3fdb2e24339e35f"
+    },
+    {
+      "id": "2025-ICML-MuseControlLite-2506.18729",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "fe236f616588c43451c57b5a35cfbca9972ae71500dcae8164b38a4004158194"
+    },
+    {
+      "id": "2024-ISMIR-MusicGen-Style-2407.12563",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "15b7c7df674a58beb264083690ee6a1ae576497cc263b5c64120bbc22c0562f1"
+    },
+    {
+      "id": "2024-ICML-DITTO-2401.12179",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "30fddf1a816e45165a663ed65b6af9bd695226bbfd33bdc59330bb47ec88b6ae"
+    },
+    {
+      "id": "2024-arXiv-DITTO-2-2405.20289",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "0e8ffba138e2b290204dc8a9bfc76d38b97022afff4157cce877c004c2f083a7"
+    },
+    {
+      "id": "2026-ACL-SegTune-2510.18416",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "1e2eac37a63e6660d5efe2fe258a61a4fc6a688c040d81004ceb53a9a21e8adc"
+    },
+    {
+      "id": "2024-arXiv-SongComposer-2402.17645",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "42702339f0aeadadeb9824fe33d7339906c6dc6f27c5d0b4bd9a5c2d2ff2a359"
+    },
+    {
+      "id": "2025-AAAI-Text2midi-2412.16526",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Small)",
+      "preserved_fields_sha256": "6619ae1fcb01e97c62c8bd3c95f0b64b162f48972074a74a5973f55b446be82b"
+    },
+    {
+      "id": "2025-arXiv-MIDI-LLM-2511.03942",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "9a1997c18df2125e9688c2efc5dfb1a5f5fc8b3098350fa85501c63b009a5a04"
+    },
+    {
+      "id": "2025-EMNLP-Findings-VersBand-2504.19062",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "94ab3776d6059745bb67eaf2a6126ac18f201ae1e84e82be20273a4006339c54"
+    },
+    {
+      "id": "2026-arXiv-ComposerFlow-MIDI-informed-SAG-2602.22029",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(Mid)",
+      "preserved_fields_sha256": "c5517f40b8a3bcefe6232a2da744e3dd7703412fc3ca91c7f49a55eed5a5d440"
+    },
+    {
+      "id": "2026-arXiv-Alibaba-Token-Foundry-2607.20253",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "0a1960dd740d5eb3643ac8e8df2c26d4629f85adbedc6a4fec51596d8b47c571"
+    },
+    {
+      "id": "2025-ICML-Reward-Modeling-with-Ordinal-Feedback-Wisdom-of-the-Crowd",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "6bb15f32826377cdae74ae4b8a6e80e344c4831a0326fbc5e2aaf68d08be3fe3"
+    },
+    {
+      "id": "2026-arXiv-An-Empirical-Study-of-Reward-Specification-and-Benchmark-Reliability-in-GRPO-based-LLM-Unl",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "b2300a574a42a549b2adff98aa724b2dff0c00c3e161d959015f96b8be170640"
+    },
+    {
+      "id": "2025-arXiv-Bradley-Terry-and-Multi-Objective-Reward-Modeling-Are-Complementary",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "302310712eb25b44e856aa2d887f43df471700c59170ff0b0446f7e813b5604d"
+    },
+    {
+      "id": "2025-arXiv-RLNVR-Reinforcement-Learning-from-Non-Verified-Real-World-Rewards",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "126da950fc4c495eb8b8d7b9458fbd566b9eeb31f5953fa75ba6a4f53d50cac6"
+    },
+    {
+      "id": "2026-ICML-Tournament-Style-RL-Stabilizing-Policy-Optimization-on-Non-Verifiable-Problems",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "1131a6fd3090508aaa4e9242ea3c447312f02f7ec91c9869ebee54289dcb32ee"
+    },
+    {
+      "id": "2025-ICLR-Accelerating-Diffusion-Transformers-with-Token-wise-Feature-Caching",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "9ce7a09cb7c677362a46afeb9f2743100c9677f8b80195fbfed7051f89ad6248"
+    },
+    {
+      "id": "2026-arXiv-Miles-v0-1-Production-Level-Post-Training",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "d6518ac5e16b2d6d71c00e4c351b1ac84bbb9da9664ab9e05c5de3dc92ff6303"
+    },
+    {
+      "id": "Undated-Web-TRL-Transformer-Reinforcement-Learning",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "9858381037bec5a54b2914b0f73e9ff122e8eb4af72c8432d49a70948a5d7808"
+    },
+    {
+      "id": "Undated-Web-Hugging-Face-Deep-Reinforcement-Learning-Course",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "33eb3dfd07a13fd668e464679ab503d62db9664a4e3f8d843453bbe2b55cab60"
+    },
+    {
+      "id": "Undated-Web-Hands-on-Modern-Reinforcement-Learning",
+      "catalog": "rl",
+      "prior_domain": "MachineLearning",
+      "preserved_fields_sha256": "2b3434579d8312f086e9eaaf725b9e50b865fcf5af5651e644a3ef0ac51a381f"
+    },
+    {
+      "id": "2026-Web-WildSongBench-A-Benchmark-for-Full-Song-Music-Generation",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "e145dc39aeb6fbc9c8a4284200506e2c56f0eee28a06846590b1981f5c272db2"
+    },
+    {
+      "id": "Undated-Web-RLHF-PPO-DAPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "ca2ab6766a1c474adb64ca57ce2de2de81fb3f979425ff54615e62726e9dc650"
+    },
+    {
+      "id": "Undated-Web-PPO-DPO-GRPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "3aa1ee6387938e012d37eeb5c50630a7496f6b10fb9cc8825c1a383002bccc2c"
+    },
+    {
+      "id": "Undated-Web-Verifiable-Rewards-and-GRPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "191a2485b996336dd29662496d21b719a87fb42ac4e0d93ba55233a3dde0f225"
+    },
+    {
+      "id": "2026-Web-",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "9df7477d38f3919f0740ebad6d94a0b3a23b9a232b6e3d108343627c2050345f"
+    },
+    {
+      "id": "Undated-Zhihu-2030762111979234665",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "c2f3a11d00d7a0601146216431e37f9aad007266e683306f8cc0ba8c0b130795"
+    },
+    {
+      "id": "Undated-Zhihu-2079745899316749216",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "5aebf43d7d428258fd1d4fc002a9f7c6d4d939e11f32317dfe4434ebdb62dcb9"
+    },
+    {
+      "id": "Undated-Zhihu-2062125803085860914",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "bc2a068fd2dcc057158a81988c77c42bb109e23fcc46c8b6e0a55070fe2ca7b9"
+    },
+    {
+      "id": "2024-ICLR-MERT-Music-Understanding",
+      "catalog": "rl",
+      "prior_domain": "MusicFoundation",
+      "preserved_fields_sha256": "13849583e3ce33917699c4f45e4d4090facc3919883a9822fd84c52f27fcd28d"
+    },
+    {
+      "id": "2025-arXiv-MuQ-Music-Representation",
+      "catalog": "rl",
+      "prior_domain": "MusicFoundation",
+      "preserved_fields_sha256": "672e2c376377ae2bed49ddd19ebe02af51f32aad268e41ec43f0b0c4899beb85"
+    },
+    {
+      "id": "2025-EMNLP-Rewarding-the-Unlikely-GRPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "57d993854ee8d2c833c86fdaa7f97d1bf66aab552798c01d23096b9c640f88cb"
+    },
+    {
+      "id": "2026-ACL-MDP-GRPO",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "917f92e1cac56a3402ae9507fdb636ba8153fd5170b22ed8e04dd89c2384fee1"
+    },
+    {
+      "id": "2026-EACL-Online-Difficulty-Filtering-RORL",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "804c6ff19077a11345327094ad85896af7483813c01d6c89ad2bdd95f8177e41"
+    },
+    {
+      "id": "2025-arXiv-Music-Tagging-Classifier-Group-Chains",
+      "catalog": "rl",
+      "prior_domain": "MIR",
+      "preserved_fields_sha256": "219fb346741e95bd1c649f4ae9b7960e4cc6ff80bb3f98a2571da9d15ae217ba"
+    },
+    {
+      "id": "2026-arXiv-Qwen3.5-Omni-Technical-Report",
+      "catalog": "rl",
+      "prior_domain": "AudioLLM",
+      "preserved_fields_sha256": "b0e1e205cb408f512dec883804bcdf32bd09444c25b2c251c92219694ae4dec5"
+    },
+    {
+      "id": "2026-arXiv-SFT-DPO-Interaction-Small-LMs",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "3b7fc429ce448680111fcc47fe28388fdc3bbfb0fbeac48329f8156f68f290c6"
+    },
+    {
+      "id": "2024-ICLR-GKD-2306.13649",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "30764d14378eb8944b61f22964a981bf7704b61ef7b8d64dc529ba2284f88a95"
+    },
+    {
+      "id": "2026-arXiv-SCOUT-2609.38360",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "f13fdf944596ff1e920212154a1d478c0bddea5d45d8844cd05a15dad88cfd5f"
+    },
+    {
+      "id": "2025-arXiv-Writing-Zero-2506.00103",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "c888bea89405de3c868f0f92dfb29b737485eadf5fc9b08ce9cc4b8d713dfc8f"
+    },
+    {
+      "id": "2026-ICLR-DiffusionNFT-2509.16117",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "d3245477a28afad5bf9cfc1469188528cd0510c88a0a8e0789b21da6e571953f"
+    },
+    {
+      "id": "2026-ICLR-NFT-Math-2505.18116",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "a5ea50cc1026f19ec92e4b7046e192898ce034d3039aa41e590db81617604798"
+    },
+    {
+      "id": "2025-ICLR-Rethinking-Reward-Model-Evaluation",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "0a9a41750e88dad616d7e6144705194f24888d8956362500def6ec3efd6900d6"
+    },
+    {
+      "id": "2024-arXiv-DeepSeekMath-GRPO-2402.03300",
+      "catalog": "rl",
+      "prior_domain": "LLM",
+      "preserved_fields_sha256": "67170789122c1ec05181ea1b6b92685b1018316dc2ebfc2c4fcaf821ce84b626"
+    },
+    {
+      "id": "2024-ICLR-DDPO-2305.13301",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "7287fd3c5cba98231fc796d6b48726ce53c0dc3f19757ceed509017cd5347c57"
+    },
+    {
+      "id": "2023-NeurIPS-ImageReward-2304.05977",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "a9919cd0b5323ed9c8d2c4cc1a48b3a5ebe755e4bfdbefa5382a5a75b2002cb2"
+    },
+    {
+      "id": "2024-CVPR-Diffusion-DPO-2311.12908",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "ce18519d5a5bd525970a87e181f66eae1e1376da86d7dc4679fc3f90290f8848"
+    },
+    {
+      "id": "2023-arXiv-AlignProp-2310.03739",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "d604e0ad96bd9bf364cdc7726cddcd0decaa8af1ae3ba4602a93a404a01ba881"
+    },
+    {
+      "id": "2025-arXiv-Emotion-Director-2512.19479",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "d32bea7123fac83fea8da1c0a758fcbd3c6d44be367e5bf5b757e89db6560d0a"
+    },
+    {
+      "id": "2024-arXiv-UNO-2406.00654",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "83273dedd31180e85dd24dfb24408816379a9722c2077f7a83a98848eb3f4840"
+    },
+    {
+      "id": "2025-ICASSP-Emo-DPO-2409.10157",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "107ad11d503ae945993d61d5195e5fce5129ad662b8bc9769db11fd86462cf3d"
+    },
+    {
+      "id": "2024-arXiv-DLPO-2405.14632",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "7a0d9eeaed2dfa9f799c4d7bf9ec45e3e241b001dbc347b846412ea168baebda"
+    },
+    {
+      "id": "2025-NCMMSC-MPO-2509.00685",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "0849c8b9d7d33f5644c139a9e3b4f9aac814f929736239f4d249561f78740d04"
+    },
+    {
+      "id": "2026-TASLP-FPO-2502.02950",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "e3b4423062c1fe4e576f8b017cec876f6f5fcff106cf2455197a8ff9a506e5da"
+    },
+    {
+      "id": "2026-arXiv-GSRM-2602.13891",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "beacc9668b364a8545b91d2e17173e492dc6eb0cfc944bbb89b8057c42f52837"
+    },
+    {
+      "id": "2025-NeurIPS-Workshop-VocalCritic-2512.02523",
+      "catalog": "rl",
+      "prior_domain": "MusicEval",
+      "preserved_fields_sha256": "5d634107777d3666e9c3dc032b5596b09940a65b61583e3b4f2a84cfc131023e"
+    },
+    {
+      "id": "2026-EMNLP-Findings-VIBE-2608.30125",
+      "catalog": "rl",
+      "prior_domain": "MusicGen(LLM)",
+      "preserved_fields_sha256": "4600d9a9e6215bc2848522367fa631d1a1283c1f66c83351c16e957ae3843d66"
+    },
+    {
+      "id": "2025-arXiv-DiffRO-2507.05911",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "1835c0d0f50b9b46ffc570482831355d940fa41a85b069f9ae3550dc2193409d"
+    },
+    {
+      "id": "2025-CVPR-SPO-2406.04314",
+      "catalog": "rl",
+      "prior_domain": "CV",
+      "preserved_fields_sha256": "abb135175a5b47d42c9a78e7255d440347bae1cc07dbf5f7ba22c364089e3915"
+    },
+    {
+      "id": "2026-ICASSP-RRPO-2512.04552",
+      "catalog": "rl",
+      "prior_domain": "Speech",
+      "preserved_fields_sha256": "3abaf3ca42178a835c2262da9ba37e2796c6336d1492e472650811825f943e8c"
+    }
+  ]
+}

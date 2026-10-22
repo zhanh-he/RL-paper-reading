@@ -4,9 +4,13 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CSV_PATH = path.join(ROOT, "data", "literature.csv");
 const JSON_PATH = path.join(ROOT, "site", "data", "literature.json");
 const CHECK_ONLY = process.argv.includes("--check");
+
+export const CATALOGS = {
+  rl: { title: "MusicGen / RL / Reward", description: "Music generation, reinforcement learning and reward research", route: "./", base: "./" },
+  amt: { title: "Music Transcription (AMT)", description: "Automatic music transcription, multipitch estimation and voice assignment", route: "amt/", base: "../" }
+};
 
 const EXPECTED_HEADERS = [
   "id",
@@ -46,6 +50,7 @@ const DOMAINS = new Set([
   "MusicGen(Large)",
   "MusicFoundation",
   "MusicEval",
+  "MusicTranscription",
   "MIR",
   "AudioGen",
   "Speech",
@@ -129,9 +134,10 @@ function validateUrl(value, rowNumber, field, errors) {
   }
 }
 
-export function loadCatalog() {
-  const parsed = parseCsv(fs.readFileSync(CSV_PATH, "utf8"));
-  if (parsed.length < 2) throw new Error("The catalog CSV has no data rows");
+function loadSource(catalogId) {
+  const filename = path.join(ROOT, "data", catalogId, "literature.csv");
+  const parsed = parseCsv(fs.readFileSync(filename, "utf8"));
+  if (parsed.length < 1) throw new Error(`${catalogId}: missing CSV headers`);
 
   const [headers, ...records] = parsed;
   if (headers.join("\0") !== EXPECTED_HEADERS.join("\0")) {
@@ -155,6 +161,7 @@ export function loadCatalog() {
       headers.map((header, column) => [header, values[column] ?? ""])
     );
     record.id = record.id || `${record.year}-${slugify(record.title)}`;
+    record.catalog = catalogId;
     record.source_order = index;
     record.keywords_list = record.keywords
       .split(/[；;]/)
@@ -209,6 +216,32 @@ export function loadCatalog() {
   return catalog;
 }
 
+export function loadCatalog(catalogId) {
+  if (catalogId && !Object.hasOwn(CATALOGS, catalogId)) throw new Error(`Unknown catalog: ${catalogId}`);
+  const records = Object.keys(CATALOGS).flatMap(loadSource);
+  const ids = new Set();
+  const titles = new Set();
+  for (const record of records) {
+    if (ids.has(record.id) || titles.has(record.title)) throw new Error(`Duplicate across catalogs: ${record.id}`);
+    ids.add(record.id);
+    titles.add(record.title);
+  }
+  return records.filter((record) => !catalogId || record.catalog === catalogId);
+}
+
+export function renderCatalogPage(catalogId) {
+  const config = CATALOGS[catalogId];
+  if (!config) throw new Error(`Unknown catalog: ${catalogId}`);
+  const template = fs.readFileSync(path.join(ROOT, "templates", "catalog.html"), "utf8");
+  const values = { CATALOG_ID: catalogId, TITLE: config.title, DESCRIPTION: config.description, BASE: config.base,
+    RL_CURRENT: catalogId === "rl" ? 'aria-current="page"' : "",
+    AMT_CURRENT: catalogId === "amt" ? 'aria-current="page"' : "" };
+  return template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
+    if (!Object.hasOwn(values, key)) throw new Error(`Unknown template token: ${key}`);
+    return values[key];
+  });
+}
+
 function writeOrCheck(filePath, next) {
   const current = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
   if (CHECK_ONLY) {
@@ -225,6 +258,13 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const catalog = loadCatalog();
   const publicCatalog = catalog.map(({ obsidian_target, ...record }) => record);
   const json = `${JSON.stringify(publicCatalog, null, 2)}\n`;
+  // Preserve the old combined endpoint for existing integrations and paper links.
   writeOrCheck(JSON_PATH, json);
+  for (const [catalogId, config] of Object.entries(CATALOGS)) {
+    const records = publicCatalog.filter((record) => record.catalog === catalogId);
+    writeOrCheck(path.join(ROOT, "site", "data", `${catalogId}-literature.json`), `${JSON.stringify(records, null, 2)}\n`);
+    writeOrCheck(path.join(ROOT, "site", config.route, "index.html"), renderCatalogPage(catalogId));
+    console.log(`${catalogId}: ${records.length} records`);
+  }
   console.log(`${CHECK_ONLY ? "Checked" : "Built"} ${catalog.length} literature records successfully.`);
 }

@@ -10,10 +10,17 @@ settings:
       update: "catalog: update literature table via Pages CMS"
 
 content:
-  - name: literature
-    label: Literature catalog
+  - name: rl_literature
+    label: MusicGen / RL / Reward catalog
     type: file
-    path: platform/data/literature.csv
+    path: platform/data/rl/literature.csv
+    format: datagrid
+    operations:
+      delete: false
+  - name: amt_literature
+    label: Music Transcription (AMT) catalog
+    type: file
+    path: platform/data/amt/literature.csv
     format: datagrid
     operations:
       delete: false

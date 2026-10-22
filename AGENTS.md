@@ -5,14 +5,14 @@ This file is the first-read instruction for any agent working in this repository
 ## Required Read Order
 
 1. Read this `AGENTS.md`.
-2. Pull/rebase `main`, then read the three `upd_request/Update_request_*.txt` files. Do not process pending requests during unrelated repository-structure work.
-3. Read `README.md`, `platform/docs/EDITING.md`, and `platform/data/literature.csv` before changing catalog behavior.
+2. Pull/rebase `main`, then inspect `upd_request/rl/Update_request_*.txt`, `upd_request/amt/Update_request_*.txt` and the three legacy root inboxes. Do not process pending requests during unrelated repository-structure work.
+3. Read `README.md`, `platform/docs/EDITING.md`, and the relevant `platform/data/{rl,amt}/literature.csv` before changing catalog behavior.
 4. Read `platform/docs/maintainers/OBSIDIAN_SYNC_AND_RESEARCH_MAP.md` only for maintainer work, weekly knowledge-base sync, or explicit Obsidian requests.
 
 ## Sources Of Truth
 
-- `platform/data/literature.csv` is the only editable source for the shared literature catalog.
-- `platform/site/data/literature.json` is generated and must not be edited manually.
+- `platform/data/rl/literature.csv` owns MusicGen / RL / Reward literature; `platform/data/amt/literature.csv` owns music transcription, multipitch estimation and voice assignment. Records have one owning catalog; IDs and titles must be unique across both sources. General RL/reward and generation-related MIR tools stay in RL unless their primary task is AMT.
+- `platform/templates/catalog.html` is the shared UI template. Both catalog pages and all `platform/site/data/*literature.json` files are generated; do not edit them manually. The combined `literature.json` is a read-only compatibility endpoint, not a third catalog.
 - `README.md` is a short, manually maintained team entrypoint. Do not add a generated catalog table to it; link to the interactive site instead.
 - Run `npm --prefix platform run build` after catalog changes and `npm --prefix platform run check` before committing.
 - Keep `id` stable after publication. Use only the controlled domain/workstream labels documented in `platform/docs/EDITING.md`; keep `keywords` to at most three useful terms.
@@ -27,10 +27,10 @@ This file is the first-read instruction for any agent working in this repository
 ## Update Request Protocol
 
 1. Synchronize with `origin/main` before editing. Rebase or fast-forward; preserve concurrent work.
-2. For an update-processing task, check the Zhanh, Other and reserved Hanyu `upd_request/Update_request_*.txt` files. Other is the shared intake for Felix, Jiahao and other contributors. Treat a placeholder-only file as `no-action`; an unrelated structural task must leave pending text untouched.
+2. For an update-processing task, check the requested domain's Zhanh, Other and Hanyu files in `upd_request/rl/` or `upd_request/amt/`. Other is shared by Felix, Jiahao and colleagues. Also inspect legacy `upd_request/Update_request_*.txt` inboxes and route any pending text without discarding it. Placeholder-only files are `no-action`; unrelated structural tasks leave pending text untouched.
 3. For literature requests, verify title, year, venue, publication status, and links against primary sources. Do not invent code/demo links.
 4. Apply new literature and shared-metadata changes to the CSV and synchronize the corresponding Obsidian catalog/cards in the same maintenance task when the vault is accessible. Preserve internal insights and attribution; never upload private notes. A UI-only change needs no vault rewrite. Report an inaccessible vault as pending synchronization, not complete agreement.
-5. Archive the original request in `upd_request/done_requests/` with an AWST timestamp. Preserve its text verbatim and append `processed_at`, `status`, and a concise result summary.
+5. Archive the original request in the owning `upd_request/{rl,amt}/done_requests/` with an AWST timestamp. Preserve its text verbatim and append `processed_at`, `status`, and a concise result summary. Historical root archives are immutable; do not relocate them.
 6. Recreate the contributor's blank TXT template at the same path so its GitHub edit link stays stable.
 7. Build, validate, review the diff, rebase again if the remote moved, commit, push, and verify the GitHub Action.
 
@@ -38,7 +38,7 @@ This file is the first-read instruction for any agent working in this repository
 
 - Public audio policy: this repository, GitHub Pages and demo release assets may contain only MP3 audio. Encode listening copies with libmp3lame at 192 kbps / 48 kHz, without loudness normalization. Never commit or upload WAV/FLAC/OGG/M4A/AAC/AIFF audio. Keep lossless training/scoring originals outside the repository on experiment machines or private recovery storage. Record separate original and MP3 SHA256 hashes; lossy listening copies must not be described as byte-identical scored audio. MIDI and image assets are allowed. Run the MP3-only build check before publication.
 
-- `platform/site/index.html` and `platform/data/literature.csv` remain the literature site's entry and source of truth. The deployed Pages URL stays stable although the repository source moved.
+- The Pages root remains the RL catalog; `/amt/` is the AMT catalog. Preserve existing URLs and `?paper=<stable-id>` deep links, including redirecting old root links to migrated AMT records. Keep `/demos/` and experiment paths unchanged. Do not rename the remote repository or break its Pages URL as part of a catalog split.
 - Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `platform/site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
 - Do not publish private vault notes, restricted data, checkpoints, credentials or unlicensed audio. Label external paper results, local measurements and plans distinctly. Do not create dummy reward implementations or demo pages that look like completed experiments.
 
