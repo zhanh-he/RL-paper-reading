@@ -3,7 +3,7 @@ const root=document.querySelector('[data-songbench-review]');
 const $=key=>root.querySelector(`[data-sb="${key}"]`);
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const fmt=n=>n.toFixed(3),signed=n=>(n>=0?'+':'')+fmt(n);
-const names={richness:'SP Richness',instrument:'SongBench-Instrument',arrangement:'SongBench-Arrangement'};
+const names={richness:'SP Richness',instrument:'SongBench-Instrument',arrangement:'SongBench-Arrangement',mean7:'SongBench-Mean7'};
 const charts=['reward','kl'].map(key=>({key,canvas:$(`${key}-chart`),marks:createMilestones($(`${key}-chart`),270)}));
 let data,active,index=0,inputs;
 function draw(){
@@ -26,7 +26,7 @@ function draw(){
   }
 }
 function choose(run){
-  active=run;$('curve-note').textContent=`${run.model} · ${names[run.reward]} - guard · LR3e-4 /beta${run.experiment.beta} · KL: ${run.kl_unit}`;
+  active=run;const target=`${names[run.reward]}${run.reward==='mean7'?'（唯一reward，无guard）':' − guard'}`;$('curve-note').textContent=`${run.model} · ${target} · LR3e-4 /beta${run.experiment.beta} · KL: ${run.kl_unit}`;$('target-caption').textContent=target;
   for(const b of $('runs').children)b.setAttribute('aria-pressed',String(b.dataset.run===run.id));
   draw();
 }
@@ -46,7 +46,7 @@ try{
   $('priorities').replaceChildren(...data.priorities.map(row=>{const tr=el('tr');for(const text of row)tr.append(el('td',text));return tr;}));
   $('execution').textContent=data.execution;$('launch-link').href=data.launch_url;
   $('results').replaceChildren(...data.runs.map(run=>{const first=run.validation[0],last=run.validation.at(-1),tr=el('tr');for(const value of [
-    `${run.model} · ${names[run.reward]} - guard`,`${run.updates}步 · 0/50/100/270各30/30`,
+    `${run.model} · ${names[run.reward]}${run.reward==='mean7'?'':' − guard'}`,`${run.updates}步 · ${run.validation.map(v=>v.step).join('/')}各30/30`,
     `${fmt(first.means.SongBench_mean7)} → ${fmt(last.means.SongBench_mean7)}`,
     `${signed(run.mean7_delta)} [${run.mean7_delta_ci95.map(signed).join(', ')}]`,
   ])tr.append(el('td',value));return tr;}));

@@ -3,16 +3,16 @@ import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const d=JSON.parse(await fs.readFile(new URL('../site/demos/data/songbench-review.json',import.meta.url)));
 assert.equal(d.new_training_started,true);
-assert.equal(d.mean7_training_started,false);
+assert.equal(d.mean7_training_started,true);
 assert.equal(d.base_identity.starting_from_grpo,false);
 assert.equal(d.base_identity.model_sha256,'c810b2a748579e06e960019f89a9cb98701e4ff545e2c760e8ceaa3343ff1b52');
-assert.equal(d.priorities.filter(p=>p[0].startsWith('P0')).length,3);
-assert.equal(d.runs.length,6);
+assert.equal(d.priorities.filter(p=>p[0].startsWith('P0')).length,2);
+assert.equal(d.runs.length,8);
 assert.equal(d.listening.length,20);
-assert.equal(d.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0),3960);
+assert.equal(d.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0),5220);
 for(const r of d.runs){
   assert.equal(r.updates,270);
-  assert.deepEqual(r.validation.map(v=>v.n),[30,30,30,30]);
+  assert.ok(r.validation.every(v=>v.n===30));
   assert.equal(r.trace.length,270);
   assert.ok(r.mean7_delta_ci95[0]<=r.mean7_delta&&r.mean7_delta<=r.mean7_delta_ci95[1]);
   assert.ok(r.validation.every(v=>v.invalid_n===0));
@@ -32,13 +32,15 @@ try{
     const root=page.locator('[data-songbench-review]');
     await root.locator('[data-sb="results"] tr').last().waitFor();
     assert.equal(await root.isVisible(),true);
-    assert.equal(await root.locator('[data-sb="results"] tr').count(),6);
+    assert.equal(await root.locator('[data-sb="results"] tr').count(),8);
     assert.match(await root.textContent(),/唯一 reward/);
     assert.match(await root.locator('[data-sb="failures"]').textContent(),/generate_objective/);
     assert.match(await root.locator('[data-sb="execution"]').textContent(),/Muse-SP/);
-    assert.match(await root.locator('[data-sb="launch-link"]').getAttribute('href'),/songbench-priority\/launch.json$/);
-    await root.getByText('已回收历史训练曲线 · 左Reward / 右KL',{exact:true}).evaluate(s=>{s.parentElement.open=true;});
-    assert.equal(await root.locator('[data-sb="runs"] button').count(),6);
+    assert.match(await root.locator('[data-sb="launch-link"]').getAttribute('href'),/weekly-2026-10-23$/);
+    await root.getByText('已回收训练曲线 · 左Reward / 右KL',{exact:true}).evaluate(s=>{s.parentElement.open=true;});
+    assert.equal(await root.locator('[data-sb="runs"] button').count(),8);
+    await root.locator('[data-sb="runs"] button').last().click();
+    assert.match(await root.locator('[data-sb="target-caption"]').textContent(),/无guard/);
     for(const canvas of await root.locator('canvas').all()){
       assert.ok(await canvas.evaluate(c=>c.width>100&&c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(v=>v)));
       const bounds=await canvas.boundingBox();await page.mouse.move(bounds.x+40,bounds.y+70);
@@ -64,14 +66,14 @@ try{
   const regime=page.locator('#view-reward-regimes');
   await regime.locator('[data-model="muse"]').click();
   await regime.getByRole('button',{name:'Muse-SP-Richness-3e-4',exact:true}).click();
-  assert.match(await regime.locator('[data-regime="status"]').textContent(),/运行中/);
+  assert.match(await regime.locator('[data-regime="status"]').textContent(),/已核验/);
   assert.match(await regime.locator('[data-regime="train-protocol"]').textContent(),/原始非GRPO Muse/);
-  assert.match(await regime.locator('[data-regime="train-protocol"]').textContent(),/5090正式训练中/);
+  assert.match(await regime.locator('[data-regime="train-protocol"]').textContent(),/已核验270步/);
   for(const [name,id] of [['Instrument','181718185'],['Arrangement','181718187']]){
     await regime.getByRole('button',{name:`Muse-SongBench-${name}-3e-4`,exact:true}).click();
-    assert.match(await regime.locator('[data-regime="status"]').textContent(),/PBS 排队/);
+    assert.match(await regime.locator('[data-regime="status"]').textContent(),/启动失败/);
     assert.ok((await regime.locator('[data-regime="train-protocol"]').textContent()).includes(id));
   }
   assert.deepEqual(errors,[]);
-  console.log('PASS: original-base Muse execution, three priority arms, pure Mean7 gated label, historical controls, 20 MP3 hashes, Reward/KL canvas, desktop/mobile.');
+  console.log('PASS: eight complete arms, Muse-SP completion, explicit startup failures,20 MP3 hashes, Reward/KL canvas, desktop/mobile.');
 }finally{await browser.close();}

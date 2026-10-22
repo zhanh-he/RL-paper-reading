@@ -1,6 +1,6 @@
 {
   "version": "20261015-backbone-lr3e4-beta05",
-  "status": "20261020-original-muse-controls-running-and-queued-mean7-gated",
+  "status": "20261023-muse-SP-complete-two-heads-startup-failed-diff-mean7-complete",
   "framework_transition": {
     "date_awst": "2026-10-15",
     "scope": "TRL selected for discrete AR; Miles-Diffusion synchronous FSDP2 selected as the single continuous Flow-GRPO route. VeRL-Omni audit is historical, not a future comparison arm.",
@@ -20,7 +20,7 @@
   },
   "backbone_round": {
     "date_awst": "2026-10-15",
-    "snapshot_at": "2026-10-15T02:24:32.483078+00:00",
+    "snapshot_at": "2026-10-22T23:50:11.421427+00:00",
     "lr": 0.0003,
     "lr_reference": "Current YuE2 SP/AI reward-regime study, not the older SongEval mock sweep",
     "scheduler": "constant",
@@ -35,16 +35,16 @@
       "acestep"
     ],
     "status_by_model": {
-      "yue2": "当前曲线为已完成的 beta=0.01 历史轮；本次不改写或重标旧结果。",
-      "diffrhythm2": "2026-10-20已回收：三臂均270步，0/50/100/270各30/30验证、训练/评分音频SHA绑定和最终checkpoint已核验。仍是旧SP/子项减guard，不是新Mean7训练。Models → Experiment Plan展示新回收曲线与试听。",
-      "muse": "2026-10-20原始非GRPO权重三臂重新正式启动：SP在5090训练，Instrument在Gadi wa66/Hopper、Arrangement在iv96/A100排队。权重SHA匹配官方原版；新主干LoRA 5,046,272参数；不是旧GRPO续训。旧scorer导入/同GPU NCCL/显存问题已修复并通过2步真实验收。完整验证和正式结果尚未回收。",
+      "yue2": "历史SP/单项为已完成PyTorch轮。新增Mean7的TRL移植在gradient-checkpointing初始化时退出，0更新，未形成新正式结果。",
+      "diffrhythm2": "已核验旧SP/单项三组以及新增纯Mean7：均270步、0/50/100/270各30验证。Mean7终点5.116→5.055，未确立改善。新增曲线及试听见本周汇报。",
+      "muse": "2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。",
       "heartmula": "上一轮三个主干任务在scorer启动时缺generate_objective退出，未训练。当前后置，未重新提交；优先补Muse三臂及Diff/YuE2 Mean7。",
       "acestep": "优先级在 HeartMuLa 之后；尚未提交训练。",
       "songbloom": "后续 Miles 声学主干接入；尚未提交新主干训练。",
       "private": "仅空白占位，不安排训练。"
     },
     "kl_units": "AR: sampled k3 KL per valid audio token. Flow: exact conditional Gaussian KL per active latent dimension, not joint waveform KL. Equal beta does not imply equal regularization strength.",
-    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/runs/2026-10-20-songbench-priority/README.md",
+    "report_url": "https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/reward-regime-study/weekly-2026-10-23",
     "no_scheduled_tasks": true
   },
   "training_authorized": true,
@@ -120,10 +120,10 @@
       "role": "原始小模型对照 · 当前最优先",
       "mos": null,
       "team_listening_estimate": null,
-      "status": "原始非GRPO权重 · SP运行 / Instrument与Arrangement排队",
+      "status": "SP完成270步 / 另外两组启动失败",
       "input": "Style text + lyrics",
-      "readiness": "training",
-      "note": "原始bolshyC/Muse-0.6b权重SHA c810b2a7…ff1b52，经5090/Gadi核验；不加载旧GRPO adapter或合并权重。新主干LoRA rank8/alpha16，5,046,272参数；LR3e-4/beta0.05/G2/270步。旧单项减guard比较保留512 completion tokens与10.24s codec协议，不冒充60s训练。全270/30冻结不变；完成后才回收正式结果，跨硬件baseline需统一核对。Muse Mean7后续单独接入，不复用含guard目标。",
+      "readiness": "measured",
+      "note": "2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。",
       "source": "https://github.com/yuhui1038/Muse"
     },
     {
@@ -274,21 +274,22 @@
     {
       "model": "muse",
       "reward": "richness",
-      "status": "running",
+      "status": "complete",
       "host": "lab5090",
       "pid": 3982658,
       "lr": 0.0003,
       "beta": 0.05,
       "scheduler": "constant",
-      "verified_steps": 0,
+      "verified_steps": 270,
       "supersedes_failed_job": "181297781.gadi-pbs",
       "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
-      "kl_unit": "sampled k3 per native completion token"
+      "kl_unit": "sampled k3 per native completion token",
+      "full_valid_n": 30
     },
     {
       "model": "muse",
       "reward": "instrument",
-      "status": "pbs-queued",
+      "status": "failed-before-training",
       "host": "gadi",
       "project": "wa66",
       "job_id": "181718185.gadi-pbs",
@@ -298,12 +299,13 @@
       "verified_steps": 0,
       "supersedes_failed_job": "181297782.gadi-pbs",
       "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
-      "kl_unit": "sampled k3 per native completion token"
+      "kl_unit": "sampled k3 per native completion token",
+      "failure": "libpython3.11.so.1.0 missing before scorer startup;0 optimizer updates"
     },
     {
       "model": "muse",
       "reward": "arrangement",
-      "status": "pbs-queued",
+      "status": "failed-before-training",
       "host": "gadi",
       "project": "iv96",
       "job_id": "181718187.gadi-pbs",
@@ -313,7 +315,8 @@
       "verified_steps": 0,
       "supersedes_failed_job": "181297783.gadi-pbs",
       "training_scope": "fresh original-base backbone LoRA; full270/30;512 completion tokens,10.24s decode",
-      "kl_unit": "sampled k3 per native completion token"
+      "kl_unit": "sampled k3 per native completion token",
+      "failure": "libpython3.11.so.1.0 missing before scorer startup;0 optimizer updates"
     },
     {
       "model": "diffrhythm2",
@@ -408,5 +411,10 @@
       "training_scope": "deprecated sketch head ablation; not started",
       "kl_unit": "Exact categorical KL / sketch action"
     }
-  ]
+  ],
+  "execution_recovery": {
+    "checked_at": "2026-10-22T23:50:11.421427+00:00",
+    "source": "weekly-2026-10-23/summary.json",
+    "scope": "Preregistered Oct20 plan enriched with actual Oct23 recovery; no new submission."
+  }
 }

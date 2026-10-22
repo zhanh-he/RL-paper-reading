@@ -14,7 +14,7 @@
     <script type="module" src="./lab.js?v=20261020-model-plan"></script>
     <link rel="stylesheet" href="./model-costs.css?v=20261020-mean7" />
     <script type="module" src="./model-costs.js?v=20261020-model-plan"></script>
-    <script type="module" src="./songbench-review.js?v=20261020-pristine-muse-launch"></script>
+    <script type="module" src="./songbench-review.js?v=20261023-recovered"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
     <link rel="stylesheet" href="./reward-regime.css?v=20261014-five-inputs" />
-    <script type="module" src="./reward-regime.js?v=20261020-pristine-muse-launch"></script>
+    <script type="module" src="./reward-regime.js?v=20261023-recovered"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
   </head>
   <body>
@@ -85,8 +85,9 @@
       </section>
 
       <section class="lab-view" id="view-reward-regimes" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · Reward comparison</p><h2>SP / AI Rewards GRPO</h2></div></div>
+        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · Reward comparison</p><h2>SP / AI Rewards GRPO</h2></div><a href="./weekly-2026-10-23.html" target="_blank" rel="noopener noreferrer">23 Oct 本周汇报 · A/B/C结果图 / 新试听 ↗</a></div>
         <div class="protocol-strip"><span><strong>270</strong> train</span><span><strong>30</strong> valid</span><span><strong>192</strong> WSB · sealed</span><span><strong>3e-4</strong> learning rate</span></div>
+        <p class="stage-context">新增完整主干结果、Mean7训练及固定试听见本周汇报。此页仍保留原先明确标记的head-only历史消融，不能把其音频/曲线当作新主干结果。</p>
         <div class="metric-controls replay-model-controls"><span class="control-label">Models</span><div class="segmented" data-regime="models" role="group" aria-label="Reward study models"></div></div>
         <p class="stage-context" data-regime="model-note"></p>
         <div class="metric-controls replay-model-controls"><span class="control-label">Experiments</span><div class="segmented" data-regime="reward-controls" role="group" aria-label="Reward study experiments"></div><span class="state pending" data-regime="status"></span></div>
@@ -470,17 +471,17 @@
           </section>
           <section data-model-panel="plan" hidden>
             <section data-songbench-review>
-              <div class="section-intro"><div><p class="eyebrow">已批准执行 · 原始Muse三臂优先 · 20 Oct 2026</p><h3>SongBench Mean7 · 唯一 reward</h3></div><a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/SONGBENCH_MEAN7_PRIORITY_PLAN_2026-10-20.md" target="_blank" rel="noopener noreferrer">审读优先实验计划 MD ↗</a></div>
-              <p class="section-copy"><strong>R = (Vocal + Instrumental + Melody + Structure + Arrangement + Mixing + Musicality) / 7。</strong>七维等权均值是本研究约定，不混SP/SongEval或额外响度/削波惩罚；KL单独放在loss里。先补原始、非GRPO Muse的SP/Instrument/Arrangement三臂（这些仍为旧单项减guard目标，非Mean7），再做新Mean7。</p>
+              <div class="section-intro"><div><p class="eyebrow">完整结果已回收 · 23 Oct 2026</p><h3>SongBench Mean7 · 唯一 reward</h3></div><a href="./weekly-2026-10-23.html" target="_blank" rel="noopener noreferrer">本周汇报 · 4张图 × A/B/C / CSV / 新试听 ↗</a></div>
+              <p class="section-copy"><strong>R = (Vocal + Instrumental + Melody + Structure + Arrangement + Mixing + Musicality) / 7。</strong>七维等权均值是本研究约定，不混SP/SongEval或额外响度/削波惩罚；KL单独放在loss里。Diff Mean7与原始Muse-SP已完成，Muse两组learned-head及YuE2 TRL启动/验收失败；不把旧单项减guard目标改名为Mean7。</p>
               <p class="section-copy">沿用冻结CMI 270 train /30 valid /121 test；192条WildSongBench外测另行冻结执行。P1固定LR3e-4、beta0.05、G2、rank8/alpha16、270步、seed42；全30验证0/50/100/270，目标原生60s，不能用旧短rollout或head-only填入。</p>
               <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>优先级</th><th>实验</th><th>理由 / 验收缺口</th></tr></thead><tbody data-sb="priorities"></tbody></table></div>
               <p class="stage-context" data-sb="execution"></p><p class="model-links"><a data-sb="launch-link" target="_blank" rel="noopener noreferrer">启动凭据 / 原始Muse身份 / 验收 / 队列快照 ↗</a></p>
-              <p class="stage-context">Muse旧单项对比：主干LoRA 5,046,272参数，512 completion tokens，原生MuCodec固定seed42 /10.24s。不是60s Mean7协议，也不能把跨硬件生成的baseline默认当作字节一致。新结果未完成，不计入下方历史结果表；本页不作自动监控。</p>
-              <h4>有意义的历史结果 · 已回收</h4>
-              <p class="section-copy">下面六组均核验270步、完整30/30验证和音频SHA绑定；它们训练的是单子项/SP减guard，<strong>不是Mean7训练</strong>。七维均值为同批音频的事后交叉评分，不是人类MOS、独立裁判或test结果。Diff是主干新轮，不是旧head-only。</p>
+              <p class="stage-context">Muse-SP：主干LoRA 5,046,272参数，512 completion tokens，原生MuCodec固定seed42 /10.24s。不是60s Mean7协议。新结果已通过600条音频绑定及全30验证核验；本页不作自动监控。</p>
+              <h4>完整验证结果 · 已回收</h4>
+              <p class="section-copy">下面8组均核验270步、完整30/30验证和音频SHA绑定。7组为单项/SP减guard，1组为新增Diff纯Mean7。Mean7不是人类MOS或独立裁判；本表不是test。Diff是主干LoRA，不是旧head-only。</p>
               <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>模型 / 历史目标</th><th>训练 / 完整验证</th><th>Mean7 · baseline →270</th><th>Δ [95% CI]</th></tr></thead><tbody data-sb="results"></tbody></table></div>
               <p class="stage-context">CI按30条件配对bootstrap，单训练seed、未做多重比较校正。YuE2为beta0.01/rank4/短rollout；Diff为beta0.05/rank8/60s预算，不作同配置模型质量因果比较。</p>
-              <details class="choral-deep-dive"><summary>已回收历史训练曲线 · 左Reward / 右KL</summary><div class="metric-controls"><div class="segmented" role="group" aria-label="Historical audited run" data-sb="runs"></div></div><p class="stage-context" data-sb="curve-note"></p><div class="choral-training-plots"><figure><figcaption>历史优化目标 · 减guard</figcaption><canvas data-sb="reward-chart" role="img" aria-label="Historical training reward"></canvas></figure><figure><figcaption>训练KL · 非离线探针</figcaption><canvas data-sb="kl-chart" role="img" aria-label="Historical training reference KL"></canvas></figure></div><p class="stage-context">曲线为10步窗口均值；圆点为1/5/25/50/100/270步原日志，悬停可见值。KL单位随模型注明，不跨模型直接比大小。</p></details>
+              <details class="choral-deep-dive"><summary>已回收训练曲线 · 左Reward / 右KL</summary><div class="metric-controls"><div class="segmented" role="group" aria-label="Audited run" data-sb="runs"></div></div><p class="stage-context" data-sb="curve-note"></p><div class="choral-training-plots"><figure><figcaption data-sb="target-caption">实际训练目标</figcaption><canvas data-sb="reward-chart" role="img" aria-label="Training reward"></canvas></figure><figure><figcaption>训练KL · 非离线探针</figcaption><canvas data-sb="kl-chart" role="img" aria-label="Training reference KL"></canvas></figure></div><p class="stage-context">曲线为10步窗口均值；圆点为1/5/25/50/100/270步原日志，悬停可见值。KL单位随模型注明，不跨模型直接比大小。</p></details>
               <details class="choral-deep-dive"><summary>Diff主干历史试听 · 五个固定example / 20条已有MP3</summary><p class="section-copy">固定valid0/10/20/1/2，无按分数挑选。A始终为同一冻结baseline，B/C/D为各单目标270步。这里仅转码已评分原件，没有新推理；试听和Mean7上升均不自动等于改善。</p><div class="metric-controls"><div class="segmented" role="group" aria-label="Recovered fixed example" data-sb="examples"></div></div><details class="choral-deep-dive"><summary>当前输入 · Text + lyrics</summary><p data-sb="text"></p><pre class="songbench-lyrics" data-sb="lyrics"></pre><p class="stage-context">CMI-Pref · Haiwen Xia et al. · CC BY-NC-SA 4.0；原始text/lyrics未修改，未分发reference audio。</p></details><div class="songbench-audio-grid" data-sb="audio"></div></details>
               <details class="choral-deep-dive"><summary>失败记录 / 回收凭据 / 查漏补缺</summary><p class="section-copy" data-sb="failures"></p><p class="section-copy">不回收错误split、head-only、失败mock或局部均值作正式结果。新Mean7 scorer应冻结MuQ/frontend与head身份、直接评分原混音，不调用SP分离器；验证技术失败不被伪装成0分。YuE2原生TRL桥与60s训练尚未验收。独立SongEval、歌词匹配、盲听和全量test需补齐，未完成不宣称听感提高。</p><div class="model-links"><a href="./data/songbench-review.json" download>回收统计 / 曲线 / MP3绑定 JSON ↓</a><a data-sb="audit-link" target="_blank" rel="noopener noreferrer">完整CPU审计凭据 ↗</a></div></details>
             </section>

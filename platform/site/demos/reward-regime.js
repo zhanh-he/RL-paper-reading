@@ -5,7 +5,7 @@ const $ = (id) => root.querySelector(`[data-regime="${id}"]`);
 const checkpoints = [0, 50, 100, 270];
 const rewardKey = (id) => ({ songbench: 'instrument', 'songbench-arrangement': 'arrangement' })[id] || id;
 const rewardName = (key) => ({ richness: 'SP-Richness', instrument: 'SongBench-Instrument', arrangement: 'SongBench-Arrangement' })[key] || key;
-const statusNames = { running: '运行中', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', 'preparation-submitted': '准备链已提交 · 非GPU训练', complete: '已核验完成', 'head-failed': 'Head-only 失败 · 待替代', 'head-stopped': 'Head-only 已停止 · 待替代', 'head-cancelled': 'Head-only 未启动 · 已取消' };
+const statusNames = { running: '运行中', 'failed-before-training':'启动失败 · 0步', 'local-sequential-queue': '连续队列', 'pbs-queued': 'PBS 排队 · 未起跑', 'preparation-submitted': '准备链已提交 · 非GPU训练', complete: '已核验完成', 'head-failed': 'Head-only 失败 · 待替代', 'head-stopped': 'Head-only 已停止 · 待替代', 'head-cancelled': 'Head-only 未启动 · 已取消' };
 const marks = new Map(['reward', 'kl'].map((key) => [key, createMilestones($(`${key}-chart`), 270)]));
 const fmt = (value) => Number.isFinite(value) ? value.toFixed(4) : 'n/a';
 const fmtKL = (value) => Number.isFinite(value) && value !== 0 && Math.abs(value) < .0001 ? value.toExponential(2) : fmt(value);
@@ -277,7 +277,7 @@ function render() {
     ? '伴奏频谱活动/变化与tonality gate，不是乐器数量或MOS。'
     : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。' : '评和声框架与配器编排，不是简单计数。'} 三臂都使用同一削波/RMS guard；KL为独立loss项。`;
   $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
-    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='running'?'5090正式训练中；完整验证未回收。':`Gadi正式任务排队：${submitted?.job_id||'未提交'}。`}`}`
+    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='complete'?'已核验270步及全30条0/270验证；现有短试听见本周汇报。':submitted?.status==='failed-before-training'?`Gadi启动失败，未训练：${submitted.job_id}。`:'未回收正式结果。'}`}`
     : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`
       : `${model().input} · ${model().status}。暂无已生效训练配置。`;
   $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : ['heartmula','songbloom'].includes(selected) ? 'KL · 输出头 categorical / action' : 'KL · 在线冻结参考采样估计';

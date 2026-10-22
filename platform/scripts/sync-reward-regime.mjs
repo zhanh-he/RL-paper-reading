@@ -38,10 +38,31 @@ assert.ok(value.models.every((m) => m.team_listening_estimate === null ||
 assert.match(value.expansion.listening_estimates, /not formal/);
 assert.equal(value.models.find((m) => m.id === 'private').source, null);
 assert.equal(value.expansion.new_training_submitted, true);
+const progress = JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/progress.json', import.meta.url)));
+const weekly=JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/weekly-2026-10-23/summary.json',import.meta.url)));
+const muse=weekly.runs.find(r=>r.model==='muse'&&r.reward==='richness');
+assert.equal(muse.updates,270);assert.equal(muse.binding.bound_audio_n,600);
+value.status='20261023-muse-SP-complete-two-heads-startup-failed-diff-mean7-complete';
+value.backbone_round.snapshot_at=weekly.updated_at;
+value.backbone_round.report_url='https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/reward-regime-study/weekly-2026-10-23';
+value.backbone_round.status_by_model.muse='2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。';
+value.backbone_round.status_by_model.yue2='历史SP/单项为已完成PyTorch轮。新增Mean7的TRL移植在gradient-checkpointing初始化时退出，0更新，未形成新正式结果。';
+value.backbone_round.status_by_model.diffrhythm2='已核验旧SP/单项三组以及新增纯Mean7：均270步、0/50/100/270各30验证。Mean7终点5.116→5.055，未确立改善。新增曲线及试听见本周汇报。';
+Object.assign(value.models.find(m=>m.id==='muse'),{status:'SP完成270步 / 另外两组启动失败',readiness:'measured',note:value.backbone_round.status_by_model.muse});
+for(const arm of value.runs.filter(r=>r.model==='muse')){
+  arm.status=arm.reward==='richness'?'complete':'failed-before-training';
+  arm.verified_steps=arm.reward==='richness'?270:0;
+  if(arm.reward==='richness')arm.full_valid_n=30;
+  else arm.failure='libpython3.11.so.1.0 missing before scorer startup;0 optimizer updates';
+}
+value.execution_recovery={checked_at:weekly.updated_at,source:'weekly-2026-10-23/summary.json',scope:'Preregistered Oct20 plan enriched with actual Oct23 recovery; no new submission.'};
+progress.runs.push({model:'muse',reward:'richness',steps:270,trace:muse.trace,complete:true,kl_unit:muse.kl_unit,
+  scope:muse.scope,validation:muse.validation.map(v=>({step:v.step,n:30,mean:v.target_mean,receipt_sha256:v.receipt_sha256,
+    cross_means:v.means,invalid_n:v.invalid_n}))});
+progress.updated_at=weekly.updated_at;
 const rendered = JSON.stringify(value, null, 2) + '\n';
 if (process.argv.includes('--check')) assert.equal(fs.readFileSync(target, 'utf8'), rendered);
 else fs.writeFileSync(target, rendered);
-const progress = JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/progress.json', import.meta.url)));
 for (const name of ['5090', 'gadi']) {
   const archived = JSON.parse(fs.readFileSync(new URL(`../../music-gen/reward-regime-study/runs/2026-10-15-head-recovery-${name}/progress.json`, import.meta.url)));
   for (const run of archived.runs) {

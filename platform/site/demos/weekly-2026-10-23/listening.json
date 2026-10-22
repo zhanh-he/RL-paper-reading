@@ -1,0 +1,205 @@
+{
+  "scope": "Fixed five validation indices, native existing10.24s/60s outputs. CPU transcode only; no generated replacement, no normalization.",
+  "rows": [
+    {
+      "model": "muse",
+      "step": 0,
+      "index": 0,
+      "seconds": 9.039979166666667,
+      "mean7": 4.1575345652444025,
+      "source_audio_sha256": "e2cf68f95264d898cc82c7458f99fa81b4843c666144d5935fec3ddd4307fbfe",
+      "public_mp3_sha256": "440245592bb9a7da1295918a26e9f78c71fb54b5fec6efa3d8d9d6f8dc5bdaaa",
+      "url": "./audio/weekly-20261023/muse-baseline-000.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 0,
+      "index": 10,
+      "seconds": 10.24,
+      "mean7": 4.7360931124006,
+      "source_audio_sha256": "0fb386149c4546693c9ad8128c012ce33c7602a65c6c12dc29746c764e8e6c1f",
+      "public_mp3_sha256": "b815d7687e319ab92270488545965f4736c717a0ab216259b5c3125ce1b9d4fd",
+      "url": "./audio/weekly-20261023/muse-baseline-010.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 0,
+      "index": 20,
+      "seconds": 10.24,
+      "mean7": 2.907484769821167,
+      "source_audio_sha256": "193903936c031907b318be8d6cb04e33120dffcc4229240ccf0bfdd8c9062719",
+      "public_mp3_sha256": "a555de637e59f5989f66da6a4834a0d5c3b1dcafb75b26b235cfaf1e73910f4a",
+      "url": "./audio/weekly-20261023/muse-baseline-020.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 0,
+      "index": 1,
+      "seconds": 10.24,
+      "mean7": 3.9518235751560757,
+      "source_audio_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "public_mp3_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "url": "./audio/weekly-20261023/muse-baseline-001.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 0,
+      "index": 2,
+      "seconds": 10.24,
+      "mean7": 4.316359554018293,
+      "source_audio_sha256": "475cb20a5ce077668031de3d5b31be496599dc4385f131d83504ec775f15b643",
+      "public_mp3_sha256": "b28addc33ecf16dc24ee15f96b525b6208a59a090d1702a08c9898f2fe465a09",
+      "url": "./audio/weekly-20261023/muse-baseline-002.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 270,
+      "index": 0,
+      "seconds": 10.24,
+      "mean7": 4.345301730292184,
+      "source_audio_sha256": "3095b6668eb8be672ee610203717b17e294afa9cb62030d37ca5943f36a3439e",
+      "public_mp3_sha256": "507b366dd77179b231eba2f726ff863828c4ff4e660706d60e09db7ad445956b",
+      "url": "./audio/weekly-20261023/muse-grpo270-000.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 270,
+      "index": 10,
+      "seconds": 10.24,
+      "mean7": 4.428584473473685,
+      "source_audio_sha256": "636dc9bd9e815d9330d4a62478763dfb20640e2d0f2d880eab2405a333451b4d",
+      "public_mp3_sha256": "bfbc4950e9d098b04bfdbfb9c01de26ecc71012f823761cf1b8869e4a51713d3",
+      "url": "./audio/weekly-20261023/muse-grpo270-010.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 270,
+      "index": 20,
+      "seconds": 10.24,
+      "mean7": 4.327518803732736,
+      "source_audio_sha256": "dcd32c3a30ac397d76a45b1e393f2ccec850a5dc50c7c7ec0a1a3a785cb27baa",
+      "public_mp3_sha256": "a1a0ec252757605e6530bc387f3ffddd9221b84fb907fb2cd1f77e8502379650",
+      "url": "./audio/weekly-20261023/muse-grpo270-020.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 270,
+      "index": 1,
+      "seconds": 10.24,
+      "mean7": 3.5397586481911794,
+      "source_audio_sha256": "b0d2817f980f834eb2173e620abd3359bde7198612af77576ba34d45291d8ffd",
+      "public_mp3_sha256": "e08de75f8cbc1de32067ad36d9e84798aeb1fbf5520aa9dee572f41b2911ecd0",
+      "url": "./audio/weekly-20261023/muse-grpo270-001.mp3"
+    },
+    {
+      "model": "muse",
+      "step": 270,
+      "index": 2,
+      "seconds": 10.24,
+      "mean7": 4.510494879313877,
+      "source_audio_sha256": "91d381a436a70b075f145736e2cf3138910f49f9c61cdb462fd16cb9c3474f3f",
+      "public_mp3_sha256": "53a4b99b8f571230dca9bee2c03ba599ced817a9714abc97da1d1fde834d9879",
+      "url": "./audio/weekly-20261023/muse-grpo270-002.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 0,
+      "index": 0,
+      "seconds": 60.0,
+      "mean7": 4.728230340140207,
+      "source_audio_sha256": "8d2625212eb58baf2f12db5a1e0301ab96bab3370e56f623c62ed32e109c0f5a",
+      "public_mp3_sha256": "f84cd9078eee1a92d393769e36a870ffead4a3c1a1ba437a7ee69905af11e281",
+      "url": "./audio/weekly-20261023/diffrhythm2-baseline-000.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 0,
+      "index": 10,
+      "seconds": 60.0,
+      "mean7": 4.879534312656948,
+      "source_audio_sha256": "d236b7914fd6cc4118de44f5fc59de0e4f143a39b43d14ad7cbc246a4d7ee348",
+      "public_mp3_sha256": "aaa6e258c3643cd190260f4ab89d1f2605edc0c891e7ce580c842b8bbcb512ea",
+      "url": "./audio/weekly-20261023/diffrhythm2-baseline-010.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 0,
+      "index": 20,
+      "seconds": 60.0,
+      "mean7": 3.266167538506644,
+      "source_audio_sha256": "d246fcbe0246d44ab95c4637c155c4dc564341839723aed4ca14905fe9468ace",
+      "public_mp3_sha256": "4f003f947d26b9cb190e77f3fbe7338766d1b0e9635b827730eff644f0cfcabc",
+      "url": "./audio/weekly-20261023/diffrhythm2-baseline-020.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 0,
+      "index": 1,
+      "seconds": 60.0,
+      "mean7": 5.432694298880441,
+      "source_audio_sha256": "93cf6e631c148df469809520d2d4c3c942b90e73b7d7fa1cd150677854c4efc1",
+      "public_mp3_sha256": "f13670aa464cf0e61cfd70f2906a525f833a052fbe2de20be30cdd18679adb49",
+      "url": "./audio/weekly-20261023/diffrhythm2-baseline-001.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 0,
+      "index": 2,
+      "seconds": 60.0,
+      "mean7": 5.157839502607073,
+      "source_audio_sha256": "44150679b753997afc20f19784afe65faaed21a1affe75d21a2cab6d042b5a1f",
+      "public_mp3_sha256": "728ab365c7bfd9ca5524ec4cad72799e573f722c4596dc4441355e3828cac537",
+      "url": "./audio/weekly-20261023/diffrhythm2-baseline-002.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 270,
+      "index": 0,
+      "seconds": 60.0,
+      "mean7": 5.015215805598667,
+      "source_audio_sha256": "581eaa565f20c6d78d8a89e95dd58440c5ccf0cc96448b8dbf9d58cb1c4503a8",
+      "public_mp3_sha256": "31304e50f45dfa0c7485eb3190a41abbb390d236d1c5323858d7bc53bf26e98f",
+      "url": "./audio/weekly-20261023/diffrhythm2-grpo270-000.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 270,
+      "index": 10,
+      "seconds": 60.0,
+      "mean7": 4.913103648594448,
+      "source_audio_sha256": "d99cfebab60f2e3ba9df70fcf34d446e7f50a9be9b8c19dd78be3de31c414179",
+      "public_mp3_sha256": "04b1aac851eb9bac73b1e1e8d8d19971ea07d7388213bea9468ef59e4a025c9d",
+      "url": "./audio/weekly-20261023/diffrhythm2-grpo270-010.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 270,
+      "index": 20,
+      "seconds": 60.0,
+      "mean7": 3.0199108804975237,
+      "source_audio_sha256": "c6d25dab51958208c878811eceecb7eb17d97e4782ec22de42e3a77a663dc206",
+      "public_mp3_sha256": "833f1ca94f620d23430340470b2f76bc8f05f59f8bc0f42a5ac53a56c161a764",
+      "url": "./audio/weekly-20261023/diffrhythm2-grpo270-020.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 270,
+      "index": 1,
+      "seconds": 60.0,
+      "mean7": 5.156475339617048,
+      "source_audio_sha256": "1e85bdb7075a7259455d20f12f9f6b4808372e415f4aec4274cde614ae6b29a5",
+      "public_mp3_sha256": "3e8cd347fa97dc1146af4905892bcf7315c3fd2c588d6ad0db2b67c2e12df341",
+      "url": "./audio/weekly-20261023/diffrhythm2-grpo270-001.mp3"
+    },
+    {
+      "model": "diffrhythm2",
+      "step": 270,
+      "index": 2,
+      "seconds": 60.0,
+      "mean7": 5.456486565726144,
+      "source_audio_sha256": "afdb2363ca817f3f4673ca77d2f99d6e498e803c98744b15ad47bdba3f770ffb",
+      "public_mp3_sha256": "6ca9d26078d0de9894786df529baf28b0ae6242b40632a7a6a363421a4a8028a",
+      "url": "./audio/weekly-20261023/diffrhythm2-grpo270-002.mp3"
+    }
+  ]
+}
