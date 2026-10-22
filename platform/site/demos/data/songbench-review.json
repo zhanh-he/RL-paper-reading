@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-22T23:50:11.421427+00:00",
+  "updated_at": "2026-10-22T23:48:48.459559+00:00",
   "new_training_started": true,
   "mean7_training_started": true,
   "objective": "R = (Vocal + Instrumental + Melody + Structure + Arrangement + Mixing + Musicality) / 7; only SongBench, no extra penalty; KL separate.",
   "objective_status": "DiffRhythm2 Mean7 and Muse-SP completed270/all30; Muse learned-head arms failed before training; YuE2 TRL Mean7 failed acceptance.",
-  "execution": "手动回收 2026-10-22T23:50:11.421427+00:00：Muse-SP、Diff Mean7均已核验270步和全30验证。两组Muse learned-head启动失败；YuE2 TRL验收失败，不再标为排队或运行。详见本周汇报。",
+  "execution": "手动回收 2026-10-22T23:48:48.459559+00:00：Muse-SP、Diff Mean7均已核验270步和全30验证。两组Muse learned-head启动失败；YuE2 TRL验收失败，不再标为排队或运行。详见本周汇报。",
   "base_identity": {
     "model": "bolshyC/Muse-0.6b",
     "revision": "0fb6b5b0a33ec48d135f046ea09524e52e502a42",

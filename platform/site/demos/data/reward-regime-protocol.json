@@ -20,7 +20,7 @@
   },
   "backbone_round": {
     "date_awst": "2026-10-15",
-    "snapshot_at": "2026-10-22T23:50:11.421427+00:00",
+    "snapshot_at": "2026-10-22T23:48:48.459559+00:00",
     "lr": 0.0003,
     "lr_reference": "Current YuE2 SP/AI reward-regime study, not the older SongEval mock sweep",
     "scheduler": "constant",
@@ -413,7 +413,7 @@
     }
   ],
   "execution_recovery": {
-    "checked_at": "2026-10-22T23:50:11.421427+00:00",
+    "checked_at": "2026-10-22T23:48:48.459559+00:00",
     "source": "weekly-2026-10-23/summary.json",
     "scope": "Preregistered Oct20 plan enriched with actual Oct23 recovery; no new submission."
   }

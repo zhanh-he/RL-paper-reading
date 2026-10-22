@@ -157,6 +157,7 @@ def draw(definition,variant):
     for suffix in ['png','pdf','svg']:
         name=f'{definition["id"]}-{variant}.{suffix}';path=PUBLIC/name
         fig.savefig(path,dpi=150 if suffix=='png' else None)
+        if suffix=='svg':path.write_text('\n'.join(line.rstrip() for line in path.read_text().splitlines())+'\n')
         files[suffix]=dict(file=name,sha256=hashlib.sha256(path.read_bytes()).hexdigest(),bytes=path.stat().st_size)
     plt.close(fig);return files
 
@@ -165,7 +166,8 @@ figures=[]
 for definition in definitions:
     figures.append(dict(id=definition['id'],title=definition['title'],subtitle=definition['subtitle'],
         panels=definition['panels'],note=definition['note'],variants={v:draw(definition,v) for v in 'ABC'}))
-summary=dict(updated_at=datetime.now(timezone.utc).isoformat(),run_count=len(runs),runs=runs,songeval=songeval,
+checked_at=max(read(name)['checked_at'] for name in ['legacy-rechecked.json','muse-sp.json','diff-mean7.json','songeval.json'])
+summary=dict(updated_at=checked_at,built_at=datetime.now(timezone.utc).isoformat(),run_count=len(runs),runs=runs,songeval=songeval,
     audited_audio_bindings=sum(r['binding']['bound_audio_n'] for r in runs),
     method=dict(n=30,endpoint=270,bootstrap_draws=10000,bootstrap_seed=20261023,
         ci='Paired condition-percentile bootstrap95%; not across-training-seed uncertainty; unadjusted multiple comparisons',
@@ -180,7 +182,7 @@ summary=dict(updated_at=datetime.now(timezone.utc).isoformat(),run_count=len(run
 (HERE/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')
 (PUBLIC/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')
 with (PUBLIC/'endpoint-results.csv').open('w',newline='') as f:
-    w=csv.writer(f);w.writerow(['model','objective','metric','n','baseline','step270','delta','ci95_low','ci95_high','positive_pairs'])
+    w=csv.writer(f,lineterminator='\n');w.writerow(['model','objective','metric','n','baseline','step270','delta','ci95_low','ci95_high','positive_pairs'])
     for r in runs:
         for metric,s in [('SongBench_mean7',r['mean7']),('target_reward',r['target']),('SP_Richness',r['sp'])]:
             if s:w.writerow([r['model'],r['reward'],metric,30,s['baseline'],s['final'],s['delta'],*s['ci95'],s['positive']])
