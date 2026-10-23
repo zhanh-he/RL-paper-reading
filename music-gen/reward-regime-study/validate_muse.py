@@ -20,11 +20,26 @@ def main():
     p.add_argument('--output', type=Path, required=True); p.add_argument('--baseline', type=Path, required=True)
     p.add_argument('--adapter', type=Path, required=True); p.add_argument('--scorer', required=True)
     p.add_argument('--codec', required=True); p.add_argument('--reward', required=True)
+    p.add_argument('--steps', default='0,270', help='Exact checkpoints to evaluate; missing adapters are errors')
+    p.add_argument('--split',choices=['train','valid','test'],default='valid')
+    p.add_argument('--dataset-manifest',type=Path)
+    p.add_argument('--max-model-len',type=int,default=2048)
     a = p.parse_args()
-    if sha(a.valid) != VALID_SHA: raise ValueError('Frozen validation membership changed')
+    data_sha=sha(a.valid)
+    n={'train':270,'valid':30,'test':384}[a.split]
+    expected={'train':'ff437d751d62742d92daf7ac56a678010c52d6c22def5624a8324301e6699be6','valid':VALID_SHA}
+    if a.split=='test':
+        if not a.dataset_manifest:raise ValueError('Test requires a frozen projection manifest')
+        manifest=json.loads(a.dataset_manifest.read_text())
+        if manifest['source_sha256']!='859e5225d319912efb64d587d1d5eb6cf0abc9fb162cc3d5f02d1688cff2edc0':
+            raise ValueError('WildSongBench source changed')
+        expected['test']=manifest['projection_sha256']
+    if data_sha != expected[a.split]: raise ValueError('Frozen split membership changed')
     with a.valid.open(encoding='utf-8') as source:
         rows = [json.loads(line) for line in source if line.strip()]
-    if len(rows) != 30: raise ValueError('Full validation requires all 30 conditions')
+    if len(rows) != n: raise ValueError(f'Full {a.split} requires all {n} outputs')
+    if a.split=='test' and {(r['prompt_index'],r['replicate']) for r in rows}!={(i,j) for i in range(192) for j in range(2)}:
+        raise ValueError('Test requires both fixed seeds for all192 conditions')
     from check_muse_base import check
     base_identity = check(a.model)
     from transformers import AutoTokenizer
@@ -34,23 +49,38 @@ def main():
     low = tokenizer.convert_tokens_to_ids('<AUDIO_0>'); high = tokenizer.convert_tokens_to_ids('<AUDIO_16383>')
     if high-low != 16383: raise ValueError('Audio vocabulary changed')
     engine = LLM(model=str(a.model), trust_remote_code=True, dtype='bfloat16', enforce_eager=True,
-                 max_model_len=2048, gpu_memory_utilization=.2, max_num_seqs=2,
+                 max_model_len=a.max_model_len, gpu_memory_utilization=.2, max_num_seqs=2,
                  kv_cache_memory_bytes=1073741824, enable_lora=True, max_lora_rank=8)
-    for step, folder, adapter in [(0,a.baseline,None),(270,a.output/'valid_000270',a.adapter)]:
+    steps = [int(s) for s in a.steps.split(',')]
+    if len(set(steps)) != len(steps) or any(s not in [0,50,100,270] for s in steps):
+        raise ValueError('Expected unique checkpoints from 0/50/100/270')
+    schedule = []
+    for step in steps:
+        adapter = None if step == 0 else a.adapter if step == 270 else a.adapter.parent/f'checkpoint-{step}'
+        if adapter is not None and not (adapter/'adapter_model.safetensors').is_file():
+            raise FileNotFoundError(f'No exact adapter for step {step}: {adapter}')
+        folder = a.baseline if step == 0 else a.output/f'{a.split}_{step:06d}'
+        schedule.append((step,folder,adapter))
+    for step, folder, adapter in schedule:
         folder.mkdir(parents=True, exist_ok=True)
         with (folder/'generation.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            pending = [i for i in range(30) if not (folder/f'{i:03d}'/'generation.json').exists()]
+            pending = [i for i in range(n) if not (folder/f'{i:03d}'/'generation.json').exists()]
             prompts = [tokenizer.apply_chat_template([rows[i]['messages'][0]], tokenize=False, add_generation_prompt=True) for i in pending]
-            params = [SamplingParams(seed=5101+i, max_tokens=512, temperature=1.,top_p=1.,top_k=-1,repetition_penalty=1.) for i in pending]
-            request = LoRARequest('regime-final',1,str(adapter)) if adapter else None
+            if any(len(tokenizer.encode(prompt,add_special_tokens=False))+512>a.max_model_len for prompt in prompts):
+                raise ValueError('Input exceeds context; refusing silent lyric truncation')
+            seed_base={'train':6101,'valid':5101,'test':831001}[a.split]
+            seeds={i:rows[i].get('seed',seed_base+i) for i in range(n)}
+            params = [SamplingParams(seed=seeds[i], max_tokens=512, temperature=1.,top_p=1.,top_k=-1,repetition_penalty=1.) for i in pending]
+            request = LoRARequest(f'regime-step-{step}',step,str(adapter)) if adapter else None
             generated = engine.generate(prompts, params, lora_request=request, use_tqdm=False) if prompts else []
             for i, result in zip(pending, generated):
                 destination = folder/f'{i:03d}'; destination.mkdir(exist_ok=True)
                 ids = list(result.outputs[0].token_ids); codes = [n-low for n in ids if low<=n<=high]
-                meta = {'index':i,'seed':5101+i,'generated_ids':ids,'audio_tokens':codes,
+                meta = {'index':i,'seed':seeds[i],'generated_ids':ids,'audio_tokens':codes,
                         'adapter_sha256':sha(adapter/'adapter_model.safetensors') if adapter else None,
-                        'valid_sha256': VALID_SHA, 'max_tokens':512, 'forced_length':False,'decoder_seed':42}
+                        'valid_sha256': data_sha,'data_sha256':data_sha,'split':a.split,
+                        'max_tokens':512, 'forced_length':False,'decoder_seed':42}
                 meta['base_model_sha256'] = base_identity['model_sha256']
                 if not codes:
                     meta['invalid'] = 'no AUDIO tokens'; meta['audio_sha256'] = None
@@ -67,26 +97,43 @@ def main():
                         meta.update(audio_sha256=sha(destination/'audio.flac'),seconds=len(audio)/sr)
                 (destination/'generation.json').write_text(json.dumps(meta)+'\n')
         valid_paths=[]; results=[]; indexes=[]
-        for i in range(30):
+        for i in range(n):
             meta=json.loads((folder/f'{i:03d}'/'generation.json').read_text())
+            if meta.get('data_sha256',meta.get('valid_sha256'))!=data_sha or meta.get('split','valid')!=a.split:
+                raise ValueError('Cached generation belongs to a different split')
+            if meta['seed']!=seeds[i]:raise ValueError('Cached generation seed changed')
             if meta.get('base_model_sha256') != base_identity['model_sha256']:
                 raise ValueError('Frozen baseline/validation base identity mismatch')
+            expected_adapter = sha(adapter/'adapter_model.safetensors') if adapter else None
+            if meta.get('adapter_sha256') != expected_adapter:
+                raise ValueError('Cached generation belongs to a different checkpoint')
             if meta.get('invalid'):
+                if a.reward=='mean7':raise ValueError('No complete Mean7 mean for invalid technical audio: '+meta['invalid'])
                 results.append({'index':i,'mean':0.,'invalid':meta['invalid'],'audio_sha256':None})
             else:
                 path=folder/f'{i:03d}'/'audio.flac'
                 if sha(path)!=meta['audio_sha256']: raise ValueError('Validation audio changed')
                 indexes.append(i);valid_paths.append(path)
-        for i,result in zip(indexes,score_remote(a.scorer,valid_paths,a.reward) if valid_paths else []):
-            results.append({'index':i,**result})
+        for start in range(0,len(valid_paths),8):
+            scores=score_remote(a.scorer,valid_paths[start:start+8],a.reward)
+            for i,result in zip(indexes[start:start+8],scores):results.append({'index':i,**result})
+            (a.output/'evaluation-progress.json').write_text(json.dumps(dict(split=a.split,step=step,scored=len(results),target=n))+'\n')
         results.sort(key=lambda r:r['index'])
-        report={'step':step,'n':30,'mean_reward':float(np.mean([r['mean'] for r in results])),
-                'rows':results,'scope':'all 30 fixed validation conditions; invalid outputs retain zero objective; not test',
+        if len(results)!=n:raise ValueError('Partial split cannot produce a final mean')
+        report={'step':step,'n':n,'split':a.split,'mean_reward':float(np.mean([r['mean'] for r in results])),
+                'rows':results,'scope':f'Full {a.split}; '+('192 WildSongBench conditions x2 fixed seeds; not selected on test' if a.split=='test' else f'{n} frozen CMI conditions'),
                 'invalid_n':sum('invalid' in r or r.get('guard',{}).get('invalid',False) for r in results)}
-        destination=a.output/f'valid_{step:06d}'
+        heads=['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing','Musicality']
+        measured=[sum(r['songbench'][h] for h in heads)/7 for r in results
+                  if r.get('songbench') and not r.get('guard',{}).get('invalid',True)
+                  and all(r['songbench'].get(h) is not None for h in heads)]
+        report['songbench_scored_n']=len(measured)
+        report['SongBench_mean7']=float(np.mean(measured)) if len(measured)==n else None
+        report['metric_status']='complete' if len(measured)==n else 'unavailable: unscorable outputs; no partial mean'
+        destination=a.output/f'{a.split}_{step:06d}'
         destination.mkdir(parents=True,exist_ok=True)
         (destination/'receipt.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
-        print(f'validation step={step} n=30 mean={report["mean_reward"]}',flush=True)
+        print(f'{a.split} step={step} n={n} scored={len(measured)} SongBench_mean7={report["SongBench_mean7"]}',flush=True)
 
 
 if __name__=='__main__':main()

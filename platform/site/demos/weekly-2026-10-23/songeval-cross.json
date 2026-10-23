@@ -1,0 +1,1998 @@
+{
+  "status": "verified-complete",
+  "checked_at": "2026-10-23T02:31:54.047333+00:00",
+  "id": "yue2-songeval3e4-cross-songbench",
+  "model": "yue2",
+  "reward": "songeval",
+  "experiment": {
+    "lr": 0.0003,
+    "beta": 0.01
+  },
+  "validation": [
+    {
+      "step": 0,
+      "n": 30,
+      "rows": [
+        {
+          "index": 0,
+          "audio_sha256": "bbf3b1507f2020ccaf660917dc64e3d395335d41117e457c8409e3c68359c3bd",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.109450817108154,
+            "Arrangement": 5.456171989440918,
+            "Musicality": 5.06300687789917,
+            "Vocal": 5.817337512969971,
+            "Instrumental": 6.063867092132568,
+            "Mixing": 5.566129207611084,
+            "Structure": 4.453648090362549
+          },
+          "mean7": 5.361373083932059,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 1,
+          "audio_sha256": "c492d22a828b80f6d54bad0c179a0a988d12a27e435faad3adeeb44ed8aafbfc",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.392727851867676,
+            "Arrangement": 4.537630081176758,
+            "Musicality": 4.577900409698486,
+            "Vocal": 5.782264232635498,
+            "Instrumental": 6.013748645782471,
+            "Mixing": 5.177434921264648,
+            "Structure": 4.937485694885254
+          },
+          "mean7": 5.202741691044399,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 2,
+          "audio_sha256": "b9c253325351cb4b29b50a4d8e2dba8d2063f58ebeed5c413b170eb1fc2b89eb",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.2656168937683105,
+            "Arrangement": 4.967840194702148,
+            "Musicality": 4.5920515060424805,
+            "Vocal": 5.516036033630371,
+            "Instrumental": 5.741610050201416,
+            "Mixing": 5.676600456237793,
+            "Structure": 4.790520668029785
+          },
+          "mean7": 5.221467971801758,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 3,
+          "audio_sha256": "b8b33221f7b398e8c37bff5cea8e9b01d154c14796fde0c02898f8bd97a945ae",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.491275787353516,
+            "Arrangement": 5.509565830230713,
+            "Musicality": 4.312906742095947,
+            "Vocal": 4.450479507446289,
+            "Instrumental": 5.475315570831299,
+            "Mixing": 4.933901309967041,
+            "Structure": 4.241513729095459
+          },
+          "mean7": 4.773565496717181,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 4,
+          "audio_sha256": "d3d1b9573599df4717ba424a3fe2156eaa861d590d00ca4ef9bf03b3bbc553b7",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.622161388397217,
+            "Arrangement": 5.728762626647949,
+            "Musicality": 5.242204189300537,
+            "Vocal": 6.598823547363281,
+            "Instrumental": 6.551595687866211,
+            "Mixing": 6.194291114807129,
+            "Structure": 5.215653896331787
+          },
+          "mean7": 5.879070350102016,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 5,
+          "audio_sha256": "cab3923c78911f07bb83ff48da209f0cd8c8975b7f19bd634fd17af2847bcabb",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.39925479888916,
+            "Arrangement": 5.505619049072266,
+            "Musicality": 5.140393257141113,
+            "Vocal": 5.8842854499816895,
+            "Instrumental": 5.867029190063477,
+            "Mixing": 5.466664791107178,
+            "Structure": 4.982295036315918
+          },
+          "mean7": 5.463648796081543,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 6,
+          "audio_sha256": "c8b6be039de21a1908af591fe0e9a1e58c12be9412124fb2dfeab5724ba1ae40",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.1089301109313965,
+            "Arrangement": 6.95688533782959,
+            "Musicality": 5.874745845794678,
+            "Vocal": 6.628440856933594,
+            "Instrumental": 7.368310451507568,
+            "Mixing": 6.654549598693848,
+            "Structure": 5.543335914611816
+          },
+          "mean7": 6.44788544518607,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 7,
+          "audio_sha256": "3dc921a31678509ee52fdb9457cd616ee52e8ef29f6718366e8deb423251955f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.803128719329834,
+            "Arrangement": 4.929363250732422,
+            "Musicality": 4.4002532958984375,
+            "Vocal": 5.563299655914307,
+            "Instrumental": 5.539018154144287,
+            "Mixing": 4.855982303619385,
+            "Structure": 4.332907676696777
+          },
+          "mean7": 4.917707579476493,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 8,
+          "audio_sha256": "98573a6e5d3437fb4c73df0fc166ddbca59ae57d5ef4665e3d263876bc61d3f4",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.679614543914795,
+            "Arrangement": 5.486717224121094,
+            "Musicality": 5.269988059997559,
+            "Vocal": 5.781489372253418,
+            "Instrumental": 5.725497245788574,
+            "Mixing": 5.768240928649902,
+            "Structure": 4.861403465270996
+          },
+          "mean7": 5.510421548570905,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 9,
+          "audio_sha256": "12d68901c2835db8b359c190dc0b23ad0c92dd738d1b7873fff7e8577cfdb3bb",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.668574333190918,
+            "Arrangement": 4.954064846038818,
+            "Musicality": 4.669783592224121,
+            "Vocal": 5.198982238769531,
+            "Instrumental": 5.661227226257324,
+            "Mixing": 5.299088001251221,
+            "Structure": 4.013957500457764
+          },
+          "mean7": 4.923668248312814,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 10,
+          "audio_sha256": "f821fa6ff4d10172d6754479c4f9631c7a5931baca89d6280d76ddd7cb3d4199",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.791438579559326,
+            "Arrangement": 5.77910852432251,
+            "Musicality": 5.564667224884033,
+            "Vocal": 6.276749610900879,
+            "Instrumental": 6.494467735290527,
+            "Mixing": 5.530004024505615,
+            "Structure": 5.156310558319092
+          },
+          "mean7": 5.798963751111712,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 11,
+          "audio_sha256": "7526c4b4e6bd044d34cfb7325eba025bb6a65d78a6ab352389b97bc297e50771",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.699048042297363,
+            "Arrangement": 6.223821640014648,
+            "Musicality": 5.281334400177002,
+            "Vocal": 6.101248741149902,
+            "Instrumental": 6.584071636199951,
+            "Mixing": 6.194659233093262,
+            "Structure": 5.096065998077393
+          },
+          "mean7": 5.8828928130013605,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 12,
+          "audio_sha256": "4d787802ab34af638dbf7876b069344975597e2b5b12e1a76e7557f35b501c85",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.566888809204102,
+            "Arrangement": 5.076417446136475,
+            "Musicality": 4.475574970245361,
+            "Vocal": 5.258417129516602,
+            "Instrumental": 5.416914463043213,
+            "Mixing": 4.952088356018066,
+            "Structure": 4.331398010253906
+          },
+          "mean7": 4.8682427406311035,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 13,
+          "audio_sha256": "2535a311cf9c6dae90dac338257791860e2e8842e71cfacf15a6ae14198ac4b8",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.98053503036499,
+            "Arrangement": 5.108081817626953,
+            "Musicality": 4.552255630493164,
+            "Vocal": 4.530534744262695,
+            "Instrumental": 5.185027599334717,
+            "Mixing": 5.018894672393799,
+            "Structure": 4.390972137451172
+          },
+          "mean7": 4.823757375989642,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 14,
+          "audio_sha256": "e0d2ea323a9c2881b3517925c462c8b3082b449320d320e21b6ae84d76930b96",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.952399253845215,
+            "Arrangement": 6.838696479797363,
+            "Musicality": 5.208319187164307,
+            "Vocal": 5.193142414093018,
+            "Instrumental": 6.674352645874023,
+            "Mixing": 5.888283729553223,
+            "Structure": 5.399984836578369
+          },
+          "mean7": 5.879311220986502,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 15,
+          "audio_sha256": "985788ea4b7efc9163a09191e7dfd278bcba02be13d8510da08860bf3ce5f929",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.8780012130737305,
+            "Arrangement": 5.243774890899658,
+            "Musicality": 4.840526103973389,
+            "Vocal": 6.246021270751953,
+            "Instrumental": 5.99418830871582,
+            "Mixing": 5.247870445251465,
+            "Structure": 4.927203178405762
+          },
+          "mean7": 5.3396550587245395,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 16,
+          "audio_sha256": "ffba526d7854ee6894fb923d7e46e7bc28c67c0d0d91bf488a09a2392fd4c8fd",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.639961242675781,
+            "Arrangement": 4.713432312011719,
+            "Musicality": 4.3630475997924805,
+            "Vocal": 5.318361282348633,
+            "Instrumental": 5.474263668060303,
+            "Mixing": 4.448515892028809,
+            "Structure": 4.372488975524902
+          },
+          "mean7": 4.761438710348947,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 17,
+          "audio_sha256": "796e1f2ceef76eef4878a0ba8e2bcf8c1850661a1588292a2ed874fd929a03b6",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.336929798126221,
+            "Arrangement": 4.91264009475708,
+            "Musicality": 4.534054279327393,
+            "Vocal": 5.631819248199463,
+            "Instrumental": 5.591662406921387,
+            "Mixing": 5.041136741638184,
+            "Structure": 4.292191505432129
+          },
+          "mean7": 4.905776296343122,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 18,
+          "audio_sha256": "21ca2f651608d34da306aed12dc67191fe6265586b3f7f3890985fa688a2baa1",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.598639965057373,
+            "Arrangement": 5.685240745544434,
+            "Musicality": 5.132587909698486,
+            "Vocal": 5.753551006317139,
+            "Instrumental": 5.871755599975586,
+            "Mixing": 5.797926425933838,
+            "Structure": 5.103003025054932
+          },
+          "mean7": 5.563243525368827,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 19,
+          "audio_sha256": "a9ee86fa7b7ae57ebea5e03557e304e4edf6798f335e46817aad706a51bf032a",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.468774795532227,
+            "Arrangement": 4.54325532913208,
+            "Musicality": 4.232230186462402,
+            "Vocal": 5.218286037445068,
+            "Instrumental": 4.695290565490723,
+            "Mixing": 4.241069316864014,
+            "Structure": 4.6189985275268555
+          },
+          "mean7": 4.573986394064767,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 20,
+          "audio_sha256": "c383019e3adc5c31a3fa0aed3e08b72a8a775125262028b0a654b578570b3848",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.063394546508789,
+            "Arrangement": 5.682771682739258,
+            "Musicality": 4.593944549560547,
+            "Vocal": 5.042969703674316,
+            "Instrumental": 6.842098236083984,
+            "Mixing": 5.598302841186523,
+            "Structure": 4.8868818283081055
+          },
+          "mean7": 5.387194769723075,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 21,
+          "audio_sha256": "697459f7b8fad3cda24fe214ec4a361ccadc7e6fd8f1626462488ddba82bd9f5",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.028090000152588,
+            "Arrangement": 5.056809425354004,
+            "Musicality": 4.8900370597839355,
+            "Vocal": 5.3996357917785645,
+            "Instrumental": 5.437542915344238,
+            "Mixing": 4.6483893394470215,
+            "Structure": 4.369227886199951
+          },
+          "mean7": 4.9756760597229,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 22,
+          "audio_sha256": "99dba65143cdbb5bb528fe8fac293ae007271f81437431422a1dc4a28ab364b4",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.735641956329346,
+            "Arrangement": 5.010753154754639,
+            "Musicality": 4.665741920471191,
+            "Vocal": 5.012836933135986,
+            "Instrumental": 5.398523330688477,
+            "Mixing": 5.135978698730469,
+            "Structure": 4.120028972625732
+          },
+          "mean7": 4.868500709533691,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 23,
+          "audio_sha256": "3baabdcd5171434d980efdc729776b28709fba37d80272ae09e94e0b668e3054",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.795392036437988,
+            "Arrangement": 5.879297256469727,
+            "Musicality": 4.569687843322754,
+            "Vocal": 5.38326358795166,
+            "Instrumental": 6.081640243530273,
+            "Mixing": 5.598893642425537,
+            "Structure": 4.933965682983398
+          },
+          "mean7": 5.463162899017334,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 24,
+          "audio_sha256": "ff03a50cf770fda52aa19b8b98d0dad91a98b3e48c886b2ee66005a73d3fb848",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.672021865844727,
+            "Arrangement": 5.406217575073242,
+            "Musicality": 4.503769397735596,
+            "Vocal": 4.692076683044434,
+            "Instrumental": 5.8242011070251465,
+            "Mixing": 4.828356742858887,
+            "Structure": 3.8557138442993164
+          },
+          "mean7": 4.826051030840192,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 25,
+          "audio_sha256": "f0b8cf340f7dafd005f777bf3eb333dbad8999d813e5d77d8b9c0a6801779ebc",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.900958061218262,
+            "Arrangement": 5.476010799407959,
+            "Musicality": 4.527944564819336,
+            "Vocal": 4.055550575256348,
+            "Instrumental": 6.298895835876465,
+            "Mixing": 4.876893043518066,
+            "Structure": 4.049953937530518
+          },
+          "mean7": 4.883743831089565,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 26,
+          "audio_sha256": "4c0c1233f00ebb0a3c90cb95aa2a239abf3a62d83c36931eff5fbf1148dd9602",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.4422430992126465,
+            "Arrangement": 5.48310661315918,
+            "Musicality": 5.417501449584961,
+            "Vocal": 5.827322483062744,
+            "Instrumental": 6.204366683959961,
+            "Mixing": 5.251335144042969,
+            "Structure": 4.944557189941406
+          },
+          "mean7": 5.5100618089948386,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 27,
+          "audio_sha256": "5a375584eee9de32a714c618c5846627ca7c3e87ba574a8fddab96472a6c038d",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.039669036865234,
+            "Arrangement": 5.106873035430908,
+            "Musicality": 5.016956806182861,
+            "Vocal": 5.985485076904297,
+            "Instrumental": 5.852113246917725,
+            "Mixing": 5.525759220123291,
+            "Structure": 4.612098693847656
+          },
+          "mean7": 5.305565016610282,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 28,
+          "audio_sha256": "907dd0658cb703611705ef327d945c1c8a697be992d663d725b94523dd99386c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.304707050323486,
+            "Arrangement": 6.4385666847229,
+            "Musicality": 5.819794654846191,
+            "Vocal": 6.863560199737549,
+            "Instrumental": 6.793577194213867,
+            "Mixing": 6.4241132736206055,
+            "Structure": 5.543875694274902
+          },
+          "mean7": 6.312599250248501,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        },
+        {
+          "index": 29,
+          "audio_sha256": "4b8491b65dd5d0a1d16638d86bceea7a225046aeb0f4b3a618da1aff8dba9ac8",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.420556545257568,
+            "Arrangement": 4.879340171813965,
+            "Musicality": 4.42432975769043,
+            "Vocal": 4.242556571960449,
+            "Instrumental": 4.692635536193848,
+            "Mixing": 4.774350166320801,
+            "Structure": 4.119024276733398
+          },
+          "mean7": 4.507541860852923,
+          "source_receipt_sha256": "c7f29280a6d4d6b5d8dcd06eb383633d46035f4105b78d95c5d0a3a56349e354"
+        }
+      ],
+      "means": {
+        "SongBench_mean7": 5.2712971778143025
+      },
+      "receipt_sha256": "0c1fd25f8da22f922755dc24ad696981009700103b27fd616450f82adf382fec"
+    },
+    {
+      "step": 50,
+      "n": 30,
+      "rows": [
+        {
+          "index": 0,
+          "audio_sha256": "bd5ddb273db3a378571c55bbc74324fa4b9cf7e9c3a0ae300bbeed37d500817d",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.548850059509277,
+            "Arrangement": 6.2386884689331055,
+            "Musicality": 5.315981388092041,
+            "Vocal": 6.194756507873535,
+            "Instrumental": 6.7498884201049805,
+            "Mixing": 6.083729267120361,
+            "Structure": 4.825584411621094
+          },
+          "mean7": 5.851068360464914,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 1,
+          "audio_sha256": "85dad98794ebc5971a699d0194e901a1ac2d97800d8edf53473ddff1c45a80d6",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.445765018463135,
+            "Arrangement": 5.960520267486572,
+            "Musicality": 4.655454158782959,
+            "Vocal": 5.131096839904785,
+            "Instrumental": 6.374366760253906,
+            "Mixing": 5.506476402282715,
+            "Structure": 4.499716758728027
+          },
+          "mean7": 5.367628029414585,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 2,
+          "audio_sha256": "e26182dd366fb2ca227d19b64f3244a138dfb8f44b31bef39c06dca5a6f62135",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.541067123413086,
+            "Arrangement": 5.470021724700928,
+            "Musicality": 5.2087507247924805,
+            "Vocal": 5.895070552825928,
+            "Instrumental": 5.938480377197266,
+            "Mixing": 5.800726890563965,
+            "Structure": 5.072883129119873
+          },
+          "mean7": 5.561000074659075,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 3,
+          "audio_sha256": "8f75cb41bc154deba701f2ffbc0521669b8b17429f63185bc0e5e6b1fa504a10",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.081320762634277,
+            "Arrangement": 5.267847537994385,
+            "Musicality": 4.932234764099121,
+            "Vocal": 5.451508522033691,
+            "Instrumental": 5.546229362487793,
+            "Mixing": 5.40725564956665,
+            "Structure": 4.653725624084473
+          },
+          "mean7": 5.191446031842913,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 4,
+          "audio_sha256": "e49dcce8dca53adc134b16604dde49720810a6baca74c9399724964c3a6e57a8",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.468217372894287,
+            "Arrangement": 5.529900074005127,
+            "Musicality": 5.187267780303955,
+            "Vocal": 6.613975524902344,
+            "Instrumental": 6.282182693481445,
+            "Mixing": 6.067009449005127,
+            "Structure": 5.4356770515441895
+          },
+          "mean7": 5.7977471351623535,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 5,
+          "audio_sha256": "d55350b2e03d0fa18a6bf204566c337693b2be1d317dc4a42a0d125faaaeec02",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.783881664276123,
+            "Arrangement": 6.162103176116943,
+            "Musicality": 5.5781145095825195,
+            "Vocal": 6.312643527984619,
+            "Instrumental": 6.47794771194458,
+            "Mixing": 5.971675872802734,
+            "Structure": 4.909694671630859
+          },
+          "mean7": 5.885151590619769,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 6,
+          "audio_sha256": "40c3fde598cd96acfb3804f5a819f9330dc0be99eee2bd811877b9b0e7a1fdbe",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.386472702026367,
+            "Arrangement": 5.783958435058594,
+            "Musicality": 4.973672866821289,
+            "Vocal": 6.096384525299072,
+            "Instrumental": 6.390998363494873,
+            "Mixing": 6.0810723304748535,
+            "Structure": 5.004356861114502
+          },
+          "mean7": 5.673845154898507,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 7,
+          "audio_sha256": "c1248b9016c943d14512f786760d593c10e28373452f77f98673ea2bb4e5228d",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.933652400970459,
+            "Arrangement": 4.764530658721924,
+            "Musicality": 4.930365085601807,
+            "Vocal": 5.523289680480957,
+            "Instrumental": 5.847155570983887,
+            "Mixing": 5.139534950256348,
+            "Structure": 4.514564037322998
+          },
+          "mean7": 5.09329891204834,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 8,
+          "audio_sha256": "a000e114dcbfeb1bc1f127572afd6850ce09c302cede713ff9a0a03990c87538",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.488596439361572,
+            "Arrangement": 5.366804599761963,
+            "Musicality": 4.8128814697265625,
+            "Vocal": 5.145563125610352,
+            "Instrumental": 5.877902507781982,
+            "Mixing": 5.3648200035095215,
+            "Structure": 5.056296348571777
+          },
+          "mean7": 5.30183778490339,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 9,
+          "audio_sha256": "fd602753a3e2812a5c4ad6e020c457d54e247a05af102431ef06e1b7c3c7701a",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.977718830108643,
+            "Arrangement": 5.201465129852295,
+            "Musicality": 4.773709774017334,
+            "Vocal": 4.811715602874756,
+            "Instrumental": 6.083032608032227,
+            "Mixing": 5.4853973388671875,
+            "Structure": 4.525347709655762
+          },
+          "mean7": 5.122626713344029,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 10,
+          "audio_sha256": "0691a30b311dc87c0b9a11835c01cd707f7bff68a6c1e004189d5ce0fea2ee26",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.360499382019043,
+            "Arrangement": 6.226454257965088,
+            "Musicality": 5.080799579620361,
+            "Vocal": 5.761521339416504,
+            "Instrumental": 6.651712417602539,
+            "Mixing": 5.4877800941467285,
+            "Structure": 5.282664775848389
+          },
+          "mean7": 5.693061692374093,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 11,
+          "audio_sha256": "61fe88544c5c9cee029726444dc71262ee2f6332f12862811bbc8e1a5f0423ef",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.965062618255615,
+            "Arrangement": 6.459588527679443,
+            "Musicality": 5.861661911010742,
+            "Vocal": 6.502162933349609,
+            "Instrumental": 6.297818660736084,
+            "Mixing": 6.108314514160156,
+            "Structure": 5.4653000831604
+          },
+          "mean7": 6.094272749764579,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 12,
+          "audio_sha256": "83a3ebc082ee030a58aeed10636a2b19f24f024a845ae75169f4de5c12b2b957",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.5558342933654785,
+            "Arrangement": 6.306122779846191,
+            "Musicality": 5.051314353942871,
+            "Vocal": 5.503950119018555,
+            "Instrumental": 6.456935405731201,
+            "Mixing": 5.6779255867004395,
+            "Structure": 4.935613632202148
+          },
+          "mean7": 5.641099452972412,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 13,
+          "audio_sha256": "d1cfec143d8b6f0b32a916869bf221fe2fe7b61a43e01c949c652f1734319a9c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 3.976346492767334,
+            "Arrangement": 4.089632034301758,
+            "Musicality": 3.537686824798584,
+            "Vocal": 3.7083518505096436,
+            "Instrumental": 4.105528354644775,
+            "Mixing": 4.199801445007324,
+            "Structure": 3.580559730529785
+          },
+          "mean7": 3.885415247508458,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 14,
+          "audio_sha256": "67c2f5d455f1e09736a303a8478ff22596077ff4fa940c25a28d17851997d375",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.433507919311523,
+            "Arrangement": 5.3732805252075195,
+            "Musicality": 4.198857307434082,
+            "Vocal": 3.50262451171875,
+            "Instrumental": 5.279741287231445,
+            "Mixing": 4.652976989746094,
+            "Structure": 3.504173755645752
+          },
+          "mean7": 4.42073747089931,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 15,
+          "audio_sha256": "92f125fe969895cf888e5d714ea6d0e85181bbf876946ca67a9e2f0fcd050527",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.5920186042785645,
+            "Arrangement": 5.686558246612549,
+            "Musicality": 5.314139366149902,
+            "Vocal": 6.060928821563721,
+            "Instrumental": 5.788042068481445,
+            "Mixing": 5.6711931228637695,
+            "Structure": 4.9849114418029785
+          },
+          "mean7": 5.585398810250418,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 16,
+          "audio_sha256": "abc1b3babd18ecf41e9d14b05fa24a00602f959a94a703ddbb01dbb6ea43a092",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.576287746429443,
+            "Arrangement": 4.689671039581299,
+            "Musicality": 4.241747856140137,
+            "Vocal": 4.917640209197998,
+            "Instrumental": 5.514532566070557,
+            "Mixing": 4.507397651672363,
+            "Structure": 4.309568405151367
+          },
+          "mean7": 4.679549353463309,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 17,
+          "audio_sha256": "b6c1f96ad9bf389ece1699dc9204a2cdf72c8d7f9d4ed198f9f6011c7339d40f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.609391212463379,
+            "Arrangement": 6.247938632965088,
+            "Musicality": 5.159058094024658,
+            "Vocal": 5.4102044105529785,
+            "Instrumental": 6.230401515960693,
+            "Mixing": 5.471858024597168,
+            "Structure": 5.376171112060547
+          },
+          "mean7": 5.6435747146606445,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 18,
+          "audio_sha256": "b8891524295c51a12bce93a64606ced61724b2db61cd0a09a54f558d408612e4",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.54280948638916,
+            "Arrangement": 5.70676851272583,
+            "Musicality": 5.301839828491211,
+            "Vocal": 5.480413913726807,
+            "Instrumental": 5.8290114402771,
+            "Mixing": 5.511124610900879,
+            "Structure": 5.0223846435546875
+          },
+          "mean7": 5.484907490866525,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 19,
+          "audio_sha256": "c3cde256270671c01e8a408b7e20b636b2459f6def3e266d3112d89958d6b1c4",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.82288122177124,
+            "Arrangement": 6.405187606811523,
+            "Musicality": 5.928848743438721,
+            "Vocal": 6.748624801635742,
+            "Instrumental": 6.685986518859863,
+            "Mixing": 6.600151538848877,
+            "Structure": 5.73651123046875
+          },
+          "mean7": 6.275455951690674,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 20,
+          "audio_sha256": "29da32c2f866e3d780bc2fcbbc56e8b76b0798d9518f3fa5a63a87cd978d6930",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.128827095031738,
+            "Arrangement": 6.01161003112793,
+            "Musicality": 4.626002788543701,
+            "Vocal": 3.9410476684570312,
+            "Instrumental": 6.368209362030029,
+            "Mixing": 4.829815864562988,
+            "Structure": 4.418038845062256
+          },
+          "mean7": 5.046221664973667,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 21,
+          "audio_sha256": "5343a389e0091653c4a1a8f1cbdb3415d730af7af715448caf0c4a2b44a34627",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.209888935089111,
+            "Arrangement": 5.4111738204956055,
+            "Musicality": 4.758323669433594,
+            "Vocal": 5.952936172485352,
+            "Instrumental": 6.090092658996582,
+            "Mixing": 5.153176307678223,
+            "Structure": 4.652019500732422
+          },
+          "mean7": 5.318230152130127,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 22,
+          "audio_sha256": "f8cba0fc13d7e2eeca9200526b977533fe94b1ff249e4960cadb9854dc0fd71c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.710740089416504,
+            "Arrangement": 6.100928783416748,
+            "Musicality": 5.394982814788818,
+            "Vocal": 6.157279968261719,
+            "Instrumental": 6.102929592132568,
+            "Mixing": 5.771054744720459,
+            "Structure": 5.331872463226318
+          },
+          "mean7": 5.795684065137591,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 23,
+          "audio_sha256": "01790c82d4bb6db2a51190abcb91d4307d7ba776393bc37f6e8aa12fb750304a",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.7229766845703125,
+            "Arrangement": 6.191946506500244,
+            "Musicality": 4.887467861175537,
+            "Vocal": 4.874040126800537,
+            "Instrumental": 6.103883743286133,
+            "Mixing": 5.19659948348999,
+            "Structure": 5.048283100128174
+          },
+          "mean7": 5.432171072278704,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 24,
+          "audio_sha256": "2c4b736f1bd7dd7e4017cc6a31ed9384981f8870ae8e2934bb40120229cf61c2",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.671917915344238,
+            "Arrangement": 5.569302082061768,
+            "Musicality": 4.383459091186523,
+            "Vocal": 4.4206390380859375,
+            "Instrumental": 5.995083332061768,
+            "Mixing": 4.963358402252197,
+            "Structure": 4.144527912139893
+          },
+          "mean7": 4.878326824733189,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 25,
+          "audio_sha256": "90cfcc86dc370e22b5451250ba311574ab453d3171f7a6701fb4a0378e8e8cce",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.221305847167969,
+            "Arrangement": 5.72896671295166,
+            "Musicality": 4.482177734375,
+            "Vocal": 5.070333003997803,
+            "Instrumental": 5.995660305023193,
+            "Mixing": 4.882009029388428,
+            "Structure": 4.545417308807373
+          },
+          "mean7": 5.132267134530204,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 26,
+          "audio_sha256": "ffeb2bdfb629ba157e635bc1510deaf81c7976b3f3a6ca356c8cb103b7752c52",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.965021133422852,
+            "Arrangement": 5.520884990692139,
+            "Musicality": 4.632156848907471,
+            "Vocal": 5.317834854125977,
+            "Instrumental": 5.858884811401367,
+            "Mixing": 5.555820465087891,
+            "Structure": 4.334018230438232
+          },
+          "mean7": 5.169231619153704,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 27,
+          "audio_sha256": "838302dcb6db39ffc1caf7a20cd242995a22b2429a1689b02bb7c68cadf4977d",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.972192287445068,
+            "Arrangement": 4.733386993408203,
+            "Musicality": 4.406755447387695,
+            "Vocal": 5.088743209838867,
+            "Instrumental": 5.408892631530762,
+            "Mixing": 5.487059593200684,
+            "Structure": 4.616265296936035
+          },
+          "mean7": 4.9590422085353305,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 28,
+          "audio_sha256": "9a5df495e5d2391fd3e0111ad49372238ca329cbf54a4c07607f480a664a1d6b",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.247777462005615,
+            "Arrangement": 6.087881565093994,
+            "Musicality": 5.9775872230529785,
+            "Vocal": 6.452086925506592,
+            "Instrumental": 6.454068183898926,
+            "Mixing": 6.332405090332031,
+            "Structure": 5.451077938079834
+          },
+          "mean7": 6.143269198281424,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        },
+        {
+          "index": 29,
+          "audio_sha256": "38cb3fbcda17d21e5aa3c295e43726beab1cb3684d6567c727fd379951de2d05",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.709506511688232,
+            "Arrangement": 5.048880100250244,
+            "Musicality": 4.664311408996582,
+            "Vocal": 5.225650787353516,
+            "Instrumental": 4.797914505004883,
+            "Mixing": 4.983846187591553,
+            "Structure": 4.171882152557373
+          },
+          "mean7": 4.80028452192034,
+          "source_receipt_sha256": "c1f04e2c51dbd5d4a9a81ccce27be00000cb7b445a9bb69d33ec460e01155bde"
+        }
+      ],
+      "means": {
+        "SongBench_mean7": 5.364128372782753
+      },
+      "receipt_sha256": "a12bdf77d626066f82585678b2e62bf014be1eede97ed80daacfdd859bd9bdca"
+    },
+    {
+      "step": 100,
+      "n": 30,
+      "rows": [
+        {
+          "index": 0,
+          "audio_sha256": "47df244e43e6436765f77026aa50724660ee2eab819f131ccc6337fb30ea0554",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.4771575927734375,
+            "Arrangement": 6.021380424499512,
+            "Musicality": 5.187762260437012,
+            "Vocal": 5.743671417236328,
+            "Instrumental": 6.040832042694092,
+            "Mixing": 6.07063627243042,
+            "Structure": 5.2152419090271
+          },
+          "mean7": 5.679525988442557,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 1,
+          "audio_sha256": "f30aa157eafe5140d8aac0ed6e285d2f731c214c41d38386248b71d574751139",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.772430419921875,
+            "Arrangement": 5.37086820602417,
+            "Musicality": 4.604188919067383,
+            "Vocal": 4.582819938659668,
+            "Instrumental": 5.8336334228515625,
+            "Mixing": 4.673696041107178,
+            "Structure": 4.122474193572998
+          },
+          "mean7": 4.851444448743548,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 2,
+          "audio_sha256": "d266e0e75975f23a3d6e0d6ea97a7cc7c95eea1775913ec408b981ca2f3560ed",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.530886650085449,
+            "Arrangement": 5.554078102111816,
+            "Musicality": 5.433823108673096,
+            "Vocal": 5.607142448425293,
+            "Instrumental": 6.190274715423584,
+            "Mixing": 5.961641311645508,
+            "Structure": 4.763123989105225
+          },
+          "mean7": 5.577281475067139,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 3,
+          "audio_sha256": "5acda19a811c9efc641264765de6bd112897a2ab001f9a73c3dda82e84933b44",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.017364025115967,
+            "Arrangement": 5.09824275970459,
+            "Musicality": 4.7696332931518555,
+            "Vocal": 5.178360939025879,
+            "Instrumental": 5.493285179138184,
+            "Mixing": 5.271540641784668,
+            "Structure": 5.101439952850342
+          },
+          "mean7": 5.132838112967355,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 4,
+          "audio_sha256": "55e3620fd26952fdbece4e75f4ae32314c4b17166180f525ec0d48d8982b559f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.392223834991455,
+            "Arrangement": 5.659278869628906,
+            "Musicality": 5.284327983856201,
+            "Vocal": 6.664923667907715,
+            "Instrumental": 6.514871597290039,
+            "Mixing": 5.966710567474365,
+            "Structure": 5.058923244476318
+          },
+          "mean7": 5.791608537946429,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 5,
+          "audio_sha256": "0321a00909ef20ad768feae204acaec38b394bccf8da7bfa64bde93aa76872a9",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.7856364250183105,
+            "Arrangement": 6.209576606750488,
+            "Musicality": 5.6352667808532715,
+            "Vocal": 6.290285110473633,
+            "Instrumental": 5.868618011474609,
+            "Mixing": 6.20933723449707,
+            "Structure": 5.459076404571533
+          },
+          "mean7": 5.922542367662702,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 6,
+          "audio_sha256": "bf9fe4b4c753434d1664bbad478f8ae6c87d0f1b80e7fa86aee71d9e3818e6ce",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.873216152191162,
+            "Arrangement": 5.892210006713867,
+            "Musicality": 5.629769325256348,
+            "Vocal": 5.973896026611328,
+            "Instrumental": 6.5288405418396,
+            "Mixing": 5.762983798980713,
+            "Structure": 5.1963629722595215
+          },
+          "mean7": 5.83675411769322,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 7,
+          "audio_sha256": "d8b8c41105429a28c18325e91f689f990b50b74623dcf562e425357b56663e19",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.843074798583984,
+            "Arrangement": 5.005710601806641,
+            "Musicality": 4.473484992980957,
+            "Vocal": 5.930262088775635,
+            "Instrumental": 5.595982074737549,
+            "Mixing": 5.3026123046875,
+            "Structure": 4.453224182128906
+          },
+          "mean7": 5.086335863385882,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 8,
+          "audio_sha256": "2ef07fb0c2812911c7d40f613062fbf34671378e0e7bfe04f34f748855a670fe",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.4124298095703125,
+            "Arrangement": 4.8606109619140625,
+            "Musicality": 5.053603649139404,
+            "Vocal": 5.8193793296813965,
+            "Instrumental": 5.714412212371826,
+            "Mixing": 5.000176429748535,
+            "Structure": 4.89255952835083
+          },
+          "mean7": 5.250453131539481,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 9,
+          "audio_sha256": "a58d77d016cfa1c92d618b3003ade193070b8abf583b30ba00e637ed25077668",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.628273963928223,
+            "Arrangement": 5.557561874389648,
+            "Musicality": 5.091317653656006,
+            "Vocal": 5.253932952880859,
+            "Instrumental": 5.941378116607666,
+            "Mixing": 5.72189474105835,
+            "Structure": 5.205638885498047
+          },
+          "mean7": 5.485714026859829,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 10,
+          "audio_sha256": "ad76640d8e998f0eaade3d162841bf1782d2da5ec58648f39b7767c06fa260f5",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.651482582092285,
+            "Arrangement": 5.567664623260498,
+            "Musicality": 5.111819744110107,
+            "Vocal": 6.169353008270264,
+            "Instrumental": 6.085122585296631,
+            "Mixing": 5.855745792388916,
+            "Structure": 5.070786952972412
+          },
+          "mean7": 5.644567898341587,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 11,
+          "audio_sha256": "f485bb97c974b830e605f12d5cebf165ab2411e912a82f52be59e08185822692",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.056236267089844,
+            "Arrangement": 5.832184314727783,
+            "Musicality": 5.153407573699951,
+            "Vocal": 6.045891761779785,
+            "Instrumental": 6.131072998046875,
+            "Mixing": 5.630448818206787,
+            "Structure": 4.985276222229004
+          },
+          "mean7": 5.69064542225429,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 12,
+          "audio_sha256": "9134278e393fcf8954c3926290487c217820c7de2e2dd2dc60432f2c8ab5e983",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.480716705322266,
+            "Arrangement": 5.995953559875488,
+            "Musicality": 5.0079851150512695,
+            "Vocal": 5.270413398742676,
+            "Instrumental": 6.041941165924072,
+            "Mixing": 5.790131568908691,
+            "Structure": 4.824507236480713
+          },
+          "mean7": 5.487378392900739,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 13,
+          "audio_sha256": "e9793ba049dd9f71efd6afc8ed63c20e270f4446c650cff6922fbe68d27a537c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.888035774230957,
+            "Arrangement": 4.9915924072265625,
+            "Musicality": 4.847446441650391,
+            "Vocal": 4.729148864746094,
+            "Instrumental": 5.408002853393555,
+            "Mixing": 5.087343692779541,
+            "Structure": 4.485014915466309
+          },
+          "mean7": 4.919512135641916,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 14,
+          "audio_sha256": "9fadcd1dcbc7586bdae86f450e2f34d47b61460e7ce085e0f40f01fc4cdf449c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.066614627838135,
+            "Arrangement": 6.736288070678711,
+            "Musicality": 5.365074157714844,
+            "Vocal": 5.252695560455322,
+            "Instrumental": 6.625951766967773,
+            "Mixing": 5.710998058319092,
+            "Structure": 5.68363618850708
+          },
+          "mean7": 5.9201797757829935,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 15,
+          "audio_sha256": "6c3e2544342dff0fda8c8482d7effa4f9baa2b931f3dd913b5005917c2db67b3",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.112289905548096,
+            "Arrangement": 5.303433418273926,
+            "Musicality": 5.03883171081543,
+            "Vocal": 6.081601142883301,
+            "Instrumental": 5.854090213775635,
+            "Mixing": 5.557632923126221,
+            "Structure": 4.937221527099609
+          },
+          "mean7": 5.412157263074603,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 16,
+          "audio_sha256": "4cb3a6ff41a38b2dc3471de17ce3b4cbd57d62c435b53a71768f27125b21a88e",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.126234531402588,
+            "Arrangement": 5.309120178222656,
+            "Musicality": 4.58018159866333,
+            "Vocal": 5.418787002563477,
+            "Instrumental": 6.167431354522705,
+            "Mixing": 5.435705184936523,
+            "Structure": 4.63701057434082
+          },
+          "mean7": 5.239210060664585,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 17,
+          "audio_sha256": "b0968242cf5997f0c8b66af32a88a12f079e6a6125ada079f43295379e3bac7c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.338368892669678,
+            "Arrangement": 6.510995388031006,
+            "Musicality": 4.747315406799316,
+            "Vocal": 5.538463115692139,
+            "Instrumental": 6.427296161651611,
+            "Mixing": 5.7978339195251465,
+            "Structure": 5.028413772583008
+          },
+          "mean7": 5.626955236707415,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 18,
+          "audio_sha256": "360788db969b1fa8575a5b1c0de0590248f2965f1e265630374b836511c3e864",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.5957536697387695,
+            "Arrangement": 6.249760150909424,
+            "Musicality": 4.908919811248779,
+            "Vocal": 5.168378829956055,
+            "Instrumental": 6.044652938842773,
+            "Mixing": 5.999541282653809,
+            "Structure": 5.031856536865234
+          },
+          "mean7": 5.571266174316406,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 19,
+          "audio_sha256": "970657c4614163fcb9eb66d2dc56e239b3ef1c10d993d64dc1b0e71dfa848c9f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.03867769241333,
+            "Arrangement": 6.035327911376953,
+            "Musicality": 5.079442501068115,
+            "Vocal": 6.457549571990967,
+            "Instrumental": 7.132623672485352,
+            "Mixing": 6.182065963745117,
+            "Structure": 5.301899433135986
+          },
+          "mean7": 5.889655249459403,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 20,
+          "audio_sha256": "dd846e252df657c862b15b292df843550f3de38fe043e896f982a31f3be8ade6",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.491960048675537,
+            "Arrangement": 6.6150689125061035,
+            "Musicality": 4.989253044128418,
+            "Vocal": 4.493439197540283,
+            "Instrumental": 6.661462783813477,
+            "Mixing": 5.815168857574463,
+            "Structure": 5.302044868469238
+          },
+          "mean7": 5.624056816101074,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 21,
+          "audio_sha256": "aff7cc0f5ae9a3972ebb79e0679cdf82e02e78479e3e343378a71d25b7338bd2",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.522238731384277,
+            "Arrangement": 5.09567403793335,
+            "Musicality": 4.2954511642456055,
+            "Vocal": 5.208193302154541,
+            "Instrumental": 5.563197612762451,
+            "Mixing": 4.633266448974609,
+            "Structure": 3.9015614986419678
+          },
+          "mean7": 4.745654685156686,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 22,
+          "audio_sha256": "e95b6865640f19bee275b074f6cb8abdf4a5bdc8610f73781184d4d4d2b14074",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.889467239379883,
+            "Arrangement": 5.696694374084473,
+            "Musicality": 5.199257850646973,
+            "Vocal": 5.820995330810547,
+            "Instrumental": 5.883822917938232,
+            "Mixing": 5.6295695304870605,
+            "Structure": 4.9075775146484375
+          },
+          "mean7": 5.5753406797136575,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 23,
+          "audio_sha256": "8b3803dd4e9f72be742421e5c82a1d144fdddceb032ac29e475ca31877ab32fc",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.184634208679199,
+            "Arrangement": 6.024077892303467,
+            "Musicality": 4.718764305114746,
+            "Vocal": 4.988373279571533,
+            "Instrumental": 6.073173522949219,
+            "Mixing": 5.273475170135498,
+            "Structure": 4.874670028686523
+          },
+          "mean7": 5.305309772491455,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 24,
+          "audio_sha256": "14f744778b60ef5056fa0ff7bb8047c00c4cfe806d1eb7fdc77303938639ebd9",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.2867817878723145,
+            "Arrangement": 5.524231433868408,
+            "Musicality": 4.698030948638916,
+            "Vocal": 5.52129602432251,
+            "Instrumental": 5.824573040008545,
+            "Mixing": 5.403797626495361,
+            "Structure": 4.99233865737915
+          },
+          "mean7": 5.321578502655029,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 25,
+          "audio_sha256": "c3b9ad086655b62a8b5acfbdf6362e7c745f3c8ef0033a91fda3c96d6c8d5b2f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.2450337409973145,
+            "Arrangement": 5.095542907714844,
+            "Musicality": 4.300219535827637,
+            "Vocal": 5.0968194007873535,
+            "Instrumental": 6.255337715148926,
+            "Mixing": 5.476611137390137,
+            "Structure": 4.81815767288208
+          },
+          "mean7": 5.18396030153547,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 26,
+          "audio_sha256": "acbc8e8db26f51169108ed5300b52260d2f1d691f26df71f48617278c8e16500",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.863774299621582,
+            "Arrangement": 4.734968185424805,
+            "Musicality": 4.746674060821533,
+            "Vocal": 5.5394182205200195,
+            "Instrumental": 6.037354469299316,
+            "Mixing": 5.304292678833008,
+            "Structure": 4.565235137939453
+          },
+          "mean7": 5.113102436065674,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 27,
+          "audio_sha256": "1c297117190f5c9f80131855d602ca432b0e5216fa3c3149f3ea32651649ef8d",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.770174026489258,
+            "Arrangement": 4.749032020568848,
+            "Musicality": 4.767779350280762,
+            "Vocal": 5.926857948303223,
+            "Instrumental": 5.645701885223389,
+            "Mixing": 5.512927055358887,
+            "Structure": 4.706796169281006
+          },
+          "mean7": 5.154181207929339,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 28,
+          "audio_sha256": "a870dddf4b7e62f2793a18cef76e44f4bce03208a833c1e66fd885009bfb1a97",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.089738368988037,
+            "Arrangement": 6.184270858764648,
+            "Musicality": 5.991220951080322,
+            "Vocal": 6.7992095947265625,
+            "Instrumental": 6.531574249267578,
+            "Mixing": 6.422554969787598,
+            "Structure": 5.078520774841309
+          },
+          "mean7": 6.156727109636579,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        },
+        {
+          "index": 29,
+          "audio_sha256": "9cba65366197baff34137a761039da4ee7c383632fe78e73ea316d62c608979b",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.114034652709961,
+            "Arrangement": 5.032702922821045,
+            "Musicality": 5.032533645629883,
+            "Vocal": 5.159057140350342,
+            "Instrumental": 5.352174282073975,
+            "Mixing": 5.380831718444824,
+            "Structure": 4.4866156578063965
+          },
+          "mean7": 5.079707145690918,
+          "source_receipt_sha256": "81775e59d53b639555603c4b8da395568ba99ef6eb7aaa3fab2c402d0c81776c"
+        }
+      ],
+      "means": {
+        "SongBench_mean7": 5.442521477880932
+      },
+      "receipt_sha256": "551a59fed9a6ae76b14297fabca2c6f771bab09fae3584177f51da3a25970d22"
+    },
+    {
+      "step": 270,
+      "n": 30,
+      "rows": [
+        {
+          "index": 0,
+          "audio_sha256": "83afafdcfd15cc66eb0f15f29ffbdc6c0fe40031d677490be0200f9f6f239fd5",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.145294189453125,
+            "Arrangement": 6.363134384155273,
+            "Musicality": 5.854344367980957,
+            "Vocal": 6.498497009277344,
+            "Instrumental": 7.046913146972656,
+            "Mixing": 6.709957122802734,
+            "Structure": 5.149062156677246
+          },
+          "mean7": 6.252457482474191,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 1,
+          "audio_sha256": "1ad494dff6e1cd8ef6d87ca531d3710ce9d5811c3eea9444c5a4c469e737b74b",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.683957099914551,
+            "Arrangement": 5.775326728820801,
+            "Musicality": 4.932417392730713,
+            "Vocal": 4.898775577545166,
+            "Instrumental": 6.485870838165283,
+            "Mixing": 4.954516410827637,
+            "Structure": 4.287319660186768
+          },
+          "mean7": 5.145454815455845,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 2,
+          "audio_sha256": "cb85d2b375cac315826894cecc0fa1ab638d271c629f31ec19796c4e3ebb6a44",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.926412582397461,
+            "Arrangement": 6.34738302230835,
+            "Musicality": 5.944076061248779,
+            "Vocal": 6.756866455078125,
+            "Instrumental": 6.748660564422607,
+            "Mixing": 6.379363059997559,
+            "Structure": 5.038855075836182
+          },
+          "mean7": 6.163088117327009,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 3,
+          "audio_sha256": "060e31424bc5232c25d2c1fc78ba0f5090d74f8ad4746a829137fc4ffa10b487",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.144705295562744,
+            "Arrangement": 5.869464874267578,
+            "Musicality": 5.03895902633667,
+            "Vocal": 5.769114017486572,
+            "Instrumental": 5.806674957275391,
+            "Mixing": 5.47867488861084,
+            "Structure": 4.622482776641846
+          },
+          "mean7": 5.390010833740234,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 4,
+          "audio_sha256": "e8373f092351f46c1a160c0bea6e7f5262f02e42d16e76b24b9dd59bd3af96bf",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.300469875335693,
+            "Arrangement": 4.940797328948975,
+            "Musicality": 5.0542778968811035,
+            "Vocal": 6.297833442687988,
+            "Instrumental": 5.946028709411621,
+            "Mixing": 5.520145893096924,
+            "Structure": 4.595412254333496
+          },
+          "mean7": 5.379280771527972,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 5,
+          "audio_sha256": "bda545f6ddcb6f994bbae59b4b8ae5e352d0393907cc626f248873a54ec86fa5",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.023645877838135,
+            "Arrangement": 6.6824798583984375,
+            "Musicality": 5.531167984008789,
+            "Vocal": 5.9398088455200195,
+            "Instrumental": 6.59719705581665,
+            "Mixing": 6.1046905517578125,
+            "Structure": 5.662604808807373
+          },
+          "mean7": 6.077370711735317,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 6,
+          "audio_sha256": "28d9ba6ff4ca825b6650a213c6212dcead8e41559db67c314d258c8ad86d3d96",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.3694939613342285,
+            "Arrangement": 5.746687889099121,
+            "Musicality": 5.157932281494141,
+            "Vocal": 6.281975269317627,
+            "Instrumental": 6.761693954467773,
+            "Mixing": 6.0410075187683105,
+            "Structure": 5.246897220611572
+          },
+          "mean7": 5.8008125850132535,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 7,
+          "audio_sha256": "5d1f52c3344b2b8da7fdac09b1aaffb24fe8a77fb98238e9dea93e2a22e7132a",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.62579870223999,
+            "Arrangement": 5.588088035583496,
+            "Musicality": 5.558631896972656,
+            "Vocal": 6.384639739990234,
+            "Instrumental": 6.215996265411377,
+            "Mixing": 5.503710746765137,
+            "Structure": 5.277932643890381
+          },
+          "mean7": 5.736399718693325,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 8,
+          "audio_sha256": "5bf89df05b7f19d8dfd930bc18fce23c084abb63aba520d6e8a71f09829131b0",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.572134494781494,
+            "Arrangement": 4.948872089385986,
+            "Musicality": 5.088898181915283,
+            "Vocal": 6.507478713989258,
+            "Instrumental": 5.610082149505615,
+            "Mixing": 5.6707682609558105,
+            "Structure": 4.995035648345947
+          },
+          "mean7": 5.484752791268485,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 9,
+          "audio_sha256": "f7d19e6c57b3d4ef83e2af1491fc2ae105b8ce1d69a218787140c456181ff627",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.546149253845215,
+            "Arrangement": 5.284494400024414,
+            "Musicality": 5.085355281829834,
+            "Vocal": 6.037379741668701,
+            "Instrumental": 5.947882652282715,
+            "Mixing": 5.516000747680664,
+            "Structure": 5.306053638458252
+          },
+          "mean7": 5.5319022451128275,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 10,
+          "audio_sha256": "11f560b3ed61a535c0d0b7be4ce31a33a7d9eff6c4ab16cb6fb37d391962f7a5",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.308579444885254,
+            "Arrangement": 5.55234956741333,
+            "Musicality": 4.591022968292236,
+            "Vocal": 5.906182289123535,
+            "Instrumental": 5.43977165222168,
+            "Mixing": 5.486741542816162,
+            "Structure": 4.84609842300415
+          },
+          "mean7": 5.304392269679478,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 11,
+          "audio_sha256": "b8e5a6ac4e21515035f156373292499db057df5752d857b7695e5b222aea355e",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.246119976043701,
+            "Arrangement": 5.425776958465576,
+            "Musicality": 5.0884294509887695,
+            "Vocal": 5.845735549926758,
+            "Instrumental": 6.390008926391602,
+            "Mixing": 5.46309757232666,
+            "Structure": 4.578105926513672
+          },
+          "mean7": 5.433896337236677,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 12,
+          "audio_sha256": "2b7440e8c13faa124f9690e1ebac7b1442132a058c4577ca7d9b06b9adcb1631",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.969839572906494,
+            "Arrangement": 5.641206741333008,
+            "Musicality": 5.070404052734375,
+            "Vocal": 6.112726211547852,
+            "Instrumental": 6.417262554168701,
+            "Mixing": 6.11027717590332,
+            "Structure": 5.167845726013184
+          },
+          "mean7": 5.784223147800991,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 13,
+          "audio_sha256": "9f7892561ba818efbcdcda344b2a61ca8f650e4859774128b7740ec028bba9dd",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.216315269470215,
+            "Arrangement": 4.413843154907227,
+            "Musicality": 3.7921645641326904,
+            "Vocal": 3.942997455596924,
+            "Instrumental": 4.750435829162598,
+            "Mixing": 4.193690299987793,
+            "Structure": 3.594102382659912
+          },
+          "mean7": 4.129078422273908,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 14,
+          "audio_sha256": "2d9854aa60fbcb17d2b50067b0a948dd356962923e3ca210fc808e4a8e04065a",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.281771183013916,
+            "Arrangement": 6.783764839172363,
+            "Musicality": 5.292947292327881,
+            "Vocal": 4.823458194732666,
+            "Instrumental": 6.85193395614624,
+            "Mixing": 5.8915114402771,
+            "Structure": 5.531262397766113
+          },
+          "mean7": 5.922378471919468,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 15,
+          "audio_sha256": "ab126948a2f73b7ab84fdbc4778938f7e51f740ebc61694ebe9661fc9c3c2a79",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.9272541999816895,
+            "Arrangement": 6.075772762298584,
+            "Musicality": 5.329226970672607,
+            "Vocal": 6.1967034339904785,
+            "Instrumental": 6.6509294509887695,
+            "Mixing": 6.165441513061523,
+            "Structure": 5.628365993499756
+          },
+          "mean7": 5.996242046356201,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 16,
+          "audio_sha256": "1f446a5d14e4cf9e6781d9caa474f011522bc584742c5db3a1cc7bb0f8337161",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.11973237991333,
+            "Arrangement": 5.105563640594482,
+            "Musicality": 4.901657581329346,
+            "Vocal": 6.02092170715332,
+            "Instrumental": 6.14543342590332,
+            "Mixing": 4.9771833419799805,
+            "Structure": 4.981403350830078
+          },
+          "mean7": 5.321699346814837,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 17,
+          "audio_sha256": "2ebca5f100365b0b4ccd00b4e01494c3ce87f25c2beda50f5d44de78f669fec9",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.6886982917785645,
+            "Arrangement": 6.547514915466309,
+            "Musicality": 5.127503395080566,
+            "Vocal": 5.43010950088501,
+            "Instrumental": 6.331694602966309,
+            "Mixing": 6.080239772796631,
+            "Structure": 5.26214075088501
+          },
+          "mean7": 5.7811287471226285,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 18,
+          "audio_sha256": "1afe2ebd93c84caa8475a68c7df4a2b1a6a25c5cfea1a7f629bf61c2f21cfdf3",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.721723556518555,
+            "Arrangement": 5.446938991546631,
+            "Musicality": 5.393880844116211,
+            "Vocal": 6.442459583282471,
+            "Instrumental": 5.906405448913574,
+            "Mixing": 5.489133834838867,
+            "Structure": 5.016000747680664
+          },
+          "mean7": 5.630934715270996,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 19,
+          "audio_sha256": "9d572e51bee17e73af74d896a519fd26ec43b076232f74662f453614419d841c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.229628562927246,
+            "Arrangement": 6.368849754333496,
+            "Musicality": 5.498380661010742,
+            "Vocal": 5.958621978759766,
+            "Instrumental": 6.536892890930176,
+            "Mixing": 6.026575088500977,
+            "Structure": 5.545117378234863
+          },
+          "mean7": 6.023438044956753,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 20,
+          "audio_sha256": "3785c13e6b313ae106ee0b614061c44fe7847a3a42874234258db89895a5fa34",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.552724361419678,
+            "Arrangement": 6.32235050201416,
+            "Musicality": 5.275790214538574,
+            "Vocal": 5.244061470031738,
+            "Instrumental": 6.572881698608398,
+            "Mixing": 5.582220077514648,
+            "Structure": 4.989102840423584
+          },
+          "mean7": 5.64844730922154,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 21,
+          "audio_sha256": "288707c06e5ee3a1bcff6e40b6b8063bce7bd1da9a1935ae663573a17b883c4f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.240418434143066,
+            "Arrangement": 5.31161642074585,
+            "Musicality": 4.840340614318848,
+            "Vocal": 5.6506218910217285,
+            "Instrumental": 5.5484514236450195,
+            "Mixing": 5.613487243652344,
+            "Structure": 4.650012016296387
+          },
+          "mean7": 5.264992577689035,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 22,
+          "audio_sha256": "13d8d8e8ec3d4f09562cf355004658fcb20ff2fcb4cd92e0f5cbcd0a9922e51f",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.0913567543029785,
+            "Arrangement": 6.399946689605713,
+            "Musicality": 5.6048712730407715,
+            "Vocal": 5.3420844078063965,
+            "Instrumental": 6.073602199554443,
+            "Mixing": 6.369370937347412,
+            "Structure": 5.087922096252441
+          },
+          "mean7": 5.852736336844308,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 23,
+          "audio_sha256": "1ab1bad9e548ac0723b23da7628730d951b550ec136400e12658d978620041ed",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.729929447174072,
+            "Arrangement": 6.494213581085205,
+            "Musicality": 5.460383415222168,
+            "Vocal": 6.0449113845825195,
+            "Instrumental": 6.629241943359375,
+            "Mixing": 5.9659013748168945,
+            "Structure": 5.537320613861084
+          },
+          "mean7": 5.980271680014474,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 24,
+          "audio_sha256": "9f69c7a6234da25b9ea7628f2a3ff3231ca087bcc7dbd89cc7c008cd8284b7ed",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.345694541931152,
+            "Arrangement": 5.608636856079102,
+            "Musicality": 4.757575511932373,
+            "Vocal": 5.412464618682861,
+            "Instrumental": 5.746608734130859,
+            "Mixing": 5.94265604019165,
+            "Structure": 5.530971527099609
+          },
+          "mean7": 5.477801118578229,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 25,
+          "audio_sha256": "55bd3c4fcc64c904ac09a332af8e998c46254e9491c21af4080ad9f240a3d21e",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.280640602111816,
+            "Arrangement": 5.566627502441406,
+            "Musicality": 4.862430095672607,
+            "Vocal": 4.920823574066162,
+            "Instrumental": 6.010525703430176,
+            "Mixing": 5.152419567108154,
+            "Structure": 4.8131818771362305
+          },
+          "mean7": 5.22952127456665,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 26,
+          "audio_sha256": "a7c4b659a5c7ed29ed7134fa8aee03fdc36d20be57640fd025328906b52a0f96",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.929550647735596,
+            "Arrangement": 4.589874267578125,
+            "Musicality": 4.78605842590332,
+            "Vocal": 5.504124164581299,
+            "Instrumental": 5.717929363250732,
+            "Mixing": 4.94417667388916,
+            "Structure": 4.5189409255981445
+          },
+          "mean7": 4.998664924076626,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 27,
+          "audio_sha256": "483c18365652b8b8a4f598f8e92b6da287d73780690668ced96e25012435a4fe",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 5.25750732421875,
+            "Arrangement": 5.1802167892456055,
+            "Musicality": 5.175588130950928,
+            "Vocal": 6.281447410583496,
+            "Instrumental": 6.445113182067871,
+            "Mixing": 5.93930196762085,
+            "Structure": 4.955491542816162
+          },
+          "mean7": 5.604952335357666,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 28,
+          "audio_sha256": "584116839dc82f56af34f79043973b612faa83a0a60197de30c4fdaa410f04d7",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 6.029460430145264,
+            "Arrangement": 5.651724815368652,
+            "Musicality": 5.5840373039245605,
+            "Vocal": 6.03451681137085,
+            "Instrumental": 6.115948677062988,
+            "Mixing": 5.851547718048096,
+            "Structure": 4.883125305175781
+          },
+          "mean7": 5.735765865870884,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        },
+        {
+          "index": 29,
+          "audio_sha256": "69ab2ed977963a21adf2a663f07bff3c4d8792ee7444e1cf1794614ab029af7c",
+          "seconds": 23.998666666666665,
+          "songbench": {
+            "Melody": 4.340817451477051,
+            "Arrangement": 4.673496723175049,
+            "Musicality": 4.535787582397461,
+            "Vocal": 5.191781044006348,
+            "Instrumental": 5.2642107009887695,
+            "Mixing": 5.113417625427246,
+            "Structure": 4.159318923950195
+          },
+          "mean7": 4.754118578774588,
+          "source_receipt_sha256": "bc069cfbd4248cbca33e6018a1b48cf7f22ce78ffaf789a9d4053017a69cd2d4"
+        }
+      ],
+      "means": {
+        "SongBench_mean7": 5.561207120759147
+      },
+      "receipt_sha256": "677bbd9007e82d268281c8559cab60bbd07f18787e3e1c79a3f4ec93c70da097"
+    }
+  ],
+  "steps_sha256": "10d5ccfd0a87ab0f04497bd1d883bfaa87ef0e6829148d26a395f42410ccd17e",
+  "input_sha256": "24bcaff0500f0fecad6148a4b32886cd7cdaba48b9ee3dd6a643a3134adf798a",
+  "source_experiment_sha256": "10d5ccfd0a87ab0f04497bd1d883bfaa87ef0e6829148d26a395f42410ccd17e",
+  "scorer_identity": {
+    "reward_code_sha256": "fd4e9d9fbe4b598ffac938f55d41b1cccae00fa0e9748dc732b7ec0034a7d086",
+    "server_sha256": "bf25742b5f155dec370ef9ec0984315f47b081f42bad5bf39e686d2f6796dc41",
+    "separator": null,
+    "separator_sha256": null,
+    "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+    "muq_weights_sha256": "273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6",
+    "muq_config_sha256": "237335ee27d8fb951ce778701a12a79e06c51ae636dd786f97e45f51ce532543",
+    "frontend_sha256": "428037e06aa02713405fef0980b3b1034e8b437e3694cca52dfa632ca8eef222",
+    "torch": "2.9.1+cu128",
+    "scored_format": "PCM24-FLAC",
+    "separator_shifts": 0,
+    "separator_overlap": 0.25,
+    "songbench_input": "whole mix",
+    "richness_input": "not-computed",
+    "mean7_only": true
+  },
+  "binding": {
+    "bound_audio_n": 120
+  },
+  "baseline_protocol": "SongEval archive: own frozen baseline, not the SP baseline",
+  "scope": "Actual SongEval-trained YuE2, scored by frozen SongBench on all30 valid x4 checkpoints. Different archived sampling baseline; no matched-reward causal comparison."
+}

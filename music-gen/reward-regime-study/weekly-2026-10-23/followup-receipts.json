@@ -1,0 +1,287 @@
+{
+  "checked_at": "2026-10-23T02:46:09.377477+00:00",
+  "lab": {
+    "alive": true,
+    "trace": [
+      {
+        "step": 1,
+        "reward": 4.1215353,
+        "kl": 0.0
+      },
+      {
+        "step": 2,
+        "reward": 2.79567003,
+        "kl": 0.00052479
+      },
+      {
+        "step": 3,
+        "reward": 3.88333797,
+        "kl": 0.00052014
+      },
+      {
+        "step": 4,
+        "reward": 3.52309513,
+        "kl": 0.00078387
+      },
+      {
+        "step": 5,
+        "reward": 4.1825943,
+        "kl": 0.00123384
+      },
+      {
+        "step": 6,
+        "reward": 4.41356087,
+        "kl": 0.00152
+      },
+      {
+        "step": 7,
+        "reward": 3.56496048,
+        "kl": 0.00171285
+      },
+      {
+        "step": 8,
+        "reward": 2.06332397,
+        "kl": 0.00224547
+      },
+      {
+        "step": 9,
+        "reward": 2.07496691,
+        "kl": 0.00278099
+      },
+      {
+        "step": 10,
+        "reward": 3.32029152,
+        "kl": 0.00442182
+      },
+      {
+        "step": 11,
+        "reward": 4.31700897,
+        "kl": 0.00321772
+      },
+      {
+        "step": 12,
+        "reward": 4.47250462,
+        "kl": 0.0021782
+      },
+      {
+        "step": 13,
+        "reward": 3.95759559,
+        "kl": 0.00852172
+      },
+      {
+        "step": 14,
+        "reward": 4.02533293,
+        "kl": 0.00395495
+      },
+      {
+        "step": 15,
+        "reward": 4.62178326,
+        "kl": 0.002398
+      },
+      {
+        "step": 16,
+        "reward": 4.34536457,
+        "kl": 0.00940611
+      },
+      {
+        "step": 17,
+        "reward": 4.12236118,
+        "kl": 0.00282515
+      },
+      {
+        "step": 18,
+        "reward": 4.03347778,
+        "kl": 0.01251035
+      },
+      {
+        "step": 19,
+        "reward": 4.10334635,
+        "kl": 0.00585338
+      },
+      {
+        "step": 20,
+        "reward": 4.00585938,
+        "kl": 0.00597807
+      },
+      {
+        "step": 21,
+        "reward": 4.0801897,
+        "kl": 0.00831293
+      },
+      {
+        "step": 22,
+        "reward": 4.58115578,
+        "kl": 0.00758194
+      },
+      {
+        "step": 23,
+        "reward": 4.47562218,
+        "kl": 0.01345638
+      },
+      {
+        "step": 24,
+        "reward": 4.22488737,
+        "kl": 0.00793803
+      },
+      {
+        "step": 25,
+        "reward": 3.97931862,
+        "kl": 0.00987696
+      },
+      {
+        "step": 26,
+        "reward": 3.95172954,
+        "kl": 0.01065861
+      },
+      {
+        "step": 27,
+        "reward": 4.0702095,
+        "kl": 0.00702936
+      },
+      {
+        "step": 28,
+        "reward": 4.18741894,
+        "kl": 0.00557405
+      },
+      {
+        "step": 29,
+        "reward": 4.12353325,
+        "kl": 0.0190138
+      },
+      {
+        "step": 30,
+        "reward": 4.32564163,
+        "kl": 0.01301382
+      },
+      {
+        "step": 31,
+        "reward": 3.8274312,
+        "kl": 0.00998347
+      },
+      {
+        "step": 32,
+        "reward": 3.94496536,
+        "kl": 0.01138193
+      },
+      {
+        "step": 33,
+        "reward": 4.63629913,
+        "kl": 0.01142552
+      },
+      {
+        "step": 34,
+        "reward": 3.76069403,
+        "kl": 0.01501441
+      },
+      {
+        "step": 35,
+        "reward": 3.51293755,
+        "kl": 0.01355522
+      }
+    ],
+    "step": 35,
+    "bound_audio_n": 70,
+    "technical_invalid_n": 2,
+    "checkpoints": [
+      10,
+      20,
+      30
+    ],
+    "experiment": {
+      "model": "Muse-0.6B",
+      "framework": "ms-swift/TRL + vLLM",
+      "reward": "mean7",
+      "lr": 0.0003,
+      "lr_scheduler": "constant",
+      "beta": 0.05,
+      "seed": 42,
+      "steps": 270,
+      "group_size": 2,
+      "acceptance_only": false,
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "target_modules": "all-linear backbone",
+      "reference_kl": "sampled k3 over native completion-token masks",
+      "data": {
+        "train": {
+          "n": 270,
+          "sha256": "ff437d751d62742d92daf7ac56a678010c52d6c22def5624a8324301e6699be6"
+        },
+        "valid": {
+          "n": 30,
+          "sha256": "ed5c5f36af48ef6ce81d15c7b15b429fb250ec4a52a04a43e55d96ec3cafb59d"
+        }
+      },
+      "test_run": false,
+      "scored_audio": "private PCM24-FLAC; public MP3 only"
+    },
+    "source_sha256": {
+      "check_muse_base.py": "03ac2fd12cea12ea027690ef5887e86ff2e0500c3280899ac51823497ed7b2f7",
+      "collect_formal_run.py": "3086ad91bd9d4ea35a7f492335d39aa5c1d7a5647fd6a52a3e274f917a25c95f",
+      "collect_new.py": "c194b16b4e32247427b1c74659256fe77ea26c9d71225f0d7e10f654d39ccf46",
+      "collect_songeval.py": "6686710d1cc0ff3144bc380b19ad30bf69d96cdd3f013180222b8bb29e7a2276",
+      "diff_audio.py": "c87716d09cefe4676aa7f274a8f3359f1b9e4070603bc2692b84c5b968806c66",
+      "eval_muse_cohorts_lab.sh": "34c35e1b30993873d5d60b7d9babaab858bf6a7757472385c751d6a44a513ed1",
+      "export_songeval_cross.py": "99eabd3dbebf2fbb9a3dfd419432f2327c62291a9899479f0494c467efd5cb9e",
+      "formal_inputs.py": "16ebd28343ae181b86954d15eeb297a059f9442ead55785237db64728acfea69",
+      "lyric_frontend.py": "c222645c8ab74ae7320b2704fb85a4f12abde7ea9596d1ee95cb3d2558eef97c",
+      "mucodec_fixed_seed.py": "7ce18313c74ab8e41a397da37db83909c02b781a61fd6bea941ddc3d7ad28d0e",
+      "muse_cmi_aligned_rewards.py": "f454a2fe90b244bd1a88143ff06239cbc0792c6eb5ce64ff210c529400d10ff2",
+      "muse_cmi_rewards.py": "d4c525c0587a2b23165dc8cf4a0e322e3dbcfe457c988c768ae5b3f2cd600988",
+      "muse_native_plugin.py": "c4d7f5e28580023e0b4b5425585fc1567c5880f5a15a08d1daf4911bde0413d1",
+      "muse_plugin.py": "b5a40c1bf6dbf558c5214f00e8cff882cd7ab9eb3d1c556944348b676cf1e360",
+      "prepare_muse_cmi_baseline.py": "495c72301587534357f9e7d72808970fc20540db0ec46452aa11af8c5246a406",
+      "project_muse_wsb.py": "9f0375c47845961e9733e39cfa128765f66fccb071720da0dd889ea3c0a13d02",
+      "rewards.py": "2c71e932fd2015082f690f0c0a0ec5f083d42883b16ca7c3cee5e1ffe1aa4e0a",
+      "reward_server.py": "ff41c75b00be47ceba67151d3afd84b8b448dc9fffb436dc6a292aa484c92a72",
+      "run_after_muse_lab.sh": "481d39c98c1d85cda29718174f1287fd71b4ef6d8e7d0a7cc58e1f8a8b155e1d",
+      "run_diff_mean7_lab.sh": "3c0459049e839ddd022fff49d5347a3c6f788cf8370206deaef13c019f19d964",
+      "run_diff_miles.py": "acb3fb06946575544840919a0745e2a1983927cee9a284d663f9a64fea74a13c",
+      "run_muse_lab_priority.sh": "bc12ff9fcded95ef9e9f042c7b77cf6f226c121bdf551500267bf97b60efd820",
+      "run_progression_queue_lab.sh": "0ebfda5c048ac24f1857de5c113b99aa3f727ffbb8b18e023c4a33fdf339059c",
+      "score_existing_cross.py": "bc85f0dd26ddded12786a1bfa2ad18c17b84f485f02522a0f45fad3a17dd573e",
+      "test_mean7_technical.py": "abde085f31d9ab3707d1953bf8aa3f500ec32a311dde390a7510d813c5944102",
+      "test_rewards.py": "9602e81299cf0c1597cb9d3f419af65a93d94e8dcac8a357921ca0113192fd6b",
+      "train_yue2_trl_mean7.py": "513f5f7885679f71b6d7fe7e979e10281a9f6e4b2ee24f3dcd7f4e71e0c78072",
+      "validate_muse.py": "8dc9057381a6f73e879c38c32fb2ebadc9ab2b02c623fc6dc9bc2ac556a8aa83",
+      "weekly_audit_legacy.py": "58e9d751bc06307f702d28e03a754bcef01755fe49f6c0c36eb1d0d51aa9fb84"
+    },
+    "dependency_alive": true,
+    "scorer_identity": {
+      "reward_code_sha256": "2c71e932fd2015082f690f0c0a0ec5f083d42883b16ca7c3cee5e1ffe1aa4e0a",
+      "server_sha256": "ff41c75b00be47ceba67151d3afd84b8b448dc9fffb436dc6a292aa484c92a72",
+      "separator": null,
+      "separator_sha256": null,
+      "songbench_weights_sha256": "ca27966a6d2b3312587b9e1d53ee3adf6bde8ac68a7d339e6f962206cbfde312",
+      "muq_weights_sha256": "273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6",
+      "muq_config_sha256": "237335ee27d8fb951ce778701a12a79e06c51ae636dd786f97e45f51ce532543",
+      "frontend_sha256": "428037e06aa02713405fef0980b3b1034e8b437e3694cca52dfa632ca8eef222",
+      "torch": "2.9.1+cu128",
+      "scored_format": "PCM24-FLAC",
+      "separator_shifts": 0,
+      "separator_overlap": 0.25,
+      "songbench_input": "whole mix",
+      "richness_input": "not-computed",
+      "mean7_only": true,
+      "mean7_invalid_policy": "Finite audio under1s or silent: training reward0, seven heads unavailable; never fabricated zero head scores"
+    }
+  },
+  "pbs_states": {
+    "182083826.gadi-pbs": "Q",
+    "182084203.gadi-pbs": "Q"
+  },
+  "old_attempts": [
+    {
+      "id": "muse-mean7-v1",
+      "updates": 0,
+      "status": "failed-scorer-mode-mismatch"
+    },
+    {
+      "id": "muse-mean7-v2",
+      "updates": 33,
+      "status": "failed-STFT40ms-before-first-checkpoint"
+    }
+  ],
+  "no_scheduled_tasks": true,
+  "no_other_jobs_interrupted": true
+}

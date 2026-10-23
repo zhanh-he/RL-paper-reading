@@ -2,17 +2,19 @@
 
 2026-10-23 AWST。推荐主线：**后训练的响应强烈依赖模型和reward；优化一个可测代理，不等于提高人类音乐质量。**
 
-[在线图册与新试听](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html) · [全部图 A/B/C 下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/figures-ABC.zip) · [逐条件结果](summary.json)
+[在线图册与新试听](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html) · [当前局部放大图下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-focused.zip) · [逐条件结果](summary.json) · [本轮启动与回收说明](FOLLOWUP_2026-10-23.md)
 
 ## 新版：按训练步数画三模型折线
 
-[三模型折线图](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html#progression) · [三模型 A/B/C 下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-ABC.zip) · [数据 CSV](progression.csv) · [来源及图文件哈希](progression.json)
+[三模型折线图](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html#progression) · [仅局部放大图下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-focused.zip) · [数据 CSV](progression.csv) · [来源及图文件哈希](progression.json)
 
-DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，纵轴只看同批音频的SongBench七维均值；step0冻结baseline画水平虚线。A统一y轴3.7–6.3，B暗色同轴，C明确标注局部放大。三版相同数值，不平滑或填入未评估的checkpoint。
+DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，纵轴只看同批音频的SongBench七维均值；step0冻结baseline画水平虚线。按最新要求仅显示C局部放大版，旧A/B与端点图从页面移除，保留历史下载URL。默认只画SP、Mean7及真正SongEval训练；Instrument/Arrangement保留在完整表，不混作Mean7训练臂。
 
-现有结果不足以绘制“三reward × train/valid/test”的九根实测曲线：可核验的固定split只有完整30条valid；在线训练batch不能冒充固定train评估，full test未完成。所有这些臂LR均为3e-4，没有“小LR SongBench”臂，更不能把其中一条重命名为SongEval。图保留实际SP、SongBench-Instrument、Arrangement、Mean7名称；只有Diff有纯Mean7结果。Muse仅SP的0/270完整，50/100为n/a；图线只连接两个端点，不代表中间测量。`progression.csv`对缺失train/test保留空值与unavailable状态，不复制valid，不补零。
+现有结果仍不足以绘制“三reward × train/valid/test”的九根实测曲线：完整固定split仅valid30；在线train batch不冒充固定train评估，full test未完成。小LR训练已提交/进入依赖链，但没有完成分数。Muse旧SP仅0/270完整，50/100为n/a；新版重跑补齐checkpoint。`progression.csv`对缺失train/test保留空值与unavailable状态，不复制valid，不补零。
 
-`build_progression.py`从`summary.json`逐条件七个原始头独立重算所有绘制均值，导出三模型×三版PNG/PDF/SVG、CSV/JSON与ZIP。既有原始审计及旧端点图不改写。
+本轮新增真正YuE2-SongEval3e-4的120/120交叉评分，四个Mean7为5.271/5.364/5.443/5.561。它保留自己的旧采样baseline，与SP轮不是同一份音频，图上单独画紫色基准线并只报告各自变化，不能当作严格reward单变量消融。见`songeval-cross.json`的每条件七头分数、音频SHA和评分器身份；并非改名的SongBench低LR臂。
+
+`build_progression.py`从`summary.json`和已核验的`songeval-cross.json`逐条件七个原始头独立重算所有绘制均值，导出三模型局部放大PNG/PDF/SVG、CSV/JSON与ZIP。既有原始审计及旧端点图不改写。`collect_followup.py`是手动执行的一次性回收器，没有周期任务；`next-experiments.json`仅为最后核查快照。
 
 ## 建议怎么讲
 

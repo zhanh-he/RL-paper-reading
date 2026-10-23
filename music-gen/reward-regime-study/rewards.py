@@ -55,6 +55,8 @@ def guard(audio, sr):
 
 def objective(result, reward):
     if reward == 'mean7':
+        if result.get('technical_invalid'):
+            return 0.
         dimensions = ['Vocal', 'Instrumental', 'Melody', 'Structure', 'Arrangement', 'Mixing', 'Musicality']
         values = [float(result['songbench'][key]) for key in dimensions]
         if not all(math.isfinite(value) for value in values):

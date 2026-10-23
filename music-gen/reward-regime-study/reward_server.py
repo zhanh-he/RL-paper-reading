@@ -37,7 +37,8 @@ class Scorer:
                          'torch': torch.__version__, 'scored_format': 'PCM24-FLAC',
                          'separator_shifts': 0, 'separator_overlap': .25,
                          'songbench_input': 'whole mix', 'richness_input': 'not-computed' if self.mean7_only else 'estimated accompaniment',
-                         'mean7_only': self.mean7_only}
+                         'mean7_only': self.mean7_only,
+                         'mean7_invalid_policy': 'Finite audio under1s or silent: training reward0, seven heads unavailable; never fabricated zero head scores'}
         if not self.mean7_only:
             try:
                 torch.load = trusted_load
@@ -62,7 +63,11 @@ class Scorer:
                 if reward == 'mean7' and (not len(audio) or not np.isfinite(audio).all()):
                     raise ValueError('Technical audio failure; not a zero reward')
                 signal = guard(audio, sr)
-                if signal['invalid'] and reward != 'mean7':
+                technical_invalid = bool(signal['invalid'] and reward == 'mean7')
+                if technical_invalid:
+                    rich = {'raw':None,'status':'not-computed'}
+                    dimensions = {key:None for key in ['Melody','Arrangement','Musicality','Vocal','Instrumental','Mixing','Structure']}
+                elif signal['invalid'] and reward != 'mean7':
                     rich = {'raw': 0.}; dimensions = {key: 0. for key in ['Melody','Arrangement','Musicality','Vocal','Instrumental','Mixing','Structure']}
                 else:
                     rich = {'raw': None, 'status': 'not-computed'}
@@ -87,6 +92,7 @@ class Scorer:
                 result = {'audio_sha256': sha(path), 'seconds': len(audio)/sr,
                           'richness': rich, 'songbench': dimensions, 'guard': signal,
                           'reward': reward, 'scorer_identity': self.identity}
+                result['technical_invalid'] = technical_invalid
                 result['mean'] = objective(result, reward)
                 (self.output/f'{result["audio_sha256"]}-{reward}.json').write_text(json.dumps(result, indent=2, allow_nan=False)+'\n')
                 rows.append(result)

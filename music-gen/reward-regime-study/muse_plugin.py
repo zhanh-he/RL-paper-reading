@@ -40,8 +40,17 @@ class RegimeRM(aligned.InvalidOutputGuard, aligned.original.base.MusecriticRM):
             with Path(os.environ['REGIME_BINDINGS']).open('a') as target:
                 for request_id, row in zip(request_ids, rows):
                     target.write(json.dumps(dict(request_id=request_id, **row), allow_nan=False)+'\n')
-        return [{'reward': r['mean'], 'reward_scores': {'SP_Richness': r['richness']['raw'],
-                 **r['songbench'], 'Shared_penalty': r['guard']['penalty']}, 'infer_critic': '', 'error': None} for r in rows]
+        results = []
+        for row in rows:
+            components = {k:v for k,v in row['songbench'].items() if v is not None}
+            components['Technical_invalid'] = float(row.get('technical_invalid',False))
+            if row['richness']['raw'] is not None:
+                components['SP_Richness'] = row['richness']['raw']
+            if row['reward'] != 'mean7':
+                components['Shared_penalty'] = row['guard']['penalty']
+            results.append({'reward': row['mean'], 'reward_scores': components,
+                            'infer_critic': '', 'error': None})
+        return results
 
     def _score_audio(self, path, request_id='', index=0, local_batch_size=1):
         result = self._score_audios([path], [request_id])[0]

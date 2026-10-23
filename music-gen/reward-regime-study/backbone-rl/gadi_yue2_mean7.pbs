@@ -10,7 +10,7 @@ module load python3/3.12.13 cuda/12.8.0
 study=/scratch/wa66/hm6416/songbench-priority-20261020
 root=/g/data/wa66/hanyu/YuE2-posttrain
 code="$study/code"
-output="$study/outputs/yue2-mean7-lr3e4-beta5e2-seed42"
+output="$study/outputs/yue2-mean7-lr3e4-beta5e2-seed42-v2"
 python="$root/.venv/bin/python"
 mkdir -p "$output" "$PBS_JOBFS/cache"
 exec 9>"$output/training.lock"
@@ -19,6 +19,7 @@ export PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=4
 export PYTHONPATH="$code:$study/yue-trl-deps:$study/sources/trl"
 export HF_HUB_OFFLINE=1 HF_HOME=/g/data/wa66/hanyu/hf-cache TOKENIZERS_PARALLELISM=false
 export TMPDIR="$PBS_JOBFS" XDG_CACHE_HOME="$PBS_JOBFS/cache" TRITON_CACHE_DIR="$PBS_JOBFS/triton"
+"$python" "$code/test_yue2_checkpointing.py" > "$output/checkpointing-tests.log" 2>&1
 bundle=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics
 resources=/scratch/iv96/hm6416/reward-regimes-20261014
 port=$((41000+${PBS_JOBID%%.*}%8000))

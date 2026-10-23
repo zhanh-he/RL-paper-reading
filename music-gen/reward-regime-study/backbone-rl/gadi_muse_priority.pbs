@@ -16,13 +16,15 @@ bundle=/scratch/iv96/hm6416/wsb-objective-20261013/wsb_metrics
 resources=/scratch/iv96/hm6416/reward-regimes-20261014
 train=/scratch/wa66/hm6416/envs/muse-grpo-cu128/bin
 python="$train/python"
-output="$study/outputs/muse-${REGIME_REWARD}-lr3e4-beta5e2-seed42"
+lr=${MUSE_LR:-3e-4}
+lr_tag=${lr/-/}
+output="$study/outputs/muse-${REGIME_REWARD}-lr${lr_tag}-beta5e2-seed42"
 mkdir -p "$output" "$PBS_JOBFS/cache"
 exec 9>"$output/training.lock"
 flock -n 9 || { echo 'Another job owns this exact arm'; exit 1; }
 "$python" "$code/check_muse_base.py" --model "$root/models/Muse-0.6b" --output "$output/base-identity.json"
 "$python" "$code/formal_inputs.py" --train "$old/data/muse-cmi-triple-train.jsonl" \
-  --valid "$old/data/muse-cmi-triple-valid.jsonl" --manifest "$output/experiment.json" --reward "$REGIME_REWARD"
+  --valid "$old/data/muse-cmi-triple-valid.jsonl" --manifest "$output/experiment.json" --reward "$REGIME_REWARD" --lr "$lr"
 IFS=, read -r -a devices <<< "${CUDA_VISIBLE_DEVICES:-0}"
 train_gpu="${devices[0]}"
 port=$((24000+${PBS_JOBID%%.*}%1800*5))
@@ -40,13 +42,16 @@ export MUSE_INVALID_OUTPUT_LOG="$output/invalid_outputs.jsonl" MUSE_MIN_AUDIO_SE
 export REGIME_SCORER="http://127.0.0.1:$scorer_port"
 export REGIME_BINDINGS="$output/reward-bindings.jsonl"
 pids=()
+scorer_mode=()
+if [[ "$REGIME_REWARD" == mean7 ]]; then scorer_mode=(--mean7-only); fi
 cleanup() { for pid in "${pids[@]}"; do kill "$pid" 2>/dev/null || true; done; wait 2>/dev/null || true; }
 trap cleanup EXIT
-CUDA_VISIBLE_DEVICES="$train_gpu" "$python" "$code/launch_container_worker.py" \
+LD_LIBRARY_PATH="/apps/python3/3.12.13/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES="$train_gpu" \
+  /g/data/wa66/hanyu/YuE2-posttrain/.venv/bin/python "$code/launch_container_worker.py" \
   --work /scratch/iv96/hm6416/wsb-objective-20261013 \
   --python "$bundle/.venvs/metrics/bin/python" --script "$code/reward_server.py" \
   --bundle "$bundle" --deps "$resources/deps" --separator "$resources/models/955717e8-8726e21a.th" \
-  --receipt-dir "$output/scorer" --port "$scorer_port" > "$output/scorer.log" 2>&1 &
+  --receipt-dir "$output/scorer" --port "$scorer_port" "${scorer_mode[@]}" > "$output/scorer.log" 2>&1 &
 pids+=("$!")
 LD_LIBRARY_PATH="/apps/python3/3.10.4/lib:${LD_LIBRARY_PATH:-}" CUDA_VISIBLE_DEVICES="$train_gpu" \
   "$root/envs/mucodec-py310-cu128/bin/python" "$code/mucodec_fixed_seed.py" \
@@ -72,8 +77,8 @@ CUDA_VISIBLE_DEVICES="$train_gpu" "$train/swift" rlhf \
   --vllm_max_model_len 2048 --max_completion_length 512 --max_length 2048 \
   --per_device_train_batch_size 2 --gradient_accumulation_steps 1 --num_generations 2 \
   --gradient_checkpointing true --lora_dropout 0 \
-  --max_steps 270 --learning_rate 3e-4 --lr_scheduler_type constant --warmup_ratio 0 --beta .05 \
-  --save_steps 30 --logging_steps 1 --temperature 1 --repetition_penalty 1 --top_p 1 --top_k -1 \
+  --max_steps 270 --learning_rate "$lr" --lr_scheduler_type constant --warmup_ratio 0 --beta .05 \
+  --save_steps 10 --logging_steps 1 --temperature 1 --repetition_penalty 1 --top_p 1 --top_k -1 \
   --report_to none --output_dir "$output/checkpoint" > "$output/train.log" 2>&1
 adapter=$(find "$output/checkpoint" -path '*/checkpoint-270/adapter_model.safetensors')
 [[ -n "$adapter" && "$adapter" != *$'\n'* ]] || { echo 'Expected exactly one final checkpoint'; exit 1; }
@@ -81,5 +86,6 @@ adapter=$(find "$output/checkpoint" -path '*/checkpoint-270/adapter_model.safete
 CUDA_VISIBLE_DEVICES="$train_gpu" "$python" -u "$code/validate_muse.py" \
   --model "$root/models/Muse-0.6b" --valid "$old/data/muse-cmi-triple-valid.jsonl" \
   --output "$output" --baseline "$study/outputs/shared-muse-baseline" --adapter "$(dirname "$adapter")" \
+  --steps 0,50,100,270 \
   --scorer "$REGIME_SCORER" --codec "$MUSE_MUCODEC_API_BASE" --reward "$REGIME_REWARD" > "$output/validation.log" 2>&1
 printf '{"training_steps":270,"full_valid_conditions":30,"test_run":false}\n' > "$output/completion.json"

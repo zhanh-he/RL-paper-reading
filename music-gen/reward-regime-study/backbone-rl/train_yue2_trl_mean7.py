@@ -18,6 +18,7 @@ from yue2 import sampling as native_sampling
 from yue2.protocol import CODEC_OFFSET, CODEC_SIZE, MUSIC_END, EOD, VOCAB_SIZE
 from yue2.tokenization_yue2 import YuE2TextTokenizer
 from rewards import score_remote, sha
+from yue2_checkpointing import install as install_checkpointing
 
 DATA_SHA='c39d43e81793bee3f312c7028a0483b5da41068db4544acd258115043101e46f'
 MUQ_SHA='273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6'
@@ -51,6 +52,7 @@ class NativePolicy:
         self.args=args
         self.pipe=YuE2Pipeline.from_pretrained(args.model,vae=args.vae,device='cuda',backend='torch-eager',memory_budget_gib=32,progress=False)
         self.base=self.pipe._load_model().eval()
+        install_checkpointing(self.base)
         self.base.config.pad_token_id=EOD;self.base.config.eos_token_id=MUSIC_END
         self.tokenizer=NativeHFTokenizer(args.model)
         self.model=get_peft_model(self.base,LoraConfig(task_type='CAUSAL_LM',r=8,lora_alpha=16,lora_dropout=0,
@@ -102,6 +104,10 @@ class NativePolicy:
             if identity.get('muq_weights_sha256')!=MUQ_SHA or identity['songbench_weights_sha256']!=HEAD_SHA:
                 raise ValueError('Frozen SongBench/MuQ identity changed')
             if not identity.get('mean7_only'):raise ValueError('Pure reward requires the Mean7-only scorer')
+            if r.get('technical_invalid'):
+                if r['mean']!=0 or any(v is not None for v in r['songbench'].values()):
+                    raise ValueError('Technical invalid outcome must not fabricate head scores')
+                continue
             expected=sum(r['songbench'][k] for k in ['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing','Musicality'])/7
             if abs(expected-r['mean'])>1e-7:raise ValueError('Extra reward/penalty detected')
         return results
@@ -229,7 +235,8 @@ def main():
     config=GRPOConfig(output_dir=str(a.output/'checkpoints'),max_steps=a.steps,learning_rate=3e-4,lr_scheduler_type='constant',
         warmup_ratio=0.,beta=.05,num_generations=2,per_device_train_batch_size=2,gradient_accumulation_steps=1,
         max_completion_length=a.max_tokens,temperature=1.,top_p=1.,top_k=CODEC_SIZE+1,
-        gradient_checkpointing=True,bf16=True,logging_steps=1,save_steps=50,report_to='none',
+        gradient_checkpointing=True,gradient_checkpointing_kwargs={'use_reentrant':False},
+        bf16=True,logging_steps=1,save_steps=50,report_to='none',
         seed=42,data_seed=42,remove_unused_columns=False,loss_type='grpo',num_iterations=1,
         weight_decay=0.,max_grad_norm=1.,log_completions=False)
     trainer=NativeGRPO(policy,model=policy.model,reward_funcs=reward_audio,args=config,train_dataset=train,

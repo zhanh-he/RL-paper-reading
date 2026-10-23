@@ -4,7 +4,7 @@ study=/storage/zhanh_storage/songbench-priority-20261020
 native=/storage/zhanh_storage/open-music-rl-20261014
 deps=/storage/zhanh_storage/framework-smoke-20261015
 code="$study/code"
-output="$study/outputs/diff-mean7-formal"
+output=${DIFF_OUTPUT:-"$study/outputs/diff-mean7-formal"}
 mkdir -p "$output"
 exec 9>"$study/diff-mean7.lock"
 flock -n 9 || { echo 'Mean7 Diff job already owned'; exit 1; }
@@ -30,4 +30,5 @@ done
 "$native/envs/diffrhythm2/bin/python" -u "$code/run_diff_miles.py" \
   --assets "$native/assets/diffrhythm2" --source "$native/sources/diffrhythm2" \
   --data "$native/data.json" --output "$output" --seconds 60 --steps 270 --rewards mean7 \
+  --lr "${DIFF_LR:-3e-4}" \
   --scorer http://127.0.0.1:49330 > "$output/train.log" 2>&1

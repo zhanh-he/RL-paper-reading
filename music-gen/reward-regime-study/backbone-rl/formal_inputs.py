@@ -41,6 +41,7 @@ def main():
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--reward", choices=["richness", "instrument", "arrangement", "mean7"])
     parser.add_argument("--steps", type=int, default=270)
+    parser.add_argument("--lr", type=float, choices=[3e-4,1e-4], default=3e-4)
     args = parser.parse_args()
     data = check(args.train, args.valid)
     if args.manifest:
@@ -48,13 +49,14 @@ def main():
             raise ValueError("Fresh manifest and explicit reward required")
         record = {
             "model": "Muse-0.6B", "framework": "ms-swift/TRL + vLLM",
-            "reward": args.reward, "lr": 3e-4, "lr_scheduler": "constant",
+            "reward": args.reward, "lr": args.lr, "lr_scheduler": "constant",
             "beta": 0.05, "seed": 42, "steps": args.steps, "group_size": 2,
             "acceptance_only": args.steps != 270,
             "lora_rank": 8, "lora_alpha": 16, "target_modules": "all-linear backbone",
             "reference_kl": "sampled k3 over native completion-token masks",
             "data": data, "test_run": False,
             "scored_audio": "private PCM24-FLAC; public MP3 only",
+            "technical_invalid_policy": "Mean7: under1s/silent finite audio => training reward0 with unavailable heads; no invented SongBench zero scores. Decoder invalid outcomes logged separately.",
         }
         args.manifest.parent.mkdir(parents=True, exist_ok=True)
         args.manifest.write_text(json.dumps(record, indent=2) + "\n")

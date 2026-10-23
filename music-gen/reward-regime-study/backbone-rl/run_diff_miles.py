@@ -121,7 +121,7 @@ def make_args(cli, output, steps, resume=False):
         lora_adapter_paths=None, ref_load=None, teacher_load=None, update_weight_target_modules=["audio_backbone"],
         ref_lora_adapter_paths=None, teacher_lora_adapter_paths=None, ref_cpu_offload=False, teacher_cpu_offload=False,
         use_lora=True, lora_target_modules=None, lora_rank=8, lora_alpha=16, lora_init_weights="kaiming-uniform",
-        optimizer="adam", lr=3e-4, weight_decay=0., gradient_checkpointing=True,
+        optimizer="adam", lr=cli.lr, weight_decay=0., gradient_checkpointing=True,
         load=str(output/"checkpoints") if resume else None, ckpt_step=None, save=str(output/"checkpoints"),
         no_load_optim=False, no_load_rng=False, no_save_optim=False,
         offload_train=True, use_ema=False, train_only=False, rollout_weights="actor",
@@ -208,6 +208,7 @@ def main():
     parser.add_argument("--scorer", required=True)
     parser.add_argument("--seconds", type=float, default=60.)
     parser.add_argument("--steps", type=int, default=270)
+    parser.add_argument("--lr", type=float, choices=[3e-4,1e-4], default=3e-4)
     parser.add_argument("--acceptance-only", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--rewards", nargs='+', choices=['richness','instrument','arrangement','mean7'],
@@ -258,7 +259,8 @@ def main():
         ray.shutdown()
         return
     for reward in cli.rewards:
-        output = cli.output/f"diffrhythm2-{reward}-lr3e4-beta5e2-seed42"
+        lr_tag = '3e4' if cli.lr == 3e-4 else '1e4'
+        output = cli.output/f"diffrhythm2-{reward}-lr{lr_tag}-beta5e2-seed42"
         if (output/"completion.json").exists() and cli.resume:
             continue
         resuming = output.exists() and cli.resume
@@ -266,7 +268,7 @@ def main():
             raise FileExistsError("Refusing to overwrite a formal arm")
         output.mkdir(exist_ok=resuming)
         manifest = {"model": "DiffRhythm2", "framework": "Miles-Diffusion FSDP2 + project native Ray audio worker",
-            "lr": 3e-4, "scheduler": "constant", "beta": .05, "group_size": 2, "seed": 42,
+            "lr": cli.lr, "scheduler": "constant", "beta": .05, "group_size": 2, "seed": 42,
             "steps": cli.steps, "reward": reward, "data_sha256": DATA_SHA, "train_n": 270, "valid_n": 30,
             "seconds_budget": cli.seconds, "sampling": "native32 Euler grid; one block with2 stochastic steps; matched window within group; eta0.1, CFG2",
             "kl_unit": "exact conditional Gaussian KL / active latent dimension", "test_run": False,

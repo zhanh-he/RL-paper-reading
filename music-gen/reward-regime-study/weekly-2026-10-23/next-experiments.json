@@ -1,0 +1,236 @@
+{
+  "checked_at": "2026-10-23T02:46:09.377477+00:00",
+  "protocol": "SP/AI\uff1aCMI270 train /30 valid\uff1bWildSongBench192\u6761\u4ef6\u00d72\u56fa\u5b9aseed test\u3002Lyrics2song\u539f\u6709CMI-test\u534f\u8bae\u4e0d\u6539\u3002",
+  "jobs": [
+    {
+      "name": "Muse \u00b7 Mean7 \u00b7 LR3e-4",
+      "resource": "5090 \u00b7 PID4044350",
+      "status": "\u8bad\u7ec3\u4e2d \u00b7 v3",
+      "progress": "35/270 \u66f4\u65b0\uff1b\u5c1a\u65e0\u5b8c\u6574\u9a8c\u8bc1"
+    },
+    {
+      "name": "YuE2 \u00b7 Mean7 \u00b7 LR3e-4",
+      "resource": "Gadi wa66 \u00b7 182083826",
+      "status": "\u6392\u961f \u00b7 GPU\u8d44\u6e90\u4e0d\u8db3",
+      "progress": "\u76ee\u6807270\u66f4\u65b0 +4\u00d730 valid\uff1b\u5c1a\u672a\u56de\u6536\u66f4\u65b0"
+    },
+    {
+      "name": "Muse \u00b7 Mean7 \u00b7 LR1e-4",
+      "resource": "Gadi iv96 \u00b7 182084203",
+      "status": "\u6392\u961f \u00b7 GPU\u8d44\u6e90\u4e0d\u8db3",
+      "progress": "\u76ee\u6807270\u66f4\u65b0 +4\u00d730 valid\uff1b\u5c1a\u672a\u56de\u6536\u66f4\u65b0"
+    },
+    {
+      "name": "DiffRhythm2 \u00b7 Mean7 \u00b7 LR1e-4\uff1bMuse \u00b7 SP\u91cd\u8dd1",
+      "resource": "5090 \u00b7 \u6709\u9650\u4f9d\u8d56\u961f\u5217 PID4044401",
+      "status": "\u7b49\u5f85\u524d\u5e8f\u8bad\u7ec3\u5b8c\u6210",
+      "progress": "\u5404270\u66f4\u65b0\uff0c\u4fdd\u5b58\u5e76\u8bc4\u4f300/50/100/270"
+    },
+    {
+      "name": "Muse\u56fa\u5b9a Train / Test \u8bc4\u4f30",
+      "resource": "5090 \u00b7 \u8bad\u7ec3\u4f9d\u8d56\u94fe\u540e\u6267\u884c",
+      "status": "\u5df2\u63a5\u5165\u4f9d\u8d56\u94fe \u00b7 \u5c1a\u672a\u6267\u884c",
+      "progress": "\u6bcf\u81c2270 train +192\u00d72 test\uff1b\u56db\u4e2acheckpoint\uff1b\u4e0d\u505atest\u9009\u62e9"
+    },
+    {
+      "name": "\u771f\u5b9e YuE2-SongEval \u2192 SongBench \u4ea4\u53c9\u8bc4\u5206",
+      "resource": "5090 \u00b7 \u590d\u7528\u4e32\u884c\u8bc4\u5206\u670d\u52a1",
+      "status": "\u5df2\u5b8c\u6574\u56de\u6536\u5e76\u8865\u56fe",
+      "progress": "120/120\uff1a0/50/100/270\u540430\u6761"
+    },
+    {
+      "name": "Kaya\u4ea4\u53c9\u8bc4\u5206\u91cd\u590d\u4efb\u52a1189983",
+      "resource": "Kaya ems011",
+      "status": "\u5df2\u53d6\u6d88\u91cd\u590d\u6392\u961f\uff0c\u8f6c5090\u5b8c\u6210",
+      "progress": "\u672a\u6d88\u8d39GPU\uff1b\u5176\u4ed6\u7528\u6237\u6682\u505c\u4f5c\u4e1a\u4e0d\u53d8"
+    }
+  ],
+  "traces": [
+    {
+      "id": "muse-mean7-live-v3",
+      "model": "muse",
+      "reward": "mean7",
+      "trace": [
+        {
+          "step": 1,
+          "reward": 4.1215353,
+          "kl": 0.0
+        },
+        {
+          "step": 2,
+          "reward": 2.79567003,
+          "kl": 0.00052479
+        },
+        {
+          "step": 3,
+          "reward": 3.88333797,
+          "kl": 0.00052014
+        },
+        {
+          "step": 4,
+          "reward": 3.52309513,
+          "kl": 0.00078387
+        },
+        {
+          "step": 5,
+          "reward": 4.1825943,
+          "kl": 0.00123384
+        },
+        {
+          "step": 6,
+          "reward": 4.41356087,
+          "kl": 0.00152
+        },
+        {
+          "step": 7,
+          "reward": 3.56496048,
+          "kl": 0.00171285
+        },
+        {
+          "step": 8,
+          "reward": 2.06332397,
+          "kl": 0.00224547
+        },
+        {
+          "step": 9,
+          "reward": 2.07496691,
+          "kl": 0.00278099
+        },
+        {
+          "step": 10,
+          "reward": 3.32029152,
+          "kl": 0.00442182
+        },
+        {
+          "step": 11,
+          "reward": 4.31700897,
+          "kl": 0.00321772
+        },
+        {
+          "step": 12,
+          "reward": 4.47250462,
+          "kl": 0.0021782
+        },
+        {
+          "step": 13,
+          "reward": 3.95759559,
+          "kl": 0.00852172
+        },
+        {
+          "step": 14,
+          "reward": 4.02533293,
+          "kl": 0.00395495
+        },
+        {
+          "step": 15,
+          "reward": 4.62178326,
+          "kl": 0.002398
+        },
+        {
+          "step": 16,
+          "reward": 4.34536457,
+          "kl": 0.00940611
+        },
+        {
+          "step": 17,
+          "reward": 4.12236118,
+          "kl": 0.00282515
+        },
+        {
+          "step": 18,
+          "reward": 4.03347778,
+          "kl": 0.01251035
+        },
+        {
+          "step": 19,
+          "reward": 4.10334635,
+          "kl": 0.00585338
+        },
+        {
+          "step": 20,
+          "reward": 4.00585938,
+          "kl": 0.00597807
+        },
+        {
+          "step": 21,
+          "reward": 4.0801897,
+          "kl": 0.00831293
+        },
+        {
+          "step": 22,
+          "reward": 4.58115578,
+          "kl": 0.00758194
+        },
+        {
+          "step": 23,
+          "reward": 4.47562218,
+          "kl": 0.01345638
+        },
+        {
+          "step": 24,
+          "reward": 4.22488737,
+          "kl": 0.00793803
+        },
+        {
+          "step": 25,
+          "reward": 3.97931862,
+          "kl": 0.00987696
+        },
+        {
+          "step": 26,
+          "reward": 3.95172954,
+          "kl": 0.01065861
+        },
+        {
+          "step": 27,
+          "reward": 4.0702095,
+          "kl": 0.00702936
+        },
+        {
+          "step": 28,
+          "reward": 4.18741894,
+          "kl": 0.00557405
+        },
+        {
+          "step": 29,
+          "reward": 4.12353325,
+          "kl": 0.0190138
+        },
+        {
+          "step": 30,
+          "reward": 4.32564163,
+          "kl": 0.01301382
+        },
+        {
+          "step": 31,
+          "reward": 3.8274312,
+          "kl": 0.00998347
+        },
+        {
+          "step": 32,
+          "reward": 3.94496536,
+          "kl": 0.01138193
+        },
+        {
+          "step": 33,
+          "reward": 4.63629913,
+          "kl": 0.01142552
+        },
+        {
+          "step": 34,
+          "reward": 3.76069403,
+          "kl": 0.01501441
+        },
+        {
+          "step": 35,
+          "reward": 3.51293755,
+          "kl": 0.01355522
+        }
+      ],
+      "kl_unit": "sampled k3 / native completion token",
+      "status": "\u8bad\u7ec3\u4e2d 35/270\uff1b\u4e0d\u662f\u5b8c\u6574\u9a8c\u8bc1\u7ed3\u679c"
+    }
+  ],
+  "technical_invalid_policy": "\u8bad\u7ec3reward0\uff0c\u4e03\u7ef4\u5206\u6570null\uff1b\u4e0d\u4ee5\u96f6\u5206\u4f2a\u9020SongBench\u6d4b\u91cf\u3002",
+  "receipt_sha256": "aa9e33f6e7d6f49d946b2c55bbc24b6040c4e1976a654a5d31b51de6d2dcdaa1"
+}

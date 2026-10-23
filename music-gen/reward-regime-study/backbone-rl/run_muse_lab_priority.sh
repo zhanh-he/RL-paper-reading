@@ -7,7 +7,9 @@ native=/home/mengh/research/vocal2accomp-muse-online
 train=/home/mengh/miniconda3/envs/muse-grpo/bin
 python="$train/python"
 : "${REGIME_REWARD:?Explicit reward required}"
-output="$study/outputs/muse-${REGIME_REWARD}-lr3e4-beta5e2-seed42"
+lr=${MUSE_LR:-3e-4}
+lr_tag=${lr/-/}
+output=${MUSE_OUTPUT:-"$study/outputs/muse-${REGIME_REWARD}-lr${lr_tag}-beta5e2-seed42"}
 steps=${MUSE_STEPS:-270}
 if [[ "$steps" != 270 ]]; then output="$study/acceptance/muse-${REGIME_REWARD}-${steps}steps-${MUSE_ATTEMPT:-1}"; fi
 mkdir -p "$output"
@@ -24,15 +26,17 @@ export MUSE_INVALID_OUTPUT_LOG="$output/invalid_outputs.jsonl" MUSE_MIN_AUDIO_SE
 export REGIME_SCORER=http://127.0.0.1:49322 REGIME_BINDINGS="$output/reward-bindings.jsonl"
 "$python" "$code/check_muse_base.py" --model "$base/models/Muse-0.6b" --output "$output/base-identity.json"
 "$python" "$code/formal_inputs.py" --train "$study/data/muse-cmi-triple-train.jsonl" \
-  --valid "$study/data/muse-cmi-triple-valid.jsonl" --manifest "$output/experiment.json" --reward "$REGIME_REWARD" --steps "$steps"
+  --valid "$study/data/muse-cmi-triple-valid.jsonl" --manifest "$output/experiment.json" --reward "$REGIME_REWARD" --steps "$steps" --lr "$lr"
 pids=()
 cleanup(){ for pid in "${pids[@]}"; do kill "$pid" 2>/dev/null || true; done; wait 2>/dev/null || true; }
 trap cleanup EXIT
 metrics=/home/mengh/research/WildSongBench-eval/wsb_metrics
+scorer_mode=()
+if [[ "$REGIME_REWARD" == mean7 ]]; then scorer_mode=(--mean7-only); fi
 "$metrics/.venvs/metrics/bin/python" -u "$code/reward_server.py" --bundle "$metrics" \
   --deps /home/mengh/research/reward-regimes/deps \
   --separator /home/mengh/.cache/torch/hub/checkpoints/955717e8-8726e21a.th \
-  --receipt-dir "$output/scorer" --port 49322 > "$output/scorer.log" 2>&1 &
+  --receipt-dir "$output/scorer" --port 49322 "${scorer_mode[@]}" > "$output/scorer.log" 2>&1 &
 pids+=("$!")
 /home/mengh/miniconda3/envs/mucodec-cu128/bin/python -u "$code/mucodec_fixed_seed.py" \
   --source "$native/src/MuCodec/deploy/mucodec_serve.py" --model "$native/src/MuCodec/weights/mucodec.pt" \
@@ -55,8 +59,8 @@ done
   --vllm_engine_kwargs '{"kv_cache_memory_bytes":1073741824}' \
   --vllm_max_model_len 2048 --max_completion_length 512 --max_length 2048 \
   --per_device_train_batch_size 2 --gradient_accumulation_steps 1 --num_generations 2 \
-  --gradient_checkpointing true --max_steps "$steps" --learning_rate 3e-4 --lr_scheduler_type constant \
-  --warmup_ratio 0 --beta .05 --save_steps 30 --logging_steps 1 \
+  --gradient_checkpointing true --max_steps "$steps" --learning_rate "$lr" --lr_scheduler_type constant \
+  --warmup_ratio 0 --beta .05 --save_steps 10 --logging_steps 1 \
   --temperature 1 --repetition_penalty 1 --top_p 1 --top_k -1 --report_to none \
   --output_dir "$output/checkpoint" > "$output/train.log" 2>&1
 if [[ "$steps" != 270 ]]; then
@@ -68,6 +72,7 @@ adapter=$(find "$output/checkpoint" -path '*/checkpoint-270/adapter_model.safete
 "$python" -u "$code/validate_muse.py" --model "$base/models/Muse-0.6b" \
   --valid "$study/data/muse-cmi-triple-valid.jsonl" --output "$output" \
   --baseline "$study/outputs/shared-muse-baseline" --adapter "$(dirname "$adapter")" \
+  --steps 0,50,100,270 \
   --scorer "$REGIME_SCORER" --codec "$MUSE_MUCODEC_API_BASE" --reward "$REGIME_REWARD" \
   > "$output/validation.log" 2>&1
 printf '{"training_steps":270,"full_valid_conditions":30,"test_run":false}\n' > "$output/completion.json"
