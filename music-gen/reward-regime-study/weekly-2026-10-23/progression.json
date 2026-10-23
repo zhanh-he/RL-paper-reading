@@ -1,0 +1,485 @@
+{
+  "metric": "SongBench_mean7",
+  "metric_scale": [
+    0,
+    10
+  ],
+  "steps": [
+    0,
+    50,
+    100,
+    270
+  ],
+  "source_sha256": "2b16dcc3aa9a54825ae7ec6f4549a4e2499a71423f05fa1db3d5d1727414e297",
+  "source_updated_at": "2026-10-22T23:48:48.459559+00:00",
+  "source_file": "summary.json",
+  "split": "valid",
+  "n": 30,
+  "lr": 0.0003,
+  "models": [
+    {
+      "id": "diffrhythm2",
+      "title": "DiffRhythm2",
+      "series": [
+        {
+          "id": "diffrhythm2-richness-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "richness",
+          "label": "SP Richness-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "f1058aae8762bae5d016f7c29d42683ed436bbc1bc4536a2e5c311a6b86ada44"
+            },
+            {
+              "step": 50,
+              "value": 5.076059892064049,
+              "n": 30,
+              "receipt_sha256": "dfd06b6e6ed0f2ac91f38d62ea2d62cd2b304e1a4047c549cbe8fc1f9e6d3b51"
+            },
+            {
+              "step": 100,
+              "value": 5.082110550290063,
+              "n": 30,
+              "receipt_sha256": "7ef7318dd028acdb364ed71a976d88c4f9ada9e0ba3712eb92aaea34a55b8c1c"
+            },
+            {
+              "step": 270,
+              "value": 5.077386955987839,
+              "n": 30,
+              "receipt_sha256": "18eb3909f24f7745da824ddb01e11003f55405693f1d0b8e04bf426f6cb1c059"
+            }
+          ],
+          "steps_sha256": "7130c7eb6a017cc01c46d6715189d040608d3b5aac5b59f6f595a8b13db47766"
+        },
+        {
+          "id": "diffrhythm2-mean7-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "mean7",
+          "label": "SongBench Mean7-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "309e6fcdebf5878617247f416a18b4149d39f7df9d5d7f26f7a4a5fc62ea5bf9"
+            },
+            {
+              "step": 50,
+              "value": 5.11660547824133,
+              "n": 30,
+              "receipt_sha256": "16899203c1f781b34e1d88bed751a53139df2d20a7ce9833e7dec8c85423f84b"
+            },
+            {
+              "step": 100,
+              "value": 5.1378639243897934,
+              "n": 30,
+              "receipt_sha256": "527f94433607260daa5d1b4bd61560118e3b49db7d269b69f8891b6021dfe66c"
+            },
+            {
+              "step": 270,
+              "value": 5.054848592621939,
+              "n": 30,
+              "receipt_sha256": "1863d4cee33765332cdb9033f74d8eccab7b3f8107ea2588351bc1993cafa080"
+            }
+          ],
+          "steps_sha256": "32e840d20d7ea446c78be9d434dafdba14e69642d0964c4e949723af3e5eb9cd"
+        },
+        {
+          "id": "diffrhythm2-instrument-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "instrument",
+          "label": "SongBench Instrument-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "5c5bc4ae63bfd63aa245729a33436c9cc9b369fceba5fa047f6efa0516ccb46a"
+            },
+            {
+              "step": 50,
+              "value": 5.101720949581691,
+              "n": 30,
+              "receipt_sha256": "afcbaa986ae964e51ebf0d5065c595b678b703e663136206a0425dbc3594526e"
+            },
+            {
+              "step": 100,
+              "value": 5.174720134053911,
+              "n": 30,
+              "receipt_sha256": "f85f5be8e1d4284ecd225c4d584cf4c0893376df8c01b62c7d006c5861e6078d"
+            },
+            {
+              "step": 270,
+              "value": 5.160789678210303,
+              "n": 30,
+              "receipt_sha256": "a2a6e1782bb6415c1f5ae0c48b242d15739991d16a10f03e3f5d81d0d0e01f69"
+            }
+          ],
+          "steps_sha256": "16545502632a58a5b1c84e4aad97082c0ff88848935f9a49c034419c94aede29"
+        },
+        {
+          "id": "diffrhythm2-arrangement-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "arrangement",
+          "label": "SongBench Arrangement-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "e7e18359cdc91b71b935be6f968c5280a092f42c28f270f1c1fda3f854950781"
+            },
+            {
+              "step": 50,
+              "value": 5.137872095335097,
+              "n": 30,
+              "receipt_sha256": "67bf685dec5f2271587ecb382be31db9560379a4f1690be979c0fa02e6c98f2a"
+            },
+            {
+              "step": 100,
+              "value": 5.174483764739264,
+              "n": 30,
+              "receipt_sha256": "7bae79fc2740a2ad4dfd25ecf90bf89ab22fa8aac76e965c7db1dfa78781bd99"
+            },
+            {
+              "step": 270,
+              "value": 5.227957255499703,
+              "n": 30,
+              "receipt_sha256": "49862d39558d2c3ed3ccc109715aa25cea421c69e99c9202d5a93562fdea9895"
+            }
+          ],
+          "steps_sha256": "cff90cb48cdbb9d0abd48aa2fcda7e7a8c9a850ff10e17d0567d8e1a1174e165"
+        }
+      ],
+      "baseline": 5.116102648916699,
+      "variants": {
+        "A": {
+          "png": {
+            "file": "progression-diffrhythm2-A.png",
+            "sha256": "c2ce3005c01ef84d708f52eb7c28fe43af2603c6908b79e8455ccbcc8ae0ffd5",
+            "bytes": 209380
+          },
+          "pdf": {
+            "file": "progression-diffrhythm2-A.pdf",
+            "sha256": "f7698c791bbc0859784abe072954b14cf4cb26bd75c839997bc9995d7af74d58",
+            "bytes": 26508
+          },
+          "svg": {
+            "file": "progression-diffrhythm2-A.svg",
+            "sha256": "f01546c66d4b280923362576651984842270602dba95b2ab96fc1e435df83eca",
+            "bytes": 14210
+          }
+        },
+        "B": {
+          "png": {
+            "file": "progression-diffrhythm2-B.png",
+            "sha256": "158c6d9e3bef19706f634edf144cde2e7b5e5769d14cfb392a175fd123b4da1d",
+            "bytes": 208318
+          },
+          "pdf": {
+            "file": "progression-diffrhythm2-B.pdf",
+            "sha256": "423bf3febce1264fcac0ad97c7cdda5a5ebae5d86effee304874bd45e74295e4",
+            "bytes": 26532
+          },
+          "svg": {
+            "file": "progression-diffrhythm2-B.svg",
+            "sha256": "b6b687909c090cca6e3a137672037bfbf60feeaed6f97dfdf0af90d0b064e58d",
+            "bytes": 14210
+          }
+        },
+        "C": {
+          "png": {
+            "file": "progression-diffrhythm2-C.png",
+            "sha256": "b674defe941a979310ba241da17622e88682f197521b9f2412c26886371d361c",
+            "bytes": 239213
+          },
+          "pdf": {
+            "file": "progression-diffrhythm2-C.pdf",
+            "sha256": "660486a4b8463036473ce7909b0c93e66c50398fa14b9123db98e6b8922c5f00",
+            "bytes": 26861
+          },
+          "svg": {
+            "file": "progression-diffrhythm2-C.svg",
+            "sha256": "878035d8bb5e05dd236ad8e5dab477a1d2f25a475be22466caf49341908e656a",
+            "bytes": 14223
+          }
+        }
+      }
+    },
+    {
+      "id": "yue2",
+      "title": "YuE2",
+      "series": [
+        {
+          "id": "yue2-richness-lr3e4-seed42",
+          "model": "yue2",
+          "reward": "richness",
+          "label": "SP Richness-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.391013582547505,
+              "n": 30,
+              "receipt_sha256": "57b7884d4315b59c24b2bea848add06df0505773ca6e9f36c011b03eca00d7b2"
+            },
+            {
+              "step": 50,
+              "value": 5.587396899859111,
+              "n": 30,
+              "receipt_sha256": "4b397638d40c53f097788078c56628a95671a42b1a05a6f579bcb80481d9c912"
+            },
+            {
+              "step": 100,
+              "value": 5.330914940152851,
+              "n": 30,
+              "receipt_sha256": "18224f020d8b9ee8388eb0325127214f7c5f696f436b7264d27d96149b1077c2"
+            },
+            {
+              "step": 270,
+              "value": 5.164834861528307,
+              "n": 30,
+              "receipt_sha256": "87a4f588fcbeeb853a52d5700f7381833879bd39c3a2d03e67a0eeae27dd2323"
+            }
+          ],
+          "steps_sha256": "2251f5979f24fc82f176d551a5def2cd1031e80071882244f940e3386ca384d7"
+        },
+        {
+          "id": "yue2-instrument-lr3e4-seed42",
+          "model": "yue2",
+          "reward": "instrument",
+          "label": "SongBench Instrument-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.391013582547505,
+              "n": 30,
+              "receipt_sha256": "51df10c76eb6df316bffecabd5de662a473f7d6b29ab7c72326453456679b4c4"
+            },
+            {
+              "step": 50,
+              "value": 5.441211251985459,
+              "n": 30,
+              "receipt_sha256": "a4560b3a0d9420ea00be57c09303519b4a2233cd9833fab9e306e7110ab23dc2"
+            },
+            {
+              "step": 100,
+              "value": 5.581805108842395,
+              "n": 30,
+              "receipt_sha256": "b45ad3cd82b8a5f3da3f925a90dda52cccb3020e321a193484d53b9a43614394"
+            },
+            {
+              "step": 270,
+              "value": 6.00285222870963,
+              "n": 30,
+              "receipt_sha256": "82a9cdb1be3e8f99d91de8f7cb61c43150a3f9a68bc0567fc7befd30c0330d6a"
+            }
+          ],
+          "steps_sha256": "271ab27fb8b24edf36cf54cbd0acdde33fd7cf3b0e623f6094e95fc437a294fc"
+        },
+        {
+          "id": "yue2-arrangement-lr3e4-seed42",
+          "model": "yue2",
+          "reward": "arrangement",
+          "label": "SongBench Arrangement-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.391013582547505,
+              "n": 30,
+              "receipt_sha256": "ce3b6a6a893cffcaf8a593ba57b6c90b6726fcfff94de481c7406070abd198e1"
+            },
+            {
+              "step": 50,
+              "value": 5.573038525808426,
+              "n": 30,
+              "receipt_sha256": "d269a429d9804c09376be3ee795deeeaf5439e0ae184ed5a45d851b831f3a2e1"
+            },
+            {
+              "step": 100,
+              "value": 5.592681721278599,
+              "n": 30,
+              "receipt_sha256": "b486c7f5540000d4f2eb2a0c6a3a670686cdff59ed9289f9f52f09191dd10ed1"
+            },
+            {
+              "step": 270,
+              "value": 5.746612780434745,
+              "n": 30,
+              "receipt_sha256": "643cdf2d8be8ca7c67e1b32a7d859107d11132f6ef4c108a31d7975fabbdd1be"
+            }
+          ],
+          "steps_sha256": "2419593fd040abd60c1960e4a720ef293dc9345044c1f18d3a780f4b44354eed"
+        }
+      ],
+      "baseline": 5.391013582547505,
+      "variants": {
+        "A": {
+          "png": {
+            "file": "progression-yue2-A.png",
+            "sha256": "5c41d04bb2fcffd9620b99976fafba76bf125b75d54840aa08621df878f1a761",
+            "bytes": 204233
+          },
+          "pdf": {
+            "file": "progression-yue2-A.pdf",
+            "sha256": "dc5ad982f7f2b98d15694edb95fcb89e306104607714ea86e5f3417280fc9969",
+            "bytes": 24938
+          },
+          "svg": {
+            "file": "progression-yue2-A.svg",
+            "sha256": "9acd86713991c815d9c9063181c71e12d500dd9ea216556132b43ae3a37006be",
+            "bytes": 12697
+          }
+        },
+        "B": {
+          "png": {
+            "file": "progression-yue2-B.png",
+            "sha256": "4e36076908c7a8741953007ba398ee918b9955a6ce298be29dc872f2b01cb9e6",
+            "bytes": 202589
+          },
+          "pdf": {
+            "file": "progression-yue2-B.pdf",
+            "sha256": "b6f3d1361bc92bcefbce8ae6e93dc8c3e83a71c66a12f1bb496c04cf3ac2b34e",
+            "bytes": 24957
+          },
+          "svg": {
+            "file": "progression-yue2-B.svg",
+            "sha256": "dd5cbc1843c6405f946c0839e35a353d35b1c9d48611637d24a5ca23879a0151",
+            "bytes": 12697
+          }
+        },
+        "C": {
+          "png": {
+            "file": "progression-yue2-C.png",
+            "sha256": "64c2b3841e45040b35832138819642d6e4bfabd1be4ba9ffa795a2aa5e44c4d0",
+            "bytes": 219597
+          },
+          "pdf": {
+            "file": "progression-yue2-C.pdf",
+            "sha256": "c14d153280e78c7c09478ab7a0333ecb0adc98267dce9c435f91c185230393de",
+            "bytes": 25469
+          },
+          "svg": {
+            "file": "progression-yue2-C.svg",
+            "sha256": "74b7995b43930892adba988f31fbd7bbd8c7c616b693d94f103ef008f388ffa4",
+            "bytes": 13599
+          }
+        }
+      }
+    },
+    {
+      "id": "muse",
+      "title": "Muse",
+      "series": [
+        {
+          "id": "muse-richness-lr3e4-beta5e2-seed42",
+          "model": "muse",
+          "reward": "richness",
+          "label": "SP Richness-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 3.9709153765723815,
+              "n": 30,
+              "receipt_sha256": "8cb6bb0026916413b0220b46f584ca4a8d71a5e54d3aff6450d2984b4760a103"
+            },
+            null,
+            null,
+            {
+              "step": 270,
+              "value": 4.063795658520291,
+              "n": 30,
+              "receipt_sha256": "cde62563eff7b95a518fa12069028963c96294129aa6f47fb553b19f2ae30751"
+            }
+          ],
+          "steps_sha256": "421467c5d94b5d52a9c556967a78de85af924efd1287863de1b07b09ae5e6b89"
+        }
+      ],
+      "baseline": 3.9709153765723815,
+      "variants": {
+        "A": {
+          "png": {
+            "file": "progression-muse-A.png",
+            "sha256": "7e7af6bb518cf4d8d23cbf435b5517b9b12f005caea7ea3bbe628e73ee290f85",
+            "bytes": 159267
+          },
+          "pdf": {
+            "file": "progression-muse-A.pdf",
+            "sha256": "04c6e83fb8cbe35c6b1fc97018272b3df5988f02da98a9daff787b771cc81919",
+            "bytes": 22309
+          },
+          "svg": {
+            "file": "progression-muse-A.svg",
+            "sha256": "6a13c129fac3205b7f804123acc024c866f396bf6e25c9bfd99a6c336206ffb6",
+            "bytes": 9386
+          }
+        },
+        "B": {
+          "png": {
+            "file": "progression-muse-B.png",
+            "sha256": "86a07fd19d6b22821db8c8e8ea73c174474a9a604a856b5431c860391ec2f67a",
+            "bytes": 158456
+          },
+          "pdf": {
+            "file": "progression-muse-B.pdf",
+            "sha256": "8571c4e5fd2ffcdd0f9059c31dfac431d8be01d81431f6a64f6c555d01083330",
+            "bytes": 22329
+          },
+          "svg": {
+            "file": "progression-muse-B.svg",
+            "sha256": "4380d9f049977b674e21f048a97c5ea2b79d6798e2880e26acecc731d210be50",
+            "bytes": 9386
+          }
+        },
+        "C": {
+          "png": {
+            "file": "progression-muse-C.png",
+            "sha256": "9e78a70d10c7059517210f3fb18c5674f7b01e7245b5d7f6eb0522b77f7d3c3b",
+            "bytes": 180070
+          },
+          "pdf": {
+            "file": "progression-muse-C.pdf",
+            "sha256": "4c35960726be2d6b9f16690d13390a2d15809333083faed7b4326a3deef3f3c4",
+            "bytes": 22837
+          },
+          "svg": {
+            "file": "progression-muse-C.svg",
+            "sha256": "c2692b6150cce2491bdc8d400fa24e953fa5529061aea1ad451b09bce2d45781",
+            "bytes": 10305
+          }
+        }
+      }
+    }
+  ],
+  "unavailable": [
+    "fixed train checkpoint evaluation",
+    "full test checkpoint evaluation",
+    "small-learning-rate SongBench arm",
+    "SongEval arms scored with SongBench",
+    "Muse steps 50 and 100",
+    "Muse SongBench reward arms"
+  ],
+  "variants": {
+    "A": "Unified scale",
+    "B": "Dark presentation / unified scale",
+    "C": "Focused scale"
+  },
+  "missing_policy": "No copied split scores, no interpolation of missing checkpoints, no reward relabeling. Lines only connect measured markers."
+}

@@ -4,6 +4,16 @@
 
 [在线图册与新试听](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html) · [全部图 A/B/C 下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/figures-ABC.zip) · [逐条件结果](summary.json)
 
+## 新版：按训练步数画三模型折线
+
+[三模型折线图](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html#progression) · [三模型 A/B/C 下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-ABC.zip) · [数据 CSV](progression.csv) · [来源及图文件哈希](progression.json)
+
+DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，纵轴只看同批音频的SongBench七维均值；step0冻结baseline画水平虚线。A统一y轴3.7–6.3，B暗色同轴，C明确标注局部放大。三版相同数值，不平滑或填入未评估的checkpoint。
+
+现有结果不足以绘制“三reward × train/valid/test”的九根实测曲线：可核验的固定split只有完整30条valid；在线训练batch不能冒充固定train评估，full test未完成。所有这些臂LR均为3e-4，没有“小LR SongBench”臂，更不能把其中一条重命名为SongEval。图保留实际SP、SongBench-Instrument、Arrangement、Mean7名称；只有Diff有纯Mean7结果。Muse仅SP的0/270完整，50/100为n/a；图线只连接两个端点，不代表中间测量。`progression.csv`对缺失train/test保留空值与unavailable状态，不复制valid，不补零。
+
+`build_progression.py`从`summary.json`逐条件七个原始头独立重算所有绘制均值，导出三模型×三版PNG/PDF/SVG、CSV/JSON与ZIP。既有原始审计及旧端点图不改写。
+
 ## 建议怎么讲
 
 1. **问题与协议，约一分钟。** 不做SOTA排行榜；研究不同reward在相同模型内部造成什么变化。冻结CMI-Pref270 train /30 valid，所有主结果用30/30固定验证和270步终点，不拿训练batch均值当验证，不拿Mock填数。270条件能观察到响应，但尚不能推出“小数据足以稳定提高完整歌曲质量”。
