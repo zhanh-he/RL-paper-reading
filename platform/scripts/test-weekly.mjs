@@ -102,6 +102,10 @@ try{
   await page.locator('[data-progress-model="diffrhythm2"]').screenshot({path:`/tmp/weekly-progression-${width}.png`});
   await page.getByText('训练过程 · 左 Reward / 右 KL',{exact:true}).evaluate(s=>s.parentElement.open=true);
   for(const b of await page.locator('[data-curve="runs"] button').all())await b.click();
+  await page.locator('[data-curve="runs"] [data-id="yue2-instrument-lr3e4-seed42"]').click();
+  assert.match(await page.locator('[data-curve="note"]').textContent(), /Instrumental \/ 10 − P.*不是原始0–10分/);
+  await page.locator('[data-curve="runs"] [data-id]').filter({hasText:'DiffRhythm2 · SongBench-Mean7'}).first().click();
+  assert.match(await page.locator('[data-curve="note"]').textContent(), /0–10，不除10、不减guard/);
   for(const canvas of await page.locator('canvas').all())assert.ok(await canvas.evaluate(c=>c.width>100&&c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(v=>v)));
   await page.locator('#listening > details').evaluate(e=>e.open=true);
   for(const model of ['diffrhythm2','muse']){

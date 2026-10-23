@@ -52,9 +52,12 @@ function chart(key, points) {
   canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
   const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
   const values = points.map((p) => p[key]);
-  let low = Math.min(0, ...values), high = Math.max(...values);
-  if (high - low < .00001) high = low + .00001;
-  const padding = .12 * (high - low); high += padding; if (low < 0) low -= padding;
+  let low = Math.min(...values), high = Math.max(...values);
+  const padding = Math.max(.12 * (high - low), .000005);
+  low -= padding; high += padding;
+  if (key === 'kl' && values.every((value) => value >= 0)) low = Math.max(0, low);
+  canvas.dataset.axisMin = String(low); canvas.dataset.axisMax = String(high);
+  canvas.setAttribute('aria-label', `${key === 'reward' ? '实际训练 reward R' : 'Training KL'} · 自适应纵轴 ${low.toPrecision(5)}–${high.toPrecision(5)}`);
   const axisY = height - 30, color = key === 'reward' ? '#177e70' : '#407dc5';
   const x = (step) => 39 + (width - 51) * step / 270;
   const y = (value) => 12 + (axisY - 12) * (high - value) / (high - low);
@@ -64,7 +67,7 @@ function chart(key, points) {
     ctx.strokeStyle = '#dde4df'; ctx.beginPath(); ctx.moveTo(39, yy); ctx.lineTo(width - 12, yy); ctx.stroke();
     ctx.fillStyle = '#59615c'; ctx.textAlign = 'right';
     ctx.font = key === 'kl' ? '10px system-ui' : '11px system-ui';
-    const axisLabel = key === 'kl' ? value === 0 ? '0' : Math.abs(value) < .001 ? value.toExponential(1) : value.toFixed(3) : value.toFixed(2);
+    const axisLabel = key === 'kl' ? value === 0 ? '0' : Math.abs(value) < .001 ? value.toExponential(1) : value.toFixed(3) : value.toFixed(high - low < .1 ? 3 : 2);
     ctx.fillText(axisLabel, 35, yy + 4);
   }
   ctx.textAlign = 'center'; ctx.fillStyle = '#59615c';
@@ -96,7 +99,7 @@ function draw() {
     if (trace.length) chart(key, trace);
   }
   $('trace-note').textContent = trace.length
-    ? `${run.steps}/270 步已核验。${model().readiness === 'ablation' ? 'Head-only消融已停止，待主干LoRA替代。' : ''}浅线为原值，实线为10步滚动均值；Reward不含KL loss。${selected === 'diffrhythm2' ? '右图为采样状态上解析条件高斯KL，按latent维度归一化；不是波形KL。' : ['heartmula','songbloom'].includes(selected) ? '右图为head动作分布的解析categorical KL。' : '右图为训练rollout上的冻结参考采样估计。'} 这不是离线探针或测试分数。`
+    ? `${run.steps}/270 步已核验。${model().readiness === 'ablation' ? 'Head-only消融已停止，待主干LoRA替代。' : ''}自适应纵轴，不强制从0起；浅线为逐步训练R，实线为10步滚动均值，保留全部原值范围。Reward不含KL loss，也不是组内标准化后的advantage。${selected === 'diffrhythm2' ? '右图为采样状态上解析条件高斯KL，按latent维度归一化；不是波形KL。' : ['heartmula','songbloom'].includes(selected) ? '右图为head动作分布的解析categorical KL。' : '右图为训练rollout上的冻结参考采样估计。'} 这不是离线探针或测试分数。`
     : `${model().status}。尚无本模型、本目标的已核验日志，不显示替代曲线。`;
 }
 
@@ -273,9 +276,10 @@ function render() {
   $('status').className = `state ${run?.complete ? 'measured' : 'pending'}`;
   const reward = protocol.rewards.find((r) => rewardKey(r.id) === target);
   $('reward-title').textContent = `优化目标 · ${reward.name}`;
+  $('reward-caption').textContent = target === 'richness' ? '训练 R · SP Richness − P' : `训练 R · ${target === 'instrument' ? 'Instrumental' : 'Arrangement'} / 10 − P`;
   $('reward-definition').textContent = `${reward.definition}。${target === 'richness'
     ? '伴奏频谱活动/变化与tonality gate，不是乐器数量或MOS。'
-    : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。' : '评和声框架与配器编排，不是简单计数。'} 三臂都使用同一削波/RMS guard；KL为独立loss项。`;
+    : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。固定除10后再减惩罚，所以0.x不是原始0–10分。' : '评和声框架与配器编排，不是简单计数。固定除10后再减惩罚，所以0.x不是原始0–10分。'} 三臂都减同一P：削波项最高0.5 + RMS项最高0.1；无效音频R=0。KL为独立loss项；不把R当作原始SongBench分或advantage。`;
   $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
     ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='complete'?'已核验270步及全30条0/270验证；现有短试听见本周汇报。':submitted?.status==='failed-before-training'?`Gadi启动失败，未训练：${submitted.job_id}。`:'未回收正式结果。'}`}`
     : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`

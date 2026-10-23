@@ -3,7 +3,7 @@ import { mkdir } from 'node:fs/promises';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const output = process.env.QA_OUTPUT || '/tmp/reward-regime-qa';
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true, channel: 'chrome',args:['--autoplay-policy=no-user-gesture-required'] });
+const browser = await chromium.launch({ headless: true, args:['--autoplay-policy=no-user-gesture-required'] });
 try {
   const page = await browser.newPage(); const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -86,8 +86,19 @@ try {
     assert.match(await root.locator('.training-chart-tooltip:not([hidden])').first().textContent(),/Step 50/);
     await root.locator('[data-regime="reward-controls"] button').nth(1).click();
     assert.equal(await root.locator('[data-regime="plots"]').isVisible(),true);
+    assert.match(await root.locator('[data-regime="reward-caption"]').textContent(), /Instrumental \/ 10 − P/);
+    assert.match(await root.locator('[data-regime="reward-definition"]').textContent(), /固定除10.*削波项最高0.5 \+ RMS项最高0.1/);
+    const trace = await page.evaluate(async () => (await (await fetch('./data/reward-regime-progress.json')).json()).runs.find(r=>r.model==='yue2'&&r.reward==='instrument').trace);
+    const domain = await canvas.evaluate(c=>({low:Number(c.dataset.axisMin),high:Number(c.dataset.axisMax)}));
+    const values = trace.map(p=>p.reward),low=Math.min(...values),high=Math.max(...values),padding=Math.max(.12*(high-low),.000005);
+    assert.ok(Math.abs(domain.low-(low-padding))<1e-12);
+    assert.ok(Math.abs(domain.high-(high+padding))<1e-12);
+    assert.ok(domain.low>0, 'positive SongBench rewards must not be compressed by a forced zero origin');
+    assert.match(await root.locator('[data-regime="trace-note"]').textContent(), /保留全部原值范围.*不是组内标准化/);
+    await root.locator('[data-regime="training"]').screenshot({path:`${output}/instrument-training-${width}.png`});
     await root.locator('[data-regime="reward-controls"] button').nth(2).click();
     assert.equal(await root.locator('[data-regime="plots"]').isVisible(),true);
+    assert.match(await root.locator('[data-regime="reward-caption"]').textContent(), /Arrangement \/ 10 − P/);
     assert.match(await root.locator('[data-regime="status"]').textContent(),/270步/);
     await root.locator('[data-regime="reward-controls"] button').first().click();
     const media=root.locator('[data-regime="media"]');

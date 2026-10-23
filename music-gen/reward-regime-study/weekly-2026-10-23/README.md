@@ -16,6 +16,12 @@ DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，�
 
 `build_progression.py`从`summary.json`和已核验的`songeval-cross.json`逐条件七个原始头独立重算所有绘制均值，导出三模型局部放大PNG/PDF/SVG、CSV/JSON与ZIP。既有原始审计及旧端点图不改写。`collect_followup.py`是手动执行的一次性回收器，没有周期任务；`next-experiments.json`仅为最后核查快照。
 
+## 训练 Reward 的量表
+
+SP/AI历史单头臂实际优化的是`R = Instrumental/10 - P`或`Arrangement/10 - P`；SP臂是`SP_raw - P`。固定除10不是按batch做min-max或z-score。`P = 0.5*min(1,clip_fraction/0.01) + min(0.1,0.01*(max(0,RMS_dBFS+6)+max(0,-40-RMS_dBFS)))`，`clip_fraction`按`abs(sample)>=0.999`计算；非有限、少于1秒或RMS低于1e-5的无效音频目标为0。实现见[rewards.py](../rewards.py)。所以0.58不能直接称为原始5.8分：存在惩罚时，原始单项分为`10*(R+P)`。
+
+SP/AI页的训练曲线显示同提示组内两个样本的R均值；浅线为逐步原值，实线为10步滚动均值，纵轴按全部原值范围自适应，不强制从0起画。GRPO用于更新的组内标准化advantage是另一个量，KL也是独立loss项。结果折线图和验证表仍使用原始七维均值0–10；新Mean7唯一reward臂同样不除10、不减P，不与历史单头目标混称。
+
 ## 建议怎么讲
 
 1. **问题与协议，约一分钟。** 不做SOTA排行榜；研究不同reward在相同模型内部造成什么变化。冻结CMI-Pref270 train /30 valid，所有主结果用30/30固定验证和270步终点，不拿训练batch均值当验证，不拿Mock填数。270条件能观察到响应，但尚不能推出“小数据足以稳定提高完整歌曲质量”。

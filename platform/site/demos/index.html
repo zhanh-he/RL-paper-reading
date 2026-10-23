@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
     <link rel="stylesheet" href="./reward-regime.css?v=20261014-five-inputs" />
-    <script type="module" src="./reward-regime.js?v=20261023-recovered"></script>
+    <script type="module" src="./reward-regime.js?v=20261023-adaptive-reward"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
   </head>
   <body>
@@ -94,7 +94,7 @@
         <div class="lyrics-protocol"><strong data-regime="reward-title"></strong><p data-regime="reward-definition"></p><p data-regime="train-protocol"></p><p data-regime="backbone-status"></p><a data-regime="backbone-report" target="_blank" rel="noopener noreferrer">本轮参数与提交记录</a></div>
         <details open class="choral-deep-dive formal-training-details" data-regime="training"><summary>训练过程 · Reward / KL</summary>
           <section class="choral-training" aria-label="Reward study training traces"><div class="choral-training-plots" data-regime="plots">
-            <figure><figcaption>Reward · 单项目标 − shared penalty <strong data-regime="reward-value"></strong></figcaption><canvas data-regime="reward-chart" role="img" aria-label="Training reward"></canvas></figure>
+            <figure><figcaption><span data-regime="reward-caption">训练 R · 单项目标 − P</span> <strong data-regime="reward-value"></strong></figcaption><canvas data-regime="reward-chart" role="img" aria-label="Training reward"></canvas></figure>
             <figure><figcaption><span data-regime="kl-caption">KL · 在线冻结参考采样估计</span> <strong data-regime="kl-value"></strong></figcaption><canvas data-regime="kl-chart" role="img" aria-label="Training KL"></canvas></figure>
           </div><p class="choral-training-note" data-regime="trace-note"></p></section>
         </details>
