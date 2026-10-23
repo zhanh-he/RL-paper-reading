@@ -11,7 +11,8 @@ function progressGallery(){
   article.dataset.progressModel=m.id;bar.append(el('h3',m.title));
   for(const type of ['png','svg','pdf']){const a=el('a',`${type.toUpperCase()} ↓`);a.href=`./weekly-2026-10-23/${m.variants[progressVariant][type].file}`;a.download='';links.append(a);}
   bar.append(links);article.append(bar);const figure=el('figure'),a=el('a'),img=el('img');figure.className='result-figure';
-  img.src=`./weekly-2026-10-23/${m.variants[progressVariant].png.file}`;img.alt=`${m.title} · SongBench mean · measured validation at steps 0/50/100/270 · ${progressVariant}`;
+  const png=m.variants[progressVariant].png;
+  img.src=`./weekly-2026-10-23/${png.file}?v=${png.sha256.slice(0,12)}`;img.alt=`${m.title} · SongBench mean · measured validation at steps 0/50/100/270 · ${progressVariant}`;
   a.href=img.src;a.target='_blank';a.rel='noopener';a.append(img);figure.append(a);article.append(figure);return article;
  }));
 }

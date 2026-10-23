@@ -131,7 +131,7 @@ def draw(model, series, variant):
 models = []
 rows = []
 for model, name in MODELS.items():
-    candidates=[r for r in data['runs'] if r['reward'] in ['richness','mean7']]+([cross] if cross else [])
+    candidates=data['runs']+([cross] if cross else [])
     runs = sorted([r for r in candidates if r['model'] == model], key=lambda r: list(ARMS).index(r['reward']))
     series = []
     for r in runs:

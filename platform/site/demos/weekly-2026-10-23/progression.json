@@ -95,6 +95,78 @@
           ],
           "steps_sha256": "32e840d20d7ea446c78be9d434dafdba14e69642d0964c4e949723af3e5eb9cd",
           "baseline_kind": "regime"
+        },
+        {
+          "id": "diffrhythm2-instrument-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "instrument",
+          "label": "SongBench Instrument-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "5c5bc4ae63bfd63aa245729a33436c9cc9b369fceba5fa047f6efa0516ccb46a"
+            },
+            {
+              "step": 50,
+              "value": 5.101720949581691,
+              "n": 30,
+              "receipt_sha256": "afcbaa986ae964e51ebf0d5065c595b678b703e663136206a0425dbc3594526e"
+            },
+            {
+              "step": 100,
+              "value": 5.174720134053911,
+              "n": 30,
+              "receipt_sha256": "f85f5be8e1d4284ecd225c4d584cf4c0893376df8c01b62c7d006c5861e6078d"
+            },
+            {
+              "step": 270,
+              "value": 5.160789678210303,
+              "n": 30,
+              "receipt_sha256": "a2a6e1782bb6415c1f5ae0c48b242d15739991d16a10f03e3f5d81d0d0e01f69"
+            }
+          ],
+          "steps_sha256": "16545502632a58a5b1c84e4aad97082c0ff88848935f9a49c034419c94aede29",
+          "baseline_kind": "regime"
+        },
+        {
+          "id": "diffrhythm2-arrangement-lr3e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "arrangement",
+          "label": "SongBench Arrangement-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "e7e18359cdc91b71b935be6f968c5280a092f42c28f270f1c1fda3f854950781"
+            },
+            {
+              "step": 50,
+              "value": 5.137872095335097,
+              "n": 30,
+              "receipt_sha256": "67bf685dec5f2271587ecb382be31db9560379a4f1690be979c0fa02e6c98f2a"
+            },
+            {
+              "step": 100,
+              "value": 5.174483764739264,
+              "n": 30,
+              "receipt_sha256": "7bae79fc2740a2ad4dfd25ecf90bf89ab22fa8aac76e965c7db1dfa78781bd99"
+            },
+            {
+              "step": 270,
+              "value": 5.227957255499703,
+              "n": 30,
+              "receipt_sha256": "49862d39558d2c3ed3ccc109715aa25cea421c69e99c9202d5a93562fdea9895"
+            }
+          ],
+          "steps_sha256": "cff90cb48cdbb9d0abd48aa2fcda7e7a8c9a850ff10e17d0567d8e1a1174e165",
+          "baseline_kind": "regime"
         }
       ],
       "baseline": 5.116102648916699,
@@ -102,18 +174,18 @@
         "C": {
           "png": {
             "file": "progression-diffrhythm2-C.png",
-            "sha256": "c15a81d43f5d3b7c06e9fac6412e5766dc79fdfdb318dc0f57640aa363393d1c",
-            "bytes": 207874
+            "sha256": "b674defe941a979310ba241da17622e88682f197521b9f2412c26886371d361c",
+            "bytes": 239213
           },
           "pdf": {
             "file": "progression-diffrhythm2-C.pdf",
-            "sha256": "36503126b2d370c2d162b11a6f7c4d00fe3ba99da45a633e43aa98ba98803e88",
-            "bytes": 25538
+            "sha256": "3d5636e3bfb5df864af6dcf6226c1d2183078b15a7bada0cd8ab5f2de6b8743a",
+            "bytes": 26861
           },
           "svg": {
             "file": "progression-diffrhythm2-C.svg",
-            "sha256": "20e74bd5c0a354d0ff88a2477271177399a4af911f80d5b9e6204366c6462050",
-            "bytes": 12130
+            "sha256": "1a51d195319d868a45fef3692bb2bc9214247a36a397196f187b531b9182a9f1",
+            "bytes": 14223
           }
         }
       }
@@ -159,6 +231,78 @@
           "baseline_kind": "regime"
         },
         {
+          "id": "yue2-instrument-lr3e4-seed42",
+          "model": "yue2",
+          "reward": "instrument",
+          "label": "SongBench Instrument-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.391013582547505,
+              "n": 30,
+              "receipt_sha256": "51df10c76eb6df316bffecabd5de662a473f7d6b29ab7c72326453456679b4c4"
+            },
+            {
+              "step": 50,
+              "value": 5.441211251985459,
+              "n": 30,
+              "receipt_sha256": "a4560b3a0d9420ea00be57c09303519b4a2233cd9833fab9e306e7110ab23dc2"
+            },
+            {
+              "step": 100,
+              "value": 5.581805108842395,
+              "n": 30,
+              "receipt_sha256": "b45ad3cd82b8a5f3da3f925a90dda52cccb3020e321a193484d53b9a43614394"
+            },
+            {
+              "step": 270,
+              "value": 6.00285222870963,
+              "n": 30,
+              "receipt_sha256": "82a9cdb1be3e8f99d91de8f7cb61c43150a3f9a68bc0567fc7befd30c0330d6a"
+            }
+          ],
+          "steps_sha256": "271ab27fb8b24edf36cf54cbd0acdde33fd7cf3b0e623f6094e95fc437a294fc",
+          "baseline_kind": "regime"
+        },
+        {
+          "id": "yue2-arrangement-lr3e4-seed42",
+          "model": "yue2",
+          "reward": "arrangement",
+          "label": "SongBench Arrangement-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.391013582547505,
+              "n": 30,
+              "receipt_sha256": "ce3b6a6a893cffcaf8a593ba57b6c90b6726fcfff94de481c7406070abd198e1"
+            },
+            {
+              "step": 50,
+              "value": 5.573038525808426,
+              "n": 30,
+              "receipt_sha256": "d269a429d9804c09376be3ee795deeeaf5439e0ae184ed5a45d851b831f3a2e1"
+            },
+            {
+              "step": 100,
+              "value": 5.592681721278599,
+              "n": 30,
+              "receipt_sha256": "b486c7f5540000d4f2eb2a0c6a3a670686cdff59ed9289f9f52f09191dd10ed1"
+            },
+            {
+              "step": 270,
+              "value": 5.746612780434745,
+              "n": 30,
+              "receipt_sha256": "643cdf2d8be8ca7c67e1b32a7d859107d11132f6ef4c108a31d7975fabbdd1be"
+            }
+          ],
+          "steps_sha256": "2419593fd040abd60c1960e4a720ef293dc9345044c1f18d3a780f4b44354eed",
+          "baseline_kind": "regime"
+        },
+        {
           "id": "yue2-songeval3e4-cross-songbench",
           "model": "yue2",
           "reward": "songeval",
@@ -200,18 +344,18 @@
         "C": {
           "png": {
             "file": "progression-yue2-C.png",
-            "sha256": "664a3e6b9abb7c478b5c090c6e6e3d22d42022b5a821f0f65613c1b72d215586",
-            "bytes": 205664
+            "sha256": "ad498eb18267a85a47418464219cda10545478eb4c5abb7d0894e60662338aff",
+            "bytes": 242963
           },
           "pdf": {
             "file": "progression-yue2-C.pdf",
-            "sha256": "2f0d2cdae7b6ea69991ec66288ed6e001a90d1f2c9c5ad95044ff453db384d75",
-            "bytes": 24812
+            "sha256": "a15d61743a4eca50346ca98babc24a54c67380a04e0f2bda58452abab3301884",
+            "bytes": 26586
           },
           "svg": {
             "file": "progression-yue2-C.svg",
-            "sha256": "8b563b1fc4513f9827430dd9d47be96685418f7406342a2fe8f101f99829a226",
-            "bytes": 12714
+            "sha256": "342ad34b7ffffa45c2f38e1c5acc6289eca9750d3cb5de615cdb9e2ee8b5c8af",
+            "bytes": 15711
           }
         }
       }
@@ -257,12 +401,12 @@
           },
           "pdf": {
             "file": "progression-muse-C.pdf",
-            "sha256": "24da7b02ee49793a92b40019866b940c7a056600ae575616fdaa0a3b809292b4",
+            "sha256": "fb34e6cda0a65cec40b0b522c69f61f93f8f761330a017942c5dea0af1e8e5d8",
             "bytes": 22837
           },
           "svg": {
             "file": "progression-muse-C.svg",
-            "sha256": "387077cfc0752a64e4134d899ee6bc76b05c825d4e2cf87b90a4ba1daff3031f",
+            "sha256": "8e0a6189be73e4e43c570113f1a02db049f741eaa1e2c9e7f2c70583792a4175",
             "bytes": 10305
           }
         }

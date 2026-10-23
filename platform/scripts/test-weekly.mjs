@@ -31,8 +31,10 @@ const heads=['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing',
 const crossBytes=await fs.readFile(new URL('songeval-cross.json',root)),cross=JSON.parse(crossBytes);
 assert.equal(cross.status,'verified-complete');assert.equal(cross.binding.bound_audio_n,120);
 assert.equal(createHash('sha256').update(crossBytes).digest('hex'),progression.extra_source_sha256['songeval-cross.json']);
+const expectedRewards={diffrhythm2:['richness','mean7','instrument','arrangement'],yue2:['richness','instrument','arrangement','songeval'],muse:['richness']};
+assert.deepEqual(progression.models.flatMap(m=>m.series.map(s=>s.id)).sort(),[...d.runs,cross].map(r=>r.id).sort());
 for(const m of progression.models){
- assert.equal(m.series.length,m.id==='muse'?1:2);
+ assert.deepEqual(m.series.map(s=>s.reward),expectedRewards[m.id]);
  assert.deepEqual(Object.keys(m.variants),['C']);
  for(const s of m.series){
   assert.equal(s.split,'valid');assert.equal(s.lr,.0003);
@@ -82,7 +84,7 @@ try{
   assert.equal(await page.locator('[data-summary="regimes"] tr').count(),8);
   assert.equal(await page.locator('[data-summary="songeval"] tr').count(),3);
   assert.equal(await page.locator('[data-summary="failures"] li').count(),3);
-  assert.equal(await page.locator('[data-progress="rows"] tr').count(),5);
+  assert.equal(await page.locator('[data-progress="rows"] tr').count(),9);
   assert.equal(await page.locator('[data-jobs="rows"] tr').count(),7);
   assert.equal(await page.locator('[data-progress-variant], [data-gallery]').count(),0);
   assert.equal(await page.locator('[data-progress="models"] article').count(),3);
@@ -90,7 +92,9 @@ try{
    for(const m of progression.models){
     const article=page.locator(`[data-progress-model="${m.id}"]`),img=article.locator('img');
     await img.evaluate(i=>i.decode());assert.equal(await img.evaluate(i=>i.naturalWidth),2400);
-    assert.ok((await img.getAttribute('src')).endsWith(`progression-${m.id}-${v}.png`));
+    const imageURL=new URL(await img.getAttribute('src'),page.url());
+    assert.ok(imageURL.pathname.endsWith(`progression-${m.id}-${v}.png`));
+    assert.equal(imageURL.searchParams.get('v'),m.variants[v].png.sha256.slice(0,12));
     for(const type of ['png','svg','pdf'])assert.ok(await article.locator(`a[download][href$="-${v}.${type}"]`).count());
    }
   }

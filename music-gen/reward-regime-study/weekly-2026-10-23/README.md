@@ -8,7 +8,7 @@
 
 [三模型折线图](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html#progression) · [仅局部放大图下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-focused.zip) · [数据 CSV](progression.csv) · [来源及图文件哈希](progression.json)
 
-DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，纵轴只看同批音频的SongBench七维均值；step0冻结baseline画水平虚线。按最新要求仅显示C局部放大版，旧A/B与端点图从页面移除，保留历史下载URL。默认只画SP、Mean7及真正SongEval训练；Instrument/Arrangement保留在完整表，不混作Mean7训练臂。
+DiffRhythm2、YuE2、Muse各一张，横轴为真实数值step 0/50/100/270，纵轴只看同批音频的SongBench七维均值；step0冻结baseline画水平虚线。按最新要求仅显示C局部放大版，旧A/B与端点图从页面移除，保留历史下载URL。默认保留全部已完成实测臂：SP、SongBench Mean7、Instrument、Arrangement及真正SongEval训练；单头与七维均值分别按真实目标命名，不混作同一训练臂。
 
 现有结果仍不足以绘制“三reward × train/valid/test”的九根实测曲线：完整固定split仅valid30；在线train batch不冒充固定train评估，full test未完成。小LR训练已提交/进入依赖链，但没有完成分数。Muse旧SP仅0/270完整，50/100为n/a；新版重跑补齐checkpoint。`progression.csv`对缺失train/test保留空值与unavailable状态，不复制valid，不补零。
 
