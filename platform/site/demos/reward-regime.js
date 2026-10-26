@@ -281,7 +281,7 @@ function render() {
     ? '伴奏频谱活动/变化与tonality gate，不是乐器数量或MOS。'
     : target === 'instrument' ? '评乐器真实度与合成质量，不直接评乐器数量。固定除10后再减惩罚，所以0.x不是原始0–10分。' : '评和声框架与配器编排，不是简单计数。固定除10后再减惩罚，所以0.x不是原始0–10分。'} 三臂都减同一P：削波项最高0.5 + RMS项最高0.1；无效音频R=0。KL为独立loss项；不把R当作原始SongBench分或advantage。`;
   $('train-protocol').textContent = ['yue2', 'muse'].includes(selected)
-    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='complete'?'已核验270步及全30条0/270验证；现有短试听见本周汇报。':submitted?.status==='failed-before-training'?`Gadi启动失败，未训练：${submitted.job_id}。`:'未回收正式结果。'}`}`
+    ? `CMI-Pref 270 train / 30 valid · 恒定LR3e-4 · seed42 · 组大小2 · ${selected === 'yue2' ? '历史轮 β0.01。PyTorch + PEFT，600 semantic-token短训练预算；长回放单独推理。' : `新轮 β0.05。原始非GRPO Muse，新主干LoRA；ms-swift / TRL + colocated vLLM，512 completion-token /10.24s解码。${submitted?.status==='complete'?'SP-v2已核验270步及0/50/100/270各30条验证；现有短试听见更新汇报。':submitted?.status==='failed-before-training'?`Gadi启动失败，未训练：${submitted.job_id}。`:'未回收正式结果。'}`}`
     : submitted ? `CMI-Pref 270 train / 30 valid · LR3e-4 · G2 · β0.01 · 原生60秒预算，允许自然提前结束。${submitted.training_scope}；rank8/alpha16，仅训练输出头，非完整主干。KL单位：${submitted.kl_unit}。`
       : `${model().input} · ${model().status}。暂无已生效训练配置。`;
   $('kl-caption').textContent = selected === 'diffrhythm2' ? 'KL · 条件高斯 / latent dimension' : ['heartmula','songbloom'].includes(selected) ? 'KL · 输出头 categorical / action' : 'KL · 在线冻结参考采样估计';

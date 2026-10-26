@@ -10,15 +10,19 @@
     100,
     270
   ],
-  "source_sha256": "2b16dcc3aa9a54825ae7ec6f4549a4e2499a71423f05fa1db3d5d1727414e297",
-  "source_updated_at": "2026-10-23T02:31:54.047333+00:00",
+  "source_sha256": "e69ade794969e5b830837bd6f27e4c42c70fcd4657b871461d0a08a1d7c0900a",
+  "source_updated_at": "2026-10-26T06:52:47.963802+00:00",
   "source_file": "summary.json",
   "extra_source_sha256": {
     "songeval-cross.json": "d9b1104f7f7a3228d006bb1f0f53647827a1ecfbb238abd9a2e7a8e3379aa6a8"
   },
   "split": "valid",
   "n": 30,
-  "lr": 0.0003,
+  "lr": null,
+  "lr_grid": [
+    0.0003,
+    0.0001
+  ],
   "models": [
     {
       "id": "diffrhythm2",
@@ -64,7 +68,7 @@
           "id": "diffrhythm2-mean7-lr3e4-beta5e2-seed42",
           "model": "diffrhythm2",
           "reward": "mean7",
-          "label": "SongBench Mean7-GRPO",
+          "label": "SongBench Mean7-GRPO \u00b7 LR3e-4",
           "split": "valid",
           "lr": 0.0003,
           "points": [
@@ -94,6 +98,42 @@
             }
           ],
           "steps_sha256": "32e840d20d7ea446c78be9d434dafdba14e69642d0964c4e949723af3e5eb9cd",
+          "baseline_kind": "regime"
+        },
+        {
+          "id": "diffrhythm2-mean7-lr1e4-beta5e2-seed42",
+          "model": "diffrhythm2",
+          "reward": "mean7",
+          "label": "SongBench Mean7-GRPO \u00b7 LR1e-4",
+          "split": "valid",
+          "lr": 0.0001,
+          "points": [
+            {
+              "step": 0,
+              "value": 5.116102648916699,
+              "n": 30,
+              "receipt_sha256": "73ea88195276135dd80e491969d2279c52a81fedfa0a85751914196f71da4819"
+            },
+            {
+              "step": 50,
+              "value": 5.1408973603021515,
+              "n": 30,
+              "receipt_sha256": "97718594fafbdd66ffca7309dad91b3fc991c7094bba18e24747cd7534723b8e"
+            },
+            {
+              "step": 100,
+              "value": 5.144822326160612,
+              "n": 30,
+              "receipt_sha256": "56ba6983c66a05e92065b6f38cca82f30215277f749c30796beb6995da9fdb87"
+            },
+            {
+              "step": 270,
+              "value": 5.054925946962266,
+              "n": 30,
+              "receipt_sha256": "e039a46b5decd2cfdd55759a8db12614bec11476f7cf929ff5a4f4fd563b7fc4"
+            }
+          ],
+          "steps_sha256": "46a15826a270aaed8ec892ed792cf5f045f4f82a6838e7d79ac0310baac622ee",
           "baseline_kind": "regime"
         },
         {
@@ -174,18 +214,18 @@
         "C": {
           "png": {
             "file": "progression-diffrhythm2-C.png",
-            "sha256": "b674defe941a979310ba241da17622e88682f197521b9f2412c26886371d361c",
-            "bytes": 239213
+            "sha256": "99c0e498d82ba725768fab6f6a39256428d152ac756ea5cf14557a067bd7cdf5",
+            "bytes": 261150
           },
           "pdf": {
             "file": "progression-diffrhythm2-C.pdf",
-            "sha256": "3d5636e3bfb5df864af6dcf6226c1d2183078b15a7bada0cd8ab5f2de6b8743a",
-            "bytes": 26861
+            "sha256": "fd0dedb28a59f42d9ce1abe244acaf2a9af42ffc1000c8065b463b38eb73b127",
+            "bytes": 28042
           },
           "svg": {
             "file": "progression-diffrhythm2-C.svg",
-            "sha256": "1a51d195319d868a45fef3692bb2bc9214247a36a397196f187b531b9182a9f1",
-            "bytes": 14223
+            "sha256": "4cf0994644f6b99aa7d1fb280830c4c86cc3cbe42f90cd81e8fa224b7b2b2b65",
+            "bytes": 15602
           }
         }
       }
@@ -344,18 +384,18 @@
         "C": {
           "png": {
             "file": "progression-yue2-C.png",
-            "sha256": "ad498eb18267a85a47418464219cda10545478eb4c5abb7d0894e60662338aff",
-            "bytes": 242963
+            "sha256": "953cb45129b256ad2a5ace842cafcc26ba490011c863c07e53f4fc0119bddd03",
+            "bytes": 243316
           },
           "pdf": {
             "file": "progression-yue2-C.pdf",
-            "sha256": "a15d61743a4eca50346ca98babc24a54c67380a04e0f2bda58452abab3301884",
-            "bytes": 26586
+            "sha256": "abf04b48fab6f74675959149f081ce6e1a6737348c10148377b063b2dc500e13",
+            "bytes": 26436
           },
           "svg": {
             "file": "progression-yue2-C.svg",
-            "sha256": "342ad34b7ffffa45c2f38e1c5acc6289eca9750d3cb5de615cdb9e2ee8b5c8af",
-            "bytes": 15711
+            "sha256": "60f6a55b7983300334b260825953e6380ea105b9d9cf6aa60de68f7e0001b365",
+            "bytes": 15725
           }
         }
       }
@@ -365,10 +405,10 @@
       "title": "Muse",
       "series": [
         {
-          "id": "muse-richness-lr3e4-beta5e2-seed42",
+          "id": "muse-richness-lr3e4-beta5e2-seed42-v2",
           "model": "muse",
           "reward": "richness",
-          "label": "SP Richness-GRPO",
+          "label": "SP Richness-GRPO \u00b7 v2",
           "split": "valid",
           "lr": 0.0003,
           "points": [
@@ -376,18 +416,64 @@
               "step": 0,
               "value": 3.9709153765723815,
               "n": 30,
-              "receipt_sha256": "8cb6bb0026916413b0220b46f584ca4a8d71a5e54d3aff6450d2984b4760a103"
+              "receipt_sha256": "227be50c2f6932a0ac747046dd3bae713d0dac1ac3e52decc51ad4fa1aa3c2a9"
             },
-            null,
-            null,
+            {
+              "step": 50,
+              "value": 4.348937338874453,
+              "n": 30,
+              "receipt_sha256": "66b4c72b0b9129cca7df56ee9d6c29620a684d3e0ed9333ee9a488f7ce1d4e01"
+            },
+            {
+              "step": 100,
+              "value": 4.32260117757888,
+              "n": 30,
+              "receipt_sha256": "04bec906203d675abb75824b10bf36e181f476b65fe3c03d9713352895f4509f"
+            },
             {
               "step": 270,
-              "value": 4.063795658520291,
+              "value": 4.205085108393715,
               "n": 30,
-              "receipt_sha256": "cde62563eff7b95a518fa12069028963c96294129aa6f47fb553b19f2ae30751"
+              "receipt_sha256": "48534ad5507db4c59e8c3d943ce94541b0f30c4015b926f89582980d50a000e6"
             }
           ],
-          "steps_sha256": "421467c5d94b5d52a9c556967a78de85af924efd1287863de1b07b09ae5e6b89",
+          "steps_sha256": "6a0a7e51545a52d7076fdde83b0968ae835f34f9fce2978efc02faed6ff651d4",
+          "baseline_kind": "regime"
+        },
+        {
+          "id": "muse-mean7-lr3e4-beta5e2-seed42-v3",
+          "model": "muse",
+          "reward": "mean7",
+          "label": "SongBench Mean7-GRPO",
+          "split": "valid",
+          "lr": 0.0003,
+          "points": [
+            {
+              "step": 0,
+              "value": 3.9709153765723815,
+              "n": 30,
+              "receipt_sha256": "fd9c5bc7078b13db4927b759364f331391c54be51c19711e040816b59961da1d"
+            },
+            {
+              "step": 50,
+              "value": 4.211515250660125,
+              "n": 30,
+              "receipt_sha256": "d283322e8ce54d94191e29447b1d99c2953c0ad8b92743cb060ccee368fdc5fa"
+            },
+            {
+              "step": 100,
+              "value": 4.235565672601973,
+              "n": 30,
+              "receipt_sha256": "4e64d4f200735ec6d76c111373289b453e60e2ca849ef89be791e5becc71c6af"
+            },
+            {
+              "step": 270,
+              "value": 4.317843426976885,
+              "n": 30,
+              "receipt_sha256": "3370a30ee6f6e5c97bd03db2a4828f8ddd66804d367a51ab13090dd6583cde20"
+            }
+          ],
+          "steps_sha256": "0aac0a48492fd4df8cc345726d76b34dae4d5902eec80bd7a059a4287a85cae5",
           "baseline_kind": "regime"
         }
       ],
@@ -396,30 +482,30 @@
         "C": {
           "png": {
             "file": "progression-muse-C.png",
-            "sha256": "9e78a70d10c7059517210f3fb18c5674f7b01e7245b5d7f6eb0522b77f7d3c3b",
-            "bytes": 180070
+            "sha256": "cc3eabb820dd043cb074d30ea349a2dad5ee25f4be93377adb3264f46ce6913e",
+            "bytes": 201879
           },
           "pdf": {
             "file": "progression-muse-C.pdf",
-            "sha256": "fb34e6cda0a65cec40b0b522c69f61f93f8f761330a017942c5dea0af1e8e5d8",
-            "bytes": 22837
+            "sha256": "33da2f265d6303d7c45da7606576547218e77f2c6dd5271dd5b23a0abb0b3d19",
+            "bytes": 24548
           },
           "svg": {
             "file": "progression-muse-C.svg",
-            "sha256": "8e0a6189be73e4e43c570113f1a02db049f741eaa1e2c9e7f2c70583792a4175",
-            "bytes": 10305
+            "sha256": "4755b833aacad8d62932d53efcb791b3ffee08541a9d65eb219b315f472eac33",
+            "bytes": 11680
           }
         }
       }
     }
   ],
   "unavailable": [
-    "fixed train checkpoint evaluation",
+    "complete comparable fixed-train curves (Muse baseline/50 contain unscorable outputs)",
     "full test checkpoint evaluation",
-    "small-learning-rate SongBench arm",
+    "YuE2 Mean7 training result",
     "Muse/DiffRhythm2 SongEval cross evaluation",
-    "Muse steps 50 and 100",
-    "Muse SongBench reward arms"
+    "Muse Mean7 LR1e-4 validation",
+    "Muse Instrument/Arrangement reward arms"
   ],
   "variants": {
     "C": "Focused scale"

@@ -14,7 +14,7 @@
     <script type="module" src="./lab.js?v=20261020-model-plan"></script>
     <link rel="stylesheet" href="./model-costs.css?v=20261020-mean7" />
     <script type="module" src="./model-costs.js?v=20261020-model-plan"></script>
-    <script type="module" src="./songbench-review.js?v=20261023-recovered"></script>
+    <script type="module" src="./songbench-review.js?v=20261026-recovery"></script>
     <script type="module" src="./reference-catalog.js?v=20261013"></script>
     <script type="module" src="./choral-curves.js?v=20261006-linked-steps"></script>
     <script type="module" src="./yue2-curves.js?v=20261005-musecritic-sweep"></script>
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./lyrics-formal-v2.css?v=20261013-objective">
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
     <link rel="stylesheet" href="./reward-regime.css?v=20261014-five-inputs" />
-    <script type="module" src="./reward-regime.js?v=20261023-adaptive-reward"></script>
+    <script type="module" src="./reward-regime.js?v=20261026-recovery"></script>
     <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
   </head>
   <body>
@@ -85,7 +85,7 @@
       </section>
 
       <section class="lab-view" id="view-reward-regimes" hidden>
-        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · Reward comparison</p><h2>SP / AI Rewards GRPO</h2></div><a href="./weekly-2026-10-23.html" target="_blank" rel="noopener noreferrer">23 Oct 本周汇报 · A/B/C结果图 / 新试听 ↗</a></div>
+        <div class="section-intro"><div><p class="eyebrow">Lyrics2song · Reward comparison</p><h2>SP / AI Rewards GRPO</h2></div><a href="./weekly-2026-10-23.html?v=20261026" target="_blank" rel="noopener noreferrer">26 Oct 回收 · 局部放大曲线 / 四步试听 ↗</a></div>
         <div class="protocol-strip"><span><strong>270</strong> train</span><span><strong>30</strong> valid</span><span><strong>192</strong> WSB · sealed</span><span><strong>3e-4</strong> learning rate</span></div>
         <p class="stage-context">新增完整主干结果、Mean7训练及固定试听见本周汇报。此页仍保留原先明确标记的head-only历史消融，不能把其音频/曲线当作新主干结果。</p>
         <div class="metric-controls replay-model-controls"><span class="control-label">Models</span><div class="segmented" data-regime="models" role="group" aria-label="Reward study models"></div></div>
@@ -471,7 +471,7 @@
           </section>
           <section data-model-panel="plan" hidden>
             <section data-songbench-review>
-              <div class="section-intro"><div><p class="eyebrow">完整结果已回收 · 23 Oct 2026</p><h3>SongBench Mean7 · 唯一 reward</h3></div><a href="./weekly-2026-10-23.html" target="_blank" rel="noopener noreferrer">本周汇报 · 4张图 × A/B/C / CSV / 新试听 ↗</a></div>
+              <div class="section-intro"><div><p class="eyebrow">完整验证与失败状态 · 26 Oct 2026</p><h3>SongBench Mean7 · 唯一 reward</h3></div><a href="./weekly-2026-10-23.html?v=20261026" target="_blank" rel="noopener noreferrer">更新汇报 · 曲线 / CSV / 80个试听绑定 ↗</a></div>
               <p class="section-copy"><strong>R = (Vocal + Instrumental + Melody + Structure + Arrangement + Mixing + Musicality) / 7。</strong>七维等权均值是本研究约定，不混SP/SongEval或额外响度/削波惩罚；KL单独放在loss里。Diff Mean7与原始Muse-SP已完成，Muse两组learned-head及YuE2 TRL启动/验收失败；不把旧单项减guard目标改名为Mean7。</p>
               <p class="section-copy">沿用冻结CMI 270 train /30 valid /121 test；192条WildSongBench外测另行冻结执行。P1固定LR3e-4、beta0.05、G2、rank8/alpha16、270步、seed42；全30验证0/50/100/270，目标原生60s，不能用旧短rollout或head-only填入。</p>
               <div class="table-scroll"><table class="model-plan-table"><thead><tr><th>优先级</th><th>实验</th><th>理由 / 验收缺口</th></tr></thead><tbody data-sb="priorities"></tbody></table></div>

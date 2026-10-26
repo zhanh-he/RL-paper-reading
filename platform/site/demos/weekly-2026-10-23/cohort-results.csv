@@ -1,0 +1,5 @@
+model,reward,lr,split,step,processed_n,scored_n,SongBench_mean7,invalid_n,status,receipt_sha256
+muse,mean7,0.0003,train,0,270,255,,15,complete-with-unscorable-outputs,a970f1ebd0f0081e38ee8ba359c7167cff461272dae0b7a2f8aa91db52955b20
+muse,mean7,0.0003,train,50,270,267,,3,complete-with-unscorable-outputs,3f2c7806a531dbeadfb570b141ca79f8e2cd3f85d210a287498bafd1445e8bd8
+muse,mean7,0.0003,train,100,270,270,4.343100822791851,0,complete,e04bda0144e2095f5a75f67d05ca4d90f0c28b54514615305b1baed375e12689
+muse,mean7,0.0003,train,270,270,270,4.397587206376292,0,complete,7f6a79ebb7c9381d87f04f59147bf7f293387be3ca2ec2fea0b313be716b6f95

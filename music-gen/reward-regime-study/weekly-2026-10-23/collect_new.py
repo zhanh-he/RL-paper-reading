@@ -29,6 +29,11 @@ def verify(score,path,reward,stats):
     assert identity['muq_weights_sha256']=='273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6'
     assert identity['scored_format']=='PCM24-FLAC'
     values=[score['songbench'][key] for key in HEADS]
+    if reward=='mean7' and score.get('technical_invalid'):
+        assert identity['mean7_only'] and score['mean']==0 and all(v is None for v in values)
+        stats['bound_audio_n']+=1
+        stats['technical_invalid_n']=stats.get('technical_invalid_n',0)+1
+        return
     assert all(math.isfinite(v) for v in values)
     if reward=='mean7':
         assert identity['mean7_only'] and score['richness']['raw'] is None
@@ -52,9 +57,10 @@ def point(step,scores,receipt_sha):
         invalid_n=sum(r['guard']['invalid'] for r in scores),receipt_sha256=receipt_sha)
 
 
-def collect(root,kind):
+def collect(root,kind,lr=.0003,valid_steps=None):
     stats=dict(bound_audio_n=0)
     experiment=load(root/'experiment.json')
+    reward=experiment['reward']
     trace=[]
     if kind=='muse':
         assert experiment['data']['train']['n']==270 and experiment['data']['valid']['n']==30
@@ -68,16 +74,16 @@ def collect(root,kind):
         scores=[json.loads(line) for line in (root/'reward-bindings.jsonl').open()]
         assert len(scores)==540
         index={sha(p):p for p in (root/'decoded').glob('*.flac')}
-        for score in scores:verify(score,index[score['audio_sha256']],'richness',stats)
+        for score in scores:verify(score,index[score['audio_sha256']],reward,stats)
         for i,row in enumerate(history):
             assert abs(sum(r['mean'] for r in scores[2*i:2*i+2])/2-row['reward'])<1e-6
             assert math.isfinite(row['kl']) and math.isfinite(row['grad_norm'])
-            assert row['learning_rate']==.0003
+            assert row['learning_rate']==lr
             trace.append(dict(step=row['step'],reward=row['reward'],kl=row['kl']))
         assert any(r['grad_norm']>0 for r in history)
         baseline=root.parent/'shared-muse-baseline'
         validation=[]
-        for step in [0,270]:
+        for step in valid_steps or [0,270]:
             path=root/f'valid_{step:06d}/receipt.json';receipt=load(path)
             assert receipt['n']==len(receipt['rows'])==30
             folder=baseline if step==0 else root/f'valid_{step:06d}'
@@ -85,18 +91,18 @@ def collect(root,kind):
                 meta=load(folder/f'{i:03d}/generation.json')
                 assert meta['seed']==5101+i and meta['base_model_sha256']==BASE_SHA
                 assert meta['audio_sha256']==score['audio_sha256']
-                verify(score,folder/f'{i:03d}/audio.flac','richness',stats)
+                verify(score,folder/f'{i:03d}/audio.flac',reward,stats)
             p=point(step,receipt['rows'],sha(path));assert abs(p['target_mean']-receipt['mean_reward'])<1e-8
             validation.append(p)
         for name in ['optimizer.pt','rng_state.pth','adapter_model.safetensors']:assert (final/name).is_file()
         trace_sha=sha(final/'trainer_state.json')
-        scope='Fresh original non-GRPO Muse; ms-swift/TRL backbone LoRA rank8;512 completion tokens; MuCodec max10.24s budget, native shorter clips retained; guarded SP objective.'
+        scope='Fresh original non-GRPO Muse; ms-swift/TRL backbone LoRA rank8;512 completion tokens; MuCodec max10.24s budget, native shorter clips retained; '+('pure raw Mean7, technical invalid training utility0 with null heads.' if reward=='mean7' else 'guarded SP objective.')
     else:
         assert experiment['data_sha256']==DATA_SHA and experiment['train_n']==270 and experiment['valid_n']==30
         rows=[json.loads(line) for line in (root/'steps.jsonl').open()]
         assert [r['step'] for r in rows]==list(range(1,271))
         for row in rows:
-            assert row['policy_version']==row['step']-1 and row['beta']==.05 and row['lr']==.0003
+            assert row['policy_version']==row['step']-1 and row['beta']==.05 and row['lr']==lr
             assert row['metrics']['nonzero_attention']>0 and row['metrics']['nonzero_mlp']>0
             for sample,score in zip(row['samples'],row['scores']):
                 assert sample['sha256']==score['audio_sha256']
@@ -118,7 +124,7 @@ def collect(root,kind):
         trace_sha=sha(root/'steps.jsonl')
         scope='Miles FSDP2 native DiT attention+MLP LoRA rank8;60s budget; pure raw SongBench Mean7; no guard/SP penalty.'
     assert len(trace)==270 and abs(trace[0]['kl'])<1e-8
-    assert experiment['lr']==.0003 and experiment['beta']==.05
+    assert experiment['lr']==lr and experiment['beta']==.05
     assert (root/'completion.json').is_file()
     return dict(model='muse' if kind=='muse' else 'diffrhythm2',run=root.name,status='verified-complete',
         updates=270,experiment=experiment,experiment_sha256=sha(root/'experiment.json'),
@@ -130,7 +136,8 @@ def collect(root,kind):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('--kind',choices=['muse','diff'],required=True)
+    p.add_argument('--lr',type=float,default=.0003);p.add_argument('--valid-steps')
     a=p.parse_args()
-    try:record=collect(a.root,a.kind)
+    try:record=collect(a.root,a.kind,a.lr,[int(s) for s in a.valid_steps.split(',')] if a.valid_steps else None)
     except Exception as error:record=dict(status='rejected',run=a.root.name,error=f'{type(error).__name__}: {error}')
     print(json.dumps(dict(checked_at=datetime.now(timezone.utc).isoformat(),run=record),allow_nan=False))

@@ -1,6 +1,6 @@
 {
   "version": "20261015-backbone-lr3e4-beta05",
-  "status": "20261023-muse-SP-complete-two-heads-startup-failed-diff-mean7-complete",
+  "status": "20261026-muse-SP-v2-mean7-and-diff-low-LR-recovered",
   "framework_transition": {
     "date_awst": "2026-10-15",
     "scope": "TRL selected for discrete AR; Miles-Diffusion synchronous FSDP2 selected as the single continuous Flow-GRPO route. VeRL-Omni audit is historical, not a future comparison arm.",
@@ -20,7 +20,7 @@
   },
   "backbone_round": {
     "date_awst": "2026-10-15",
-    "snapshot_at": "2026-10-22T23:48:48.459559+00:00",
+    "snapshot_at": "2026-10-26T06:52:47.963802+00:00",
     "lr": 0.0003,
     "lr_reference": "Current YuE2 SP/AI reward-regime study, not the older SongEval mock sweep",
     "scheduler": "constant",
@@ -35,9 +35,9 @@
       "acestep"
     ],
     "status_by_model": {
-      "yue2": "历史SP/单项为已完成PyTorch轮。新增Mean7的TRL移植在gradient-checkpointing初始化时退出，0更新，未形成新正式结果。",
-      "diffrhythm2": "已核验旧SP/单项三组以及新增纯Mean7：均270步、0/50/100/270各30验证。Mean7终点5.116→5.055，未确立改善。新增曲线及试听见本周汇报。",
-      "muse": "2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。",
+      "yue2": "历史SP/单项PyTorch轮完整保留。新Mean7 TRL v2已获Gadi wa66 H200，但首次采样的PEFT/NAR路径缺rotary_emb，0更新退出，不再标排队。",
+      "diffrhythm2": "已核验旧SP/单项三组，以及Mean7 LR3e-4 /1e-4：均270步、四个checkpoint各30验证。两个Mean7终点均约5.055，均未确立改善。低LR保留真实Mean7名称，不改叫SongEval。",
+      "muse": "2026-10-26：原始Muse-SP v2与纯Mean7 LR3e-4各270步、0/50/100/270各30/30验证。Mean7原始分3.971→4.318；SP重跑3.971→4.205，旧轮归档不合并。LR1e-4训练270步完成，但验证FlashInfer/GCC环境失败。Instrument/Arrangement旧启动失败。10.24s试听及完整train状态见本周汇报。",
       "heartmula": "上一轮三个主干任务在scorer启动时缺generate_objective退出，未训练。当前后置，未重新提交；优先补Muse三臂及Diff/YuE2 Mean7。",
       "acestep": "优先级在 HeartMuLa 之后；尚未提交训练。",
       "songbloom": "后续 Miles 声学主干接入；尚未提交新主干训练。",
@@ -120,10 +120,10 @@
       "role": "原始小模型对照 · 当前最优先",
       "mos": null,
       "team_listening_estimate": null,
-      "status": "SP完成270步 / 另外两组启动失败",
+      "status": "SP-v2 / Mean7完成270步；LR1e-4验证失败",
       "input": "Style text + lyrics",
       "readiness": "measured",
-      "note": "2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。",
+      "note": "2026-10-26：原始Muse-SP v2与纯Mean7 LR3e-4各270步、0/50/100/270各30/30验证。Mean7原始分3.971→4.318；SP重跑3.971→4.205，旧轮归档不合并。LR1e-4训练270步完成，但验证FlashInfer/GCC环境失败。Instrument/Arrangement旧启动失败。10.24s试听及完整train状态见本周汇报。",
       "source": "https://github.com/yuhui1038/Muse"
     },
     {
@@ -413,8 +413,8 @@
     }
   ],
   "execution_recovery": {
-    "checked_at": "2026-10-22T23:48:48.459559+00:00",
+    "checked_at": "2026-10-26T06:52:47.963802+00:00",
     "source": "weekly-2026-10-23/summary.json",
-    "scope": "Preregistered Oct20 plan enriched with actual Oct23 recovery; no new submission."
+    "scope": "Oct26 read-only recovery; no new submission or release of held jobs."
   }
 }

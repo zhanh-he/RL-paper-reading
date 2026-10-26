@@ -4,7 +4,13 @@ import {createHash} from 'node:crypto';
 const root=new URL('../site/demos/weekly-2026-10-23/',import.meta.url);
 const d=JSON.parse(await fs.readFile(new URL('summary.json',root)));
 assert.equal(await fs.readFile(new URL('summary.json',root),'utf8'),await fs.readFile(new URL('../../music-gen/reward-regime-study/weekly-2026-10-23/summary.json',import.meta.url),'utf8'));
-assert.equal(d.runs.length,8);assert.equal(d.songeval.length,3);assert.equal(d.audited_audio_bindings,5220);
+assert.equal(d.runs.length,10);assert.equal(d.songeval.length,3);assert.equal(d.audited_audio_bindings,6600);
+const recoveryBytes=await fs.readFile(new URL('recovery-2026-10-26.json',root)),recovery=JSON.parse(recoveryBytes);
+assert.equal(createHash('sha256').update(recoveryBytes).digest('hex'),d.recovery_sha256);
+assert.equal(recovery.machines.gadi.muse.trace.length,270);
+assert.equal(recovery.machines.gadi.yue2.updates,0);
+assert.equal(recovery.machines.lab5090.test.completed_receipts,0);
+assert.equal(recovery.machines.kaya.held_n,74);
 const mean=a=>a.reduce((s,v)=>s+v,0)/a.length;
 for(const r of d.runs){
   const a=r.validation[0],b=r.validation.at(-1);assert.equal(r.trace.length,270);
@@ -15,7 +21,15 @@ for(const r of d.runs){
     assert.ok(e.ci95[0]<=e.delta&&e.delta<=e.ci95[1]);
   }
 }
-assert.equal(d.failures.length,3);assert.ok(d.failures.every(r=>r.status.startsWith('failed')));
+assert.equal(d.failures.length,6);assert.ok(d.failures.every(r=>r.status.includes('failed')));
+assert.deepEqual(d.cohorts.map(r=>r.scored_n),[255,267,270,270]);
+assert.deepEqual(d.cohorts.slice(0,2).map(r=>r.mean7),[null,null]);
+for(const r of d.cohorts){
+ assert.equal(r.n,r.rows.length);assert.equal(r.n,270);
+ const scored=r.rows.filter(x=>x.mean7!==null);assert.equal(scored.length,r.scored_n);
+ if(r.scored_n===r.n)assert.ok(Math.abs(scored.reduce((s,x)=>s+x.mean7,0)/r.n-r.mean7)<1e-12);
+ else assert.equal(r.mean7,null);
+}
 assert.equal(d.figures.length,4);
 for(const f of d.figures)for(const v of ['A','B','C'])for(const type of ['png','pdf','svg']){
   const file=f.variants[v][type],bytes=await fs.readFile(new URL(file.file,root));
@@ -31,13 +45,13 @@ const heads=['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing',
 const crossBytes=await fs.readFile(new URL('songeval-cross.json',root)),cross=JSON.parse(crossBytes);
 assert.equal(cross.status,'verified-complete');assert.equal(cross.binding.bound_audio_n,120);
 assert.equal(createHash('sha256').update(crossBytes).digest('hex'),progression.extra_source_sha256['songeval-cross.json']);
-const expectedRewards={diffrhythm2:['richness','mean7','instrument','arrangement'],yue2:['richness','instrument','arrangement','songeval'],muse:['richness']};
+const expectedRewards={diffrhythm2:['richness','mean7','mean7','instrument','arrangement'],yue2:['richness','instrument','arrangement','songeval'],muse:['richness','mean7']};
 assert.deepEqual(progression.models.flatMap(m=>m.series.map(s=>s.id)).sort(),[...d.runs,cross].map(r=>r.id).sort());
 for(const m of progression.models){
  assert.deepEqual(m.series.map(s=>s.reward),expectedRewards[m.id]);
  assert.deepEqual(Object.keys(m.variants),['C']);
  for(const s of m.series){
-  assert.equal(s.split,'valid');assert.equal(s.lr,.0003);
+  assert.equal(s.split,'valid');assert.ok([.0003,.0001].includes(s.lr));
   const run=d.runs.find(r=>r.id===s.id)||(s.id===cross.id?cross:null);assert.ok(run);
   if(s.label.includes('SongEval'))assert.equal(run.id,cross.id);
   for(const [i,p] of s.points.entries()){
@@ -64,15 +78,19 @@ const progressionCSV=await fs.readFile(new URL('progression.csv',root),'utf8');
 assert.equal(progressionCSV,await fs.readFile(new URL('../../music-gen/reward-regime-study/weekly-2026-10-23/progression.csv',import.meta.url),'utf8'));
 for(const line of progressionCSV.trim().split('\n').slice(1)){
  const [model,id,reward,lr,split,step,value,n,status,sha]=line.split(',');
- if(split!=='valid'){assert.equal(value,'');assert.equal(n,'');assert.equal(status,'unavailable');assert.equal(sha,'');}
+ const cohort=d.cohorts.find(r=>r.model===model&&r.reward==='mean7'&&id==='muse-mean7-lr3e4-beta5e2-seed42-v3'&&r.split===split&&r.step===+step);
+ if(cohort){assert.equal(+n,270);assert.equal(sha,cohort.receipt_sha256);if(cohort.mean7===null){assert.equal(value,'');assert.equal(status,'unscorable');}else{assert.equal(+value,cohort.mean7);assert.equal(status,'measured');}}
+ else if(split!=='valid'){assert.equal(value,'');assert.equal(n,'');assert.equal(status,'unavailable');assert.equal(sha,'');}
 }
-const listening=JSON.parse(await fs.readFile(new URL('listening.json',root))).rows;
-assert.equal(listening.length,20);
+const audioData=JSON.parse(await fs.readFile(new URL('listening.json',root))),listening=audioData.rows;
+assert.equal(listening.length,80);assert.equal(audioData.runs.length,4);
 for(const r of listening){
+  const run=d.runs.find(x=>x.id===r.run_id),point=run.validation.find(v=>v.step===r.step),original=point.rows[r.index];
+  assert.equal(r.source_audio_sha256,original.audio_sha256);assert.equal(r.mean7,original.mean7);assert.equal(r.seconds,original.seconds);
   assert.match(r.url,/\.mp3$/);const bytes=await fs.readFile(new URL('../'+r.url.replace(/^\.\//,''),root));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),r.public_mp3_sha256);
 }
-if(process.argv.includes('--data-only')){console.log('Weekly: complete source runs +120 real cross-scores;45 figure hashes and20 MP3 hashes verified; focused plots only, missing splits blank.');process.exit(0);}
+if(process.argv.includes('--data-only')){console.log('Weekly:10 verified arms +120 cross-scores;45 figure hashes,80 MP3 bindings and4 cohort receipts verified; null means retained.');process.exit(0);}
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const browser=await chromium.launch({headless:true});
 try{
@@ -81,10 +99,12 @@ try{
   await page.setViewportSize({width,height:1000});await page.goto(process.env.WEEKLY_URL||'http://127.0.0.1:4186/demos/weekly-2026-10-23.html');
   await page.locator('[data-summary="regimes"] tr').last().waitFor({state:'attached'});await page.locator('[data-listen="audio"] audio').last().waitFor({state:'attached'});
   await page.locator('[data-jobs="rows"] tr').last().waitFor();
-  assert.equal(await page.locator('[data-summary="regimes"] tr').count(),8);
+  assert.equal(await page.locator('[data-summary="regimes"] tr').count(),10);
   assert.equal(await page.locator('[data-summary="songeval"] tr').count(),3);
-  assert.equal(await page.locator('[data-summary="failures"] li').count(),3);
-  assert.equal(await page.locator('[data-progress="rows"] tr').count(),9);
+  assert.equal(await page.locator('[data-summary="failures"] li').count(),6);
+  assert.equal(await page.locator('[data-progress="rows"] tr').count(),11);
+  assert.equal(await page.locator('[data-summary="cohorts"] tr').count(),4);
+  assert.equal(await page.locator('[data-summary="cohorts"] tr').filter({hasText:'n/a'}).count(),2);
   assert.equal(await page.locator('[data-jobs="rows"] tr').count(),7);
   assert.equal(await page.locator('[data-progress-variant], [data-gallery]').count(),0);
   assert.equal(await page.locator('[data-progress="models"] article').count(),3);
@@ -108,18 +128,29 @@ try{
   assert.match(await page.locator('[data-curve="note"]').textContent(), /0–10，不除10、不减guard/);
   for(const canvas of await page.locator('canvas').all())assert.ok(await canvas.evaluate(c=>c.width>100&&c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(v=>v)));
   await page.locator('#listening > details').evaluate(e=>e.open=true);
-  for(const model of ['diffrhythm2','muse']){
-   await page.locator(`[data-listen="models"] [data-model="${model}"]`).click();
+  for(const selected of audioData.runs){
+   await page.locator(`[data-listen="models"] [data-run-id="${selected.id}"]`).click();
    const baseline=await page.locator('audio').first().getAttribute('src');
    await page.locator('[data-curve="runs"] button').first().click();assert.equal(await page.locator('audio').first().getAttribute('src'),baseline);
    for(const i of [0,10,20,1,2]){await page.locator(`[data-listen="examples"] [data-index="${i}"]`).click();
-    const audio=page.locator('audio').first();await audio.evaluate(a=>new Promise((resolve,reject)=>{if(a.readyState>=1)return resolve();a.addEventListener('loadedmetadata',resolve,{once:true});a.addEventListener('error',reject,{once:true});}));
-    const duration=await audio.evaluate(a=>a.duration),expected=listening.find(r=>r.model===model&&r.step===0&&r.index===i).seconds;
-    assert.ok(Math.abs(duration-expected)<.08,`${model}/${i}: playback ${duration}, original ${expected}`);
+    const frozen=await page.locator('audio').first().getAttribute('src');
+    await page.locator('[data-role="baseline"]').evaluate(e=>e.dataset.preserved='yes');
+    for(const step of [0,50,100,270]){
+     await page.locator(`[data-listen="steps"] [data-step="${step}"]`).click();
+     assert.equal(await page.locator('audio').first().getAttribute('src'),frozen);
+     assert.equal(await page.locator('[data-role="baseline"]').getAttribute('data-preserved'),'yes');
+     const audio=page.locator('audio').last();await audio.evaluate(a=>new Promise((resolve,reject)=>{if(a.readyState>=1)return resolve();a.addEventListener('loadedmetadata',resolve,{once:true});a.addEventListener('error',reject,{once:true});}));
+     const duration=await audio.evaluate(a=>a.duration),expected=listening.find(r=>r.run_id===selected.id&&r.step===step&&r.index===i).seconds;
+     assert.ok(Math.abs(duration-expected)<.08,`${selected.id}/${i}/${step}: playback ${duration}, original ${expected}`);
+     if(step===0)assert.equal(await audio.getAttribute('src'),frozen);
+    }
    }
   }
+  await page.locator('#listening').screenshot({path:`/tmp/weekly-listening-${width}.png`});
+  await page.locator('#cohorts > details').evaluate(e=>e.open=true);
+  await page.locator('#cohorts').screenshot({path:`/tmp/weekly-cohorts-${width}.png`});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await page.locator('#next-experiments').screenshot({path:`/tmp/weekly-jobs-${width}.png`});
  }
- assert.deepEqual(errors,[]);console.log('PASS: source means,45 figure hashes,20 MP3 hashes,three focused-only plots, real SongEval own baseline, job states, curves, audio, desktop/mobile.');
+ assert.deepEqual(errors,[]);console.log('PASS:10 source arms,45 figure hashes,80 four-checkpoint MP3 bindings, frozen baseline, explicit failed/cohort states, desktop/mobile.');
 }finally{await browser.close();}

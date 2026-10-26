@@ -11,18 +11,30 @@ diffrhythm2,diffrhythm2-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,te
 diffrhythm2,diffrhythm2-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,50,,,unavailable,
 diffrhythm2,diffrhythm2-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,100,,,unavailable,
 diffrhythm2,diffrhythm2-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,270,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,train,0,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,train,50,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,train,100,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,train,270,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,valid,0,5.116102648916699,30,measured,309e6fcdebf5878617247f416a18b4149d39f7df9d5d7f26f7a4a5fc62ea5bf9
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,valid,50,5.11660547824133,30,measured,16899203c1f781b34e1d88bed751a53139df2d20a7ce9833e7dec8c85423f84b
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,valid,100,5.1378639243897934,30,measured,527f94433607260daa5d1b4bd61560118e3b49db7d269b69f8891b6021dfe66c
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,valid,270,5.054848592621939,30,measured,1863d4cee33765332cdb9033f74d8eccab7b3f8107ea2588351bc1993cafa080
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,test,0,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,test,50,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,test,100,,,unavailable,
-diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO,0.0003,test,270,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,train,0,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,train,50,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,train,100,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,train,270,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,valid,0,5.116102648916699,30,measured,309e6fcdebf5878617247f416a18b4149d39f7df9d5d7f26f7a4a5fc62ea5bf9
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,valid,50,5.11660547824133,30,measured,16899203c1f781b34e1d88bed751a53139df2d20a7ce9833e7dec8c85423f84b
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,valid,100,5.1378639243897934,30,measured,527f94433607260daa5d1b4bd61560118e3b49db7d269b69f8891b6021dfe66c
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,valid,270,5.054848592621939,30,measured,1863d4cee33765332cdb9033f74d8eccab7b3f8107ea2588351bc1993cafa080
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,test,0,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,test,50,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,test,100,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr3e4-beta5e2-seed42,SongBench Mean7-GRPO · LR3e-4,0.0003,test,270,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,train,0,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,train,50,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,train,100,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,train,270,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,valid,0,5.116102648916699,30,measured,73ea88195276135dd80e491969d2279c52a81fedfa0a85751914196f71da4819
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,valid,50,5.1408973603021515,30,measured,97718594fafbdd66ffca7309dad91b3fc991c7094bba18e24747cd7534723b8e
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,valid,100,5.144822326160612,30,measured,56ba6983c66a05e92065b6f38cca82f30215277f749c30796beb6995da9fdb87
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,valid,270,5.054925946962266,30,measured,e039a46b5decd2cfdd55759a8db12614bec11476f7cf929ff5a4f4fd563b7fc4
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,test,0,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,test,50,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,test,100,,,unavailable,
+diffrhythm2,diffrhythm2-mean7-lr1e4-beta5e2-seed42,SongBench Mean7-GRPO · LR1e-4,0.0001,test,270,,,unavailable,
 diffrhythm2,diffrhythm2-instrument-lr3e4-beta5e2-seed42,SongBench Instrument-GRPO,0.0003,train,0,,,unavailable,
 diffrhythm2,diffrhythm2-instrument-lr3e4-beta5e2-seed42,SongBench Instrument-GRPO,0.0003,train,50,,,unavailable,
 diffrhythm2,diffrhythm2-instrument-lr3e4-beta5e2-seed42,SongBench Instrument-GRPO,0.0003,train,100,,,unavailable,
@@ -95,15 +107,27 @@ yue2,yue2-songeval3e4-cross-songbench,SongEval-GRPO,0.0003,test,0,,,unavailable,
 yue2,yue2-songeval3e4-cross-songbench,SongEval-GRPO,0.0003,test,50,,,unavailable,
 yue2,yue2-songeval3e4-cross-songbench,SongEval-GRPO,0.0003,test,100,,,unavailable,
 yue2,yue2-songeval3e4-cross-songbench,SongEval-GRPO,0.0003,test,270,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,train,0,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,train,50,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,train,100,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,train,270,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,valid,0,3.9709153765723815,30,measured,8cb6bb0026916413b0220b46f584ca4a8d71a5e54d3aff6450d2984b4760a103
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,valid,50,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,valid,100,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,valid,270,4.063795658520291,30,measured,cde62563eff7b95a518fa12069028963c96294129aa6f47fb553b19f2ae30751
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,0,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,50,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,100,,,unavailable,
-muse,muse-richness-lr3e4-beta5e2-seed42,SP Richness-GRPO,0.0003,test,270,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,train,0,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,train,50,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,train,100,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,train,270,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,valid,0,3.9709153765723815,30,measured,227be50c2f6932a0ac747046dd3bae713d0dac1ac3e52decc51ad4fa1aa3c2a9
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,valid,50,4.348937338874453,30,measured,66b4c72b0b9129cca7df56ee9d6c29620a684d3e0ed9333ee9a488f7ce1d4e01
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,valid,100,4.32260117757888,30,measured,04bec906203d675abb75824b10bf36e181f476b65fe3c03d9713352895f4509f
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,valid,270,4.205085108393715,30,measured,48534ad5507db4c59e8c3d943ce94541b0f30c4015b926f89582980d50a000e6
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,test,0,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,test,50,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,test,100,,,unavailable,
+muse,muse-richness-lr3e4-beta5e2-seed42-v2,SP Richness-GRPO · v2,0.0003,test,270,,,unavailable,
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,train,0,,270,unscorable,a970f1ebd0f0081e38ee8ba359c7167cff461272dae0b7a2f8aa91db52955b20
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,train,50,,270,unscorable,3f2c7806a531dbeadfb570b141ca79f8e2cd3f85d210a287498bafd1445e8bd8
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,train,100,4.343100822791851,270,measured,e04bda0144e2095f5a75f67d05ca4d90f0c28b54514615305b1baed375e12689
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,train,270,4.397587206376292,270,measured,7f6a79ebb7c9381d87f04f59147bf7f293387be3ca2ec2fea0b313be716b6f95
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,valid,0,3.9709153765723815,30,measured,fd9c5bc7078b13db4927b759364f331391c54be51c19711e040816b59961da1d
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,valid,50,4.211515250660125,30,measured,d283322e8ce54d94191e29447b1d99c2953c0ad8b92743cb060ccee368fdc5fa
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,valid,100,4.235565672601973,30,measured,4e64d4f200735ec6d76c111373289b453e60e2ca849ef89be791e5becc71c6af
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,valid,270,4.317843426976885,30,measured,3370a30ee6f6e5c97bd03db2a4828f8ddd66804d367a51ab13090dd6583cde20
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,test,0,,,unavailable,
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,test,50,,,unavailable,
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,test,100,,,unavailable,
+muse,muse-mean7-lr3e4-beta5e2-seed42-v3,SongBench Mean7-GRPO,0.0003,test,270,,,unavailable,

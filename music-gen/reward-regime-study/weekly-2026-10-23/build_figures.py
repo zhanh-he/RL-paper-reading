@@ -1,5 +1,6 @@
 """Reproducible paired analysis and twelve presentation-ready figure exports."""
 from datetime import datetime,timezone
+import argparse
 import csv
 import hashlib
 import json
@@ -12,6 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
+parser=argparse.ArgumentParser();parser.add_argument('--data-only',action='store_true');args=parser.parse_args()
 ROOT=HERE.parents[2]
 PUBLIC=ROOT/'platform/site/demos/weekly-2026-10-23'
 HEADS=['Vocal','Instrumental','Melody','Structure','Arrangement','Mixing','Musicality']
@@ -45,6 +47,11 @@ assert len(legacy['runs'])==6 and all(r['status']=='verified-historical-comparat
 new=[read('muse-sp.json')['run'],read('diff-mean7.json')['run']]
 assert all(r['status']=='verified-complete' for r in new)
 raw=legacy['runs']+new
+recovered=read('recovery-2026-10-26.json') if (HERE/'recovery-2026-10-26.json').exists() else None
+if recovered:
+    for latest in recovered['machines']['lab5090']['runs']:
+        key=lambda r:(r['model'],r['experiment']['reward'],r['experiment']['lr'])
+        raw=[r for r in raw if key(r)!=key(latest)]+[latest]
 runs=[]
 for r in raw:
     before=r['validation'][0];after=r['validation'][-1]
@@ -162,11 +169,13 @@ def draw(definition,variant):
     plt.close(fig);return files
 
 
-figures=[]
-for definition in definitions:
-    figures.append(dict(id=definition['id'],title=definition['title'],subtitle=definition['subtitle'],
-        panels=definition['panels'],note=definition['note'],variants={v:draw(definition,v) for v in 'ABC'}))
+figures=read('summary.json')['figures'] if args.data_only else []
+if not args.data_only:
+    for definition in definitions:
+        figures.append(dict(id=definition['id'],title=definition['title'],subtitle=definition['subtitle'],
+            panels=definition['panels'],note=definition['note'],variants={v:draw(definition,v) for v in 'ABC'}))
 checked_at=max(read(name)['checked_at'] for name in ['legacy-rechecked.json','muse-sp.json','diff-mean7.json','songeval.json'])
+if recovered:checked_at=max(checked_at,recovered['checked_at'])
 summary=dict(updated_at=checked_at,built_at=datetime.now(timezone.utc).isoformat(),run_count=len(runs),runs=runs,songeval=songeval,
     audited_audio_bindings=sum(r['binding']['bound_audio_n'] for r in runs),
     method=dict(n=30,endpoint=270,bootstrap_draws=10000,bootstrap_seed=20261023,
@@ -179,17 +188,26 @@ summary=dict(updated_at=checked_at,built_at=datetime.now(timezone.utc).isoformat
         dict(model='YuE2',reward='SongBench-Mean7 / TRL',job='181718819',status='failed-acceptance-before-update',
         reason='YuE2ForCausalLM gradient-checkpointing integration rejected by Transformers during TRL init; no formal run')],
     figures=figures)
+if recovered:
+    summary['recovery_source']='recovery-2026-10-26.json'
+    summary['recovery_sha256']=hashlib.sha256((HERE/summary['recovery_source']).read_bytes()).hexdigest()
+    summary['cohorts']=recovered['machines']['lab5090']['cohorts']
+    summary['failures'] += [dict(model='YuE2',reward='Mean7 / TRL v2',job='182083826',status='failed-before-update',reason=recovered['machines']['gadi']['yue2']['reason']),
+        dict(model='Muse',reward='Mean7 LR1e-4',job='182084203',status='training-complete-evaluation-failed',reason='270 updates and checkpoint complete; validation FlashInfer JIT failed: GCC9+ required; no validation mean.'),
+        dict(model='Muse',reward='Mean7 test',job='5090 cohort evaluation',status='failed-evaluation',reason=recovered['machines']['lab5090']['test']['reason'])]
+    summary['figures_scope']='Archived 23 Oct endpoint figures retain their original provenance; current plots use progression.json.' if args.data_only else 'Regenerated endpoint figures'
 (HERE/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')
 (PUBLIC/'summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False)+'\n')
 with (PUBLIC/'endpoint-results.csv').open('w',newline='') as f:
-    w=csv.writer(f,lineterminator='\n');w.writerow(['model','objective','metric','n','baseline','step270','delta','ci95_low','ci95_high','positive_pairs'])
+    w=csv.writer(f,lineterminator='\n');w.writerow(['model','objective','lr','run_id','metric','n','baseline','step270','delta','ci95_low','ci95_high','positive_pairs'])
     for r in runs:
         for metric,s in [('SongBench_mean7',r['mean7']),('target_reward',r['target']),('SP_Richness',r['sp'])]:
-            if s:w.writerow([r['model'],r['reward'],metric,30,s['baseline'],s['final'],s['delta'],*s['ci95'],s['positive']])
+            if s:w.writerow([r['model'],r['reward'],r['experiment']['lr'],r['id'],metric,30,s['baseline'],s['final'],s['delta'],*s['ci95'],s['positive']])
     for r in songeval:
-        s=r['effect'];w.writerow(['YuE2','SongEval '+str(r['lr']),'SongEval_mean5',30,s['baseline'],s['final'],s['delta'],*s['ci95'],s['positive']])
-with zipfile.ZipFile(PUBLIC/'figures-ABC.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
-    for p in sorted(PUBLIC.iterdir()):
-        if p.suffix in ['.png','.pdf','.svg','.csv','.json']:z.write(p,p.name)
+        s=r['effect'];w.writerow(['YuE2','SongEval',r['lr'],r.get('id',''),'SongEval_mean5',30,s['baseline'],s['final'],s['delta'],*s['ci95'],s['positive']])
+if not args.data_only:
+    with zipfile.ZipFile(PUBLIC/'figures-ABC.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(PUBLIC.iterdir()):
+            if p.suffix in ['.png','.pdf','.svg','.csv','.json']:z.write(p,p.name)
 print(json.dumps(dict(figures=12,formats=['PNG','PDF','SVG'],runs=len(runs),bindings=summary['audited_audio_bindings'],
     effects=[(r['model'],r['reward'],r['mean7']['delta'],r['mean7']['ci95']) for r in runs]),indent=2))

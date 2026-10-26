@@ -41,21 +41,21 @@ assert.equal(value.expansion.new_training_submitted, true);
 const progress = JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/progress.json', import.meta.url)));
 const weekly=JSON.parse(fs.readFileSync(new URL('../../music-gen/reward-regime-study/weekly-2026-10-23/summary.json',import.meta.url)));
 const muse=weekly.runs.find(r=>r.model==='muse'&&r.reward==='richness');
-assert.equal(muse.updates,270);assert.equal(muse.binding.bound_audio_n,600);
-value.status='20261023-muse-SP-complete-two-heads-startup-failed-diff-mean7-complete';
+assert.equal(muse.updates,270);assert.equal(muse.binding.bound_audio_n,660);
+value.status='20261026-muse-SP-v2-mean7-and-diff-low-LR-recovered';
 value.backbone_round.snapshot_at=weekly.updated_at;
 value.backbone_round.report_url='https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/reward-regime-study/weekly-2026-10-23';
-value.backbone_round.status_by_model.muse='2026-10-23回收：原始非GRPO Muse-SP完成270步、600条音频绑定及0/270各30/30验证。Instrument/Arrangement因缺libpython3.11.so.1.0在scorer启动前失败，没有训练，不再排队。10.24s现有验证试听见本周汇报。';
-value.backbone_round.status_by_model.yue2='历史SP/单项为已完成PyTorch轮。新增Mean7的TRL移植在gradient-checkpointing初始化时退出，0更新，未形成新正式结果。';
-value.backbone_round.status_by_model.diffrhythm2='已核验旧SP/单项三组以及新增纯Mean7：均270步、0/50/100/270各30验证。Mean7终点5.116→5.055，未确立改善。新增曲线及试听见本周汇报。';
-Object.assign(value.models.find(m=>m.id==='muse'),{status:'SP完成270步 / 另外两组启动失败',readiness:'measured',note:value.backbone_round.status_by_model.muse});
+value.backbone_round.status_by_model.muse='2026-10-26：原始Muse-SP v2与纯Mean7 LR3e-4各270步、0/50/100/270各30/30验证。Mean7原始分3.971→4.318；SP重跑3.971→4.205，旧轮归档不合并。LR1e-4训练270步完成，但验证FlashInfer/GCC环境失败。Instrument/Arrangement旧启动失败。10.24s试听及完整train状态见本周汇报。';
+value.backbone_round.status_by_model.yue2='历史SP/单项PyTorch轮完整保留。新Mean7 TRL v2已获Gadi wa66 H200，但首次采样的PEFT/NAR路径缺rotary_emb，0更新退出，不再标排队。';
+value.backbone_round.status_by_model.diffrhythm2='已核验旧SP/单项三组，以及Mean7 LR3e-4 /1e-4：均270步、四个checkpoint各30验证。两个Mean7终点均约5.055，均未确立改善。低LR保留真实Mean7名称，不改叫SongEval。';
+Object.assign(value.models.find(m=>m.id==='muse'),{status:'SP-v2 / Mean7完成270步；LR1e-4验证失败',readiness:'measured',note:value.backbone_round.status_by_model.muse});
 for(const arm of value.runs.filter(r=>r.model==='muse')){
   arm.status=arm.reward==='richness'?'complete':'failed-before-training';
   arm.verified_steps=arm.reward==='richness'?270:0;
   if(arm.reward==='richness')arm.full_valid_n=30;
   else arm.failure='libpython3.11.so.1.0 missing before scorer startup;0 optimizer updates';
 }
-value.execution_recovery={checked_at:weekly.updated_at,source:'weekly-2026-10-23/summary.json',scope:'Preregistered Oct20 plan enriched with actual Oct23 recovery; no new submission.'};
+value.execution_recovery={checked_at:weekly.updated_at,source:'weekly-2026-10-23/summary.json',scope:'Oct26 read-only recovery; no new submission or release of held jobs.'};
 progress.runs.push({model:'muse',reward:'richness',steps:270,trace:muse.trace,complete:true,kl_unit:muse.kl_unit,
   scope:muse.scope,validation:muse.validation.map(v=>({step:v.step,n:30,mean:v.target_mean,receipt_sha256:v.receipt_sha256,
     cross_means:v.means,invalid_n:v.invalid_n}))});

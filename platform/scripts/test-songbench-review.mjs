@@ -6,10 +6,10 @@ assert.equal(d.new_training_started,true);
 assert.equal(d.mean7_training_started,true);
 assert.equal(d.base_identity.starting_from_grpo,false);
 assert.equal(d.base_identity.model_sha256,'c810b2a748579e06e960019f89a9cb98701e4ff545e2c760e8ceaa3343ff1b52');
-assert.equal(d.priorities.filter(p=>p[0].startsWith('P0')).length,2);
-assert.equal(d.runs.length,8);
+assert.equal(d.priorities.filter(p=>p[0].startsWith('P0')).length,3);
+assert.equal(d.runs.length,10);
 assert.equal(d.listening.length,20);
-assert.equal(d.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0),5220);
+assert.equal(d.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0),6600);
 for(const r of d.runs){
   assert.equal(r.updates,270);
   assert.ok(r.validation.every(v=>v.n===30));
@@ -32,13 +32,13 @@ try{
     const root=page.locator('[data-songbench-review]');
     await root.locator('[data-sb="results"] tr').last().waitFor();
     assert.equal(await root.isVisible(),true);
-    assert.equal(await root.locator('[data-sb="results"] tr').count(),8);
+    assert.equal(await root.locator('[data-sb="results"] tr').count(),10);
     assert.match(await root.textContent(),/唯一 reward/);
-    assert.match(await root.locator('[data-sb="failures"]').textContent(),/generate_objective/);
-    assert.match(await root.locator('[data-sb="execution"]').textContent(),/Muse-SP/);
+    assert.match(await root.locator('[data-sb="failures"]').textContent(),/GCC.*rotary_emb/);
+    assert.match(await root.locator('[data-sb="execution"]').textContent(),/Muse Mean7/);
     assert.match(await root.locator('[data-sb="launch-link"]').getAttribute('href'),/weekly-2026-10-23$/);
     await root.getByText('已回收训练曲线 · 左Reward / 右KL',{exact:true}).evaluate(s=>{s.parentElement.open=true;});
-    assert.equal(await root.locator('[data-sb="runs"] button').count(),8);
+    assert.equal(await root.locator('[data-sb="runs"] button').count(),10);
     await root.locator('[data-sb="runs"] button').last().click();
     assert.match(await root.locator('[data-sb="target-caption"]').textContent(),/无guard/);
     for(const canvas of await root.locator('canvas').all()){
@@ -75,5 +75,5 @@ try{
     assert.ok((await regime.locator('[data-regime="train-protocol"]').textContent()).includes(id));
   }
   assert.deepEqual(errors,[]);
-  console.log('PASS: eight complete arms, Muse-SP completion, explicit startup failures,20 MP3 hashes, Reward/KL canvas, desktop/mobile.');
+  console.log('PASS: ten complete arms, current SP-v2/Mean7/LR labels, explicit failed evaluation,20 historical MP3 hashes, desktop/mobile.');
 }finally{await browser.close();}

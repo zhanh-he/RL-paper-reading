@@ -2,7 +2,9 @@ import {createMilestones} from './chart-milestones.js';
 const $=s=>document.querySelector(s),el=(t,text)=>{const e=document.createElement(t);if(text!==undefined)e.textContent=text;return e;};
 const names={yue2:'YuE2',diffrhythm2:'DiffRhythm2',muse:'Muse'},rewards={richness:'SP Richness',instrument:'SongBench-Instrument',arrangement:'SongBench-Arrangement',mean7:'SongBench-Mean7'};
 const fmt=n=>n.toFixed(3),sign=n=>(n>=0?'+':'')+fmt(n),interval=e=>`${sign(e.delta)} [${e.ci95.map(sign).join(', ')}]`;
-let data,run,listenModel='diffrhythm2',example=0,listening,inputs,progression;
+const checked=value=>new Date(value).toLocaleString('zh-CN',{timeZone:'Australia/Perth',hour12:false})+' AWST';
+let data,run,listenRunId,listenStep=270,example=0,listening,listenRuns,inputs,progression;
+const rate=r=>r.lr===.0001?'1e-4':'3e-4';
 const marks=Object.fromEntries(['reward','kl'].map(k=>[k,createMilestones($(`[data-curve="${k}"]`),270)]));
 function progressGallery(){
  const progressVariant='C';
@@ -22,20 +24,44 @@ function choose(r){
  const objective=r.reward==='mean7'?'R = 七维原始分均值（0–10，不除10、不减guard）'
   :r.reward==='richness'?'R = SP Richness − P'
   :`R = ${r.reward==='instrument'?'Instrumental':'Arrangement'} / 10 − P（不是原始0–10分）`;
- $('[data-curve="note"]').textContent=`${names[r.model]} · ${rewards[r.reward]} · ${objective}。P为削波/RMS惩罚；技术无效音频R=0。曲线不是advantage，KL另计：${r.kl_unit}${r.status?' · '+r.status+'；七维未评分。':''}`;draw();
+ $('[data-curve="note"]').textContent=`${names[r.model]} · ${rewards[r.reward]} · ${objective}。P为削波/RMS惩罚；技术无效音频R=0。曲线不是advantage，KL另计：${r.kl_unit}${r.status?' · '+r.status+'；训练七维已有绑定，固定验证尚无结果。':''}`;draw();
 }
-function audio(){for(const a of $('[data-listen="audio"]').querySelectorAll('audio'))a.pause();const source=inputs.find(r=>r.index===example);$('[data-listen="text"]').textContent=source.style;$('[data-listen="lyrics"]').textContent=source.lyrics;$('[data-listen="scope"]').textContent=listenModel==='muse'?'Muse-SP：最多10.24s的旧单项协议，保留原生较短输出；不是60秒歌曲。':'DiffRhythm2–Mean7：原生60s验证输出；并非新推理或长片段拼接。';for(const b of $('[data-listen="models"]').children)b.setAttribute('aria-pressed',String(b.dataset.model===listenModel));for(const b of $('[data-listen="examples"]').children)b.setAttribute('aria-pressed',String(+b.dataset.index===example));$('[data-listen="audio"]').replaceChildren(...[0,270].map((step,i)=>{const r=listening.find(r=>r.model===listenModel&&r.step===step&&r.index===example),s=el('div');s.append(el('h3',`${i?'B · GRPO ·270':'A · Frozen baseline'} · Mean7 ${fmt(r.mean7)} · ${r.seconds.toFixed(2)}s`));const a=el('audio');a.controls=true;a.preload='metadata';a.src=r.url;a.addEventListener('play',()=>{for(const o of $('[data-listen="audio"]').querySelectorAll('audio'))if(o!==a)o.pause();});s.append(a);return s;}));}
-try{data=await (await fetch('./weekly-2026-10-23/summary.json',{cache:'no-store'})).json();const n=data.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0);$('[data-summary="scope"]').textContent=`已核验 ${data.run_count} 个SP/SongBench完整实验 + 3个SongEval LR；${n.toLocaleString()}条音频绑定（含共享baseline，不是独立歌曲数）。CMI固定270 train /30 valid；截至 ${data.updated_at}，非实时监控。`;
+function audio(){
+ const chosen=listenRuns.find(r=>r.id===listenRunId),source=inputs.find(r=>r.index===example),container=$('[data-listen="audio"]');
+ $('[data-listen="text"]').textContent=source.style;$('[data-listen="lyrics"]').textContent=source.lyrics;
+ $('[data-listen="scope"]').textContent=`${names[chosen.model]} · ${rewards[chosen.reward]} · LR${rate(chosen)}。${chosen.model==='muse'?'原生最多10.24s codec预算，不是60秒整歌。':'原生60s预算，保留实际输出时长。'}同一固定输入、seed与冻结baseline；不是新推理或拼接。`;
+ for(const b of $('[data-listen="models"]').children)b.setAttribute('aria-pressed',String(b.dataset.runId===listenRunId));
+ for(const b of $('[data-listen="examples"]').children)b.setAttribute('aria-pressed',String(+b.dataset.index===example));
+ for(const b of $('[data-listen="steps"]').children)b.setAttribute('aria-pressed',String(+b.dataset.step===listenStep));
+ for(const [i,step] of [0,listenStep].entries()){
+  const r=listening.find(r=>r.run_id===listenRunId&&r.step===step&&r.index===example),role=i?'candidate':'baseline',previous=container.querySelector(`[data-role="${role}"]`);
+  if(!i&&previous?.dataset.binding===r.source_audio_sha256)continue;
+  previous?.querySelector('audio')?.pause();
+  const s=el('div');s.dataset.role=role;s.dataset.binding=r.source_audio_sha256;
+  const base=listening.find(r=>r.run_id===listenRunId&&r.step===0&&r.index===example);
+  s.append(el('h3',`${i?'B · GRPO ·'+step:'A · Frozen baseline ·0'} · Mean7 ${fmt(r.mean7)}${i?' ('+sign(r.mean7-base.mean7)+')':''} · ${r.seconds.toFixed(2)}s`));
+  const a=el('audio');a.controls=true;a.preload='metadata';a.src=r.url;
+  a.addEventListener('play',()=>{for(const o of container.querySelectorAll('audio'))if(o!==a)o.pause();});s.append(a);
+  if(previous)previous.replaceWith(s);else container.append(s);
+ }
+}
+try{data=await (await fetch('./weekly-2026-10-23/summary.json',{cache:'no-store'})).json();const n=data.runs.reduce((s,r)=>s+r.binding.bound_audio_n,0);$('[data-summary="scope"]').textContent=`已核验 ${data.run_count} 个SP/SongBench完整实验 + 3个SongEval LR；${n.toLocaleString()}条音频绑定（含共享baseline，不是独立歌曲数）。CMI固定270 train /30 valid；截至 ${checked(data.updated_at)}，非实时监控。`;
 progression=await(await fetch('./weekly-2026-10-23/progression.json',{cache:'no-store'})).json();progressGallery();
 $('[data-progress="rows"]').replaceChildren(...progression.models.flatMap(m=>m.series.map(s=>{const tr=el('tr');for(const value of [m.title,s.label,'valid / 30',...s.points.map(p=>p?fmt(p.value):'n/a')])tr.append(el('td',value));return tr;})));
 const sb=data.runs.find(r=>r.reward==='mean7'),sp=data.runs.filter(r=>r.reward==='richness');$('[data-summary="claims"]').replaceChildren(...[
 `SongEval在YuE2上有验证集增益：3e-4由${fmt(data.songeval[2].effect.baseline)}到${fmt(data.songeval[2].effect.final)}，Δ ${interval(data.songeval[2].effect)}。这是优化指标上的验证增益，LR选择未校正，不是人类听感结论。`,
 `SP代理可以提高，但跨指标迁移不稳定：${sp.map(r=>`${names[r.model]}的SP Δ ${sign(r.sp.delta)}、SongBench Mean7 Δ ${interval(r.mean7)}`).join('；')}。`,
-`SongBench单项与七维均值不是同一个实验：YuE2的Instrument/Arrangement对Mean7呈正向变化；新增Diff纯Mean7终点${fmt(sb.mean7.baseline)}→${fmt(sb.mean7.final)}，Δ ${interval(sb.mean7)}，没有确立改善。`,
+`SongBench单项与七维均值不是同一个实验：YuE2的Instrument/Arrangement对Mean7呈正向变化。${data.runs.filter(r=>r.reward==='mean7').map(r=>`${names[r.model]} Mean7 LR${rate({lr:r.experiment.lr})}：${fmt(r.mean7.baseline)}→${fmt(r.mean7.final)}，Δ ${interval(r.mean7)}`).join('；')}。`,
 `小数据可用于检验post-training响应：这里只有270个训练条件；尚不能推出“小数据足以稳定提高全曲质量”或MOS质量档的普遍规律。`
 ].map(t=>el('li',t)));
-$('[data-summary="songeval"]').replaceChildren(...data.songeval.map(r=>{const t=el('tr');for(const v of [r.lr.toExponential(),fmt(r.effect.baseline),fmt(r.effect.final),interval(r.effect),`${r.effect.positive}/30`])t.append(el('td',v));return t;}));$('[data-summary="regimes"]').replaceChildren(...data.runs.map(r=>{const t=el('tr');for(const v of [`${names[r.model]} · ${rewards[r.reward]}`,fmt(r.mean7.baseline),fmt(r.mean7.final),interval(r.mean7),`${fmt(r.target.baseline)} → ${fmt(r.target.final)}`])t.append(el('td',v));return t;}));$('[data-summary="failures"]').replaceChildren(...data.failures.map(r=>el('li',`${r.model} · ${r.reward} · ${r.job}：${r.status}。${r.reason}。不填入完成结果。`)));
-$('[data-curve="runs"]').replaceChildren(...data.runs.map(r=>{const b=el('button',`${names[r.model]} · ${rewards[r.reward]}`);b.dataset.id=r.id;b.addEventListener('click',()=>choose(r));return b;}));choose(sb);for(const key of ['reward','kl'])new ResizeObserver(draw).observe($(`[data-curve="${key}"]`));document.addEventListener('toggle',draw,true);
-listening=(await (await fetch('./weekly-2026-10-23/listening.json')).json()).rows;inputs=(await (await fetch('./data/reward-regime-examples.json')).json()).inputs;$('[data-listen="models"]').replaceChildren(...['diffrhythm2','muse'].map(m=>{const b=el('button',m==='muse'?'Muse · SP Richness':'DiffRhythm2 · Mean7');b.dataset.model=m;b.addEventListener('click',()=>{listenModel=m;audio();});return b;}));$('[data-listen="examples"]').replaceChildren(...[0,10,20,1,2].map(i=>{const b=el('button',`valid${i}`);b.dataset.index=i;b.addEventListener('click',()=>{example=i;audio();});return b;}));audio();
+$('[data-summary="songeval"]').replaceChildren(...data.songeval.map(r=>{const t=el('tr');for(const v of [r.lr.toExponential(),fmt(r.effect.baseline),fmt(r.effect.final),interval(r.effect),`${r.effect.positive}/30`])t.append(el('td',v));return t;}));$('[data-summary="regimes"]').replaceChildren(...data.runs.map(r=>{const t=el('tr');for(const v of [`${names[r.model]} · ${rewards[r.reward]} · LR${rate({lr:r.experiment.lr})}${r.id.endsWith('-v2')?' · v2重跑':''}`,fmt(r.mean7.baseline),fmt(r.mean7.final),interval(r.mean7),`${fmt(r.target.baseline)} → ${fmt(r.target.final)}`])t.append(el('td',v));return t;}));$('[data-summary="failures"]').replaceChildren(...data.failures.map(r=>el('li',`${r.model} · ${r.reward} · ${r.job}：${r.status}。${r.reason}。未完成的评估不填入验证结果。`)));
+$('[data-summary="cohorts"]').replaceChildren(...data.cohorts.map(r=>{const tr=el('tr');for(const v of [`${names[r.model]} · Mean7 · LR${rate(r)}`,r.split,r.step,`${r.n}/${r.n}`,`${r.scored_n}/${r.n}`,r.mean7===null?'n/a':fmt(r.mean7),r.invalid_n])tr.append(el('td',v));return tr;}));
+$('[data-curve="runs"]').replaceChildren(...data.runs.map(r=>{const b=el('button',`${names[r.model]} · ${rewards[r.reward]} · LR${rate({lr:r.experiment.lr})}`);b.dataset.id=r.id;b.addEventListener('click',()=>choose(r));return b;}));choose(data.runs.find(r=>r.model==='muse'&&r.reward==='mean7')||sb);for(const key of ['reward','kl'])new ResizeObserver(draw).observe($(`[data-curve="${key}"]`));document.addEventListener('toggle',draw,true);
+const audioData=await(await fetch('./weekly-2026-10-23/listening.json',{cache:'no-store'})).json();listening=audioData.rows;
+listenRuns=[...audioData.runs].sort((a,b)=>['diffrhythm2','muse'].indexOf(a.model)-['diffrhythm2','muse'].indexOf(b.model)||['richness','mean7'].indexOf(a.reward)-['richness','mean7'].indexOf(b.reward)||b.lr-a.lr);
+inputs=(await(await fetch('./data/reward-regime-examples.json')).json()).inputs;listenRunId=listenRuns.find(r=>r.model==='muse'&&r.reward==='mean7').id;
+$('[data-listen="models"]').replaceChildren(...listenRuns.map(r=>{const b=el('button',`${names[r.model]} · ${rewards[r.reward]} · LR${rate(r)}`);b.dataset.runId=r.id;b.addEventListener('click',()=>{listenRunId=r.id;audio();});return b;}));
+$('[data-listen="steps"]').replaceChildren(...[0,50,100,270].map(step=>{const b=el('button',`${step} steps`);b.dataset.step=step;b.addEventListener('click',()=>{listenStep=step;audio();});return b;}));
+$('[data-listen="examples"]').replaceChildren(...[0,10,20,1,2].map(i=>{const b=el('button',`valid${i}`);b.dataset.index=i;b.addEventListener('click',()=>{example=i;audio();});return b;}));audio();
 }catch(e){$('[data-summary="scope"]').textContent='结果载入失败：'+e.message;console.error(e);}
-try{const jobs=await(await fetch('./weekly-2026-10-23/next-experiments.json',{cache:'no-store'})).json();$('[data-jobs="scope"]').textContent=`截至 ${jobs.checked_at} · ${jobs.protocol}`;$('[data-jobs="rows"]').replaceChildren(...jobs.jobs.map(j=>{const tr=el('tr');for(const v of [j.name,j.resource,j.status,j.progress])tr.append(el('td',v));return tr;}));for(const r of jobs.traces||[]){if(!r.trace.length)continue;const b=el('button',`${names[r.model]} · ${rewards[r.reward]} · 训练中`);b.dataset.id=r.id;b.addEventListener('click',()=>choose(r));$('[data-curve="runs"]').append(b);}}catch(e){$('[data-jobs="scope"]').textContent='作业快照暂不可用。';console.error(e);}
+try{const jobs=await(await fetch('./weekly-2026-10-23/next-experiments.json',{cache:'no-store'})).json();$('[data-jobs="scope"]').textContent=`截至 ${checked(jobs.checked_at)} · ${jobs.protocol}`;$('[data-jobs="rows"]').replaceChildren(...jobs.jobs.map(j=>{const tr=el('tr');for(const v of [j.name,j.resource,j.status,j.progress])tr.append(el('td',v));return tr;}));for(const r of jobs.traces||[]){if(!r.trace.length)continue;const b=el('button',`${names[r.model]} · ${rewards[r.reward]} · LR${rate(r)} · ${r.phase}`);b.dataset.id=r.id;b.addEventListener('click',()=>choose(r));$('[data-curve="runs"]').append(b);}}catch(e){$('[data-jobs="scope"]').textContent='作业快照暂不可用。';console.error(e);}

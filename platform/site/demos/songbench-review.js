@@ -26,7 +26,7 @@ function draw(){
   }
 }
 function choose(run){
-  active=run;const target=`${names[run.reward]}${run.reward==='mean7'?'（唯一reward，无guard）':' − guard'}`;$('curve-note').textContent=`${run.model} · ${target} · LR3e-4 /beta${run.experiment.beta} · KL: ${run.kl_unit}`;$('target-caption').textContent=target;
+  active=run;const target=run.reward==='mean7'?'七维原始均值（0–10，无guard）':run.reward==='richness'?'SP Richness − P':`${run.reward==='instrument'?'Instrumental':'Arrangement'} /10 − P`;$('curve-note').textContent=`${run.model} · ${names[run.reward]} · R = ${target} · LR${run.experiment.lr===.0001?'1e-4':'3e-4'} /beta${run.experiment.beta} · KL: ${run.kl_unit}`;$('target-caption').textContent=target;
   for(const b of $('runs').children)b.setAttribute('aria-pressed',String(b.dataset.run===run.id));
   draw();
 }
@@ -46,12 +46,12 @@ try{
   $('priorities').replaceChildren(...data.priorities.map(row=>{const tr=el('tr');for(const text of row)tr.append(el('td',text));return tr;}));
   $('execution').textContent=data.execution;$('launch-link').href=data.launch_url;
   $('results').replaceChildren(...data.runs.map(run=>{const first=run.validation[0],last=run.validation.at(-1),tr=el('tr');for(const value of [
-    `${run.model} · ${names[run.reward]}${run.reward==='mean7'?'':' − guard'}`,`${run.updates}步 · ${run.validation.map(v=>v.step).join('/')}各30/30`,
+    `${run.model} · ${names[run.reward]} · LR${run.experiment.lr===.0001?'1e-4':'3e-4'}${run.reward==='mean7'?'':' − guard'}`,`${run.updates}步 · ${run.validation.map(v=>v.step).join('/')}各30/30`,
     `${fmt(first.means.SongBench_mean7)} → ${fmt(last.means.SongBench_mean7)}`,
     `${signed(run.mean7_delta)} [${run.mean7_delta_ci95.map(signed).join(', ')}]`,
   ])tr.append(el('td',value));return tr;}));
   $('failures').textContent=data.failure;$('audit-link').href=data.audit_url;
-  $('runs').replaceChildren(...data.runs.map(run=>{const b=el('button',`${run.model} · ${names[run.reward]}`);b.type='button';b.dataset.run=run.id;b.addEventListener('click',()=>choose(run));return b;}));
+  $('runs').replaceChildren(...data.runs.map(run=>{const b=el('button',`${run.model} · ${names[run.reward]} · LR${run.experiment.lr===.0001?'1e-4':'3e-4'}`);b.type='button';b.dataset.run=run.id;b.addEventListener('click',()=>choose(run));return b;}));
   $('examples').replaceChildren(...[0,10,20,1,2].map(i=>{const b=el('button',`valid${i}`);b.type='button';b.dataset.index=i;b.addEventListener('click',()=>{index=i;audio();});return b;}));
   choose(data.runs.find(r=>r.model==='diffrhythm2'&&r.reward==='arrangement'));audio();
   for(const chart of charts)new ResizeObserver(draw).observe(chart.canvas);

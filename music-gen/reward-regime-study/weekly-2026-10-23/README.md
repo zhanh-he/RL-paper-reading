@@ -1,5 +1,9 @@
 # 本周汇报：RL 与音乐 Reward
 
+**最新：2026-10-26手动回收。** [新结果与失败诊断](RECOVERY_2026-10-26.md) · [逐条件凭据](recovery-2026-10-26.json)。当前线上默认图包含Muse Mean7 LR3e-4（3.971→4.318）、Muse-SP v2（3.971→4.205）及Diff Mean7 LR1e-4（5.116→5.055）。三组均270步、四个checkpoint各30/30验证；Muse-SP当前显示新版，旧轮独立保留。训练曲线可看已完成270步但验证失败的Gadi Muse LR1e-4，不把它填入验证图。Train/Test全量状态、n/a原因与80条四步MP3试听均已整理到线上。
+
+**以下为23 Oct原始汇报与历史背景**，其中当日队列/旧SP数值不代表26 Oct最新状态；以新回收说明和`summary.json`为准。
+
 2026-10-23 AWST。推荐主线：**后训练的响应强烈依赖模型和reward；优化一个可测代理，不等于提高人类音乐质量。**
 
 [在线图册与新试听](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23.html) · [当前局部放大图下载](https://zhanh-he.github.io/RL-paper-reading/demos/weekly-2026-10-23/progression-focused.zip) · [逐条件结果](summary.json) · [本轮启动与回收说明](FOLLOWUP_2026-10-23.md)

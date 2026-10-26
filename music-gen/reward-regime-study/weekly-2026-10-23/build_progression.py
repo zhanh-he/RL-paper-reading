@@ -63,7 +63,9 @@ def draw(model, series, variant):
     fig.subplots_adjust(left=.10, right=.75, top=.75, bottom=.24)
     fig.text(.10, .925, MODELS[model], fontsize=32, fontweight='bold', color=fg)
     fig.text(.10, .865, 'SongBench mean · steps 0 / 50 / 100 / 270', fontsize=21, color=fg)
-    fig.text(.10, .808, 'Fixed validation · N = 30 · LR = 3e-4 · one training seed', fontsize=15, color=muted)
+    rates=sorted({s['lr'] for s in series},reverse=True)
+    lr_note='LR = '+('3e-4' if len(rates)==1 else '3e-4 / 1e-4')
+    fig.text(.10, .808, f'Fixed validation · N = 30 · {lr_note} · one training seed', fontsize=15, color=muted)
     ax.set_xlim(-8, 282)
     ax.set_xticks(STEPS)
     ax.set_xlabel('GRPO update step', labelpad=14, color=fg)
@@ -91,6 +93,7 @@ def draw(model, series, variant):
         color = colors[s['reward']]
         ax.plot([p['step'] for p in available], [p['value'] for p in available],
                 color=color, marker=ARMS[s['reward']][2], ms=9, lw=2.7,
+                linestyle='--' if s['lr']==.0001 else '-',
                 markeredgecolor=bg, markeredgewidth=1.2, label=s['label'], zorder=3)
         if s['baseline_kind']!='regime':
             ax.axhline(s['points'][0]['value'],color=color,lw=1.4,ls=(0,(2,4)),alpha=.8,zorder=1)
@@ -98,7 +101,7 @@ def draw(model, series, variant):
     for i, s in enumerate(series):
         final = s['points'][-1]['value']
         color = colors[s['reward']]
-        y = .72 - i*.13
+        y = .72 - i*(.105 if len(series)>4 else .13)
         fig.text(.79, y, s['label'].replace('-GRPO', ''), fontsize=14, color=color, fontweight='bold')
         own_baseline=s['points'][0]['value']
         fig.text(.79, y-.037, f'Valid · 270: {final:.3f}  ({final-own_baseline:+.3f})', fontsize=13, color=fg)
@@ -108,9 +111,9 @@ def draw(model, series, variant):
     for s in series:
         if s['baseline_kind']!='regime':
             fig.text(.79,.075,f'SongEval baseline · 0\n{s["points"][0]["value"]:.3f}',fontsize=14,color=colors[s['reward']],linespacing=1.5)
-    fig.text(.10, .138, 'Measured validation only. Fixed-train and full-test checkpoint scores are unavailable.',
+    fig.text(.10, .138, 'Measured validation only. Fixed-train availability is reported separately; full test is unavailable.',
              fontsize=13, color=muted)
-    missing_note = ('Muse: steps 50 / 100 not evaluated; the line connects measured endpoints only.' if model == 'muse'
+    missing_note = ('Dashed curve: Mean7 LR1e-4. Reward names retain their actual objectives.' if len(rates)>1
                     else 'SongEval retains its own archived sampling baseline; not a matched reward ablation.' if any(s['baseline_kind']!='regime' for s in series)
                     else 'Markers are measured checkpoints; lines only connect them. No smoothing or filled-in scores.')
     fig.text(.10, .096, missing_note, fontsize=13, color=muted)
@@ -132,22 +135,27 @@ models = []
 rows = []
 for model, name in MODELS.items():
     candidates=data['runs']+([cross] if cross else [])
-    runs = sorted([r for r in candidates if r['model'] == model], key=lambda r: list(ARMS).index(r['reward']))
+    runs = sorted([r for r in candidates if r['model'] == model], key=lambda r: (list(ARMS).index(r['reward']),-r['experiment']['lr']))
     series = []
     for r in runs:
-        assert r['experiment']['lr'] == .0003
+        assert r['experiment']['lr'] in [.0003,.0001]
         points = [checkpoint(r, step) for step in STEPS]
         assert points[0] and points[-1]
-        s = dict(id=r['id'], model=model, reward=r['reward'], label=ARMS[r['reward']][0],
+        label=ARMS[r['reward']][0]+(' · LR'+('1e-4' if r['experiment']['lr']==.0001 else '3e-4') if sum(q['reward']==r['reward'] for q in runs)>1 else '')
+        if model=='muse' and r['reward']=='richness' and r['id'].endswith('-v2'):label+=' · v2'
+        s = dict(id=r['id'], model=model, reward=r['reward'], label=label,
                  split='valid', lr=r['experiment']['lr'], points=points, steps_sha256=r['steps_sha256'],
                  baseline_kind='songeval-archive' if r['reward']=='songeval' else 'regime')
         series.append(s)
         for split in ['train', 'valid', 'test']:
             for step, p in zip(STEPS, points):
                 measured = split == 'valid' and p is not None
+                cohort=next((c for c in data.get('cohorts',[]) if c['model']==model and c['reward']==r['reward'] and c['lr']==r['experiment']['lr'] and c['split']==split and c['step']==step),None)
                 rows.append([model, r['id'], s['label'], r['experiment']['lr'], split, step,
-                             p['value'] if measured else '', 30 if measured else '',
-                             'measured' if measured else 'unavailable', p['receipt_sha256'] if measured else ''])
+                             p['value'] if measured else cohort['mean7'] if cohort and cohort['mean7'] is not None else '',
+                             30 if measured else cohort['n'] if cohort else '',
+                             'measured' if measured or cohort and cohort['mean7'] is not None else 'unscorable' if cohort else 'unavailable',
+                             p['receipt_sha256'] if measured else cohort['receipt_sha256'] if cohort else ''])
     assert all(abs(s['points'][0]['value'] - series[0]['points'][0]['value']) < 1e-12 for s in series if s['baseline_kind']=='regime')
     models.append(dict(id=model, title=name, series=series, baseline=series[0]['points'][0]['value'],
                        variants={'C': draw(model, series, 'C')}))
@@ -156,10 +164,10 @@ manifest = dict(metric='SongBench_mean7', metric_scale=[0, 10], steps=STEPS,
                 source_sha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
                 source_updated_at=max(data['updated_at'],cross['checked_at'] if cross else data['updated_at']), source_file='summary.json',
                 extra_source_sha256={'songeval-cross.json':hashlib.sha256(cross_path.read_bytes()).hexdigest()} if cross else {},
-                split='valid', n=30, lr=.0003, models=models,
-                unavailable=['fixed train checkpoint evaluation', 'full test checkpoint evaluation',
-                             'small-learning-rate SongBench arm', 'Muse/DiffRhythm2 SongEval cross evaluation',
-                             'Muse steps 50 and 100', 'Muse SongBench reward arms'],
+                split='valid', n=30, lr=None, lr_grid=[.0003,.0001], models=models,
+                unavailable=['complete comparable fixed-train curves (Muse baseline/50 contain unscorable outputs)', 'full test checkpoint evaluation',
+                             'YuE2 Mean7 training result', 'Muse/DiffRhythm2 SongEval cross evaluation',
+                             'Muse Mean7 LR1e-4 validation', 'Muse Instrument/Arrangement reward arms'],
                 variants={'C': 'Focused scale'},
                 missing_policy='No copied split scores, no interpolation of missing checkpoints, no reward relabeling. Lines only connect measured markers.')
 for directory in [HERE, PUBLIC]:
