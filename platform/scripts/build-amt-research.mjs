@@ -76,7 +76,7 @@ const sections = [
   }
 ];
 
-const navigation = `<nav><a href="../../">AMT catalog</a><a href="../../../../">MusicGen / RL catalog</a><a href="index.html">专题总览</a>${sections.map(s => `<a href="${s.slug}.html">${escape(s.title.split('：')[0])}</a>`).join('')}</nav>`;
+const navigation = `<nav><a href="../../">AMT catalog</a><a href="../../../">MusicGen / RL catalog</a><a href="index.html">专题总览</a>${sections.map(s => `<a href="${s.slug}.html">${escape(s.title.split('：')[0])}</a>`).join('')}</nav>`;
 const shell = (title, body) => `<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} | AMT Research</title>
 <style>body{margin:0;background:#fff;color:#222;font:16px/1.7 system-ui,sans-serif;letter-spacing:0}main{max-width:1080px;margin:auto;padding:24px}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #ddd;padding-bottom:16px}a{color:#186146;text-underline-offset:3px}h1{font-size:28px;line-height:1.35;margin:28px 0 12px}h2{font-size:21px;margin-top:28px}p,li,td{overflow-wrap:anywhere}.meta{color:#555;font-size:14px}.table-wrap{max-width:100%;overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid #ddd;text-align:left;vertical-align:top;padding:10px}th{background:#f2f5f3}th:first-child{min-width:70px}footer{margin-top:30px;border-top:1px solid #ddd;padding-top:14px;font-size:14px;color:#555}@media(max-width:600px){main{padding:16px}h1{font-size:24px}table{min-width:650px}}</style></head>

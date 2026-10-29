@@ -31,6 +31,7 @@ try {
       assert.ok((await page.locator('body').innerText()).includes('2026-10-29'));
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
       assert.equal(await page.locator('nav a').count(), 6);
+      assert.equal(await page.getByRole('link', {name:'MusicGen / RL catalog',exact:true}).getAttribute('href'), '../../../');
       if (name === 'index') assert.equal(await page.locator('tbody tr').count(), 43);
       await page.screenshot({path:path.join(output, `${name}-${width}.png`), fullPage:true});
     }

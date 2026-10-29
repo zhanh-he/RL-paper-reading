@@ -28,7 +28,10 @@ test('guide pages preserve readable links without private vault content', () => 
     for (const match of content.matchAll(/href="([^"]+)"/g)) {
       if (/^https:\/\//.test(match[1])) continue;
       const target = path.resolve(folder, match[1]);
+      const site = path.join(root, 'site');
+      assert.ok(target === site || target.startsWith(site + path.sep), `${name}: escaped the published site`);
       assert.ok(fs.existsSync(target), `${name}: ${match[1]}`);
+      if (fs.statSync(target).isDirectory()) assert.ok(fs.existsSync(path.join(target, 'index.html')));
     }
   }
 });
