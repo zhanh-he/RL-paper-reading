@@ -50,7 +50,7 @@
       "status": "implemented_unverified",
       "input": "固定人声音频／token + 伴奏风格描述",
       "output": "与输入时间轴配合的新伴奏",
-      "boundary": "已有研究原型与数据适配；真实 GPU 训练、同步、和声及音频质量仍待验证。直接透传固定人声不算模型贡献。"
+      "boundary": "已有研究原型与数据适配；真实数据 GPU 训练、同步、和声及音频质量仍待验证。直接透传固定人声不算模型贡献。"
     },
     {
       "id": "lyrics2song",
@@ -152,7 +152,7 @@
       "id": "engineering",
       "title": "01 · 数据与执行链",
       "status": "in_progress",
-      "gate": "核对成对 token、同步、歌曲划分；CPU 工程验证已有记录，真实资产加载及 GPU 20 步仍待回执。"
+      "gate": "核对成对 token、同步与歌曲划分。CPU 验证及两种 GPU 的基础工程 smoke 已有记录；生产资产加载与真实数据 20 步仍待研究回执。"
     },
     {
       "id": "baseline",
@@ -199,7 +199,8 @@
       "cpu_update_steps": 2,
       "finding": "两套测试各 150 项通过；随机小模型完成 CPU 联合训练、checkpoint 与推理链检查。",
       "limits": "不是 GPU 兼容性、生产 checkpoint 加载、真实音频质量或 CoT 收益的证据。",
-      "provenance": "经审核的工程验证摘要；原始环境、代码与日志不在此公开。"
+      "provenance": "经审核的工程验证摘要；原始环境、代码与日志不在此公开。",
+      "runtime": "CPU"
     },
     {
       "id": "mg-engineering-20261027",
@@ -214,12 +215,45 @@
       "cpu_update_steps": 20,
       "finding": "327 项测试通过；包含 CPU AMP 溢出处理与双进程 Gloo 恢复检查。随机小模型完成 20 次 CPU 更新并保存，CLI 再生成短 token 输出。",
       "limits": "未据此验证 CUDA/NCCL、解码音频、真实音乐收敛或方法优越；测试计数不可与 150 相加或当作音质分数。",
-      "provenance": "经审核的 2026-10-27 工程验证摘要；不发布原始日志或机器身份。"
+      "provenance": "经审核的 2026-10-27 工程验证摘要；不发布原始日志或机器身份。",
+      "runtime": "CPU"
+    },
+    {
+      "id": "mg-gpu-a100-20261027",
+      "date": "2026-10-27",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "A100 · bf16 GPU 工程 smoke",
+      "scope": "单卡 GPU 执行链检查；不属于主消融结果",
+      "tests_passed_per_suite": null,
+      "suite_count": null,
+      "cpu_update_steps": null,
+      "runtime": "GPU",
+      "finding": "已校验回传摘要记录单卡 NVIDIA A100、bf16，工程 smoke 状态 completed。摘要未提供音乐质量评分。",
+      "limits": "来源证据类型为 engineering_smoke；本摘要未记录训练步数或音频评测，不能证明生产模型／真实数据训练、CoT 或 NAR 收益。",
+      "provenance": "通过既有结果 schema 与 payload SHA256 校验的回传摘要；完成日期按 Australia/Perth，原始身份与完整回执留在受控环境。"
+    },
+    {
+      "id": "mg-gpu-v100-20261028",
+      "date": "2026-10-28",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "V100 · fp16 GPU 工程 smoke",
+      "scope": "单卡 GPU 执行链检查；与 A100 是不同硬件记录",
+      "tests_passed_per_suite": null,
+      "suite_count": null,
+      "cpu_update_steps": null,
+      "runtime": "GPU",
+      "finding": "已校验回传摘要记录单卡 Tesla V100、fp16，工程 smoke 状态 completed。摘要未提供音乐质量评分。",
+      "limits": "来源证据类型为 engineering_smoke；本摘要未记录训练步数或音频评测，不能证明收敛、生产资产兼容、CoT 或 NAR 改善。",
+      "provenance": "通过既有结果 schema 与 payload SHA256 校验的回传摘要；UTC 完成时间换算为 Australia/Perth 后为 2026-10-28，原始身份不公开。"
     }
   ],
   "training_results": [],
   "result_policy": {
-    "empty_message": "尚无经审核的真实 GPU 训练或音乐质量结果回传到本页。训练 loss、CPU smoke、已提交作业和资源准备均不填作音质结论。",
+    "empty_message": "尚无经审核的研究训练或音乐质量结果回传到本页。GPU / CPU 工程 smoke、训练 loss、已提交作业和资源准备均不填作音质结论。",
     "workflow": "实验机生成标准 TXT / JSON → 本地 schema 与哈希校验 → 人工脱敏审核 → 转成此公开摘要 → 代码构建检查 → 发布。浏览器不连接实验机。",
     "retained_fields": "匿名实验 ID、日期、任务、证据类型、配置／split 身份、种子、完成状态、指标定义、样本数和实际数值；缺失值保留 null。",
     "excluded_fields": "私有路径、源代码、音频、歌词、提示词、乐谱、账号凭证、主机名、checkpoint 和完整日志不得进入公开摘要。"

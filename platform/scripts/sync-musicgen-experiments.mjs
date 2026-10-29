@@ -85,11 +85,14 @@ export function validateMusicGen(data) {
     text(row.title, 'title'); text(row.gate, 'gate'); choice(row.status, ['planned', 'in_progress']);
   });
   rows(data.evidence, 'evidence', row => {
-    fields(row, ['id', 'date', 'kind', 'status', 'task', 'title', 'scope', 'tests_passed_per_suite', 'suite_count', 'cpu_update_steps', 'finding', 'limits', 'provenance'], 'engineering evidence');
+    fields(row, ['id', 'date', 'kind', 'status', 'task', 'title', 'scope', 'tests_passed_per_suite', 'suite_count', 'cpu_update_steps', 'runtime', 'finding', 'limits', 'provenance'], 'engineering evidence');
     assert(date.test(row.date)); assert.equal(row.kind, 'engineering_check'); assert.equal(row.status, 'verified');
     choice(row.task, tasks);
     ['title', 'scope', 'finding', 'limits', 'provenance'].forEach(key => text(row[key], key));
-    ['tests_passed_per_suite', 'suite_count', 'cpu_update_steps'].forEach(key => count(row[key]));
+    choice(row.runtime, ['CPU', 'GPU']);
+    ['tests_passed_per_suite', 'suite_count', 'cpu_update_steps'].forEach(key => { if (row[key] !== null) count(row[key]); });
+    assert.equal(row.tests_passed_per_suite === null, row.suite_count === null, 'Test count and suite count must be present together');
+    if (row.runtime === 'GPU') assert.equal(row.cpu_update_steps, null, 'Do not label GPU execution as CPU updates');
   });
   rows(data.training_results, 'training_results', row => {
     fields(row, ['id', 'experiment_id', 'date', 'task', 'evidence_kind', 'status', 'config_id', 'split_id', 'seed', 'metrics', 'summary'], 'training result');

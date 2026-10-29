@@ -130,7 +130,7 @@ function recordNode(record) {
   article.dataset.kind = record.kind;
   const head = element("div", "mg-record-head");
   const info = element("div"); const meta = element("div", "mg-record-meta");
-  for (const value of [kindLabels[record.kind] || record.kind, evidenceLabels[record.evidence_kind], record.date, taskLabels[record.task] || record.task]) {
+  for (const value of [kindLabels[record.kind] || record.kind, evidenceLabels[record.evidence_kind], record.date, record.runtime, taskLabels[record.task] || record.task]) {
     if (value) meta.append(element("span", "", value));
   }
   info.append(meta, element("h3", "", record.title || record.experiment_id || record.id));
@@ -214,7 +214,7 @@ function render(data) {
     replace("training-results", data.training_results.map((record) => recordNode({ ...record, kind: "training_result" })));
   } else {
     write("results-state", "等待审核回传");
-    const empty = element("div", "mg-empty"); empty.append(element("strong", "", "尚无经审核的 GPU / 音乐质量结果"), element("p", "", policy.empty_message));
+    const empty = element("div", "mg-empty"); empty.append(element("strong", "", "尚无研究训练 / 音乐质量结果"), element("p", "", policy.empty_message));
     replace("training-results", [empty]);
   }
   records = [...data.evidence.map((record) => ({ ...record, kind: "engineering_check" })), ...data.training_results.map((record) => ({ ...record, kind: "training_result" })), ...data.capabilities.map((record) => ({ ...record, kind: "plan" }))];

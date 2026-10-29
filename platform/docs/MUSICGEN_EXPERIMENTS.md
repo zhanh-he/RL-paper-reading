@@ -15,7 +15,7 @@
 
 `hypotheses`、`capabilities`、`ablations`、`protocol`、`roadmap`描述假设和待验证方案。当前2×2消融仍待预登记，不能因为已有pilot模板就改成completed。
 
-`evidence`只放经审核的工程摘要。2026-10-26基础双任务各150项测试与2026-10-27另一探索范围327项测试必须保留各自日期、scope和局限，不能相加或用最新计数覆盖历史。CPU训练次数不代表GPU训练或音乐质量。
+`evidence`只放经审核的工程摘要。2026-10-26基础双任务各150项测试与2026-10-27另一探索范围327项测试必须保留各自日期、scope和局限，不能相加或用最新计数覆盖历史。CPU训练次数不代表GPU训练或音乐质量。工程摘要的runtime明确区分CPU/GPU；未随回传记录的测试数、套数和CPU步数保留null。A100/bf16与V100/fp16的GPU smoke已校验完成，但不含训练步数及质量分数，不归入研究训练结果。日期按Australia/Perth换算。
 
 `training_results`目前为空。未来每项仅允许：
 
