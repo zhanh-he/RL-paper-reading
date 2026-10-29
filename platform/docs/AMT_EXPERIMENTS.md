@@ -1,8 +1,8 @@
 # AMT live experiments
 
 Live page: <https://zhanh-he.github.io/RL-paper-reading/amt/demos/>.
-The AMT catalog's Experiments button opens it; the MusicGen live page also links to it.
-The page follows the MusicGen live layout: experiment/sample selection, compact Reward/KL traces,
+The AMT catalog's Experiments button opens it; the Music-RL Live page also links to it.
+The page follows the Music-RL Live layout: experiment/sample selection, compact Reward/KL traces,
 checkpoint selection, input/reference/baseline/post-training replay, checkpoint metrics,
 then separate Dataset Protocol, Models and Rewards tabs.
 

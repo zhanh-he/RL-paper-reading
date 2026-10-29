@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MusicGen 方法论探索：显式音乐计划、AR/NAR、条件生成与受控编辑的研究计划和经审核证据。" />
+    <title>MusicGen Live | RL Learning</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20261022-catalogs" />
+    <link rel="stylesheet" href="./styles.css?v=20261029" />
+    <script type="module" src="./app.js?v=20261029"></script>
+  </head>
+  <body class="mg-page">
+    <a class="mg-skip" href="#main-content">跳到正文</a>
+    <header class="app-header mg-header">
+      <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">RL</span><span><strong>RL Learning</strong><small>MusicGen Live</small></span></a>
+      <nav class="mg-header-links" aria-label="站点导航">
+        <a href="../">文献目录</a>
+        <a href="../demos/">Music-RL Live <span aria-hidden="true">↗</span></a>
+        <a href="../amt/demos/">AMT Live</a>
+      </nav>
+    </header>
+    <main class="mg-shell" id="main-content">
+      <div class="mg-load" id="load-state" role="status" hidden>正在读取经审核的公开研究快照…</div>
+      <button class="mg-action" id="retry-load" type="button" hidden>重新读取</button>
+      <noscript><div class="mg-load mg-error">此页需要 JavaScript 展示研究计划、实验筛选与证据状态。你可以直接阅读<a href="./data/experiments.json">公开 JSON 快照</a>或<a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/platform/docs/MUSICGEN_EXPERIMENTS.md">实验发布规范</a>；已有 RL 结果在 <a href="../demos/">Music-RL Live</a>。</div></noscript>
+
+      <div id="page-content" hidden>
+        <section class="mg-hero" aria-labelledby="project-objective">
+          <div class="mg-hero-main">
+            <p class="mg-eyebrow" id="project-subtitle"></p>
+            <h1 id="project-objective"></h1>
+            <p class="mg-approach" id="project-approach"></p>
+            <div class="mg-task-strip" id="project-tasks"></div>
+          </div>
+          <aside class="mg-snapshot" aria-labelledby="snapshot-title">
+            <div class="mg-snapshot-heading"><h2 id="snapshot-title">当前证据</h2><span id="snapshot-date"></span></div>
+            <div class="mg-snapshot-metrics"><div><strong id="engineering-count"></strong><span>条工程记录</span></div><div><strong id="training-count"></strong><span>条训练结果</span></div></div>
+            <p id="snapshot-note"></p>
+            <a class="mg-text-link" href="#records">查看计划与证据 <span aria-hidden="true">→</span></a>
+          </aside>
+        </section>
+
+        <nav class="mg-tabs" role="tablist" aria-label="MusicGen 页面章节">
+          <button id="tab-research" type="button" role="tab" aria-controls="research" aria-selected="true" data-tab="research">研究计划</button>
+          <button id="tab-records" type="button" role="tab" aria-controls="records" aria-selected="false" tabindex="-1" data-tab="records">计划与证据 <span id="record-tab-count"></span></button>
+          <button id="tab-sources" type="button" role="tab" aria-controls="sources" aria-selected="false" tabindex="-1" data-tab="sources">来源与回传</button>
+        </nav>
+
+        <section class="mg-panel" id="research" role="tabpanel" aria-labelledby="tab-research" tabindex="0">
+          <section class="mg-section" id="hypotheses" aria-labelledby="hypotheses-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Research questions</p><h2 id="hypotheses-title">我们要验证什么</h2></div><span class="mg-badge mg-proposed">研究假设</span></div>
+            <div class="mg-hypotheses" id="hypothesis-list"></div>
+          </section>
+
+          <section class="mg-section" id="ablations" aria-labelledby="ablations-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Matched comparisons</p><h2 id="ablations-title">2 × 2 主消融</h2></div><span class="mg-badge mg-proposed">待预登记</span></div>
+            <div class="mg-table-wrap" tabindex="0" aria-label="四组主消融，可横向滚动"><table class="mg-table"><thead><tr><th scope="col">对照组</th><th scope="col">显式计划</th><th scope="col">NAR 修订</th><th scope="col">回答的问题</th><th scope="col">状态</th></tr></thead><tbody id="ablation-body"></tbody></table></div>
+            <p class="mg-caption" id="registration-note"></p>
+            <details class="mg-details" id="protocol-details"><summary>预算、数据划分与评测协议</summary><div class="mg-details-body"><h3>控制变量</h3><ul id="protocol-controls"></ul><h3>独立评价</h3><ul id="protocol-evaluation"></ul><p id="benchmark-note"></p><p id="project-boundary"></p></div></details>
+          </section>
+
+          <section class="mg-section" id="roadmap" aria-labelledby="roadmap-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Experiment gates</p><h2 id="roadmap-title">分阶段推进</h2></div><span class="mg-heading-note">每一阶段先满足验收条件</span></div>
+            <ol class="mg-roadmap" id="roadmap-list"></ol>
+          </section>
+
+          <section class="mg-section" id="capabilities" aria-labelledby="capabilities-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Task scope</p><h2 id="capabilities-title">任务与能力边界</h2></div><span class="mg-heading-note" id="capability-count"></span></div>
+            <div class="mg-capabilities" id="capability-list"></div>
+          </section>
+        </section>
+
+        <section class="mg-panel" id="records" role="tabpanel" aria-labelledby="tab-records" tabindex="0" hidden>
+          <section class="mg-section" aria-labelledby="results-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Measured outcomes</p><h2 id="results-title">训练与音乐质量结果</h2></div><span id="results-state" class="mg-badge"></span></div>
+            <div class="mg-result-area" id="training-results"></div>
+          </section>
+          <section class="mg-section" aria-labelledby="records-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Versioned record book</p><h2 id="records-title">计划与证据账本</h2></div><a class="mg-text-link" href="./data/experiments.json" download>公开 JSON <span aria-hidden="true">↓</span></a></div>
+            <div class="mg-filters" aria-label="记录筛选">
+              <label>任务<select id="task-filter"><option value="all">全部任务</option></select></label>
+              <label>证据类型<select id="kind-filter"><option value="all">全部类型</option><option value="engineering_check">工程检查</option><option value="plan">任务计划</option><option value="training_result">全部训练 / 评测</option><option value="training_measurement">训练 / 资源实测</option><option value="quality_measurement">音乐质量评测</option></select></label>
+              <label>状态<select id="status-filter"><option value="all">全部状态</option></select></label>
+              <button type="button" class="mg-action" id="reset-filters">重置筛选</button>
+            </div>
+            <p class="mg-filter-summary" id="filter-summary" role="status" aria-live="polite"></p>
+            <div class="mg-records" id="record-list"></div>
+            <div class="mg-empty" id="filter-empty" hidden><strong>没有符合筛选的记录</strong><p>调整任务、证据类型或状态；缺少结果时保留空态。</p></div>
+          </section>
+        </section>
+
+        <section class="mg-panel" id="sources" role="tabpanel" aria-labelledby="tab-sources" tabindex="0" hidden>
+          <section class="mg-section" aria-labelledby="return-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Reviewed result returns</p><h2 id="return-title">结果怎样进入本页</h2></div><a class="mg-text-link" href="https://github.com/zhanh-he/RL-paper-reading/blob/main/platform/docs/MUSICGEN_EXPERIMENTS.md" target="_blank" rel="noopener noreferrer">发布规范 <span aria-hidden="true">↗</span></a></div>
+            <ol class="mg-return-flow" id="return-flow"></ol>
+            <div class="mg-policy-grid"><div><h3>公开摘要保留</h3><p id="retained-fields"></p></div><div><h3>公开摘要排除</h3><p id="excluded-fields"></p></div></div>
+          </section>
+          <section class="mg-section" aria-labelledby="references-title">
+            <div class="mg-section-heading"><div><p class="mg-eyebrow">Primary references</p><h2 id="references-title">方法与任务的公开依据</h2></div><span class="mg-heading-note" id="reference-count"></span></div>
+            <ol class="mg-references" id="reference-list"></ol>
+          </section>
+        </section>
+        <footer class="mg-footer"><span id="footer-date"></span><span>MusicGen 方法论 · <a href="../demos/">Music-RL 训练与奖励实验</a></span><a href="https://github.com/zhanh-he/RL-paper-reading" target="_blank" rel="noopener noreferrer">GitHub ↗</a></footer>
+      </div>
+    </main>
+  </body>
+</html>

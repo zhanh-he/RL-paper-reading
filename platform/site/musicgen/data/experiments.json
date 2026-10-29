@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-29",
+  "project": {
+    "title": "MusicGen Live",
+    "subtitle": "方法论探索 · 计划、验证与实验记录",
+    "objective": "显式音乐计划能否让条件生成更准确、修订更可靠，并减少局部编辑中的无关变化？",
+    "primary_task": "vocal2accomp",
+    "secondary_task": "lyrics2song",
+    "approach": "以 Muse 的离散音频 token 为起点：AR 生成符号音乐计划与音频草稿，NAR 迭代修订。SheetSage2 用于离线准备谱面监督。",
+    "boundary": "这是待验证的研究路线。当前实现不是 YuE2 的连续 latent flow 或统一 MoT；可读谱面、功能数量和工程测试通过均不等于科学收益。",
+    "snapshot_note": "本页是经审核的版本化快照，不自动读取服务器或推断作业状态。"
+  },
+  "hypotheses": [
+    {
+      "id": "h-plan",
+      "title": "H1 · 计划有效性",
+      "question": "推理时生成的音乐计划，能否改善结构及与固定输入的配合？",
+      "test": "在同一歌曲级划分、初始化与预算下，对照有无显式计划。",
+      "status": "proposed"
+    },
+    {
+      "id": "h-refine",
+      "title": "H2 · 修订有效性",
+      "question": "NAR 能否改善 AR 草稿，而不是只增加 token 改写和延迟？",
+      "test": "保留同一份 AR 草稿，对比修订前后质量、控制遵循、稳定性和端到端时延。",
+      "status": "proposed"
+    },
+    {
+      "id": "h-intervene",
+      "title": "H3 · 干预有效性",
+      "question": "只改指定段落的和弦或节奏，音频能否只作预期改变？",
+      "test": "固定条件作配对干预，分别测目标区域、边界与未修改内容。完整局部音频编辑仍待实现。",
+      "status": "proposed"
+    },
+    {
+      "id": "h-robust",
+      "title": "H4 · 错误鲁棒性",
+      "question": "转写或生成的计划出错时，下游音频如何退化？",
+      "test": "按谱面错误类型和强度分组，不只报告理想谱面的平均效果。",
+      "status": "proposed"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "vocal2accomp",
+      "title": "固定人声 → 可控伴奏",
+      "task": "vocal2accomp",
+      "priority": "主任务",
+      "status": "implemented_unverified",
+      "input": "固定人声音频／token + 伴奏风格描述",
+      "output": "与输入时间轴配合的新伴奏",
+      "boundary": "已有研究原型与数据适配；真实 GPU 训练、同步、和声及音频质量仍待验证。直接透传固定人声不算模型贡献。"
+    },
+    {
+      "id": "lyrics2song",
+      "title": "歌词 → 歌曲",
+      "task": "lyrics2song",
+      "priority": "公开数据基线",
+      "status": "implemented_unverified",
+      "input": "歌词 + 曲风／段落描述",
+      "output": "完整混音的离散音频 token",
+      "boundary": "用于基线与迁移验证。CPU 小模型通过不代表真实歌曲已训练成功；不以通用音质竞争作为首个研究目标。"
+    },
+    {
+      "id": "instrumental",
+      "title": "器乐生成与改编",
+      "task": "extension",
+      "priority": "后续扩展",
+      "status": "planned",
+      "input": "风格描述，可选合法旋律／参考条件",
+      "output": "新器乐音频",
+      "boundary": "需区分重新编曲、纯音乐生成和从原混音去人声。当前项目尚未验证此独立任务。"
+    },
+    {
+      "id": "accomp2vocal",
+      "title": "固定伴奏 → 新人声",
+      "task": "extension",
+      "priority": "后续扩展",
+      "status": "planned",
+      "input": "固定伴奏 + 歌词 + 人声描述",
+      "output": "与伴奏配合的独立人声",
+      "boundary": "锁定原伴奏、歌词准确性和时间对齐必须分别验收；尚未作为本项目已实现功能。"
+    },
+    {
+      "id": "inpainting",
+      "title": "按时间 × 音轨局部补全",
+      "task": "extension",
+      "priority": "后续扩展",
+      "status": "planned",
+      "input": "已有音频、允许修改的时间／音轨区域、编辑指令",
+      "output": "受约束的局部新内容",
+      "boundary": "整曲改谱后重生不等于波形 inpainting。需分别验收修改区收益、边界与非修改区变化；尚未实现完整流程。"
+    }
+  ],
+  "ablations": [
+    {
+      "id": "ar",
+      "label": "AR",
+      "score_plan": false,
+      "nar": false,
+      "status": "planned",
+      "question": "因果生成基线"
+    },
+    {
+      "id": "ar-plan",
+      "label": "AR + 计划",
+      "score_plan": true,
+      "nar": false,
+      "status": "planned",
+      "question": "分离计划的作用"
+    },
+    {
+      "id": "ar-nar",
+      "label": "AR + NAR",
+      "score_plan": false,
+      "nar": true,
+      "status": "planned",
+      "question": "分离修订的作用"
+    },
+    {
+      "id": "ar-plan-nar",
+      "label": "AR + 计划 + NAR",
+      "score_plan": true,
+      "nar": true,
+      "status": "planned",
+      "question": "组合是否有额外交互收益"
+    }
+  ],
+  "protocol": {
+    "status": "proposed",
+    "registration_note": "这是本次方法论调整后的待预登记 2×2 主对照，四组均未在此报告完成；已有 pilot 计划不能替代完整四组。",
+    "controls": [
+      "冻结歌曲级 train / validation / test 划分，同曲片段不跨 split",
+      "固定初始化与种子，报告总参数、训练计算量、采样候选数和端到端时延",
+      "分别报告有无计划与有无修订；NAR-only 另作诊断",
+      "目标音频提取的 oracle 谱面只作明确标注的上界，不混入真实条件结果",
+      "从目标得到的谱面可作训练标签；主测试使用模型生成计划或推理时合法可得的输入",
+      "冻结 AR 的真实采样草稿混合训练仍属后续方案，不能写成已经验证"
+    ],
+    "evaluation": [
+      "条件配合：节拍、时间、旋律与和声契合",
+      "计划执行：指定音符、和弦、节奏的干预遵循",
+      "编辑局部性：修改区、边界、非修改区分开报告",
+      "音乐质量：独立音频指标与配对盲听，不用 loss 替代",
+      "效率：显存、吞吐、端到端时延与数据效率"
+    ],
+    "benchmark_note": "外部对照按任务选用；YuE2 谱面重生与固定音轨补全的输入契约不同。ACE-Step 的相应编辑任务须选支持该任务的 base/SFT 版本。统一候选预算；独立评价器与人工听测避免只用同一转写 teacher 自证。"
+  },
+  "roadmap": [
+    {
+      "id": "engineering",
+      "title": "01 · 数据与执行链",
+      "status": "in_progress",
+      "gate": "核对成对 token、同步、歌曲划分；CPU 工程验证已有记录，真实资产加载及 GPU 20 步仍待回执。"
+    },
+    {
+      "id": "baseline",
+      "title": "02 · AR 基线",
+      "status": "planned",
+      "gate": "冻结输入、初始化、训练预算与独立评测协议，完成真实数据基线。"
+    },
+    {
+      "id": "planning",
+      "title": "03 · 计划监督",
+      "status": "planned",
+      "gate": "审查谱面质量，比较无计划、生成计划与明确 oracle 上界。"
+    },
+    {
+      "id": "refinement",
+      "title": "04 · NAR 修订",
+      "status": "planned",
+      "gate": "检验 masked 补全及 AR 草稿误差分布，保留草稿与修订结果配对。"
+    },
+    {
+      "id": "editing",
+      "title": "05 · 控制与编辑",
+      "status": "planned",
+      "gate": "先实现单一干预测试，再扩展时间／音轨补全；不以界面按钮宣称能力。"
+    },
+    {
+      "id": "acceptance",
+      "title": "06 · 科学验收",
+      "status": "planned",
+      "gate": "多种子、独立对照与盲听；联合报告质量、控制、保留和延迟，保留失败记录。"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "mg-engineering-20261026",
+      "date": "2026-10-26",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "shared",
+      "title": "双任务基础实现 · CPU 检查",
+      "scope": "两套任务仓库的基础实现，各自独立测试",
+      "tests_passed_per_suite": 150,
+      "suite_count": 2,
+      "cpu_update_steps": 2,
+      "finding": "两套测试各 150 项通过；随机小模型完成 CPU 联合训练、checkpoint 与推理链检查。",
+      "limits": "不是 GPU 兼容性、生产 checkpoint 加载、真实音频质量或 CoT 收益的证据。",
+      "provenance": "经审核的工程验证摘要；原始环境、代码与日志不在此公开。"
+    },
+    {
+      "id": "mg-engineering-20261027",
+      "date": "2026-10-27",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "歌词生曲探索分支 · CPU AMP / 恢复检查",
+      "scope": "独立的歌词生曲扩展实现；与基础双任务测试计数不同",
+      "tests_passed_per_suite": 327,
+      "suite_count": 1,
+      "cpu_update_steps": 20,
+      "finding": "327 项测试通过；包含 CPU AMP 溢出处理与双进程 Gloo 恢复检查。随机小模型完成 20 次 CPU 更新并保存，CLI 再生成短 token 输出。",
+      "limits": "未据此验证 CUDA/NCCL、解码音频、真实音乐收敛或方法优越；测试计数不可与 150 相加或当作音质分数。",
+      "provenance": "经审核的 2026-10-27 工程验证摘要；不发布原始日志或机器身份。"
+    }
+  ],
+  "training_results": [],
+  "result_policy": {
+    "empty_message": "尚无经审核的真实 GPU 训练或音乐质量结果回传到本页。训练 loss、CPU smoke、已提交作业和资源准备均不填作音质结论。",
+    "workflow": "实验机生成标准 TXT / JSON → 本地 schema 与哈希校验 → 人工脱敏审核 → 转成此公开摘要 → 代码构建检查 → 发布。浏览器不连接实验机。",
+    "retained_fields": "匿名实验 ID、日期、任务、证据类型、配置／split 身份、种子、完成状态、指标定义、样本数和实际数值；缺失值保留 null。",
+    "excluded_fields": "私有路径、源代码、音频、歌词、提示词、乐谱、账号凭证、主机名、checkpoint 和完整日志不得进入公开摘要。"
+  },
+  "references": [
+    {
+      "id": "muse",
+      "title": "Muse",
+      "url": "https://arxiv.org/abs/2601.03973",
+      "relation": "离散音频 token 自回归基线与公开数据路线；论文结果不是本项目结果。"
+    },
+    {
+      "id": "yue2",
+      "title": "YuE2",
+      "url": "https://arxiv.org/abs/2609.33757",
+      "relation": "符号规划与 AR–NAR 统一模型；已有规划和受控谱面编辑实验。"
+    },
+    {
+      "id": "sheetsage2",
+      "title": "SheetSage2",
+      "url": "https://arxiv.org/abs/2610.05336",
+      "relation": "离线谱面监督来源；模型可下载不代表本项目已经实际运行。"
+    },
+    {
+      "id": "ace-step",
+      "title": "ACE-Step 1.5 · 任务接口",
+      "url": "https://ace-step.github.io/ACE-Step-1.5/en/INFERENCE",
+      "relation": "已有 cover、repaint、Lego、Complete 等任务，应作任务匹配的外部对照。"
+    },
+    {
+      "id": "songeditor",
+      "title": "SongEditor",
+      "url": "https://arxiv.org/abs/2412.13786",
+      "relation": "片段／音轨编辑已有先例，不以新增功能数量声称首创。"
+    },
+    {
+      "id": "qwen-music",
+      "title": "Qwen-Music",
+      "url": "https://arxiv.org/abs/2607.11699",
+      "relation": "Melody-CoT 与参考旋律控制；显式规划本身不足以构成新贡献。"
+    }
+  ]
+}

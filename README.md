@@ -1,10 +1,12 @@
 # RL Learning
 
-[MusicGen / RL / Reward catalog](https://zhanh-he.github.io/RL-paper-reading/) · [AMT catalog](https://zhanh-he.github.io/RL-paper-reading/amt/) · [MusicGen live](https://zhanh-he.github.io/RL-paper-reading/demos/) · [AMT live](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) · [Request an update](upd_request/README.md)
+[MusicGen / RL / Reward catalog](https://zhanh-he.github.io/RL-paper-reading/) · [AMT catalog](https://zhanh-he.github.io/RL-paper-reading/amt/) · [MusicGen Live](https://zhanh-he.github.io/RL-paper-reading/musicgen/) · [Music-RL Live](https://zhanh-he.github.io/RL-paper-reading/demos/) · [AMT live](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) · [Request an update](upd_request/README.md)
 
 One repository, two independent literature catalogs. MusicGen / RL / Reward covers music generation, evaluation, post-training and related methods. AMT covers automatic music transcription, multipitch estimation and voice assignment. Each has its own table, filters, export and update requests. The repository URL stays unchanged so existing links still work.
 
-The [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) keeps its audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately.
+[MusicGen Live](https://zhanh-he.github.io/RL-paper-reading/musicgen/) tracks music-generation methodology: explicit score planning, AR / NAR, supervised baselines, controllability and editing. It separates research plans, engineering checks, measured training and scientific conclusions. See the [MusicGen publishing guide](platform/docs/MUSICGEN_EXPERIMENTS.md).
+
+The existing [Music-RL Live](https://zhanh-he.github.io/RL-paper-reading/demos/) focuses on post-training, rewards and GRPO, keeping its audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately. Its `/demos/` URL and experiment links stay unchanged.
 
 The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) separates measured CPU diagnostic controls, the submitted SheetSage2 GPU audit and planned real-vocal / melody-control experiments. Frozen evaluations use condition-level metrics without invented Reward/KL curves; training replay remains supported. Historical Choral replay stays linked. See the [AMT publishing guide](platform/docs/AMT_EXPERIMENTS.md).
 
@@ -21,7 +23,11 @@ The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/
 ```
 
 ```text
-更新 zhanh-he/RL-paper-reading 的 RL experiment webpage（MusicGen live）：按本次要求和实际运行回执，更新 platform/site/demos/ 及其对应数据源，核对曲线、配对试听和指标后发布 /demos/。仅更新展示；训练需我另行指示。
+更新 zhanh-he/RL-paper-reading 的 MusicGen Live（生成方法论实验页）：先读 AGENTS.md 和 platform/docs/MUSICGEN_EXPERIMENTS.md，按本次要求及已审核的脱敏运行摘要，维护 platform/data/musicgen/experiments.json 与 platform/site/musicgen/，区分计划、工程检查、训练实测和科学结论，构建检查并发布 /musicgen/。不复制私有代码、路径、原始数据或日志；训练需我另行指示。
+```
+
+```text
+更新 zhanh-he/RL-paper-reading 的 RL experiment webpage（Music-RL Live）：按本次要求和实际运行回执，更新 platform/site/demos/ 及其对应数据源，核对曲线、配对试听和指标后发布 /demos/。仅更新展示；训练需我另行指示。
 ```
 
 ```text
@@ -36,6 +42,7 @@ The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/
 | [Music transcription](music-trans/README.md) | [Choral singing](music-trans/choral-singing/README.md) | [Event-head GRPO](music-trans/choral-singing/rl/grpo/runs/2026-09-30-event-head/README.md) at 0/100/300/1000 steps on 16 train and 8 held-out songs, with actual single-reward ablations, SATB metrics and fixed-singer ACE Studio audio/MIDI replay; [dataset/model/reward research](music-trans/choral-singing/research/README.md) and [earlier frame-head negative control](music-trans/choral-singing/rl/grpo/runs/2026-09-29-frame-head/README.md) stay separate |
 | [Music generation](music-gen/README.md) | [Fixed vocal to accompaniment](music-gen/vocal2accomp/README.md) | [Vocal2song GRPO replay](https://zhanh-he.github.io/RL-paper-reading/demos/#vocal) includes LaDA-Band audio, reward ablations and training traces; per-run receipts distinguish measured stages and unavailable outputs |
 | [Music generation](music-gen/README.md) | [Lyrics to song](music-gen/lyrics2song/README.md) | Six YuE2 arms completed 270 steps with fixed validation and long MP3 replay. [Muse recovery](music-gen/lyrics2song/rl/grpo/runs/2026-10-14-formal-recovery/README.md): five aligned-LR arms completed 270 steps; MuseCritic-3e-4 resumes from 180 after a decoder repair. Independent Muse inference remains paused. [Live replay](https://zhanh-he.github.io/RL-paper-reading/demos/#lyrics) separates training reward/KL, validation and full-cohort test progress; partial test means are not final results |
+| [MusicGen methodology](https://zhanh-he.github.io/RL-paper-reading/musicgen/) | Explicit planning / AR + NAR / controlled generation | Research plan and scoped engineering evidence; music-quality and CoT gains require matched-budget training and evaluation. This page is separate from the existing RL results. |
 | [SP / AI reward study](music-gen/reward-regime-study/README.md) | [Proposed quality-regime comparison](https://zhanh-he.github.io/RL-paper-reading/demos/#reward-regimes) | YuE2 / Muse with spectral Richness and learned reward candidates; CMI train/valid, WSB reserved test. Proposal only, awaiting user approval; no invented MOS labels or training results |
 
 Each task owns `models/`, `rewards/` and `rl/{dpo,grpo}/`. A model folder holds an adapter/config and provenance, not weights. Simple reward implementations belong in one Python file each; `combine.py` at the reward root composes them after their scales and failure modes have been checked. A run gets its own folder under the appropriate RL method, with a reproducible record using the [experiment template](notes/EXPERIMENT_RECORD.md). [Model and data selection](notes/2026-09-29-model-data-reward-selection.md) records gates, licenses and recommended next experiments.

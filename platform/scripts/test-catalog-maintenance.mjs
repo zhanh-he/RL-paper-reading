@@ -81,6 +81,8 @@ test("each page and public dataset uses its own catalog, assets and request path
     assert(html.includes(`data-catalog="${id}"`));
     assert(html.includes(`${config.base}assets/app.js`));
     assert(html.includes(`main/upd_request/${id}`));
+    assert(html.includes(`href="${config.base}musicgen/">MusicGen Live</a>`));
+    assert(html.includes(`href="${config.base}demos/">Music-RL Live</a>`));
     assert(html.includes('aria-current="page"'));
     assert(!html.includes("{{"));
     const json = JSON.parse(fs.readFileSync(new URL(`../site/data/${id}-literature.json`, import.meta.url), "utf8"));
@@ -93,6 +95,18 @@ test("each page and public dataset uses its own catalog, assets and request path
   }
   const amt = loadCatalog("amt")[0];
   assert(sharedSection(amt).includes(`/amt/?paper=${encodeURIComponent(amt.id)}`));
+});
+
+test("Music-RL keeps its replay route and links to the independent MusicGen page", () => {
+  const replay = fs.readFileSync(new URL("../site/demos/index.html", import.meta.url), "utf8");
+  assert(replay.includes("<title>Music-RL Live | RL Learning</title>"));
+  assert(replay.includes("<strong>Music-RL Live</strong>"));
+  assert(replay.includes("<h1>Music-RL Live</h1>"));
+  assert(replay.includes('href="../musicgen/"'));
+  const amt = fs.readFileSync(new URL("../site/amt/demos/index.html", import.meta.url), "utf8");
+  assert(amt.includes('href="../../musicgen/">MusicGen Live</a>'));
+  assert(amt.includes('href="../../demos/">Music-RL Live</a>'));
+  assert(amt.includes('href="../../demos/#choral"'));
 });
 
 test("Obsidian sync scopes AMT independently and keeps private prose with two indexes", t => {

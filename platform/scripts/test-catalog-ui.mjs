@@ -41,6 +41,8 @@ try {
       assert.equal(await page.locator("#catalog-body tr").count(), records.length);
       assert.equal(await page.locator(".catalog-switch [aria-current=page]").count(), 1);
       assert.match(await page.locator(".header-actions .button-primary").getAttribute("href"), new RegExp(`/upd_request/${id}$`));
+      assert.equal(await page.locator(".catalog-switch").getByRole("link", { name: "MusicGen Live", exact: true }).getAttribute("href"), id === "rl" ? "./musicgen/" : "../musicgen/");
+      assert.equal(await page.locator(".catalog-switch").getByRole("link", { name: "Music-RL Live", exact: true }).getAttribute("href"), id === "rl" ? "./demos/" : "../demos/");
       await page.locator("#search-input").fill(records[0].title);
       assert.equal(await page.locator("#catalog-body tr").count(), 1);
       const downloadEvent = page.waitForEvent("download");
