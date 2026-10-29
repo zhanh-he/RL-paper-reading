@@ -40,6 +40,7 @@ This file is the first-read instruction for any agent working in this repository
 
 - The Pages root remains the RL catalog; `/amt/` is the AMT catalog. Preserve existing URLs and `?paper=<stable-id>` deep links, including redirecting old root links to migrated AMT records. Keep `/demos/` and experiment paths unchanged. Do not rename the remote repository or break its Pages URL as part of a catalog split.
 - Task code and run records live under `music-trans/` or `music-gen/`; public demos live under `platform/site/demos/`. Keep a run's model, data split, reward version, optimizer, independent evaluation and provenance together.
+- New AMT experiments use `/amt/demos/`, implemented in `platform/site/amt/demos/`; edit `platform/data/amt/experiments.json` and follow `platform/docs/AMT_EXPERIMENTS.md`. MusicGen live and historical Choral replay remain at `/demos/`. Catalog changes and experiment-page changes are separate scopes; README has four ready-to-use routing prompts.
 - Do not publish private vault notes, restricted data, checkpoints, credentials or unlicensed audio. Label external paper results, local measurements and plans distinctly. Do not create dummy reward implementations or demo pages that look like completed experiments.
 
 ## README Audience

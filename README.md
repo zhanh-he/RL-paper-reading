@@ -1,10 +1,32 @@
 # RL Learning
 
-[MusicGen / RL / Reward catalog](https://zhanh-he.github.io/RL-paper-reading/) · [Music Transcription (AMT) catalog](https://zhanh-he.github.io/RL-paper-reading/amt/) · [Live experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) · [Request an update](upd_request/README.md) · [Editing guide](platform/docs/EDITING.md)
+[MusicGen / RL / Reward catalog](https://zhanh-he.github.io/RL-paper-reading/) · [AMT catalog](https://zhanh-he.github.io/RL-paper-reading/amt/) · [MusicGen live](https://zhanh-he.github.io/RL-paper-reading/demos/) · [AMT live](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) · [Request an update](upd_request/README.md)
 
 One repository, two independent literature catalogs. MusicGen / RL / Reward covers music generation, evaluation, post-training and related methods. AMT covers automatic music transcription, multipitch estimation and voice assignment. Each has its own table, filters, export and update requests. The repository URL stays unchanged so existing links still work.
 
 The [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) keeps its audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately.
+
+The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) is ready for the next transcription experiment, with Reward/KL, paired MIDI/audio replay, checkpoint evaluation and Dataset Protocol / Models / Rewards. Its next experiment is undecided and currently empty; historical Choral replay remains linked. See the [AMT publishing guide](platform/docs/AMT_EXPERIMENTS.md).
+
+## Quick Prompts
+
+把下面对应的一条发给任意聊天窗，再补上具体论文、修改要求或运行记录。
+
+```text
+更新 zhanh-he/RL-paper-reading 的 RL catalog（文献目录）：按 AGENTS.md 和 platform/docs/EDITING.md 处理 upd_request/rl/ 及我本次补充的文献，维护 platform/data/rl/literature.csv，同步相关 Obsidian，构建检查并发布。目标网页是仓库 Pages 根目录。
+```
+
+```text
+更新 zhanh-he/RL-paper-reading 的 AMT catalog（转录文献目录）：按 AGENTS.md 和 platform/docs/EDITING.md 处理 upd_request/amt/ 及我本次补充的文献，维护 platform/data/amt/literature.csv，同步相关 Obsidian，构建检查并发布。目标网页是 /amt/。
+```
+
+```text
+更新 zhanh-he/RL-paper-reading 的 RL experiment webpage（MusicGen live）：按本次要求和实际运行回执，更新 platform/site/demos/ 及其对应数据源，核对曲线、配对试听和指标后发布 /demos/。仅更新展示；训练需我另行指示。
+```
+
+```text
+更新 zhanh-he/RL-paper-reading 的 AMT experiment webpage（Music Transcription live）：先读 platform/docs/AMT_EXPERIMENTS.md，按本次要求和实际运行回执维护 platform/data/amt/experiments.json 与 platform/site/amt/demos/，构建检查并发布 /amt/demos/。仅更新展示；训练需我另行指示。
+```
 
 ## Experiment Map
 

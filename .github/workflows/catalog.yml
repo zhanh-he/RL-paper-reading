@@ -32,21 +32,22 @@ jobs:
           npm --prefix platform run build
           npm --prefix platform run check
           npm --prefix platform run test:catalog
+          npm --prefix platform run test:amt
           git diff --check
 
       - name: Require generated files in pull requests
         if: github.event_name == 'pull_request'
-        run: git diff --exit-code -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html
+        run: git diff --exit-code -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json
 
       - name: Commit generated files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html; then
+          if git diff --quiet -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html
+          git add platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json
           git commit -m "catalog: rebuild site data [skip ci]"
           git push
 

@@ -1,0 +1,43 @@
+.catalog-switch { margin: 0 0 18px; }
+.amt-controls { display: flex; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.amt-controls label { display: grid; gap: 6px; min-width: 200px; max-width: 100%; color: var(--ink-muted); font-size: .78rem; font-weight: 700; }
+.amt-controls select { width: 100%; }
+.amt-controls select, .amt-section-heading select { min-height: 36px; border: 1px solid var(--line-strong); border-radius: 4px; background: white; padding: 5px 10px; color: var(--ink); }
+select:disabled { color: var(--ink-muted); background: var(--surface-muted); }
+.amt-section-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin: 25px 0 12px; }
+.amt-section-heading h3 { margin: 0; font-size: 1rem; }
+.amt-section-heading > span, .amt-section-heading label { color: var(--ink-muted); font-size: .76rem; }
+.amt-section-heading label { display: flex; align-items: center; gap: 10px; }
+.amt-traces { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.amt-traces figure { margin: 0; min-width: 0; }
+.amt-traces figcaption { display: flex; justify-content: space-between; gap: 12px; font-size: .78rem; font-weight: 700; margin-bottom: 8px; }
+.amt-traces output { font-variant-numeric: tabular-nums; color: var(--ink-muted); }
+.amt-chart { position: relative; height: 130px; background: var(--surface); border: 1px solid var(--line); }
+.amt-chart canvas { display: block; width: 100%; height: 100%; }
+.amt-chart p { display: grid; place-items: center; height: 100%; margin: 0; color: var(--ink-muted); font-size: .78rem; }
+.amt-chart [hidden] { display: none; }
+.amt-media-grid { display: grid; grid-template-columns: repeat(var(--columns, 4), minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.amt-media { min-width: 0; background: var(--surface); padding: 14px; }
+.amt-media h4 { font-size: .84rem; margin: 0 0 8px; min-height: 24px; overflow-wrap: anywhere; }
+.amt-media small { display: block; color: var(--ink-muted); font-size: .72rem; line-height: 1.5; margin-bottom: 9px; }
+.amt-preview { display: grid; place-items: center; aspect-ratio: 1.8; width: 100%; border: 1px solid var(--line); background: var(--surface-muted); color: var(--ink-muted); font-size: .76rem; text-align: center; padding: 10px; }
+button.amt-preview { cursor: zoom-in; position: relative; padding: 0; background: white; }
+.amt-preview canvas { width: 100%; height: 100%; }
+.amt-preview > .zoom-hint { position: absolute; right: 7px; top: 5px; background: white; font-size: .7rem; padding: 3px; }
+.amt-media audio { width: 100%; display: block; height: 36px; margin-top: 12px; }
+.amt-media > p { color: var(--ink-muted); font-size: .74rem; margin: 13px 0 0; min-height: 24px; }
+.amt-media .source-link { display: inline-block; margin-top: 10px; font-size: .74rem; }
+.amt-inline-empty { color: var(--ink-muted); font-size: .8rem; padding: 8px 0; }
+.stage-item { min-height: 66px; }
+.stage-item small { color: var(--ink-muted); font-size: .7rem; font-variant-numeric: tabular-nums; }
+.amt-table table { min-width: 650px; }
+.amt-table td[colspan] { padding: 25px 12px; color: var(--ink-muted); text-align: center; }
+.amt-table .delta { color: var(--ink-muted); white-space: nowrap; }
+.amt-table tr[data-selected="true"] { background: var(--green-soft); }
+.amt-media-grid, .amt-traces { margin-bottom: 16px; }
+#roll-dialog { width: min(1400px, 96vw); max-height: 90vh; border: 1px solid var(--line-strong); border-radius: 6px; padding: 18px; }
+#roll-dialog::backdrop { background: rgba(15, 25, 20, .5); }
+#roll-dialog .amt-section-heading { margin: 0 0 12px; }
+#large-roll { display: block; width: 100%; height: auto; }
+@media (max-width: 900px) { .amt-media-grid { grid-template-columns: repeat(min(var(--columns, 4), 2), minmax(0, 1fr)); } }
+@media (max-width: 600px) { .amt-traces { grid-template-columns: 1fr; gap: 15px; } .amt-media-grid { grid-template-columns: 1fr; } .amt-controls label { flex: 1 1 180px; } .lab-heading { align-items: start; } .section-intro { align-items: start; flex-wrap: wrap; } .header-actions { flex-wrap: wrap; justify-content: flex-end; } .header-actions .button { font-size: .7rem; padding: 6px; } .brand strong { font-size: .85rem; } .brand small { white-space: normal; font-size: .66rem; } }
