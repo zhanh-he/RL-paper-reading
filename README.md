@@ -6,7 +6,7 @@ One repository, two independent literature catalogs. MusicGen / RL / Reward cove
 
 The [experiment demo](https://zhanh-he.github.io/RL-paper-reading/demos/) keeps its audio and MIDI replays with versioned receipts. It labels local measurements, reward diagnostics, baseline inference and unfinished GRPO work separately.
 
-The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) is ready for the next transcription experiment, with Reward/KL, paired MIDI/audio replay, checkpoint evaluation and Dataset Protocol / Models / Rewards. Its next experiment is undecided and currently empty; historical Choral replay remains linked. See the [AMT publishing guide](platform/docs/AMT_EXPERIMENTS.md).
+The independent [AMT live page](https://zhanh-he.github.io/RL-paper-reading/amt/demos/) separates measured CPU diagnostic controls, the submitted SheetSage2 GPU audit and planned real-vocal / melody-control experiments. Frozen evaluations use condition-level metrics without invented Reward/KL curves; training replay remains supported. Historical Choral replay stays linked. See the [AMT publishing guide](platform/docs/AMT_EXPERIMENTS.md).
 
 ## Quick Prompts
 

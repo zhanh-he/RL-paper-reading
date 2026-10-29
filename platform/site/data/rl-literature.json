@@ -6252,5 +6252,40 @@
       "solo singing",
       "accompaniment generation"
     ]
+  },
+  {
+    "id": "2025-arXiv-YingMusic-Singer-2512.04779",
+    "year": "2025",
+    "venue": "arXiv",
+    "other_rating": "",
+    "zhanh_rating": "",
+    "domain": "MusicGen(Small)",
+    "workstream": "Reward-n-RL",
+    "title": "YingMusic-Singer: Zero-shot Singing Voice Synthesis and Editing with Annotation-free Melody Guidance",
+    "keywords": "SOME melody；CKA；Flow-GRPO",
+    "model_size": "论文 DiT 0.3B；不代表完整推理链或当前 V1",
+    "model_params_b": "0.3",
+    "generation_speed": "",
+    "measurement_context": "2025-12-04 原论文；当前 2026-02-09 V1 代码/权重另行核验，未本地重测；权重 CC BY-NC 4.0",
+    "model_size_url": "https://arxiv.org/html/2512.04779v1",
+    "generation_speed_url": "",
+    "paper_url": "https://arxiv.org/abs/2512.04779",
+    "github_url": "https://github.com/GiantAILab/YingMusic-Singer",
+    "github_note": "",
+    "demo_url": "https://giantailab.github.io/YingMusic-Singer-demo/",
+    "web_url": "https://huggingface.co/GiantAILab/YingMusic-Singer",
+    "zhanh_note": "",
+    "felix_note": "",
+    "other_note": "",
+    "hanyu_note": "",
+    "author_org": "AI Lab, GiantNetwork",
+    "author_org_url": "https://arxiv.org/html/2512.04779v1",
+    "catalog": "rl",
+    "source_order": 179,
+    "keywords_list": [
+      "SOME melody",
+      "CKA",
+      "Flow-GRPO"
+    ]
   }
 ]

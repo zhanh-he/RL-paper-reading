@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { validateExperiments } from './sync-amt-experiments.mjs';
 import { amtFixture } from './test-fixtures/amt-experiments.mjs';
+import fs from 'node:fs';
 
 test('empty AMT workspace is valid; real notes can be silent', () => {
   validateExperiments({ schema_version: 1, updated_at: '2026-10-29', experiments: [], datasets: [], models: [], rewards: [] });
@@ -32,4 +33,23 @@ test('public files, note timing, unsafe paths and audio formats are checked', ()
   assert.throws(() => validateExperiments(data), /unsupported public format/);
   data = amtFixture(); data.experiments[0].samples[0].reference.notes[0].end = 10;
   assert.throws(() => validateExperiments(data), /note timing/);
+});
+
+test('measured evaluation controls use conditions and explicit metric semantics, not steps', () => {
+  const data = JSON.parse(fs.readFileSync(new URL('../data/amt/experiments.json', import.meta.url)));
+  validateExperiments(data);
+  assert.equal(data.experiments.find(run => run.id === 'metric-blindspots').conditions.length, 5);
+  let changed = structuredClone(data);
+  changed.experiments[0].conditions[0].status = 'planned';
+  assert.throws(() => validateExperiments(changed), /unmeasured conditions/);
+  changed = structuredClone(data); changed.experiments[0].trace = [{step:0,reward:1}];
+  assert.throws(() => validateExperiments(changed), /invent optimizer/);
+  changed = structuredClone(data); changed.experiments[0].conditions[0].evaluation.values.class_onset = 100;
+  assert.throws(() => validateExperiments(changed), /fraction/);
+  changed = structuredClone(data); changed.experiments[0].conditions[0].evaluation.values.unknown = 1;
+  assert.throws(() => validateExperiments(changed), /unknown/);
+  changed = structuredClone(data); changed.experiments[0].conditions[0].outputs['wrong-sample'] = {notes:[]};
+  assert.throws(() => validateExperiments(changed), /unknown sample/);
+  changed = structuredClone(data); changed.reported_results[0].rwc = 101;
+  assert.throws(() => validateExperiments(changed), /reported F1/);
 });

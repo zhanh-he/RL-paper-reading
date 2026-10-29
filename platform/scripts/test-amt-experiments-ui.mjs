@@ -26,6 +26,7 @@ try {
   const page = await browser.newPage();
   const errors = []; page.on('pageerror', error => errors.push(error.message));
   const out = process.env.QA_OUTPUT || '/tmp/amt-experiments-qa'; fs.mkdirSync(out, { recursive: true });
+  await page.route('**/amt/demos/data/experiments.json', route => route.fulfill({ json: {schema_version:1,updated_at:'2026-10-29',experiments:[],datasets:[],models:[],rewards:[]} }));
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(`${base}/amt/demos/`);
@@ -40,6 +41,7 @@ try {
       assert.equal(await page.locator(`#panel-${tab}`).isVisible(), true);
     }
   }
+  await page.unroute('**/amt/demos/data/experiments.json');
   await page.goto(`${base}/amt/`);
   await page.locator('.experiment-link').click();
   assert.match(page.url(), /\/amt\/demos\//);
@@ -68,6 +70,42 @@ try {
   await page.screenshot({ path: path.join(out, 'fixture-desktop.png'), fullPage: true });
   await page.locator('#sample-select').selectOption('sample-b');
   assert.equal(await page.locator('#media-grid canvas').count(), 0);
+  await page.unroute('**/amt/demos/data/experiments.json');
+  for (const width of [1440,390]) {
+    await page.setViewportSize({width,height:1000});
+    await page.goto(`${base}/amt/demos/?run=metric-blindspots#experiments`);
+    await page.locator('#metrics-body tr').filter({hasText:'整段高八度'}).waitFor();
+    assert.equal(await page.locator('#training-section').isVisible(),false);
+    assert.equal(await page.locator('#metrics-body tr').count(),5);
+    assert.match(await page.locator('#metric-head').textContent(),/Pitch-class onset/);
+    await page.locator('[data-key="all_notes_up_one_octave"]').click();
+    assert.equal(await page.locator('#metrics-body tr[data-selected=true] td').nth(2).innerText(),'100.00%');
+    assert.equal(await page.locator('#metrics-body tr[data-selected=true] td').nth(3).innerText(),'0.00%');
+    assert.equal(await page.locator('#media-grid canvas').count(),3);
+    assert.ok(await page.locator('#media-grid canvas').last().evaluate(canvas => {
+      const pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+      let colored=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>100&&pixels[i+1]<140&&pixels[i+2]<140)colored++;
+      return colored>100;
+    }));
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.screenshot({path:path.join(out,`controls-${width}.png`),fullPage:true});
+    await page.locator('#experiment-select').selectOption('f0-correlation-controls');
+    assert.match(await page.locator('#metrics-body').textContent(),/1200\.00/);
+    assert.equal(await page.locator('#media-grid').isVisible(),false);
+    await page.locator('#experiment-select').selectOption('ying-midi-interface');
+    assert.equal(await page.locator('#metrics-body tr').count(),3);
+    assert.equal(await page.locator('#metrics-body tr').nth(1).locator('td').last().innerText(),'0.00%');
+    assert.equal(await page.locator('#metrics-body tr').nth(2).locator('td').last().innerText(),'100.00%');
+    await page.locator('#experiment-select').selectOption('sheetsage2-real-vocal-pilot');
+    assert.equal(await page.locator('#metrics-body').getByText('0.00%',{exact:true}).count(),0);
+    assert.equal(await page.locator('#media-grid canvas').count(),0);
+    await page.locator('[data-tab=models]').click();
+    assert.equal(await page.locator('#reported-results-body tr').count(),6);
+    assert.match(await page.locator('#paper-comparison').innerText(),/非本地复现/);
+    assert.match(await page.locator('#reported-results-body').innerText(),/83\.08/);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.screenshot({path:path.join(out,`reported-models-${width}.png`),fullPage:true});
+  }
   assert.deepEqual(errors, []);
   console.log('AMT live: empty desktop/mobile, routing, checkpoint/missing output, hover traces, MIDI zoom, sample selection, metrics and layout verified.');
 } finally {

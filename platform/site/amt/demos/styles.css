@@ -1,4 +1,5 @@
 .catalog-switch { margin: 0 0 18px; }
+.lab-main [hidden] { display: none !important; }
 .amt-controls { display: flex; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
 .amt-controls label { display: grid; gap: 6px; min-width: 200px; max-width: 100%; color: var(--ink-muted); font-size: .78rem; font-weight: 700; }
 .amt-controls select { width: 100%; }

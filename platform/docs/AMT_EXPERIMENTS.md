@@ -6,7 +6,7 @@ The page follows the MusicGen live layout: experiment/sample selection, compact 
 checkpoint selection, input/reference/baseline/post-training replay, checkpoint metrics,
 then separate Dataset Protocol, Models and Rewards tabs.
 
-The next experiment is undecided. The published manifest starts empty. Historical
+Frozen reliability audits and genuine CPU metric controls are registered separately from training. Historical
 [Choral GRPO](https://zhanh-he.github.io/RL-paper-reading/demos/#choral) and
 [SATB reward audits](https://zhanh-he.github.io/RL-paper-reading/demos/#choral-rewards)
 retain their original URLs and receipts. Do not reinterpret them as a new AMT experiment.
@@ -48,7 +48,7 @@ record can be added only after an experiment has been chosen:
 }
 ```
 
-Statuses are `planned`, `running`, `measured`. `id` is stable lowercase ASCII with
+Statuses are `planned`, `queued`, `running`, `measured`, `failed`. `id` is stable lowercase ASCII with
 hyphens; `?run=<id>` opens a particular experiment. Tab deep links are `#experiments`,
 `#datasets`, `#models`, `#rewards`.
 
@@ -75,6 +75,27 @@ uses the supplied file; no automatic timbre or loudness changes are applied by t
 Record scoring-original and public MP3 hashes, render settings, matched singers/voices
 and paired decode settings in the run receipt. A replay sample and cohort mean have
 separate roles and must be described in `sample.note` and `evaluation_protocol`.
+
+## Frozen evaluation runs
+
+Use `kind:"evaluation"` with `stages:[]` and `trace:[]`; never encode perturbations
+as optimizer steps or invent Reward/KL curves. `conditions` contains unique
+`{id,label,status,outputs?,evaluation?,error?}` records. Status may also be `queued`
+or `failed`; failures require a receipt and error text. A measured condition needs
+a receipt and genuine outputs or scores. Unmeasured conditions cannot contain
+results. A queued snapshot means submitted, not GPU execution.
+
+`metric_definitions` declares `{id,label,unit}` with `unit:"fraction"` or `"number"`.
+Evaluation is `{cohort,n,values:{metricId:value}}`; fractions are in [0,1], whereas
+Pearson r may be negative and cents error is an unbounded numeric quantity.
+Artificial metric controls, procedural model smoke, real vocal benchmarks and
+generation comparisons must be separate runs with their own evidence scope.
+
+Optional `reported_results` is reserved for the fixed SheetSage2 v1 Table 17
+reference comparison: `{name,rwc,rock,output,source}`. Its two F1 values are
+percentages in [0,100], not local evaluation fractions. The Models tab labels
+them author-reported, with dataset, protocol, source and date; never convert
+them into a measured local experiment or combine different-task scores there.
 
 Dataset rows use `{name, labels, split, source, source_label?}`. Model rows use
 `{name, interface, checkpoint, source, source_label?}`. Reward rows use

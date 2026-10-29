@@ -1,0 +1,71 @@
+{
+  "scope": "CPU mathematical control; not RMVPE or YingMusic inference",
+  "reference_hz": [
+    261.6255653005986,
+    293.6647679174076,
+    329.6275569128699,
+    349.2282314330039,
+    391.99543598174927,
+    440.0,
+    493.8833012561241,
+    523.2511306011972,
+    587.3295358348151,
+    659.2551138257398,
+    698.4564628660078,
+    783.9908719634985
+  ],
+  "rows": [
+    {
+      "id": "unchanged",
+      "label": "unchanged",
+      "status": "measured",
+      "evaluation": {
+        "cohort": "one-artificial-voiced-f0-sequence",
+        "n": 1,
+        "values": {
+          "fpc": 1.0,
+          "cents": 0.0
+        }
+      }
+    },
+    {
+      "id": "octave-up",
+      "label": "octave-up",
+      "status": "measured",
+      "evaluation": {
+        "cohort": "one-artificial-voiced-f0-sequence",
+        "n": 1,
+        "values": {
+          "fpc": 1.0,
+          "cents": 1200.0
+        }
+      }
+    },
+    {
+      "id": "plus-100hz",
+      "label": "plus-100hz",
+      "status": "measured",
+      "evaluation": {
+        "cohort": "one-artificial-voiced-f0-sequence",
+        "n": 1,
+        "values": {
+          "fpc": 1.0,
+          "cents": 357.37197462747423
+        }
+      }
+    },
+    {
+      "id": "reverse-contour",
+      "label": "reverse-contour",
+      "status": "measured",
+      "evaluation": {
+        "cohort": "one-artificial-voiced-f0-sequence",
+        "n": 1,
+        "values": {
+          "fpc": -0.9622355481862894,
+          "cents": 1033.3333333333333
+        }
+      }
+    }
+  ]
+}

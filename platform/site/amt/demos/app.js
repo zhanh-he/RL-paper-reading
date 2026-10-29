@@ -6,7 +6,10 @@ const text = (tag, value, className) => {
   return node;
 };
 const colors = ['#e3484f', '#d47b16', '#008a93', '#315fd2', '#7653a5', '#176b57'];
-const stateLabels = { planned: '待配置', running: '运行中', measured: '实测' };
+const stateLabels = { planned: '待执行', queued: '已排队', running: '运行中', measured: '实测', failed: '失败' };
+const isAudit = () => experiment?.kind === 'evaluation';
+const runPoints = () => isAudit() ? experiment.conditions : experiment?.stages || [];
+const pointKey = point => isAudit() ? point.id : String(point.step);
 let manifest, experiment, sample, stage;
 let hoverStep = null;
 const mediaURL = value => new URL(`../../${value}`, location.href).href;
@@ -85,8 +88,13 @@ function pianoRoll(canvas, asset, duration, notes) {
 
 function renderMedia() {
   for (const audio of $('#media-grid').querySelectorAll('audio')) audio.pause();
-  const baseline = experiment?.stages.find(item => item.step === 0);
-  const entries = [
+  const baseline = runPoints()[0];
+  const entries = isAudit() ? [
+    ['Input · 输入', sample?.input, '输入未公开'],
+    ['GT · 参考音符', sample?.reference, '无准确参考标签'],
+    ['Original · 原版输出', baseline?.outputs?.[sample?.id], '尚无原版推理结果'],
+    [stage?.label || 'Condition', stage?.outputs?.[sample?.id], stage?.error || experiment?.error || '尚无该条件输出'],
+  ] : [
     ['Input · 原始音频', sample?.input, '输入待提供'],
     ['GT · 参考 MIDI', sample?.reference, '参考待提供 / 可选'],
     ['Frozen · Baseline', baseline?.outputs?.[sample?.id], '基线待运行'],
@@ -136,6 +144,21 @@ function formatMetric(value, baseline) {
 }
 
 function renderMetrics() {
+  if (isAudit()) {
+    const definitions = experiment.metric_definitions;
+    $('#metric-head').replaceChildren(...['Condition / Status', 'Cohort / N', ...definitions.map(item => item.label)].map(value => text('th', value)));
+    $('#metrics-body').replaceChildren(...experiment.conditions.map(item => {
+      const row = document.createElement('tr'); row.dataset.selected = String(item === stage);
+      const result = item.evaluation;
+      const values = [item.label + ' · ' + stateLabels[item.status], result ? `${result.cohort} / ${result.n}` : item.error || '未评估', ...definitions.map(metric => {
+        const value = result?.values?.[metric.id];
+        return value == null ? '—' : metric.unit === 'fraction' ? `${(value*100).toFixed(2)}%` : value.toFixed(2);
+      })];
+      row.append(...values.map(value => text('td', value))); return row;
+    }));
+    return;
+  }
+  $('#metric-head').replaceChildren(...['Step', 'Cohort / N', 'Frame F1', 'Onset F1', 'Onset + offset F1'].map(value => text('th', value)));
   const rows = experiment?.stages || [];
   const baseline = rows.find(item => item.step === 0)?.evaluation;
   $('#metrics-body').replaceChildren(...(rows.length ? rows.map(item => {
@@ -149,13 +172,13 @@ function renderMetrics() {
 
 function chooseStage(item) {
   stage = item; hoverStep = null;
-  for (const button of $('#steps').querySelectorAll('button')) button.setAttribute('aria-pressed', String(Number(button.dataset.step) === item.step));
+  for (const button of $('#steps').querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.key === pointKey(item)));
   renderMedia(); renderMetrics(); drawCharts();
 }
 
 function chooseExperiment(id) {
   experiment = manifest.experiments.find(item => item.id === id);
-  stage = experiment?.stages.find(item => item.step > 0) || experiment?.stages[0];
+  stage = isAudit() ? experiment.conditions[0] : experiment?.stages.find(item => item.step > 0) || experiment?.stages[0];
   sample = experiment?.samples[0]; hoverStep = null;
   $('#page-status').textContent = experiment ? stateLabels[experiment.status] : '实验待配置';
   $('#page-status').className = `state ${experiment?.status === 'measured' ? 'measured' : 'pending'}`;
@@ -169,14 +192,23 @@ function chooseExperiment(id) {
   $('#run-receipt').hidden = !experiment?.receipt;
   if (experiment?.receipt) $('#run-receipt').href = receiptURL(experiment.receipt);
   $('#evaluation-protocol').textContent = experiment?.evaluation_protocol || '待确定时间容差、声部/乐器匹配、聚合方式与测试集合。';
+  $('#training-section').hidden = isAudit();
+  $('#metrics-title').textContent = isAudit() ? '冻结评测 · 条件对照' : 'Checkpoint · 独立评估';
+  $('#metrics-context').textContent = isAudit() ? '原始测量值 · 非训练得分' : '分数（Δ vs baseline）';
+  $('#replay-title').textContent = isAudit() ? sample ? '同一样本 · 条件与参考' : '条件对照' : '同一首歌 · MIDI 与试听';
+  const noMedia = isAudit() && !sample;
+  $('#media-grid').hidden = noMedia;
+  $('#sample-context').hidden = noMedia;
+  $('#columns').parentElement.hidden = noMedia;
+  $('#steps').setAttribute('aria-label', isAudit() ? 'Evaluation conditions' : 'Optimizer checkpoints');
   $('#trace-context').textContent = experiment?.trace_note || '等待训练日志';
-  const checkpoints = experiment?.stages || [];
+  const checkpoints = runPoints();
   $('#steps').replaceChildren(...checkpoints.map(item => {
-    const button = text('button', '', `stage-item ${item.status === 'measured' ? 'available' : ''}`); button.type = 'button'; button.dataset.step = item.step;
+    const button = text('button', '', `stage-item ${item.status === 'measured' ? 'available' : ''}`); button.type = 'button'; button.dataset.step = item.step; button.dataset.key = pointKey(item);
     const point = experiment.trace.find(point => point.step === item.step);
     const value = key => Number.isFinite(point?.[key]) ? point[key].toFixed(4) : '—';
     button.title = stateLabels[item.status];
-    button.append(text('strong', `${item.step} steps`), text('small', item.status === 'planned' ? stateLabels[item.status] : `R ${value('reward')} · KL ${value('kl')}`));
+    button.append(text('strong', isAudit() ? item.label : `${item.step} steps`), text('small', isAudit() ? stateLabels[item.status] : item.status === 'planned' ? stateLabels[item.status] : `R ${value('reward')} · KL ${value('kl')}`));
     button.setAttribute('aria-pressed', String(item === stage));
     button.addEventListener('click', () => chooseStage(item)); return button;
   }));
@@ -261,6 +293,15 @@ try {
   renderReference('datasets', ['name', 'labels', 'split']);
   renderReference('models', ['name', 'interface', 'checkpoint']);
   renderReference('rewards', ['name', 'definition', 'failure_case']);
+  if (manifest.reported_results?.length) {
+    $('#paper-comparison').hidden = false;
+    $('#reported-results-body').replaceChildren(...manifest.reported_results.map(record => {
+      const row = document.createElement('tr');
+      row.append(...[record.name, record.rwc.toFixed(2), record.rock.toFixed(2), record.output].map(value => text('td', value)));
+      const source = document.createElement('td'); source.append(link('Table 17 ↗', record.source)); row.append(source);
+      return row;
+    }));
+  }
 } catch (error) {
   $('#page-status').textContent = '实验清单加载失败';
   $('#sample-context').textContent = `无法读取实验记录：${error.message}`;

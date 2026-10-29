@@ -1,0 +1,37 @@
+[
+  {
+    "name": "unchanged",
+    "midi_sha256": "6d7da1a030b82250e3de49d6e124cd689c4c01f805cf767679252ea78177b403",
+    "preview_wav_sha256": "e08a23d092281bc714bd2fc1cda3d2ffd4881e269d4030928bd405db09b19082",
+    "public_mp3_sha256": "0842e7dbd727aaa5bc2d1ff307e1f5a90dc7def7c2bab2cb25e767e2967ecff9",
+    "render": "sine; 48kHz; MP3 192kbps; no loudness normalization; preview only, not scored audio"
+  },
+  {
+    "name": "all_notes_up_one_octave",
+    "midi_sha256": "b71d6340cd49ad4a0dbdbea834533130f8abead7cb02f853ab75db8a518731fa",
+    "preview_wav_sha256": "f0f4476f65fdcbc1ed8d3ab4c4eed100e68d057ab3eca5fe4109a13a2da38cae",
+    "public_mp3_sha256": "76c678647f04f4689fd2d51fed832d04eda967f6675d48d225806aa3d6894d4b",
+    "render": "sine; 48kHz; MP3 192kbps; no loudness normalization; preview only, not scored audio"
+  },
+  {
+    "name": "double_all_durations",
+    "midi_sha256": "eaf303098e34261eacbf00aabea62d505e5aa727f39fd3bf953c004d2b1423eb",
+    "preview_wav_sha256": "3aba1f5664caa7dd1885a75f3cc2b2aa1d732a7965c430946ceac4d4b518efa6",
+    "public_mp3_sha256": "30ec50931d9d5d710a1b0381963a54b07d5de874651edba7ad8d7023d696c2ff",
+    "render": "sine; 48kHz; MP3 192kbps; no loudness normalization; preview only, not scored audio"
+  },
+  {
+    "name": "alternating_octave_errors",
+    "midi_sha256": "7f3e6c33b892c28039a2a094e7aec890b444429191f917f32e8b776dc88340f1",
+    "preview_wav_sha256": "e4efc0cf3555d406d7157a511723b110b4522d9b843656bd255d5d031f6d2288",
+    "public_mp3_sha256": "daab2470242c5c4873d12990c31f166e7dc44aadd185989d30c99ad321701d51",
+    "render": "sine; 48kHz; MP3 192kbps; no loudness normalization; preview only, not scored audio"
+  },
+  {
+    "name": "all_events_delayed_100ms",
+    "midi_sha256": "10cbedf46653891d4805a7cb623713decee6c56b33af31d4083f53aaa7f39649",
+    "preview_wav_sha256": "3f8d4023a1a31fecb081eec048726305757a9a6097e5957d741481d03b8830c6",
+    "public_mp3_sha256": "c3bb7f62f707d7fb1a772fb67cb4c14829a5afb13f6c6c66118e40f029282e89",
+    "render": "sine; 48kHz; MP3 192kbps; no loudness normalization; preview only, not scored audio"
+  }
+]

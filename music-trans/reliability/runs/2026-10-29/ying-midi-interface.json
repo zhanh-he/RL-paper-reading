@@ -1,0 +1,55 @@
+{
+  "scope": "CPU execution of the upstream MIDI parser only; no model weights or singing generation",
+  "executed_at": "2026-10-29T07:11:04.657846+00:00",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "pretty_midi": "0.2.11",
+  "upstream_commit": "6d7c453781cdaf286227ba7a51e79d57b19fad71",
+  "upstream_source_sha256": "7e2eb9aed7dc4b2adc5e51a4c07fbd7c3eee88f9bf0d8ea516c3ec6396652cbe",
+  "upstream_url": "https://github.com/GiantAILab/YingMusic-Singer/blob/6d7c453781cdaf286227ba7a51e79d57b19fad71/src/singer/model.py#L188-L242",
+  "parser_ast_sha256": "ecc93b660616ab32bb43c07b830d2abaf43a9ef121f3481b9d92f520714dc228",
+  "frame_hz": 100,
+  "independent_musical_works": 0,
+  "rows": [
+    {
+      "id": "lead-only",
+      "input_pitches": [
+        72
+      ],
+      "frames": 100,
+      "unique_output_pitches": [
+        72.0
+      ],
+      "retained_lead_fraction": 1.0,
+      "midi_sha256": "ff2b224aa9ec8c6ffc2dced24572f57056da0c2422056b701a8508977f4ec501"
+    },
+    {
+      "id": "lead-then-accompaniment",
+      "input_pitches": [
+        72,
+        60
+      ],
+      "frames": 100,
+      "unique_output_pitches": [
+        60.0
+      ],
+      "retained_lead_fraction": 0.0,
+      "midi_sha256": "a595afa3d4d8ab426642b05bcf9462c518cb85094b0f49619dd7913f0a5c5221"
+    },
+    {
+      "id": "accompaniment-then-lead",
+      "input_pitches": [
+        60,
+        72
+      ],
+      "frames": 100,
+      "unique_output_pitches": [
+        72.0
+      ],
+      "retained_lead_fraction": 1.0,
+      "midi_sha256": "a47b87f01575f413ff2c0e37d968951d20ce6c4af9b1799b4d3e2f1bcc9a2d2c"
+    }
+  ],
+  "reordered_identical_note_content_changed_frame_fraction": 1.0,
+  "conclusion": "On this overlapping two-track control, later notes overwrite earlier notes. Select a monophonic lead explicitly; do not feed combined score MIDI."
+}

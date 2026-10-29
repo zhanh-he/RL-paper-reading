@@ -7,9 +7,9 @@
     <title>AMT Experiments | RL Learning</title>
     <link rel="stylesheet" href="../../assets/styles.css?v=20261022-catalogs" />
     <link rel="stylesheet" href="../../demos/styles.css?v=20261015-talk-downloads" />
-    <link rel="stylesheet" href="./styles.css?v=20261029" />
+    <link rel="stylesheet" href="./styles.css?v=20261029-audit2" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./app.js?v=20261029"></script>
+    <script type="module" src="./app.js?v=20261029-audit2"></script>
   </head>
   <body>
     <header class="app-header">
@@ -36,7 +36,7 @@
         <div class="section-intro"><div><p class="eyebrow">Experiment workspace</p><h2 id="experiment-title">下一项实验待配置</h2></div><a class="source-link" href="../../demos/#choral" id="legacy-choral">历史 Choral GRPO 回放 ↗</a></div>
         <div class="amt-controls"><label>Experiment<select id="experiment-select" disabled><option>暂无实验</option></select></label><label>Sample<select id="sample-select" disabled><option>暂无样本</option></select></label><a id="run-receipt" class="source-link" hidden>运行记录 ↗</a></div>
         <div class="protocol-strip" id="run-protocol"><span>Task <strong>待定</strong></span><span>Model <strong>待定</strong></span><span>Method <strong>待定</strong></span><span>Reward <strong>待定</strong></span></div>
-        <section class="amt-training" aria-labelledby="training-title">
+        <section class="amt-training" id="training-section" aria-labelledby="training-title">
           <div class="amt-section-heading"><h3 id="training-title">训练过程</h3><span id="trace-context">等待训练日志</span></div>
           <div class="amt-traces"><figure><figcaption>Reward (total) <output id="reward-value">—</output></figcaption><div class="amt-chart"><canvas id="reward-chart" role="img" aria-label="Reward over optimizer steps" hidden></canvas><p>暂无训练记录</p></div></figure><figure><figcaption>KL <output id="kl-value">—</output></figcaption><div class="amt-chart"><canvas id="kl-chart" role="img" aria-label="KL over optimizer steps" hidden></canvas><p>暂无训练记录</p></div></figure></div>
         </section>
@@ -47,15 +47,21 @@
           <p class="stage-context" id="sample-context">实验任务、模型、数据划分与 reward 尚未确定。</p>
         </section>
         <section aria-labelledby="metrics-title">
-          <div class="amt-section-heading"><h3 id="metrics-title">Checkpoint · 独立评估</h3><span>分数（Δ vs baseline）</span></div>
-          <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Step</th><th>Cohort / N</th><th>Frame F1</th><th>Onset F1</th><th>Onset + offset F1</th></tr></thead><tbody id="metrics-body"><tr><td colspan="5">暂无评估记录</td></tr></tbody></table></div>
+          <div class="amt-section-heading"><h3 id="metrics-title">Checkpoint · 独立评估</h3><span id="metrics-context">分数（Δ vs baseline）</span></div>
+          <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr id="metric-head"><th>Step</th><th>Cohort / N</th><th>Frame F1</th><th>Onset F1</th><th>Onset + offset F1</th></tr></thead><tbody id="metrics-body"><tr><td colspan="5">暂无评估记录</td></tr></tbody></table></div>
           <details class="choral-deep-dive"><summary>评价协议与运行来源</summary><p class="section-copy" id="evaluation-protocol">待确定时间容差、声部/乐器匹配、聚合方式与测试集合。</p></details>
         </section>
       </section>
       <section class="lab-view" id="panel-datasets" role="tabpanel" aria-labelledby="tab-datasets" hidden><div class="section-intro"><div><p class="eyebrow">Data and evaluation</p><h2>Dataset Protocol</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Dataset</th><th>Task / labels</th><th>Train / valid / test</th><th>Source / protocol</th></tr></thead><tbody id="datasets-body"><tr><td colspan="4">尚未选定实验数据和划分</td></tr></tbody></table></div></section>
-      <section class="lab-view" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden><div class="section-intro"><div><p class="eyebrow">Models and checkpoints</p><h2>Models</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Model</th><th>Input → output</th><th>Checkpoint / trainable scope</th><th>Source</th></tr></thead><tbody id="models-body"><tr><td colspan="4">尚未选定实验模型</td></tr></tbody></table></div></section>
+      <section class="lab-view" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden><div class="section-intro"><div><p class="eyebrow">Models and checkpoints</p><h2>Models</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Model</th><th>Input → output</th><th>Checkpoint / trainable scope</th><th>Source</th></tr></thead><tbody id="models-body"><tr><td colspan="4">尚未选定实验模型</td></tr></tbody></table></div>
+        <section id="paper-comparison" aria-labelledby="paper-comparison-title" hidden>
+          <div class="amt-section-heading"><h3 id="paper-comparison-title">论文报告 · 非本地复现</h3><span>SheetSage2 v1 · 2026-10-04 · Table 17</span></div>
+          <p class="section-copy">Vocal melody note F1 (%)：50ms onset、pitch-class 匹配，不评价 offset 或绝对八度。RWC-Pop 100首，Rock Corpus 200首。相同论文的统一评测，不代表训练预算公平或跨团队独立复现；不是完整多乐器/合唱总谱排名。核对于2026-10-29。</p>
+          <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>System</th><th>RWC-Pop F1 (%)</th><th>Rock F1 (%)</th><th>Scored output</th><th>Primary source</th></tr></thead><tbody id="reported-results-body"></tbody></table></div>
+        </section>
+      </section>
       <section class="lab-view" id="panel-rewards" role="tabpanel" aria-labelledby="tab-rewards" hidden><div class="section-intro"><div><p class="eyebrow">Objectives and ablations</p><h2>Rewards</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Reward</th><th>Definition / scale</th><th>Single-reward failure case</th><th>Implementation / evidence</th></tr></thead><tbody id="rewards-body"><tr><td colspan="4">尚未选定 reward 配方或消融</td></tr></tbody></table></div><a class="source-link" href="../../demos/#choral-rewards">历史 SATB reward 定义与 MIDI 审计 ↗</a></section>
-      <footer class="lab-footer"><span id="manifest-date"></span> · <a href="../">AMT catalog</a> · <a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/platform/docs/AMT_EXPERIMENTS.md">实验记录规范</a><br />已有 Choral / MuScriptor 实验见历史回放；新实验选题待定。</footer>
+      <footer class="lab-footer"><span id="manifest-date"></span> · <a href="../">AMT catalog</a> · <a href="../research/2026-10-29/">研究文献导航</a> · <a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/platform/docs/AMT_EXPERIMENTS.md">实验记录规范</a><br />历史 Choral / MuScriptor 回放保持原始记录；评分自检、冻结模型推理与训练结果分别登记。</footer>
       <noscript><p>实验选择、曲线与 MIDI 预览需要启用 JavaScript。</p></noscript>
     </main>
     <dialog id="roll-dialog" aria-labelledby="roll-dialog-title"><div class="amt-section-heading"><h3 id="roll-dialog-title">MIDI</h3><button type="button" class="icon-button" id="close-roll" title="关闭" aria-label="关闭 MIDI 预览"><i data-lucide="x" aria-hidden="true"></i></button></div><canvas id="large-roll" width="1400" height="600" role="img" aria-label="放大的 MIDI piano roll"></canvas></dialog>
