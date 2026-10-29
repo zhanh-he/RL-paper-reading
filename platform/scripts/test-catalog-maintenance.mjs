@@ -44,7 +44,8 @@ test("current table contains exactly one linked row per stable ID", () => {
   const table = catalogTable(records);
   assert.equal(table.split("\n").length, records.length + 2);
   assert.equal(new Set(records.map((r) => r.obsidian_target)).size, records.length);
-  assert(!table.includes("/articles/"));
+  // Only vault paths must stay flat; legitimate publisher URLs may contain /articles/.
+  assert(!/\[\[[^\]]*\/articles\//.test(table));
   for (const r of records) assert(table.includes(`${r.obsidian_target}\\|`));
 });
 

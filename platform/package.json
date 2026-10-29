@@ -3,6 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:research": "node scripts/build-amt-research.mjs",
+    "check:research": "node scripts/build-amt-research.mjs --check && node --test scripts/test-amt-research.mjs",
     "test:catalog": "node --test scripts/test-catalog-maintenance.mjs",
     "test:catalog:ui": "node scripts/test-catalog-ui.mjs",
     "test:amt": "node --test scripts/test-amt-experiments.mjs",
