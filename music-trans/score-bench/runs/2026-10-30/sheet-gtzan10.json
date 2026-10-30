@@ -1,0 +1,92 @@
+{
+  "model": "m-a-p/SheetSage2",
+  "precision": "bf16",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "protocol": "SheetSage2 Appendix D.1: trim reference and predictions before 5s; beat/downbeat F1 with 70ms tolerance; recording macro mean.",
+  "scope": "Ten-genre deterministic GTZAN-mini subset, not full 999/993-track paper cohort. Frozen inference, zero updates.",
+  "training_steps": 0,
+  "samples": [
+    {
+      "id": "gtzan_blues_00000",
+      "status": "complete",
+      "beat_f1": 0.9811320754716981,
+      "downbeat_f1": 0.9285714285714286,
+      "events": 93,
+      "seconds": 1.4098085490986705
+    },
+    {
+      "id": "gtzan_classical_00000",
+      "status": "complete",
+      "beat_f1": 1.0,
+      "downbeat_f1": 0.6666666666666666,
+      "events": 155,
+      "seconds": 1.2366533149033785
+    },
+    {
+      "id": "gtzan_country_00000",
+      "status": "complete",
+      "beat_f1": 0.9577464788732395,
+      "downbeat_f1": 1.0,
+      "events": 69,
+      "seconds": 0.7768712667748332
+    },
+    {
+      "id": "gtzan_disco_00000",
+      "status": "complete",
+      "beat_f1": 1.0,
+      "downbeat_f1": 1.0,
+      "events": 102,
+      "seconds": 1.1158379567787051
+    },
+    {
+      "id": "gtzan_hiphop_00000",
+      "status": "complete",
+      "beat_f1": 1.0,
+      "downbeat_f1": 1.0,
+      "events": 175,
+      "seconds": 1.408211985602975
+    },
+    {
+      "id": "gtzan_jazz_00000",
+      "status": "complete",
+      "beat_f1": 0.17475728155339804,
+      "downbeat_f1": 0.0,
+      "events": 136,
+      "seconds": 1.2260653795674443
+    },
+    {
+      "id": "gtzan_metal_00000",
+      "status": "complete",
+      "beat_f1": 1.0,
+      "downbeat_f1": 0.6896551724137931,
+      "events": 111,
+      "seconds": 1.0586891863495111
+    },
+    {
+      "id": "gtzan_pop_00000",
+      "status": "complete",
+      "beat_f1": 0.6666666666666666,
+      "downbeat_f1": 0.6666666666666666,
+      "events": 103,
+      "seconds": 0.9855834487825632
+    },
+    {
+      "id": "gtzan_reggae_00000",
+      "status": "complete",
+      "beat_f1": 1.0,
+      "downbeat_f1": 1.0,
+      "events": 103,
+      "seconds": 1.1342560332268476
+    },
+    {
+      "id": "gtzan_rock_00000",
+      "status": "complete",
+      "beat_f1": 0.8431372549019607,
+      "downbeat_f1": 0.8461538461538461,
+      "events": 104,
+      "seconds": 1.010044600814581
+    }
+  ],
+  "beat_f1": 0.8623439757466963,
+  "downbeat_f1": 0.7797713780472401
+}

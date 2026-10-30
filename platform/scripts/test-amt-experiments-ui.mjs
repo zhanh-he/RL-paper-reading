@@ -7,7 +7,7 @@ import { amtFixture } from './test-fixtures/amt-experiments.mjs';
 
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const site = fileURLToPath(new URL('../site/', import.meta.url));
-const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.mp3': 'audio/mpeg' };
+const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.mp3': 'audio/mpeg', '.svg': 'image/svg+xml' };
 const server = http.createServer((req, res) => {
   let target = path.resolve(site, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
   if (!target.startsWith(site)) { res.writeHead(403).end(); return; }
@@ -105,6 +105,41 @@ try {
     assert.match(await page.locator('#reported-results-body').innerText(),/83\.08/);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
     await page.screenshot({path:path.join(out,`reported-models-${width}.png`),fullPage:true});
+  }
+  for (const width of [1440,390]) {
+    await page.setViewportSize({width,height:1000});
+    await page.goto(`${base}/amt/demos/?run=asap-duet-benchmark#experiments`);
+    await page.locator('#score-results-body tr').nth(3).waitFor();
+    assert.match(await page.locator('#score-results-body').innerText(), /86\.23% \/ 77\.98%/);
+    assert.match(await page.locator('#score-results-body').innerText(), /40 updates/);
+    assert.equal(await page.locator('#media-grid .amt-score-preview img').count(),4);
+    await page.waitForFunction(() => [...document.querySelectorAll('#media-grid img')].every(image => image.complete && image.naturalWidth > 0));
+    assert.equal(await page.locator('#media-grid a').count(),4);
+    assert.match(await page.locator('#score-input').innerText(), /Real performance MIDI/);
+    assert.equal(await page.locator('#metrics-body tr').count(),3);
+    assert.equal(await page.locator('#score-paired-body tr').count(),8);
+    assert.equal(await page.locator('#score-gtzan-body tr').count(),10);
+    assert.equal(await page.locator('#score-grpo-trace tr').count(),50);
+    await page.locator('#media-grid .amt-score-preview').last().click();
+    assert.equal(await page.locator('#large-score').isVisible(),true);
+    assert.equal(await page.locator('#large-roll').isVisible(),false);
+    await page.keyboard.press('Escape');
+    await page.locator('#sample-select').selectOption('test-07');
+    await page.waitForFunction(() => [...document.querySelectorAll('#media-grid img')].every(image => image.complete && image.naturalWidth > 0 && image.src.includes('test-07')));
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.screenshot({path:path.join(out,`real-score-${width}.png`),fullPage:true});
+    await page.locator('[data-tab=models]').click();
+    assert.equal(await page.locator('#score-model-body tr').count(),14);
+    await page.locator('[data-score-family=midi]').click();
+    assert.equal(await page.locator('#score-model-body tr').count(),3);
+    assert.match(await page.locator('#score-model-body').innerText(), /MIDI2ScoreTransformer/);
+    await page.locator('[data-score-family=all]').click();
+    assert.equal(await page.locator('#score-model-body tr').count(),14);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
+    await page.locator('[data-tab=datasets]').click();
+    assert.equal(await page.locator('#score-data-body tr').count(),5);
+    await page.locator('[data-tab=rewards]').click();
+    assert.equal(await page.locator('#score-rewards-body tr').count(),4);
   }
   assert.deepEqual(errors, []);
   console.log('AMT live: empty desktop/mobile, routing, checkpoint/missing output, hover traces, MIDI zoom, sample selection, metrics and layout verified.');

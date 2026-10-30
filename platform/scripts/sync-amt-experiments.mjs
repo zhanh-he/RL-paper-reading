@@ -60,7 +60,11 @@ export function validateExperiments(data, exists = () => true) {
         local(value[key], key, 'site');
         require(key === 'audio' ? /\.mp3$/i.test(value[key]) : /\.midi?$/i.test(value[key]), `${key}: unsupported public format`);
       }
-      require(value.audio || value.midi || Array.isArray(value.notes), 'asset needs audio, MIDI or notes');
+      for (const key of ['score_image', 'musicxml']) if (value[key]) {
+        local(value[key], key, 'site');
+        require(key === 'score_image' ? /\.(svg|png)$/i.test(value[key]) : /\.(musicxml|xml|mxl)$/i.test(value[key]), `${key}: unsupported public format`);
+      }
+      require(value.audio || value.midi || value.score_image || value.musicxml || Array.isArray(value.notes), 'asset needs audio, MIDI, score image, MusicXML or notes');
       if (value.tracks) { array(value.tracks, 'tracks'); require(value.tracks.every(track => typeof track === 'string'), 'track names must be strings'); }
       if (value.notes) {
         array(value.notes, 'notes');

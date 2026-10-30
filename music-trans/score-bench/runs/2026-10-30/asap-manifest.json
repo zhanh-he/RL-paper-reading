@@ -1,0 +1,792 @@
+{
+  "dataset": "ASAP",
+  "asap_revision": "8cba199e15931975542010a7ea2ff94a6fc9cbee",
+  "split_source": "https://cheriell.github.io/research/ACPAS_dataset/metadata_R.csv",
+  "protocol": "One performance per work; source ACPAS real split; SHA256-sorted subset, selected before inference. DuET checkpoint pretraining overlap is not independently audited.",
+  "samples": [
+    {
+      "id": "train-00",
+      "split": "train",
+      "composer": "Scriabin",
+      "work": "Scriabin/Etudes_op_8/11",
+      "files": {
+        "midi_performance": {
+          "path": "Scriabin/Etudes_op_8/11/Shi08M.mid",
+          "sha256": "54d2f5ba56b97581296f22243300a58f7d657788255ee1b2e92e3dc87abac51f"
+        },
+        "xml_score": {
+          "path": "Scriabin/Etudes_op_8/11/xml_score.musicxml",
+          "sha256": "3645da20686eec70bfe066e5f58a3d3f3636694aae731ce0242fded5d7171335"
+        },
+        "midi_score": {
+          "path": "Scriabin/Etudes_op_8/11/midi_score.mid",
+          "sha256": "c1cafe265fa4d54e990f4512cf8656c7c03fb3524b5a84dadaa515cc94e8f0aa"
+        },
+        "performance_annotations": {
+          "path": "Scriabin/Etudes_op_8/11/Shi08M_annotations.txt",
+          "sha256": "65c41f9495ea386cdbecbf56308fdab6174cb463c9c8838a71014f6d915b1f92"
+        },
+        "midi_score_annotations": {
+          "path": "Scriabin/Etudes_op_8/11/midi_score_annotations.txt",
+          "sha256": "93aab60507b0b177fb0c29637932764afbe7688585945ee3505bc8cf79c63d77"
+        }
+      }
+    },
+    {
+      "id": "train-01",
+      "split": "train",
+      "composer": "Bach",
+      "work": "Bach/Fugue/bwv_870",
+      "files": {
+        "midi_performance": {
+          "path": "Bach/Fugue/bwv_870/ChenW01M.mid",
+          "sha256": "b66711251829a196d0393117710e2416ee31f18bbb390b735e141c11472589e6"
+        },
+        "xml_score": {
+          "path": "Bach/Fugue/bwv_870/xml_score.musicxml",
+          "sha256": "0d78d5891db803d549e2933c7b265fe9a88e18938dd717ed668bee14b5ae67f0"
+        },
+        "midi_score": {
+          "path": "Bach/Fugue/bwv_870/midi_score.mid",
+          "sha256": "388d87bcc370ddf0712971c2a07f29ddad04db3ab4f8887cc92f5d5ed7131dc4"
+        },
+        "performance_annotations": {
+          "path": "Bach/Fugue/bwv_870/ChenW01M_annotations.txt",
+          "sha256": "722b3b7addf087130b8e2671cdf3e979b757ae0b9c57662fb9f88a0eda61abd7"
+        },
+        "midi_score_annotations": {
+          "path": "Bach/Fugue/bwv_870/midi_score_annotations.txt",
+          "sha256": "1174d05808ce5e345e6d96f8829a60974e903380da5ceea23daa8415457f15ec"
+        }
+      }
+    },
+    {
+      "id": "train-02",
+      "split": "train",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/31-3_4",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/31-3_4/Zuber04M.mid",
+          "sha256": "232f584a501cafdd0edf8b3f36e349c9cf36a1b58b7ff9f01c841963b794c8f7"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/31-3_4/xml_score.musicxml",
+          "sha256": "0ef93bdba1cf1e438f680409bb5a197a8802fa706e6ec5228246886fb5b4cc0f"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/31-3_4/midi_score.mid",
+          "sha256": "350cf035e16cb1bd7da069fd5ec770a2f226b70644bda927892a2c98975d8801"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/31-3_4/Zuber04M_annotations.txt",
+          "sha256": "c8175294ee0429272667aeb6fea1b702b17abac8e24be3726685391ae0758db8"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/31-3_4/midi_score_annotations.txt",
+          "sha256": "eed4074d0dbd62c1f4b09873496cd4ed94964bb6109d5df0a619c80d334c50a2"
+        }
+      }
+    },
+    {
+      "id": "train-03",
+      "split": "train",
+      "composer": "Chopin",
+      "work": "Chopin/Etudes_op_10/1",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Etudes_op_10/1/SunY03M.mid",
+          "sha256": "7a78c94a523bb54bca4728da6cd3eabc2f22e59af6f9c658b3e694edcb1ae72f"
+        },
+        "xml_score": {
+          "path": "Chopin/Etudes_op_10/1/xml_score.musicxml",
+          "sha256": "d5ebeb731f2c07fb2fe0ea599627398367722aabe72d0c8db3180ec55308bf87"
+        },
+        "midi_score": {
+          "path": "Chopin/Etudes_op_10/1/midi_score.mid",
+          "sha256": "987eddc317acc021b42e9f16e10241b4dcb63420e5bbc681a1a2275fe30cc95b"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Etudes_op_10/1/SunY03M_annotations.txt",
+          "sha256": "6335d97f4d53a2a864895f1feaa355286c5638ef85bc2a377ecadd9778e24143"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Etudes_op_10/1/midi_score_annotations.txt",
+          "sha256": "ae6a7e9ca7b1da4b64efff98769077f0ee913042d72ebc437cc95c9612c7115e"
+        }
+      }
+    },
+    {
+      "id": "train-04",
+      "split": "train",
+      "composer": "Schubert",
+      "work": "Schubert/Impromptu_op142/3",
+      "files": {
+        "midi_performance": {
+          "path": "Schubert/Impromptu_op142/3/YoungS06M.mid",
+          "sha256": "327cdf1874c54cc1d9b6969954b3b9b2339009677cfe1e9b6ec38f227761c579"
+        },
+        "xml_score": {
+          "path": "Schubert/Impromptu_op142/3/xml_score.musicxml",
+          "sha256": "9fbeea1ab1620033c7225341b5048b71caf8aee806bcae4e547aac7ee4bd1703"
+        },
+        "midi_score": {
+          "path": "Schubert/Impromptu_op142/3/midi_score.mid",
+          "sha256": "6bb789c6240531ecb0cdafe5ca6e7c17019304084df7bd73b72c3b37c94df817"
+        },
+        "performance_annotations": {
+          "path": "Schubert/Impromptu_op142/3/YoungS06M_annotations.txt",
+          "sha256": "e9d466e5f9826262cd7f828c786237dcf0a9d5e25aad66dbcf6da3f8ebfbfc1d"
+        },
+        "midi_score_annotations": {
+          "path": "Schubert/Impromptu_op142/3/midi_score_annotations.txt",
+          "sha256": "13c77677b4084dd34c4531d770a291a2fcef6229b55eee31872c35e50f4418b4"
+        }
+      }
+    },
+    {
+      "id": "train-05",
+      "split": "train",
+      "composer": "Chopin",
+      "work": "Chopin/Scherzos/31",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Scherzos/31/HuNY08M.mid",
+          "sha256": "e06ab0cce8b8b868b81cfa6db691dda6702472c84398ac541b856c930f270c85"
+        },
+        "xml_score": {
+          "path": "Chopin/Scherzos/31/xml_score.musicxml",
+          "sha256": "03b01712fb7e4d2ad7c26c9efe9f6c9d6272a6708668728ec1959e800b76973e"
+        },
+        "midi_score": {
+          "path": "Chopin/Scherzos/31/midi_score.mid",
+          "sha256": "e32afbe846af4e725a8262697c623e6f779f3645093cd47868b67bb510ebfeaa"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Scherzos/31/HuNY08M_annotations.txt",
+          "sha256": "152862789cf9d4a315d393f43409676300abfb3d6834cff54db85e367855323f"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Scherzos/31/midi_score_annotations.txt",
+          "sha256": "f859d14de71a1162c64a388244c0db891371470271549f699feb3611274f0abf"
+        }
+      }
+    },
+    {
+      "id": "train-06",
+      "split": "train",
+      "composer": "Schubert",
+      "work": "Schubert/Impromptu_op.90_D.899/2",
+      "files": {
+        "midi_performance": {
+          "path": "Schubert/Impromptu_op.90_D.899/2/HuNY06M.mid",
+          "sha256": "b0ac35f391a02909e355f2b59f9bec6bd69668074c28b704c1c2abc53d508851"
+        },
+        "xml_score": {
+          "path": "Schubert/Impromptu_op.90_D.899/2/xml_score.musicxml",
+          "sha256": "0d342b12cfc89f9f3146a7fb0ddb94c15db040a57f21f3750b1a063c07520c09"
+        },
+        "midi_score": {
+          "path": "Schubert/Impromptu_op.90_D.899/2/midi_score.mid",
+          "sha256": "cc87200a6e6962b74342fa580521c54d596b8943bbe7baa3571f3783d0fa4fd9"
+        },
+        "performance_annotations": {
+          "path": "Schubert/Impromptu_op.90_D.899/2/HuNY06M_annotations.txt",
+          "sha256": "8cc2053b784404966947699303d3c03766acbd37334aa7529f9a26afcd6fe6e7"
+        },
+        "midi_score_annotations": {
+          "path": "Schubert/Impromptu_op.90_D.899/2/midi_score_annotations.txt",
+          "sha256": "c083b15c95fd1a6d874574303c506c39ecb0d8c67f2982ca5e2d79d6d05171ec"
+        }
+      }
+    },
+    {
+      "id": "train-07",
+      "split": "train",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/26-1",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/26-1/HuNY02M.mid",
+          "sha256": "85c8f70f4e5aef02257223d62854f996a6c3623203753f88617b2fdc7ef6ed16"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/26-1/xml_score.musicxml",
+          "sha256": "c717a66f53a7a84a3bddbc57920109086a8a9d6d4bc45e5fce0218d9f2f5942c"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/26-1/midi_score.mid",
+          "sha256": "f9773ff23c6836aeea3fc405b8bb5bea4c613bb0a732ad50c2fa26aa962d5aae"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/26-1/HuNY02M_annotations.txt",
+          "sha256": "acad784dafc0fc8e8e2ec861255385617e549025a8926c8bf8cbd55b70fc2211"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/26-1/midi_score_annotations.txt",
+          "sha256": "82988aea08acf987783cc9b69cf42eee313ceb1a38cf297a6fc556da4d43abb8"
+        }
+      }
+    },
+    {
+      "id": "train-08",
+      "split": "train",
+      "composer": "Bach",
+      "work": "Bach/Fugue/bwv_854",
+      "files": {
+        "midi_performance": {
+          "path": "Bach/Fugue/bwv_854/Richardson01M.mid",
+          "sha256": "6a35a9ffaf9d8cc2d4f00727949ecdca2ba9a1f791ac1f716ec8fe0df8571144"
+        },
+        "xml_score": {
+          "path": "Bach/Fugue/bwv_854/xml_score.musicxml",
+          "sha256": "9429399ab49c0c0f5881aef4f360af18d050b36af7c5a94b1d155d724ae6367d"
+        },
+        "midi_score": {
+          "path": "Bach/Fugue/bwv_854/midi_score.mid",
+          "sha256": "153f4bbb2a1cdbe7fde43a83e80e8b0aa8194e1c8180a6e2755778f2736f7807"
+        },
+        "performance_annotations": {
+          "path": "Bach/Fugue/bwv_854/Richardson01M_annotations.txt",
+          "sha256": "80cd73409cfb24f563555a4fcce4e2b2f40fce461abb41de9093f7e1e424f352"
+        },
+        "midi_score_annotations": {
+          "path": "Bach/Fugue/bwv_854/midi_score_annotations.txt",
+          "sha256": "255cd367a73b0a205940b4cdce2b60c96b20c9641de1532b8bb9ecb2eb98464a"
+        }
+      }
+    },
+    {
+      "id": "train-09",
+      "split": "train",
+      "composer": "Schubert",
+      "work": "Schubert/Impromptu_op142/1",
+      "files": {
+        "midi_performance": {
+          "path": "Schubert/Impromptu_op142/1/Kleisen10M.mid",
+          "sha256": "6c4b42b8a2d54532c1d8bc5dab549755f580401f8e6807cf942353e66087d19a"
+        },
+        "xml_score": {
+          "path": "Schubert/Impromptu_op142/1/xml_score.musicxml",
+          "sha256": "e93a206007640f9e74542056901c9b94e437253a391b0e9aaee8e8c5781e99bd"
+        },
+        "midi_score": {
+          "path": "Schubert/Impromptu_op142/1/midi_score.mid",
+          "sha256": "80d29c9fc5078a3f019b145a2b7c9b33c7f4df7bbd4b2a02e1679f70261c0285"
+        },
+        "performance_annotations": {
+          "path": "Schubert/Impromptu_op142/1/Kleisen10M_annotations.txt",
+          "sha256": "fe3005a4f86d355899095d9ba7a5b3b069edf9a173ea35f7dd37cf013ab06545"
+        },
+        "midi_score_annotations": {
+          "path": "Schubert/Impromptu_op142/1/midi_score_annotations.txt",
+          "sha256": "5b4096ad4db9fb3b9d9a36ffafc0f5f51af69cf6ad2710870dac439adaa03168"
+        }
+      }
+    },
+    {
+      "id": "train-10",
+      "split": "train",
+      "composer": "Chopin",
+      "work": "Chopin/Etudes_op_10/8",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Etudes_op_10/8/KyykhynenT09M.mid",
+          "sha256": "a4b40527f9e4a99fcd10b021930f8514c4e825a741a595165f2efd0e824c76db"
+        },
+        "xml_score": {
+          "path": "Chopin/Etudes_op_10/8/xml_score.musicxml",
+          "sha256": "315c0562cb1c6f23300b9513b52e8a569640435df2c979aa9fabd70f85385870"
+        },
+        "midi_score": {
+          "path": "Chopin/Etudes_op_10/8/midi_score.mid",
+          "sha256": "3caed8f22f4719defe2ef42d328993c6806b396124840336711d210518ad8036"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Etudes_op_10/8/KyykhynenT09M_annotations.txt",
+          "sha256": "15f1466e021272a5e730e522d4f70e5bfdec1bfcd4d618f8da033d134d221107"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Etudes_op_10/8/midi_score_annotations.txt",
+          "sha256": "0789c0a6cd015e2bb75f4f23f2666c6fdd006c9c7283c9ad4b9727fa944e5142"
+        }
+      }
+    },
+    {
+      "id": "train-11",
+      "split": "train",
+      "composer": "Liszt",
+      "work": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella",
+      "files": {
+        "midi_performance": {
+          "path": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella/LeungR04M.mid",
+          "sha256": "9d40900ecd465ae8f0a9e30331028a29ada0784665186ac621d29b485d4e4ec1"
+        },
+        "xml_score": {
+          "path": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella/xml_score.musicxml",
+          "sha256": "37143165fa62fca7286cd9f1ce32b8fc7a62f07741831494b812d10a2f921cd0"
+        },
+        "midi_score": {
+          "path": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella/midi_score.mid",
+          "sha256": "94e4d22529f16356058d5742aaa725baf8a12d96abce4bed993664b246402e3d"
+        },
+        "performance_annotations": {
+          "path": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella/LeungR04M_annotations.txt",
+          "sha256": "8a6ecc5e86adef1bbe49d9139fb3f315500c51874bef33aeb74eb27aac513f7a"
+        },
+        "midi_score_annotations": {
+          "path": "Liszt/Gran_Etudes_de_Paganini/2_La_campanella/midi_score_annotations.txt",
+          "sha256": "463ff1b11d3d74343cd17a1bada541c68474582339c8952c4275823f586b5ddf"
+        }
+      }
+    },
+    {
+      "id": "train-12",
+      "split": "train",
+      "composer": "Bach",
+      "work": "Bach/Prelude/bwv_848",
+      "files": {
+        "midi_performance": {
+          "path": "Bach/Prelude/bwv_848/SunY01M.mid",
+          "sha256": "db89fe8c2182b189b0e85aad3f7b7d79e29b86d2fa6c78ddd0d3ec6c5fb69ab0"
+        },
+        "xml_score": {
+          "path": "Bach/Prelude/bwv_848/xml_score.musicxml",
+          "sha256": "3499950febb666b121be8e504ec59a7cd435a2cf12a1ed10158f01624fd19c39"
+        },
+        "midi_score": {
+          "path": "Bach/Prelude/bwv_848/midi_score.mid",
+          "sha256": "b4ddc734730556e72251a7c51482a838cd1acb5b3813a536e3f10a90b90504a9"
+        },
+        "performance_annotations": {
+          "path": "Bach/Prelude/bwv_848/SunY01M_annotations.txt",
+          "sha256": "fa2799133e4933f817591a4f84fc48c444d286ba3f715ce29b7feb9c51472992"
+        },
+        "midi_score_annotations": {
+          "path": "Bach/Prelude/bwv_848/midi_score_annotations.txt",
+          "sha256": "70dd3ca59c36e83c9283ec91dee3541877273392ab49b0e4a4c0d5845ff7ff60"
+        }
+      }
+    },
+    {
+      "id": "train-13",
+      "split": "train",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/30-1",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/30-1/TanakaM06M.mid",
+          "sha256": "48735f9d6675a0902ab3d871fa71252c023d022efdaf93192633afa756e76f20"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/30-1/xml_score.musicxml",
+          "sha256": "a3bf153ae8b1e62c76708eaaaaeb9e0a0dae769555e12fa81cb8bc229b9a44d9"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/30-1/midi_score.mid",
+          "sha256": "d16510955b3ba58da99651d1476e2a789794d7f1451c7e3a062d742aa8fb52fe"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/30-1/TanakaM06M_annotations.txt",
+          "sha256": "f5b4b24b7694475fb7ec46dc6ff1cdee43f95ca59a783940a8f1600307121262"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/30-1/midi_score_annotations.txt",
+          "sha256": "f908b8203d3b121e284e5cc82e2c2fb880390f8a685abd64cf29fa87fcabf503"
+        }
+      }
+    },
+    {
+      "id": "train-14",
+      "split": "train",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/26-3",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/26-3/HONG05M.mid",
+          "sha256": "aa60849f7d0267ffa99feab123e2717851a864b2f8710cd421feb512e63e0a6f"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/26-3/xml_score.musicxml",
+          "sha256": "ea1a7bd2d6958230812f9a4747b60d154e605a529dc9c34641532c5675a31460"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/26-3/midi_score.mid",
+          "sha256": "47e4434ef040f4c0bb042ccbe8c08144dede8f0d0ba71d3f476d44686ca3d624"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/26-3/HONG05M_annotations.txt",
+          "sha256": "2ce70b0d8f6867122f89a5281a8bea1c30fecab8296eb486a151ac38ab4a0368"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/26-3/midi_score_annotations.txt",
+          "sha256": "72ab9d9c94eeda1c167229598f3bdf270509c21acd0c6b08b298c56cf1fa1960"
+        }
+      }
+    },
+    {
+      "id": "train-15",
+      "split": "train",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/23-1",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/23-1/Mizumoto06M.mid",
+          "sha256": "d7743db68852f482da54f1eb86e6fa3ad7d646dc6289d0f78289cd60e1f2d50e"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/23-1/xml_score.musicxml",
+          "sha256": "6f5f59bbda7a81a5ece5139d9449ffce2f05e1167a2c1055a451ed8063672032"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/23-1/midi_score.mid",
+          "sha256": "70e027429c1534f0b6efe52a726ff2abbdb2e321e98ee1dbdbaa73a414d3d1ce"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/23-1/Mizumoto06M_annotations.txt",
+          "sha256": "fe1d355c2fec17d6dab9195ee155b2bc7ec051861577c8323090d88930c17c5a"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/23-1/midi_score_annotations.txt",
+          "sha256": "3d35f96c3a2d63fa5e4fc53da20d443f2bc891847270746fd42328d33de1c77a"
+        }
+      }
+    },
+    {
+      "id": "validation-00",
+      "split": "validation",
+      "composer": "Bach",
+      "work": "Bach/Prelude/bwv_860",
+      "files": {
+        "midi_performance": {
+          "path": "Bach/Prelude/bwv_860/TuanS01M.mid",
+          "sha256": "f96ace3d9ccb62881537185b45a88cf3c38046f342e62cdc43ea34850531e95b"
+        },
+        "xml_score": {
+          "path": "Bach/Prelude/bwv_860/xml_score.musicxml",
+          "sha256": "00fa052228c908404a95302716f120867c1adebc2b5218eadd74bc4d896becf8"
+        },
+        "midi_score": {
+          "path": "Bach/Prelude/bwv_860/midi_score.mid",
+          "sha256": "9dc6ae6d6c1a7600c89aa3d03b3e99b6f47b3808cda6c959bd98e2ae20e45882"
+        },
+        "performance_annotations": {
+          "path": "Bach/Prelude/bwv_860/TuanS01M_annotations.txt",
+          "sha256": "474a2dd087b6e07885060b7aa6bd84786f9c94510b49fdf3a0db3fbd21a5f4c2"
+        },
+        "midi_score_annotations": {
+          "path": "Bach/Prelude/bwv_860/midi_score_annotations.txt",
+          "sha256": "4209956bfa57263579c6ec3a9b703393262f4819979c294c0251d233599a0e75"
+        }
+      }
+    },
+    {
+      "id": "validation-01",
+      "split": "validation",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/32-1",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/32-1/HouY04M.mid",
+          "sha256": "ac007c4b6da0114bd4b5490657e5313ff6992ba97d4ed349f6826c94fa9864ff"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/32-1/xml_score.musicxml",
+          "sha256": "3841445bd53fdfdedb830e1d51af18ac783f6eae548ba87d0734ebfcd67515ec"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/32-1/midi_score.mid",
+          "sha256": "2735aa734426d872baac4318053a201a20fe1de5ea5d3cb4a97be9f29b97b512"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/32-1/HouY04M_annotations.txt",
+          "sha256": "6039e7c029063a32854ab19edcd820676b9710685c915488802ec0c859b96d5a"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/32-1/midi_score_annotations.txt",
+          "sha256": "4340f15dbbd9b484418def31cf80caa5364e7f20752abf4b7389273a18a185ce"
+        }
+      }
+    },
+    {
+      "id": "validation-02",
+      "split": "validation",
+      "composer": "Debussy",
+      "work": "Debussy/Images_Book_1/1_Reflets_dans_lEau",
+      "files": {
+        "midi_performance": {
+          "path": "Debussy/Images_Book_1/1_Reflets_dans_lEau/ParkJH13M.mid",
+          "sha256": "4263b8499259f9de97358896569f6991c491709c7240d525e9e0322d8d262a70"
+        },
+        "xml_score": {
+          "path": "Debussy/Images_Book_1/1_Reflets_dans_lEau/xml_score.musicxml",
+          "sha256": "b5f1befbab16456906a9eb57a8f5b85e7a61585c6b5bcc0d9c88bd04e0ae2afb"
+        },
+        "midi_score": {
+          "path": "Debussy/Images_Book_1/1_Reflets_dans_lEau/midi_score.mid",
+          "sha256": "94beb8a94dd54c433efa9a1d368b59e40d965ae9c58d8257c7349c13b7d69cef"
+        },
+        "performance_annotations": {
+          "path": "Debussy/Images_Book_1/1_Reflets_dans_lEau/ParkJH13M_annotations.txt",
+          "sha256": "cbbe05c789a817130c26dfbbd1fcb4d40c2fa4caff2f3ea5c172691c56a01eb8"
+        },
+        "midi_score_annotations": {
+          "path": "Debussy/Images_Book_1/1_Reflets_dans_lEau/midi_score_annotations.txt",
+          "sha256": "eea0ac8adebf84b01abd36421e902811eee782d69821389084ef4014d51d6e02"
+        }
+      }
+    },
+    {
+      "id": "validation-03",
+      "split": "validation",
+      "composer": "Chopin",
+      "work": "Chopin/Etudes_op_10/2",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Etudes_op_10/2/Hebert03M.mid",
+          "sha256": "3c5d3ad242576c098e7347acab11fd72bf049824814df6dbaeb9ea9d89aa2a56"
+        },
+        "xml_score": {
+          "path": "Chopin/Etudes_op_10/2/xml_score.musicxml",
+          "sha256": "75367c428ef2ee217d0aa1d31d487458a6f3e254e38398296212aa7c6dafbefc"
+        },
+        "midi_score": {
+          "path": "Chopin/Etudes_op_10/2/midi_score.mid",
+          "sha256": "47b532ab4adb35f9af34125b8012e892cc58c18d32cf0110e78dffe92b4d8778"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Etudes_op_10/2/Hebert03M_annotations.txt",
+          "sha256": "bf4c9976bdded3e33b24b77b04bade8460175c996da3f8e600b00a41eda649af"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Etudes_op_10/2/midi_score_annotations.txt",
+          "sha256": "924e44f28906bcb19e17c2bf2b2b2011a19a373fbcd5a4e571171803a0e34fb4"
+        }
+      }
+    },
+    {
+      "id": "test-00",
+      "split": "test",
+      "composer": "Chopin",
+      "work": "Chopin/Polonaises/53",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Polonaises/53/YeF11M.mid",
+          "sha256": "68334396197eb0b5813591df878782e3a4bbe07f338cfb240024aea6f11b1514"
+        },
+        "xml_score": {
+          "path": "Chopin/Polonaises/53/xml_score.musicxml",
+          "sha256": "7d9590750c223d58be5b7a99d771bf4b4e9927e7d1175e09d49e6949b695ea47"
+        },
+        "midi_score": {
+          "path": "Chopin/Polonaises/53/midi_score.mid",
+          "sha256": "eb0186d37e2ffae373a48e6c7694e2f462d46a31c73dabd4a9a041bd272dcab7"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Polonaises/53/YeF11M_annotations.txt",
+          "sha256": "7f68fa3778870ac7ced3bf623f3ceea424192fa97e4c8aae0a684afe18008c19"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Polonaises/53/midi_score_annotations.txt",
+          "sha256": "48e5ac7442389d8573dbbe1ec9f8d2385178dfd1c208ffcc5b484ba08f4ddde3"
+        }
+      }
+    },
+    {
+      "id": "test-01",
+      "split": "test",
+      "composer": "Schubert",
+      "work": "Schubert/Piano_Sonatas/664-3",
+      "files": {
+        "midi_performance": {
+          "path": "Schubert/Piano_Sonatas/664-3/KabuliL12M.mid",
+          "sha256": "e41b87592423dafa2a48ec792257b40f0a5d291bb8978437f4a210597fb4cd02"
+        },
+        "xml_score": {
+          "path": "Schubert/Piano_Sonatas/664-3/xml_score.musicxml",
+          "sha256": "302612b425f8d7aaec50c15a0067b780efdcb88b115998aaa8d33fafbabcf97f"
+        },
+        "midi_score": {
+          "path": "Schubert/Piano_Sonatas/664-3/midi_score.mid",
+          "sha256": "bacd3e22ffa0ae88fd2bd6e37af81dc5ef35c132cc6d31d116838ae69cb04de1"
+        },
+        "performance_annotations": {
+          "path": "Schubert/Piano_Sonatas/664-3/KabuliL12M_annotations.txt",
+          "sha256": "6b39b3ba92f7370a76e4704f0f845437977934784eb4715a2fc2c3940e16ee78"
+        },
+        "midi_score_annotations": {
+          "path": "Schubert/Piano_Sonatas/664-3/midi_score_annotations.txt",
+          "sha256": "b72cec890922af8a6091a838e944638346ff7e7483c0e928b87ad86d763a0ce7"
+        }
+      }
+    },
+    {
+      "id": "test-02",
+      "split": "test",
+      "composer": "Bach",
+      "work": "Bach/Prelude/bwv_891",
+      "files": {
+        "midi_performance": {
+          "path": "Bach/Prelude/bwv_891/BLINOV04M.mid",
+          "sha256": "58dc035af93d97d1b029158b54c1f76443fbdd08b66725991b2cd2072d228c43"
+        },
+        "xml_score": {
+          "path": "Bach/Prelude/bwv_891/xml_score.musicxml",
+          "sha256": "5abbf97446ee472a683826cc548b39ad94fd63f6e4c5eb27336fbd7fd00fc101"
+        },
+        "midi_score": {
+          "path": "Bach/Prelude/bwv_891/midi_score.mid",
+          "sha256": "e95db5d46f2faed99a601e812d705922555757712cbb75f1976665e25040609b"
+        },
+        "performance_annotations": {
+          "path": "Bach/Prelude/bwv_891/BLINOV04M_annotations.txt",
+          "sha256": "c6073a0760d5b4b804ade910ce6c6bbf02bd66a30e5b7ce0c34647bf2c582f5b"
+        },
+        "midi_score_annotations": {
+          "path": "Bach/Prelude/bwv_891/midi_score_annotations.txt",
+          "sha256": "70d2aeede4f1fd638124d7058da515fc47d8a11c5c74179ff1d0c87507319947"
+        }
+      }
+    },
+    {
+      "id": "test-03",
+      "split": "test",
+      "composer": "Liszt",
+      "work": "Liszt/Concert_Etude_S145/2",
+      "files": {
+        "midi_performance": {
+          "path": "Liszt/Concert_Etude_S145/2/Lu03M.mid",
+          "sha256": "c5ab91d17693bfc0f08b07c2bb6ddba8f32fb0884002a23ebbb6cb487ed015f5"
+        },
+        "xml_score": {
+          "path": "Liszt/Concert_Etude_S145/2/xml_score.musicxml",
+          "sha256": "0b4b96f56b5a65a50cddaf448666261bd8935dad24287f2cb448d1d585bcf686"
+        },
+        "midi_score": {
+          "path": "Liszt/Concert_Etude_S145/2/midi_score.mid",
+          "sha256": "bcc471a14fb27b5353c1921cb85fc139a0c6f89af079a33bc1542806bf65121d"
+        },
+        "performance_annotations": {
+          "path": "Liszt/Concert_Etude_S145/2/Lu03M_annotations.txt",
+          "sha256": "252f57129d80535adc05668b3a57963ba7fef165aa16f24d56d1cf9af0c0822f"
+        },
+        "midi_score_annotations": {
+          "path": "Liszt/Concert_Etude_S145/2/midi_score_annotations.txt",
+          "sha256": "166e5de04e42256955191daeacc56998fd89e32120f608bbb17e8dfebb047d69"
+        }
+      }
+    },
+    {
+      "id": "test-04",
+      "split": "test",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/21-1_no_repeat",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/21-1_no_repeat/KimSY02M.mid",
+          "sha256": "efd80cb65f7bec5644ec8d7189e8726164e5620cd7b6fbe8bd76ec9276725e5a"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/21-1_no_repeat/xml_score.musicxml",
+          "sha256": "ce86e532b75ae60ec990c5e82fb9291b8be8b192320ad783d9e09d977b61dc5f"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/21-1_no_repeat/midi_score.mid",
+          "sha256": "331645f93688ece21602ea3eb4028527d641b13c5507ea4581159ae675df3da0"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/21-1_no_repeat/KimSY02M_annotations.txt",
+          "sha256": "b0e5277c3347e99e4adbdb19c06876c439b1788400d9f1b07b87acb6c9d814f9"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/21-1_no_repeat/midi_score_annotations.txt",
+          "sha256": "37c26ba4d3a64069f505ae91bb1dfc1f34b4998c202f265840ab8518d85c916c"
+        }
+      }
+    },
+    {
+      "id": "test-05",
+      "split": "test",
+      "composer": "Chopin",
+      "work": "Chopin/Sonata_2/4th",
+      "files": {
+        "midi_performance": {
+          "path": "Chopin/Sonata_2/4th/KaszoS16M.mid",
+          "sha256": "a0fe1a6373ec03be8029fba025d7ee609d5c06f929bba2fa57fc6a0763c9531b"
+        },
+        "xml_score": {
+          "path": "Chopin/Sonata_2/4th/xml_score.musicxml",
+          "sha256": "3920356d7f07b814a5d6e860d29d2c8e5f456991068870e26b09110789bade5a"
+        },
+        "midi_score": {
+          "path": "Chopin/Sonata_2/4th/midi_score.mid",
+          "sha256": "06605f652a429e67194fb9e22116fba13794cb63b9f94f48d21057760ae1d3e5"
+        },
+        "performance_annotations": {
+          "path": "Chopin/Sonata_2/4th/KaszoS16M_annotations.txt",
+          "sha256": "7f01153431e65e36f188e08c4e189d6810da6e7c15eb321b7dee2b711615b135"
+        },
+        "midi_score_annotations": {
+          "path": "Chopin/Sonata_2/4th/midi_score_annotations.txt",
+          "sha256": "557f708437b42cfb8b38622c5b4d734fc9aee4bdd1c654d762f1aae0382c4c64"
+        }
+      }
+    },
+    {
+      "id": "test-06",
+      "split": "test",
+      "composer": "Liszt",
+      "work": "Liszt/Transcendental_Etudes/5",
+      "files": {
+        "midi_performance": {
+          "path": "Liszt/Transcendental_Etudes/5/Wang06M.mid",
+          "sha256": "f5f1a4d19d051f85a0578ab4ca8768c3e71e093e8a211d35f1f3ab93c145035a"
+        },
+        "xml_score": {
+          "path": "Liszt/Transcendental_Etudes/5/xml_score.musicxml",
+          "sha256": "16b52b6723c9bc668e9b56d33a81681a9f2343584adeee10d8d69fbf26508836"
+        },
+        "midi_score": {
+          "path": "Liszt/Transcendental_Etudes/5/midi_score.mid",
+          "sha256": "a7890ad15f5e48d6e0e5be0bd34be79446f3f9439b6a0f40f91673f6e607ebb9"
+        },
+        "performance_annotations": {
+          "path": "Liszt/Transcendental_Etudes/5/Wang06M_annotations.txt",
+          "sha256": "2c72ade6ef746c33c88d2a10256f11d34d20b18e7f5a882bc31de834e845ad67"
+        },
+        "midi_score_annotations": {
+          "path": "Liszt/Transcendental_Etudes/5/midi_score_annotations.txt",
+          "sha256": "90f00a2a1494e469545238b6a87aa4ceadf80a111abeab1efb613d207cc96eb1"
+        }
+      }
+    },
+    {
+      "id": "test-07",
+      "split": "test",
+      "composer": "Beethoven",
+      "work": "Beethoven/Piano_Sonatas/10-1",
+      "files": {
+        "midi_performance": {
+          "path": "Beethoven/Piano_Sonatas/10-1/Hou02M.mid",
+          "sha256": "944ed03d4781fa6945b712c80c6c22c2263834048779c83c5a391428d5044cbf"
+        },
+        "xml_score": {
+          "path": "Beethoven/Piano_Sonatas/10-1/xml_score.musicxml",
+          "sha256": "efb81d5c9c2d4ef4d998f6de28ccac245a169c0d9c6e21ed591baddb8d33cdef"
+        },
+        "midi_score": {
+          "path": "Beethoven/Piano_Sonatas/10-1/midi_score.mid",
+          "sha256": "bb130ad47e2a4e4546b49da2019b3c98a0cf5df80e703a6a4e739c8b3c71b079"
+        },
+        "performance_annotations": {
+          "path": "Beethoven/Piano_Sonatas/10-1/Hou02M_annotations.txt",
+          "sha256": "e7546fcf66db53863f5123373496a50d4348a369b7410a398050d43ec1d1bb6d"
+        },
+        "midi_score_annotations": {
+          "path": "Beethoven/Piano_Sonatas/10-1/midi_score_annotations.txt",
+          "sha256": "2c32498e58893fcc2d1c5d572e5432c04fa02ecbd765bac6cb9ffbf120f7b105"
+        }
+      }
+    }
+  ]
+}

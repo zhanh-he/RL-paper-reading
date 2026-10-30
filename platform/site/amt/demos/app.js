@@ -89,7 +89,11 @@ function pianoRoll(canvas, asset, duration, notes) {
 function renderMedia() {
   for (const audio of $('#media-grid').querySelectorAll('audio')) audio.pause();
   const baseline = runPoints()[0];
-  const entries = isAudit() ? [
+  const scoreComparison = isAudit() && sample?.reference?.score_image;
+  const entries = scoreComparison ? [
+    ['GT · Reference score', sample.reference, '无参考谱面'],
+    ...experiment.conditions.map(item => [item.label, item.outputs?.[sample.id], item.error || '尚无该条件输出']),
+  ] : isAudit() ? [
     ['Input · 输入', sample?.input, '输入未公开'],
     ['GT · 参考音符', sample?.reference, '无准确参考标签'],
     ['Original · 原版输出', baseline?.outputs?.[sample?.id], '尚无原版推理结果'],
@@ -100,11 +104,26 @@ function renderMedia() {
     ['Frozen · Baseline', baseline?.outputs?.[sample?.id], '基线待运行'],
     [stage ? `${stage.step} steps · ${experiment.method}` : 'Post-training', stage?.outputs?.[sample?.id], '训练输出待提供'],
   ];
+  const input = $('#score-input');
+  input.hidden = !scoreComparison;
+  input.replaceChildren();
+  if (scoreComparison) input.append(text('strong', 'Model input · Real performance MIDI '), link('下载完整演奏 MIDI ↓', mediaURL(sample.input.midi)), text('span', ' · 下方为同作品前四小节的参考、冻结、SFT 与 GRPO 记谱输出。'));
   const allNotes = entries.flatMap(([, asset]) => asset?.notes || []);
   $('#media-grid').replaceChildren(...entries.map(([title, asset, pending]) => {
     const article = text('article', '', 'amt-media');
     article.append(text('h4', title));
-    if (Array.isArray(asset?.notes)) {
+    if (asset?.score_image) {
+      const zoom = text('button', '', 'amt-preview amt-score-preview'); zoom.type = 'button'; zoom.title = `放大 ${title} 谱面`;
+      zoom.setAttribute('aria-label', zoom.title);
+      const image = document.createElement('img'); image.src = mediaURL(asset.score_image); image.alt = `${title} · score excerpt`;
+      zoom.append(image, text('span', '放大 ↗', 'zoom-hint'));
+      zoom.addEventListener('click', () => {
+        $('#roll-dialog-title').textContent = title;
+        $('#large-roll').hidden = true; $('#large-score').hidden = false;
+        $('#large-score').src = image.src; $('#roll-dialog').showModal();
+      });
+      article.append(zoom);
+    } else if (Array.isArray(asset?.notes)) {
       const zoom = text('button', '', 'amt-preview'); zoom.type = 'button'; zoom.title = `放大 ${title} MIDI`;
       zoom.setAttribute('aria-label', zoom.title);
       const canvas = document.createElement('canvas'); canvas.width = 700; canvas.height = 390;
@@ -113,6 +132,7 @@ function renderMedia() {
       zoom.append(canvas, text('span', '放大 ↗', 'zoom-hint'));
       zoom.addEventListener('click', () => {
         $('#roll-dialog-title').textContent = title;
+        $('#large-score').hidden = true; $('#large-roll').hidden = false;
         pianoRoll($('#large-roll'), asset, sample.duration, allNotes);
         $('#roll-dialog').showModal();
       });
@@ -124,12 +144,14 @@ function renderMedia() {
         label.style.color = colors[track % colors.length]; legend.append(label);
       }
       article.append(legend);
-    } else article.append(text('div', asset?.audio ? 'Audio' : pending, 'amt-preview'));
+    } else article.append(text('div', asset?.audio ? 'Audio' : asset?.midi ? 'Performance MIDI' : pending, 'amt-preview'));
     if (asset?.audio) {
       const audio = document.createElement('audio'); audio.controls = true; audio.preload = 'metadata'; audio.src = mediaURL(asset.audio);
       audio.setAttribute('aria-label', title); article.append(audio);
-    } else if (asset) article.append(text('p', '试听待提供'));
+    } else if (asset?.musicxml) article.append(text('p', '记谱输出 · MusicXML'));
+    else if (asset) article.append(text('p', '试听待提供'));
     if (asset?.midi) { const download = link('MIDI ↓', mediaURL(asset.midi)); download.download = ''; article.append(download); }
+    if (asset?.musicxml) { const download = link('MusicXML ↓', mediaURL(asset.musicxml)); download.download = ''; article.append(download); }
     return article;
   }));
   $('#sample-context').textContent = sample?.note || (experiment ? '暂无公开回放样本。' : '实验任务、模型、数据划分与 reward 尚未确定。');
@@ -193,7 +215,7 @@ function chooseExperiment(id) {
   if (experiment?.receipt) $('#run-receipt').href = receiptURL(experiment.receipt);
   $('#evaluation-protocol').textContent = experiment?.evaluation_protocol || '待确定时间容差、声部/乐器匹配、聚合方式与测试集合。';
   $('#training-section').hidden = isAudit();
-  $('#metrics-title').textContent = isAudit() ? '冻结评测 · 条件对照' : 'Checkpoint · 独立评估';
+  $('#metrics-title').textContent = isAudit() ? '独立评测 · 条件对照' : 'Checkpoint · 独立评估';
   $('#metrics-context').textContent = isAudit() ? '原始测量值 · 非训练得分' : '分数（Δ vs baseline）';
   $('#replay-title').textContent = isAudit() ? sample ? '同一样本 · 条件与参考' : '条件对照' : '同一首歌 · MIDI 与试听';
   const noMedia = isAudit() && !sample;

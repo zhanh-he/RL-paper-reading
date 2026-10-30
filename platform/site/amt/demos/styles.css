@@ -40,5 +40,21 @@ button.amt-preview { cursor: zoom-in; position: relative; padding: 0; background
 #roll-dialog::backdrop { background: rgba(15, 25, 20, .5); }
 #roll-dialog .amt-section-heading { margin: 0 0 12px; }
 #large-roll { display: block; width: 100%; height: auto; }
+#large-roll[hidden], #large-score[hidden] { display: none; }
+#large-score { display: block; width: 100%; height: auto; background: white; }
+.amt-score-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.score-study { border-bottom: 1px solid var(--line-strong); padding-bottom: 20px; margin-bottom: 24px; }
+.score-study h2 { margin: 0; font-size: 1.15rem; }
+.score-study-table table { min-width: 1000px; table-layout: fixed; }
+.score-study-table th, .score-study-table td { vertical-align: top; white-space: pre-line; line-height: 1.6; }
+.score-study-table th:first-child { width: 19%; }
+.score-study-table td strong, .score-study-table td small { display: block; }
+.score-study-table td small { color: var(--ink-muted); font-size: .72rem; margin: 4px 0; }
+.score-study-table a { color: var(--blue); font-weight: 650; text-decoration: none; }
+.score-study-table a:hover { text-decoration: underline; }
+.score-trace-table { max-height: 340px; overflow: auto; }
+.score-trace-table table { min-width: 650px; }
+#score-input { margin-bottom: 16px; }
+.amt-media .source-link { margin-right: 12px; }
 @media (max-width: 900px) { .amt-media-grid { grid-template-columns: repeat(min(var(--columns, 4), 2), minmax(0, 1fr)); } }
 @media (max-width: 600px) { .amt-traces { grid-template-columns: 1fr; gap: 15px; } .amt-media-grid { grid-template-columns: 1fr; } .amt-controls label { flex: 1 1 180px; } .lab-heading { align-items: start; } .section-intro { align-items: start; flex-wrap: wrap; } .header-actions { flex-wrap: wrap; justify-content: flex-end; } .header-actions .button { font-size: .7rem; padding: 6px; } .brand strong { font-size: .85rem; } .brand small { white-space: normal; font-size: .66rem; } }

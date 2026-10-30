@@ -7,9 +7,10 @@
     <title>AMT Experiments | RL Learning</title>
     <link rel="stylesheet" href="../../assets/styles.css?v=20261022-catalogs" />
     <link rel="stylesheet" href="../../demos/styles.css?v=20261015-talk-downloads" />
-    <link rel="stylesheet" href="./styles.css?v=20261029-audit2" />
+    <link rel="stylesheet" href="./styles.css?v=20261030-score-study" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./app.js?v=20261029-audit2"></script>
+    <script type="module" src="./app.js?v=20261030-score-study"></script>
+    <script type="module" src="./score-study.js?v=20261030"></script>
   </head>
   <body>
     <header class="app-header">
@@ -23,7 +24,7 @@
     </header>
     <main class="lab-main">
       <section class="lab-heading">
-        <div><p class="eyebrow">Automatic music transcription</p><h1>AMT experiments</h1><p class="lab-subtitle">音频输入、参考 MIDI、冻结基线与训练后的转录结果。</p></div>
+        <div><p class="eyebrow">Automatic music transcription</p><h1>AMT experiments</h1><p class="lab-subtitle">真实 benchmark · Audio-to-Score / MIDI-to-Score · 冻结基线与小数据适配。</p></div>
         <span class="state pending" id="page-status" role="status">读取实验清单</span>
       </section>
       <nav class="catalog-switch" aria-label="Experiment sites"><a href="../../musicgen/">MusicGen Live</a><a href="../../demos/">Music-RL Live</a><a href="./" aria-current="page">Music Transcription / AMT</a></nav>
@@ -34,6 +35,21 @@
         <button class="lab-tab" id="tab-rewards" role="tab" data-tab="rewards" aria-controls="panel-rewards" aria-selected="false" tabindex="-1">Rewards</button>
       </nav>
       <section class="lab-view" id="panel-experiments" role="tabpanel" aria-labelledby="tab-experiments">
+        <section class="score-study" aria-labelledby="score-study-title">
+          <div class="amt-section-heading"><h2 id="score-study-title">Audio-to-Score / MIDI-to-Score · Benchmark 实验</h2><span id="score-study-date">读取论文协议</span></div>
+          <p class="section-copy">按公开论文的数据、输入输出和评价协议安排。先建立真实作品的 frozen baseline，再测小规模适配与独立谱面指标。</p>
+          <div class="model-links"><button type="button" class="source-link" data-study-open="models">模型总表 · SheetSage2 / Audio2Score / MIDI2Score ↗</button><button type="button" class="source-link" data-study-open="datasets">Benchmark 数据与划分 ↗</button><button type="button" class="source-link" data-study-open="rewards">Reward / RL 设计 ↗</button></div>
+          <details class="choral-deep-dive"><summary>实验设计与预算 · E1–E4</summary><div class="table-shell lab-table score-study-table" tabindex="0"><table><thead><tr><th>Experiment</th><th>真实数据</th><th>论文 / 实验协议</th><th>本轮操作</th><th>状态 / 结果</th></tr></thead><tbody id="score-study-plan"></tbody></table></div></details>
+          <h3 class="subsection-heading">实测快照 · 同一冻结起点与完整测试集合</h3>
+          <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>实验</th><th>N</th><th>Metric</th><th>Baseline</th><th>After</th><th>解释</th></tr></thead><tbody id="score-results-body"></tbody></table></div>
+          <p class="section-copy">本轮结论：时值标签上的小幅改善没有转化为整谱提升。SFT 为 50 次更新，GRPO 为 50 次 rollout / 40 次有效更新，不能据此声称同更新预算下 RL 优于 SFT；整序列 GRPO 与组合 reward 尚未运行。</p>
+          <details class="choral-deep-dive"><summary>逐作品结果 · 8 首 ASAP / 10 条 GTZAN</summary><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>ASAP work</th><th>Frozen Mean ER</th><th>SFT50 · ER (Δ pp)</th><th>GRPO50 rollouts · ER (Δ pp)</th></tr></thead><tbody id="score-paired-body"></tbody></table></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>GTZAN recording</th><th>Beat F1</th><th>Downbeat F1</th></tr></thead><tbody id="score-gtzan-body"></tbody></table></div></details>
+          <details class="choral-deep-dive"><summary>训练诊断 · Duration head / GRPO reward 与 KL 原始记录</summary>
+            <p class="section-copy">仅更新 176,985 个 duration-head 参数，编码器、解码器与训练时的 baseline-history hidden states 冻结。每个音符采样 8 个时值 action，reward 为参考时值精确匹配；KL 是当前与冻结 duration 分布的精确 forward KL（nats / note，β = 0.01）。不同 batch 来自不同作品，不把在线 reward 的波动解释为学习曲线提升。10 个零方差 batch 未更新。</p>
+            <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Split</th><th>Notes</th><th>Frozen CE</th><th>SFT CE</th><th>GRPO CE</th><th>Accuracy · Frozen → SFT / GRPO</th></tr></thead><tbody id="score-head-diagnostics"></tbody></table></div>
+            <div class="table-shell lab-table score-trace-table" tabindex="0"><table><thead><tr><th>Rollout batch</th><th>Sampled reward</th><th>KL · nats / note</th><th>Nonzero-variance groups</th><th>Optimizer</th></tr></thead><tbody id="score-grpo-trace"></tbody></table></div>
+          </details>
+        </section>
         <div class="section-intro"><div><p class="eyebrow">Experiment workspace</p><h2 id="experiment-title">下一项实验待配置</h2></div><a class="source-link" href="../../demos/#choral" id="legacy-choral">历史 Choral GRPO 回放 ↗</a></div>
         <div class="amt-controls"><label>Experiment<select id="experiment-select" disabled><option>暂无实验</option></select></label><label>Sample<select id="sample-select" disabled><option>暂无样本</option></select></label><a id="run-receipt" class="source-link" hidden>运行记录 ↗</a></div>
         <div class="protocol-strip" id="run-protocol"><span>Task <strong>待定</strong></span><span>Model <strong>待定</strong></span><span>Method <strong>待定</strong></span><span>Reward <strong>待定</strong></span></div>
@@ -43,6 +59,7 @@
         </section>
         <section class="amt-replay" aria-labelledby="replay-title">
           <div class="amt-section-heading"><h3 id="replay-title">同一首歌 · MIDI 与试听</h3><label>一行几个图 <select id="columns"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></label></div>
+          <div id="score-input" class="section-copy" hidden></div>
           <div class="stage-rail" id="steps" aria-label="Optimizer checkpoints"><span class="amt-inline-empty">Checkpoint 待配置</span></div>
           <div class="amt-media-grid" id="media-grid"></div>
           <p class="stage-context" id="sample-context">实验任务、模型、数据划分与 reward 尚未确定。</p>
@@ -53,18 +70,25 @@
           <details class="choral-deep-dive"><summary>评价协议与运行来源</summary><p class="section-copy" id="evaluation-protocol">待确定时间容差、声部/乐器匹配、聚合方式与测试集合。</p></details>
         </section>
       </section>
-      <section class="lab-view" id="panel-datasets" role="tabpanel" aria-labelledby="tab-datasets" hidden><div class="section-intro"><div><p class="eyebrow">Data and evaluation</p><h2>Dataset Protocol</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Dataset</th><th>Task / labels</th><th>Train / valid / test</th><th>Source / protocol</th></tr></thead><tbody id="datasets-body"><tr><td colspan="4">尚未选定实验数据和划分</td></tr></tbody></table></div></section>
-      <section class="lab-view" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden><div class="section-intro"><div><p class="eyebrow">Models and checkpoints</p><h2>Models</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Model</th><th>Input → output</th><th>Checkpoint / trainable scope</th><th>Source</th></tr></thead><tbody id="models-body"><tr><td colspan="4">尚未选定实验模型</td></tr></tbody></table></div>
+      <section class="lab-view" id="panel-datasets" role="tabpanel" aria-labelledby="tab-datasets" hidden><div class="section-intro"><div><p class="eyebrow">Data and evaluation</p><h2>Dataset Protocol</h2></div><span class="state pending">待配置</span></div>
+        <div class="table-shell lab-table score-study-table" tabindex="0"><table><thead><tr><th>Benchmark / source</th><th>标签与任务</th><th>划分与选择</th><th>适用范围</th></tr></thead><tbody id="score-data-body"></tbody></table></div>
+        <details class="choral-deep-dive"><summary>早期诊断与其他数据记录</summary><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Dataset</th><th>Task / labels</th><th>Train / valid / test</th><th>Source / protocol</th></tr></thead><tbody id="datasets-body"><tr><td colspan="4">尚未选定实验数据和划分</td></tr></tbody></table></div></details></section>
+      <section class="lab-view" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden><div class="section-intro"><div><p class="eyebrow">Models and checkpoints</p><h2>Models · Paper Protocol Map</h2></div><span class="state pending">待配置</span></div>
+        <div class="metric-controls choral-roll-controls"><div class="segmented" role="group" aria-label="Score transcription model family"><button type="button" data-score-family="all" aria-pressed="true">All</button><button type="button" data-score-family="audio" aria-pressed="false">Audio → Score</button><button type="button" data-score-family="midi" aria-pressed="false">MIDI → Score</button><button type="button" data-score-family="engraving" aria-pressed="false">Engraving</button><button type="button" data-score-family="cascade" aria-pressed="false">Cascade</button></div><span id="score-model-count"></span></div>
+        <div class="table-shell lab-table score-study-table" tabindex="0"><table><thead><tr><th>System / primary sources</th><th>实际输出</th><th>Benchmark / metrics</th><th>公开资源</th><th>本项目角色</th></tr></thead><tbody id="score-model-body"></tbody></table></div>
+        <details class="choral-deep-dive"><summary>已登记模型与历史接口记录</summary><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Model</th><th>Input → output</th><th>Checkpoint / trainable scope</th><th>Source</th></tr></thead><tbody id="models-body"><tr><td colspan="4">尚未选定实验模型</td></tr></tbody></table></div></details>
         <section id="paper-comparison" aria-labelledby="paper-comparison-title" hidden>
           <div class="amt-section-heading"><h3 id="paper-comparison-title">论文报告 · 非本地复现</h3><span>SheetSage2 v1 · 2026-10-04 · Table 17</span></div>
           <p class="section-copy">Vocal melody note F1 (%)：50ms onset、pitch-class 匹配，不评价 offset 或绝对八度。RWC-Pop 100首，Rock Corpus 200首。相同论文的统一评测，不代表训练预算公平或跨团队独立复现；不是完整多乐器/合唱总谱排名。核对于2026-10-29。</p>
           <div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>System</th><th>RWC-Pop F1 (%)</th><th>Rock F1 (%)</th><th>Scored output</th><th>Primary source</th></tr></thead><tbody id="reported-results-body"></tbody></table></div>
         </section>
       </section>
-      <section class="lab-view" id="panel-rewards" role="tabpanel" aria-labelledby="tab-rewards" hidden><div class="section-intro"><div><p class="eyebrow">Objectives and ablations</p><h2>Rewards</h2></div><span class="state pending">待配置</span></div><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Reward</th><th>Definition / scale</th><th>Single-reward failure case</th><th>Implementation / evidence</th></tr></thead><tbody id="rewards-body"><tr><td colspan="4">尚未选定 reward 配方或消融</td></tr></tbody></table></div><a class="source-link" href="../../demos/#choral-rewards">历史 SATB reward 定义与 MIDI 审计 ↗</a></section>
+      <section class="lab-view" id="panel-rewards" role="tabpanel" aria-labelledby="tab-rewards" hidden><div class="section-intro"><div><p class="eyebrow">Objectives and ablations</p><h2>Rewards</h2></div><span class="state pending">待配置</span></div>
+        <div class="table-shell lab-table score-study-table" tabindex="0"><table><thead><tr><th>Objective</th><th>定义 / 论文指标</th><th>消融与 guard</th><th>执行状态</th></tr></thead><tbody id="score-rewards-body"></tbody></table></div>
+        <details class="choral-deep-dive"><summary>早期 MIDI 受控反例与奖励诊断</summary><div class="table-shell lab-table amt-table" tabindex="0"><table><thead><tr><th>Reward</th><th>Definition / scale</th><th>Single-reward failure case</th><th>Implementation / evidence</th></tr></thead><tbody id="rewards-body"><tr><td colspan="4">尚未选定 reward 配方或消融</td></tr></tbody></table></div><a class="source-link" href="../../demos/#choral-rewards">历史 SATB reward 定义与 MIDI 审计 ↗</a></details></section>
       <footer class="lab-footer"><span id="manifest-date"></span> · <a href="../">AMT catalog</a> · <a href="../research/2026-10-29/">研究文献导航</a> · <a href="https://github.com/zhanh-he/RL-paper-reading/blob/main/platform/docs/AMT_EXPERIMENTS.md">实验记录规范</a><br />历史 Choral / MuScriptor 回放保持原始记录；评分自检、冻结模型推理与训练结果分别登记。</footer>
       <noscript><p>实验选择、曲线与 MIDI 预览需要启用 JavaScript。</p></noscript>
     </main>
-    <dialog id="roll-dialog" aria-labelledby="roll-dialog-title"><div class="amt-section-heading"><h3 id="roll-dialog-title">MIDI</h3><button type="button" class="icon-button" id="close-roll" title="关闭" aria-label="关闭 MIDI 预览"><i data-lucide="x" aria-hidden="true"></i></button></div><canvas id="large-roll" width="1400" height="600" role="img" aria-label="放大的 MIDI piano roll"></canvas></dialog>
+    <dialog id="roll-dialog" aria-labelledby="roll-dialog-title"><div class="amt-section-heading"><h3 id="roll-dialog-title">MIDI / Score</h3><button type="button" class="icon-button" id="close-roll" title="关闭" aria-label="关闭 MIDI 预览"><i data-lucide="x" aria-hidden="true"></i></button></div><canvas id="large-roll" width="1400" height="600" role="img" aria-label="放大的 MIDI piano roll"></canvas><img id="large-score" alt="放大的谱面" hidden /></dialog>
   </body>
 </html>

@@ -1,7 +1,206 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29",
+  "updated_at": "2026-10-30",
   "experiments": [
+    {
+      "id": "asap-duet-benchmark",
+      "title": "ASAP · 8 real works · Frozen / SFT / note-action GRPO",
+      "kind": "evaluation",
+      "status": "measured",
+      "task": "Performance MIDI → musical score",
+      "model": "Wayne42/DuET · official epoch83 bundle",
+      "method": "Duration-head adaptation: frozen vs SFT vs note-action GRPO",
+      "reward": "SFT: duration CE; GRPO: exact duration match + 0.01 forward KL",
+      "receipt": "music-trans/score-bench/runs/2026-10-30/README.md",
+      "evaluation_protocol": "Full MusicXML score pairs; no test-time time or octave correction; clean_scores=False (direct file paths). Paper scorer, local subset, not paper-table reproduction. ACPAS source train/valid/test: 16/4/8 selected works. 15 train works / 1651 confident note labels used. Duration-head only, frozen baseline-history contexts, 176985 trainable parameters. SFT: 50 optimizer updates. GRPO: 50 rollout batches, group 8 per note, 40 effective optimizer updates; update budgets differ. This is conditional note-action GRPO, not full autoregressive sequence-policy training. Test uses original full-piece decoder. Not the complete paper split; base-checkpoint training overlap unverified. Error units are percent, lower is better.",
+      "stages": [],
+      "trace": [],
+      "samples": [
+        {
+          "id": "test-02",
+          "title": "Bach/Prelude/bwv_891",
+          "duration": 155.6156249999992,
+          "input": {
+            "midi": "amt/demos/score-examples/test-02/performance.mid"
+          },
+          "reference": {
+            "score_image": "amt/demos/score-examples/test-02/reference.svg",
+            "musicxml": "amt/demos/score-examples/test-02/reference-full.musicxml"
+          },
+          "note": "Post-hoc illustrative improved/worsened work, not representative sampling. First four notated measures shown; full-score metrics and complete MusicXML remain available. ASAP (Foscarin et al.), CC BY-NC-SA 4.0. Score images rendered by Verovio 6.3.0; no acoustic input or audio quality score is implied by this MIDI-to-score experiment."
+        },
+        {
+          "id": "test-07",
+          "title": "Beethoven/Piano_Sonatas/10-1",
+          "duration": 278.94140625000136,
+          "input": {
+            "midi": "amt/demos/score-examples/test-07/performance.mid"
+          },
+          "reference": {
+            "score_image": "amt/demos/score-examples/test-07/reference.svg",
+            "musicxml": "amt/demos/score-examples/test-07/reference-full.musicxml"
+          },
+          "note": "Post-hoc illustrative improved/worsened work, not representative sampling. First four notated measures shown; full-score metrics and complete MusicXML remain available. ASAP (Foscarin et al.), CC BY-NC-SA 4.0. Score images rendered by Verovio 6.3.0; no acoustic input or audio quality score is implied by this MIDI-to-score experiment."
+        }
+      ],
+      "conditions": [
+        {
+          "id": "baseline",
+          "label": "Frozen DuET",
+          "status": "measured",
+          "evaluation": {
+            "cohort": "asap-acpas-test8-20261030",
+            "n": 8,
+            "values": {
+              "PitchER": 1.7601772500000001,
+              "MissRate": 4.239013375,
+              "ExtraRate": 4.390667125,
+              "OnsetER": 4.11614975,
+              "OffsetER": 8.014610000000001,
+              "MeanER": 4.504125
+            }
+          },
+          "outputs": {
+            "test-02": {
+              "score_image": "amt/demos/score-examples/test-02/baseline.svg",
+              "musicxml": "amt/demos/score-examples/test-02/baseline-full.musicxml"
+            },
+            "test-07": {
+              "score_image": "amt/demos/score-examples/test-07/baseline.svg",
+              "musicxml": "amt/demos/score-examples/test-07/baseline-full.musicxml"
+            }
+          }
+        },
+        {
+          "id": "sft50",
+          "label": "Duration-head SFT · 50 updates",
+          "status": "measured",
+          "evaluation": {
+            "cohort": "asap-acpas-test8-20261030",
+            "n": 8,
+            "values": {
+              "PitchER": 1.784318,
+              "MissRate": 4.354888375,
+              "ExtraRate": 4.496655500000001,
+              "OnsetER": 4.193141000000001,
+              "OffsetER": 8.0331525,
+              "MeanER": 4.572429125
+            }
+          },
+          "outputs": {
+            "test-02": {
+              "score_image": "amt/demos/score-examples/test-02/sft50.svg",
+              "musicxml": "amt/demos/score-examples/test-02/sft50-full.musicxml"
+            },
+            "test-07": {
+              "score_image": "amt/demos/score-examples/test-07/sft50.svg",
+              "musicxml": "amt/demos/score-examples/test-07/sft50-full.musicxml"
+            }
+          }
+        },
+        {
+          "id": "grpo50",
+          "label": "Duration-head GRPO · 50 rollouts / 40 updates",
+          "status": "measured",
+          "evaluation": {
+            "cohort": "asap-acpas-test8-20261030",
+            "n": 8,
+            "values": {
+              "PitchER": 1.7408505,
+              "MissRate": 4.393928375,
+              "ExtraRate": 4.535885500000001,
+              "OnsetER": 3.84454725,
+              "OffsetER": 8.0630125,
+              "MeanER": 4.5156473749999995
+            }
+          },
+          "outputs": {
+            "test-02": {
+              "score_image": "amt/demos/score-examples/test-02/grpo50.svg",
+              "musicxml": "amt/demos/score-examples/test-02/grpo50-full.musicxml"
+            },
+            "test-07": {
+              "score_image": "amt/demos/score-examples/test-07/grpo50.svg",
+              "musicxml": "amt/demos/score-examples/test-07/grpo50-full.musicxml"
+            }
+          }
+        }
+      ],
+      "metric_definitions": [
+        {
+          "id": "PitchER",
+          "label": "PitchER (%) ↓",
+          "unit": "number"
+        },
+        {
+          "id": "MissRate",
+          "label": "MissRate (%) ↓",
+          "unit": "number"
+        },
+        {
+          "id": "ExtraRate",
+          "label": "ExtraRate (%) ↓",
+          "unit": "number"
+        },
+        {
+          "id": "OnsetER",
+          "label": "OnsetER (%) ↓",
+          "unit": "number"
+        },
+        {
+          "id": "OffsetER",
+          "label": "OffsetER (%) ↓",
+          "unit": "number"
+        },
+        {
+          "id": "MeanER",
+          "label": "MeanER (%) ↓",
+          "unit": "number"
+        }
+      ]
+    },
+    {
+      "id": "sheet-gtzan-benchmark",
+      "title": "SheetSage2 · real GTZAN 10-track benchmark",
+      "kind": "evaluation",
+      "status": "measured",
+      "task": "Audio → lead-sheet / beat and downbeat component",
+      "model": "m-a-p/SheetSage2 · b83c3d79 release",
+      "method": "Frozen inference · paper preset · RTX 5090 BF16",
+      "reward": "Evaluation only; no optimizer updates",
+      "receipt": "music-trans/score-bench/runs/2026-10-30/README.md",
+      "evaluation_protocol": "SheetSage2 Appendix D.1: trim reference and predictions before 5s; beat/downbeat F1 with 70ms tolerance; recording macro mean. Ten-genre deterministic GTZAN-mini subset, not full 999/993-track paper cohort. Frozen inference, zero updates. Audio and reference hashes are fixed in the GTZAN manifest. First attempt failed on missing pretty_midi; dependency installed in isolated environment, all ten rerun. Duplicate pending Kaya job 256819 cancelled after 5090 completion. No GTZAN audio republished.",
+      "stages": [],
+      "trace": [],
+      "samples": [],
+      "metric_definitions": [
+        {
+          "id": "beat",
+          "label": "Beat F1 · 70ms",
+          "unit": "fraction"
+        },
+        {
+          "id": "downbeat",
+          "label": "Downbeat F1 · 70ms",
+          "unit": "fraction"
+        }
+      ],
+      "conditions": [
+        {
+          "id": "paper",
+          "label": "Frozen · paper preset",
+          "status": "measured",
+          "evaluation": {
+            "cohort": "gtzan-ten-genres-20261030",
+            "n": 10,
+            "values": {
+              "beat": 0.8623439757466963,
+              "downbeat": 0.7797713780472401
+            }
+          }
+        }
+      ]
+    },
     {
       "kind": "evaluation",
       "stages": [],

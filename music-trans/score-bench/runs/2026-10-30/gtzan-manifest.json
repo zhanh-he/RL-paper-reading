@@ -1,0 +1,85 @@
+{
+  "selection": "First lexicographic available annotated recording per genre, fixed before inference",
+  "samples": [
+    {
+      "id": "gtzan_blues_00000",
+      "genre": "blues",
+      "audio": "blues.00000.wav",
+      "annotations": "gtzan_blues_00000.beats",
+      "audio_sha256": "728e445a61ebb2ab9cefe779a9af5c44cff39f20308a0a29bce3e3ea597aa592",
+      "annotation_sha256": "d0b2244c2762ec5713a85b04e79d5572ef1286026f6a21801770bc8e3e00f887"
+    },
+    {
+      "id": "gtzan_classical_00000",
+      "genre": "classical",
+      "audio": "classical.00000.wav",
+      "annotations": "gtzan_classical_00000.beats",
+      "audio_sha256": "8add3a7d1add1e157ce5de91be72372773b1ad2779742532c4f0ad1c7316f2a4",
+      "annotation_sha256": "782d441f7d25f0e6c18d98e2e6e095b41c84a9a0e1647f1c3678d7b0b2dd6e46"
+    },
+    {
+      "id": "gtzan_country_00000",
+      "genre": "country",
+      "audio": "country.00000.wav",
+      "annotations": "gtzan_country_00000.beats",
+      "audio_sha256": "4fb9f2f74ad041b9135e5f6b04f8cfa0093eec0ed4674c66f10babe988e9652d",
+      "annotation_sha256": "a7a9c50a2ae5ade31331ea826ee018f9429cdb6551313e19b391f6dacd32db10"
+    },
+    {
+      "id": "gtzan_disco_00000",
+      "genre": "disco",
+      "audio": "disco.00000.wav",
+      "annotations": "gtzan_disco_00000.beats",
+      "audio_sha256": "c26556f754a48fb226edf887beae321ac3eff804e0fb5a28fd93441f41b116f2",
+      "annotation_sha256": "29a11deaaae2474a4fea8a9be5f84a5e0f3a541bafbdb762186855d063e7100f"
+    },
+    {
+      "id": "gtzan_hiphop_00000",
+      "genre": "hiphop",
+      "audio": "hiphop.00000.wav",
+      "annotations": "gtzan_hiphop_00000.beats",
+      "audio_sha256": "02ee70a0d91a1625b967fd081bfcf4cf9ffadbc5e6f547f818c426015e6371f4",
+      "annotation_sha256": "80d31fd15b92b4d1d949b2acb91c4bf363481f48077f749a1933b945f7983ac5"
+    },
+    {
+      "id": "gtzan_jazz_00000",
+      "genre": "jazz",
+      "audio": "jazz.00000.wav",
+      "annotations": "gtzan_jazz_00000.beats",
+      "audio_sha256": "97135f273616d39b11db37a1ec61e0bd729b82c085f7dcdc472b26a37affca8a",
+      "annotation_sha256": "f53f65a8687fe3ad431c7f6c51c6b1df19a67d1dba8e59fde0703526d61b64d3"
+    },
+    {
+      "id": "gtzan_metal_00000",
+      "genre": "metal",
+      "audio": "metal.00000.wav",
+      "annotations": "gtzan_metal_00000.beats",
+      "audio_sha256": "bae80772bfda387cefb294d07cfbdf12cdb7a93bfa471e275b299ecc029af4f9",
+      "annotation_sha256": "0c7e37259b187f307a405aaa67e3c16288af95922a95e9537f2af7942eb3f72a"
+    },
+    {
+      "id": "gtzan_pop_00000",
+      "genre": "pop",
+      "audio": "pop.00000.wav",
+      "annotations": "gtzan_pop_00000.beats",
+      "audio_sha256": "3f28ee03acaf7732b275b6437338c50de158140943faef050c7f1fb68c0efbef",
+      "annotation_sha256": "4e9e764fc2285d2e6ddd9fadcaae2fe4634d8a07500524666947dd5412728631"
+    },
+    {
+      "id": "gtzan_reggae_00000",
+      "genre": "reggae",
+      "audio": "reggae.00000.wav",
+      "annotations": "gtzan_reggae_00000.beats",
+      "audio_sha256": "941864bc189bae593c5cd7e6b22b34985f7a6e68a7223aee802ff739c08c4f82",
+      "annotation_sha256": "5ebed4f34e0a37a6e678ed559df4b803716b4c3461ba13bcc3db8a15e7a6e00d"
+    },
+    {
+      "id": "gtzan_rock_00000",
+      "genre": "rock",
+      "audio": "rock.00000.wav",
+      "annotations": "gtzan_rock_00000.beats",
+      "audio_sha256": "779d7cccda20237e3bc7da0092bffd6917dbc4e1d1d455366327fce91487b6f9",
+      "annotation_sha256": "2ff04475591eb04c6cce934e636b327e2e2c129ff14e252d8b822655562c824d"
+    }
+  ]
+}

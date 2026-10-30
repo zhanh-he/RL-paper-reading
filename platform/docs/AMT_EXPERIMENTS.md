@@ -17,6 +17,8 @@ retain their original URLs and receipts. Do not reinterpret them as a new AMT ex
 - `platform/site/amt/demos/data/experiments.json` is a generated copy.
 - Page code lives in `platform/site/amt/demos/{index.html,app.js,styles.css}`.
 - The validator/publisher is `platform/scripts/sync-amt-experiments.mjs`.
+- The paper-led score benchmark map is `platform/data/amt/score-study.json`, rendered by `score-study.js` and synchronized with `sync-score-study.mjs`. It owns the 14-system experiment map, dataset/reward design and measured summary; it is not a literature catalog.
+- Real benchmark code and receipts live in `music-trans/score-bench/`; its publisher derives experiment conditions and summary tables from complete-cohort receipts. Head-only adaptation must not be labeled full-model or full-sequence GRPO. Count rollout batches and actual optimizer updates separately.
 - Full run records and experiment code belong under `music-trans/<task>/rl/<method>/runs/<run-id>/`.
 - AMT literature remains in `platform/data/amt/literature.csv`; no literature changes are required to update replay assets.
 
@@ -59,7 +61,7 @@ aggregation and test identity. Do not train or choose checkpoints from a sealed 
 | Field | Shape / meaning |
 | --- | --- |
 | `samples` | `{id, title, duration, input?, reference?, note?}`; duration in seconds. Input/reference are assets, independently optional. |
-| Asset | `{audio?, midi?, notes?, tracks?}`. Audio and MIDI use site-root-relative paths such as `demos/audio/…mp3` or `amt/demos/midi/…mid`; paths have no leading slash. |
+| Asset | `{audio?, midi?, notes?, tracks?, score_image?, musicxml?}`. Paths are site-root-relative without a leading slash. `score_image` accepts SVG/PNG rendered from the actual score; `musicxml` is the downloadable complete score. Never substitute a piano roll for a notation metric or treat a score rendering as reference acoustic audio. |
 | `notes` | `[{track, pitch, start, end}]`. Track is a zero-based integer; pitch is MIDI 0–127; times are seconds within the sample. Empty notes explicitly mean a silent prediction. |
 | `tracks` | Optional array of track names, e.g. Soprano/Alto/Tenor/Bass or instrument names. Every output for a sample must use the same track index/name/color mapping. Never relabel an instrument track as SATB without an adapter. |
 | `stages` | Sorted unique `[{step, status, outputs?, evaluation?}]`, beginning with frozen baseline step 0. Steps count optimizer updates. Missing outputs stay empty rather than borrowing another checkpoint. |

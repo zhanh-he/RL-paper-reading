@@ -1,0 +1,1489 @@
+{
+  "model": "Wayne42/DuET",
+  "metadata": {
+    "format": "duet-epoch83-v1",
+    "architecture": {
+      "hidden_size": 512,
+      "num_hidden_layers": 8,
+      "num_attention_heads": 8,
+      "intermediate_size": 1408,
+      "ffn_type": "swiglu",
+      "hidden_dropout": 0.1,
+      "attention_dropout": 0.1,
+      "layer_norm_eps": 1e-05,
+      "rope_theta": 10000.0,
+      "tau": 0.02,
+      "pitch_min": 21,
+      "pitch_max": 108,
+      "roll_velocity": true
+    },
+    "core_seconds": 32.0,
+    "history_seconds": 8.0,
+    "completed_epochs": 83,
+    "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+    "vocabulary_sha256": "d62a529385dd3bffa05803952245c28574e7e682ecb5c400fae4a62889e959fa",
+    "source_checkpoint_sha256": "64534acda0fc7cdc583ba3afcdcb77ef036d599470d3890bb3f602e273f07a83",
+    "decoder_layers": 8,
+    "memory": "alternating",
+    "positions": "time_pitch",
+    "training_state_included": false
+  },
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "torch": "2.8.0+cu128",
+  "training_steps": 0,
+  "source_sha256": "be15d1093ef855ee029cfcda4e49f598036dc5762e3fb9b1bf820ce6277f0452",
+  "samples": [
+    {
+      "id": "validation-00",
+      "work": "Bach/Prelude/bwv_860",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 375
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 9,
+            "prefix_notes": 99,
+            "new_notes": 238
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 613,
+          "retained_notes": 613
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 613,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 613,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 613,
+          "input_notes": 613,
+          "exact_duplicates_removed": 0,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 0,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 0,
+          "raw_predicted_notes": 613
+        }
+      },
+      "seconds": 3.779943009838462
+    },
+    {
+      "id": "validation-01",
+      "work": "Beethoven/Piano_Sonatas/32-1",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 165
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 4,
+            "prefix_notes": 40,
+            "new_notes": 160
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 9,
+            "prefix_notes": 53,
+            "new_notes": 97
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 14,
+            "prefix_notes": 19,
+            "new_notes": 291
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 20,
+            "prefix_notes": 138,
+            "new_notes": 442
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 35,
+            "prefix_notes": 135,
+            "new_notes": 278
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 49,
+            "prefix_notes": 43,
+            "new_notes": 398
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 62,
+            "prefix_notes": 112,
+            "new_notes": 373
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 79,
+            "prefix_notes": 106,
+            "new_notes": 454
+          },
+          {
+            "index": 9,
+            "start_seconds": 288.0,
+            "history_start_seconds": 280.0,
+            "anchor_bar": 95,
+            "prefix_notes": 120,
+            "new_notes": 218
+          },
+          {
+            "index": 10,
+            "start_seconds": 320.0,
+            "history_start_seconds": 312.0,
+            "anchor_bar": 105,
+            "prefix_notes": 105,
+            "new_notes": 340
+          },
+          {
+            "index": 11,
+            "start_seconds": 352.0,
+            "history_start_seconds": 344.0,
+            "anchor_bar": 121,
+            "prefix_notes": 45,
+            "new_notes": 389
+          },
+          {
+            "index": 12,
+            "start_seconds": 384.0,
+            "history_start_seconds": 376.0,
+            "anchor_bar": 136,
+            "prefix_notes": 112,
+            "new_notes": 426
+          },
+          {
+            "index": 13,
+            "start_seconds": 416.0,
+            "history_start_seconds": 408.0,
+            "anchor_bar": 151,
+            "prefix_notes": 135,
+            "new_notes": 351
+          },
+          {
+            "index": 14,
+            "start_seconds": 448.0,
+            "history_start_seconds": 440.0,
+            "anchor_bar": 167,
+            "prefix_notes": 38,
+            "new_notes": 163
+          },
+          {
+            "index": 15,
+            "start_seconds": 480.0,
+            "history_start_seconds": 472.0,
+            "anchor_bar": 173,
+            "prefix_notes": 49,
+            "new_notes": 534
+          },
+          {
+            "index": 16,
+            "start_seconds": 512.0,
+            "history_start_seconds": 504.0,
+            "anchor_bar": 186,
+            "prefix_notes": 131,
+            "new_notes": 232
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 5311,
+          "retained_notes": 5311
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 5311,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 5311,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 5281,
+          "input_notes": 5310,
+          "exact_duplicates_removed": 22,
+          "same_onset_merged": 7,
+          "overlaps_shortened": 10,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 1,
+          "raw_predicted_notes": 5311
+        }
+      },
+      "seconds": 30.714100455865264
+    },
+    {
+      "id": "validation-02",
+      "work": "Debussy/Images_Book_1/1_Reflets_dans_lEau",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 208
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 7,
+            "prefix_notes": 42,
+            "new_notes": 183
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 15,
+            "prefix_notes": 72,
+            "new_notes": 290
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 27,
+            "prefix_notes": 85,
+            "new_notes": 251
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 55,
+            "prefix_notes": 59,
+            "new_notes": 292
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 81,
+            "prefix_notes": 105,
+            "new_notes": 362
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 116,
+            "prefix_notes": 72,
+            "new_notes": 180
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 134,
+            "prefix_notes": 39,
+            "new_notes": 134
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 146,
+            "prefix_notes": 44,
+            "new_notes": 79
+          },
+          {
+            "index": 9,
+            "start_seconds": 288.0,
+            "history_start_seconds": 280.0,
+            "anchor_bar": 153,
+            "prefix_notes": 33,
+            "new_notes": 34
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 2013,
+          "retained_notes": 2013
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 2013,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 2013,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 2004,
+          "input_notes": 2010,
+          "exact_duplicates_removed": 4,
+          "same_onset_merged": 2,
+          "overlaps_shortened": 7,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 3,
+          "raw_predicted_notes": 2013
+        }
+      },
+      "seconds": 11.78025973867625
+    },
+    {
+      "id": "validation-03",
+      "work": "Chopin/Etudes_op_10/2",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 689
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 17,
+            "prefix_notes": 164,
+            "new_notes": 639
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 39,
+            "prefix_notes": 177,
+            "new_notes": 63
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 1391,
+          "retained_notes": 1391
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 1391,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 1391,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 1390,
+          "input_notes": 1391,
+          "exact_duplicates_removed": 1,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 0,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 0,
+          "raw_predicted_notes": 1391
+        }
+      },
+      "seconds": 7.862881257198751
+    },
+    {
+      "id": "test-00",
+      "work": "Chopin/Polonaises/53",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 348
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 12,
+            "prefix_notes": 103,
+            "new_notes": 417
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 25,
+            "prefix_notes": 127,
+            "new_notes": 454
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 36,
+            "prefix_notes": 120,
+            "new_notes": 427
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 47,
+            "prefix_notes": 75,
+            "new_notes": 387
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 59,
+            "prefix_notes": 94,
+            "new_notes": 471
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 71,
+            "prefix_notes": 110,
+            "new_notes": 413
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 82,
+            "prefix_notes": 113,
+            "new_notes": 584
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 99,
+            "prefix_notes": 105,
+            "new_notes": 590
+          },
+          {
+            "index": 9,
+            "start_seconds": 288.0,
+            "history_start_seconds": 280.0,
+            "anchor_bar": 115,
+            "prefix_notes": 177,
+            "new_notes": 461
+          },
+          {
+            "index": 10,
+            "start_seconds": 320.0,
+            "history_start_seconds": 312.0,
+            "anchor_bar": 129,
+            "prefix_notes": 62,
+            "new_notes": 252
+          },
+          {
+            "index": 11,
+            "start_seconds": 352.0,
+            "history_start_seconds": 344.0,
+            "anchor_bar": 139,
+            "prefix_notes": 63,
+            "new_notes": 250
+          },
+          {
+            "index": 12,
+            "start_seconds": 384.0,
+            "history_start_seconds": 376.0,
+            "anchor_bar": 150,
+            "prefix_notes": 64,
+            "new_notes": 424
+          },
+          {
+            "index": 13,
+            "start_seconds": 416.0,
+            "history_start_seconds": 408.0,
+            "anchor_bar": 160,
+            "prefix_notes": 115,
+            "new_notes": 541
+          },
+          {
+            "index": 14,
+            "start_seconds": 448.0,
+            "history_start_seconds": 440.0,
+            "anchor_bar": 172,
+            "prefix_notes": 131,
+            "new_notes": 127
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 6146,
+          "retained_notes": 6146
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 6146,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 2,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 6146,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 6079,
+          "input_notes": 6105,
+          "exact_duplicates_removed": 22,
+          "same_onset_merged": 4,
+          "overlaps_shortened": 21,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 41,
+          "raw_predicted_notes": 6146
+        }
+      },
+      "seconds": 34.98377412836999
+    },
+    {
+      "id": "test-01",
+      "work": "Schubert/Piano_Sonatas/664-3",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 331
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 34,
+            "prefix_notes": 112,
+            "new_notes": 277
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 73,
+            "prefix_notes": 73,
+            "new_notes": 419
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 118,
+            "prefix_notes": 114,
+            "new_notes": 384
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 164,
+            "prefix_notes": 68,
+            "new_notes": 391
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 209,
+            "prefix_notes": 84,
+            "new_notes": 306
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 256,
+            "prefix_notes": 81,
+            "new_notes": 314
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 301,
+            "prefix_notes": 55,
+            "new_notes": 362
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 342,
+            "prefix_notes": 119,
+            "new_notes": 433
+          },
+          {
+            "index": 9,
+            "start_seconds": 288.0,
+            "history_start_seconds": 280.0,
+            "anchor_bar": 350,
+            "prefix_notes": 75,
+            "new_notes": 147
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 3364,
+          "retained_notes": 3364
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 3364,
+        "inherited_empty_bars": 1,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 3364,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 3330,
+          "input_notes": 3343,
+          "exact_duplicates_removed": 9,
+          "same_onset_merged": 4,
+          "overlaps_shortened": 14,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 21,
+          "raw_predicted_notes": 3364
+        }
+      },
+      "seconds": 19.041203036904335
+    },
+    {
+      "id": "test-02",
+      "work": "Bach/Prelude/bwv_891",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 236
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 12,
+            "prefix_notes": 61,
+            "new_notes": 254
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 29,
+            "prefix_notes": 67,
+            "new_notes": 248
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 47,
+            "prefix_notes": 57,
+            "new_notes": 256
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 64,
+            "prefix_notes": 66,
+            "new_notes": 186
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 1180,
+          "retained_notes": 1180
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 1180,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 1180,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 1180,
+          "input_notes": 1180,
+          "exact_duplicates_removed": 0,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 0,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 0,
+          "raw_predicted_notes": 1180
+        }
+      },
+      "seconds": 6.581535127013922
+    },
+    {
+      "id": "test-03",
+      "work": "Liszt/Concert_Etude_S145/2",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 646
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 24,
+            "prefix_notes": 212,
+            "new_notes": 619
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 52,
+            "prefix_notes": 225,
+            "new_notes": 505
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 86,
+            "prefix_notes": 98,
+            "new_notes": 826
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 122,
+            "prefix_notes": 235,
+            "new_notes": 530
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 3126,
+          "retained_notes": 3126
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 3126,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 3,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 3126,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 3104,
+          "input_notes": 3116,
+          "exact_duplicates_removed": 12,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 0,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 10,
+          "raw_predicted_notes": 3126
+        }
+      },
+      "seconds": 17.864023183472455
+    },
+    {
+      "id": "test-04",
+      "work": "Beethoven/Piano_Sonatas/21-1_no_repeat",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 520
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 14,
+            "prefix_notes": 169,
+            "new_notes": 411
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 36,
+            "prefix_notes": 56,
+            "new_notes": 378
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 53,
+            "prefix_notes": 142,
+            "new_notes": 529
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 73,
+            "prefix_notes": 73,
+            "new_notes": 362
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 92,
+            "prefix_notes": 128,
+            "new_notes": 438
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 113,
+            "prefix_notes": 90,
+            "new_notes": 326
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 133,
+            "prefix_notes": 83,
+            "new_notes": 478
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 153,
+            "prefix_notes": 142,
+            "new_notes": 442
+          },
+          {
+            "index": 9,
+            "start_seconds": 288.0,
+            "history_start_seconds": 280.0,
+            "anchor_bar": 173,
+            "prefix_notes": 172,
+            "new_notes": 474
+          },
+          {
+            "index": 10,
+            "start_seconds": 320.0,
+            "history_start_seconds": 312.0,
+            "anchor_bar": 195,
+            "prefix_notes": 83,
+            "new_notes": 350
+          },
+          {
+            "index": 11,
+            "start_seconds": 352.0,
+            "history_start_seconds": 344.0,
+            "anchor_bar": 212,
+            "prefix_notes": 110,
+            "new_notes": 565
+          },
+          {
+            "index": 12,
+            "start_seconds": 384.0,
+            "history_start_seconds": 376.0,
+            "anchor_bar": 233,
+            "prefix_notes": 74,
+            "new_notes": 419
+          },
+          {
+            "index": 13,
+            "start_seconds": 416.0,
+            "history_start_seconds": 408.0,
+            "anchor_bar": 251,
+            "prefix_notes": 174,
+            "new_notes": 507
+          },
+          {
+            "index": 14,
+            "start_seconds": 448.0,
+            "history_start_seconds": 440.0,
+            "anchor_bar": 273,
+            "prefix_notes": 115,
+            "new_notes": 196
+          },
+          {
+            "index": 15,
+            "start_seconds": 480.0,
+            "history_start_seconds": 472.0,
+            "anchor_bar": 289,
+            "prefix_notes": 14,
+            "new_notes": 209
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 6604,
+          "retained_notes": 6604
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 6604,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 6604,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 6575,
+          "input_notes": 6578,
+          "exact_duplicates_removed": 3,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 5,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 26,
+          "raw_predicted_notes": 6604
+        }
+      },
+      "seconds": 37.71471477113664
+    },
+    {
+      "id": "test-05",
+      "work": "Chopin/Sonata_2/4th",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 673
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 21,
+            "prefix_notes": 175,
+            "new_notes": 714
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 51,
+            "prefix_notes": 191,
+            "new_notes": 304
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 1691,
+          "retained_notes": 1691
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 1691,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 1691,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 1686,
+          "input_notes": 1691,
+          "exact_duplicates_removed": 5,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 0,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 0,
+          "raw_predicted_notes": 1691
+        }
+      },
+      "seconds": 9.40233672130853
+    },
+    {
+      "id": "test-06",
+      "work": "Liszt/Transcendental_Etudes/5",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 500
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 14,
+            "prefix_notes": 138,
+            "new_notes": 793
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 35,
+            "prefix_notes": 196,
+            "new_notes": 686
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 55,
+            "prefix_notes": 182,
+            "new_notes": 684
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 75,
+            "prefix_notes": 184,
+            "new_notes": 770
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 96,
+            "prefix_notes": 166,
+            "new_notes": 558
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 113,
+            "prefix_notes": 147,
+            "new_notes": 404
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 4395,
+          "retained_notes": 4395
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 4395,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 1,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 4395,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 4352,
+          "input_notes": 4371,
+          "exact_duplicates_removed": 16,
+          "same_onset_merged": 3,
+          "overlaps_shortened": 22,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 24,
+          "raw_predicted_notes": 4395
+        }
+      },
+      "seconds": 25.012102317065
+    },
+    {
+      "id": "test-07",
+      "work": "Beethoven/Piano_Sonatas/10-1",
+      "status": "complete",
+      "report": {
+        "status": "complete",
+        "model_version": "duet-epoch83-v1",
+        "weights_sha256": "89e07104358ca55ed3c8048c3d83b224c28e4ee0aa59e76a0ab0a9189ad114e0",
+        "core_seconds": 32.0,
+        "history_seconds": 8.0,
+        "windows": [
+          {
+            "index": 0,
+            "start_seconds": 0.0,
+            "history_start_seconds": 0.0,
+            "anchor_bar": 0,
+            "prefix_notes": 0,
+            "new_notes": 281
+          },
+          {
+            "index": 1,
+            "start_seconds": 32.0,
+            "history_start_seconds": 24.0,
+            "anchor_bar": 17,
+            "prefix_notes": 86,
+            "new_notes": 339
+          },
+          {
+            "index": 2,
+            "start_seconds": 64.0,
+            "history_start_seconds": 56.0,
+            "anchor_bar": 41,
+            "prefix_notes": 87,
+            "new_notes": 240
+          },
+          {
+            "index": 3,
+            "start_seconds": 96.0,
+            "history_start_seconds": 88.0,
+            "anchor_bar": 64,
+            "prefix_notes": 48,
+            "new_notes": 385
+          },
+          {
+            "index": 4,
+            "start_seconds": 128.0,
+            "history_start_seconds": 120.0,
+            "anchor_bar": 88,
+            "prefix_notes": 128,
+            "new_notes": 363
+          },
+          {
+            "index": 5,
+            "start_seconds": 160.0,
+            "history_start_seconds": 152.0,
+            "anchor_bar": 111,
+            "prefix_notes": 116,
+            "new_notes": 258
+          },
+          {
+            "index": 6,
+            "start_seconds": 192.0,
+            "history_start_seconds": 184.0,
+            "anchor_bar": 134,
+            "prefix_notes": 74,
+            "new_notes": 318
+          },
+          {
+            "index": 7,
+            "start_seconds": 224.0,
+            "history_start_seconds": 216.0,
+            "anchor_bar": 158,
+            "prefix_notes": 82,
+            "new_notes": 308
+          },
+          {
+            "index": 8,
+            "start_seconds": 256.0,
+            "history_start_seconds": 248.0,
+            "anchor_bar": 181,
+            "prefix_notes": 70,
+            "new_notes": 117
+          }
+        ],
+        "device": "cuda",
+        "midi_input_cleanup": {
+          "nonpositive_duration_notes": 0,
+          "unmatched_note_off_events": 0,
+          "unclosed_note_on_events": 0,
+          "input_note_on_events": 2609,
+          "retained_notes": 2609
+        },
+        "notes_outside_roll_range": 0,
+        "raw_notes": 2609,
+        "inherited_empty_bars": 0,
+        "bar_metadata_conflicts": 0,
+        "bar_metadata_policy": "majority_joint_tuple_among_lengths_containing_all_onsets",
+        "initial_score_origin_q": 0.0,
+        "trailing_empty_bars": "omitted",
+        "grace_order": "input_order_not_notation_order",
+        "input_notes": 2609,
+        "input_coverage": 1.0,
+        "midi": {
+          "channels": 1,
+          "staff_tracks": 2,
+          "staff_channels": {
+            "0": [
+              0
+            ],
+            "1": [
+              0
+            ]
+          },
+          "notes": 2605,
+          "input_notes": 2606,
+          "exact_duplicates_removed": 1,
+          "same_onset_merged": 0,
+          "overlaps_shortened": 4,
+          "export_policy": "same_staff_pitch_dedup_clip_single_channel",
+          "grace_skipped": 3,
+          "raw_predicted_notes": 2609
+        }
+      },
+      "seconds": 15.080281367525458
+    }
+  ]
+}

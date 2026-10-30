@@ -1,0 +1,73 @@
+{
+  "model": "m-a-p/SheetSage2",
+  "precision": "bf16",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "protocol": "SheetSage2 Appendix D.1: trim reference and predictions before 5s; beat/downbeat F1 with 70ms tolerance; recording macro mean.",
+  "scope": "Ten-genre deterministic GTZAN-mini subset, not full 999/993-track paper cohort. Frozen inference, zero updates.",
+  "training_steps": 0,
+  "samples": [
+    {
+      "id": "gtzan_blues_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.01537157129496336
+    },
+    {
+      "id": "gtzan_classical_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006950389593839645
+    },
+    {
+      "id": "gtzan_country_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006676065735518932
+    },
+    {
+      "id": "gtzan_disco_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006844867952167988
+    },
+    {
+      "id": "gtzan_hiphop_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006537099368870258
+    },
+    {
+      "id": "gtzan_jazz_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.00675275269895792
+    },
+    {
+      "id": "gtzan_metal_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006739306263625622
+    },
+    {
+      "id": "gtzan_pop_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.0068067945539951324
+    },
+    {
+      "id": "gtzan_reggae_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006540045142173767
+    },
+    {
+      "id": "gtzan_rock_00000",
+      "status": "failed",
+      "error": "ModuleNotFoundError(\"No module named 'pretty_midi'\")",
+      "seconds": 0.006785623729228973
+    }
+  ],
+  "beat_f1": 0,
+  "downbeat_f1": 0,
+  "public_scope": "Sanitized dependency-failure summary; raw machine tracebacks retained only with the external run."
+}

@@ -1,0 +1,738 @@
+{
+  "date": "2026-10-30",
+  "sheet": {
+    "n": 10,
+    "beat_f1": 0.8623439757466963,
+    "downbeat_f1": 0.7797713780472401,
+    "precision": "bf16",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "samples": [
+      {
+        "id": "gtzan_blues_00000",
+        "status": "complete",
+        "beat_f1": 0.9811320754716981,
+        "downbeat_f1": 0.9285714285714286,
+        "events": 93,
+        "seconds": 1.4098085490986705
+      },
+      {
+        "id": "gtzan_classical_00000",
+        "status": "complete",
+        "beat_f1": 1,
+        "downbeat_f1": 0.6666666666666666,
+        "events": 155,
+        "seconds": 1.2366533149033785
+      },
+      {
+        "id": "gtzan_country_00000",
+        "status": "complete",
+        "beat_f1": 0.9577464788732395,
+        "downbeat_f1": 1,
+        "events": 69,
+        "seconds": 0.7768712667748332
+      },
+      {
+        "id": "gtzan_disco_00000",
+        "status": "complete",
+        "beat_f1": 1,
+        "downbeat_f1": 1,
+        "events": 102,
+        "seconds": 1.1158379567787051
+      },
+      {
+        "id": "gtzan_hiphop_00000",
+        "status": "complete",
+        "beat_f1": 1,
+        "downbeat_f1": 1,
+        "events": 175,
+        "seconds": 1.408211985602975
+      },
+      {
+        "id": "gtzan_jazz_00000",
+        "status": "complete",
+        "beat_f1": 0.17475728155339804,
+        "downbeat_f1": 0,
+        "events": 136,
+        "seconds": 1.2260653795674443
+      },
+      {
+        "id": "gtzan_metal_00000",
+        "status": "complete",
+        "beat_f1": 1,
+        "downbeat_f1": 0.6896551724137931,
+        "events": 111,
+        "seconds": 1.0586891863495111
+      },
+      {
+        "id": "gtzan_pop_00000",
+        "status": "complete",
+        "beat_f1": 0.6666666666666666,
+        "downbeat_f1": 0.6666666666666666,
+        "events": 103,
+        "seconds": 0.9855834487825632
+      },
+      {
+        "id": "gtzan_reggae_00000",
+        "status": "complete",
+        "beat_f1": 1,
+        "downbeat_f1": 1,
+        "events": 103,
+        "seconds": 1.1342560332268476
+      },
+      {
+        "id": "gtzan_rock_00000",
+        "status": "complete",
+        "beat_f1": 0.8431372549019607,
+        "downbeat_f1": 0.8461538461538461,
+        "events": 104,
+        "seconds": 1.010044600814581
+      }
+    ]
+  },
+  "duet": {
+    "n": 8,
+    "baseline": {
+      "PitchER": 1.7601772500000001,
+      "MissRate": 4.239013375,
+      "ExtraRate": 4.390667125,
+      "OnsetER": 4.11614975,
+      "OffsetER": 8.014610000000001,
+      "MeanER": 4.504125,
+      "VoiceER": 58.127162,
+      "NewMeanER": 13.44131,
+      "Pvoi": 66.8783375,
+      "Rvoi": 88.7436875,
+      "Fvoi": 74.3919125,
+      "ScaleErr": 1.05869,
+      "HandER": 30.925485750000004
+    },
+    "sft50": {
+      "PitchER": 1.784318,
+      "MissRate": 4.354888375,
+      "ExtraRate": 4.496655500000001,
+      "OnsetER": 4.193141000000001,
+      "OffsetER": 8.0331525,
+      "MeanER": 4.572429125,
+      "VoiceER": 64.63767449999999,
+      "NewMeanER": 14.5833075,
+      "Pvoi": 66.9667625,
+      "Rvoi": 88.79891249999999,
+      "Fvoi": 74.46465,
+      "ScaleErr": 1.0589899999999999,
+      "HandER": 38.637684500000006
+    },
+    "grpo50": {
+      "PitchER": 1.7408505,
+      "MissRate": 4.393928375,
+      "ExtraRate": 4.535885500000001,
+      "OnsetER": 3.84454725,
+      "OffsetER": 8.0630125,
+      "MeanER": 4.5156473749999995,
+      "VoiceER": 57.93039949999999,
+      "NewMeanER": 13.418107500000001,
+      "Pvoi": 66.79488749999999,
+      "Rvoi": 88.8431625,
+      "Fvoi": 74.3694375,
+      "ScaleErr": 1.05907375,
+      "HandER": 30.87294075
+    },
+    "delta_mean_er_pp": 0.06830412500000005,
+    "grpo_delta_mean_er_pp": 0.011522374999999307,
+    "samples": [
+      {
+        "id": "test-00",
+        "work": "Chopin/Polonaises/53",
+        "before": 6.52939,
+        "after": 6.5501,
+        "delta": 0.02070999999999934,
+        "grpo": 6.5432,
+        "grpo_delta": 0.013809999999999434
+      },
+      {
+        "id": "test-01",
+        "work": "Schubert/Piano_Sonatas/664-3",
+        "before": 5.49907,
+        "after": 5.49259,
+        "delta": -0.006479999999999819,
+        "grpo": 5.49907,
+        "grpo_delta": 0
+      },
+      {
+        "id": "test-02",
+        "work": "Bach/Prelude/bwv_891",
+        "before": 0.88139,
+        "after": 0.830613,
+        "delta": -0.05077699999999996,
+        "grpo": 0.864569,
+        "grpo_delta": -0.016820999999999975
+      },
+      {
+        "id": "test-03",
+        "work": "Liszt/Concert_Etude_S145/2",
+        "before": 6.07233,
+        "after": 6.09942,
+        "delta": 0.02709000000000028,
+        "grpo": 6.02357,
+        "grpo_delta": -0.04875999999999969
+      },
+      {
+        "id": "test-04",
+        "work": "Beethoven/Piano_Sonatas/21-1_no_repeat",
+        "before": 1.05984,
+        "after": 1.05984,
+        "delta": 0,
+        "grpo": 1.05984,
+        "grpo_delta": 0
+      },
+      {
+        "id": "test-05",
+        "work": "Chopin/Sonata_2/4th",
+        "before": 6.84593,
+        "after": 6.84593,
+        "delta": 0,
+        "grpo": 6.84593,
+        "grpo_delta": 0
+      },
+      {
+        "id": "test-06",
+        "work": "Liszt/Transcendental_Etudes/5",
+        "before": 3.85612,
+        "after": 3.8467,
+        "delta": -0.009420000000000428,
+        "grpo": 3.8703,
+        "grpo_delta": 0.014179999999999637
+      },
+      {
+        "id": "test-07",
+        "work": "Beethoven/Piano_Sonatas/10-1",
+        "before": 5.28893,
+        "after": 5.85424,
+        "delta": 0.5653100000000002,
+        "grpo": 5.4187,
+        "grpo_delta": 0.1297700000000006
+      }
+    ]
+  },
+  "sft": {
+    "optimizer_steps": 50,
+    "trainable_parameters": 176985,
+    "head_l2_change": 0.3621402072954954,
+    "train_works": 15,
+    "valid_works": 4,
+    "before": {
+      "train": {
+        "n_notes": 1651,
+        "accuracy": 0.6474863718958207,
+        "cross_entropy": 5.502953359817715
+      },
+      "validation": {
+        "n_notes": 438,
+        "accuracy": 0.4474885844748858,
+        "cross_entropy": 7.849466959635417
+      }
+    },
+    "after": {
+      "train": {
+        "n_notes": 1651,
+        "accuracy": 0.6474863718958207,
+        "cross_entropy": 5.24790103147331
+      },
+      "validation": {
+        "n_notes": 438,
+        "accuracy": 0.4497716894977169,
+        "cross_entropy": 7.539659195294663
+      }
+    },
+    "limitations": "Own confidence-filtered beat-warp/pitch matching; only first <=128 notes per train/valid work. Cached-context score-head calibration, not full-model SFT or GRPO. Full-piece downstream evaluation is separate."
+  },
+  "grpo": {
+    "rollouts": 50,
+    "optimizer_steps": 40,
+    "trainable_parameters": 176985,
+    "head_l2_change": 0.10625612076395949,
+    "before": {
+      "train": {
+        "n_notes": 1651,
+        "accuracy": 0.6474863718958207,
+        "cross_entropy": 5.502953359817715
+      },
+      "validation": {
+        "n_notes": 438,
+        "accuracy": 0.4474885844748858,
+        "cross_entropy": 7.849466959635417
+      }
+    },
+    "after": {
+      "train": {
+        "n_notes": 1651,
+        "accuracy": 0.6480920654149,
+        "cross_entropy": 5.482485108757826
+      },
+      "validation": {
+        "n_notes": 438,
+        "accuracy": 0.4497716894977169,
+        "cross_entropy": 7.880773674951841
+      }
+    },
+    "trace": [
+      {
+        "step": 1,
+        "train_cross_entropy": 8.349505424499512,
+        "reward": 0.018518518656492233,
+        "kl": 0,
+        "variable_groups": 5,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 2,
+        "train_cross_entropy": 1.7646390199661255,
+        "reward": 0.8760417103767395,
+        "kl": 7.399537480523577e-7,
+        "variable_groups": 9,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 3,
+        "train_cross_entropy": 1.7800387144088745,
+        "reward": 0.869140625,
+        "kl": 0.000004303871719457675,
+        "variable_groups": 13,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 4,
+        "train_cross_entropy": 0.21047213673591614,
+        "reward": 0.9819819927215576,
+        "kl": 8.940536311285996e-9,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 5,
+        "train_cross_entropy": 1.5098570585250854,
+        "reward": 0.8290000557899475,
+        "kl": 0.0000017835459402704146,
+        "variable_groups": 3,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 6,
+        "train_cross_entropy": 9.843239784240723,
+        "reward": 0.0989583358168602,
+        "kl": 0.000012223702469782438,
+        "variable_groups": 2,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 7,
+        "train_cross_entropy": 0.26262423396110535,
+        "reward": 0.961614191532135,
+        "kl": 0.000011770973287639208,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 8,
+        "train_cross_entropy": 2.5948119163513184,
+        "reward": 0.8428030610084534,
+        "kl": 0.000015823392459424213,
+        "variable_groups": 5,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 9,
+        "train_cross_entropy": 0.2708037793636322,
+        "reward": 0.9540000557899475,
+        "kl": 0.000004061754225404002,
+        "variable_groups": 6,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 10,
+        "train_cross_entropy": 7.964275360107422,
+        "reward": 0.6414141654968262,
+        "kl": 0.000009566333574184682,
+        "variable_groups": 8,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 11,
+        "train_cross_entropy": 4.059169292449951,
+        "reward": 0.7704917788505554,
+        "kl": 0.0000037549264106928604,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 12,
+        "train_cross_entropy": 19.375547409057617,
+        "reward": 0.0833333358168602,
+        "kl": 5.1308258974813725e-8,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 13,
+        "train_cross_entropy": 0.000060228056099731475,
+        "reward": 1,
+        "kl": 3.485835975425289e-8,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 14,
+        "train_cross_entropy": 11.441832542419434,
+        "reward": 0.5358695387840271,
+        "kl": 0.000019166376659995876,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 15,
+        "train_cross_entropy": 11.938681602478027,
+        "reward": 0.18359375,
+        "kl": 0.000030357219657162204,
+        "variable_groups": 8,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 16,
+        "train_cross_entropy": 8.296664237976074,
+        "reward": 0.021604938432574272,
+        "kl": 0.0006759981042705476,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 17,
+        "train_cross_entropy": 1.7487951517105103,
+        "reward": 0.8750000596046448,
+        "kl": 0.00033984228502959013,
+        "variable_groups": 7,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 18,
+        "train_cross_entropy": 1.7653778791427612,
+        "reward": 0.861328125,
+        "kl": 0.0005173123208805919,
+        "variable_groups": 13,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 19,
+        "train_cross_entropy": 0.210784912109375,
+        "reward": 0.9819819927215576,
+        "kl": 2.022426031089708e-7,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 20,
+        "train_cross_entropy": 1.5125113725662231,
+        "reward": 0.8290000557899475,
+        "kl": 0.000059241057897452265,
+        "variable_groups": 7,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 21,
+        "train_cross_entropy": 9.845251083374023,
+        "reward": 0.09687500447034836,
+        "kl": 0.0000718197989044711,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 22,
+        "train_cross_entropy": 0.2620164453983307,
+        "reward": 0.9675197005271912,
+        "kl": 0.000019250261175329797,
+        "variable_groups": 1,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 23,
+        "train_cross_entropy": 2.582599401473999,
+        "reward": 0.8390151858329773,
+        "kl": 0.0003307294100522995,
+        "variable_groups": 7,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 24,
+        "train_cross_entropy": 0.270633727312088,
+        "reward": 0.9580000638961792,
+        "kl": 0.00005049350147601217,
+        "variable_groups": 6,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 25,
+        "train_cross_entropy": 7.934061050415039,
+        "reward": 0.6502525210380554,
+        "kl": 0.0002665318315848708,
+        "variable_groups": 5,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 26,
+        "train_cross_entropy": 4.060318946838379,
+        "reward": 0.7715163230895996,
+        "kl": 0.000023967970264493488,
+        "variable_groups": 1,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 27,
+        "train_cross_entropy": 19.41176414489746,
+        "reward": 0.0833333358168602,
+        "kl": 5.646709269058192e-7,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 28,
+        "train_cross_entropy": 0.0000600290295551531,
+        "reward": 0.9990234375,
+        "kl": 1.162394767106889e-7,
+        "variable_groups": 1,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 29,
+        "train_cross_entropy": 11.425140380859375,
+        "reward": 0.532608687877655,
+        "kl": 0.00008463792619295418,
+        "variable_groups": 5,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 30,
+        "train_cross_entropy": 11.899868965148926,
+        "reward": 0.189453125,
+        "kl": 0.0004538033390417695,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 31,
+        "train_cross_entropy": 8.267044067382812,
+        "reward": 0.029320988804101944,
+        "kl": 0.0013846824876964092,
+        "variable_groups": 8,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 32,
+        "train_cross_entropy": 1.7370506525039673,
+        "reward": 0.8687500357627869,
+        "kl": 0.0011191738303750753,
+        "variable_groups": 10,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 33,
+        "train_cross_entropy": 1.747603178024292,
+        "reward": 0.859375,
+        "kl": 0.002162319142371416,
+        "variable_groups": 13,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 34,
+        "train_cross_entropy": 0.21043923497200012,
+        "reward": 0.9819819927215576,
+        "kl": 2.908198268869455e-7,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 35,
+        "train_cross_entropy": 1.5180468559265137,
+        "reward": 0.8320000171661377,
+        "kl": 0.0001772281393641606,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 36,
+        "train_cross_entropy": 9.864493370056152,
+        "reward": 0.09791667014360428,
+        "kl": 0.00022871939290780574,
+        "variable_groups": 3,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 37,
+        "train_cross_entropy": 0.2610916495323181,
+        "reward": 0.9665354490280151,
+        "kl": 0.000054169544455362484,
+        "variable_groups": 2,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 38,
+        "train_cross_entropy": 2.570162296295166,
+        "reward": 0.8541666865348816,
+        "kl": 0.0010349226649850607,
+        "variable_groups": 1,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 39,
+        "train_cross_entropy": 0.27082738280296326,
+        "reward": 0.9570000171661377,
+        "kl": 0.00017931619368027896,
+        "variable_groups": 5,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 40,
+        "train_cross_entropy": 7.900627136230469,
+        "reward": 0.6388888955116272,
+        "kl": 0.0007753230747766793,
+        "variable_groups": 8,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 41,
+        "train_cross_entropy": 4.059604644775391,
+        "reward": 0.7715163230895996,
+        "kl": 0.00010389393719378859,
+        "variable_groups": 2,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 42,
+        "train_cross_entropy": 19.447254180908203,
+        "reward": 0.0833333358168602,
+        "kl": 0.0000016990826452456531,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 43,
+        "train_cross_entropy": 0.00005930309998802841,
+        "reward": 1,
+        "kl": 2.740984541560465e-7,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 44,
+        "train_cross_entropy": 11.415628433227539,
+        "reward": 0.542391300201416,
+        "kl": 0.00021587326773442328,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 45,
+        "train_cross_entropy": 11.8651762008667,
+        "reward": 0.1884765625,
+        "kl": 0.0012121656909585,
+        "variable_groups": 4,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 46,
+        "train_cross_entropy": 8.211380004882812,
+        "reward": 0.03086419776082039,
+        "kl": 0.0028215833008289337,
+        "variable_groups": 10,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 47,
+        "train_cross_entropy": 1.724547028541565,
+        "reward": 0.8739583492279053,
+        "kl": 0.0022507936228066683,
+        "variable_groups": 7,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 48,
+        "train_cross_entropy": 1.7353391647338867,
+        "reward": 0.8515625,
+        "kl": 0.003905269782990217,
+        "variable_groups": 12,
+        "group_size": 8,
+        "optimizer_update": true
+      },
+      {
+        "step": 49,
+        "train_cross_entropy": 0.21089501678943634,
+        "reward": 0.9819819927215576,
+        "kl": 7.15952239715989e-7,
+        "variable_groups": 0,
+        "group_size": 8,
+        "optimizer_update": false
+      },
+      {
+        "step": 50,
+        "train_cross_entropy": 1.5213043689727783,
+        "reward": 0.8260000348091125,
+        "kl": 0.00032754160929471254,
+        "variable_groups": 7,
+        "group_size": 8,
+        "optimizer_update": true
+      }
+    ],
+    "limitations": "Own confidence-filtered beat-warp/pitch matching; only first <=128 notes per train/valid work. Cached-context duration-head adaptation; GRPO uses 8 categorical singleton actions per note, exact forward KL to frozen duration head, beta .01, one optimizer update per rollout. This is not full-model SFT or autoregressive sequence GRPO. Full-piece downstream evaluation is separate."
+  },
+  "sources": [
+    "ASAP pinned commit 8cba199e15931975542010a7ea2ff94a6fc9cbee",
+    "DuET commit 6d2276c6d3b289584ffe4f602bc0fe1e4740f643",
+    "MUSTER fork commit 4ef1165edda1f719068c4c699bd8ab2076e4d7ec",
+    "GTZAN-mini a61439e86c13037011fde8e0f0743ec55c50bce3",
+    "Beat This annotations v1.0 c3c47fd37d3074d9f8119f18bbf460f909609f22"
+  ]
+}

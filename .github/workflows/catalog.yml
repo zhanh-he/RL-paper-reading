@@ -39,17 +39,17 @@ jobs:
 
       - name: Require generated files in pull requests
         if: github.event_name == 'pull_request'
-        run: git diff --exit-code -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json
+        run: git diff --exit-code -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/amt/demos/data/score-study.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json
 
       - name: Commit generated files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if git diff --quiet -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json; then
+          if git diff --quiet -- platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/amt/demos/data/score-study.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json
+          git add platform/site/data/literature.json platform/site/data/rl-literature.json platform/site/data/amt-literature.json platform/site/index.html platform/site/amt/index.html platform/site/amt/demos/data/experiments.json platform/site/amt/demos/data/score-study.json platform/site/musicgen/data/experiments.json platform/site/musicgen/data/snapshot.json
           git commit -m "catalog: rebuild site data [skip ci]"
           git push
 
