@@ -21,7 +21,7 @@ const metricDefs = [
   ['audiobox.PC', 'AudioBox PC', '制作复杂度，不是乐器数量'],
   ['audiobox.CE', 'AudioBox CE', '内容愉悦度，不等于音乐性评分'],
   ['audiobox.CU', 'AudioBox CU', '内容实用性，不等于音乐性评分'],
-  ['songeval.Naturalness', 'SongEval 自然度 ↑', 'SongEval已训练自然度头；本任务仍需独立人工校准'],
+  ['songeval.Naturalness', 'SongEval 人声分句 ↑', '官方Naturalness头主要衡量呼吸与乐句，非全混音伪影检测'],
   ['songeval.Musicality', 'SongEval 音乐性 ↑', 'SongEval已训练音乐性头'],
   ['pam.score', 'PAM ↑', '文本提示对比得分，不是校准概率'],
   ['pam.artifact_score', 'PAM 自拟提示诊断', '自拟伪影提示实验；非官方PAM，失败时不补分'],
