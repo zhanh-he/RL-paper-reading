@@ -1,0 +1,70 @@
+#view-naturalness { min-width: 0; }
+#view-naturalness * { box-sizing: border-box; }
+#view-naturalness [hidden] { display: none !important; }
+#view-naturalness h3 { font-size: 1rem; margin: 0 0 9px; }
+#view-naturalness p { line-height: 1.65; }
+#view-naturalness .nat-summary { padding: 6px 0 20px; border-bottom: 1px solid var(--line); }
+#view-naturalness .nat-conclusion { max-width: 940px; font-size: 1.08rem; font-weight: 750; color: var(--ink); margin: 0 0 9px; }
+#view-naturalness .nat-note { font-size: .8rem; color: var(--ink-muted); margin: 7px 0; overflow-wrap: anywhere; }
+#view-naturalness .nat-block { margin-top: 26px; min-width: 0; }
+#view-naturalness .nat-toolbar { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: end; margin: 13px 0; }
+#view-naturalness label { display: grid; gap: 6px; color: var(--ink); font-size: .8rem; font-weight: 650; min-width: 0; }
+#view-naturalness .nat-check { display: flex; align-items: center; gap: 7px; min-height: 36px; font-weight: 500; }
+#view-naturalness select, #view-naturalness textarea, #view-naturalness input[type="text"] { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 4px; padding: 9px; min-height: 39px; width: 100%; min-width: 0; }
+#view-naturalness textarea { resize: vertical; min-height: 72px; }
+#view-naturalness select { text-overflow: ellipsis; }
+#view-naturalness button { font: inherit; cursor: pointer; }
+#view-naturalness button:focus-visible, #view-naturalness select:focus-visible, #view-naturalness input:focus-visible, #view-naturalness textarea:focus-visible, #view-naturalness summary:focus-visible { outline: 2px solid var(--green-dark); outline-offset: 3px; }
+#view-naturalness .nat-button { min-height: 38px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink); background: var(--surface); font-size: .79rem; font-weight: 650; }
+#view-naturalness .nat-button:hover { background: var(--surface-muted); }
+#view-naturalness .nat-players { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+#view-naturalness .nat-player { min-width: 0; padding: 18px 0; border-block: 1px solid var(--line); }
+#view-naturalness .nat-player audio { width: 100%; display: block; margin: 14px 0; }
+#view-naturalness .nat-player h4 { margin: 15px 0 5px; font-size: .9rem; overflow-wrap: anywhere; }
+#view-naturalness .nat-scores { display: flex; flex-wrap: wrap; gap: 8px 15px; font-size: .78rem; font-variant-numeric: tabular-nums; color: var(--ink-muted); margin: 10px 0; }
+#view-naturalness .nat-rating-grid, #view-naturalness .nat-pair-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 13px 0; }
+#view-naturalness .nat-rating-grid select, #view-naturalness .nat-pair-grid select { font-weight: 400; }
+#view-naturalness .nat-player details { margin-top: 12px; font-size: .77rem; }
+#view-naturalness details > summary { cursor: pointer; padding: 11px 0; font-size: .84rem; font-weight: 700; }
+#view-naturalness details.nat-block { border-top: 1px solid var(--line); }
+#view-naturalness .nat-inline-list { padding-left: 20px; margin: 8px 0; font-size: .83rem; line-height: 1.75; }
+#view-naturalness .nat-meta { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 6px 12px; margin: 8px 0; }
+#view-naturalness .nat-meta dt { color: var(--ink-muted); }
+#view-naturalness .nat-meta dd { margin: 0; overflow-wrap: anywhere; }
+#view-naturalness .nat-table-wrap { overflow: auto; width: 100%; max-width: 100%; margin-top: 12px; border: 1px solid var(--line); }
+#view-naturalness table { border-collapse: collapse; width: 100%; font-size: .78rem; }
+#view-naturalness th, #view-naturalness td { text-align: left; vertical-align: top; padding: 11px 12px; border-bottom: 1px solid var(--line); line-height: 1.6; overflow-wrap: anywhere; }
+#view-naturalness th { background: var(--surface-muted); font-weight: 700; }
+#view-naturalness tbody tr:last-child td { border-bottom: 0; }
+#view-naturalness tbody tr:hover { background: var(--surface-muted); }
+#view-naturalness .nat-rank-table { min-width: 750px; font-variant-numeric: tabular-nums; }
+#view-naturalness .nat-rank-table td:not(:first-child) { white-space: nowrap; }
+#view-naturalness .nat-row-button { border: 0; padding: 0; background: transparent; color: var(--green-dark); text-align: left; }
+#view-naturalness .nat-pending { color: var(--ink-muted); font-size: .75rem; }
+#view-naturalness .nat-status { font-size: .78rem; color: var(--ink-muted); min-height: 1.4em; }
+#view-naturalness .nat-export { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin: 13px 0; }
+#view-naturalness .nat-reference-list { padding-left: 20px; font-size: .82rem; line-height: 1.75; }
+#view-naturalness .nat-reference-list li { margin: 9px 0; overflow-wrap: anywhere; }
+#view-naturalness pre { overflow: auto; max-width: 100%; padding: 12px; background: var(--surface-muted); font: .76rem/1.7 ui-monospace, SFMono-Regular, monospace; }
+#view-naturalness .nat-rec { border-bottom: 1px solid var(--line); padding: 12px 0; }
+#view-naturalness .nat-rec:last-child { border: 0; }
+#view-naturalness .nat-rec strong { font-size: .85rem; }
+#view-naturalness .nat-rec p { margin: 6px 0; font-size: .82rem; }
+#view-naturalness .nat-formula { font-family: ui-monospace, SFMono-Regular, monospace; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  #view-naturalness .nat-players { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+  #view-naturalness .nat-rating-grid, #view-naturalness .nat-pair-grid { grid-template-columns: minmax(0, 1fr); }
+  #view-naturalness .nat-toolbar > label { flex: 1 1 160px; }
+  #view-naturalness .nat-meta { grid-template-columns: 85px minmax(0, 1fr); }
+  #view-naturalness .nat-conclusion { font-size: 1rem; }
+  #view-naturalness .nat-method-table { min-width: 650px; }
+}
+
+#view-naturalness .nat-response-figure { margin: 8px 0 20px; min-width: 0; }
+#view-naturalness .nat-response-figure img { width: 100%; height: auto; display: block; }
+#view-naturalness .nat-response-figure figcaption { font-size: .78rem; line-height: 1.65; color: var(--ink-muted); margin: 9px 0; }
+#view-naturalness .nat-response-figure > a { font-size: .77rem; }
+@media (max-width: 760px) {
+  #view-naturalness .nat-response-figure { overflow-x: auto; }
+  #view-naturalness .nat-response-figure img { min-width: 1080px; }
+}

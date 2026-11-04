@@ -1,5 +1,6 @@
 # SP / AI Reward Regimes
 
+[2026-11-04 人工感 reward 实测审计](naturalness/README.md)：25条固定片段、Audiobox/PAM/SongEval、受控反例与人工试听表；尚无人工验证或新增RL训练。
 [Public experiments](https://zhanh-he.github.io/RL-paper-reading/demos/#reward-regimes).
 **2026-10-20 verified update:** [six meaningful historical arms recovered](runs/2026-10-20-songbench-review/README.md), including all three new Diff backbone runs at270 with30/30 validation. The last Muse/Heart backbone submissions failed before training on a scorer import, not still queued. [SongBench Mean7 priority plan](SONGBENCH_MEAN7_PRIORITY_PLAN_2026-10-20.md): reward definition confirmed; execution matrix awaiting approval. Earlier launch states below are historical snapshots.
 New: [Open-model RL expansion plan, 2026-10-14](OPEN_MODEL_RL_PLAN_2026-10-14.md)

@@ -1,0 +1,654 @@
+{
+  "schema_version": 1,
+  "method": {
+    "method": "SongEval",
+    "device": "cpu",
+    "hardware": "Existing Linux x86_64 CPU host",
+    "threads": 4,
+    "code_commit": "848fb2ff3a2a9d64dcb20d46f07238c28abd7add",
+    "official_code": "https://github.com/ASLP-lab/SongEval",
+    "head_sha256": "0cb1eb8be02b96e9949ca3a2b66997c5ac7d9da3567240df4dbfc2048eb98efd",
+    "config_sha256": "eda7f89b159bcc90702b0b06db3dcabfae59b0b2a661a0c4bcc0d16d60c18346",
+    "head_code_sha256": "5c40c1cf318c46f6d97e33231356f09a5fe9d00f5896b410f6035076052fc6b2",
+    "backbone_hf_repo": "OpenMuQ/MuQ-large-msd-iter",
+    "backbone_revision": "0562a57814f6f8bbd9fdea0a25921a2fce1a841a",
+    "backbone_sha256": "273febab2be02872c37d2c37e48a9d6c52c1c9392f3eeeabd498efa281ccb7a6",
+    "model_init_seconds": 1.8845728738233447,
+    "total_seconds_including_init": 30.155650007538497,
+    "peak_process_rss_bytes": 3616342016,
+    "preprocessing": "Official librosa mono24kHz with default soxr_hq resampling; MuQ hidden_states[6]; one10s segment; no gain normalization.",
+    "timing_scope": "Sequential25 clips, CPU4threads. Includes librosa decode/resample and model forward; init excludes Python imports. Hardware differs from local Audiobox/PAM benchmarks; speed is not a matched leaderboard.",
+    "mean_seconds_per_10s_clip": 1.095611963905394,
+    "median_seconds_per_10s_clip": 1.0503420010209084,
+    "min_seconds": 1.0375935696065426,
+    "max_seconds": 2.073893293738365,
+    "model_load_key_receipt": {
+      "missing_keys": [],
+      "unexpected_keys": []
+    },
+    "human_labels_count": 0,
+    "packages": {
+      "torch": "2.9.1",
+      "muq": "0.1.0",
+      "transformers": "4.57.6",
+      "librosa": "0.11.0",
+      "numpy": "2.2.6",
+      "safetensors": "0.7.0",
+      "einops": "0.8.2",
+      "PyYAML": "6.0.3"
+    },
+    "python": "3.12.11",
+    "cpu_model": "AMD Ryzen 9 7900 12-Core Processor",
+    "platform": "Linux6.8 x86_64 glibc2.35",
+    "license": "SongEval README:CC-BY-NC-SA4.0; MuQ weights:CC-BY-NC4.0",
+    "definition_warning": "Naturalness targets vocal breathing/phrasing; Clarity targets song structure. Scores from10s excerpts do not establish full-song musicality or artifact severity."
+  },
+  "samples": [
+    {
+      "id": "muse_baseline",
+      "audio_sha256": "11219e1b0471b333f8ca1dbfdafcf1c65190d13ed8b69e0f6257a8cf35e74215",
+      "scores": {
+        "Coherence": 2.338230609893799,
+        "Musicality": 2.4893670082092285,
+        "Memorability": 2.358520269393921,
+        "Clarity": 2.342158794403076,
+        "Naturalness": 2.418440818786621
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 2.073893293738365
+    },
+    {
+      "id": "muse_mean7_270",
+      "audio_sha256": "f6b75ceb61d5d3ab54f4235d83173291714a7327343e87e1cc49c7de7218d778",
+      "scores": {
+        "Coherence": 2.7827110290527344,
+        "Musicality": 2.6373867988586426,
+        "Memorability": 2.7178425788879395,
+        "Clarity": 2.458811044692993,
+        "Naturalness": 2.5558834075927734
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.1137778842821717
+    },
+    {
+      "id": "diffrhythm2_baseline",
+      "audio_sha256": "ee9c0ff9305bead2e6d8b3d8b8b0db271661dacb4b9d76a65b1b4771fa7d80a7",
+      "scores": {
+        "Coherence": 3.2636492252349854,
+        "Musicality": 3.2401022911071777,
+        "Memorability": 3.2243845462799072,
+        "Clarity": 3.217963695526123,
+        "Naturalness": 3.0004382133483887
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.1344105945900083
+    },
+    {
+      "id": "diffrhythm2_mean7_270",
+      "audio_sha256": "d0fd66d929f8e69bdac8e50a88a10138b1e1869b1a8154e7cf91dbdd3aec9af6",
+      "scores": {
+        "Coherence": 3.4755399227142334,
+        "Musicality": 3.265882730484009,
+        "Memorability": 3.2685317993164062,
+        "Clarity": 3.2257933616638184,
+        "Naturalness": 2.944763660430908
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0415164902806282
+    },
+    {
+      "id": "yue2_baseline",
+      "audio_sha256": "ff2aefda798102b730523b18abe1c418e92b4afe02d231528aded5015b648c2b",
+      "scores": {
+        "Coherence": 3.7144649028778076,
+        "Musicality": 3.7868728637695312,
+        "Memorability": 3.6669254302978516,
+        "Clarity": 3.5945191383361816,
+        "Naturalness": 3.6304240226745605
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0526747275143862
+    },
+    {
+      "id": "yue2_richness_270",
+      "audio_sha256": "382791071982517ca0a705df9b542006e906b4167c89e619ee12edebc531fbba",
+      "scores": {
+        "Coherence": 3.13472056388855,
+        "Musicality": 3.1566903591156006,
+        "Memorability": 3.201127290725708,
+        "Clarity": 3.191070079803467,
+        "Naturalness": 3.0025274753570557
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0525780068710446
+    },
+    {
+      "id": "emma_reference",
+      "audio_sha256": "90d9db3449a3f8f63668dc1171507178db7d9dcd72086100c29a53062820b000",
+      "scores": {
+        "Coherence": 2.3393983840942383,
+        "Musicality": 2.4398975372314453,
+        "Memorability": 2.3515591621398926,
+        "Clarity": 2.217456102371216,
+        "Naturalness": 2.1467528343200684
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0517538972198963
+    },
+    {
+      "id": "lada_baseline",
+      "audio_sha256": "75dbe77f2056e53064a2ebc886b4b120c8f2a3e1e07718fe5afcfcd9c3fa961b",
+      "scores": {
+        "Coherence": 2.397094964981079,
+        "Musicality": 2.151602268218994,
+        "Memorability": 1.9857085943222046,
+        "Clarity": 1.9430973529815674,
+        "Naturalness": 1.9227961301803589
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0454596132040024
+    },
+    {
+      "id": "ref_vibeace",
+      "audio_sha256": "e92ae0c94f128554a4d2edc10725d7975f6ba606699e8182cb6e09a34839167b",
+      "scores": {
+        "Coherence": 2.9455435276031494,
+        "Musicality": 2.9354982376098633,
+        "Memorability": 2.6165223121643066,
+        "Clarity": 2.604264259338379,
+        "Naturalness": 2.5748820304870605
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.048071464523673
+    },
+    {
+      "id": "ref_fishin",
+      "audio_sha256": "2bf6637857bd212eb5125ec08e8b4c2ae75e94055947f3f8c8b9b842166e52aa",
+      "scores": {
+        "Coherence": 4.369958400726318,
+        "Musicality": 4.36235237121582,
+        "Memorability": 4.42496395111084,
+        "Clarity": 4.14625358581543,
+        "Naturalness": 4.066307067871094
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0473714834079146
+    },
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "audio_sha256": "7dab1090ff6edc8ffef26873e32a764911a4a0265402c5f512a421f9f7de5c20",
+      "scores": {
+        "Coherence": 2.271817684173584,
+        "Musicality": 2.3483996391296387,
+        "Memorability": 2.2211103439331055,
+        "Clarity": 2.2221033573150635,
+        "Naturalness": 2.307110071182251
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0581387225538492
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "audio_sha256": "d7d17c398cd6a365b8a71d08430ad8d49197d07a1048c96f5ae8dbb412994e3c",
+      "scores": {
+        "Coherence": 2.6160569190979004,
+        "Musicality": 2.573967218399048,
+        "Memorability": 2.5303726196289062,
+        "Clarity": 2.3550519943237305,
+        "Naturalness": 2.5210025310516357
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0518620889633894
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "audio_sha256": "44cd608eb68fdde1529f48e5098a768a9786bc4d75a26a20b6107a9f52cc4a7f",
+      "scores": {
+        "Coherence": 2.497563600540161,
+        "Musicality": 2.564756393432617,
+        "Memorability": 2.467042922973633,
+        "Clarity": 2.451815128326416,
+        "Naturalness": 2.5787031650543213
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0427562771365047
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "audio_sha256": "d18d80259a3de644d6a34a179de893928601a0c97e6b07a7f6db19e936a82d90",
+      "scores": {
+        "Coherence": 2.4201977252960205,
+        "Musicality": 2.586534023284912,
+        "Memorability": 2.3554835319519043,
+        "Clarity": 2.33626651763916,
+        "Naturalness": 2.424103021621704
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0567214442417026
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "audio_sha256": "b9747ba0a225211ef1a5a95591647a87436e643a785b4605b89fa3d1df9a8225",
+      "scores": {
+        "Coherence": 2.2250890731811523,
+        "Musicality": 2.2165093421936035,
+        "Memorability": 2.1900603771209717,
+        "Clarity": 2.0810604095458984,
+        "Naturalness": 2.1164193153381348
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0416108220815659
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "audio_sha256": "030ec17d42a108d2d0a1e8e91cf55a3ad0b275ffbebe1ca88627eafb2db3552c",
+      "scores": {
+        "Coherence": 2.3087220191955566,
+        "Musicality": 2.4552011489868164,
+        "Memorability": 2.3200621604919434,
+        "Clarity": 2.311716079711914,
+        "Naturalness": 2.3873579502105713
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0526539329439402
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "audio_sha256": "141a99fae1dae7bc3e805b98ad323a1b26e65144c6180f6270f4248eb8647670",
+      "scores": {
+        "Coherence": 2.726853132247925,
+        "Musicality": 2.617400884628296,
+        "Memorability": 2.354369878768921,
+        "Clarity": 2.3352715969085693,
+        "Naturalness": 2.3343400955200195
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.045319420285523
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "audio_sha256": "2e45b6e19c6ecac8c7a678c0c227195e594bd7c8f1afd234b063352ebc1cbc73",
+      "scores": {
+        "Coherence": 2.877032995223999,
+        "Musicality": 2.862455368041992,
+        "Memorability": 2.534491539001465,
+        "Clarity": 2.469073534011841,
+        "Naturalness": 2.4884254932403564
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0503420010209084
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "audio_sha256": "a09af057219ccbe323d16cc000942265947d48c03900d23bdd918bc96426bab5",
+      "scores": {
+        "Coherence": 2.7644896507263184,
+        "Musicality": 2.7615439891815186,
+        "Memorability": 2.5473380088806152,
+        "Clarity": 2.452533721923828,
+        "Naturalness": 2.4398391246795654
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0375935696065426
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "audio_sha256": "ba5b9c2377eaebec39ba5bd3d0383f41f74ca64c7eee8c079b0ff1eeefe93953",
+      "scores": {
+        "Coherence": 2.4297327995300293,
+        "Musicality": 2.4204721450805664,
+        "Memorability": 2.3070943355560303,
+        "Clarity": 2.1123950481414795,
+        "Naturalness": 2.0948193073272705
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.043935926631093
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "audio_sha256": "c69cd92acc9b7f26afd19c0d1deb91160dd65af4a469b973f21cbec6360f3aef",
+      "scores": {
+        "Coherence": 2.6733574867248535,
+        "Musicality": 2.560875177383423,
+        "Memorability": 2.341435432434082,
+        "Clarity": 2.3558247089385986,
+        "Naturalness": 2.2322559356689453
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0555085791274905
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "audio_sha256": "a934f9dcb9cae86d46959bd1c99b1fc7f9810abb648996d055d0bea3f1f6d6a8",
+      "scores": {
+        "Coherence": 2.9028289318084717,
+        "Musicality": 2.8688342571258545,
+        "Memorability": 2.559443473815918,
+        "Clarity": 2.546823024749756,
+        "Naturalness": 2.517784833908081
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0460636653006077
+    },
+    {
+      "id": "control_silence",
+      "audio_sha256": "be59652d30ea899715ee44ace8b1f772a2ba853d6cf922bc65946d19087767e8",
+      "scores": {
+        "Coherence": 1.0629881620407104,
+        "Musicality": 1.0784552097320557,
+        "Memorability": 1.0616832971572876,
+        "Clarity": 1.0518773794174194,
+        "Naturalness": 1.0670199394226074
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0487419720739126
+    },
+    {
+      "id": "control_normal_synth",
+      "audio_sha256": "ba1865a4a13d2406c733530afaeea0e7ddd4b0ce030cfd3b1e4bf3d1beffa1fd",
+      "scores": {
+        "Coherence": 2.308727264404297,
+        "Musicality": 2.1479032039642334,
+        "Memorability": 2.344771146774292,
+        "Clarity": 2.123370885848999,
+        "Naturalness": 2.0988447666168213
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0540922740474343
+    },
+    {
+      "id": "control_bright_synth",
+      "audio_sha256": "ee90d0e4a52d266110c9051faedc921580531750dd7d3071fefc2645d3fea7e9",
+      "scores": {
+        "Coherence": 2.184797763824463,
+        "Musicality": 2.142430067062378,
+        "Memorability": 2.198648691177368,
+        "Clarity": 2.0271618366241455,
+        "Naturalness": 2.061525821685791
+      },
+      "segment_spans": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "inference_seconds": 1.0434509459882975
+    }
+  ],
+  "paired_deltas": [
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": -0.06641292572021484,
+        "Musicality": -0.14096736907958984,
+        "Memorability": -0.13740992546081543,
+        "Clarity": -0.1200554370880127,
+        "Naturalness": -0.11133074760437012
+      }
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": 0.27782630920410156,
+        "Musicality": 0.08460021018981934,
+        "Memorability": 0.17185235023498535,
+        "Clarity": 0.012893199920654297,
+        "Naturalness": 0.10256171226501465
+      }
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": 0.1593329906463623,
+        "Musicality": 0.07538938522338867,
+        "Memorability": 0.10852265357971191,
+        "Clarity": 0.10965633392333984,
+        "Naturalness": 0.1602623462677002
+      }
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": 0.08196711540222168,
+        "Musicality": 0.0971670150756836,
+        "Memorability": -0.0030367374420166016,
+        "Clarity": -0.005892276763916016,
+        "Naturalness": 0.005662202835083008
+      }
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": -0.11314153671264648,
+        "Musicality": -0.272857666015625,
+        "Memorability": -0.16845989227294922,
+        "Clarity": -0.26109838485717773,
+        "Naturalness": -0.30202150344848633
+      }
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "comparator_id": "muse_baseline__mod40hz_gain_control",
+      "deltas": {
+        "Coherence": -0.0836329460144043,
+        "Musicality": -0.2386918067932129,
+        "Memorability": -0.13000178337097168,
+        "Clarity": -0.23065567016601562,
+        "Naturalness": -0.2709386348724365
+      }
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "comparator_id": "muse_baseline",
+      "deltas": {
+        "Coherence": -0.029508590698242188,
+        "Musicality": -0.03416585922241211,
+        "Memorability": -0.03845810890197754,
+        "Clarity": -0.03044271469116211,
+        "Naturalness": -0.031082868576049805
+      }
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.2186903953552246,
+        "Musicality": -0.3180973529815674,
+        "Memorability": -0.26215243339538574,
+        "Clarity": -0.26899266242980957,
+        "Naturalness": -0.24054193496704102
+      }
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.06851053237915039,
+        "Musicality": -0.0730428695678711,
+        "Memorability": -0.0820307731628418,
+        "Clarity": -0.13519072532653809,
+        "Naturalness": -0.0864565372467041
+      }
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.18105387687683105,
+        "Musicality": -0.17395424842834473,
+        "Memorability": -0.0691843032836914,
+        "Clarity": -0.15173053741455078,
+        "Naturalness": -0.13504290580749512
+      }
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.5158107280731201,
+        "Musicality": -0.5150260925292969,
+        "Memorability": -0.30942797660827637,
+        "Clarity": -0.4918692111968994,
+        "Naturalness": -0.48006272315979004
+      }
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.2721860408782959,
+        "Musicality": -0.37462306022644043,
+        "Memorability": -0.2750868797302246,
+        "Clarity": -0.24843955039978027,
+        "Naturalness": -0.34262609481811523
+      }
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "comparator_id": "ref_vibeace__mod40hz_gain_control",
+      "deltas": {
+        "Coherence": -0.22947144508361816,
+        "Musicality": -0.30795907974243164,
+        "Memorability": -0.21800804138183594,
+        "Clarity": -0.19099831581115723,
+        "Naturalness": -0.28552889823913574
+      }
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "comparator_id": "ref_vibeace",
+      "deltas": {
+        "Coherence": -0.042714595794677734,
+        "Musicality": -0.06666398048400879,
+        "Memorability": -0.05707883834838867,
+        "Clarity": -0.05744123458862305,
+        "Naturalness": -0.05709719657897949
+      }
+    }
+  ]
+}

@@ -1,0 +1,3414 @@
+{
+  "schema_version": 1,
+  "summary": {
+    "conclusion": "最推荐本域人工偏好 head＋Audiobox PQ 质量约束；当前先做影子评分，尚不能直接作为已验证的 RL 自然度目标。",
+    "rl_ready": false,
+    "evidence": "25条固定10s片段，3个AI评估器与信号诊断已实跑；人工标签为0，本轮没有新RL训练。",
+    "scope": "8条既有项目来源（含3组生成前后配对、合成歌声、伴奏）＋2条CC-BY录制参考＋12条受控变换＋3条构造信号。",
+    "limitations": [
+      "背景Word已完整阅读；文档中的伪影归因与检测断言仍需验证，不能直接当作事实。",
+      "短片段、少量内容和手工反例只能发现候选问题，不能估计人类一致性或泛化收益。"
+    ]
+  },
+  "metadata": {
+    "version": "naturalness-20261104-v1",
+    "date": "2026-11-04",
+    "human_labels_count": 0,
+    "report_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/naturalness/REPORT.md",
+    "code_url": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/naturalness/README.md",
+    "reproduce_commands": [
+      "# 完整环境、固定权重、私有原件与公开MP3重测命令见repo README",
+      "python signal_features.py --manifest \"$PRIVATE_RUN/audit_manifest.json\" --output \"$PRIVATE_RUN/signal_results.json\"",
+      "python evaluate_labels.py --audit runs/2026-11-04/audit.json --labels listener.json --output agreement.json"
+    ],
+    "background_document": {
+      "name": "MusicGenerationLLM_Discussion_Summary.docx",
+      "status": "fully_read"
+    },
+    "limitations": [
+      "当前为已有公开模型的代理样本，未验证其代表目标连续隐状态解码架构；不能宣称目标系统已改善。",
+      "分数绑定压缩前评分片段；播放器为独立MP3副本。两条录制参考的下载源本身是OGG，未称为原始录音母带。",
+      "SongEval Naturalness 指人声呼吸/分句；Clarity 指结构清晰，均不是全混音digital-artifact专用检测。",
+      "人工评分只保存在本机浏览器，默认留空；导出后才能分析一致性。"
+    ]
+  },
+  "samples": [
+    {
+      "id": "muse_baseline",
+      "label": "muse 原始起点",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid001，配对0/270；不按分数或听感选择。",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "11219e1b0471b333f8ca1dbfdafcf1c65190d13ed8b69e0f6257a8cf35e74215",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/muse_baseline.mp3",
+      "mp3_sha256": "aaddba9aa057c8b381ff40dead65772b2b7823c74629e96f6616af8617714bde",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.987074484973235,
+        "peak": 0.989898681640625,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7982884079920272,
+        "active_fraction": 0.956,
+        "crest_db": 21.898889402052166,
+        "valid": true,
+        "flatness": 0.00010828184467916863,
+        "band_3_8khz_share": 0.04453513863965231,
+        "max_persistent_peak_fraction_3_8khz": 0.24324324324324326,
+        "high_band_share": 0.0029571958015917397,
+        "rolloff95_hz": 257.8125,
+        "spectral_flux": 0.09017421701388356,
+        "envelope_modulation_20_100_share": 0.1416069674206945,
+        "envelope_periodicity": 0.7974320998575092,
+        "dynamic_range_db": 25.134341513082457
+      },
+      "audiobox": {
+        "CE": 7.337249755859375,
+        "CU": 7.747920513153076,
+        "PC": 6.258938789367676,
+        "PQ": 8.318668365478516
+      },
+      "pam": {
+        "PAM": 0.9432113170623779,
+        "PAM_segments": [
+          0.9404996633529663,
+          0.9459230303764343
+        ],
+        "artifact_prompt_probe": 0.9842355251312256,
+        "artifact_prompt_segments": [
+          0.9757997393608093,
+          0.9926712512969971
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9432113170623779,
+        "artifact_score": 0.9842355251312256
+      },
+      "songeval": {
+        "Coherence": 2.338230609893799,
+        "Musicality": 2.4893670082092285,
+        "Memorability": 2.358520269393921,
+        "Clarity": 2.342158794403076,
+        "Naturalness": 2.418440818786621,
+        "mean": 2.389343500137329
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.337249755859375,
+          "CU": 7.747920513153076,
+          "PC": 6.258938789367676,
+          "PQ": 8.318668365478516
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.23311937600374222,
+        "pam_seconds": 0.06861558184027672,
+        "signal_seconds": 0.0930483341217041,
+        "songeval_seconds": 2.073893293738365
+      }
+    },
+    {
+      "id": "muse_mean7_270",
+      "label": "muse Mean7 step270",
+      "model": "Muse-0.6B",
+      "checkpoint": "muse-mean7-lr3e4-beta5e2-seed42-v3 step270",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-mean7-3e-4-step270-001-c3587d2a.mp3",
+      "source_original_sha256": "c3587d2a0c1d8f6a6e060382dbe5cada21b72a8b2ea037f29ce2c0272607ccf5",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid001，配对0/270；不按分数或听感选择。",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "ebee1c54da77f7b6dd032e6de34d2d8f15324ee19063262d5116f21434352754",
+      "excerpt_sha256": "f6b75ceb61d5d3ab54f4235d83173291714a7327343e87e1cc49c7de7218d778",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/muse_mean7_270.mp3",
+      "mp3_sha256": "ed033013da916eea5f418b193bc89d422fc91cd230d7fd7ff2ff89c1dfe2484f",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -17.691789859628948,
+        "peak": 0.979400634765625,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.707362458635177,
+        "active_fraction": 0.988,
+        "crest_db": 17.510997482742383,
+        "valid": true,
+        "flatness": 0.00032062577646174543,
+        "band_3_8khz_share": 0.012040066903413657,
+        "max_persistent_peak_fraction_3_8khz": 0.15732758620689655,
+        "high_band_share": 0.0006785940273869387,
+        "rolloff95_hz": 585.9375,
+        "spectral_flux": 0.075537683658913,
+        "envelope_modulation_20_100_share": 0.2909055848631858,
+        "envelope_periodicity": 0.6265970881730386,
+        "dynamic_range_db": 20.877402602452047
+      },
+      "audiobox": {
+        "CE": 7.72609281539917,
+        "CU": 7.941926002502441,
+        "PC": 6.497757911682129,
+        "PQ": 8.07456111907959
+      },
+      "pam": {
+        "PAM": 0.9910739660263062,
+        "PAM_segments": [
+          0.9879783391952515,
+          0.9941695928573608
+        ],
+        "artifact_prompt_probe": 0.9996144771575928,
+        "artifact_prompt_segments": [
+          0.9996678829193115,
+          0.9995611310005188
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9910739660263062,
+        "artifact_score": 0.9996144771575928
+      },
+      "songeval": {
+        "Coherence": 2.7827110290527344,
+        "Musicality": 2.6373867988586426,
+        "Memorability": 2.7178425788879395,
+        "Clarity": 2.458811044692993,
+        "Naturalness": 2.5558834075927734,
+        "mean": 2.630526971817017
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.72609281539917,
+          "CU": 7.941926002502441,
+          "PC": 6.497757911682129,
+          "PQ": 8.07456111907959
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19892320968210697,
+        "pam_seconds": 0.07335279136896133,
+        "signal_seconds": 0.09013858251273632,
+        "songeval_seconds": 1.1137778842821717
+      }
+    },
+    {
+      "id": "diffrhythm2_baseline",
+      "label": "diffrhythm2 原始起点",
+      "model": "DiffRhythm2",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "diffrhythm2_valid001",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/diffrhythm2-baseline-001.mp3",
+      "source_original_sha256": "93cf6e631c148df469809520d2d4c3c942b90e73b7d7fa1cd150677854c4efc1",
+      "source_sample_rate": 48000,
+      "source_duration": 60.0,
+      "source_channels": 1,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid001，配对0/270；不按分数或听感选择。",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "f13670aa464cf0e61cfd70f2906a525f833a052fbe2de20be30cdd18679adb49",
+      "excerpt_sha256": "ee9c0ff9305bead2e6d8b3d8b8b0db271661dacb4b9d76a65b1b4771fa7d80a7",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/diffrhythm2_baseline.mp3",
+      "mp3_sha256": "331f323821edc59fcdd286480020564d212d5aa5247dec988d1c96de1db198e2",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -18.78784670886962,
+        "peak": 0.59375,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 1.0,
+        "active_fraction": 1.0,
+        "crest_db": 14.259919161528078,
+        "valid": true,
+        "flatness": 0.017087604836225144,
+        "band_3_8khz_share": 0.07858766870192714,
+        "max_persistent_peak_fraction_3_8khz": 0.0641025641025641,
+        "high_band_share": 0.0789751240716008,
+        "rolloff95_hz": 2835.9375,
+        "spectral_flux": 0.06525475182140385,
+        "envelope_modulation_20_100_share": 0.2652174989980901,
+        "envelope_periodicity": 0.5185592886854262,
+        "dynamic_range_db": 9.513140742643063
+      },
+      "audiobox": {
+        "CE": 7.785300254821777,
+        "CU": 8.012846946716309,
+        "PC": 6.845263957977295,
+        "PQ": 8.32056713104248
+      },
+      "pam": {
+        "PAM": 0.9412896037101746,
+        "PAM_segments": [
+          0.9448754191398621,
+          0.9377037882804871
+        ],
+        "artifact_prompt_probe": 0.9998370409011841,
+        "artifact_prompt_segments": [
+          0.9998051524162292,
+          0.9998688697814941
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9412896037101746,
+        "artifact_score": 0.9998370409011841
+      },
+      "songeval": {
+        "Coherence": 3.2636492252349854,
+        "Musicality": 3.2401022911071777,
+        "Memorability": 3.2243845462799072,
+        "Clarity": 3.217963695526123,
+        "Naturalness": 3.0004382133483887,
+        "mean": 3.1893075942993163
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.785300254821777,
+          "CU": 8.012846946716309,
+          "PC": 6.845263957977295,
+          "PQ": 8.32056713104248
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19681779108941555,
+        "pam_seconds": 0.06630954146385193,
+        "signal_seconds": 0.09037241712212563,
+        "songeval_seconds": 1.1344105945900083
+      }
+    },
+    {
+      "id": "diffrhythm2_mean7_270",
+      "label": "diffrhythm2 Mean7 step270",
+      "model": "DiffRhythm2",
+      "checkpoint": "diffrhythm2-mean7-lr3e4-beta5e2-seed42 step270",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "diffrhythm2_valid001",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/diffrhythm2-grpo270-001.mp3",
+      "source_original_sha256": "1e85bdb7075a7259455d20f12f9f6b4808372e415f4aec4274cde614ae6b29a5",
+      "source_sample_rate": 48000,
+      "source_duration": 60.0,
+      "source_channels": 1,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid001，配对0/270；不按分数或听感选择。",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "3e8cd347fa97dc1146af4905892bcf7315c3fd2c588d6ad0db2b67c2e12df341",
+      "excerpt_sha256": "d0fd66d929f8e69bdac8e50a88a10138b1e1869b1a8154e7cf91dbdd3aec9af6",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/diffrhythm2_mean7_270.mp3",
+      "mp3_sha256": "98bc66f422c220850158dbe099899543edca83f7ea6fb9da9112f378e16b53fb",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -18.63984955811597,
+        "peak": 0.61181640625,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 1.0,
+        "active_fraction": 1.0,
+        "crest_db": 14.372271931923105,
+        "valid": true,
+        "flatness": 0.014351406948121908,
+        "band_3_8khz_share": 0.0840243841806437,
+        "max_persistent_peak_fraction_3_8khz": 0.053418803418803416,
+        "high_band_share": 0.08326097026401894,
+        "rolloff95_hz": 2718.75,
+        "spectral_flux": 0.06822057063665819,
+        "envelope_modulation_20_100_share": 0.18379281287590235,
+        "envelope_periodicity": 0.5910043284833969,
+        "dynamic_range_db": 11.112149997835848
+      },
+      "audiobox": {
+        "CE": 7.657111644744873,
+        "CU": 7.700364112854004,
+        "PC": 6.668432235717773,
+        "PQ": 7.74974250793457
+      },
+      "pam": {
+        "PAM": 0.9281212091445923,
+        "PAM_segments": [
+          0.9131532311439514,
+          0.9430892467498779
+        ],
+        "artifact_prompt_probe": 0.9997924566268921,
+        "artifact_prompt_segments": [
+          0.9997128844261169,
+          0.9998719692230225
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9281212091445923,
+        "artifact_score": 0.9997924566268921
+      },
+      "songeval": {
+        "Coherence": 3.4755399227142334,
+        "Musicality": 3.265882730484009,
+        "Memorability": 3.2685317993164062,
+        "Clarity": 3.2257933616638184,
+        "Naturalness": 2.944763660430908,
+        "mean": 3.236102294921875
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.657111644744873,
+          "CU": 7.700364112854004,
+          "PC": 6.668432235717773,
+          "PQ": 7.74974250793457
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.195977333933115,
+        "pam_seconds": 0.06645412556827068,
+        "signal_seconds": 0.08886716701090336,
+        "songeval_seconds": 1.0415164902806282
+      }
+    },
+    {
+      "id": "yue2_baseline",
+      "label": "YuE2 原始起点",
+      "model": "YuE2-3B + YuE2-Vae",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid000",
+      "pair_group": "yue2_valid000",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/regime_a692ddc539d11fc880c20cb5.mp3",
+      "source_original_sha256": "a692ddc539d11fc880c20cb54c5fa35aad31c5178cf3d7b6409ed506c8ca3f57",
+      "source_sample_rate": 48000,
+      "source_duration": 59.998667,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid000，配对0/270；近期YuE2 Mean7没有已完成试听，使用既有Richness对照并保留目标标签。",
+      "source_record": "music-gen/reward-regime-study/recovery.json",
+      "public_source_sha256": "f6db3d5e28d711482fdcf3d1b3760ca5b35db4203b6a0de66aab11ec16ddb4fe",
+      "excerpt_sha256": "ff2aefda798102b730523b18abe1c418e92b4afe02d231528aded5015b648c2b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/yue2_baseline.mp3",
+      "mp3_sha256": "d77408787ffb33700fa93772003e5476a030632d4c31491e6fdc8a7596766a1e",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -16.972455405694234,
+        "peak": 0.8789975643157959,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8991542576785796,
+        "active_fraction": 0.96,
+        "crest_db": 15.852208838781161,
+        "valid": true,
+        "flatness": 0.005993286847692913,
+        "band_3_8khz_share": 0.02201409459647462,
+        "max_persistent_peak_fraction_3_8khz": 0.20449438202247192,
+        "high_band_share": 0.008413120979688226,
+        "rolloff95_hz": 585.9375,
+        "spectral_flux": 0.06997659094722372,
+        "envelope_modulation_20_100_share": 0.21609238925398674,
+        "envelope_periodicity": 0.7182968475903069,
+        "dynamic_range_db": 18.268243002025656
+      },
+      "audiobox": {
+        "CE": 7.617587089538574,
+        "CU": 7.840353012084961,
+        "PC": 6.572046279907227,
+        "PQ": 8.160551071166992
+      },
+      "pam": {
+        "PAM": 0.876851499080658,
+        "PAM_segments": [
+          0.8351608514785767,
+          0.9185421466827393
+        ],
+        "artifact_prompt_probe": 0.9935778379440308,
+        "artifact_prompt_segments": [
+          0.991385817527771,
+          0.9957697987556458
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.876851499080658,
+        "artifact_score": 0.9935778379440308
+      },
+      "songeval": {
+        "Coherence": 3.7144649028778076,
+        "Musicality": 3.7868728637695312,
+        "Memorability": 3.6669254302978516,
+        "Clarity": 3.5945191383361816,
+        "Naturalness": 3.6304240226745605,
+        "mean": 3.6786412715911867
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.617587089538574,
+          "CU": 7.840353012084961,
+          "PC": 6.572046279907227,
+          "PQ": 8.160551071166992
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19609712436795235,
+        "pam_seconds": 0.06658687628805637,
+        "signal_seconds": 0.08823995664715767,
+        "songeval_seconds": 1.0526747275143862
+      }
+    },
+    {
+      "id": "yue2_richness_270",
+      "label": "YuE2 Richness step270",
+      "model": "YuE2-3B + YuE2-Vae",
+      "checkpoint": "yue2-richness-lr3e4-seed42 step270",
+      "input_id": "CMI-Pref frozen valid000",
+      "pair_group": "yue2_valid000",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/regime_0b2f34ede0fe0a49da4d2eaf.mp3",
+      "source_original_sha256": "0b2f34ede0fe0a49da4d2eaf07661452e2a04a943f2f2193968a26e0e9e689d8",
+      "source_sample_rate": 48000,
+      "source_duration": 59.998667,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "预先固定valid000，配对0/270；近期YuE2 Mean7没有已完成试听，使用既有Richness对照并保留目标标签。",
+      "source_record": "music-gen/reward-regime-study/recovery.json",
+      "public_source_sha256": "24c976afe779d0963ed677054463317568fdba04700a7e5ccf7018a02a25e83f",
+      "excerpt_sha256": "382791071982517ca0a705df9b542006e906b4167c89e619ee12edebc531fbba",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/yue2_richness_270.mp3",
+      "mp3_sha256": "85b8a1894847f9a35340b7e7185a6165810c2869f7880b0a174e77e15434e8d1",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -19.193721917370855,
+        "peak": 0.5632275342941284,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8095096028638524,
+        "active_fraction": 0.988,
+        "crest_db": 14.20739947427446,
+        "valid": true,
+        "flatness": 0.0003903502881703022,
+        "band_3_8khz_share": 0.009596937553382524,
+        "max_persistent_peak_fraction_3_8khz": 0.29718004338394793,
+        "high_band_share": 0.0013012885459962088,
+        "rolloff95_hz": 937.5,
+        "spectral_flux": 0.049373738302962884,
+        "envelope_modulation_20_100_share": 0.7712442485706693,
+        "envelope_periodicity": 0.3320233292103325,
+        "dynamic_range_db": 5.452568632000087
+      },
+      "audiobox": {
+        "CE": 8.011785507202148,
+        "CU": 8.067787170410156,
+        "PC": 5.975281238555908,
+        "PQ": 8.294086456298828
+      },
+      "pam": {
+        "PAM": 0.9018653631210327,
+        "PAM_segments": [
+          0.933840811252594,
+          0.8698899745941162
+        ],
+        "artifact_prompt_probe": 0.993781328201294,
+        "artifact_prompt_segments": [
+          0.9987956285476685,
+          0.9887670874595642
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9018653631210327,
+        "artifact_score": 0.993781328201294
+      },
+      "songeval": {
+        "Coherence": 3.13472056388855,
+        "Musicality": 3.1566903591156006,
+        "Memorability": 3.201127290725708,
+        "Clarity": 3.191070079803467,
+        "Naturalness": 3.0025274753570557,
+        "mean": 3.1372271537780763
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 8.011785507202148,
+          "CU": 8.067787170410156,
+          "PC": 5.975281238555908,
+          "PQ": 8.294086456298828
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.20626050047576427,
+        "pam_seconds": 0.06594512611627579,
+        "signal_seconds": 0.08735866658389568,
+        "songeval_seconds": 1.0525780068710446
+      }
+    },
+    {
+      "id": "emma_reference",
+      "label": "ACE Studio Emma 合成歌声参考",
+      "model": "ACE Studio Emma",
+      "checkpoint": "fixed original vocal",
+      "input_id": "fixed ACE Studio Emma; first12s",
+      "pair_group": "emma_lada_same_input",
+      "kind": "reference",
+      "source_asset": "platform/site/demos/audio/ace_emma_vocal_12s.mp3",
+      "source_original_sha256": "9a98ae976042bd933a1095e99288b054a3cad00bc5044fb1462ae8a136053e68",
+      "source_sample_rate": 48000,
+      "source_duration": 12.0,
+      "source_channels": 1,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "固定输入歌声；合成歌声参考，不是录音人声或自然金标准。",
+      "source_record": "platform/site/demos/audio-encoding.json",
+      "public_source_sha256": "1c2f1651e1a55d331d565af64e6a2922eae7ac3bf840e06e3188043096568c0d",
+      "excerpt_sha256": "90d9db3449a3f8f63668dc1171507178db7d9dcd72086100c29a53062820b000",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/emma_reference.mp3",
+      "mp3_sha256": "d2de30851b2e6f32da8eb8216417893a97a786cd8ddf1839b86a0d18f7fc2a8a",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -27.139116240178875,
+        "peak": 0.269439697265625,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 1.0,
+        "active_fraction": 0.92,
+        "crest_db": 15.748347877369985,
+        "valid": true,
+        "flatness": 0.0003261215336913056,
+        "band_3_8khz_share": 0.006038360084846824,
+        "max_persistent_peak_fraction_3_8khz": 0.3246753246753247,
+        "high_band_share": 0.0006275408457532885,
+        "rolloff95_hz": 1488.28125,
+        "spectral_flux": 0.05873011975289101,
+        "envelope_modulation_20_100_share": 0.012328902785504725,
+        "envelope_periodicity": 0.9131699337312525,
+        "dynamic_range_db": 14.314767994635336
+      },
+      "audiobox": {
+        "CE": 6.537961959838867,
+        "CU": 6.981704235076904,
+        "PC": 1.9023258686065674,
+        "PQ": 7.831912040710449
+      },
+      "pam": {
+        "PAM": 0.8796857595443726,
+        "PAM_segments": [
+          0.8968478441238403,
+          0.86252361536026
+        ],
+        "artifact_prompt_probe": 0.9997032880783081,
+        "artifact_prompt_segments": [
+          0.9997068047523499,
+          0.9996997117996216
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.8796857595443726,
+        "artifact_score": 0.9997032880783081
+      },
+      "songeval": {
+        "Coherence": 2.3393983840942383,
+        "Musicality": 2.4398975372314453,
+        "Memorability": 2.3515591621398926,
+        "Clarity": 2.217456102371216,
+        "Naturalness": 2.1467528343200684,
+        "mean": 2.299012804031372
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 6.537961959838867,
+          "CU": 6.981704235076904,
+          "PC": 1.9023258686065674,
+          "PQ": 7.831912040710449
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19568804278969765,
+        "pam_seconds": 0.06577570922672749,
+        "signal_seconds": 0.08634254150092602,
+        "songeval_seconds": 1.0517538972198963
+      }
+    },
+    {
+      "id": "lada_baseline",
+      "label": "LaDA-Band 未训练伴奏",
+      "model": "LaDA-Band lm1B total3B checkpoint",
+      "checkpoint": "step0 native base; eight-step sampler",
+      "input_id": "fixed ACE Studio Emma; first12s",
+      "pair_group": "emma_lada_same_input",
+      "kind": "generated",
+      "source_asset": "platform/site/demos/audio/lada_emma_combined_step_0000.mp3",
+      "source_original_sha256": "d499c6f1cab19ff3c8a8388337b6abeb540498762fd59ae4a55362c2c5d5bcae",
+      "source_sample_rate": 48000,
+      "source_duration": 12.04,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "固定Emma输入、piano and soft drums、eval seed777；accompaniment-only，保留低能量失败风险。",
+      "source_record": "platform/site/demos/audio-encoding.json",
+      "public_source_sha256": "6a3ddf770296eaa1ef226eebb6ed861aa7e4573da81bd65b32dacb1e055dd4cd",
+      "excerpt_sha256": "75dbe77f2056e53064a2ebc886b4b120c8f2a3e1e07718fe5afcfcd9c3fa961b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/lada_baseline.mp3",
+      "mp3_sha256": "7a9e56c54df7bd4623384834afeade267b42f63b7d1077e9347083cd129aa2ea",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -36.047954594402796,
+        "peak": 0.138458251953125,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8733165300414406,
+        "active_fraction": 0.984,
+        "crest_db": 18.874331480528767,
+        "valid": true,
+        "flatness": 3.681836009420378e-06,
+        "band_3_8khz_share": 8.227282428478924e-05,
+        "max_persistent_peak_fraction_3_8khz": 0.5338983050847458,
+        "high_band_share": 1.2901573894967961e-06,
+        "rolloff95_hz": 796.875,
+        "spectral_flux": 0.05340484816306224,
+        "envelope_modulation_20_100_share": 0.3090187467127529,
+        "envelope_periodicity": 0.7456339801786533,
+        "dynamic_range_db": 16.58478366097784
+      },
+      "audiobox": {
+        "CE": 7.814746379852295,
+        "CU": 7.822107315063477,
+        "PC": 3.6935155391693115,
+        "PQ": 7.814321517944336
+      },
+      "pam": {
+        "PAM": 0.9780946969985962,
+        "PAM_segments": [
+          0.978101372718811,
+          0.9780880212783813
+        ],
+        "artifact_prompt_probe": 0.9996597766876221,
+        "artifact_prompt_segments": [
+          0.9995536208152771,
+          0.999765932559967
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9780946969985962,
+        "artifact_score": 0.9996597766876221
+      },
+      "songeval": {
+        "Coherence": 2.397094964981079,
+        "Musicality": 2.151602268218994,
+        "Memorability": 1.9857085943222046,
+        "Clarity": 1.9430973529815674,
+        "Naturalness": 1.9227961301803589,
+        "mean": 2.080059862136841
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.814746379852295,
+          "CU": 7.822107315063477,
+          "PC": 3.6935155391693115,
+          "PQ": 7.814321517944336
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19461408257484436,
+        "pam_seconds": 0.06566345691680908,
+        "signal_seconds": 0.08850766718387604,
+        "songeval_seconds": 1.0454596132040024
+      }
+    },
+    {
+      "id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "recorded_reference",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Recorded music / acoustic-instrument reference; recording is not a human naturalness label",
+      "excerpt_sha256": "e92ae0c94f128554a4d2edc10725d7975f6ba606699e8182cb6e09a34839167b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/ref_vibeace.mp3",
+      "mp3_sha256": "ae2cddb8ad0af5026247ff495e465dd69e04eefd851bacc36dacdf92dd6ebe01",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -17.94740369904176,
+        "peak": 0.7376961708068848,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7912731829388672,
+        "active_fraction": 1.0,
+        "crest_db": 15.304954282083386,
+        "valid": true,
+        "flatness": 0.0005898892694035697,
+        "band_3_8khz_share": 0.0033129564598749508,
+        "max_persistent_peak_fraction_3_8khz": 0.27555555555555555,
+        "high_band_share": 0.00133645605020464,
+        "rolloff95_hz": 351.5625,
+        "spectral_flux": 0.07909190005773392,
+        "envelope_modulation_20_100_share": 0.3021988111125254,
+        "envelope_periodicity": 0.6888115662358474,
+        "dynamic_range_db": 13.831235437559531
+      },
+      "audiobox": {
+        "CE": 7.65787410736084,
+        "CU": 8.166051864624023,
+        "PC": 5.550031661987305,
+        "PQ": 8.120562553405762
+      },
+      "pam": {
+        "PAM": 0.980912446975708,
+        "PAM_segments": [
+          0.975186288356781,
+          0.9866385459899902
+        ],
+        "artifact_prompt_probe": 0.999448299407959,
+        "artifact_prompt_segments": [
+          0.9993138313293457,
+          0.9995827078819275
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.980912446975708,
+        "artifact_score": 0.999448299407959
+      },
+      "songeval": {
+        "Coherence": 2.9455435276031494,
+        "Musicality": 2.9354982376098633,
+        "Memorability": 2.6165223121643066,
+        "Clarity": 2.604264259338379,
+        "Naturalness": 2.5748820304870605,
+        "mean": 2.7353420734405516
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.65787410736084,
+          "CU": 8.166051864624023,
+          "PC": 5.550031661987305,
+          "PQ": 8.120562553405762
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19405504129827023,
+        "pam_seconds": 0.06547658517956734,
+        "signal_seconds": 0.08973616734147072,
+        "songeval_seconds": 1.048071464523673
+      }
+    },
+    {
+      "id": "ref_fishin",
+      "label": "录制参考 · Let’s Go Fishin’ 民谣歌曲",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example fishin",
+      "pair_group": null,
+      "kind": "recorded_reference",
+      "source_asset": "https://librosa.org/data/audio/Karissa_Hobbs_-_Lets_Go_Fishin.hq.ogg",
+      "source_original_sha256": "85901bde0bc5f2cad28acb83487ccf99bd6908d7359f1a449fd799d8bebb3319",
+      "source_sample_rate": 44100,
+      "source_duration": 132.9890022675737,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Karissa_Hobbs/Age_of_Flowers/09_Lets_Go_Fishin",
+      "credit": "Karissa Hobbs",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Karissa_Hobbs_-_Lets_Go_Fishin.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Recorded music / acoustic-instrument reference; recording is not a human naturalness label",
+      "excerpt_sha256": "2bf6637857bd212eb5125ec08e8b4c2ae75e94055947f3f8c8b9b842166e52aa",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 30.0,
+      "transform": "none",
+      "audio": "audio/naturalness-20261104/ref_fishin.mp3",
+      "mp3_sha256": "e71170a1f7a70145ea215809d506dfc10dc474f75dc44812abd3a50a39eddd62",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -15.78477550782023,
+        "peak": 0.8948299288749695,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8834729151893729,
+        "active_fraction": 1.0,
+        "crest_db": 14.8195855332517,
+        "valid": true,
+        "flatness": 0.004007699766299777,
+        "band_3_8khz_share": 0.02826895963779337,
+        "max_persistent_peak_fraction_3_8khz": 0.5277777777777778,
+        "high_band_share": 0.014829924891923993,
+        "rolloff95_hz": 1523.4375,
+        "spectral_flux": 0.05955681583572363,
+        "envelope_modulation_20_100_share": 0.3904261922858417,
+        "envelope_periodicity": 0.34244412673754754,
+        "dynamic_range_db": 9.160016565763984
+      },
+      "audiobox": {
+        "CE": 8.005427360534668,
+        "CU": 7.971409797668457,
+        "PC": 6.665290832519531,
+        "PQ": 8.558255195617676
+      },
+      "pam": {
+        "PAM": 0.9379411935806274,
+        "PAM_segments": [
+          0.950016975402832,
+          0.9258654713630676
+        ],
+        "artifact_prompt_probe": 0.9999768137931824,
+        "artifact_prompt_segments": [
+          0.9999767541885376,
+          0.9999768733978271
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9379411935806274,
+        "artifact_score": 0.9999768137931824
+      },
+      "songeval": {
+        "Coherence": 4.369958400726318,
+        "Musicality": 4.36235237121582,
+        "Memorability": 4.42496395111084,
+        "Clarity": 4.14625358581543,
+        "Naturalness": 4.066307067871094,
+        "mean": 4.2739670753479
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 8.005427360534668,
+          "CU": 7.971409797668457,
+          "PC": 6.665290832519531,
+          "PQ": 8.558255195617676
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19351075030863285,
+        "pam_seconds": 0.06542541645467281,
+        "signal_seconds": 0.0942454170435667,
+        "songeval_seconds": 1.0473714834079146
+      }
+    },
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "label": "muse 原始起点 / gain_minus20db",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "7dab1090ff6edc8ffef26873e32a764911a4a0265402c5f512a421f9f7de5c20",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "gain_minus20db",
+      "transform_description": "Amplitude ×0.1; no content change",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline",
+      "audio": "audio/naturalness-20261104/muse_baseline__gain_minus20db.mp3",
+      "mp3_sha256": "4482b7e83ba5e46a0790aa98c97874f1b5c422b60368e93095e50132fa352ad8",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -41.987074484106714,
+        "peak": 0.09898986667394638,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7982884080197227,
+        "active_fraction": 0.536,
+        "crest_db": 21.898889270435042,
+        "valid": true,
+        "flatness": 0.00010828328452492271,
+        "band_3_8khz_share": 0.04453513866507456,
+        "max_persistent_peak_fraction_3_8khz": 0.24324324324324326,
+        "high_band_share": 0.0029571958062252746,
+        "rolloff95_hz": 257.8125,
+        "spectral_flux": 0.0901742170146636,
+        "envelope_modulation_20_100_share": 0.14160696747600052,
+        "envelope_periodicity": 0.7974320997214758,
+        "dynamic_range_db": 12.913184882595203
+      },
+      "audiobox": {
+        "CE": 7.280787467956543,
+        "CU": 7.772461891174316,
+        "PC": 6.088313102722168,
+        "PQ": 8.324379920959473
+      },
+      "pam": {
+        "PAM": 0.798618733882904,
+        "PAM_segments": [
+          0.8242713809013367,
+          0.7729660868644714
+        ],
+        "artifact_prompt_probe": 0.9905364513397217,
+        "artifact_prompt_segments": [
+          0.993885338306427,
+          0.9871875047683716
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.798618733882904,
+        "artifact_score": 0.9905364513397217
+      },
+      "songeval": {
+        "Coherence": 2.271817684173584,
+        "Musicality": 2.3483996391296387,
+        "Memorability": 2.2211103439331055,
+        "Clarity": 2.2221033573150635,
+        "Naturalness": 2.307110071182251,
+        "mean": 2.2741082191467283
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.280787467956543,
+          "CU": 7.772461891174316,
+          "PC": 6.088313102722168,
+          "PQ": 8.324379920959473
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19343962334096432,
+        "pam_seconds": 0.0649424996227026,
+        "signal_seconds": 0.08684458211064339,
+        "songeval_seconds": 1.0581387225538492
+      }
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "label": "muse 原始起点 / lowpass_3khz",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "d7d17c398cd6a365b8a71d08430ad8d49197d07a1048c96f5ae8dbb412994e3c",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "lowpass_3khz",
+      "transform_description": "6th order Butterworth zero-phase 3 kHz lowpass",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline",
+      "audio": "audio/naturalness-20261104/muse_baseline__lowpass_3khz.mp3",
+      "mp3_sha256": "dee78c78183ba48e0b18835b7ffdd33e37feb2a5b41478b394fef9cfd8b12794",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -22.190685366404608,
+        "peak": 0.9984902739524841,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7926116336081193,
+        "active_fraction": 0.952,
+        "crest_db": 22.177562143842206,
+        "valid": true,
+        "flatness": 6.040898265911943e-10,
+        "band_3_8khz_share": 0.0038560537392407727,
+        "max_persistent_peak_fraction_3_8khz": 0.35319148936170214,
+        "high_band_share": 2.281512023001431e-08,
+        "rolloff95_hz": 257.8125,
+        "spectral_flux": 0.09923483951784619,
+        "envelope_modulation_20_100_share": 0.11826923370048795,
+        "envelope_periodicity": 0.8289022064699956,
+        "dynamic_range_db": 25.33899847735228
+      },
+      "audiobox": {
+        "CE": 7.055391788482666,
+        "CU": 7.552699565887451,
+        "PC": 5.966059684753418,
+        "PQ": 8.05643367767334
+      },
+      "pam": {
+        "PAM": 0.6100407242774963,
+        "PAM_segments": [
+          0.5895389318466187,
+          0.630542516708374
+        ],
+        "artifact_prompt_probe": 0.9645851850509644,
+        "artifact_prompt_segments": [
+          0.9628354907035828,
+          0.966334879398346
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.6100407242774963,
+        "artifact_score": 0.9645851850509644
+      },
+      "songeval": {
+        "Coherence": 2.6160569190979004,
+        "Musicality": 2.573967218399048,
+        "Memorability": 2.5303726196289062,
+        "Clarity": 2.3550519943237305,
+        "Naturalness": 2.5210025310516357,
+        "mean": 2.519290256500244
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.055391788482666,
+          "CU": 7.552699565887451,
+          "PC": 5.966059684753418,
+          "PQ": 8.05643367767334
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19608975015580654,
+        "pam_seconds": 0.06591620855033398,
+        "signal_seconds": 0.08827662654221058,
+        "songeval_seconds": 1.0518620889633894
+      }
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "label": "muse 原始起点 / compressed",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "44cd608eb68fdde1529f48e5098a768a9786bc4d75a26a20b6107a9f52cc4a7f",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "compressed",
+      "transform_description": "Static threshold 0.08, 4:1 amplitude compression; RMS matched",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline",
+      "audio": "audio/naturalness-20261104/muse_baseline__compressed.mp3",
+      "mp3_sha256": "4b160ef7987acf2a9dfa1057bc2e581a2aba00f5fbb2026e66845aba7f31068f",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.9870744832167,
+        "peak": 0.23304414749145508,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7683134199927588,
+        "active_fraction": 0.968,
+        "crest_db": 9.335838499939872,
+        "valid": true,
+        "flatness": 0.00015312937192375943,
+        "band_3_8khz_share": 0.036210980076972446,
+        "max_persistent_peak_fraction_3_8khz": 0.2196969696969697,
+        "high_band_share": 0.0036601329669001667,
+        "rolloff95_hz": 304.6875,
+        "spectral_flux": 0.08559959439317591,
+        "envelope_modulation_20_100_share": 0.07848182815321067,
+        "envelope_periodicity": 0.8819603215069506,
+        "dynamic_range_db": 19.954014261649938
+      },
+      "audiobox": {
+        "CE": 7.338005542755127,
+        "CU": 7.571943283081055,
+        "PC": 6.330281734466553,
+        "PQ": 8.251459121704102
+      },
+      "pam": {
+        "PAM": 0.9149973392486572,
+        "PAM_segments": [
+          0.9298427700996399,
+          0.9001519680023193
+        ],
+        "artifact_prompt_probe": 0.9448283910751343,
+        "artifact_prompt_segments": [
+          0.9591774344444275,
+          0.9304793477058411
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9149973392486572,
+        "artifact_score": 0.9448283910751343
+      },
+      "songeval": {
+        "Coherence": 2.497563600540161,
+        "Musicality": 2.564756393432617,
+        "Memorability": 2.467042922973633,
+        "Clarity": 2.451815128326416,
+        "Naturalness": 2.5787031650543213,
+        "mean": 2.5119762420654297
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.338005542755127,
+          "CU": 7.571943283081055,
+          "PC": 6.330281734466553,
+          "PQ": 8.251459121704102
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19808612391352654,
+        "pam_seconds": 0.0658661238849163,
+        "signal_seconds": 0.088085001334548,
+        "songeval_seconds": 1.0427562771365047
+      }
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "label": "muse 原始起点 / distorted",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "d18d80259a3de644d6a34a179de893928601a0c97e6b07a7f6db19e936a82d90",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "distorted",
+      "transform_description": "Hard clip gain8 threshold0.15; RMS matched",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline",
+      "audio": "audio/naturalness-20261104/muse_baseline__distorted.mp3",
+      "mp3_sha256": "2219c490673b871c4c12d4d2db771437b8122baf73ff929111e50eeabb8892b5",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.987074726097568,
+        "peak": 0.0960853099822998,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7476122568197382,
+        "active_fraction": 0.988,
+        "crest_db": 1.6402146373687283,
+        "valid": true,
+        "flatness": 0.000499993460741461,
+        "band_3_8khz_share": 0.035988649569658186,
+        "max_persistent_peak_fraction_3_8khz": 0.1858974358974359,
+        "high_band_share": 0.005732593053153102,
+        "rolloff95_hz": 621.09375,
+        "spectral_flux": 0.07065115164095283,
+        "envelope_modulation_20_100_share": 0.0933458874343676,
+        "envelope_periodicity": 0.7594601768970382,
+        "dynamic_range_db": 9.125790793682143
+      },
+      "audiobox": {
+        "CE": 5.224390983581543,
+        "CU": 7.1490478515625,
+        "PC": 5.598731517791748,
+        "PQ": 7.595470428466797
+      },
+      "pam": {
+        "PAM": 0.8629432320594788,
+        "PAM_segments": [
+          0.8902506232261658,
+          0.8356358408927917
+        ],
+        "artifact_prompt_probe": 0.8739393949508667,
+        "artifact_prompt_segments": [
+          0.8646688461303711,
+          0.8832099437713623
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.8629432320594788,
+        "artifact_score": 0.8739393949508667
+      },
+      "songeval": {
+        "Coherence": 2.4201977252960205,
+        "Musicality": 2.586534023284912,
+        "Memorability": 2.3554835319519043,
+        "Clarity": 2.33626651763916,
+        "Naturalness": 2.424103021621704,
+        "mean": 2.42451696395874
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 5.224390983581543,
+          "CU": 7.1490478515625,
+          "PC": 5.598731517791748,
+          "PQ": 7.595470428466797
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.1999786663800478,
+        "pam_seconds": 0.06521579064428806,
+        "signal_seconds": 0.09274879097938538,
+        "songeval_seconds": 1.0567214442417026
+      }
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "label": "muse 原始起点 / metallic_mod40hz",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "b9747ba0a225211ef1a5a95591647a87436e643a785b4605b89fa3d1df9a8225",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "metallic_mod40hz",
+      "transform_description": "40 Hz amplitude modulation, envelope0.10..1.0; no added gain, compare equal-RMS mod40hz_gain_control; not a naturalness label",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline__mod40hz_gain_control",
+      "audio": "audio/naturalness-20261104/muse_baseline__metallic_mod40hz.mp3",
+      "mp3_sha256": "d83a669f84797615e00afde225f7cd9df385ae71ec47b9a3133203d9915277ce",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -25.84359893303413,
+        "peak": 0.9318675994873047,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8073808389252725,
+        "active_fraction": 0.916,
+        "crest_db": 25.230683169453837,
+        "valid": true,
+        "flatness": 0.00013071989495909057,
+        "band_3_8khz_share": 0.044572997484048756,
+        "max_persistent_peak_fraction_3_8khz": 0.2005420054200542,
+        "high_band_share": 0.003060355560948357,
+        "rolloff95_hz": 281.25,
+        "spectral_flux": 0.08582147952616379,
+        "envelope_modulation_20_100_share": 0.6332674013862966,
+        "envelope_periodicity": 0.6886613218665787,
+        "dynamic_range_db": 23.205333180876625
+      },
+      "audiobox": {
+        "CE": 3.7344794273376465,
+        "CU": 6.203906536102295,
+        "PC": 5.181143283843994,
+        "PQ": 6.6160569190979
+      },
+      "pam": {
+        "PAM": 0.8492655158042908,
+        "PAM_segments": [
+          0.8333113789558411,
+          0.8652196526527405
+        ],
+        "artifact_prompt_probe": 0.9507958292961121,
+        "artifact_prompt_segments": [
+          0.935660183429718,
+          0.9659314751625061
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.8492655158042908,
+        "artifact_score": 0.9507958292961121
+      },
+      "songeval": {
+        "Coherence": 2.2250890731811523,
+        "Musicality": 2.2165093421936035,
+        "Memorability": 2.1900603771209717,
+        "Clarity": 2.0810604095458984,
+        "Naturalness": 2.1164193153381348,
+        "mean": 2.1658277034759523
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.7344794273376465,
+          "CU": 6.203906536102295,
+          "PC": 5.181143283843994,
+          "PQ": 6.6160569190979
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19438450038433075,
+        "pam_seconds": 0.06650266610085964,
+        "signal_seconds": 0.08536587469279766,
+        "songeval_seconds": 1.0416108220815659
+      }
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "label": "muse 原始起点 / mod40hz_gain_control",
+      "model": "Muse-0.6B",
+      "checkpoint": "original base; no adapter",
+      "input_id": "CMI-Pref frozen valid001",
+      "pair_group": "muse_valid001",
+      "kind": "perturbation",
+      "source_asset": "platform/site/demos/audio/weekly-20261023/muse-baseline-001.mp3",
+      "source_original_sha256": "d494e38cc7ca2a8101ac08a803a3340031ff54e385e3d1682a580d0a7c6a2be8",
+      "source_sample_rate": 48000,
+      "source_duration": 10.24,
+      "source_channels": 2,
+      "rights": "Reuses existing project-published generated listening material within RL-Lab; no third-party dataset recording is added. Model/data licenses remain separate from this reuse provenance.",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "source_record": "music-gen/reward-regime-study/weekly-2026-10-23/listening.json",
+      "public_source_sha256": "80dbdd8c83e950356c0c1a53f92cc5ef571f7fac3564b39be0d09c0c26ffb78c",
+      "excerpt_sha256": "030ec17d42a108d2d0a1e8e91cf55a3ad0b275ffbebe1ca88627eafb2db3552c",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 0.0,
+      "transform": "mod40hz_gain_control",
+      "transform_description": "Pure gain 0.641466199892; RMS matches mod40Hz stimulus, isolates modulation from gain",
+      "base_id": "muse_baseline",
+      "matched_comparator_id": "muse_baseline",
+      "audio": "audio/naturalness-20261104/muse_baseline__mod40hz_gain_control.mp3",
+      "mp3_sha256": "04ab7a4cca14bdc271466a15af64d1a0121260e17a731253db06231674a15b25",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -25.84359893493904,
+        "peak": 0.6349865198135376,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7982884079760627,
+        "active_fraction": 0.92,
+        "crest_db": 21.898889049196292,
+        "valid": true,
+        "flatness": 0.0001082818184562808,
+        "band_3_8khz_share": 0.04453513861772028,
+        "max_persistent_peak_fraction_3_8khz": 0.24324324324324326,
+        "high_band_share": 0.002957195792095432,
+        "rolloff95_hz": 257.8125,
+        "spectral_flux": 0.09017421709425345,
+        "envelope_modulation_20_100_share": 0.14160696757062904,
+        "envelope_periodicity": 0.7974320997738925,
+        "dynamic_range_db": 22.002577945863187
+      },
+      "audiobox": {
+        "CE": 7.431942939758301,
+        "CU": 7.772144794464111,
+        "PC": 6.275149345397949,
+        "PQ": 8.34012222290039
+      },
+      "pam": {
+        "PAM": 0.9273117780685425,
+        "PAM_segments": [
+          0.9242125749588013,
+          0.9304109811782837
+        ],
+        "artifact_prompt_probe": 0.9839826822280884,
+        "artifact_prompt_segments": [
+          0.9773674607276917,
+          0.9905979037284851
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9273117780685425,
+        "artifact_score": 0.9839826822280884
+      },
+      "songeval": {
+        "Coherence": 2.3087220191955566,
+        "Musicality": 2.4552011489868164,
+        "Memorability": 2.3200621604919434,
+        "Clarity": 2.311716079711914,
+        "Naturalness": 2.3873579502105713,
+        "mean": 2.3566118717193603
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.431942939758301,
+          "CU": 7.772144794464111,
+          "PC": 6.275149345397949,
+          "PQ": 8.34012222290039
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.1965624187141657,
+        "pam_seconds": 0.06532133370637894,
+        "signal_seconds": 0.08715658262372017,
+        "songeval_seconds": 1.0526539329439402
+      }
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "label": "录制参考 · Vibe Ace 器乐组合 / gain_minus20db",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "141a99fae1dae7bc3e805b98ad323a1b26e65144c6180f6270f4248eb8647670",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "gain_minus20db",
+      "transform_description": "Amplitude ×0.1; no content change",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace",
+      "audio": "audio/naturalness-20261104/ref_vibeace__gain_minus20db.mp3",
+      "mp3_sha256": "e5aebe0e56fadda7125d2bb80d8d4253520902fc8fa8237275b73dc703dd9e9c",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -37.947403699419645,
+        "peak": 0.07376961410045624,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7912731829483427,
+        "active_fraction": 0.94,
+        "crest_db": 15.304953931558426,
+        "valid": true,
+        "flatness": 0.0005898904411883785,
+        "band_3_8khz_share": 0.003312956457304645,
+        "max_persistent_peak_fraction_3_8khz": 0.27555555555555555,
+        "high_band_share": 0.0013364560500959588,
+        "rolloff95_hz": 351.5625,
+        "spectral_flux": 0.07909189999015796,
+        "envelope_modulation_20_100_share": 0.30219881110163294,
+        "envelope_periodicity": 0.688811566292164,
+        "dynamic_range_db": 12.673427224319248
+      },
+      "audiobox": {
+        "CE": 7.463895797729492,
+        "CU": 8.210433959960938,
+        "PC": 5.486865043640137,
+        "PQ": 8.286192893981934
+      },
+      "pam": {
+        "PAM": 0.9782233238220215,
+        "PAM_segments": [
+          0.969147801399231,
+          0.9872987866401672
+        ],
+        "artifact_prompt_probe": 0.9993463754653931,
+        "artifact_prompt_segments": [
+          0.999165415763855,
+          0.9995273351669312
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9782233238220215,
+        "artifact_score": 0.9993463754653931
+      },
+      "songeval": {
+        "Coherence": 2.726853132247925,
+        "Musicality": 2.617400884628296,
+        "Memorability": 2.354369878768921,
+        "Clarity": 2.3352715969085693,
+        "Naturalness": 2.3343400955200195,
+        "mean": 2.473647117614746
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.463895797729492,
+          "CU": 8.210433959960938,
+          "PC": 5.486865043640137,
+          "PQ": 8.286192893981934
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19507191702723503,
+        "pam_seconds": 0.06535470858216286,
+        "signal_seconds": 0.08701133169233799,
+        "songeval_seconds": 1.045319420285523
+      }
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "label": "录制参考 · Vibe Ace 器乐组合 / lowpass_3khz",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "2e45b6e19c6ecac8c7a678c0c227195e594bd7c8f1afd234b063352ebc1cbc73",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "lowpass_3khz",
+      "transform_description": "6th order Butterworth zero-phase 3 kHz lowpass",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace",
+      "audio": "audio/naturalness-20261104/ref_vibeace__lowpass_3khz.mp3",
+      "mp3_sha256": "053053661b1fc92a022439bcfff076c4f5da8550a989e3e4473a53fc4248ac83",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -17.956157559992278,
+        "peak": 0.7372658848762512,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7909166495271892,
+        "active_fraction": 1.0,
+        "crest_db": 15.30864032966485,
+        "valid": true,
+        "flatness": 3.082811311503889e-10,
+        "band_3_8khz_share": 4.4390007232894676e-05,
+        "max_persistent_peak_fraction_3_8khz": 0.34408602150537637,
+        "high_band_share": 3.801528106187877e-08,
+        "rolloff95_hz": 328.125,
+        "spectral_flux": 0.08747166676733274,
+        "envelope_modulation_20_100_share": 0.30270878210623875,
+        "envelope_periodicity": 0.6883030029771908,
+        "dynamic_range_db": 14.044806070171031
+      },
+      "audiobox": {
+        "CE": 7.408725738525391,
+        "CU": 7.908018112182617,
+        "PC": 5.372376441955566,
+        "PQ": 7.820939540863037
+      },
+      "pam": {
+        "PAM": 0.9686552286148071,
+        "PAM_segments": [
+          0.9600799083709717,
+          0.9772304892539978
+        ],
+        "artifact_prompt_probe": 0.9944527745246887,
+        "artifact_prompt_segments": [
+          0.9920734763145447,
+          0.9968320727348328
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9686552286148071,
+        "artifact_score": 0.9944527745246887
+      },
+      "songeval": {
+        "Coherence": 2.877032995223999,
+        "Musicality": 2.862455368041992,
+        "Memorability": 2.534491539001465,
+        "Clarity": 2.469073534011841,
+        "Naturalness": 2.4884254932403564,
+        "mean": 2.6462957859039307
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.408725738525391,
+          "CU": 7.908018112182617,
+          "PC": 5.372376441955566,
+          "PQ": 7.820939540863037
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19617183320224285,
+        "pam_seconds": 0.06579029187560081,
+        "signal_seconds": 0.0900302492082119,
+        "songeval_seconds": 1.0503420010209084
+      }
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "label": "录制参考 · Vibe Ace 器乐组合 / compressed",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "a09af057219ccbe323d16cc000942265947d48c03900d23bdd918bc96426bab5",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "compressed",
+      "transform_description": "Static threshold 0.08, 4:1 amplitude compression; RMS matched",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace",
+      "audio": "audio/naturalness-20261104/ref_vibeace__compressed.mp3",
+      "mp3_sha256": "ef768967f423f3ea7e09fcf484039c4332bcacb3810ca1c9020cfa7cd40a4658",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -17.947403698608394,
+        "peak": 0.2561795711517334,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.8092485812557009,
+        "active_fraction": 1.0,
+        "crest_db": 6.1182935846259765,
+        "valid": true,
+        "flatness": 0.0008996041621815798,
+        "band_3_8khz_share": 0.003521152555597875,
+        "max_persistent_peak_fraction_3_8khz": 0.19017094017094016,
+        "high_band_share": 0.0013670670071096657,
+        "rolloff95_hz": 351.5625,
+        "spectral_flux": 0.07581734196502578,
+        "envelope_modulation_20_100_share": 0.3911314894498928,
+        "envelope_periodicity": 0.5797672078411686,
+        "dynamic_range_db": 6.739607670007292
+      },
+      "audiobox": {
+        "CE": 6.01032829284668,
+        "CU": 7.111305236816406,
+        "PC": 5.661640167236328,
+        "PQ": 6.451897621154785
+      },
+      "pam": {
+        "PAM": 0.9605007171630859,
+        "PAM_segments": [
+          0.9429253339767456,
+          0.9780760407447815
+        ],
+        "artifact_prompt_probe": 0.994881272315979,
+        "artifact_prompt_segments": [
+          0.9928444027900696,
+          0.9969180822372437
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9605007171630859,
+        "artifact_score": 0.994881272315979
+      },
+      "songeval": {
+        "Coherence": 2.7644896507263184,
+        "Musicality": 2.7615439891815186,
+        "Memorability": 2.5473380088806152,
+        "Clarity": 2.452533721923828,
+        "Naturalness": 2.4398391246795654,
+        "mean": 2.5931488990783693
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 6.01032829284668,
+          "CU": 7.111305236816406,
+          "PC": 5.661640167236328,
+          "PQ": 6.451897621154785
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.20912366546690464,
+        "pam_seconds": 0.06639816798269749,
+        "signal_seconds": 0.0891070831567049,
+        "songeval_seconds": 1.0375935696065426
+      }
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "label": "录制参考 · Vibe Ace 器乐组合 / distorted",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "ba5b9c2377eaebec39ba5bd3d0383f41f74ca64c7eee8c079b0ff1eeefe93953",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "distorted",
+      "transform_description": "Hard clip gain8 threshold0.15; RMS matched",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace",
+      "audio": "audio/naturalness-20261104/ref_vibeace__distorted.mp3",
+      "mp3_sha256": "62a1e46a4dafbd573f9ef2fd6f12c4ae3a4308924b61a345a00cfd0612af3718",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -17.947403858395507,
+        "peak": 0.1347605586051941,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.760817533678322,
+        "active_fraction": 1.0,
+        "crest_db": 0.5386599091260684,
+        "valid": true,
+        "flatness": 0.0045691308993920385,
+        "band_3_8khz_share": 0.008081891952446662,
+        "max_persistent_peak_fraction_3_8khz": 0.02564102564102564,
+        "high_band_share": 0.002822207972586436,
+        "rolloff95_hz": 714.84375,
+        "spectral_flux": 0.06420074535709093,
+        "envelope_modulation_20_100_share": 0.5577436882304682,
+        "envelope_periodicity": 0.3918946268434213,
+        "dynamic_range_db": 2.813205467442703
+      },
+      "audiobox": {
+        "CE": 3.3900742530822754,
+        "CU": 3.2620270252227783,
+        "PC": 5.529329299926758,
+        "PQ": 3.56021785736084
+      },
+      "pam": {
+        "PAM": 0.37192028760910034,
+        "PAM_segments": [
+          0.2557956576347351,
+          0.4880448877811432
+        ],
+        "artifact_prompt_probe": 0.7250627875328064,
+        "artifact_prompt_segments": [
+          0.6045031547546387,
+          0.8456224203109741
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.37192028760910034,
+        "artifact_score": 0.7250627875328064
+      },
+      "songeval": {
+        "Coherence": 2.4297327995300293,
+        "Musicality": 2.4204721450805664,
+        "Memorability": 2.3070943355560303,
+        "Clarity": 2.1123950481414795,
+        "Naturalness": 2.0948193073272705,
+        "mean": 2.272902727127075
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.3900742530822754,
+          "CU": 3.2620270252227783,
+          "PC": 5.529329299926758,
+          "PQ": 3.56021785736084
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19767162576317787,
+        "pam_seconds": 0.06572974845767021,
+        "signal_seconds": 0.08950858190655708,
+        "songeval_seconds": 1.043935926631093
+      }
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "label": "录制参考 · Vibe Ace 器乐组合 / metallic_mod40hz",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "c69cd92acc9b7f26afd19c0d1deb91160dd65af4a469b973f21cbec6360f3aef",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "metallic_mod40hz",
+      "transform_description": "40 Hz amplitude modulation, envelope0.10..1.0; no added gain, compare equal-RMS mod40hz_gain_control; not a naturalness label",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace__mod40hz_gain_control",
+      "audio": "audio/naturalness-20261104/ref_vibeace__metallic_mod40hz.mp3",
+      "mp3_sha256": "45e3e11ef1b1a6a25b85bb69b2584174ed699ac02640dc3eaf953fa5887e3c3a",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.857560494908398,
+        "peak": 0.697761595249176,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7938176949723118,
+        "active_fraction": 1.0,
+        "crest_db": 18.73170173953035,
+        "valid": true,
+        "flatness": 0.0006139445239538416,
+        "band_3_8khz_share": 0.003357814193055245,
+        "max_persistent_peak_fraction_3_8khz": 0.18141592920353983,
+        "high_band_share": 0.0014042513122787938,
+        "rolloff95_hz": 351.5625,
+        "spectral_flux": 0.07635185121238978,
+        "envelope_modulation_20_100_share": 0.7049280562362499,
+        "envelope_periodicity": 0.7337851023498585,
+        "dynamic_range_db": 14.430684031460451
+      },
+      "audiobox": {
+        "CE": 4.271551609039307,
+        "CU": 6.488806247711182,
+        "PC": 4.691326141357422,
+        "PQ": 6.392516136169434
+      },
+      "pam": {
+        "PAM": 0.7970004677772522,
+        "PAM_segments": [
+          0.7161280512809753,
+          0.877872884273529
+        ],
+        "artifact_prompt_probe": 0.9664263725280762,
+        "artifact_prompt_segments": [
+          0.9464858770370483,
+          0.9863668084144592
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.7970004677772522,
+        "artifact_score": 0.9664263725280762
+      },
+      "songeval": {
+        "Coherence": 2.6733574867248535,
+        "Musicality": 2.560875177383423,
+        "Memorability": 2.341435432434082,
+        "Clarity": 2.3558247089385986,
+        "Naturalness": 2.2322559356689453,
+        "mean": 2.4327497482299805
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 4.271551609039307,
+          "CU": 6.488806247711182,
+          "PC": 4.691326141357422,
+          "PQ": 6.392516136169434
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.1950987484306097,
+        "pam_seconds": 0.06553941778838634,
+        "signal_seconds": 0.08454054221510887,
+        "songeval_seconds": 1.0555085791274905
+      }
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "label": "录制参考 · Vibe Ace 器乐组合 / mod40hz_gain_control",
+      "model": "recorded music reference",
+      "checkpoint": "not applicable",
+      "input_id": "librosa example vibeace",
+      "pair_group": null,
+      "kind": "perturbation",
+      "source_asset": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+      "source_original_sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779",
+      "source_sample_rate": 44100,
+      "source_duration": 61.45886621315193,
+      "source_encoding": "OGG Vorbis; lossy distribution source",
+      "source_url": "https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace",
+      "credit": "Kevin MacLeod",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/",
+      "license_metadata_url": "https://librosa.org/data/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+      "rights": "CC-BY-3.0",
+      "selection_reason": "Paired reward-shortcut probe; no human ground truth",
+      "excerpt_sha256": "a934f9dcb9cae86d46959bd1c99b1fc7f9810abb648996d055d0bea3f1f6d6a8",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "offset_s": 10.0,
+      "transform": "mod40hz_gain_control",
+      "transform_description": "Pure gain 0.637517572509; RMS matches mod40Hz stimulus, isolates modulation from gain",
+      "base_id": "ref_vibeace",
+      "matched_comparator_id": "ref_vibeace",
+      "audio": "audio/naturalness-20261104/ref_vibeace__mod40hz_gain_control.mp3",
+      "mp3_sha256": "db45e47c78f283a03b77c7e6f498b651704299322d8d0682244d242cfe95cd10",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.857560496287146,
+        "peak": 0.4702942669391632,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 0.7912731829869253,
+        "active_fraction": 1.0,
+        "crest_db": 15.304954187650932,
+        "valid": true,
+        "flatness": 0.0005898894673092026,
+        "band_3_8khz_share": 0.003312956460869945,
+        "max_persistent_peak_fraction_3_8khz": 0.27555555555555555,
+        "high_band_share": 0.0013364560538276968,
+        "rolloff95_hz": 351.5625,
+        "spectral_flux": 0.07909190009813018,
+        "envelope_modulation_20_100_share": 0.30219881105157226,
+        "envelope_periodicity": 0.688811566257493,
+        "dynamic_range_db": 13.83123543108687
+      },
+      "audiobox": {
+        "CE": 7.689525604248047,
+        "CU": 8.190364837646484,
+        "PC": 5.567773818969727,
+        "PQ": 8.172402381896973
+      },
+      "pam": {
+        "PAM": 0.9803022146224976,
+        "PAM_segments": [
+          0.974294126033783,
+          0.9863102436065674
+        ],
+        "artifact_prompt_probe": 0.9995046854019165,
+        "artifact_prompt_segments": [
+          0.9993878602981567,
+          0.9996215105056763
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.9803022146224976,
+        "artifact_score": 0.9995046854019165
+      },
+      "songeval": {
+        "Coherence": 2.9028289318084717,
+        "Musicality": 2.8688342571258545,
+        "Memorability": 2.559443473815918,
+        "Clarity": 2.546823024749756,
+        "Naturalness": 2.517784833908081,
+        "mean": 2.6791429042816164
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.689525604248047,
+          "CU": 8.190364837646484,
+          "PC": 5.567773818969727,
+          "PQ": 8.172402381896973
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19822637364268303,
+        "pam_seconds": 0.0664785411208868,
+        "signal_seconds": 0.0867890827357769,
+        "songeval_seconds": 1.0460636653006077
+      }
+    },
+    {
+      "id": "control_silence",
+      "label": "静音",
+      "model": "deterministic additive synthesis",
+      "checkpoint": "not applicable",
+      "input_id": "five ascending/descending notes",
+      "pair_group": "synth-brightness",
+      "kind": "constructed_control",
+      "source_asset": null,
+      "source_original_sha256": "be59652d30ea899715ee44ace8b1f772a2ba853d6cf922bc65946d19087767e8",
+      "rights": "Original constructed signal; CC0-1.0",
+      "selection_reason": "Intended style/silence counterexample; not a perceptual naturalness label",
+      "excerpt_sha256": "be59652d30ea899715ee44ace8b1f772a2ba853d6cf922bc65946d19087767e8",
+      "duration_s": 10,
+      "sample_rate": 48000,
+      "transform": "silence",
+      "audio": "audio/naturalness-20261104/control_silence.mp3",
+      "mp3_sha256": "c99f934007a9bafd222829d7d027e9b834f54e8c72c58eaba0889492be846c1b",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -240.0,
+        "peak": 0.0,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": null,
+        "active_fraction": 0.0,
+        "crest_db": 0.0,
+        "valid": false,
+        "flatness": null,
+        "high_band_share": null,
+        "rolloff95_hz": null,
+        "spectral_flux": null,
+        "envelope_modulation_20_100_share": null,
+        "envelope_periodicity": null,
+        "dynamic_range_db": null,
+        "band_3_8khz_share": null,
+        "max_persistent_peak_fraction_3_8khz": null
+      },
+      "audiobox": {
+        "CE": 3.2351701259613037,
+        "CU": 6.453464508056641,
+        "PC": 1.703304648399353,
+        "PQ": 6.73491907119751
+      },
+      "pam": {
+        "PAM": 0.3535267114639282,
+        "PAM_segments": [
+          0.3535267114639282,
+          0.3535267114639282
+        ],
+        "artifact_prompt_probe": 0.9423824548721313,
+        "artifact_prompt_segments": [
+          0.9423824548721313,
+          0.9423824548721313
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.3535267114639282,
+        "artifact_score": 0.9423824548721313
+      },
+      "songeval": {
+        "Coherence": 1.0629881620407104,
+        "Musicality": 1.0784552097320557,
+        "Memorability": 1.0616832971572876,
+        "Clarity": 1.0518773794174194,
+        "Naturalness": 1.0670199394226074,
+        "mean": 1.064404797554016
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.2351701259613037,
+          "CU": 6.453464508056641,
+          "PC": 1.703304648399353,
+          "PQ": 6.73491907119751
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.19575170800089836,
+        "pam_seconds": 0.06628316827118397,
+        "signal_seconds": 0.010018916800618172,
+        "songeval_seconds": 1.0487419720739126
+      }
+    },
+    {
+      "id": "control_normal_synth",
+      "label": "正常加法合成器音符",
+      "model": "deterministic additive synthesis",
+      "checkpoint": "not applicable",
+      "input_id": "five ascending/descending notes",
+      "pair_group": "synth-brightness",
+      "kind": "constructed_control",
+      "source_asset": null,
+      "source_original_sha256": "ba1865a4a13d2406c733530afaeea0e7ddd4b0ce030cfd3b1e4bf3d1beffa1fd",
+      "rights": "Original constructed signal; CC0-1.0",
+      "selection_reason": "Intended style/silence counterexample; not a perceptual naturalness label",
+      "excerpt_sha256": "ba1865a4a13d2406c733530afaeea0e7ddd4b0ce030cfd3b1e4bf3d1beffa1fd",
+      "duration_s": 10,
+      "sample_rate": 48000,
+      "transform": "normal_synth",
+      "audio": "audio/naturalness-20261104/control_normal_synth.mp3",
+      "mp3_sha256": "389e59c1a541d9ba39ecce8c265326dae8c5d508755b1873cef402da615fe2bb",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -21.38159819357016,
+        "peak": 0.12560462951660156,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 1.0,
+        "active_fraction": 1.0,
+        "crest_db": 3.361711130711662,
+        "valid": true,
+        "flatness": 2.8987775125817136e-12,
+        "band_3_8khz_share": 2.483140066054875e-10,
+        "max_persistent_peak_fraction_3_8khz": null,
+        "high_band_share": 3.6281113126650592e-12,
+        "rolloff95_hz": 656.25,
+        "spectral_flux": 0.006208764670481791,
+        "envelope_modulation_20_100_share": 0.0013376944120115227,
+        "envelope_periodicity": 0.7611856890103204,
+        "dynamic_range_db": 0.16473785404256347
+      },
+      "audiobox": {
+        "CE": 4.344609260559082,
+        "CU": 6.5286455154418945,
+        "PC": 1.8224706649780273,
+        "PQ": 7.185163497924805
+      },
+      "pam": {
+        "PAM": 0.7655285596847534,
+        "PAM_segments": [
+          0.7732210755348206,
+          0.7578359842300415
+        ],
+        "artifact_prompt_probe": 0.9961608648300171,
+        "artifact_prompt_segments": [
+          0.995206892490387,
+          0.997114896774292
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.7655285596847534,
+        "artifact_score": 0.9961608648300171
+      },
+      "songeval": {
+        "Coherence": 2.308727264404297,
+        "Musicality": 2.1479032039642334,
+        "Memorability": 2.344771146774292,
+        "Clarity": 2.123370885848999,
+        "Naturalness": 2.0988447666168213,
+        "mean": 2.2047234535217286
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 4.344609260559082,
+          "CU": 6.5286455154418945,
+          "PC": 1.8224706649780273,
+          "PQ": 7.185163497924805
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.2035977505147457,
+        "pam_seconds": 0.06658158265054226,
+        "signal_seconds": 0.07868028990924358,
+        "songeval_seconds": 1.0540922740474343
+      }
+    },
+    {
+      "id": "control_bright_synth",
+      "label": "明亮谐波合成器音符",
+      "model": "deterministic additive synthesis",
+      "checkpoint": "not applicable",
+      "input_id": "five ascending/descending notes",
+      "pair_group": "synth-brightness",
+      "kind": "constructed_control",
+      "source_asset": null,
+      "source_original_sha256": "ee90d0e4a52d266110c9051faedc921580531750dd7d3071fefc2645d3fea7e9",
+      "rights": "Original constructed signal; CC0-1.0",
+      "selection_reason": "Intended style/silence counterexample; not a perceptual naturalness label",
+      "excerpt_sha256": "ee90d0e4a52d266110c9051faedc921580531750dd7d3071fefc2645d3fea7e9",
+      "duration_s": 10,
+      "sample_rate": 48000,
+      "transform": "bright_synth",
+      "audio": "audio/naturalness-20261104/control_bright_synth.mp3",
+      "mp3_sha256": "1491b7445420f0e41f85297a9b578f285bd34d2e44f0577055d73547f1a55147",
+      "listening_copy": "MP3 transcode; scores refer to the archived float WAV excerpt, not this lossy file",
+      "human_rating": null,
+      "signal": {
+        "duration_s": 10.0,
+        "sample_rate": 48000,
+        "channels": 2,
+        "rms_dbfs": -20.202947058829604,
+        "peak": 0.16731815040111542,
+        "near_full_scale_fraction": 0.0,
+        "out_of_range_fraction": 0.0,
+        "mono_fold_down_energy_ratio": 1.0,
+        "active_fraction": 1.0,
+        "crest_db": 4.673808160383107,
+        "valid": true,
+        "flatness": 5.079336305053821e-10,
+        "band_3_8khz_share": 0.01864625088559406,
+        "max_persistent_peak_fraction_3_8khz": 0.8012820512820513,
+        "high_band_share": 6.0198404736818136e-09,
+        "rolloff95_hz": 1664.0625,
+        "spectral_flux": 0.003467677171380197,
+        "envelope_modulation_20_100_share": 0.0013458495329285978,
+        "envelope_periodicity": 0.6970291891703417,
+        "dynamic_range_db": 0.19946974659407246
+      },
+      "audiobox": {
+        "CE": 3.3281373977661133,
+        "CU": 6.774317741394043,
+        "PC": 2.0695369243621826,
+        "PQ": 7.180200099945068
+      },
+      "pam": {
+        "PAM": 0.6942621469497681,
+        "PAM_segments": [
+          0.5873956680297852,
+          0.801128625869751
+        ],
+        "artifact_prompt_probe": 0.995743989944458,
+        "artifact_prompt_segments": [
+          0.993680477142334,
+          0.9978074431419373
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ],
+        "score": 0.6942621469497681,
+        "artifact_score": 0.995743989944458
+      },
+      "songeval": {
+        "Coherence": 2.184797763824463,
+        "Musicality": 2.142430067062378,
+        "Memorability": 2.198648691177368,
+        "Clarity": 2.0271618366241455,
+        "Naturalness": 2.061525821685791,
+        "mean": 2.1229128360748293
+      },
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.3281373977661133,
+          "CU": 6.774317741394043,
+          "PC": 2.0695369243621826,
+          "PQ": 7.180200099945068
+        }
+      ],
+      "songeval_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0
+        }
+      ],
+      "timing": {
+        "audiobox_seconds": 0.1977477502077818,
+        "pam_seconds": 0.06685562618076801,
+        "signal_seconds": 0.07467441633343697,
+        "songeval_seconds": 1.0434509459882975
+      }
+    }
+  ],
+  "methods": [
+    {
+      "name": "Audiobox Aesthetics PQ",
+      "url": "https://github.com/facebookresearch/audiobox-aesthetics",
+      "measures": "PQ/PC/CE/CU, trained scale 1-10; larger is better per axis but PC is complexity；speech/music/sound technical production quality",
+      "status": "本轮已运行25条",
+      "limitations": "mono and 16k miss stereo and >8k artifacts; production quality is broader than unnatural synthetic timbre；weights: CC-BY-4.0"
+    },
+    {
+      "name": "PAM",
+      "url": "https://github.com/soham97/PAM",
+      "measures": "softmax clean-vs-noisy/artifacts CLAP similarity, 0-1 high clean; uncalibrated；TTA/TTM/TTS/DNS general artifacts/noise",
+      "status": "本轮已运行25条",
+      "limitations": "prompt/content bias; upstream stereo reshape; cannot interpret output as human defect probability；weights: MS-PL official msclap model card"
+    },
+    {
+      "name": "Frozen encoder + domain artifact preference head",
+      "url": null,
+      "measures": "Bradley-Terry scalar; calibrated naturalness only after held-out human labels；user-defined unwanted synthetic artifacts in generated music",
+      "status": "接口已实现，未训练",
+      "limitations": "not trained/validated yet; style and generator leakage require grouped splits；weights: encoder dependent; MuQ and MERT are non-commercial"
+    },
+    {
+      "name": "MuQ-Eval A1",
+      "url": "https://github.com/dgtql/MuQ-Eval",
+      "measures": "MI and audio-only TA, nominal 1-5；generated music overall quality",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "single-dataset CV not new-model generalization; audio-only TA cannot check actual text；weights: head declared MIT; MuQ backbone CC-BY-NC-4.0"
+    },
+    {
+      "name": "MuQ / MuQ-MuLan",
+      "url": "https://github.com/tencent-ailab/MuQ",
+      "measures": "embeddings/similarity, not quality by default；music representation and music-text similarity",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "semantic embeddings can ignore subtle artifacts and encode instrument/style；weights: CC-BY-NC-4.0"
+    },
+    {
+      "name": "SongEval",
+      "url": "https://github.com/ASLP-lab/SongEval",
+      "measures": "Exact API keys/order: Coherence, Musicality, Memorability, Clarity, Naturalness; tanh*2+3 yields (1,5)；full-song aesthetics, vocals and musicality",
+      "status": "本轮已运行25条",
+      "limitations": "Paper/README Naturalness means vocal breathing and phrasing; Clarity means song structure; neither is a validated full-mix artifact score. Short crops miss structure.；weights: CC-BY-NC-SA-4.0 project; MuQ dependency separate"
+    },
+    {
+      "name": "MuseCritic",
+      "url": "https://github.com/WuqnEl/MuseCritic",
+      "measures": "five continuous scores in (1,5), critique；long-form song multi-aspect aesthetics",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "vocal naturalness narrower than unwanted electronic artifacts; critique cost and potential hallucination；weights: Apache-2.0 official HF card"
+    },
+    {
+      "name": "CMI-RM",
+      "url": "https://github.com/Haiwen-Xia/CMI-RewardBench",
+      "measures": "alignment and quality/musicality scalar；musicality and compositional instruction alignment",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "toolkit license does not cover weights; overall quality not defect specificity；weights: CC-BY-NC-4.0 HF card"
+    },
+    {
+      "name": "SongBench",
+      "url": "https://github.com/Tencent/SongBench",
+      "measures": "seven per-aspect scores；song vocal/instrument/melody/structure/arrangement/mixing/musicality",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "instrument realism can encode acoustic/electronic style; unavailable for production under published terms；weights: same SongBench terms plus dependencies"
+    },
+    {
+      "name": "TuneJury",
+      "url": "https://github.com/yonghyunk1m/TuneJury",
+      "measures": "instance-level preference scalar；instrumental music preference",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "instrumental scope and content/style preferences; aggressive optimization may trade fidelity；weights: primary CC-BY-NC-4.0; A1_clap_audio_only Apache-2.0; encoders separate"
+    },
+    {
+      "name": "SingMOS / SingMOS-Pro",
+      "url": "https://github.com/South-Twilight/SingMOS",
+      "measures": "predicted singing MOS；dry singing voice quality",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "mixture out-of-domain; separator artifacts confound separated vocal scores；weights: public torch.hub checkpoints; verify backbone and checkpoint terms separately"
+    },
+    {
+      "name": "UTMOS",
+      "url": "https://github.com/sarulab-speech/UTMOS22",
+      "measures": "speech MOS；speech synthesis / voice conversion MOS",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "music may be penalized as non-speech；weights: checkpoint and fairseq upstream terms should be retained"
+    },
+    {
+      "name": "DNSMOS P.835",
+      "url": "https://github.com/microsoft/DNS-Challenge/tree/master/DNSMOS",
+      "measures": "SIG, BAK, OVRL predicted quality；speech noise suppression",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "desired music treated as interference/background; not music naturalness；weights: CC-BY-4.0 repository; keep artifact attribution"
+    },
+    {
+      "name": "NISQA / NISQA-TTS",
+      "url": "https://github.com/gabrielmittag/NISQA",
+      "measures": "quality/noisiness/coloration/discontinuity/loudness; TTS naturalness uses separate checkpoint；transmitted speech / synthetic speech naturalness",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "domain mismatch and separate naturalness checkpoint; code license is not weights license；weights: CC-BY-NC-SA-4.0"
+    },
+    {
+      "name": "Distill-MOS",
+      "url": "https://github.com/microsoft/Distill-MOS",
+      "measures": "speech MOS；English speech quality",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "does not validate mixed-music artificiality；weights: MIT official model card"
+    },
+    {
+      "name": "FAD / FADtk",
+      "url": "https://github.com/microsoft/fadtk",
+      "measures": "distribution distance; optional per-song outlier score; lower is closer；music/audio distribution comparison",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "genre/content/reference selection dominate; no direct per-clip unnaturalness interpretation；weights: embedding-model dependent"
+    },
+    {
+      "name": "ViSQOL Audio",
+      "url": "https://github.com/google/visqol",
+      "measures": "MOS-LQO approx 1-4.75; larger more similar；same-content audio fidelity",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "another song cannot be a fidelity reference for a novel generation；weights: bundled official models under repository terms"
+    },
+    {
+      "name": "SONICS SpecTTTra",
+      "url": "https://github.com/awsaf49/sonics",
+      "measures": "synthetic provenance classification score, not artifact severity；AI-generated vs human song provenance detection",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "synthetic origin is not perceived unnaturalness; imperceptible fingerprints and acquisition/domain shift can dominate；weights: inspect selected checkpoint card; dataset CC-BY-NC-4.0 with extra no-competing-product terms"
+    },
+    {
+      "name": "MusicDET",
+      "url": "https://github.com/Chaolei98/MusicDET",
+      "measures": "OOD/AI score, not human quality；AI-generated detection via real-music feature density",
+      "status": "一手核实，未在本轮运行",
+      "limitations": "real-music density also detects rare genres/timbres and corpus shift; no proof that lower AI score means better music；weights: verify chosen checkpoint/backbone terms separately"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "comparator_id": "muse_baseline",
+      "label": "muse 原始起点 / gain_minus20db vs muse 原始起点",
+      "observation": "PQ Δ +0.006；PAM Δ -0.145；SongEval Musicality Δ -0.141",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": 0.005711555480957031,
+      "pam_delta": -0.14459258317947388,
+      "musicality_delta": -0.14096736907958984
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "comparator_id": "muse_baseline",
+      "label": "muse 原始起点 / lowpass_3khz vs muse 原始起点",
+      "observation": "PQ Δ -0.262；PAM Δ -0.333；SongEval Musicality Δ +0.085",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -0.2622346878051758,
+      "pam_delta": -0.3331705927848816,
+      "musicality_delta": 0.08460021018981934
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "comparator_id": "muse_baseline",
+      "label": "muse 原始起点 / compressed vs muse 原始起点",
+      "observation": "PQ Δ -0.067；PAM Δ -0.028；SongEval Musicality Δ +0.075",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -0.06720924377441406,
+      "pam_delta": -0.028213977813720703,
+      "musicality_delta": 0.07538938522338867
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "comparator_id": "muse_baseline",
+      "label": "muse 原始起点 / distorted vs muse 原始起点",
+      "observation": "PQ Δ -0.723；PAM Δ -0.080；SongEval Musicality Δ +0.097",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -0.7231979370117188,
+      "pam_delta": -0.08026808500289917,
+      "musicality_delta": 0.0971670150756836
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "comparator_id": "muse_baseline__mod40hz_gain_control",
+      "label": "muse 原始起点 / metallic_mod40hz vs muse 原始起点 / mod40hz_gain_control",
+      "observation": "PQ Δ -1.724；PAM Δ -0.078；SongEval Musicality Δ -0.239",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -1.7240653038024902,
+      "pam_delta": -0.07804626226425171,
+      "musicality_delta": -0.2386918067932129
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "comparator_id": "muse_baseline",
+      "label": "muse 原始起点 / mod40hz_gain_control vs muse 原始起点",
+      "observation": "PQ Δ +0.021；PAM Δ -0.016；SongEval Musicality Δ -0.034",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": 0.021453857421875,
+      "pam_delta": -0.01589953899383545,
+      "musicality_delta": -0.03416585922241211
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "comparator_id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合 / gain_minus20db vs 录制参考 · Vibe Ace 器乐组合",
+      "observation": "PQ Δ +0.166；PAM Δ -0.003；SongEval Musicality Δ -0.318",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": 0.16563034057617188,
+      "pam_delta": -0.0026891231536865234,
+      "musicality_delta": -0.3180973529815674
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "comparator_id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合 / lowpass_3khz vs 录制参考 · Vibe Ace 器乐组合",
+      "observation": "PQ Δ -0.300；PAM Δ -0.012；SongEval Musicality Δ -0.073",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -0.2996230125427246,
+      "pam_delta": -0.012257218360900879,
+      "musicality_delta": -0.0730428695678711
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "comparator_id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合 / compressed vs 录制参考 · Vibe Ace 器乐组合",
+      "observation": "PQ Δ -1.669；PAM Δ -0.020；SongEval Musicality Δ -0.174",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -1.6686649322509766,
+      "pam_delta": -0.02041172981262207,
+      "musicality_delta": -0.17395424842834473
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "comparator_id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合 / distorted vs 录制参考 · Vibe Ace 器乐组合",
+      "observation": "PQ Δ -4.560；PAM Δ -0.609；SongEval Musicality Δ -0.515",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -4.560344696044922,
+      "pam_delta": -0.6089921593666077,
+      "musicality_delta": -0.5150260925292969
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "comparator_id": "ref_vibeace__mod40hz_gain_control",
+      "label": "录制参考 · Vibe Ace 器乐组合 / metallic_mod40hz vs 录制参考 · Vibe Ace 器乐组合 / mod40hz_gain_control",
+      "observation": "PQ Δ -1.780；PAM Δ -0.183；SongEval Musicality Δ -0.308",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": -1.779886245727539,
+      "pam_delta": -0.18330174684524536,
+      "musicality_delta": -0.30795907974243164
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "comparator_id": "ref_vibeace",
+      "label": "录制参考 · Vibe Ace 器乐组合 / mod40hz_gain_control vs 录制参考 · Vibe Ace 器乐组合",
+      "observation": "PQ Δ +0.052；PAM Δ -0.001；SongEval Musicality Δ -0.067",
+      "interpretation": "同源已知变换的自动响应；不是人工缺陷标签。AM只与等RMS纯增益对照比较。",
+      "pq_delta": 0.05183982849121094,
+      "pam_delta": -0.0006102323532104492,
+      "musicality_delta": -0.06666398048400879
+    },
+    {
+      "label": "静音",
+      "observation": "PQ 6.735；PAM 0.354；自拟prompt 0.942",
+      "interpretation": "评分器仍输出数值；整条静音应由任务有效性检查拒绝，不能用高PQ代表自然。"
+    },
+    {
+      "label": "正常谐波合成器 → 明亮版本",
+      "observation": "PQ 7.185→7.180；PAM 0.766→0.694",
+      "interpretation": "两条是设计为合法音色的控制信号；没有人类标签，不能宣布误判率。但PAM对明亮度的响应值得听测。"
+    },
+    {
+      "label": "自拟自然/伪影prompt对比",
+      "observation": "16/25 分数 >0.99",
+      "interpretation": "明显饱和且静音也高；本轮淘汰为直接reward，保留失败诊断。"
+    }
+  ],
+  "resources": [
+    {
+      "method": "audiobox",
+      "device": "Apple M4 Mac mini, 24 GiB unified memory, macOS arm64 / CPU4线程",
+      "timing": "10s片段中位 0.196s；初始化 1.13s；进程峰值RSS 1.35GB",
+      "notes": "Four CPU threads, sequential batch-one files. Model initialization excludes Python imports and downloads; per-file scoring excludes file decoding, includes model preprocessing/forward, output serialization preparation and SHA256. PAM includes two overlapping 7s windows plus cached custom text prompts and embedding write. No concurrent scorer process, no GPU/MPS. OS weight pages may already be cached."
+    },
+    {
+      "method": "pam",
+      "device": "Apple M4 Mac mini, 24 GiB unified memory, macOS arm64 / CPU4线程",
+      "timing": "10s片段中位 0.066s；初始化 3.16s；进程峰值RSS 1.80GB",
+      "notes": "Four CPU threads, sequential batch-one files. Model initialization excludes Python imports and downloads; per-file scoring excludes file decoding, includes model preprocessing/forward, output serialization preparation and SHA256. PAM includes two overlapping 7s windows plus cached custom text prompts and embedding write. No concurrent scorer process, no GPU/MPS. OS weight pages may already be cached."
+    },
+    {
+      "method": "SongEval",
+      "device": "Existing Linux x86_64 CPU host / CPU4线程",
+      "timing": "10s片段中位 1.050s；初始化 1.88s；峰值RSS 3.62GB",
+      "notes": "复用现有Linux缓存，未使用GPU。Sequential25 clips, CPU4threads. Includes librosa decode/resample and model forward; init excludes Python imports. Hardware differs from local Audiobox/PAM benchmarks; speed is not a matched leaderboard."
+    },
+    {
+      "method": "Signal diagnostics",
+      "device": "Apple M4 CPU / 单进程",
+      "timing": "10s片段中位 0.088s（含解码）",
+      "notes": "NumPy/SciPy；仅描述性特征，无自然度总分。"
+    }
+  ],
+  "recommendations": [
+    {
+      "name": "1 本域缺陷偏好 head（首选路线，尚未训练）",
+      "formula": "u(x)=wᵀ L2Norm(frozen_embedding(x)); L=−log σ(u(较少不想要人工感)−u(较多人工感))＋L2正则",
+      "calibration": "收集真实同prompt偏好；歌曲/prompt/生成模型分组留出。当前没有已训练权重或自然度概率。",
+      "aggregation": "未来完整曲用10s窗/5s hop，示例0.7mean+0.3Q20；当前只测单个10s片段，尾段时长加权尚未实现。",
+      "weight": "当前λ=0（只记录分数，不改变现有训练）。过听测后再探索0.02/0.05/0.1，不是已选最优权重。",
+      "integration": "现有reward保持运行。reward_adapter.py提供显式重标尺示例，尚未接入或训练。",
+      "risk": "学习电子风格/模型来源捷径、偏好简单音色，伤害合成器、配器丰富度、音乐性。"
+    },
+    {
+      "name": "2 Audiobox PQ＋有效性和独立音乐性约束",
+      "formula": "q=PQ（高分为制作质量）；整条静音/截短/失败先拒绝。PQ不更名为自然度。",
+      "normalization": "冻结独立校准集p05/p95映射[-1,1]；不可每batch重标尺。阈值由baseline和真实听感决定。",
+      "risk": "静音PQ6.735；16k mono前端看不到原始8k以上细节与空间问题。PC/CE不等于音乐性，另报SongEval和人耳。"
+    },
+    {
+      "name": "3 PAM＋DSP仅作候选诊断",
+      "formula": "官方clean/noisy-artifacts prompt softmax均值；本轮7s重叠窗[0,7]/[3,10]。",
+      "risk": "内容/音量/明亮度影响；自拟artifact prompt严重饱和已淘汰。DSP只解释，尚无自然度加权总分。",
+      "next_step": "先标两组AM与等RMS gain、正常/明亮synth、低通与失真，再听三组生成前后结果。"
+    }
+  ],
+  "references": [
+    {
+      "title": "Audiobox Aesthetics PQ",
+      "url": "https://arxiv.org/abs/2502.05139",
+      "code": "https://github.com/facebookresearch/audiobox-aesthetics",
+      "weights": "https://huggingface.co/facebook/audiobox-aesthetics",
+      "note": "quality guardrail and screen"
+    },
+    {
+      "title": "PAM",
+      "url": "https://arxiv.org/abs/2402.00282",
+      "code": "https://github.com/soham97/PAM",
+      "weights": "https://huggingface.co/microsoft/msclap",
+      "note": "exploratory artifact feature"
+    },
+    {
+      "title": "Frozen encoder + domain artifact preference head",
+      "url": "https://arxiv.org/abs/2606.17006",
+      "code": null,
+      "weights": null,
+      "note": "recommended future primary artifact reward"
+    },
+    {
+      "title": "MuQ-Eval A1",
+      "url": "https://arxiv.org/abs/2603.22677",
+      "code": "https://github.com/dgtql/MuQ-Eval",
+      "weights": "https://huggingface.co/zhudi2825/MuQ-Eval-A1",
+      "note": "future independent quality baseline"
+    },
+    {
+      "title": "MuQ / MuQ-MuLan",
+      "url": "https://arxiv.org/abs/2501.01108",
+      "code": "https://github.com/tencent-ailab/MuQ",
+      "weights": "https://huggingface.co/OpenMuQ/MuQ-large-msd-iter",
+      "note": "feature backbone research only when license fits"
+    },
+    {
+      "title": "SongEval",
+      "url": "https://arxiv.org/abs/2505.10793",
+      "code": "https://github.com/ASLP-lab/SongEval",
+      "weights": "https://github.com/ASLP-lab/SongEval/tree/main/ckpt",
+      "note": "reuse existing independent musicality arm"
+    },
+    {
+      "title": "MuseCritic",
+      "url": "https://arxiv.org/abs/2608.11755",
+      "code": "https://github.com/WuqnEl/MuseCritic",
+      "weights": "https://huggingface.co/WuqnEl/MuseCritic",
+      "note": "reuse existing independent critic arm"
+    },
+    {
+      "title": "CMI-RM",
+      "url": "https://arxiv.org/abs/2603.00610",
+      "code": "https://github.com/Haiwen-Xia/CMI-RewardBench",
+      "weights": "https://huggingface.co/HaiwenXia/CMI-RM",
+      "note": "reuse existing alignment/musicality arm"
+    },
+    {
+      "title": "SongBench",
+      "url": "https://arxiv.org/abs/2604.25937",
+      "code": "https://github.com/Tencent/SongBench",
+      "weights": "https://github.com/Tencent/SongBench",
+      "note": "independent instrument/mixing diagnostic"
+    },
+    {
+      "title": "TuneJury",
+      "url": "https://arxiv.org/abs/2606.17006",
+      "code": "https://github.com/yonghyunk1m/TuneJury",
+      "weights": "https://huggingface.co/TuneJury/tunejury",
+      "note": "future preference baseline / head design reference"
+    },
+    {
+      "title": "SingMOS / SingMOS-Pro",
+      "url": "https://arxiv.org/abs/2510.01812",
+      "code": "https://github.com/South-Twilight/SingMOS",
+      "weights": "https://github.com/South-Twilight/SingMOS/blob/main/hubconf.py",
+      "note": "only when a genuine vocal stem is available"
+    },
+    {
+      "title": "UTMOS",
+      "url": "https://arxiv.org/abs/2204.02152",
+      "code": "https://github.com/sarulab-speech/UTMOS22",
+      "weights": "https://huggingface.co/spaces/sarulab-speech/UTMOS-demo",
+      "note": "out-of-domain counterexample only"
+    },
+    {
+      "title": "DNSMOS P.835",
+      "url": "https://arxiv.org/abs/2110.01763",
+      "code": "https://github.com/microsoft/DNS-Challenge/tree/master/DNSMOS",
+      "weights": "https://github.com/microsoft/DNS-Challenge/tree/master/DNSMOS/DNSMOS",
+      "note": "speech-only baseline or failure control"
+    },
+    {
+      "title": "NISQA / NISQA-TTS",
+      "url": "https://arxiv.org/abs/2104.09494",
+      "code": "https://github.com/gabrielmittag/NISQA",
+      "weights": "https://github.com/gabrielmittag/NISQA/tree/master/weights",
+      "note": "reject as primary music reward"
+    },
+    {
+      "title": "Distill-MOS",
+      "url": "https://github.com/microsoft/Distill-MOS",
+      "code": "https://github.com/microsoft/Distill-MOS",
+      "weights": "https://github.com/microsoft/Distill-MOS",
+      "note": "low-cost speech-only comparator"
+    },
+    {
+      "title": "FAD / FADtk",
+      "url": "https://arxiv.org/abs/2311.01616",
+      "code": "https://github.com/microsoft/fadtk",
+      "weights": null,
+      "note": "distribution/diversity audit"
+    },
+    {
+      "title": "ViSQOL Audio",
+      "url": "https://arxiv.org/abs/2004.09584",
+      "code": "https://github.com/google/visqol",
+      "weights": "https://github.com/google/visqol/tree/master/model",
+      "note": "codec reconstruction / controlled-degradation reference baseline"
+    },
+    {
+      "title": "SONICS SpecTTTra",
+      "url": "https://arxiv.org/abs/2408.14080",
+      "code": "https://github.com/awsaf49/sonics",
+      "weights": "https://huggingface.co/collections/awsaf49/sonics-spectttra-67bb6517b3920fd18e409013",
+      "note": "forensic research only, reject as naturalness reward"
+    },
+    {
+      "title": "MusicDET",
+      "url": "https://proceedings.mlr.press/v306/han26u.html",
+      "code": "https://github.com/Chaolei98/MusicDET",
+      "weights": "https://github.com/Chaolei98/MusicDET/tree/main/pretrained",
+      "note": "forensic auxiliary only, reject as primary naturalness reward"
+    }
+  ],
+  "provenance": {
+    "Audiobox": {
+      "official_code": "https://github.com/facebookresearch/audiobox-aesthetics",
+      "code_commit": "2618e9d451b456e9328b39495b5e6234678aa550",
+      "package_version": "0.0.4",
+      "checkpoint_source": "https://dl.fbaipublicfiles.com/audiobox-aesthetics/checkpoint.pt",
+      "hf_revision": "9b1dd8e5df9af7216e836a98974fe3b82c56ded6",
+      "sha256": "a4931a7a01c3e6733352e9d85371835f03bf9135f8b31e1583c23538811d4a32",
+      "license": "CC-BY-4.0; included WavLM code portions MIT",
+      "input": "mono, resampled with torchaudio to16kHz; official10sec window length-weighted aggregation; no external normalization"
+    },
+    "PAM": {
+      "official_code": "https://github.com/soham97/PAM",
+      "code_commit": "ead6e7f9d907268e30c73b29526f50523a34b4aa",
+      "weight_source": "https://huggingface.co/microsoft/msclap/blob/c47d441165daa21986ead0850660917636a81775/CLAP_weights_2023.pth",
+      "hf_revision": "c47d441165daa21986ead0850660917636a81775",
+      "sha256": "2cef4016d47d00eb28d153d522f397222057f95000e9bad6b9583c631284a1e6",
+      "code_license": "MIT",
+      "weight_license": "MS-PL per microsoft/msclap model card",
+      "input": "correct mono mix then torchaudio resample to44100Hz, [0,7] and[3,10] overlapping windows for10sec samples; mean of two window scores; no normalization",
+      "implementation_note": "Official GPT2 config and tokenizer instantiated locally; all GPT2 weights loaded from CLAP checkpoint, with zero missing/unexpected keys on transformers4.26.1. Avoids downloading redundant separate GPT2 weights.",
+      "extra_probe": "Custom artifact prompt pair is exploratory, not validated PAM; store separately.",
+      "failures": [
+        "Default Audiobox HF Xet download stalled at0B for~1min; canceled and used official S3 file",
+        "Initial PAM transformers4.46.3 had unexpected GPT2 fixed attention buffers; switched to official-era4.26.1 and confirmed exact key coverage"
+      ],
+      "gpt2_config_and_tokenizer": {
+        "repo": "openai-community/gpt2",
+        "revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+        "files": {
+          "config.json": {
+            "sha256": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4",
+            "bytes": 665
+          },
+          "tokenizer_config.json": {
+            "sha256": "5e04eb606e3a1583530a42e36c2a6b6615c86f34fe77e44d9ddeb43ff940931f",
+            "bytes": 26
+          },
+          "vocab.json": {
+            "sha256": "196139668be63f3b5d6574427317ae82f612a97c5d1cdaf36ed2256dbf636783",
+            "bytes": 1042301
+          },
+          "merges.txt": {
+            "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+            "bytes": 456318
+          },
+          "tokenizer.json": {
+            "sha256": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+            "bytes": 1355256
+          }
+        },
+        "download_command": "python -c 'from huggingface_hub import hf_hub_download; [hf_hub_download(\"openai-community/gpt2\", name, revision=\"607a30d783dfa663caf39e06633721c8d4cfcd7e\", local_dir=\"work/model-cache/gpt2\") for name in [\"config.json\", \"tokenizer_config.json\", \"vocab.json\", \"merges.txt\", \"tokenizer.json\"]]' ",
+        "note": "No standalone GPT2 weights needed: official CLAP checkpoint covers every parameter and fixed attention buffer on transformers4.26.1; strict key receipt stored. Each downloaded file metadata records observed HF revision above."
+      }
+    }
+  },
+  "label_agreement": {
+    "status": "no_human_labels",
+    "spearman": null,
+    "pair_accuracy": null
+  },
+  "run_status": "scorer_and_perturbation_audit_complete_human_and_target_domain_validation_pending"
+}

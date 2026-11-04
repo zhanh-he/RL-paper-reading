@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="./choral-compare.css?v=20261006" />
     <link rel="stylesheet" href="./vocal-lada.css?v=20261005-reward-kl" />
     <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-    <script type="module" src="./lab.js?v=20261020-model-plan"></script>
+    <script type="module" src="./lab.js?v=20261104-naturalness"></script>
+    <link rel="stylesheet" href="./naturalness.css?v=20261104" />
+    <script type="module" src="./naturalness.js?v=20261104"></script>
     <link rel="stylesheet" href="./model-costs.css?v=20261020-mean7" />
     <script type="module" src="./model-costs.js?v=20261020-model-plan"></script>
     <script type="module" src="./songbench-review.js?v=20261026-recovery"></script>
@@ -62,6 +64,7 @@
       <nav class="lab-tabs" aria-label="Experiment views">
         <button class="lab-tab" type="button" data-view="lyrics" aria-selected="true">Lyrics2song GRPO</button>
         <button class="lab-tab" type="button" data-view="reward-regimes" aria-selected="false">SP / AI Rewards</button>
+        <button class="lab-tab" type="button" data-view="naturalness" aria-selected="false">自然度 Reward</button>
         <button class="lab-tab" type="button" data-view="vocal" aria-selected="false">Vocal2song GRPO</button>
         <button class="lab-tab" type="button" data-view="choral" aria-selected="false">Choral GRPO</button>
         <button class="lab-tab" type="button" data-view="overview" aria-selected="false">Overview</button>
@@ -70,6 +73,11 @@
         <button class="lab-tab" type="button" data-view="models" aria-selected="false">Models</button>
         <button class="lab-tab" type="button" data-view="reward-catalog" aria-selected="false">Rewards</button>
       </nav>
+
+      <section class="lab-view" id="view-naturalness" hidden aria-labelledby="naturalness-title">
+        <div class="section-intro"><div><p class="eyebrow">Music generation · artifact reward audit</p><h2 id="naturalness-title">降低不自然的人工感</h2></div><span class="state diagnostic">探索性实验</span></div>
+        <div id="naturalness-content" aria-live="polite"><p class="section-copy">正在读取实验数据与试听清单…</p></div>
+      </section>
 
       <section class="lab-view" id="view-overview" hidden>
         <div class="section-intro"><div><p class="eyebrow">The short version</p><h2>What we actually learned</h2></div><p>把提升幅度和失败案例放在一起看。</p></div>

@@ -151,7 +151,7 @@ function setView(view) {
     rewards: ['reward-catalog', 'choral'],
   };
   const [route, task, modelSection = 'catalog'] = aliases[view] || [view, 'lyrics'];
-  const chosen = ['overview', 'choral', 'lyrics', 'reward-regimes', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
+  const chosen = ['overview', 'choral', 'lyrics', 'reward-regimes', 'naturalness', 'songeval', 'vocal', 'datasets', 'models', 'reward-catalog'].includes(route) ? route : 'lyrics';
   let hash = chosen;
   if (chosen === 'models' || chosen === 'reward-catalog') {
     const root = document.querySelector(`#view-${chosen}`);
@@ -175,6 +175,7 @@ function setView(view) {
   for (const tab of document.querySelectorAll('.lab-tab')) tab.setAttribute('aria-selected', String(tab.dataset.view === chosen));
   document.querySelector(`.lab-tab[data-view="${chosen}"]`).scrollIntoView({ block: 'nearest', inline: 'center' });
   if (location.hash !== `#${hash}`) history.replaceState(null, '', `#${hash}`);
+  if (chosen === 'naturalness') requestAnimationFrame(() => document.querySelector('#view-naturalness').scrollIntoView({ block: 'start', behavior: 'instant' }));
 }
 
 function renderChoral(data) {

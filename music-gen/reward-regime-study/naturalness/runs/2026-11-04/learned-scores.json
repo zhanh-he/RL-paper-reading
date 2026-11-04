@@ -1,0 +1,1638 @@
+{
+  "schema_version": 1,
+  "scope": "Exploratory CPU scoring on selected 10-second excerpts and constructed controls; no human perceptual labels and no new RL training.",
+  "human_labels_count": 0,
+  "count": 25,
+  "methods": {
+    "audiobox": {
+      "method": "audiobox",
+      "device": "cpu",
+      "threads": 4,
+      "hardware": "Apple M4 Mac mini, 24 GiB unified memory, macOS arm64",
+      "python": "3.11.15",
+      "torch": "2.5.1",
+      "checkpoint_sha256": "a4931a7a01c3e6733352e9d85371835f03bf9135f8b31e1583c23538811d4a32",
+      "checkpoint_bytes": 415520834,
+      "model_init_seconds": 1.1259311251342297,
+      "total_seconds_including_init": 6.365840332582593,
+      "peak_process_rss_bytes": 1348075520,
+      "count": 25,
+      "manifest_sha256": "50167038c65e9d18ec16b97790ab8a42d9fa26bf4ea6a11fa4f3c4a2bfb6d57f",
+      "model_load_key_receipts": null,
+      "packages": {
+        "numpy": "2.4.6",
+        "torch": "2.5.1",
+        "torchaudio": "2.5.1",
+        "audiobox_aesthetics": "0.0.4",
+        "transformers": "4.26.1",
+        "huggingface_hub": "0.36.2",
+        "soundfile": "0.14.0",
+        "scipy": "1.17.1"
+      },
+      "timing_summary": {
+        "median_seconds_per_10s_clip": 0.19617183320224285,
+        "mean_seconds_per_10s_clip": 0.1988826283067465,
+        "min_seconds": 0.19343962334096432,
+        "max_seconds": 0.23311937600374222,
+        "p95_seconds": 0.20855103246867657,
+        "median_rtf_scoring_seconds_per_audio_second": 0.019617183320224284,
+        "sum_inference_seconds": 4.972065707668662
+      },
+      "timing_scope": "Four CPU threads, sequential batch-one files. Model initialization excludes Python imports and downloads; per-file scoring excludes file decoding, includes model preprocessing/forward, output serialization preparation and SHA256. PAM includes two overlapping 7s windows plus cached custom text prompts and embedding write. No concurrent scorer process, no GPU/MPS. OS weight pages may already be cached."
+    },
+    "pam": {
+      "method": "pam",
+      "device": "cpu",
+      "threads": 4,
+      "hardware": "Apple M4 Mac mini, 24 GiB unified memory, macOS arm64",
+      "python": "3.11.15",
+      "torch": "2.5.1",
+      "checkpoint_sha256": "2cef4016d47d00eb28d153d522f397222057f95000e9bad6b9583c631284a1e6",
+      "checkpoint_bytes": 689950036,
+      "model_init_seconds": 3.1613362915813923,
+      "total_seconds_including_init": 5.187165083363652,
+      "peak_process_rss_bytes": 1801895936,
+      "count": 25,
+      "manifest_sha256": "50167038c65e9d18ec16b97790ab8a42d9fa26bf4ea6a11fa4f3c4a2bfb6d57f",
+      "model_load_key_receipts": [
+        {
+          "missing_keys": [],
+          "unexpected_keys": []
+        }
+      ],
+      "packages": {
+        "numpy": "2.4.6",
+        "torch": "2.5.1",
+        "torchaudio": "2.5.1",
+        "audiobox_aesthetics": "0.0.4",
+        "transformers": "4.26.1",
+        "huggingface_hub": "0.36.2",
+        "soundfile": "0.14.0",
+        "scipy": "1.17.1"
+      },
+      "timing_summary": {
+        "median_seconds_per_10s_clip": 0.06591620855033398,
+        "mean_seconds_per_10s_clip": 0.06633524343371391,
+        "min_seconds": 0.0649424996227026,
+        "max_seconds": 0.07335279136896133,
+        "p95_seconds": 0.06826359070837497,
+        "median_rtf_scoring_seconds_per_audio_second": 0.006591620855033398,
+        "sum_inference_seconds": 1.6583810858428478
+      },
+      "timing_scope": "Four CPU threads, sequential batch-one files. Model initialization excludes Python imports and downloads; per-file scoring excludes file decoding, includes model preprocessing/forward, output serialization preparation and SHA256. PAM includes two overlapping 7s windows plus cached custom text prompts and embedding write. No concurrent scorer process, no GPU/MPS. OS weight pages may already be cached."
+    }
+  },
+  "samples": [
+    {
+      "id": "muse_baseline",
+      "audio_sha256": "11219e1b0471b333f8ca1dbfdafcf1c65190d13ed8b69e0f6257a8cf35e74215",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.989898681640625,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.337249755859375,
+        "CU": 7.747920513153076,
+        "PC": 6.258938789367676,
+        "PQ": 8.318668365478516
+      },
+      "pam": {
+        "PAM": 0.9432113170623779,
+        "PAM_segments": [
+          0.9404996633529663,
+          0.9459230303764343
+        ],
+        "artifact_prompt_probe": 0.9842355251312256,
+        "artifact_prompt_segments": [
+          0.9757997393608093,
+          0.9926712512969971
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.23311937600374222,
+      "pam_seconds": 0.06861558184027672,
+      "pam_embedding_sha256": "86425f5afcb8f514157a71c93f6660b102d86f8ed7000e25506d2345c628467c",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.337249755859375,
+          "CU": 7.747920513153076,
+          "PC": 6.258938789367676,
+          "PQ": 8.318668365478516
+        }
+      ]
+    },
+    {
+      "id": "muse_mean7_270",
+      "audio_sha256": "f6b75ceb61d5d3ab54f4235d83173291714a7327343e87e1cc49c7de7218d778",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.979400634765625,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.72609281539917,
+        "CU": 7.941926002502441,
+        "PC": 6.497757911682129,
+        "PQ": 8.07456111907959
+      },
+      "pam": {
+        "PAM": 0.9910739660263062,
+        "PAM_segments": [
+          0.9879783391952515,
+          0.9941695928573608
+        ],
+        "artifact_prompt_probe": 0.9996144771575928,
+        "artifact_prompt_segments": [
+          0.9996678829193115,
+          0.9995611310005188
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19892320968210697,
+      "pam_seconds": 0.07335279136896133,
+      "pam_embedding_sha256": "989752e6d6378df7a80e4210c551d6b2bd52882ddb6ff4ce51b8be881841998d",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.72609281539917,
+          "CU": 7.941926002502441,
+          "PC": 6.497757911682129,
+          "PQ": 8.07456111907959
+        }
+      ]
+    },
+    {
+      "id": "diffrhythm2_baseline",
+      "audio_sha256": "ee9c0ff9305bead2e6d8b3d8b8b0db271661dacb4b9d76a65b1b4771fa7d80a7",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.59375,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.785300254821777,
+        "CU": 8.012846946716309,
+        "PC": 6.845263957977295,
+        "PQ": 8.32056713104248
+      },
+      "pam": {
+        "PAM": 0.9412896037101746,
+        "PAM_segments": [
+          0.9448754191398621,
+          0.9377037882804871
+        ],
+        "artifact_prompt_probe": 0.9998370409011841,
+        "artifact_prompt_segments": [
+          0.9998051524162292,
+          0.9998688697814941
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19681779108941555,
+      "pam_seconds": 0.06630954146385193,
+      "pam_embedding_sha256": "0cd297942fb84f7863d21ed46a686f85b6977550e68daca623b24fc2d3011652",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.785300254821777,
+          "CU": 8.012846946716309,
+          "PC": 6.845263957977295,
+          "PQ": 8.32056713104248
+        }
+      ]
+    },
+    {
+      "id": "diffrhythm2_mean7_270",
+      "audio_sha256": "d0fd66d929f8e69bdac8e50a88a10138b1e1869b1a8154e7cf91dbdd3aec9af6",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.61181640625,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.657111644744873,
+        "CU": 7.700364112854004,
+        "PC": 6.668432235717773,
+        "PQ": 7.74974250793457
+      },
+      "pam": {
+        "PAM": 0.9281212091445923,
+        "PAM_segments": [
+          0.9131532311439514,
+          0.9430892467498779
+        ],
+        "artifact_prompt_probe": 0.9997924566268921,
+        "artifact_prompt_segments": [
+          0.9997128844261169,
+          0.9998719692230225
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.195977333933115,
+      "pam_seconds": 0.06645412556827068,
+      "pam_embedding_sha256": "c9d54be02e8d056f4fb314e58e5a9ec0426df13292a6c7ea251134e05f4d31a7",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.657111644744873,
+          "CU": 7.700364112854004,
+          "PC": 6.668432235717773,
+          "PQ": 7.74974250793457
+        }
+      ]
+    },
+    {
+      "id": "yue2_baseline",
+      "audio_sha256": "ff2aefda798102b730523b18abe1c418e92b4afe02d231528aded5015b648c2b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.8789975643157959,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.617587089538574,
+        "CU": 7.840353012084961,
+        "PC": 6.572046279907227,
+        "PQ": 8.160551071166992
+      },
+      "pam": {
+        "PAM": 0.876851499080658,
+        "PAM_segments": [
+          0.8351608514785767,
+          0.9185421466827393
+        ],
+        "artifact_prompt_probe": 0.9935778379440308,
+        "artifact_prompt_segments": [
+          0.991385817527771,
+          0.9957697987556458
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19609712436795235,
+      "pam_seconds": 0.06658687628805637,
+      "pam_embedding_sha256": "ff834cd68bddb60a61a56e1f38e9f7fbed341d5baecf4f2e2439d5dafad9a1b9",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.617587089538574,
+          "CU": 7.840353012084961,
+          "PC": 6.572046279907227,
+          "PQ": 8.160551071166992
+        }
+      ]
+    },
+    {
+      "id": "yue2_richness_270",
+      "audio_sha256": "382791071982517ca0a705df9b542006e906b4167c89e619ee12edebc531fbba",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.5632275342941284,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 8.011785507202148,
+        "CU": 8.067787170410156,
+        "PC": 5.975281238555908,
+        "PQ": 8.294086456298828
+      },
+      "pam": {
+        "PAM": 0.9018653631210327,
+        "PAM_segments": [
+          0.933840811252594,
+          0.8698899745941162
+        ],
+        "artifact_prompt_probe": 0.993781328201294,
+        "artifact_prompt_segments": [
+          0.9987956285476685,
+          0.9887670874595642
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.20626050047576427,
+      "pam_seconds": 0.06594512611627579,
+      "pam_embedding_sha256": "a6336a4808df43ee77b3441fe8e54545383ccc2f26813a6fb11de1e711ed5dfa",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 8.011785507202148,
+          "CU": 8.067787170410156,
+          "PC": 5.975281238555908,
+          "PQ": 8.294086456298828
+        }
+      ]
+    },
+    {
+      "id": "emma_reference",
+      "audio_sha256": "90d9db3449a3f8f63668dc1171507178db7d9dcd72086100c29a53062820b000",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.269439697265625,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 6.537961959838867,
+        "CU": 6.981704235076904,
+        "PC": 1.9023258686065674,
+        "PQ": 7.831912040710449
+      },
+      "pam": {
+        "PAM": 0.8796857595443726,
+        "PAM_segments": [
+          0.8968478441238403,
+          0.86252361536026
+        ],
+        "artifact_prompt_probe": 0.9997032880783081,
+        "artifact_prompt_segments": [
+          0.9997068047523499,
+          0.9996997117996216
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19568804278969765,
+      "pam_seconds": 0.06577570922672749,
+      "pam_embedding_sha256": "26f9cf443f4676286720bd46bf8f981c1c7235edc9cab9e0db5472152fb2fda8",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 6.537961959838867,
+          "CU": 6.981704235076904,
+          "PC": 1.9023258686065674,
+          "PQ": 7.831912040710449
+        }
+      ]
+    },
+    {
+      "id": "lada_baseline",
+      "audio_sha256": "75dbe77f2056e53064a2ebc886b4b120c8f2a3e1e07718fe5afcfcd9c3fa961b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.138458251953125,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.814746379852295,
+        "CU": 7.822107315063477,
+        "PC": 3.6935155391693115,
+        "PQ": 7.814321517944336
+      },
+      "pam": {
+        "PAM": 0.9780946969985962,
+        "PAM_segments": [
+          0.978101372718811,
+          0.9780880212783813
+        ],
+        "artifact_prompt_probe": 0.9996597766876221,
+        "artifact_prompt_segments": [
+          0.9995536208152771,
+          0.999765932559967
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19461408257484436,
+      "pam_seconds": 0.06566345691680908,
+      "pam_embedding_sha256": "b1878a0f718e35e45c84e1e7c468c433e4a8024c2415435623840f77cb2dc1a2",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.814746379852295,
+          "CU": 7.822107315063477,
+          "PC": 3.6935155391693115,
+          "PQ": 7.814321517944336
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace",
+      "audio_sha256": "e92ae0c94f128554a4d2edc10725d7975f6ba606699e8182cb6e09a34839167b",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.7376961708068848,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.65787410736084,
+        "CU": 8.166051864624023,
+        "PC": 5.550031661987305,
+        "PQ": 8.120562553405762
+      },
+      "pam": {
+        "PAM": 0.980912446975708,
+        "PAM_segments": [
+          0.975186288356781,
+          0.9866385459899902
+        ],
+        "artifact_prompt_probe": 0.999448299407959,
+        "artifact_prompt_segments": [
+          0.9993138313293457,
+          0.9995827078819275
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19405504129827023,
+      "pam_seconds": 0.06547658517956734,
+      "pam_embedding_sha256": "e18837b9a1de89525f404f16b2d79049af06bb09475cb3529a2899b5f8fb7c6f",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.65787410736084,
+          "CU": 8.166051864624023,
+          "PC": 5.550031661987305,
+          "PQ": 8.120562553405762
+        }
+      ]
+    },
+    {
+      "id": "ref_fishin",
+      "audio_sha256": "2bf6637857bd212eb5125ec08e8b4c2ae75e94055947f3f8c8b9b842166e52aa",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.8948299288749695,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 8.005427360534668,
+        "CU": 7.971409797668457,
+        "PC": 6.665290832519531,
+        "PQ": 8.558255195617676
+      },
+      "pam": {
+        "PAM": 0.9379411935806274,
+        "PAM_segments": [
+          0.950016975402832,
+          0.9258654713630676
+        ],
+        "artifact_prompt_probe": 0.9999768137931824,
+        "artifact_prompt_segments": [
+          0.9999767541885376,
+          0.9999768733978271
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19351075030863285,
+      "pam_seconds": 0.06542541645467281,
+      "pam_embedding_sha256": "ab451a4fc50b0ba425d0804c055068799e72a4a1cd0f45f642ed39e6608437dd",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 8.005427360534668,
+          "CU": 7.971409797668457,
+          "PC": 6.665290832519531,
+          "PQ": 8.558255195617676
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "audio_sha256": "7dab1090ff6edc8ffef26873e32a764911a4a0265402c5f512a421f9f7de5c20",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.09898986667394638,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.280787467956543,
+        "CU": 7.772461891174316,
+        "PC": 6.088313102722168,
+        "PQ": 8.324379920959473
+      },
+      "pam": {
+        "PAM": 0.798618733882904,
+        "PAM_segments": [
+          0.8242713809013367,
+          0.7729660868644714
+        ],
+        "artifact_prompt_probe": 0.9905364513397217,
+        "artifact_prompt_segments": [
+          0.993885338306427,
+          0.9871875047683716
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19343962334096432,
+      "pam_seconds": 0.0649424996227026,
+      "pam_embedding_sha256": "693ad623914fe439060f7bc5d90dc1f9443141dd990936550daafce409880fd7",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.280787467956543,
+          "CU": 7.772461891174316,
+          "PC": 6.088313102722168,
+          "PQ": 8.324379920959473
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "audio_sha256": "d7d17c398cd6a365b8a71d08430ad8d49197d07a1048c96f5ae8dbb412994e3c",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.9984902739524841,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.055391788482666,
+        "CU": 7.552699565887451,
+        "PC": 5.966059684753418,
+        "PQ": 8.05643367767334
+      },
+      "pam": {
+        "PAM": 0.6100407242774963,
+        "PAM_segments": [
+          0.5895389318466187,
+          0.630542516708374
+        ],
+        "artifact_prompt_probe": 0.9645851850509644,
+        "artifact_prompt_segments": [
+          0.9628354907035828,
+          0.966334879398346
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19608975015580654,
+      "pam_seconds": 0.06591620855033398,
+      "pam_embedding_sha256": "a1ddb47897e8b68acac1a8f796d3d495f22f011b8e7d281bc968904e5e5b37f8",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.055391788482666,
+          "CU": 7.552699565887451,
+          "PC": 5.966059684753418,
+          "PQ": 8.05643367767334
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "audio_sha256": "44cd608eb68fdde1529f48e5098a768a9786bc4d75a26a20b6107a9f52cc4a7f",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.23304414749145508,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.338005542755127,
+        "CU": 7.571943283081055,
+        "PC": 6.330281734466553,
+        "PQ": 8.251459121704102
+      },
+      "pam": {
+        "PAM": 0.9149973392486572,
+        "PAM_segments": [
+          0.9298427700996399,
+          0.9001519680023193
+        ],
+        "artifact_prompt_probe": 0.9448283910751343,
+        "artifact_prompt_segments": [
+          0.9591774344444275,
+          0.9304793477058411
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19808612391352654,
+      "pam_seconds": 0.0658661238849163,
+      "pam_embedding_sha256": "9a6d6775e7083c0fd1608c4b4360dd07fe0a69aecd8ff98ebbdac0c73e283d73",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.338005542755127,
+          "CU": 7.571943283081055,
+          "PC": 6.330281734466553,
+          "PQ": 8.251459121704102
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "audio_sha256": "d18d80259a3de644d6a34a179de893928601a0c97e6b07a7f6db19e936a82d90",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.0960853099822998,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 5.224390983581543,
+        "CU": 7.1490478515625,
+        "PC": 5.598731517791748,
+        "PQ": 7.595470428466797
+      },
+      "pam": {
+        "PAM": 0.8629432320594788,
+        "PAM_segments": [
+          0.8902506232261658,
+          0.8356358408927917
+        ],
+        "artifact_prompt_probe": 0.8739393949508667,
+        "artifact_prompt_segments": [
+          0.8646688461303711,
+          0.8832099437713623
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.1999786663800478,
+      "pam_seconds": 0.06521579064428806,
+      "pam_embedding_sha256": "997536b9a3370e8391438a1cd7080f6b94585d2fa8dc108bf585f1fa98bea5a4",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 5.224390983581543,
+          "CU": 7.1490478515625,
+          "PC": 5.598731517791748,
+          "PQ": 7.595470428466797
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "audio_sha256": "b9747ba0a225211ef1a5a95591647a87436e643a785b4605b89fa3d1df9a8225",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.9318675994873047,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 3.7344794273376465,
+        "CU": 6.203906536102295,
+        "PC": 5.181143283843994,
+        "PQ": 6.6160569190979
+      },
+      "pam": {
+        "PAM": 0.8492655158042908,
+        "PAM_segments": [
+          0.8333113789558411,
+          0.8652196526527405
+        ],
+        "artifact_prompt_probe": 0.9507958292961121,
+        "artifact_prompt_segments": [
+          0.935660183429718,
+          0.9659314751625061
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19438450038433075,
+      "pam_seconds": 0.06650266610085964,
+      "pam_embedding_sha256": "dfc1823b5dcde4426b9b5dc507ef0ac72f95d85f78467c8f48466b32701c433e",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.7344794273376465,
+          "CU": 6.203906536102295,
+          "PC": 5.181143283843994,
+          "PQ": 6.6160569190979
+        }
+      ]
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "audio_sha256": "030ec17d42a108d2d0a1e8e91cf55a3ad0b275ffbebe1ca88627eafb2db3552c",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.6349865198135376,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.431942939758301,
+        "CU": 7.772144794464111,
+        "PC": 6.275149345397949,
+        "PQ": 8.34012222290039
+      },
+      "pam": {
+        "PAM": 0.9273117780685425,
+        "PAM_segments": [
+          0.9242125749588013,
+          0.9304109811782837
+        ],
+        "artifact_prompt_probe": 0.9839826822280884,
+        "artifact_prompt_segments": [
+          0.9773674607276917,
+          0.9905979037284851
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.1965624187141657,
+      "pam_seconds": 0.06532133370637894,
+      "pam_embedding_sha256": "e505bfddcfac935ab4fe13f29c5401f0e02687a81eb72799d505429c4adfbe12",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.431942939758301,
+          "CU": 7.772144794464111,
+          "PC": 6.275149345397949,
+          "PQ": 8.34012222290039
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "audio_sha256": "141a99fae1dae7bc3e805b98ad323a1b26e65144c6180f6270f4248eb8647670",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.07376961410045624,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.463895797729492,
+        "CU": 8.210433959960938,
+        "PC": 5.486865043640137,
+        "PQ": 8.286192893981934
+      },
+      "pam": {
+        "PAM": 0.9782233238220215,
+        "PAM_segments": [
+          0.969147801399231,
+          0.9872987866401672
+        ],
+        "artifact_prompt_probe": 0.9993463754653931,
+        "artifact_prompt_segments": [
+          0.999165415763855,
+          0.9995273351669312
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19507191702723503,
+      "pam_seconds": 0.06535470858216286,
+      "pam_embedding_sha256": "5721bf08cd8f4d1afb57496396d529bae8456fe8085dfc7c932f0b162fb0dcbc",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.463895797729492,
+          "CU": 8.210433959960938,
+          "PC": 5.486865043640137,
+          "PQ": 8.286192893981934
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "audio_sha256": "2e45b6e19c6ecac8c7a678c0c227195e594bd7c8f1afd234b063352ebc1cbc73",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.7372658848762512,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.408725738525391,
+        "CU": 7.908018112182617,
+        "PC": 5.372376441955566,
+        "PQ": 7.820939540863037
+      },
+      "pam": {
+        "PAM": 0.9686552286148071,
+        "PAM_segments": [
+          0.9600799083709717,
+          0.9772304892539978
+        ],
+        "artifact_prompt_probe": 0.9944527745246887,
+        "artifact_prompt_segments": [
+          0.9920734763145447,
+          0.9968320727348328
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19617183320224285,
+      "pam_seconds": 0.06579029187560081,
+      "pam_embedding_sha256": "2943aeaeffb6033ceed3565310385de3001935acbf21dc3fbcd23443bf78ecfe",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.408725738525391,
+          "CU": 7.908018112182617,
+          "PC": 5.372376441955566,
+          "PQ": 7.820939540863037
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "audio_sha256": "a09af057219ccbe323d16cc000942265947d48c03900d23bdd918bc96426bab5",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.2561795711517334,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 6.01032829284668,
+        "CU": 7.111305236816406,
+        "PC": 5.661640167236328,
+        "PQ": 6.451897621154785
+      },
+      "pam": {
+        "PAM": 0.9605007171630859,
+        "PAM_segments": [
+          0.9429253339767456,
+          0.9780760407447815
+        ],
+        "artifact_prompt_probe": 0.994881272315979,
+        "artifact_prompt_segments": [
+          0.9928444027900696,
+          0.9969180822372437
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.20912366546690464,
+      "pam_seconds": 0.06639816798269749,
+      "pam_embedding_sha256": "7c907a827a9af2171d223a5bd4163180ef2759f41384a503e451d173c7a6ba5f",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 6.01032829284668,
+          "CU": 7.111305236816406,
+          "PC": 5.661640167236328,
+          "PQ": 6.451897621154785
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "audio_sha256": "ba5b9c2377eaebec39ba5bd3d0383f41f74ca64c7eee8c079b0ff1eeefe93953",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.1347605586051941,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 3.3900742530822754,
+        "CU": 3.2620270252227783,
+        "PC": 5.529329299926758,
+        "PQ": 3.56021785736084
+      },
+      "pam": {
+        "PAM": 0.37192028760910034,
+        "PAM_segments": [
+          0.2557956576347351,
+          0.4880448877811432
+        ],
+        "artifact_prompt_probe": 0.7250627875328064,
+        "artifact_prompt_segments": [
+          0.6045031547546387,
+          0.8456224203109741
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19767162576317787,
+      "pam_seconds": 0.06572974845767021,
+      "pam_embedding_sha256": "257d42831b2e354837b945610ac786a7d072ffe7cf8cf0dca68680636a9dbec8",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.3900742530822754,
+          "CU": 3.2620270252227783,
+          "PC": 5.529329299926758,
+          "PQ": 3.56021785736084
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "audio_sha256": "c69cd92acc9b7f26afd19c0d1deb91160dd65af4a469b973f21cbec6360f3aef",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.697761595249176,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 4.271551609039307,
+        "CU": 6.488806247711182,
+        "PC": 4.691326141357422,
+        "PQ": 6.392516136169434
+      },
+      "pam": {
+        "PAM": 0.7970004677772522,
+        "PAM_segments": [
+          0.7161280512809753,
+          0.877872884273529
+        ],
+        "artifact_prompt_probe": 0.9664263725280762,
+        "artifact_prompt_segments": [
+          0.9464858770370483,
+          0.9863668084144592
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.1950987484306097,
+      "pam_seconds": 0.06553941778838634,
+      "pam_embedding_sha256": "2396da145c5ec1b5d4fd6e99404ff1dd81b48f161eb2e082ff3a3e6438e1143a",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 4.271551609039307,
+          "CU": 6.488806247711182,
+          "PC": 4.691326141357422,
+          "PQ": 6.392516136169434
+        }
+      ]
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "audio_sha256": "a934f9dcb9cae86d46959bd1c99b1fc7f9810abb648996d055d0bea3f1f6d6a8",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.4702942669391632,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 7.689525604248047,
+        "CU": 8.190364837646484,
+        "PC": 5.567773818969727,
+        "PQ": 8.172402381896973
+      },
+      "pam": {
+        "PAM": 0.9803022146224976,
+        "PAM_segments": [
+          0.974294126033783,
+          0.9863102436065674
+        ],
+        "artifact_prompt_probe": 0.9995046854019165,
+        "artifact_prompt_segments": [
+          0.9993878602981567,
+          0.9996215105056763
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19822637364268303,
+      "pam_seconds": 0.0664785411208868,
+      "pam_embedding_sha256": "bedfdda0b7dbcc2c76f5b66df1dbfa663962a46f64cdc70e19312d1989540dbc",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 7.689525604248047,
+          "CU": 8.190364837646484,
+          "PC": 5.567773818969727,
+          "PQ": 8.172402381896973
+        }
+      ]
+    },
+    {
+      "id": "control_silence",
+      "audio_sha256": "be59652d30ea899715ee44ace8b1f772a2ba853d6cf922bc65946d19087767e8",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.0,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 3.2351701259613037,
+        "CU": 6.453464508056641,
+        "PC": 1.703304648399353,
+        "PQ": 6.73491907119751
+      },
+      "pam": {
+        "PAM": 0.3535267114639282,
+        "PAM_segments": [
+          0.3535267114639282,
+          0.3535267114639282
+        ],
+        "artifact_prompt_probe": 0.9423824548721313,
+        "artifact_prompt_segments": [
+          0.9423824548721313,
+          0.9423824548721313
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.19575170800089836,
+      "pam_seconds": 0.06628316827118397,
+      "pam_embedding_sha256": "e5535998c04a3baf2250ec7ab01f730c2a0d7a07523534b22f2190135383af2c",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.2351701259613037,
+          "CU": 6.453464508056641,
+          "PC": 1.703304648399353,
+          "PQ": 6.73491907119751
+        }
+      ]
+    },
+    {
+      "id": "control_normal_synth",
+      "audio_sha256": "ba1865a4a13d2406c733530afaeea0e7ddd4b0ce030cfd3b1e4bf3d1beffa1fd",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.12560462951660156,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 4.344609260559082,
+        "CU": 6.5286455154418945,
+        "PC": 1.8224706649780273,
+        "PQ": 7.185163497924805
+      },
+      "pam": {
+        "PAM": 0.7655285596847534,
+        "PAM_segments": [
+          0.7732210755348206,
+          0.7578359842300415
+        ],
+        "artifact_prompt_probe": 0.9961608648300171,
+        "artifact_prompt_segments": [
+          0.995206892490387,
+          0.997114896774292
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.2035977505147457,
+      "pam_seconds": 0.06658158265054226,
+      "pam_embedding_sha256": "a323df2a7fe7102f638cae5aa8b86206f5825310ceb0c81615672a3e144f7289",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 4.344609260559082,
+          "CU": 6.5286455154418945,
+          "PC": 1.8224706649780273,
+          "PQ": 7.185163497924805
+        }
+      ]
+    },
+    {
+      "id": "control_bright_synth",
+      "audio_sha256": "ee90d0e4a52d266110c9051faedc921580531750dd7d3071fefc2645d3fea7e9",
+      "duration_s": 10.0,
+      "sample_rate": 48000,
+      "input_stats": {
+        "float_peak": 0.16731815040111542,
+        "outside_unit_fraction": 0.0,
+        "channels": 2,
+        "external_gain_normalization": false
+      },
+      "audiobox": {
+        "CE": 3.3281373977661133,
+        "CU": 6.774317741394043,
+        "PC": 2.0695369243621826,
+        "PQ": 7.180200099945068
+      },
+      "pam": {
+        "PAM": 0.6942621469497681,
+        "PAM_segments": [
+          0.5873956680297852,
+          0.801128625869751
+        ],
+        "artifact_prompt_probe": 0.995743989944458,
+        "artifact_prompt_segments": [
+          0.993680477142334,
+          0.9978074431419373
+        ],
+        "segment_spans": [
+          {
+            "start": 0.0,
+            "end": 7.0
+          },
+          {
+            "start": 3.0,
+            "end": 10.0
+          }
+        ],
+        "artifact_prompt_pair": [
+          "The music is clear and natural without unwanted digital artifacts.",
+          "The music has unnatural metallic buzzing and digital artifacts."
+        ]
+      },
+      "audiobox_seconds": 0.1977477502077818,
+      "pam_seconds": 0.06685562618076801,
+      "pam_embedding_sha256": "755356193ba625622394d05c9694ca101d126f9e5ff6e43562b361e22755246c",
+      "audiobox_segments": [
+        {
+          "start": 0.0,
+          "end": 10.0,
+          "CE": 3.3281373977661133,
+          "CU": 6.774317741394043,
+          "PC": 2.0695369243621826,
+          "PQ": 7.180200099945068
+        }
+      ]
+    }
+  ],
+  "paired_deltas": [
+    {
+      "id": "muse_baseline__gain_minus20db",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": 0.005711555480957031,
+      "audiobox_CE_delta": -0.05646228790283203,
+      "PAM_delta": -0.14459258317947388,
+      "artifact_prompt_probe_delta": 0.006300926208496094
+    },
+    {
+      "id": "muse_baseline__lowpass_3khz",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": -0.2622346878051758,
+      "audiobox_CE_delta": -0.281857967376709,
+      "PAM_delta": -0.3331705927848816,
+      "artifact_prompt_probe_delta": -0.01965034008026123
+    },
+    {
+      "id": "muse_baseline__compressed",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": -0.06720924377441406,
+      "audiobox_CE_delta": 0.0007557868957519531,
+      "PAM_delta": -0.028213977813720703,
+      "artifact_prompt_probe_delta": -0.03940713405609131
+    },
+    {
+      "id": "muse_baseline__distorted",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": -0.7231979370117188,
+      "audiobox_CE_delta": -2.112858772277832,
+      "PAM_delta": -0.08026808500289917,
+      "artifact_prompt_probe_delta": -0.11029613018035889
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": -1.7026114463806152,
+      "audiobox_CE_delta": -3.6027703285217285,
+      "PAM_delta": -0.09394580125808716,
+      "artifact_prompt_probe_delta": -0.033439695835113525
+    },
+    {
+      "id": "muse_baseline__metallic_mod40hz",
+      "comparator_id": "muse_baseline__mod40hz_gain_control",
+      "audiobox_PQ_delta": -1.7240653038024902,
+      "audiobox_CE_delta": -3.6974635124206543,
+      "PAM_delta": -0.07804626226425171,
+      "artifact_prompt_probe_delta": -0.03318685293197632
+    },
+    {
+      "id": "muse_baseline__mod40hz_gain_control",
+      "comparator_id": "muse_baseline",
+      "audiobox_PQ_delta": 0.021453857421875,
+      "audiobox_CE_delta": 0.09469318389892578,
+      "PAM_delta": -0.01589953899383545,
+      "artifact_prompt_probe_delta": -0.00025284290313720703
+    },
+    {
+      "id": "ref_vibeace__gain_minus20db",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": 0.16563034057617188,
+      "audiobox_CE_delta": -0.19397830963134766,
+      "PAM_delta": -0.0026891231536865234,
+      "artifact_prompt_probe_delta": -0.00010192394256591797
+    },
+    {
+      "id": "ref_vibeace__lowpass_3khz",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": -0.2996230125427246,
+      "audiobox_CE_delta": -0.24914836883544922,
+      "PAM_delta": -0.012257218360900879,
+      "artifact_prompt_probe_delta": -0.004995524883270264
+    },
+    {
+      "id": "ref_vibeace__compressed",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": -1.6686649322509766,
+      "audiobox_CE_delta": -1.6475458145141602,
+      "PAM_delta": -0.02041172981262207,
+      "artifact_prompt_probe_delta": -0.0045670270919799805
+    },
+    {
+      "id": "ref_vibeace__distorted",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": -4.560344696044922,
+      "audiobox_CE_delta": -4.2677998542785645,
+      "PAM_delta": -0.6089921593666077,
+      "artifact_prompt_probe_delta": -0.2743855118751526
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": -1.7280464172363281,
+      "audiobox_CE_delta": -3.386322498321533,
+      "PAM_delta": -0.1839119791984558,
+      "artifact_prompt_probe_delta": -0.03302192687988281
+    },
+    {
+      "id": "ref_vibeace__metallic_mod40hz",
+      "comparator_id": "ref_vibeace__mod40hz_gain_control",
+      "audiobox_PQ_delta": -1.779886245727539,
+      "audiobox_CE_delta": -3.4179739952087402,
+      "PAM_delta": -0.18330174684524536,
+      "artifact_prompt_probe_delta": -0.03307831287384033
+    },
+    {
+      "id": "ref_vibeace__mod40hz_gain_control",
+      "comparator_id": "ref_vibeace",
+      "audiobox_PQ_delta": 0.05183982849121094,
+      "audiobox_CE_delta": 0.03165149688720703,
+      "PAM_delta": -0.0006102323532104492,
+      "artifact_prompt_probe_delta": 5.638599395751953e-05
+    }
+  ],
+  "diagnostics": {
+    "custom_artifact_probe_above_099": 16,
+    "custom_artifact_probe_min": 0.7250627875328064,
+    "custom_artifact_probe_max": 0.9999768137931824,
+    "limitations": [
+      "No human naturalness/quality/musicality ratings: no human agreement/correlation is estimated.",
+      "Each source is represented by one selected10s excerpt; several variants share their source.",
+      "PAM [0,7] and[3,10] windows overlap and are not independent samples.",
+      "Custom artifact prompts are exploratory and have no calibrated probability interpretation.",
+      "No new RL training or causal claim about prior checkpoints."
+    ]
+  }
+}
