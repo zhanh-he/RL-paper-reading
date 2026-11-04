@@ -1,0 +1,143 @@
+{
+  "real_suno_songs": 16,
+  "source_families": 8,
+  "clips": 48,
+  "transformations": 0,
+  "human_labels_count": 0,
+  "model_training_runs": 0,
+  "same_input_verified_pairs": 0,
+  "pair_metadata": [
+    {
+      "source_family": "suno_cn_000001",
+      "tracks": [
+        "suno_cn_000001_0",
+        "suno_cn_000001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_cn_008001",
+      "tracks": [
+        "suno_cn_008001_0",
+        "suno_cn_008001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_cn_016001",
+      "tracks": [
+        "suno_cn_016001_0",
+        "suno_cn_016001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_cn_024001",
+      "tracks": [
+        "suno_cn_024001_0",
+        "suno_cn_024001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": true,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_en_000001",
+      "tracks": [
+        "suno_en_000001_0",
+        "suno_en_000001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": true,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_en_011001",
+      "tracks": [
+        "suno_en_011001_0",
+        "suno_en_011001_1"
+      ],
+      "same_published_style": true,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_en_022001",
+      "tracks": [
+        "suno_en_022001_0",
+        "suno_en_022001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    },
+    {
+      "source_family": "suno_en_034001",
+      "tracks": [
+        "suno_en_034001_0",
+        "suno_en_034001_1"
+      ],
+      "same_published_style": false,
+      "same_normalized_lyrics": false,
+      "same_input_verified": false
+    }
+  ],
+  "feature_distributions": {
+    "modulation_depth": {
+      "minimum": 0.12732088565826416,
+      "median": 0.2538760155439377,
+      "maximum": 0.33698558807373047
+    },
+    "modulation_coherent": {
+      "minimum": 0.050893299809607113,
+      "median": 0.1244874184386481,
+      "maximum": 0.1667621245102182
+    },
+    "roughness70": {
+      "minimum": 0.03240579789996587,
+      "median": 0.08248074380438508,
+      "maximum": 0.23203131638823357
+    },
+    "roughness70_p95": {
+      "minimum": 0.059375769581253034,
+      "median": 0.27763345884118584,
+      "maximum": 1.697381691235962
+    },
+    "resonance_raw": {
+      "minimum": 0.11389698833227158,
+      "median": 0.24776725471019745,
+      "maximum": 0.5002188086509705
+    },
+    "resonance_protected": {
+      "minimum": 0.0013635216746479273,
+      "median": 0.00795354787260294,
+      "maximum": 0.16656263172626495
+    }
+  },
+  "metric_spearman": {
+    "modulation_depth:roughness70": 0.06003039513677811,
+    "modulation_depth:resonance_protected": -0.6223404255319149,
+    "roughness70:resonance_protected": 0.18302214502822406
+  },
+  "cross_spl_rank_spearman": {
+    "60": 0.9919669995657837,
+    "80": 0.9970690403821102
+  },
+  "resonance_candidate_frequency_range_hz": [
+    257.8125,
+    1230.46875
+  ],
+  "resonance_candidates_at_least3khz": 0,
+  "median_harmonic_veto_relative_reduction": 0.9657377116524295,
+  "correlation_note": "Metric-to-metric or assumed-level stability only, not human agreement;48 clips are clustered within16 songs/8 families.",
+  "source_dataset_revision": "b1bf3bf906daab3a896e14f6dea58cc295848452",
+  "feature_script_sha256": "a7091425d24dc043b9fb3aa7c25c2d349ef5ddd83d517c9623ad501f6038f2f5",
+  "execution_manifest_sha256": "d2f2c5341a03b5efd2d61fd89c3697996d5263a729b5cae04963a2a1f479a185",
+  "curated_metadata_manifest_sha256": "41f80f6c5d5379568a93af67c937f90e088d4486d55ebe3cbf33ae77898a9087"
+}

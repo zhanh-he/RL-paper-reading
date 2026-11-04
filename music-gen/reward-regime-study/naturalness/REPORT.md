@@ -1,5 +1,9 @@
 # 音乐生成不自然人工感的 reward 探索
 
+最新主实验为[真实Suno V5音乐](SUNO_REAL_REPORT.md)：16首、48条未加工片段，默认在网页展示；人工标签为0。
+
+另有辅助[47条心理声学特征实测](PSYCHOACOUSTIC_REPORT.md)：RTX5090子带调制/共振、CPU参考roughness、正常合成器保护与失败例。本文保留首轮25条AI scorer审计。
+
 **最推荐本域人工缺陷偏好 head，加 Audiobox PQ 质量约束；目前不能直接作为已验证的 RL 自然度目标。** 本轮跑通了25条音频的 Audiobox、PAM、SongEval 和信号诊断，但人工标签为0，没有训练新的自然度 head，也没有进行新 RL 训练。结果支持继续采标和影子评分，不支持“已经降低电音感”的结论。
 
 播放器、原始分数与待评价位置在 [RL-Lab 自然度实验页](https://zhanh-he.github.io/RL-paper-reading/demos/#naturalness)。完整结果见 [audit.json](runs/2026-11-04/audit.json) 和 [逐样本表](runs/2026-11-04/sample-scores.csv)，19个候选的一手资料、权重与许可证见 [RESEARCH.md](RESEARCH.md)，复现入口见 [README.md](README.md)。

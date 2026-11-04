@@ -1,0 +1,92 @@
+{
+  "human_ratings_count": 0,
+  "human_pairs_count": 0,
+  "status": "no_human_labels",
+  "scores": {
+    "Audiobox_PQ": {
+      "direction": 1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "PAM": {
+      "direction": 1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "SongEval_Naturalness": {
+      "direction": 1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "SongEval_Musicality": {
+      "direction": 1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "Negative_Auditory_Modulation": {
+      "direction": -1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "Negative_DW_Roughness70": {
+      "direction": -1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    },
+    "Negative_Resonance_Protected": {
+      "direction": -1,
+      "direction_note": "Hypothesis for evaluation only; not validated reward",
+      "rated_unique_samples": 0,
+      "spearman_naturalness": null,
+      "comparable_decisive_pairs": 0,
+      "independent_source_groups": 0,
+      "pair_accuracy": null,
+      "group_bootstrap_ci95": null,
+      "human_ties": 0,
+      "human_uncertain": 0
+    }
+  },
+  "warning": "Same-song/transform observations are dependent. Few groups do not establish generalization."
+}

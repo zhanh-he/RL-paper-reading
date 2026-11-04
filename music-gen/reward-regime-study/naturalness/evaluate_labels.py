@@ -13,7 +13,10 @@ from scipy.stats import spearmanr
 
 METRICS={'Audiobox_PQ':('audiobox','PQ'),'PAM':('pam','score'),
          'SongEval_Naturalness':('songeval','Naturalness'),
-         'SongEval_Musicality':('songeval','Musicality')}
+         'SongEval_Musicality':('songeval','Musicality'),
+         'Negative_Auditory_Modulation':('psycho','modulation_depth'),
+         'Negative_DW_Roughness70':('psycho','roughness70'),
+         'Negative_Resonance_Protected':('psycho','resonance_protected')}
 
 
 def metric(row,path):
@@ -43,22 +46,27 @@ def main():
                 status='exploratory_real_labels' if ratings or pairs else 'no_human_labels',
                 scores={},warning='Same-song/transform observations are dependent. Few groups do not establish generalization.')
     for name,path in METRICS.items():
+        direction=-1 if name.startswith('Negative_') else 1
         ids={r['sample_id'] for r in ratings}; x=[];y=[]
         for rid in ids:
             value=metric(samples[rid],path)
             if value is None: continue
-            x.append(value);y.append(float(np.median([6-r['artificialness'] for r in ratings if r['sample_id']==rid])))
+            x.append(direction*value);y.append(float(np.median([6-r['artificialness'] for r in ratings if r['sample_id']==rid])))
         rho=float(spearmanr(x,y).statistic) if len(x)>=3 and np.ptp(x)>0 and np.ptp(y)>0 else None
-        judged=[]
+        judged=[];family_judged=[]
         for r in pairs:
             if r['naturalness'] not in ['A','B']: continue
             a,b=samples[r['a']],samples[r['b']]
             # Keep mismatched content judgments available separately in the exported labels.
-            same=(a.get('input_id') and a.get('input_id')==b.get('input_id')) or a.get('base_id')==b['id'] or b.get('base_id')==a['id']
+            same=(a.get('same_input_verified') is not False and b.get('same_input_verified') is not False) and ((a.get('input_id') and a.get('input_id')==b.get('input_id')) or a.get('base_id')==b['id'] or b.get('base_id')==a['id'])
             av,bv=metric(a,path),metric(b,path)
+            if av is not None and bv is not None and a.get('kind')=='real_suno_output' and b.get('kind')=='real_suno_output' and a.get('source_family')==b.get('source_family'):
+                da,db=direction*av,direction*bv
+                family_judged.append((a['source_family'],.5 if abs(da-db)<1e-12 else float((da>db)==(r['naturalness']=='A'))))
             if not same or av is None or bv is None: continue
+            av*=direction;bv*=direction
             correct=.5 if abs(av-bv)<1e-12 else float((av>bv)==(r['naturalness']=='A'))
-            group=a.get('pair_group') or a.get('base_id') or a['id']
+            group=a.get('source_family') or a.get('input_id') or a.get('source_original_sha256') or a.get('pair_group') or a['id']
             judged.append((group,correct))
         groups=sorted({g for g,_ in judged}); ci=None
         if len(groups)>=3:
@@ -66,7 +74,11 @@ def main():
             grouped={g:[v for k,v in judged if k==g] for g in groups}
             draws=[np.mean([v for g in rng.choice(groups,len(groups)) for v in grouped[g]]) for _ in range(2000)]
             ci=np.quantile(draws,[.025,.975]).tolist()
-        result['scores'][name]=dict(rated_unique_samples=len(x),spearman_naturalness=rho,
+        family_groups=sorted({g for g,_ in family_judged});family_ci=None
+        if len(family_groups)>=3:
+            rng=np.random.default_rng(20261104);fg={g:[v for k,v in family_judged if k==g] for g in family_groups}
+            family_ci=np.quantile([np.mean([v for g in rng.choice(family_groups,len(family_groups)) for v in fg[g]]) for _ in range(2000)],[.025,.975]).tolist()
+        result['scores'][name]=dict(real_suno_family_decisive_pairs=len(family_judged),real_suno_family_groups=len(family_groups),real_suno_family_pair_accuracy=float(np.mean([v for _,v in family_judged])) if family_judged else None,real_suno_family_ci95=family_ci,real_suno_family_caveat='Exploratory human preferences within source families; generation inputs and musical content are not proven matched.',direction=direction,direction_note='Hypothesis for evaluation only; not validated reward',rated_unique_samples=len(x),spearman_naturalness=rho,
                                   comparable_decisive_pairs=len(judged),independent_source_groups=len(groups),
                                   pair_accuracy=float(np.mean([v for _,v in judged])) if judged else None,
                                   group_bootstrap_ci95=ci,

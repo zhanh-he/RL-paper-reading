@@ -11,10 +11,10 @@ from signal_features import sha256
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--directory',required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--directory',required=True);p.add_argument('--audit');args=p.parse_args()
     here=Path(__file__).resolve().parent;root=here.parents[2]
     dest=Path(args.directory).resolve();dest.mkdir(parents=True,exist_ok=True)
-    data=json.loads((here/'runs/2026-11-04/audit.json').read_text());rows=[]
+    data=json.loads((Path(args.audit) if args.audit else here/'runs/2026-11-04/audit.json').read_text());rows=[]
     for r in data['samples']:
         source=root/'platform/site/demos'/r['audio']
         if sha256(source)!=r['mp3_sha256']:raise ValueError('Public MP3 changed')

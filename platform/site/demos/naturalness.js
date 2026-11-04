@@ -1,4 +1,5 @@
 const root = document.querySelector('#naturalness-content');
+let audits = null;
 const finite = (value) => typeof value === 'number' && Number.isFinite(value);
 const fmt = (value, digits = 3) => finite(value) ? value.toFixed(digits) : '未运行';
 const asText = (value) => value == null ? '' : typeof value === 'string' ? value : Array.isArray(value) ? value.map(asText).filter(Boolean).join('；') : typeof value === 'object' ? asText(value.text || value.description || value.result || value.note || value.conclusion || value.status) : String(value);
@@ -16,7 +17,7 @@ function table(headers, rows, className = '') { const wrap = el('div', null, 'na
 function download(name, content, type) { const url = URL.createObjectURL(new Blob([content], { type })); const a = el('a'); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
 const ratingFields = [['artificialness', '不自然人工感', '1 很自然', '5 缺陷很强'], ['quality', '整体音质', '1 很差', '5 很好'], ['musicality', '音乐性', '1 很差', '5 很好']];
 const preferenceFields = [['naturalness', '自然度更好'], ['quality', '音质更好'], ['musicality', '音乐性更好']];
-const metricDefs = [
+const legacyMetricDefs = [
   ['audiobox.PQ', 'AudioBox PQ ↑', '高分偏生产质量，不是电音概率'],
   ['audiobox.PC', 'AudioBox PC', '制作复杂度，不是乐器数量'],
   ['audiobox.CE', 'AudioBox CE', '内容愉悦度，不等于音乐性评分'],
@@ -30,9 +31,19 @@ const metricDefs = [
   ['signal.flatness', '频谱平坦度', '噪声/音调结构诊断；无通用优劣方向'],
   ['signal.envelope_modulation_20_100_share', '20–100 Hz 调制占比', '调制诊断；颤音、粗糙音色也会升高'],
 ];
+const psychoMetricDefs = [
+  ['psycho.modulation_depth', '子带快速调制深度', '20–300Hz，非标准roughness'],
+  ['psycho.modulation_coherent', '调制率集中度加权', '实验性描述子，非标准roughness'],
+  ['psycho.roughness70', 'DW roughness · 70dB · asper', '假设所有片段以同一70dB SPL播放'],
+  ['psycho.roughness70_p95', 'DW roughness · P95', '局部较强粗糙感，不等于缺陷'],
+  ['psycho.resonance_raw', '窄峰持久性 · 原始', '250Hz–16kHz，相对谱背景'],
+  ['psycho.resonance_protected', '窄峰持久性 · 谐波保护', '实验性谐波排除，仍会误伤'],
+  ['psycho.roughness_raw', 'DW roughness · 原电平假设', '0dBFS正弦=100dB SPL的假设'],
+];
 const getMetric = (sample, path) => path.split('.').reduce((o, key) => o?.[key], sample);
 function category(s) {
   const k = String(s.kind || '').toLowerCase();
+  if (k === 'real_suno_output') return 'suno';
   if (/construct|control/.test(k) && !/perturb|transform/.test(k)) return 'synthetic';
   if (/reference/.test(k) && /emma|ace/i.test(s.model || '')) return 'synthetic_voice';
   if (/transform|perturb|attack/.test(k) || (s.transform && !['original', 'none', 'identity'].includes(typeof s.transform === 'string' ? s.transform : s.transform.name))) return 'transform';
@@ -40,7 +51,7 @@ function category(s) {
   if (/synth|silence/.test(k)) return 'synthetic';
   return 'generated';
 }
-const categoryLabels = { generated: '真实生成输出', transform: '受控变换', recorded: '录制参考', synthetic: '构造信号 / 合成器', synthetic_voice: '合成歌声参考' };
+const categoryLabels = { suno: 'Suno V5 原始输出', generated: '真实生成输出', transform: '受控变换', recorded: '录制参考', synthetic: '构造信号 / 合成器', synthetic_voice: '合成歌声参考' };
 
 async function load() {
   root.replaceChildren(el('p', '正在读取实验数据与试听清单…', 'nat-note'));
@@ -48,8 +59,22 @@ async function load() {
     const response = await fetch('./data/naturalness-audit.json', { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
+    const extraResponse = await fetch('./data/psychoacoustic-audit.json', { cache: 'no-store' });
+    if (!extraResponse.ok) throw new Error(`心理声学数据 HTTP ${extraResponse.status}`);
+    const psycho = await extraResponse.json();
+    const oldSamples = new Map(data.samples.map(s => [s.id, s]));
+    data.samples = psycho.samples.map(s => ({ ...oldSamples.get(s.id), ...s }));
+    data.summary = psycho.summary;
+    data.metadata = { ...data.metadata, ...psycho.metadata };
+    data.methods = [...psycho.methods, ...data.methods];
+    data.resources = [...psycho.resources, ...data.resources];
+    data.psychoacoustic = psycho;
     if (!Array.isArray(data.samples) || !data.samples.length || data.samples.some((s) => !s.id || !safeUrl(s.audio))) throw new Error('样本清单不完整');
-    render(data);
+    const sunoResponse = await fetch('./data/suno-real-audit.json', { cache: 'no-store' });
+    if (!sunoResponse.ok) throw new Error(`Suno真实样本 HTTP ${sunoResponse.status}`);
+    const suno = await sunoResponse.json();
+    audits = { suno, auxiliary: data };
+    render(suno);
   } catch (error) {
     root.replaceChildren(el('p', `实验清单暂时无法读取（${error.message}）。不显示替代分数。`, 'nat-note'), button('重新读取', load));
   }
@@ -57,20 +82,40 @@ async function load() {
 
 function render(data) {
   root.replaceChildren();
+  if (audits) {
+    const choices = el('div', null, 'nat-toolbar');
+    choices.append(button('主实验 · 真实Suno音乐', () => render(audits.suno)), button('辅助 · 旧样本与模拟误伤测试', () => render(audits.auxiliary)));
+    root.append(choices);
+  }
   const samples = data.samples;
   const byId = new Map(samples.map((s) => [s.id, s]));
   if (byId.size !== samples.length) throw new Error('样本ID重复');
   const meta = data.metadata || {};
   const version = String(meta.version || meta.dataset_version || '20261104-v1');
+  let metricDefs = (data.psychoacoustic || data.suno_real) ? psychoMetricDefs : legacyMetricDefs;
   const storageKey = `rl-lab-naturalness:${version}`;
   let saved = { ratings: {}, pairs: {}, rater: '' };
   try { const old = JSON.parse(localStorage.getItem(storageKey)); if (old?.ratings && old?.pairs) saved = old; } catch { /* a fresh blank form is intentional */ }
+  if (!Object.keys(saved.ratings).length && !Object.keys(saved.pairs).length) {
+    for (const previous of meta.annotation_compatible_versions || []) {
+      try {
+        const old = JSON.parse(localStorage.getItem(`rl-lab-naturalness:${previous}`));
+        if (old?.ratings && old?.pairs) saved = {
+          ratings: Object.fromEntries(Object.entries(old.ratings).filter(([id]) => byId.has(id))),
+          pairs: Object.fromEntries(Object.entries(old.pairs).filter(([, p]) => byId.has(p.a) && byId.has(p.b))),
+          rater: old.rater || '',
+        };
+      } catch { /* preserve the original storage entry */ }
+    }
+  }
   const status = el('p', '', 'nat-status'); status.setAttribute('role', 'status');
   const persist = () => { try { localStorage.setItem(storageKey, JSON.stringify(saved)); status.textContent = '已保存于本机浏览器；不会自动上传。'; } catch { status.textContent = '浏览器未允许本机保存；请导出JSON保留评分。'; } };
   const anonymousName = (s) => `样本 ${String(samples.indexOf(s) + 1).padStart(2, '0')}`;
   let blind = true, currentA = samples[0].id, currentB = '', filter = 'all';
-  const matching = (s) => byId.get(s.matched_comparator_id) || samples.find((x) => x.id !== s.id && ((s.pair_group && x.pair_group === s.pair_group) || x.base_id === s.id || s.base_id === x.id));
+  const matching = (s) => byId.get(s.matched_comparator_id || s.comparison_id) || samples.find((x) => x.id !== s.id && ((s.pair_group && x.pair_group === s.pair_group) || x.base_id === s.id || s.base_id === x.id));
   currentB = (matching(samples[0]) || samples[1] || samples[0]).id;
+  const auditPairs = data.listening_pairs || data.psychoacoustic?.listening_pairs || [];
+  if (auditPairs.length) { currentA = auditPairs[0].a; currentB = auditPairs[0].b; }
   const name = (s) => blind ? anonymousName(s) : s.label || s.id;
 
   const summary = typeof data.summary === 'string' ? { conclusion: data.summary } : data.summary || {};
@@ -81,12 +126,21 @@ function render(data) {
   if (meta.background_document?.status === 'missing_not_read') intro.append(el('p', '背景Word文件未找到，尚未阅读；目标架构仍待核对。', 'nat-note'));
   root.append(intro);
 
-  const listening = el('section', null, 'nat-block'); listening.append(el('h3', '先听同一片段，再分别判断'));
+  const listening = el('section', null, 'nat-block'); listening.append(el('h3', '先听真实片段，再分别判断'));
   const tools = el('div', null, 'nat-toolbar');
-  const filterSelect = select([['all', '全部样本'], ...Object.entries(categoryLabels)], '样本类型');
+  const filterSelect = select([['all', '全部样本'], ...Object.entries(categoryLabels).filter(([key]) => samples.some(s => category(s) === key))], '样本类型');
   const blindControl = checkbox('隐藏来源名称与自动分数', true);
   const syncControl = checkbox('A/B切换时保持播放进度', true);
   tools.append(field('样本类型', filterSelect), blindControl.label, syncControl.label); listening.append(tools);
+  const presetPairs = auditPairs;
+  const pairSelect = select([['', '手动选择A/B'], ...presetPairs.map((p, i) => [String(i), `对照 ${String(i + 1).padStart(2, '0')}`])], '预设试听对照');
+  if (presetPairs.length) pairSelect.value = '0';
+  if (presetPairs.length) listening.append(field('重点试听组 · 匿名模式隐藏处理名称', pairSelect));
+  pairSelect.addEventListener('change', () => {
+    const pair = presetPairs[Number(pairSelect.value)]; if (pairSelect.value === '' || !pair) return;
+    currentA = pair.a; currentB = pair.b; filter = 'all'; filterSelect.value = 'all';
+    updateOptions(); updatePlayer('A'); updatePlayer('B'); updatePair(); drawRanking();
+  });
   listening.append(el('p', '先以匿名编号试听；正常电子乐器、合成器和明亮音色本身不算缺陷。选择样本不自动播放，A/B可保持进度切换。用稳定音量，分别判断人工感、音质和音乐性。', 'nat-note'));
   const players = el('div', null, 'nat-players'); listening.append(players);
   const slots = {};
@@ -105,6 +159,7 @@ function render(data) {
       control.addEventListener('change', () => saveRating(side)); ratings[key] = control; scoreControls.append(field(title, control));
     }
     const note = el('textarea'); note.rows = 2; note.maxLength = 4000; note.placeholder = '例如：持续金属蜂鸣／瞬态模糊／属于正常合成器；不确定也请记录。'; note.addEventListener('change', () => saveRating(side));
+    const timeline = el('div', null, 'nat-timeline');
     const provenance = el('details'); provenance.append(el('summary', '片段来源与全部诊断')); const provenanceBody = el('div'); provenance.append(provenanceBody);
     const switchButton = button(`试听 ${side}`, () => {
       const other = slots[side === 'A' ? 'B' : 'A'].audio;
@@ -113,9 +168,9 @@ function render(data) {
       const play = () => { audio.currentTime = Math.max(0, Math.min(time, finite(audio.duration) ? Math.max(0, audio.duration - .01) : time)); audio.play().catch(() => { audioStatus.textContent = '请直接点击播放器播放。'; }); };
       if (audio.readyState >= 1) play(); else { audio.addEventListener('loadedmetadata', play, { once: true }); audio.load(); }
     });
-    section.append(field(`${side} · 选择样本`, sampleSelect), heading, audio, switchButton, audioStatus, scores, scoreControls, field('听感备注', note), provenance);
+    section.append(field(`${side} · 选择样本`, sampleSelect), heading, audio, switchButton, audioStatus, scores, timeline, scoreControls, field('听感备注', note), provenance);
     players.append(section);
-    slots[side] = { section, sampleSelect, heading, audio, audioStatus, scores, ratings, note, provenance, provenanceBody };
+    slots[side] = { section, sampleSelect, heading, audio, audioStatus, scores, timeline, ratings, note, provenance, provenanceBody };
     sampleSelect.addEventListener('change', () => { if (side === 'A') currentA = sampleSelect.value; else currentB = sampleSelect.value; updatePlayer(side); updatePair(); });
   }
   buildPlayer('A'); buildPlayer('B');
@@ -125,6 +180,7 @@ function render(data) {
     persist(); if (currentA === currentB) updatePlayer(side === 'A' ? 'B' : 'A');
   }
   function updateOptions() {
+    for (let i = 1; i < pairSelect.options.length; i++) pairSelect.options[i].textContent = blind ? `对照 ${String(i).padStart(2, '0')}` : presetPairs[i - 1].label;
     for (const side of ['A', 'B']) {
       const control = slots[side].sampleSelect, selected = side === 'A' ? currentA : currentB;
       const visible = samples.filter((s) => filter === 'all' || category(s) === filter || s.id === selected);
@@ -136,10 +192,23 @@ function render(data) {
     slot.heading.textContent = `${side} · ${name(s)} · ${finite(s.duration_s) ? s.duration_s.toFixed(1) + '秒' : '固定片段'}`;
     if (slot.audio.dataset.sample !== s.id) { slot.audio.pause(); slot.audio.src = safeUrl(s.audio); slot.audio.dataset.sample = s.id; slot.audioStatus.textContent = ''; }
     for (const [key] of ratingFields) slot.ratings[key].value = rating[key] == null ? '' : String(rating[key]);
-    slot.note.value = rating.note || ''; slot.scores.hidden = blind; slot.provenance.hidden = blind;
+    slot.note.value = rating.note || ''; slot.scores.hidden = blind; slot.provenance.hidden = blind; slot.timeline.hidden = blind;
+    slot.timeline.replaceChildren();
+    if (s.timeline) {
+      slot.timeline.append(el('p', '曲线用于定位听评：点击候选时刻跳转。自动峰值可能只是鼓点、和声或合成器，不是已确认缺陷。', 'nat-note'));
+      for (const [key, title] of [['modulation', '子带快速调制'], ['roughness', 'DW70 roughness · asper'], ['resonance', '谐波保护共振代理']]) {
+        const series = s.timeline[key]; if (!series?.time_s?.length) continue;
+        const max = Math.max(...series.value), index = series.value.indexOf(max), ts = series.time_s[index];
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('viewBox', '0 0 400 62'); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', `${title} 时间曲线，纵轴0至${fmt(max)}`);
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', series.value.map((v, i) => `${i ? 'L' : 'M'}${(series.time_s[i] / s.duration_s * 400).toFixed(2)},${(58 - v / Math.max(max, 1e-12) * 50).toFixed(2)}`).join(' '));
+        path.setAttribute('fill', 'none'); path.setAttribute('stroke', 'currentColor'); path.setAttribute('stroke-width', '1.5'); svg.append(path);
+        slot.timeline.append(el('p', `${title} · 独立纵轴0–${fmt(max)} · 横轴0–10秒`, 'nat-note'), svg, button(`检查片段 ${ts.toFixed(1)} 秒（原曲 ${(s.excerpt_start_s + ts).toFixed(1)} 秒）`, () => { slot.audio.currentTime = Math.max(0, ts - .4); }));
+      }
+    }
     slot.scores.replaceChildren(...metricDefs.slice(0, 8).map(([path, title]) => el('span', `${title}: ${fmt(getMetric(s, path))}`)));
     const dl = el('dl', null, 'nat-meta');
-    for (const [title, value] of [['类型', categoryLabels[category(s)]], ['模型', s.model], ['阶段', s.checkpoint], ['条件', s.input_id], ['作者署名', s.credit], ['选择原因', s.selection_reason], ['变换', asText(s.transform)], ['来源原件SHA', s.source_original_sha256], ['评分片段SHA', s.excerpt_sha256], ['试听MP3 SHA', s.mp3_sha256], ['使用依据', s.rights]]) if (value) dl.append(el('dt', title), el('dd', asText(value)));
+    for (const [title, value] of [['类型', categoryLabels[category(s)]], ['模型', s.model], ['阶段', s.checkpoint], ['原曲位置', finite(s.excerpt_start_s) ? `${s.excerpt_start_s.toFixed(3)}–${(s.excerpt_start_s + s.duration_s).toFixed(3)}秒` : null], ['发布者风格标注（非听感标签）', s.publisher_style], ['同族配对限制', s.same_input_verified === false ? '未核实完全相同生成输入；相对进度并非乐句对齐。' : null], ['条件', s.input_id], ['作者署名', s.credit], ['选择原因', s.selection_reason], ['变换', asText(s.transform)], ['来源原件SHA', s.source_original_sha256], ['评分片段SHA', s.excerpt_sha256], ['试听MP3 SHA', s.mp3_sha256], ['使用依据', s.rights]]) if (value) dl.append(el('dt', title), el('dd', asText(value)));
     const signal = Object.entries(s.signal || {}).filter(([, value]) => finite(value)).map(([key, value]) => `${key}: ${fmt(value, 5)}`);
     slot.provenanceBody.replaceChildren(dl, ...(s.source_url ? [link('已发布来源', s.source_url)] : []), ...(s.license_url ? [link('素材许可', s.license_url)] : []), ...(signal.length ? [list(signal)] : []));
     if (s.audiobox?.error || s.pam?.error) slot.provenanceBody.append(el('p', `方法失败：${asText(s.audiobox?.error || s.pam?.error)}`, 'nat-note'));
@@ -156,7 +225,7 @@ function render(data) {
   function savePair() { saved.pairs[pairKey()] = { a: currentA, b: currentB, ...Object.fromEntries(preferenceFields.map(([key]) => [key, prefs[key].value || null])), note: pairComment.value.trim(), blind, updated_at: new Date().toISOString() }; persist(); }
   function updatePair() {
     const a = byId.get(currentA), b = byId.get(currentB), sameCondition = a.input_id && a.input_id === b.input_id;
-    pairNote.textContent = currentA === currentB ? '当前A、B是同一个样本。' : sameCondition || a.base_id === b.id || b.base_id === a.id ? '当前为相同输入／同源变换对照。生成前后片段的音乐内容仍可能变化；差异不能自动归因于伪影。' : '当前内容或条件不同；可记录偏好，但不能把内容偏好解释成电音缺陷识别。';
+    pairNote.textContent = currentA === currentB ? '当前A、B是同一个样本。' : a.source_family && a.source_family === b.source_family ? '真实Suno同族／同曲片段；未验证为完全相同生成输入，相对进度不等于同一乐句。分别判断缺陷、音质与音乐性，记录内容干扰或不确定。' : sameCondition || a.base_id === b.id || b.base_id === a.id ? '当前为相同输入／同源变换对照。生成前后片段的音乐内容仍可能变化；差异不能自动归因于伪影。' : '当前内容或条件不同；可记录偏好，但不能把内容偏好解释成电音缺陷识别。';
     const record = saved.pairs[pairKey()] || {}; for (const [key] of preferenceFields) prefs[key].value = record[key] || ''; pairComment.value = record.note || '';
   }
   pairBlock.append(pairNote, button('B 选择 A 的同源对照', () => { const match = matching(byId.get(currentA)); if (match) { currentB = match.id; updateOptions(); updatePlayer('B'); updatePair(); } else status.textContent = '当前样本没有预设同源对照，可手动选择B。'; }), pairGrid, field('比较备注', pairComment));
@@ -177,7 +246,8 @@ function render(data) {
   importFile.addEventListener('change', async () => {
     try {
       const file = importFile.files[0]; if (!file) return; if (file.size > 2e6) throw new Error('文件过大'); const incoming = JSON.parse(await file.text());
-      if (incoming.schema !== 'rl-lab-naturalness-labels-v1' || incoming.dataset_version !== version) throw new Error('数据版本或评分格式不匹配');
+      if (incoming.schema !== 'rl-lab-naturalness-labels-v1' || ![version, ...(meta.annotation_compatible_versions || [])].includes(incoming.dataset_version)) throw new Error('数据版本或评分格式不匹配');
+      if (incoming.dataset_version !== version && [...(incoming.ratings || []).map(r => r.sample_id), ...(incoming.pairs || []).flatMap(r => [r.a, r.b])].some(id => !meta.previous_sample_ids?.includes(id))) throw new Error('旧版本仅允许原25条未变音频的评分');
       if (!Array.isArray(incoming.ratings) || !Array.isArray(incoming.pairs)) throw new Error('评分数组缺失');
       const ratings = {}, pairs = {};
       for (const r of incoming.ratings) { if (!byId.has(r.sample_id) || ratingFields.some(([key]) => r[key] != null && (!Number.isInteger(r[key]) || r[key] < 1 || r[key] > 5))) throw new Error('样本ID或评分范围无效'); ratings[r.sample_id] = { sample_id: r.sample_id, ...Object.fromEntries(ratingFields.map(([key]) => [key, r[key] ?? null])), note: String(r.note || '').slice(0, 4000), blind: !!r.blind, updated_at: r.updated_at || new Date().toISOString() }; }
@@ -187,6 +257,23 @@ function render(data) {
   });
   listening.append(field('评分者别名', rater), exportBar, status); root.append(listening);
 
+  if (data.psychoacoustic) {
+    const p = data.psychoacoustic;
+    const evidence = details('辅助探针 · 响应与正常音色误伤'); evidence.open = false;
+    evidence.append(list(p.findings), el('p', '所有指标均非“人工伪影概率”。47条中22条是新构造探针；没有新增人工标签，也没有训练RL。', 'nat-note'));
+    for (const plot of p.figures || []) {
+      const figure = el('figure', null, 'nat-response-figure'), img = el('img');
+      img.src = safeUrl(plot.url); img.alt = plot.alt; img.loading = 'lazy';
+      figure.append(img, el('figcaption', plot.caption)); evidence.append(figure);
+    }
+    evidence.append(table(['对照', '已测变化', '对reward的含义'], (p.comparisons || []).map(c => [c.label, c.observation, c.interpretation])), link('心理声学报告、算法定义与复现', p.metadata.report_url));
+    root.append(evidence);
+  }
+
+  if (data.suno_real) {
+    const evidence = details('真实Suno实测 · 观察与边界', [list(data.findings), link('完整Suno实验报告与复现', meta.report_url)]); evidence.open = true; root.append(evidence);
+    root.append(details('真实样本分布与指标分歧', (data.figures || []).map(plot => { const f = el('figure', null, 'nat-response-figure'), img = el('img'); img.src = safeUrl(plot.url); img.alt = plot.alt; img.loading = 'lazy'; f.append(img, el('figcaption', plot.caption)); return f; })));
+  }
   if (notes.length) root.append(details('范围与未确认项', [list(notes), el('p', '当前匿名界面用于本机评分辅助，尚未完成预注册的正式盲测。', 'nat-note')]));
   const credits = [...new Map(samples.filter(s => s.credit && s.source_url).map(s => [s.source_url, s])).values()];
   if (credits.length) root.append(details('试听素材署名与许可（完成匿名听评后展开）', credits.map(s => {
@@ -196,7 +283,13 @@ function render(data) {
   const scoreArea = details('自动分数与排序（取消隐藏后可见）'); const scoreContent = el('div'); scoreArea.append(scoreContent); root.append(scoreArea);
   const sortControl = select([['original', '原始固定顺序'], ...metricDefs.map(([key, title]) => [key, title])], '排序指标');
   const direction = select([['desc', '数值从高到低'], ['asc', '数值从低到高']], '排序方向');
-  const sortTools = el('div', null, 'nat-toolbar'); sortTools.append(field('排序指标', sortControl), field('顺序', direction));
+  const familyControl = select([['psycho', '本轮心理声学'], ['legacy', '上一轮 AI / 信号诊断']], '评分方法组');
+  const sortTools = el('div', null, 'nat-toolbar'); if (!data.suno_real) sortTools.append(field('方法组', familyControl)); sortTools.append(field('排序指标', sortControl), field('顺序', direction));
+  familyControl.addEventListener('change', () => {
+    metricDefs = familyControl.value === 'psycho' ? psychoMetricDefs : legacyMetricDefs;
+    sortControl.replaceChildren(...[['original', '原始固定顺序'], ...metricDefs.map(([key, title]) => [key, title])].map(([value, title]) => { const o = el('option', title); o.value = value; return o; }));
+    updatePlayer('A'); updatePlayer('B'); drawRanking();
+  });
   const rank = el('div'); scoreContent.append(el('p', '同一列才可比较。↑是该方法分数方向，不代表本任务已验证自然度。SP指标不用于通用好坏排名；缺值保持未运行。', 'nat-note'), sortTools, rank);
   function drawRanking() {
     scoreContent.hidden = blind; scoreArea.querySelector('summary').textContent = blind ? '自动分数与排序 · 已隐藏，先完成试听' : '自动分数与排序';

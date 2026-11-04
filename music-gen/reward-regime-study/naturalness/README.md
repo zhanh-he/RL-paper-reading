@@ -1,5 +1,9 @@
 # 不自然人工感 reward 审计
 
+最新主实验：[真实Suno V5音乐](SUNO_REAL_REPORT.md)，16首原始歌曲、48条未加工片段；先做真实听评定位，不直接优化未校准指标。
+
+辅助：[47条心理声学实测](PSYCHOACOUSTIC_REPORT.md)已用RTX5090完成听觉子带调制、参考roughness与孤立共振比较；含正常合成器保护和失败对照。下文保留首轮25条AI scorer审计的复现记录。
+
 [在线试听与评分](https://zhanh-he.github.io/RL-paper-reading/demos/#naturalness) · [实测报告](REPORT.md) · [19个候选与原始来源](RESEARCH.md) · [逐条分数 CSV](runs/2026-11-04/sample-scores.csv)
 
 目前最推荐本域人工偏好 head，加 Audiobox PQ 质量约束。**尚不能作为已验证的 RL 自然度目标。** 25条10秒音频已跑通 Audiobox、PAM、SongEval和信号诊断；没有人工标签，没有本轮新增RL训练。自拟“自然／伪影”prompt对比已因饱和失败而排除。指定背景 Word 已完整阅读；其中伪影归因和检测断言已与一手资料分开核实，目标实现仍待代码/重建对照验证。

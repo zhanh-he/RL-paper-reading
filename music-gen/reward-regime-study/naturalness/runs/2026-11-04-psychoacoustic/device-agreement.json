@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "tolerance": 0.0001,
+  "samples": [
+    {
+      "id": "muse_baseline",
+      "absolute_errors": {
+        "modulation_depth_20_300": 8.940696716308594e-08,
+        "isolated_resonance_proxy": 0.0,
+        "harmonic_veto_resonance_proxy": 1.862645149230957e-09,
+        "coherent_modulation_depth": 4.025926142459113e-08
+      }
+    },
+    {
+      "id": "control_bright_synth",
+      "absolute_errors": {
+        "modulation_depth_20_300": 2.7008354663848877e-08,
+        "isolated_resonance_proxy": 0.0,
+        "harmonic_veto_resonance_proxy": 1.2951204553246498e-09,
+        "coherent_modulation_depth": 2.0770490034502376e-08
+      }
+    },
+    {
+      "id": "psy_control_fm_bell_style",
+      "absolute_errors": {
+        "modulation_depth_20_300": 1.4901161193847656e-08,
+        "isolated_resonance_proxy": 2.9802322387695312e-08,
+        "harmonic_veto_resonance_proxy": 0.0,
+        "coherent_modulation_depth": 8.049996426395811e-09
+      }
+    },
+    {
+      "id": "psy_muse_baseline__am70_deep",
+      "absolute_errors": {
+        "modulation_depth_20_300": 1.1920928955078125e-07,
+        "isolated_resonance_proxy": 1.4901161193847656e-08,
+        "harmonic_veto_resonance_proxy": 2.3283064365386963e-09,
+        "coherent_modulation_depth": 7.244664043670745e-08
+      }
+    },
+    {
+      "id": "control_silence",
+      "absolute_errors": {
+        "modulation_depth_20_300": 0.0,
+        "isolated_resonance_proxy": 0.0
+      }
+    }
+  ],
+  "dataset_version": "psychoacoustic-20261104-v1",
+  "cpu": "Apple M4 / torch2.5.1",
+  "gpu": "RTX5090 / torch2.9.1+cu128",
+  "identical_reference_function_sha256": "b3db57844b1dd33830f6cbf63e8e811e99d16c3037c3bb25651c513be3cdf81d"
+}

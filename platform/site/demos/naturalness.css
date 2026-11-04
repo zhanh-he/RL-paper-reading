@@ -68,3 +68,6 @@
   #view-naturalness .nat-response-figure { overflow-x: auto; }
   #view-naturalness .nat-response-figure img { min-width: 1080px; }
 }
+
+.nat-timeline svg { width: 100%; height: 70px; color: #197568; border-bottom: 1px solid #ccd9d4; }
+.nat-timeline .nat-button { font-size: .8rem; margin-bottom: .6rem; }

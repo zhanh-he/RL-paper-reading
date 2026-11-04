@@ -1,0 +1,22 @@
+{
+  "silent_invalid": true,
+  "human_labels_count": 0,
+  "cross_level_rank_spearman": {
+    "60": 0.9949429540548874,
+    "80": 0.9970397779833489
+  },
+  "level_note": "Cross-level metric stability only; not correlation with humans",
+  "anchor60_asper": 1.0191055347713267,
+  "gain_invariance": {
+    "muse_baseline": {
+      "modulation_depth": 0.0,
+      "roughness70": 5.400403257915798e-07,
+      "resonance_protected": 1.3969838619232178e-09
+    },
+    "ref_vibeace": {
+      "modulation_depth": 0.0,
+      "roughness70": 1.0170427817285388e-06,
+      "resonance_protected": 2.60770320892334e-08
+    }
+  }
+}
