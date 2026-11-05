@@ -81,7 +81,7 @@ async function load() {
       try { const r = await fetch(url, { cache: 'no-store' }); if (!r.ok) throw new Error(`HTTP ${r.status}`); return await r.json(); }
       catch (error) { loadWarnings.push(`${title}暂不可读（${error.message}）；保留原始Suno试听，不补造数据。`); return null; }
     };
-    const [review, controls] = await Promise.all([optional('./data/listening-review.json', '重点试听与完整轨迹'), optional('./data/prompt-control-audit.json', 'Prompt / CFG实验')]);
+    const [review, controls, contrast] = await Promise.all([optional('./data/listening-review.json', '重点试听与完整轨迹'), optional('./data/prompt-control-audit.json', 'Prompt / CFG实验'), optional('./data/contrast-followup-audit.json', '条件对比引导实验')]);
     if (review) {
       try {
         const ids = new Map(suno.samples.map(s => [s.id, s]));
@@ -101,16 +101,21 @@ async function load() {
         suno.listening_pairs = merged; suno.review = review;
       } catch (error) { loadWarnings.push(`重点试听未应用（${error.message}）；保留冻结Suno清单及原始曲线。`); }
     }
-    let validControls = null;
-    if (controls) {
-      const ids = new Set(Array.isArray(controls.samples) ? controls.samples.map(s => s.id) : []);
-      const valid = controls.attribute_probe === true && typeof controls.metadata?.version === 'string' && controls.metadata.version && controls.metadata.version !== suno.metadata?.version && Array.isArray(controls.samples) && controls.samples.length && ids.size === controls.samples.length && controls.samples.every(s => s.id && safeUrl(s.audio)) && (controls.listening_pairs == null || Array.isArray(controls.listening_pairs) && controls.listening_pairs.every(p => ids.has(p.a) && ids.has(p.b)));
-      if (valid) validControls = controls; else loadWarnings.push('Prompt / CFG实验结构或独立评分版本不完整；不显示替代样本。');
-    }
-    audits = { suno, auxiliary: data, controls: validControls };
+    const versions = new Set([suno.metadata?.version, data.metadata?.version].filter(Boolean));
+    const validateProbe = (probe, title) => {
+      if (!probe) return null;
+      const ids = new Set(Array.isArray(probe.samples) ? probe.samples.map(s => s.id) : []);
+      const version = probe.metadata?.version;
+      const valid = probe.attribute_probe === true && typeof version === 'string' && version.trim() && !versions.has(version) && Array.isArray(probe.samples) && probe.samples.length && ids.size === probe.samples.length && probe.samples.every(s => s.id && safeUrl(s.audio)) && (probe.listening_pairs == null || Array.isArray(probe.listening_pairs) && probe.listening_pairs.every(p => ids.has(p.a) && ids.has(p.b)));
+      if (!valid) { loadWarnings.push(`${title}结构或独立评分版本不完整；保留原始Suno试听，不补造数据。`); return null; }
+      versions.add(version); return probe;
+    };
+    const validControls = validateProbe(controls, 'Prompt / CFG实验');
+    const validContrast = validateProbe(contrast, '条件对比引导实验');
+    audits = { suno, auxiliary: data, controls: validControls, contrast: validContrast };
     const requested = new URL(location.href).searchParams.get('nat-corpus');
-    if (requested === 'controls' && !audits.controls) loadWarnings.push('请求的Prompt / CFG试听暂不可用，先显示真实Suno。');
-    render(requested === 'controls' && audits.controls ? audits.controls : suno);
+    if (['controls', 'contrast'].includes(requested) && !audits[requested]) loadWarnings.push(`请求的${requested === 'contrast' ? '条件对比引导' : 'Prompt / CFG'}试听暂不可用，先显示真实Suno。`);
+    render(['controls', 'contrast'].includes(requested) && audits[requested] ? audits[requested] : suno);
   } catch (error) {
     root.replaceChildren(el('p', `实验清单暂时无法读取（${error.message}）。不显示替代分数。`, 'nat-note'), button('重新读取', load));
   }
@@ -123,6 +128,7 @@ function render(data) {
     const choices = el('div', null, 'nat-toolbar');
     choices.append(button('主实验 · 真实Suno音乐', () => render(audits.suno)));
     if (audits.controls) choices.append(button('真实生成 · Prompt / CFG 对照', () => render(audits.controls)));
+    if (audits.contrast) choices.append(button('外部探索 · 条件对比引导', () => render(audits.contrast)));
     choices.append(button('辅助 · 旧样本与模拟误伤测试', () => render(audits.auxiliary)));
     root.append(choices);
   }
@@ -132,7 +138,9 @@ function render(data) {
   const meta = data.metadata || {};
   const ratingFields = data.attribute_probe ? [...baseRatingFields, ['suno_likeness', 'Suno音色相似度（非缺陷）', '1 不像', '5 很像'], ['instrument_retention', '要求的配器保留度', '1 明显丢失', '5 充分保留']] : baseRatingFields;
   const version = String(meta.version || meta.dataset_version || '20261104-v1');
-  const activePsychoDefs = data.attribute_probe ? [...psychoMetricDefs.filter(d => d[0] !== 'psycho.roughness_raw'), ['audiobox.PQ', 'Audiobox PQ · 质量监测 ↑', '生产质量代理，不是伪影gold'], ['psycho.suno_descriptor_distance', '三指标距离 · 非Suno味', '越小仅表示靠近此小型Suno描述子集合的中心']] : psychoMetricDefs;
+  const isContrast = data.contrast_followup === true || data === audits?.contrast;
+  const hasSunoDistance = !isContrast && samples.some(s => finite(getMetric(s, 'psycho.suno_descriptor_distance')));
+  const activePsychoDefs = data.attribute_probe ? [...psychoMetricDefs.filter(d => d[0] !== 'psycho.roughness_raw'), ...(data.contrast_followup === true ? [['psycho.modulation_low', '低子带快速调制 · <1.5kHz', '仅在低中心频率子带内聚合，非缺陷分数'], ['psycho.modulation_high', '高子带快速调制 · 3–8kHz', '仅在高中心频率子带内聚合，非缺陷分数']] : []), ['audiobox.PQ', 'Audiobox PQ · 质量监测 ↑', '生产质量代理，不是伪影gold'], ...(hasSunoDistance ? [['psycho.suno_descriptor_distance', '三指标距离 · 非Suno味', '越小仅表示靠近此小型Suno描述子集合的中心']] : [])] : psychoMetricDefs;
   let metricDefs = (data.psychoacoustic || data.suno_real || data.attribute_probe) ? activePsychoDefs : legacyMetricDefs;
   const storageKey = `rl-lab-naturalness:${version}`;
   let saved = { ratings: {}, pairs: {}, rater: '' };
@@ -163,6 +171,12 @@ function render(data) {
 
   const summary = typeof data.summary === 'string' ? { conclusion: data.summary } : data.summary || {};
   const intro = el('div', null, 'nat-summary');
+  const handoff = el('aside', null, 'nat-handoff');
+  handoff.append(el('p', '目前交付外部诊断与复现方案：建议新增artifact reward权重保持0；公共renderer的发现不外推其他实现。', 'nat-handoff-status'), el('p', '尚无目标人工标签；全带调制汇总可能掩盖相反的分带变化，指标仍需与试听核对。', 'nat-note'));
+  const handoffLinks = el('nav', null, 'nat-handoff-links'); handoffLinks.setAttribute('aria-label', '实验交接文档');
+  const handoffBase = 'https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/reward-regime-study/naturalness/';
+  for (const [title, file] of [['先看结论与待办', 'EXTERNAL_EVIDENCE_HANDOFF.md'], ['内部复现实验清单', 'INTERNAL_REPLICATION_CHECKLIST.md'], ['指标混杂审计', 'DESCRIPTOR_CONFOUND_AUDIT.md']]) handoffLinks.append(link(title, handoffBase + file));
+  handoff.append(handoffLinks); intro.append(handoff);
   intro.append(el('p', asText(first(summary, ['conclusion', 'headline', 'recommendation'], '先完成受控审计与人工评分，再决定是否作为RL目标。')), 'nat-conclusion'));
   intro.append(el('p', asText(summary.evidence) || `${samples.length}条固定片段；人工标签为${meta.human_labels_count ?? 0}，本轮没有新RL训练。`, 'nat-note'));
   const notes = [summary.scope, ...(Array.isArray(summary.limitations) ? summary.limitations : []), ...(Array.isArray(meta.limitations) ? meta.limitations : [])].filter(Boolean);
@@ -266,9 +280,9 @@ function render(data) {
         else slot.timeline.append(el('p', '这条保存曲线没有非零峰，不能据此定位缺陷。', 'nat-note'));
       }
     }
-    slot.scores.replaceChildren(...metricDefs.slice(0, 8).map(([path, title]) => el('span', `${title}: ${fmt(getMetric(s, path))}`)));
+    slot.scores.replaceChildren(...(isContrast ? metricDefs : metricDefs.slice(0, 8)).map(([path, title]) => el('span', `${title}: ${fmt(getMetric(s, path))}`)));
     const dl = el('dl', null, 'nat-meta');
-    for (const [title, value] of [['类型', categoryLabels[category(s)]], ['模型', s.model], ['阶段', s.checkpoint], ['原曲位置', finite(s.excerpt_start_s) ? `${s.excerpt_start_s.toFixed(3)}–${(s.excerpt_start_s + s.duration_s).toFixed(3)}秒` : null], ['发布者风格标注（非听感标签）', s.publisher_style], ['同族配对限制', s.same_input_verified === false ? '未核实完全相同生成输入；相对进度并非乐句对齐。' : null], ['条件', s.input_id], ['本轮提示条件', s.prompt_control?.prompt], ['随机种子', s.prompt_control?.seed], ['DiffRhythm2原生CFG参数', s.prompt_control?.native_cfg_strength], ['条件控制臂', s.prompt_control?.arm], ['作者署名', s.credit], ['选择原因', s.selection_reason], ['变换', asText(s.transform)], ['来源原件SHA', s.source_original_sha256], ['评分片段SHA', s.excerpt_sha256], ['试听MP3 SHA', s.mp3_sha256], ['使用依据', s.rights]]) if (value) dl.append(el('dt', title), el('dd', asText(value)));
+    for (const [title, value] of [['类型', categoryLabels[category(s)]], ['模型', s.model], ['阶段', s.checkpoint], ['原曲位置', finite(s.excerpt_start_s) ? `${s.excerpt_start_s.toFixed(3)}–${(s.excerpt_start_s + s.duration_s).toFixed(3)}秒` : null], ['发布者风格标注（非听感标签）', s.publisher_style], ['同族配对限制', s.same_input_verified === false ? '未核实完全相同生成输入；相对进度并非乐句对齐。' : null], ['条件', s.input_id], ['本轮提示条件', s.prompt_control?.prompt], ['随机种子', s.prompt_control?.seed], ['DiffRhythm2原生CFG参数', s.prompt_control?.native_cfg_strength], ['两条件外推β（非native CFG）', s.prompt_control?.contrast_beta], ['条件控制臂', s.prompt_control?.arm], ['作者署名', s.credit], ['选择原因', s.selection_reason], ['变换', asText(s.transform)], ['来源原件SHA', s.source_original_sha256], ['评分片段SHA', s.excerpt_sha256], ['试听MP3 SHA', s.mp3_sha256], ['使用依据', s.rights]]) if (value || value === 0) dl.append(el('dt', title), el('dd', asText(value)));
     const signal = Object.entries(s.signal || {}).filter(([, value]) => finite(value)).map(([key, value]) => `${key}: ${fmt(value, 5)}`);
     slot.provenanceBody.replaceChildren(dl, ...(s.full_audio ? [link('完整生成音频（保留前后文）', s.full_audio)] : []), ...(s.source_url ? [link('已发布来源', s.source_url)] : []), ...(s.license_url ? [link('素材许可', s.license_url)] : []), ...(signal.length ? [list(signal)] : []));
     if (s.audiobox?.error || s.pam?.error) slot.provenanceBody.append(el('p', `方法失败：${asText(s.audiobox?.error || s.pam?.error)}`, 'nat-note'));
@@ -356,10 +370,10 @@ function render(data) {
     root.append(details('真实样本分布与指标分歧', (data.figures || []).map(plot => { const f = el('figure', null, 'nat-response-figure'), img = el('img'); img.src = safeUrl(plot.url); img.alt = plot.alt; img.loading = 'lazy'; f.append(img, el('figcaption', plot.caption)); return f; })));
   }
   if (data.attribute_probe && Array.isArray(data.findings)) {
-    const evidence = details('真实生成 · Prompt / CFG实测与边界', [list(data.findings)]); evidence.open = true;
+    const evidence = details(isContrast ? '外部探索 · 条件对比引导实测与边界' : '真实生成 · Prompt / CFG实测与边界', [list(data.findings)]); evidence.open = true;
     if (meta.report_url) evidence.append(link('本轮实验报告与复现', meta.report_url)); root.append(evidence);
   }
-  if (data.attribute_probe && data.figures?.length) root.append(details('Prompt / CFG实测曲线（固定窗口）', data.figures.map(plot => { const f = el('figure', null, 'nat-response-figure'), img = el('img'); img.src = safeUrl(plot.url); img.alt = plot.alt; img.loading = 'lazy'; f.append(img, el('figcaption', plot.caption)); return f; })));
+  if (data.attribute_probe && data.figures?.length) root.append(details(isContrast ? '条件对比引导曲线（固定窗口）' : 'Prompt / CFG实测曲线（固定窗口）', data.figures.map(plot => { const f = el('figure', null, 'nat-response-figure'), img = el('img'); img.src = safeUrl(plot.url); img.alt = plot.alt; img.loading = 'lazy'; f.append(img, el('figcaption', plot.caption)); return f; })));
   if (data.review?.metadata?.trace_note) root.append(details('本轮轨迹定位说明', [el('p', data.review.metadata.trace_note, 'nat-note')]));
   if (notes.length) root.append(details('范围与未确认项', [list(notes), el('p', '当前匿名界面用于本机评分辅助，尚未完成预注册的正式盲测。', 'nat-note')]));
   const credits = [...new Map(samples.filter(s => s.credit && s.source_url).map(s => [s.source_url, s])).values()];

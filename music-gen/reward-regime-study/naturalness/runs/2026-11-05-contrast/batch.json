@@ -1,0 +1,96 @@
+{
+  "schema": "matched-lyrics-conditional-contrast-v1",
+  "date": "2026-11-05",
+  "status": "registered_before_generation",
+  "objective": "External public-model diagnostic; both branches keep identical lyrics and requested instrumentation. Attribute wording is an intervention, not an artifact label.",
+  "cases": [
+    {
+      "id": "contrast_acoustic_s37_conditional",
+      "family": "acoustic",
+      "arm": "conditional",
+      "seed": 37,
+      "style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct live-drum attacks and transparent acoustic-guitar and piano detail. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "negative_style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 0.0
+    },
+    {
+      "id": "contrast_acoustic_s37_contrast05",
+      "family": "acoustic",
+      "arm": "contrast05",
+      "seed": 37,
+      "style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct live-drum attacks and transparent acoustic-guitar and piano detail. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "negative_style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 0.5
+    },
+    {
+      "id": "contrast_acoustic_s37_contrast10",
+      "family": "acoustic",
+      "arm": "contrast10",
+      "seed": 37,
+      "style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct live-drum attacks and transparent acoustic-guitar and piano detail. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "negative_style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 1.0
+    },
+    {
+      "id": "contrast_acoustic_s37_sham10",
+      "family": "acoustic",
+      "arm": "sham10",
+      "seed": 37,
+      "style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct live-drum attacks and transparent acoustic-guitar and piano detail. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "negative_style": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct live-drum attacks and transparent acoustic-guitar and piano detail. Keep the acoustic guitar, piano, electric bass and live drums.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 1.0
+    },
+    {
+      "id": "contrast_synth_s37_conditional",
+      "family": "synth",
+      "arm": "conditional",
+      "seed": 37,
+      "style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct drum-machine attacks and clean synthesizer articulation. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "negative_style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 0.0
+    },
+    {
+      "id": "contrast_synth_s37_contrast05",
+      "family": "synth",
+      "arm": "contrast05",
+      "seed": 37,
+      "style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct drum-machine attacks and clean synthesizer articulation. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "negative_style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 0.5
+    },
+    {
+      "id": "contrast_synth_s37_contrast10",
+      "family": "synth",
+      "arm": "contrast10",
+      "seed": 37,
+      "style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct drum-machine attacks and clean synthesizer articulation. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "negative_style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Robotic, metallic and buzzy female singing with smeared consonants and phasey digital ringing. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 1.0
+    },
+    {
+      "id": "contrast_synth_s37_sham10",
+      "family": "synth",
+      "arm": "sham10",
+      "seed": 37,
+      "style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct drum-machine attacks and clean synthesizer articulation. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "negative_style": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Close-miked human female singing with clear consonants, natural breathing and dynamic phrasing, distinct drum-machine attacks and clean synthesizer articulation. Keep the bright analog synth arpeggios, synth pads, electronic bass and drum machine prominent.",
+      "lyrics": "[start]\n[verse]\nMorning light is falling on the avenue\nEvery quiet window keeps a shade of blue\nI can hear the footsteps turning into song\nCarry all the small things as we move along\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[verse]\nSilver clouds are drifting where the rooftops meet\nSomeone leaves a flower by the empty seat\nEvery passing moment has a place to land\nWe can make a sunrise with an open hand\n[chorus]\nStay until the city finds a softer glow\nLet the little rivers in the streetlights flow\nKeep the rhythm breathing as the hours go\nThere is something here we do not have to know\n[outro]",
+      "cfg_strength": 1.0
+    }
+  ],
+  "formula": "v_positive+beta*(v_positive-v_avoid)",
+  "controls": "beta0 pure positive conditional; beta0.5/1 attribute-contrast; same-positive/avoid beta1 sham must match pureconditional PCM under same noise.",
+  "limitations": [
+    "One original lyric set, two instrumentation conditions, one seed; exploratory not generalized control success.",
+    "No company renderer/weights or private audio are used.",
+    "Acoustic positive/avoid wording does not mention synthesizers; this removes the prior lexical-instrument confound.",
+    "Changes in descriptors or production-quality estimates do not prove fewer unwanted artifacts."
+  ]
+}

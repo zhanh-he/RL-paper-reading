@@ -1,6 +1,8 @@
 # 不自然人工感 reward 审计
 
-最新：已完成[真实生成Prompt/CFG对照](PROMPT_CONTROL_REPORT.md)（32个分析输出、60个固定窗口），并提供[四组优先Suno试听](LISTENING_REVIEW_2026-11-05.md)。当前仍无可直接优化的电音reward。
+最新：[外部证据与待办](EXTERNAL_EVIDENCE_HANDOFF.md) · [内部复验任务单](INTERNAL_REPLICATION_CHECKLIST.md) · [指标混杂审计](DESCRIPTOR_CONFOUND_AUDIT.md)。新增 [8次条件对比引导实测](CONTRAST_FOLLOWUP_REPORT.md)（含2次逐位一致sham，16个固定窗口）。仍无人工标签，artifact reward建议保持0；公共renderer的发现不能外推其他实现。
+
+前轮：已完成[真实生成Prompt/CFG对照](PROMPT_CONTROL_REPORT.md)（32个分析输出、60个固定窗口），并提供[四组优先Suno试听](LISTENING_REVIEW_2026-11-05.md)。当前仍无可直接优化的电音reward。
 
 最新主实验：[真实Suno V5音乐](SUNO_REAL_REPORT.md)，16首原始歌曲、48条未加工片段；先做真实听评定位，不直接优化未校准指标。
 
