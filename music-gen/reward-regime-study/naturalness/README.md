@@ -1,5 +1,7 @@
 # 不自然人工感 reward 审计
 
+最新：已完成[真实生成Prompt/CFG对照](PROMPT_CONTROL_REPORT.md)（32个分析输出、60个固定窗口），并提供[四组优先Suno试听](LISTENING_REVIEW_2026-11-05.md)。当前仍无可直接优化的电音reward。
+
 最新主实验：[真实Suno V5音乐](SUNO_REAL_REPORT.md)，16首原始歌曲、48条未加工片段；先做真实听评定位，不直接优化未校准指标。
 
 辅助：[47条心理声学实测](PSYCHOACOUSTIC_REPORT.md)已用RTX5090完成听觉子带调制、参考roughness与孤立共振比较；含正常合成器保护和失败对照。下文保留首轮25条AI scorer审计的复现记录。

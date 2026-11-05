@@ -1,5 +1,7 @@
 # 真实Suno V5音乐：心理声学特征审计
 
+后续：[2026-11-05精选试听与完整共振轨迹](LISTENING_REVIEW_2026-11-05.md)和[新生成控制实验](PROMPT_CONTROL_REPORT.md)。下文保留11月4日冻结结果；网页现在优先展示精选组。
+
 **目前三类特征都没有通过“可直接用于GRPO压制人工伪影”的听感验收。** 已在16首真实SunoV5歌曲、48条未加工片段上跑通，最有价值的是局部定位与为后续本域偏好头提供输入。固定窄峰代理的残余候选全部在低中频；roughness也不能当成电音坏分。人工标签为0，没有训练reward head或进行新RL训练。
 
 [试听、时间曲线与待评价栏](https://zhanh-he.github.io/RL-paper-reading/demos/#naturalness) · [逐片分数CSV](runs/2026-11-04-suno-real/sample-scores.csv) · [清单](runs/2026-11-04-suno-real/audit.json) · [完整特征与耗时](runs/2026-11-04-suno-real/features.json) · [计划与自我审查](SUNO_REAL_PLAN.md)

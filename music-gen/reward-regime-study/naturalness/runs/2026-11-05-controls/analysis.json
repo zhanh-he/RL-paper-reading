@@ -1,0 +1,3369 @@
+{
+  "checks": {
+    "human_labels_count": 0,
+    "rl_training_runs": 0,
+    "actual_generation_records": 32,
+    "scored_clips": 60,
+    "audiobox_same_wav_scores": 60,
+    "input_status": [
+      {
+        "group": "diff",
+        "status": "included_complete_scores",
+        "tracks": 24,
+        "clips": 48
+      },
+      {
+        "group": "bloom",
+        "status": "included_complete_scores",
+        "tracks": 4,
+        "clips": 8
+      },
+      {
+        "group": "muse",
+        "status": "included_complete_scores",
+        "tracks": 4,
+        "clips": 4
+      }
+    ],
+    "input_sha256": {
+      "diff": {
+        "excerpts": "b33b2e4d1019f99857d7398e55f20a229298e516b79414c10e6608d025a0d914",
+        "auditory": "edb083dab244ea936b2db63bcb6673ab7f04dea863ca60b31e34eb17801ed83b",
+        "roughness": "3578f09acb3777f18ee6248d17f792bb5f2a1333701b52160cadee510b3bc703"
+      },
+      "bloom": {
+        "excerpts": "84935e30f02f290f9fd3bdca9da1ea827293962d862f46801b07773eb8ffd0e9",
+        "auditory": "c909d461ac6d904773b583f4e3a00c5378ea14fce4d93a3e8a5c97e015923688",
+        "roughness": "a4d65fb97e38de9fbfc534292897febb7a789428f994e7d597ab21cf25601c5f"
+      },
+      "muse": {
+        "excerpts": "e23cefe6e3fd05ea18bc9462f6877454c76a4df31b429817b81eab8aa0d3d385",
+        "auditory": "6c58549aff0d4ca03ac51278c7967af08455452b5d4e92a21d4f69100be25973",
+        "roughness": "f769ee142380d082b2b65853e96f56905bd141ef2ea436b1b0fa2107f7217e01"
+      }
+    },
+    "same_seed_noise_checks": [
+      {
+        "family": "acoustic",
+        "seed": 37,
+        "cases": 6,
+        "all_initial_noise_blocks_identical": true,
+        "blocks_per_case": 30
+      },
+      {
+        "family": "acoustic",
+        "seed": 91,
+        "cases": 4,
+        "all_initial_noise_blocks_identical": true,
+        "blocks_per_case": 30
+      },
+      {
+        "family": "synth",
+        "seed": 37,
+        "cases": 6,
+        "all_initial_noise_blocks_identical": true,
+        "blocks_per_case": 30
+      },
+      {
+        "family": "synth",
+        "seed": 91,
+        "cases": 4,
+        "all_initial_noise_blocks_identical": true,
+        "blocks_per_case": 30
+      }
+    ],
+    "muse_native_and_renderer_checks": {
+      "native_api_audit_outputs": 2,
+      "native_requested_scales": [
+        1.0,
+        2.0
+      ],
+      "native_effective_scales": [
+        [
+          1.5
+        ],
+        [
+          1.5
+        ]
+      ],
+      "native_container_hashes": [
+        "46d734e46156699723b4201e380c58db643f5172a00cda6f6219fbd6917fb128",
+        "f1c0811f94a831a634fc447073462c7bd73068638b33c47483ae6ccbca78b886"
+      ],
+      "native_pcm_hashes": [
+        "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb",
+        "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb"
+      ],
+      "native_different_arguments_identical_audio": true,
+      "waveform_equality_method": "Decodedfloat32PCM SHA256, not timestampedWAVcontainerSHA. Container hashes remain separately bound to scoring input.",
+      "analyzed_outputs": 4,
+      "exact_token_groups": {
+        "muse_synth_s37_base_used1p0": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+        "muse_synth_s37_base_used1p5": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+        "muse_synth_s37_base_used2p0": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+        "muse_synth_s37_concrete_used1p5": "42289fa4e65c306504072e20be7f2609fb2f48fe0f6a8a0d2fdc5c4b2bc83e92"
+      },
+      "actual_effective_scales": {
+        "muse_synth_s37_base_used1p0": [
+          1.0
+        ],
+        "muse_synth_s37_base_used1p5": [
+          1.5
+        ],
+        "muse_synth_s37_base_used2p0": [
+          2.0
+        ],
+        "muse_synth_s37_concrete_used1p5": [
+          1.5
+        ]
+      },
+      "same_decoder_random_draws_as_first_identical_codes": {
+        "muse_synth_s37_base_used1p0": true,
+        "muse_synth_s37_base_used1p5": true,
+        "muse_synth_s37_base_used2p0": true,
+        "muse_synth_s37_concrete_used1p5": null
+      },
+      "scope": "Native argument-noop check versus actual per-instance inference_codes guidance override are separate experiments; no shared source files modified."
+    },
+    "reference_suno_audit_sha256": "cc6a2b8395a42507311b16f775eb1d59458d0ec22cef4d5af04c733b1ba7e45f",
+    "selection_is_heldout_validation": false
+  },
+  "analysis": {
+    "feature_distance_calibration": {
+      "features": [
+        "modulation_depth",
+        "log(roughness70+1e-4)",
+        "log(resonance_protected+1e-4)"
+      ],
+      "center": [
+        0.2538760155439377,
+        -2.494386427974911,
+        -4.8216713538618095
+      ],
+      "iqr": [
+        0.06705674156546593,
+        0.8042039403639454,
+        1.4755372918799852
+      ],
+      "reference_clips": 48,
+      "reference_songs": 16,
+      "reference_families": 8,
+      "formula": "sqrt(mean(((transform(feature)-Suno_median)/Suno_IQR)^2))",
+      "direction": "Lower means closer to the center of these three descriptors in this small Suno sample, NOT greater perceptual Suno likeness or fewer artifacts.",
+      "caveat": "48 excerpts are clustered in16songs/8families; source/style/content/decoder confounds remain. No source classifier or calibrated probability is trained."
+    },
+    "prompt_contrasts": [
+      {
+        "family": "acoustic",
+        "arm": "literal_zh",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_acoustic_s37_base",
+            "changed": "diff_acoustic_s37_literal_zh",
+            "delta": {
+              "modulation_depth": 0.037666939198970795,
+              "roughness70": 0.05272432297954088,
+              "roughness70_p95": 0.3351956857357182,
+              "resonance_protected": -0.04198887338861823,
+              "suno_descriptor_distance": -0.503227106679883
+            },
+            "relative_change": {
+              "modulation_depth": 0.22805441796845996,
+              "roughness70": 0.8197495299492572,
+              "roughness70_p95": 1.7251386099193196,
+              "resonance_protected": -0.751096335666483,
+              "suno_descriptor_distance": -0.4462903727195393
+            },
+            "base_values": {
+              "modulation_depth": 0.1651664525270462,
+              "roughness70": 0.06431760074666287,
+              "roughness70_p95": 0.19430072679863936,
+              "resonance_protected": 0.055903445929288864,
+              "suno_descriptor_distance": 1.1275777776997316
+            },
+            "changed_values": {
+              "modulation_depth": 0.202833391726017,
+              "roughness70": 0.11704192372620376,
+              "roughness70_p95": 0.5294964125343575,
+              "resonance_protected": 0.013914572540670633,
+              "suno_descriptor_distance": 0.6243506710198485
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.49013090133667,
+              "changed": 8.538599014282227,
+              "delta": 0.04846811294555664,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_acoustic_s91_base",
+            "changed": "diff_acoustic_s91_literal_zh",
+            "delta": {
+              "modulation_depth": 0.0017317570745944977,
+              "roughness70": -0.043126022455842405,
+              "roughness70_p95": -0.2369881948563659,
+              "resonance_protected": -0.01593007706105709,
+              "suno_descriptor_distance": -0.12467275436384817
+            },
+            "relative_change": {
+              "modulation_depth": 0.012274632697726703,
+              "roughness70": -0.3359593953759603,
+              "roughness70_p95": -0.43196484426214526,
+              "resonance_protected": -0.2545527629396391,
+              "suno_descriptor_distance": -0.09498204707143752
+            },
+            "base_values": {
+              "modulation_depth": 0.1410842277109623,
+              "roughness70": 0.12836677006035682,
+              "roughness70_p95": 0.5486284312353567,
+              "resonance_protected": 0.0625806488096714,
+              "suno_descriptor_distance": 1.3125928342024444
+            },
+            "changed_values": {
+              "modulation_depth": 0.1428159847855568,
+              "roughness70": 0.08524074760451442,
+              "roughness70_p95": 0.31164023637899074,
+              "resonance_protected": 0.04665057174861431,
+              "suno_descriptor_distance": 1.1879200798385963
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.461695194244385,
+              "changed": 8.557886123657227,
+              "delta": 0.0961909294128418,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 0,
+          "roughness70": 1,
+          "roughness70_p95": 1,
+          "resonance_protected": 2,
+          "suno_descriptor_distance": 2
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      },
+      {
+        "family": "acoustic",
+        "arm": "literal_en",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_acoustic_s37_base",
+            "changed": "diff_acoustic_s37_literal_en",
+            "delta": {
+              "modulation_depth": 0.02165396511554718,
+              "roughness70": 0.05089357103878961,
+              "roughness70_p95": 0.1791124145936202,
+              "resonance_protected": -3.474578261375427e-05,
+              "suno_descriptor_distance": -0.1443060461810759
+            },
+            "relative_change": {
+              "modulation_depth": 0.13110389418820578,
+              "roughness70": 0.7912852850225485,
+              "roughness70_p95": 0.9218309037991437,
+              "resonance_protected": -0.0006215320368211919,
+              "suno_descriptor_distance": -0.12797879581793592
+            },
+            "base_values": {
+              "modulation_depth": 0.1651664525270462,
+              "roughness70": 0.06431760074666287,
+              "roughness70_p95": 0.19430072679863936,
+              "resonance_protected": 0.055903445929288864,
+              "suno_descriptor_distance": 1.1275777776997316
+            },
+            "changed_values": {
+              "modulation_depth": 0.18682041764259338,
+              "roughness70": 0.11521117178545248,
+              "roughness70_p95": 0.37341314139225956,
+              "resonance_protected": 0.05586870014667511,
+              "suno_descriptor_distance": 0.9832717315186557
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.49013090133667,
+              "changed": 8.498189449310303,
+              "delta": 0.008058547973632812,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_acoustic_s91_base",
+            "changed": "diff_acoustic_s91_literal_en",
+            "delta": {
+              "modulation_depth": 0.01074901595711708,
+              "roughness70": 0.04672745509238471,
+              "roughness70_p95": 0.4147262981635895,
+              "resonance_protected": -0.004816014319658279,
+              "suno_descriptor_distance": -0.018739361219697104
+            },
+            "relative_change": {
+              "modulation_depth": 0.07618864370252974,
+              "roughness70": 0.3640151970047537,
+              "roughness70_p95": 0.755932931200344,
+              "resonance_protected": -0.0769569253637076,
+              "suno_descriptor_distance": -0.014276598752791062
+            },
+            "base_values": {
+              "modulation_depth": 0.1410842277109623,
+              "roughness70": 0.12836677006035682,
+              "roughness70_p95": 0.5486284312353567,
+              "resonance_protected": 0.0625806488096714,
+              "suno_descriptor_distance": 1.3125928342024444
+            },
+            "changed_values": {
+              "modulation_depth": 0.15183324366807938,
+              "roughness70": 0.17509422515274153,
+              "roughness70_p95": 0.9633547293989462,
+              "resonance_protected": 0.05776463449001312,
+              "suno_descriptor_distance": 1.2938534729827473
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.461695194244385,
+              "changed": 8.495639324188232,
+              "delta": 0.033944129943847656,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 0,
+          "roughness70": 0,
+          "roughness70_p95": 0,
+          "resonance_protected": 2,
+          "suno_descriptor_distance": 2
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      },
+      {
+        "family": "acoustic",
+        "arm": "concrete",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_acoustic_s37_base",
+            "changed": "diff_acoustic_s37_concrete",
+            "delta": {
+              "modulation_depth": 0.03617977350950241,
+              "roughness70": 0.21106532517272858,
+              "roughness70_p95": 1.4358852130053397,
+              "resonance_protected": -0.04887864552438259,
+              "suno_descriptor_distance": -0.16066978477621863
+            },
+            "relative_change": {
+              "modulation_depth": 0.21905037588415802,
+              "roughness70": 3.2816106745660867,
+              "roughness70_p95": 7.390014626622564,
+              "resonance_protected": -0.8743404760094431,
+              "suno_descriptor_distance": -0.1424910883788313
+            },
+            "base_values": {
+              "modulation_depth": 0.1651664525270462,
+              "roughness70": 0.06431760074666287,
+              "roughness70_p95": 0.19430072679863936,
+              "resonance_protected": 0.055903445929288864,
+              "suno_descriptor_distance": 1.1275777776997316
+            },
+            "changed_values": {
+              "modulation_depth": 0.20134622603654861,
+              "roughness70": 0.27538292591939145,
+              "roughness70_p95": 1.630185939803979,
+              "resonance_protected": 0.007024800404906273,
+              "suno_descriptor_distance": 0.9669079929235129
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.49013090133667,
+              "changed": 8.457200527191162,
+              "delta": -0.03293037414550781,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_acoustic_s91_base",
+            "changed": "diff_acoustic_s91_concrete",
+            "delta": {
+              "modulation_depth": 0.10227045789361,
+              "roughness70": 0.04237698236996759,
+              "roughness70_p95": 0.22618491787191242,
+              "resonance_protected": -0.017270406940951943,
+              "suno_descriptor_distance": -0.5190368894678531
+            },
+            "relative_change": {
+              "modulation_depth": 0.7248893767425963,
+              "roughness70": 0.3301242397081608,
+              "roughness70_p95": 0.4122734167505824,
+              "resonance_protected": -0.2759704041017057,
+              "suno_descriptor_distance": -0.3954287086926156
+            },
+            "base_values": {
+              "modulation_depth": 0.1410842277109623,
+              "roughness70": 0.12836677006035682,
+              "roughness70_p95": 0.5486284312353567,
+              "resonance_protected": 0.0625806488096714,
+              "suno_descriptor_distance": 1.3125928342024444
+            },
+            "changed_values": {
+              "modulation_depth": 0.2433546856045723,
+              "roughness70": 0.1707437524303244,
+              "roughness70_p95": 0.7748133491072691,
+              "resonance_protected": 0.04531024186871946,
+              "suno_descriptor_distance": 0.7935559447345913
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.461695194244385,
+              "changed": 8.477207660675049,
+              "delta": 0.015512466430664062,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 0,
+          "roughness70": 0,
+          "roughness70_p95": 0,
+          "resonance_protected": 2,
+          "suno_descriptor_distance": 2
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      },
+      {
+        "family": "synth",
+        "arm": "literal_zh",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_synth_s37_base",
+            "changed": "diff_synth_s37_literal_zh",
+            "delta": {
+              "modulation_depth": 0.005505695939064026,
+              "roughness70": -0.06895533559426015,
+              "roughness70_p95": -0.15533403608265828,
+              "resonance_protected": 0.003932071151211858,
+              "suno_descriptor_distance": -0.0836477045060704
+            },
+            "relative_change": {
+              "modulation_depth": 0.01504058643310861,
+              "roughness70": -0.13662559822230644,
+              "roughness70_p95": -0.07315912814921267,
+              "resonance_protected": 0.6250773614856041,
+              "suno_descriptor_distance": -0.05224582374193011
+            },
+            "base_values": {
+              "modulation_depth": 0.3660559356212616,
+              "roughness70": 0.5047028996869345,
+              "roughness70_p95": 2.123235199930823,
+              "resonance_protected": 0.006290535209700465,
+              "suno_descriptor_distance": 1.6010409735187805
+            },
+            "changed_values": {
+              "modulation_depth": 0.3715616315603256,
+              "roughness70": 0.43574756409267434,
+              "roughness70_p95": 1.967901163848165,
+              "resonance_protected": 0.010222606360912323,
+              "suno_descriptor_distance": 1.51739326901271
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.312744617462158,
+              "changed": 8.094202041625977,
+              "delta": -0.21854257583618164,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_synth_s91_base",
+            "changed": "diff_synth_s91_literal_zh",
+            "delta": {
+              "modulation_depth": -0.027656257152557373,
+              "roughness70": -0.05917418896049875,
+              "roughness70_p95": -0.3972011258792816,
+              "resonance_protected": 0.0028497279854491353,
+              "suno_descriptor_distance": -0.278244886127192
+            },
+            "relative_change": {
+              "modulation_depth": -0.07079300501121467,
+              "roughness70": -0.14116950243316304,
+              "roughness70_p95": -0.17963989378899042,
+              "resonance_protected": 0.5484147340195002,
+              "suno_descriptor_distance": -0.16440421784032405
+            },
+            "base_values": {
+              "modulation_depth": 0.3906636983156204,
+              "roughness70": 0.41917119449021845,
+              "roughness70_p95": 2.2110964190718354,
+              "resonance_protected": 0.005196300917305052,
+              "suno_descriptor_distance": 1.692443720619349
+            },
+            "changed_values": {
+              "modulation_depth": 0.36300744116306305,
+              "roughness70": 0.3599970055297197,
+              "roughness70_p95": 1.8138952931925538,
+              "resonance_protected": 0.008046028902754188,
+              "suno_descriptor_distance": 1.414198834492157
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.484683990478516,
+              "changed": 8.388490676879883,
+              "delta": -0.09619331359863281,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 1,
+          "roughness70": 2,
+          "roughness70_p95": 2,
+          "resonance_protected": 0,
+          "suno_descriptor_distance": 2
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      },
+      {
+        "family": "synth",
+        "arm": "literal_en",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_synth_s37_base",
+            "changed": "diff_synth_s37_literal_en",
+            "delta": {
+              "modulation_depth": 0.031082570552825928,
+              "roughness70": -0.015408043131313165,
+              "roughness70_p95": -0.058746200991405484,
+              "resonance_protected": 0.0026978054083883762,
+              "suno_descriptor_distance": 0.14613932391351003
+            },
+            "relative_change": {
+              "modulation_depth": 0.08491207907904379,
+              "roughness70": -0.03052893720418631,
+              "roughness70_p95": -0.027668249374030483,
+              "resonance_protected": 0.42886738861713436,
+              "suno_descriptor_distance": 0.09127769140868636
+            },
+            "base_values": {
+              "modulation_depth": 0.3660559356212616,
+              "roughness70": 0.5047028996869345,
+              "roughness70_p95": 2.123235199930823,
+              "resonance_protected": 0.006290535209700465,
+              "suno_descriptor_distance": 1.6010409735187805
+            },
+            "changed_values": {
+              "modulation_depth": 0.3971385061740875,
+              "roughness70": 0.4892948565556213,
+              "roughness70_p95": 2.0644889989394177,
+              "resonance_protected": 0.008988340618088841,
+              "suno_descriptor_distance": 1.7471802974322905
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.312744617462158,
+              "changed": 8.116849660873413,
+              "delta": -0.19589495658874512,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_synth_s91_base",
+            "changed": "diff_synth_s91_literal_en",
+            "delta": {
+              "modulation_depth": -0.007324054837226868,
+              "roughness70": -0.021847376190709866,
+              "roughness70_p95": 0.0018869601617437226,
+              "resonance_protected": 0.0033899167319759727,
+              "suno_descriptor_distance": -0.10043562229504444
+            },
+            "relative_change": {
+              "modulation_depth": -0.01874772308971924,
+              "roughness70": -0.05212041399285534,
+              "roughness70_p95": 0.0008534047386933143,
+              "resonance_protected": 0.6523711359145226,
+              "suno_descriptor_distance": -0.05934355220880849
+            },
+            "base_values": {
+              "modulation_depth": 0.3906636983156204,
+              "roughness70": 0.41917119449021845,
+              "roughness70_p95": 2.2110964190718354,
+              "resonance_protected": 0.005196300917305052,
+              "suno_descriptor_distance": 1.692443720619349
+            },
+            "changed_values": {
+              "modulation_depth": 0.38333964347839355,
+              "roughness70": 0.3973238182995086,
+              "roughness70_p95": 2.212983379233579,
+              "resonance_protected": 0.008586217649281025,
+              "suno_descriptor_distance": 1.5920080983243046
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.484683990478516,
+              "changed": 8.397014141082764,
+              "delta": -0.08766984939575195,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 1,
+          "roughness70": 2,
+          "roughness70_p95": 1,
+          "resonance_protected": 0,
+          "suno_descriptor_distance": 1
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      },
+      {
+        "family": "synth",
+        "arm": "concrete",
+        "scope": "Per-seed means of prescribed10s windows; not whole-song quality",
+        "observations": [
+          {
+            "seed": 37,
+            "base": "diff_synth_s37_base",
+            "changed": "diff_synth_s37_concrete",
+            "delta": {
+              "modulation_depth": 0.006698578596115112,
+              "roughness70": -0.04627417506246545,
+              "roughness70_p95": -0.11908191517642974,
+              "resonance_protected": 0.00914255646057427,
+              "suno_descriptor_distance": -0.05556392189201853
+            },
+            "relative_change": {
+              "modulation_depth": 0.01829933063302591,
+              "roughness70": -0.09168597028305002,
+              "roughness70_p95": -0.05608512668794749,
+              "resonance_protected": 1.4533829246318786,
+              "suno_descriptor_distance": -0.03470487189962397
+            },
+            "base_values": {
+              "modulation_depth": 0.3660559356212616,
+              "roughness70": 0.5047028996869345,
+              "roughness70_p95": 2.123235199930823,
+              "resonance_protected": 0.006290535209700465,
+              "suno_descriptor_distance": 1.6010409735187805
+            },
+            "changed_values": {
+              "modulation_depth": 0.3727545142173767,
+              "roughness70": 0.45842872462446904,
+              "roughness70_p95": 2.0041532847543935,
+              "resonance_protected": 0.015433091670274734,
+              "suno_descriptor_distance": 1.545477051626762
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.312744617462158,
+              "changed": 8.06975507736206,
+              "delta": -0.24298954010009766,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          },
+          {
+            "seed": 91,
+            "base": "diff_synth_s91_base",
+            "changed": "diff_synth_s91_concrete",
+            "delta": {
+              "modulation_depth": -0.04437673091888428,
+              "roughness70": -0.010880557909211386,
+              "roughness70_p95": -0.003322102252286463,
+              "resonance_protected": 0.008066991227678955,
+              "suno_descriptor_distance": -0.2841772596848582
+            },
+            "relative_change": {
+              "modulation_depth": -0.11359317773885393,
+              "roughness70": -0.025957313031597855,
+              "roughness70_p95": -0.001502468288416387,
+              "resonance_protected": 1.5524488200469198,
+              "suno_descriptor_distance": -0.16790942955601718
+            },
+            "base_values": {
+              "modulation_depth": 0.3906636983156204,
+              "roughness70": 0.41917119449021845,
+              "roughness70_p95": 2.2110964190718354,
+              "resonance_protected": 0.005196300917305052,
+              "suno_descriptor_distance": 1.692443720619349
+            },
+            "changed_values": {
+              "modulation_depth": 0.34628696739673615,
+              "roughness70": 0.40829063658100706,
+              "roughness70_p95": 2.207774316819549,
+              "resonance_protected": 0.013263292144984007,
+              "suno_descriptor_distance": 1.4082664609344908
+            },
+            "audiobox_PQ_guard": {
+              "base": 8.484683990478516,
+              "changed": 8.452201843261719,
+              "delta": -0.032482147216796875,
+              "note": "Production-quality monitor, not artifact gold."
+            }
+          }
+        ],
+        "negative_delta_counts": {
+          "modulation_depth": 1,
+          "roughness70": 2,
+          "roughness70_p95": 2,
+          "resonance_protected": 0,
+          "suno_descriptor_distance": 2
+        },
+        "seeds": 2,
+        "interpretation": "No direction is a validated perceptual success label. No p-value or accuracy is computed."
+      }
+    ],
+    "cfg_sweep": [
+      {
+        "family": "acoustic",
+        "seed": 37,
+        "values": [
+          {
+            "native_cfg": 0,
+            "standard_cfg_scale": 1,
+            "case_id": "diff_acoustic_s37_cfg0",
+            "window_mean": {
+              "modulation_depth": 0.2597724050283432,
+              "roughness70": 0.03759460270457775,
+              "roughness70_p95": 0.06958952234796618,
+              "resonance_protected": 0.006748082581907511,
+              "suno_descriptor_distance": 0.6210747551616286
+            }
+          },
+          {
+            "native_cfg": 1,
+            "standard_cfg_scale": 2,
+            "case_id": "diff_acoustic_s37_cfg1",
+            "window_mean": {
+              "modulation_depth": 0.2025585174560547,
+              "roughness70": 0.049133598643069605,
+              "roughness70_p95": 0.08600645656509286,
+              "resonance_protected": 0.017320633167400956,
+              "suno_descriptor_distance": 0.6612071617406363
+            }
+          },
+          {
+            "native_cfg": 2,
+            "standard_cfg_scale": 3,
+            "case_id": "diff_acoustic_s37_base",
+            "window_mean": {
+              "modulation_depth": 0.1651664525270462,
+              "roughness70": 0.06431760074666287,
+              "roughness70_p95": 0.19430072679863936,
+              "resonance_protected": 0.055903445929288864,
+              "suno_descriptor_distance": 1.1275777776997316
+            }
+          }
+        ]
+      },
+      {
+        "family": "synth",
+        "seed": 37,
+        "values": [
+          {
+            "native_cfg": 0,
+            "standard_cfg_scale": 1,
+            "case_id": "diff_synth_s37_cfg0",
+            "window_mean": {
+              "modulation_depth": 0.35005253553390503,
+              "roughness70": 0.10765555647606628,
+              "roughness70_p95": 0.43295223413586004,
+              "resonance_protected": 0.0035520443925634027,
+              "suno_descriptor_distance": 0.9276659950410829
+            }
+          },
+          {
+            "native_cfg": 1,
+            "standard_cfg_scale": 2,
+            "case_id": "diff_synth_s37_cfg1",
+            "window_mean": {
+              "modulation_depth": 0.32669398188591003,
+              "roughness70": 0.2642403966618285,
+              "roughness70_p95": 1.5092845439747586,
+              "resonance_protected": 0.009791397955268621,
+              "suno_descriptor_distance": 1.0487481141599289
+            }
+          },
+          {
+            "native_cfg": 2,
+            "standard_cfg_scale": 3,
+            "case_id": "diff_synth_s37_base",
+            "window_mean": {
+              "modulation_depth": 0.3660559356212616,
+              "roughness70": 0.5047028996869345,
+              "roughness70_p95": 2.123235199930823,
+              "resonance_protected": 0.006290535209700465,
+              "suno_descriptor_distance": 1.6010409735187805
+            }
+          }
+        ]
+      }
+    ],
+    "cross_model_reference": [
+      {
+        "family": "acoustic",
+        "seed": 37,
+        "reference_id": "suno_en_000001_0__p50",
+        "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+        "diff_case": "diff_acoustic_s37_audio_reference",
+        "songbloom_case": "bloom_acoustic_s37_audio_reference",
+        "diff_values": {
+          "modulation_depth": 0.16012291610240936,
+          "roughness70": 0.14597987237414545,
+          "roughness70_p95": 0.47857900883937965,
+          "resonance_protected": 0.016307879704982042,
+          "suno_descriptor_distance": 0.9527495145545981
+        },
+        "songbloom_values": {
+          "modulation_depth": 0.24902862310409546,
+          "roughness70": 0.11474565683358888,
+          "roughness70_p95": 0.34747350561037765,
+          "resonance_protected": 0.052677730564028025,
+          "suno_descriptor_distance": 0.9117100068995716
+        },
+        "caveat": "Same lyrics/reference, but different models, latent noise and generated music. Descriptor distance is not perceptual Suno likeness."
+      },
+      {
+        "family": "acoustic",
+        "seed": 91,
+        "reference_id": "suno_en_000001_0__p50",
+        "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+        "diff_case": "diff_acoustic_s91_audio_reference",
+        "songbloom_case": "bloom_acoustic_s91_audio_reference",
+        "diff_values": {
+          "modulation_depth": 0.14243308454751968,
+          "roughness70": 0.11803505132347705,
+          "roughness70_p95": 0.4037421075545574,
+          "resonance_protected": 0.03253320883959532,
+          "suno_descriptor_distance": 1.1303655233293999
+        },
+        "songbloom_values": {
+          "modulation_depth": 0.27428799867630005,
+          "roughness70": 0.29078257359673504,
+          "roughness70_p95": 1.4602394505909988,
+          "resonance_protected": 0.03262704890221357,
+          "suno_descriptor_distance": 1.0854475498399325
+        },
+        "caveat": "Same lyrics/reference, but different models, latent noise and generated music. Descriptor distance is not perceptual Suno likeness."
+      },
+      {
+        "family": "synth",
+        "seed": 37,
+        "reference_id": "suno_cn_008001_0__p50",
+        "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+        "diff_case": "diff_synth_s37_audio_reference",
+        "songbloom_case": "bloom_synth_s37_audio_reference",
+        "diff_values": {
+          "modulation_depth": 0.21229273825883865,
+          "roughness70": 0.1688768113154312,
+          "roughness70_p95": 0.7645043663468378,
+          "resonance_protected": 0.02403672505170107,
+          "suno_descriptor_distance": 0.6990888643166507
+        },
+        "songbloom_values": {
+          "modulation_depth": 0.2147810086607933,
+          "roughness70": 0.09591286015995334,
+          "roughness70_p95": 0.39213916958973943,
+          "resonance_protected": 0.0164039833471179,
+          "suno_descriptor_distance": 0.5109172575857913
+        },
+        "caveat": "Same lyrics/reference, but different models, latent noise and generated music. Descriptor distance is not perceptual Suno likeness."
+      },
+      {
+        "family": "synth",
+        "seed": 91,
+        "reference_id": "suno_cn_008001_0__p50",
+        "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+        "diff_case": "diff_synth_s91_audio_reference",
+        "songbloom_case": "bloom_synth_s91_audio_reference",
+        "diff_values": {
+          "modulation_depth": 0.23647215217351913,
+          "roughness70": 0.2747783934746657,
+          "roughness70_p95": 1.5730993048979793,
+          "resonance_protected": 0.009737527463585138,
+          "suno_descriptor_distance": 0.8662256312873629
+        },
+        "songbloom_values": {
+          "modulation_depth": 0.21882698684930801,
+          "roughness70": 0.06425006874836303,
+          "roughness70_p95": 0.2254770865410977,
+          "resonance_protected": 0.011127525474876165,
+          "suno_descriptor_distance": 0.40076727543432134
+        },
+        "caveat": "Same lyrics/reference, but different models, latent noise and generated music. Descriptor distance is not perceptual Suno likeness."
+      }
+    ],
+    "text_condition_diagnostics": [
+      {
+        "family": "acoustic",
+        "arm": "literal_zh",
+        "cosine_to_base": 0.9834628867554228,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      },
+      {
+        "family": "acoustic",
+        "arm": "literal_en",
+        "cosine_to_base": 0.9453301963933317,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      },
+      {
+        "family": "acoustic",
+        "arm": "concrete",
+        "cosine_to_base": 0.8671479878452176,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      },
+      {
+        "family": "synth",
+        "arm": "literal_zh",
+        "cosine_to_base": 0.9928480274281746,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      },
+      {
+        "family": "synth",
+        "arm": "literal_en",
+        "cosine_to_base": 0.989414189450316,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      },
+      {
+        "family": "synth",
+        "arm": "concrete",
+        "cosine_to_base": 0.9818565689157479,
+        "encoder": "MuQ-MuLan-large",
+        "caveat": "Conditioning-vector diagnostic only; near cosine1 is not proof of instruction failure and is not audio quality."
+      }
+    ],
+    "warning": "All changes are descriptive. No human correlation, detection accuracy or RL improvement is inferred."
+  },
+  "tracks": [
+    {
+      "id": "diff_acoustic_s37_base",
+      "family": "acoustic",
+      "arm": "base",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "704b5096966fbf06efc573298285d18e9d72d1360203da98f7fea90c36b34ca5",
+      "latent_sha256": "0e18d33f658638ca0c5ce01dfc74a0b36d9a29c0184c95bab4951583ca62f7c0",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 13.862199031747878,
+      "decode_seconds": 0.7338675279170275,
+      "end_to_end_seconds": 15.1673882920295,
+      "gpu_peak_allocated_bytes": 5485452800,
+      "rms_dbfs": -21.46751245295695,
+      "peak": 0.54638671875,
+      "full_mp3_sha256": "5de477f5a6fc1bb224fafe2e36847ca5b86f3c947043539abcb7cfa12ed09750",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_base__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_base__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_base__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.1651664525270462,
+        "roughness70": 0.06431760074666287,
+        "roughness70_p95": 0.19430072679863936,
+        "resonance_protected": 0.055903445929288864,
+        "suno_descriptor_distance": 1.1275777776997316
+      },
+      "audiobox_window_mean_PQ": 8.49013090133667,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_literal_zh",
+      "family": "acoustic",
+      "arm": "literal_zh",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "b54754e80a21bcf87c756855b3332973a1589755d554fe7242bbb60b8f85dc30",
+      "latent_sha256": "88026902d6aa086ed127cc6731eeba90a90a96b2b1ce1723a22c53b86603f1a8",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.204250982031226,
+      "decode_seconds": 0.5939747290685773,
+      "end_to_end_seconds": 14.826506916433573,
+      "gpu_peak_allocated_bytes": 5496609792,
+      "rms_dbfs": -21.40059596926916,
+      "peak": 0.5517578125,
+      "full_mp3_sha256": "155658ec733d38649bcececbc196f03ecc905d99931f45dac49635f92a2b932a",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_literal_zh__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. 不要那么电音味。",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_literal_zh__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_literal_zh__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.202833391726017,
+        "roughness70": 0.11704192372620376,
+        "roughness70_p95": 0.5294964125343575,
+        "resonance_protected": 0.013914572540670633,
+        "suno_descriptor_distance": 0.6243506710198485
+      },
+      "audiobox_window_mean_PQ": 8.538599014282227,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_literal_en",
+      "family": "acoustic",
+      "arm": "literal_en",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "d34834d311c2c7717ec31b9ec0a82ba8694eec464788e599197ff78bf7928e19",
+      "latent_sha256": "81458949a0fae0677a8f9459e2e615732bcb03cad3ef9a2deaa3bf0487ad3e4b",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.236634580418468,
+      "decode_seconds": 0.594790973700583,
+      "end_to_end_seconds": 14.860057705082,
+      "gpu_peak_allocated_bytes": 5502254080,
+      "rms_dbfs": -20.376814254621586,
+      "peak": 0.59033203125,
+      "full_mp3_sha256": "bbcdc47d877bc073872ca0adb0bdb6c772925c34b2ab4b9419e3f4b68ba42798",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_literal_en__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Do not sound so electronic or artificial. Reduce the artificial electronic sound.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_literal_en__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_literal_en__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.18682041764259338,
+        "roughness70": 0.11521117178545248,
+        "roughness70_p95": 0.37341314139225956,
+        "resonance_protected": 0.05586870014667511,
+        "suno_descriptor_distance": 0.9832717315186557
+      },
+      "audiobox_window_mean_PQ": 8.498189449310303,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_concrete",
+      "family": "acoustic",
+      "arm": "concrete",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "756cba946d42fe252c85c50283773a32673b214cbb68c0ec3dc038d78e5db84b",
+      "latent_sha256": "e78f23890b99c940ba0ec68c968d7aa91c9617a8b0d15d7b7ba54702d99f1ad1",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.194365826435387,
+      "decode_seconds": 0.5955683244392276,
+      "end_to_end_seconds": 14.847536169923842,
+      "gpu_peak_allocated_bytes": 5496611840,
+      "rms_dbfs": -21.21495366349268,
+      "peak": 0.60302734375,
+      "full_mp3_sha256": "980cfe8edfba3164c541d1e5fe50b3481e9533c2780730bd6f54ba29caaf2a35",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_concrete__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Use a close-miked, naturally articulated human singing voice, clear consonants, distinct attacks, breathing phrasing, and lively dynamic variation. Keep the original tempo, energy, and every requested instrument. Preserve the synthesizers, synth pads, electronic bass, and drum machine whenever requested; keep them prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_concrete__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_concrete__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.20134622603654861,
+        "roughness70": 0.27538292591939145,
+        "roughness70_p95": 1.630185939803979,
+        "resonance_protected": 0.007024800404906273,
+        "suno_descriptor_distance": 0.9669079929235129
+      },
+      "audiobox_window_mean_PQ": 8.457200527191162,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s91_base",
+      "family": "acoustic",
+      "arm": "base",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "f24ceb7d29a469f7dc8c7d8acf2f228e8dbea091b010a21295d5d6d2457ef00b",
+      "latent_sha256": "c3986a3d56d58e154ba5b8a6cab7a3be5bdcab9e5f8728dd0a013f862f7fe8c8",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.205982921645045,
+      "decode_seconds": 0.5951993362978101,
+      "end_to_end_seconds": 14.823117917403579,
+      "gpu_peak_allocated_bytes": 5502255104,
+      "rms_dbfs": -20.89481142792338,
+      "peak": 0.50732421875,
+      "full_mp3_sha256": "8827c263315b54dd85f4fc29f4852ba27a1de49e5ff91abbde18e2e21c3adedd",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s91_base__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s91_base__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s91_base__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.1410842277109623,
+        "roughness70": 0.12836677006035682,
+        "roughness70_p95": 0.5486284312353567,
+        "resonance_protected": 0.0625806488096714,
+        "suno_descriptor_distance": 1.3125928342024444
+      },
+      "audiobox_window_mean_PQ": 8.461695194244385,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s91_literal_zh",
+      "family": "acoustic",
+      "arm": "literal_zh",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "1c272a1161cb9e0c9c294e77149cf20b332ae4fded37b392dc4411df792f4806",
+      "latent_sha256": "175503f0c40a3fc082cea26a911f539bfaaca48b29930d60877a2ee9c564d559",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.207816197536886,
+      "decode_seconds": 0.5959201194345951,
+      "end_to_end_seconds": 14.86934937722981,
+      "gpu_peak_allocated_bytes": 5496611840,
+      "rms_dbfs": -20.058682942903445,
+      "peak": 0.52197265625,
+      "full_mp3_sha256": "167cfddd028d3b3aa3a91e79c151b44ebac33535961b6347f30445b6330581cb",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s91_literal_zh__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. 不要那么电音味。",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s91_literal_zh__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s91_literal_zh__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.1428159847855568,
+        "roughness70": 0.08524074760451442,
+        "roughness70_p95": 0.31164023637899074,
+        "resonance_protected": 0.04665057174861431,
+        "suno_descriptor_distance": 1.1879200798385963
+      },
+      "audiobox_window_mean_PQ": 8.557886123657227,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s91_literal_en",
+      "family": "acoustic",
+      "arm": "literal_en",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "b8465418ea34d45f9481e0c0a1cf696097ebb75c5af635abd4893e8178e5ec49",
+      "latent_sha256": "b0d00cd46cfdd5401bc539f9ab685776027da482246563e86b42f7ba5dadc397",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.185340286232531,
+      "decode_seconds": 0.5961919436231256,
+      "end_to_end_seconds": 14.847219220362604,
+      "gpu_peak_allocated_bytes": 5502255104,
+      "rms_dbfs": -18.95394139833193,
+      "peak": 0.55224609375,
+      "full_mp3_sha256": "90d9427ae8f8144ad28e810099e9a01c02aa583b196f88c4a4b2333e98f20d87",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s91_literal_en__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Do not sound so electronic or artificial. Reduce the artificial electronic sound.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s91_literal_en__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s91_literal_en__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.15183324366807938,
+        "roughness70": 0.17509422515274153,
+        "roughness70_p95": 0.9633547293989462,
+        "resonance_protected": 0.05776463449001312,
+        "suno_descriptor_distance": 1.2938534729827473
+      },
+      "audiobox_window_mean_PQ": 8.495639324188232,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s91_concrete",
+      "family": "acoustic",
+      "arm": "concrete",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "c97d2bfa9ca0f48db7dba704f2aaa918ae8c049c6d1cc91d106e3aa3e5143e4d",
+      "latent_sha256": "11b50d6089bc6045d2f25c058a0014a67f39c60f309acc703af767f0c643da22",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.187681968323886,
+      "decode_seconds": 0.596047680824995,
+      "end_to_end_seconds": 14.822137517854571,
+      "gpu_peak_allocated_bytes": 5496611840,
+      "rms_dbfs": -21.154809791594104,
+      "peak": 0.53564453125,
+      "full_mp3_sha256": "e9e9a063e5dba3f93b13c6f9cb95d59f07febd2f0f50eb445a479be0c13c9d73",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s91_concrete__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums. Use a close-miked, naturally articulated human singing voice, clear consonants, distinct attacks, breathing phrasing, and lively dynamic variation. Keep the original tempo, energy, and every requested instrument. Preserve the synthesizers, synth pads, electronic bass, and drum machine whenever requested; keep them prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s91_concrete__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s91_concrete__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2433546856045723,
+        "roughness70": 0.1707437524303244,
+        "roughness70_p95": 0.7748133491072691,
+        "resonance_protected": 0.04531024186871946,
+        "suno_descriptor_distance": 0.7935559447345913
+      },
+      "audiobox_window_mean_PQ": 8.477207660675049,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_cfg0",
+      "family": "acoustic",
+      "arm": "cfg0",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "926632940965eb52268ec031560fa3d9b29df686039ee0f58d5a1d94fe185511",
+      "latent_sha256": "046c05039778474f7de93329353bf4811d96debfe8994c6f3697cda0c385cd51",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 0.0,
+      "standard_cfg_scale": 1.0,
+      "decoder_seed": 42,
+      "ode_seconds": 7.385319243185222,
+      "decode_seconds": 0.596379048191011,
+      "end_to_end_seconds": 8.032652040943503,
+      "gpu_peak_allocated_bytes": 5502255104,
+      "rms_dbfs": -21.824968200168744,
+      "peak": 0.490478515625,
+      "full_mp3_sha256": "2d8cc3ba4f5e2787f1879d17b2c1eccc127bbb64879941d76d6ea3a52118a36e",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_cfg0__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_cfg0__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_cfg0__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2597724050283432,
+        "roughness70": 0.03759460270457775,
+        "roughness70_p95": 0.06958952234796618,
+        "resonance_protected": 0.006748082581907511,
+        "suno_descriptor_distance": 0.6210747551616286
+      },
+      "audiobox_window_mean_PQ": 8.051523685455322,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_cfg1",
+      "family": "acoustic",
+      "arm": "cfg1",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "783c42ad310cd2d7d197a62497d4a70098f4411e6f6a3f5dde930b2acd39b067",
+      "latent_sha256": "db20bf2467e1f675ba7ceda5ce8ce6ac69462f78a5b182386fa21d027a0b4996",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 1.0,
+      "standard_cfg_scale": 2.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.18908662442118,
+      "decode_seconds": 0.5961946090683341,
+      "end_to_end_seconds": 14.83523847721517,
+      "gpu_peak_allocated_bytes": 5496611840,
+      "rms_dbfs": -22.39667859296619,
+      "peak": 0.55517578125,
+      "full_mp3_sha256": "394284b0468484c9034f7be36090efe0b268c62d087a5f1a3d1c3850ec3c760f",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_cfg1__full.mp3",
+      "human_rating": null,
+      "prompt": "An intimate indie pop song with female lead vocals, 88 BPM, acoustic guitar, piano, warm electric bass, and live drums.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_cfg1__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_cfg1__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2025585174560547,
+        "roughness70": 0.049133598643069605,
+        "roughness70_p95": 0.08600645656509286,
+        "resonance_protected": 0.017320633167400956,
+        "suno_descriptor_distance": 0.6612071617406363
+      },
+      "audiobox_window_mean_PQ": 8.445403575897217,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_base",
+      "family": "synth",
+      "arm": "base",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "93e4fecba187c4a8472f2605a84d0eac8935927b4f92e4fd7615b4b512bd0607",
+      "latent_sha256": "fb6c7d13d2e04aa892e8efdea5de04a9db08f6172739ca75e5c10795193ffb1b",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.17897338885814,
+      "decode_seconds": 0.5966694978997111,
+      "end_to_end_seconds": 14.83274482935667,
+      "gpu_peak_allocated_bytes": 5502256128,
+      "rms_dbfs": -19.674999530566875,
+      "peak": 0.65576171875,
+      "full_mp3_sha256": "60b8f1f67f6e66a342d4f0a3a035caba9c626e7e1eb89a5a3a279b3fce7c5f42",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_base__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_base__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_base__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.3660559356212616,
+        "roughness70": 0.5047028996869345,
+        "roughness70_p95": 2.123235199930823,
+        "resonance_protected": 0.006290535209700465,
+        "suno_descriptor_distance": 1.6010409735187805
+      },
+      "audiobox_window_mean_PQ": 8.312744617462158,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_literal_zh",
+      "family": "synth",
+      "arm": "literal_zh",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "bad9323273944b0e24b89aa4302856a0b088998a403d3212ca4f5072f0a693b5",
+      "latent_sha256": "c1bfe7aa21f1b11a808a7a6422ef17e1bef00f7c62cc7ce099f56c8338f649dc",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.21155264787376,
+      "decode_seconds": 0.5964132929220796,
+      "end_to_end_seconds": 14.858042050153017,
+      "gpu_peak_allocated_bytes": 5496613888,
+      "rms_dbfs": -18.53685882543849,
+      "peak": 0.70703125,
+      "full_mp3_sha256": "5bb3dde63e3f561bf49d33a9a08d1e6ae4a63452d45c5493a8fcd2adf240efb5",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_literal_zh__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. 不要那么电音味。",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_literal_zh__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_literal_zh__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.3715616315603256,
+        "roughness70": 0.43574756409267434,
+        "roughness70_p95": 1.967901163848165,
+        "resonance_protected": 0.010222606360912323,
+        "suno_descriptor_distance": 1.51739326901271
+      },
+      "audiobox_window_mean_PQ": 8.094202041625977,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_literal_en",
+      "family": "synth",
+      "arm": "literal_en",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "13011b8b637fe2c5fcf6e069b3ac1ef5d60c07e745e7bb4c23da265d32da82c8",
+      "latent_sha256": "f05ac731c0e3d8f5ba7f29e09ef85750c0614aea3f5807925d5736d8904d31e7",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.193138422444463,
+      "decode_seconds": 0.5964329605922103,
+      "end_to_end_seconds": 14.85721196886152,
+      "gpu_peak_allocated_bytes": 5502258176,
+      "rms_dbfs": -18.643175436369894,
+      "peak": 0.70849609375,
+      "full_mp3_sha256": "f2d8e3d134533c781bd0e4fcd443ab98ac790b1df70051eb13d99a48bd69c35f",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_literal_en__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Do not sound so electronic or artificial. Reduce the artificial electronic sound.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_literal_en__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_literal_en__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.3971385061740875,
+        "roughness70": 0.4892948565556213,
+        "roughness70_p95": 2.0644889989394177,
+        "resonance_protected": 0.008988340618088841,
+        "suno_descriptor_distance": 1.7471802974322905
+      },
+      "audiobox_window_mean_PQ": 8.116849660873413,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_concrete",
+      "family": "synth",
+      "arm": "concrete",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "f1b8cc53a6b4a03a1c17182d4cb892a7e5122830a54be86bef2483c4d7c7f3ca",
+      "latent_sha256": "d0d4c46bc7f457634cd5421fba146e750c2ebba2a85c781e19517e661ac35bea",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.1698002172634,
+      "decode_seconds": 0.5967584354802966,
+      "end_to_end_seconds": 14.79604198411107,
+      "gpu_peak_allocated_bytes": 5496615936,
+      "rms_dbfs": -17.599268457062813,
+      "peak": 0.68017578125,
+      "full_mp3_sha256": "ec2d79100e7659b75acb21f8ca8a5763baaf7cf93961f44a25bf7c863f7fa1e2",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_concrete__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Use a close-miked, naturally articulated human singing voice, clear consonants, distinct attacks, breathing phrasing, and lively dynamic variation. Keep the original tempo, energy, and every requested instrument. Preserve the synthesizers, synth pads, electronic bass, and drum machine whenever requested; keep them prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_concrete__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_concrete__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.3727545142173767,
+        "roughness70": 0.45842872462446904,
+        "roughness70_p95": 2.0041532847543935,
+        "resonance_protected": 0.015433091670274734,
+        "suno_descriptor_distance": 1.545477051626762
+      },
+      "audiobox_window_mean_PQ": 8.06975507736206,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s91_base",
+      "family": "synth",
+      "arm": "base",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "6edc9d4dcee9054a008d33164f1b0c0c56322e0a73df1f1f57b48f62d3db8b85",
+      "latent_sha256": "d27ac598a3d41fbdc98f0744e38466a71dc0b246cb367c7bcef5948e40cfce6f",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.168251658789814,
+      "decode_seconds": 0.5966047551482916,
+      "end_to_end_seconds": 14.832020519301295,
+      "gpu_peak_allocated_bytes": 5502259200,
+      "rms_dbfs": -20.66500678413012,
+      "peak": 0.71923828125,
+      "full_mp3_sha256": "c6d91bfba118c1bb09120ced4b8323c59b8fc5e7b8b2ee4739bf0bbaac787a38",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s91_base__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s91_base__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s91_base__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.3906636983156204,
+        "roughness70": 0.41917119449021845,
+        "roughness70_p95": 2.2110964190718354,
+        "resonance_protected": 0.005196300917305052,
+        "suno_descriptor_distance": 1.692443720619349
+      },
+      "audiobox_window_mean_PQ": 8.484683990478516,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s91_literal_zh",
+      "family": "synth",
+      "arm": "literal_zh",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "ca306699bddc89f46b16651207810422ee2ea8d9ba9a17bf8c11f032d57c9018",
+      "latent_sha256": "bfdb3ccaef17038e6b659f999631c6bbbedf1aea08bc352f5286e818ab54d096",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.184688862413168,
+      "decode_seconds": 0.5967585453763604,
+      "end_to_end_seconds": 14.832410616800189,
+      "gpu_peak_allocated_bytes": 5496615936,
+      "rms_dbfs": -19.635881298236995,
+      "peak": 0.75390625,
+      "full_mp3_sha256": "8c3fc0d24099c35595b10b0fd5a67a4c9bba887991ecfd611a0f56ad9e78718d",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s91_literal_zh__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. 不要那么电音味。",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s91_literal_zh__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s91_literal_zh__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.36300744116306305,
+        "roughness70": 0.3599970055297197,
+        "roughness70_p95": 1.8138952931925538,
+        "resonance_protected": 0.008046028902754188,
+        "suno_descriptor_distance": 1.414198834492157
+      },
+      "audiobox_window_mean_PQ": 8.388490676879883,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s91_literal_en",
+      "family": "synth",
+      "arm": "literal_en",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "93fd5612ad582d38cebb4ad2a0a178ae96c7e3505d944bff6a6744860ad24d6c",
+      "latent_sha256": "475990b520f0ca59946c5aa1ba13221ce772841521388ffff3aa5eb05720b0ab",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.174380405806005,
+      "decode_seconds": 0.5968824606388807,
+      "end_to_end_seconds": 14.82185332942754,
+      "gpu_peak_allocated_bytes": 5502259200,
+      "rms_dbfs": -19.924599146342935,
+      "peak": 0.72509765625,
+      "full_mp3_sha256": "b9d9a5b858bd6dfbfe3748328b16eb9a56aa0668e8341829bb411d7a543400b1",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s91_literal_en__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Do not sound so electronic or artificial. Reduce the artificial electronic sound.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s91_literal_en__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s91_literal_en__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.38333964347839355,
+        "roughness70": 0.3973238182995086,
+        "roughness70_p95": 2.212983379233579,
+        "resonance_protected": 0.008586217649281025,
+        "suno_descriptor_distance": 1.5920080983243046
+      },
+      "audiobox_window_mean_PQ": 8.397014141082764,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s91_concrete",
+      "family": "synth",
+      "arm": "concrete",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "688e314c93dbc6f4e0ba0cf6e3e319a316d1cce1b2e6336eedac1f524317dc34",
+      "latent_sha256": "1d1627561b8de7638a9ba2c8e58d2117778157492e9feac8ef89dac4bd595d27",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.17304416373372,
+      "decode_seconds": 0.5967806382104754,
+      "end_to_end_seconds": 14.82043746765703,
+      "gpu_peak_allocated_bytes": 5496615936,
+      "rms_dbfs": -19.35615491872976,
+      "peak": 0.732421875,
+      "full_mp3_sha256": "6a6f40cfadb448d6b8901038d40827eb4e1c945b38debb0c3e494c367c18bb0c",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s91_concrete__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. Use a close-miked, naturally articulated human singing voice, clear consonants, distinct attacks, breathing phrasing, and lively dynamic variation. Keep the original tempo, energy, and every requested instrument. Preserve the synthesizers, synth pads, electronic bass, and drum machine whenever requested; keep them prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s91_concrete__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s91_concrete__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.34628696739673615,
+        "roughness70": 0.40829063658100706,
+        "roughness70_p95": 2.207774316819549,
+        "resonance_protected": 0.013263292144984007,
+        "suno_descriptor_distance": 1.4082664609344908
+      },
+      "audiobox_window_mean_PQ": 8.452201843261719,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_cfg0",
+      "family": "synth",
+      "arm": "cfg0",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "3544209e1232aa43b2198470eb8c2e41a878e185884d98c9be713697a456df56",
+      "latent_sha256": "bee93df5ddf72936c249187c80b9b905176480891df5eb06c31e9649b7764d03",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 0.0,
+      "standard_cfg_scale": 1.0,
+      "decoder_seed": 42,
+      "ode_seconds": 7.394056376069784,
+      "decode_seconds": 0.5968905556946993,
+      "end_to_end_seconds": 8.0127993831411,
+      "gpu_peak_allocated_bytes": 5502259200,
+      "rms_dbfs": -18.167416759010653,
+      "peak": 0.6181640625,
+      "full_mp3_sha256": "1194e8be2f2bfb94b75c19676aaed4a9d0016d054395105cd50e9be36c0e8a69",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_cfg0__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_cfg0__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_cfg0__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.35005253553390503,
+        "roughness70": 0.10765555647606628,
+        "roughness70_p95": 0.43295223413586004,
+        "resonance_protected": 0.0035520443925634027,
+        "suno_descriptor_distance": 0.9276659950410829
+      },
+      "audiobox_window_mean_PQ": 7.309616565704346,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_cfg1",
+      "family": "synth",
+      "arm": "cfg1",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "5bf949224e90b5aed7d7a68b89997c4f2beab58c20bdd8754b040bf3e9362699",
+      "latent_sha256": "9590cb8bf093b8ef6dcd8ac55f21f707fb83101c31d120bd1554cc62c81e8413",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 1.0,
+      "standard_cfg_scale": 2.0,
+      "decoder_seed": 42,
+      "ode_seconds": 14.146423483267426,
+      "decode_seconds": 0.5974322818219662,
+      "end_to_end_seconds": 14.7982531292364,
+      "gpu_peak_allocated_bytes": 5496615936,
+      "rms_dbfs": -19.918929610812114,
+      "peak": 0.60205078125,
+      "full_mp3_sha256": "6cfb161d209143beb3dedb9d09dcefa36af1acd66ce37bf04730fc9b0867f118",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_cfg1__full.mp3",
+      "human_rating": null,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_cfg1__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_cfg1__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.32669398188591003,
+        "roughness70": 0.2642403966618285,
+        "roughness70_p95": 1.5092845439747586,
+        "resonance_protected": 0.009791397955268621,
+        "suno_descriptor_distance": 1.0487481141599289
+      },
+      "audiobox_window_mean_PQ": 8.079538822174072,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s37_audio_reference",
+      "family": "acoustic",
+      "arm": "audio_reference",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "372cb535bc6eef5dcc0d57b8d8b385adeeee4734437404548b976d5a7894058f",
+      "latent_sha256": "336bcc391ed2689c8938c2037980214d93aba8cc4116f13e46f65c9e6f654d30",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "reference_id": "suno_en_000001_0__p50",
+      "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+      "ode_seconds": 13.919430932030082,
+      "decode_seconds": 0.6384742856025696,
+      "end_to_end_seconds": 14.864053592085838,
+      "gpu_peak_allocated_bytes": 5486238720,
+      "rms_dbfs": -22.98392827707849,
+      "peak": 0.4453125,
+      "full_mp3_sha256": "69632f3ae870ac055d88fd5dce8a5e017a397df5ddedfc09bef86c907cd0bc94",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s37_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s37_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s37_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.16012291610240936,
+        "roughness70": 0.14597987237414545,
+        "roughness70_p95": 0.47857900883937965,
+        "resonance_protected": 0.016307879704982042,
+        "suno_descriptor_distance": 0.9527495145545981
+      },
+      "audiobox_window_mean_PQ": 8.539582252502441,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_acoustic_s91_audio_reference",
+      "family": "acoustic",
+      "arm": "audio_reference",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "5c6ec7c5115f019d0d5ce6e3b83aacaca3dd42bf402f501721c0227a55b1ead6",
+      "latent_sha256": "ae1149ab8ecc00dffa969bed84114bae738ddfcd61c354dba315d3b06c54435d",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "reference_id": "suno_en_000001_0__p50",
+      "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+      "ode_seconds": 13.989148169755936,
+      "decode_seconds": 0.5962080154567957,
+      "end_to_end_seconds": 14.635906649753451,
+      "gpu_peak_allocated_bytes": 5500143104,
+      "rms_dbfs": -20.5157266645791,
+      "peak": 0.51318359375,
+      "full_mp3_sha256": "b295cd4d63545777a368954b50d0c58d062b88b9cd583ad2a41f52846ba00b1f",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_acoustic_s91_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "diff_acoustic_s91_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_acoustic_s91_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.14243308454751968,
+        "roughness70": 0.11803505132347705,
+        "roughness70_p95": 0.4037421075545574,
+        "resonance_protected": 0.03253320883959532,
+        "suno_descriptor_distance": 1.1303655233293999
+      },
+      "audiobox_window_mean_PQ": 8.554463386535645,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s37_audio_reference",
+      "family": "synth",
+      "arm": "audio_reference",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "f2fd71e9fdb7ce47429cd29bc4248cc43a04d600d0b67ff01f2175d8a49a5f48",
+      "latent_sha256": "8a3df7bb803793e8627de092d15c4995ee2ba7333f61ef01a4106c49306b05de",
+      "initial_noise_sha256": [
+        "6ed94161c64f2f9e3c85c0fad8fbb361436d0d52c2f242af2013c81a1048b5c5",
+        "f18d4690af481675e32cd7e119d8b5d49ec655878e0d16bfd5fea2d3a5501fd6",
+        "a653709d592e9196074612ee91de71821250204f65a0f55200bd592b78697e57",
+        "61f7386d099dfef4516aeaed60699b1224e3be7aa72654393cd858ed2f0641f7",
+        "d2dc8c7f765986a57181a20b137d837043e736c815c58a218192a44e599e2781",
+        "a7d5988af8aa3be811be827b841e9a0160a90cdf69abfe6b5970a1bf59b2985f",
+        "12d9274e5a12de3b15709e1fa0671621bdf1113081a12b55bedc9066fa4ad39c",
+        "9bc82fa37c68975c3b6f15f84fe39b2365d94a18b1efbeb59aec5b289751bafe",
+        "52400d48c30aa9646c4a1b24e006e5515051c7a44595d0ba81672351b27a5d8c",
+        "7998516cce24a948701cbb4eee66d2537dc9dd0499c811d0e2e1565801888bc5",
+        "76e8741a2859f96f25bafc46e26b8f4850bd9821939e1c6b1c4113f02f54590e",
+        "397c7951a5de708aba8a027bd82d5788156113616777c3a9ffcd1fa97b7081c6",
+        "7521929ebd516b042b717f1bc13e690c1fa631769174f1db75185c83f81476db",
+        "fcfe15e5d2f3a7bc324c9aadf6ff2a78d200e3bfa498b7058e1217c0e6a4d9ad",
+        "464e26e19aacf3e44179bf01f96635dfbe87cc980c58cd24a31f01d1db6cfc56",
+        "dc1f3ea97e6229fae6a9cbc826f64eab9df3228ac25614327d9999377cca663f",
+        "7e0e6658a9569403aaac7eaff525ccf82cfb8565215f2e1d61cb523556b911f6",
+        "7442f43501188b8e14ad0a89a83ecffd03c716bf548ac4419baf3da12de24004",
+        "f4e8cabc8c37e5c78101b8cf81629111a7d63110749a092324a8da2904a24562",
+        "80e4d8599b7c9fe8c8acb48a64de597534722f0770a288e762df2d44a9f1a2e0",
+        "b3276633fab2e0587f9c768464cc745a8419c131204fb2caa935d4c94b0045e3",
+        "1278f492221a524eee06634195179bdf5ce812ed272e825a9f2560b4a2f6e581",
+        "077add838351629a5be4740011fc35207fb62575ac12cdd725d86ec9c60771ca",
+        "46f824b6e96fcf3b0c4dd80fb21f1dffbddbd373d083565fdc58ef44785f38ac",
+        "3d369a3ca9781173aa367f448c364e951aedecddf79643d84f153dd9eb26b036",
+        "b61a1aafde1a23f8fcc43376ea7ca3ba57ffed0c22b13975813245a12104e1a6",
+        "462add3caa2e3e598a3929857d32d00ab9d5654490cabcd61e99b23042997b5c",
+        "73b4a00b5b5c89098b7a85f33360596792ad08f1b7a45af1d9561fada71c7a03",
+        "628035be023a6f8808335e1986ad1efc4d60c03a1f5a1b63e0f03e552a75dcdf",
+        "0446e3d0188bfa975221054aff7d79f76222886e5dcb028d2bafdaa7ab968942"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "reference_id": "suno_cn_008001_0__p50",
+      "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+      "ode_seconds": 13.966894860379398,
+      "decode_seconds": 0.5962371500208974,
+      "end_to_end_seconds": 14.64177910424769,
+      "gpu_peak_allocated_bytes": 5501348352,
+      "rms_dbfs": -21.800987125831842,
+      "peak": 0.489013671875,
+      "full_mp3_sha256": "18bc34dd1449bf79b8f368366e00678881af0b51c3e65146669eb5702f4068c1",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s37_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s37_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s37_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.21229273825883865,
+        "roughness70": 0.1688768113154312,
+        "roughness70_p95": 0.7645043663468378,
+        "resonance_protected": 0.02403672505170107,
+        "suno_descriptor_distance": 0.6990888643166507
+      },
+      "audiobox_window_mean_PQ": 8.568434715270996,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "diff_synth_s91_audio_reference",
+      "family": "synth",
+      "arm": "audio_reference",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 1,
+      "duration_s": 60.0,
+      "actual_duration_s": 60.0,
+      "audio_sha256": "5c5e0504b0a3a0f202faeb6c58f19bad5ef3dfa425ec2efffdf19a2dd977d401",
+      "latent_sha256": "b808af5f1eb51a8f7aa35ee72950645456a0560f47b102871a6835aecf3ae8f0",
+      "initial_noise_sha256": [
+        "10c700fc60756b8e818cc827c4cf43f5ff58bbdacaedf7adcb745b3f2f75c70c",
+        "3c3fa36d76bf35bf9130090524349aea0a005e207c122ed5f921202a14c04b6c",
+        "2b2b12e2f131e165f5f2a9e22532b3213a2f6402e9dd56bc8bd519a9458dec34",
+        "f96285b6806414b0d488bf3adcf065fdbdc6c5b0b0c46bd53558c105576a77af",
+        "74e2a5577127ddd6df145b3222fbaa8da5b03674a1d78424bb39a7394a10c3fc",
+        "5ec0c72694be69d498e543fde5b03f5ae3feccf4f146759dc1e7d55ba048a2b3",
+        "74f5bf21c981238f00cfc77291722325bbbdbaceefa098ce7952229ca229a553",
+        "03031966d026cc13de86b549e584035eb067ec967173403b83cdfeb6b644a443",
+        "5d06787fdfb4c6d8c36dae38dd2e4ca1363aadaa14cc555f15e3d626e71d7dbe",
+        "10540b374971c5a94586357d003cc4542327f36fe248e4a16121fc8769fc9586",
+        "741a0c6ebbc74e42079aceef39a0f9160e8d941b4664e96b67ad5116d3942175",
+        "d21879a83537f4f6cc868df22a458f5045a37aa9e56cf803377cd06de11c28cb",
+        "85f037891e4f8720f8f32de9ad2b440097951fda033ae41ee0754cb802a491fb",
+        "fcc3f9d3baaf3dfaf18309b97805a6966fa2ec835583578f4707040c02ebb4bc",
+        "50d534b3600f6db51f871a6d804b30345e7283b9b251d1865eea26f2ae5b0a08",
+        "73f9ed526634ddae9af0f6005e0135dbbcf1d7d0d71ec0b754c8a97570a69997",
+        "297517285979ebe985c4f9a5fc0b754a9713013d830bc964de81bb5b09ec6ff8",
+        "a9c43b5834885a74512cd3a021a60ab393ebb5bbc9e94913002eeb69845aefbb",
+        "662bd19fa3e78a815fff2b92156ae218ca2890342ee3ece2dd27095d743b8c3b",
+        "f7e76f13d7be305e8e64221d0080dd016201d8e1ea68f4fbdfe232104cce430e",
+        "b5f7a6fa5557e16c464b1133f18b5e985ce155b94c27cfd3887aae0921c7006c",
+        "8933e6c66e053fe2f663cac46e1cf2ebc95230388e5a3183970527595eaba2ef",
+        "9906998a667bf60503dcced11d76006a84cdba2c03bda091240b357d0b40155c",
+        "600d3fd261209fe2dee8d768bf88f28394d45c66b6f6b7163442226f2d079524",
+        "bee869ae2fd42548d89fdc1d5f9fa443189228c48164e40b285a7692623b7bc5",
+        "75f524156737db58becbf56dde30be89211d28c732abab704da7222fdd245151",
+        "186ac8a2e6d4966c35d12875d5d92818352956e7b5e5ba03bb92e4c3572410b6",
+        "6045f7c5e9c559204664a44aee20b5e631ac564a8bafdc01650e125630b4ef2e",
+        "73d27b8fc91f8bdcd8b4a8219eb8acea3f8cd2e1e380857c5b5db87530e51087",
+        "671d958b6d22e9fdba31948edc1739eb15d640ab98679f6579a267022a57e296"
+      ],
+      "cfg_strength": 2.0,
+      "standard_cfg_scale": 3.0,
+      "decoder_seed": 42,
+      "reference_id": "suno_cn_008001_0__p50",
+      "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+      "ode_seconds": 13.938107024878263,
+      "decode_seconds": 0.5964111285284162,
+      "end_to_end_seconds": 14.606926933862269,
+      "gpu_peak_allocated_bytes": 5500144128,
+      "rms_dbfs": -21.929793760187373,
+      "peak": 0.5791015625,
+      "full_mp3_sha256": "a7ba53388df0e4e0cb4b49b4622d9928347668a108dde0f1ac8a918bbd491922",
+      "model": "DiffRhythm2",
+      "source_group": "diff",
+      "full_audio": "./audio/artifact-control-20261105/diff_synth_s91_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "diff_synth_s91_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "diff_synth_s91_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.23647215217351913,
+        "roughness70": 0.2747783934746657,
+        "roughness70_p95": 1.5730993048979793,
+        "resonance_protected": 0.009737527463585138,
+        "suno_descriptor_distance": 0.8662256312873629
+      },
+      "audiobox_window_mean_PQ": 8.417910099029541,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "bloom_acoustic_s37_audio_reference",
+      "family": "acoustic",
+      "arm": "audio_reference",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 60.16,
+      "actual_duration_s": 60.16,
+      "audio_sha256": "68e2c725208093757543c0256cfeaa7ae874086fd957d3bd16ab42821e1f7cac",
+      "cfg_coef": 1.5,
+      "reference_id": "suno_en_000001_0__p50",
+      "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+      "end_to_end_seconds": 39.45323631167412,
+      "generation_seconds": 39.38815092574805,
+      "gpu_peak_allocated_bytes": 6966708736,
+      "rms_dbfs": -13.31448843112437,
+      "peak": 1.3916655778884888,
+      "full_mp3_sha256": "02a0caf6a04c7b7d26489b8d5ce3620efd5398ea99389598b267c0be11b71b82",
+      "model": "SongBloom（社区恢复full150s）",
+      "source_group": "bloom",
+      "full_audio": "./audio/artifact-control-20261105/bloom_acoustic_s37_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "bloom_acoustic_s37_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "bloom_acoustic_s37_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.24902862310409546,
+        "roughness70": 0.11474565683358888,
+        "roughness70_p95": 0.34747350561037765,
+        "resonance_protected": 0.052677730564028025,
+        "suno_descriptor_distance": 0.9117100068995716
+      },
+      "audiobox_window_mean_PQ": 8.0404052734375,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "bloom_acoustic_s91_audio_reference",
+      "family": "acoustic",
+      "arm": "audio_reference",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 60.16,
+      "actual_duration_s": 60.16,
+      "audio_sha256": "964fe242af52fe47c3b89d2d18883f637523ad1f0d9c2f93645a4872ee8da621",
+      "cfg_coef": 1.5,
+      "reference_id": "suno_en_000001_0__p50",
+      "reference_sha256": "21e248f66ce49ad68dbf4a3df145300bcf61d60406c238dba126fffe8b6e37a9",
+      "end_to_end_seconds": 39.5694726081565,
+      "generation_seconds": 39.44666392263025,
+      "gpu_peak_allocated_bytes": 7611088896,
+      "rms_dbfs": -14.40566219319934,
+      "peak": 1.48453688621521,
+      "full_mp3_sha256": "405e3e2ac6687a3e9208c786fc70583776c7267ffb9a9dfdcb059471f9cfbd77",
+      "model": "SongBloom（社区恢复full150s）",
+      "source_group": "bloom",
+      "full_audio": "./audio/artifact-control-20261105/bloom_acoustic_s91_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "bloom_acoustic_s91_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "bloom_acoustic_s91_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.27428799867630005,
+        "roughness70": 0.29078257359673504,
+        "roughness70_p95": 1.4602394505909988,
+        "resonance_protected": 0.03262704890221357,
+        "suno_descriptor_distance": 1.0854475498399325
+      },
+      "audiobox_window_mean_PQ": 8.187294960021973,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "bloom_synth_s37_audio_reference",
+      "family": "synth",
+      "arm": "audio_reference",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 60.16,
+      "actual_duration_s": 60.16,
+      "audio_sha256": "eb0ec38378e0ebbd9c8486321f3ec066d9e8134a3c09ca9e4673825e4ecb7874",
+      "cfg_coef": 1.5,
+      "reference_id": "suno_cn_008001_0__p50",
+      "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+      "end_to_end_seconds": 40.88777026068419,
+      "generation_seconds": 40.81846144795418,
+      "gpu_peak_allocated_bytes": 7612137472,
+      "rms_dbfs": -15.510572877471386,
+      "peak": 0.8498930335044861,
+      "full_mp3_sha256": "b43977b36fb506579995adfb5da25c92339f1b5e471cf7cabed268fdcfbb81a9",
+      "model": "SongBloom（社区恢复full150s）",
+      "source_group": "bloom",
+      "full_audio": "./audio/artifact-control-20261105/bloom_synth_s37_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "bloom_synth_s37_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "bloom_synth_s37_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2147810086607933,
+        "roughness70": 0.09591286015995334,
+        "roughness70_p95": 0.39213916958973943,
+        "resonance_protected": 0.0164039833471179,
+        "suno_descriptor_distance": 0.5109172575857913
+      },
+      "audiobox_window_mean_PQ": 7.953712224960327,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "bloom_synth_s91_audio_reference",
+      "family": "synth",
+      "arm": "audio_reference",
+      "seed": 91,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 60.16,
+      "actual_duration_s": 60.16,
+      "audio_sha256": "fdce057a72a27a498751001cc29eb6a76364300bc3b131e341f2300c6c1cb60c",
+      "cfg_coef": 1.5,
+      "reference_id": "suno_cn_008001_0__p50",
+      "reference_sha256": "a8460bc8da31ae2351a4623427a4ffdddeed3cdadde72e8dd536960b2b72afde",
+      "end_to_end_seconds": 40.9930626694113,
+      "generation_seconds": 40.82253981567919,
+      "gpu_peak_allocated_bytes": 7611428864,
+      "rms_dbfs": -16.400172034238484,
+      "peak": 1.0582326650619507,
+      "full_mp3_sha256": "09648bbe2cfe232980c9344734bc1be63ec8152d6a6ba76b75990e6dfeffc7f4",
+      "model": "SongBloom（社区恢复full150s）",
+      "source_group": "bloom",
+      "full_audio": "./audio/artifact-control-20261105/bloom_synth_s91_audio_reference__full.mp3",
+      "human_rating": null,
+      "prompt": "Same permitted10s Suno reference audio plus newly authored experiment lyrics; no invented free-text instruction interface.",
+      "scored_windows": [
+        {
+          "id": "bloom_synth_s91_audio_reference__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        },
+        {
+          "id": "bloom_synth_s91_audio_reference__w2",
+          "start_s": 40.0,
+          "end_s": 50.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.21882698684930801,
+        "roughness70": 0.06425006874836303,
+        "roughness70_p95": 0.2254770865410977,
+        "resonance_protected": 0.011127525474876165,
+        "suno_descriptor_distance": 0.40076727543432134
+      },
+      "audiobox_window_mean_PQ": 7.491057634353638,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "muse_synth_s37_base_used1p0",
+      "family": "synth",
+      "arm": "base",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 30.0,
+      "actual_duration_s": 30.0,
+      "audio_sha256": "0b2ca0dac3b5bf2e4b66c1d331606ea01e70bee4db26c32970b4d6f1219558ad",
+      "audio_pcm_sha256": "2c2e92b33f1941f1fc3311e28dadfa8947929319380cdbc9a99310a0b7d3105c",
+      "decoder_seed": 42,
+      "guidance_scale": 1.0,
+      "guidance_route": "per_instance_inference_codes_override",
+      "effective_guidance_scales": [
+        1.0
+      ],
+      "analysis_include": true,
+      "source_case_id": "muse_synth_s37_base",
+      "audio_tokens_sha256": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "audio_token_count": 750,
+      "exact_token_control_group": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "same_decoder_random_draws_as_first_identical_codes": true,
+      "decoder_random_draws": [
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0d1f7de77a0539b40b39ddb9a920f1c841c399e1e70aead5794fd440db4521a3"
+        },
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "faebdfcf9599f42e63bb4e01b8f15b0eeaf3f96b22c7758de63bc37bac536880"
+        }
+      ],
+      "contrast": "exact_same_Muse_codes_actual_decoder_guidance",
+      "inference_seconds": 11.225092249922454,
+      "gpu_peak_allocated_bytes": 14877814784,
+      "rms_dbfs": -16.266270746813333,
+      "peak": 0.980991005897522,
+      "out_of_range_fraction": 0.0,
+      "full_mp3_sha256": "987b0f4f447703181d793a121448d7e3d76e3204036a4d7328bbf8f3794eb92c",
+      "model": "Muse0.6B＋MuCodec",
+      "source_group": "muse",
+      "full_audio": "./audio/artifact-control-20261105/muse_synth_s37_base_used1p0__full.mp3",
+      "human_rating": null,
+      "actual_guidance_scale": 1.0,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. / segment description: Female lead vocals over the requested bright analog synth arpeggios, synth pads, electronic bass, and drum machine.",
+      "scored_windows": [
+        {
+          "id": "muse_synth_s37_base_used1p0__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2583809196949005,
+        "roughness70": 0.09942655988926018,
+        "roughness70_p95": 0.47122877615367237,
+        "resonance_protected": 0.0032972029875963926,
+        "suno_descriptor_distance": 0.36551054701037583
+      },
+      "audiobox_window_mean_PQ": 7.62116003036499,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "muse_synth_s37_base_used1p5",
+      "family": "synth",
+      "arm": "base",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 30.0,
+      "actual_duration_s": 30.0,
+      "audio_sha256": "45c111c0ce4430b57576c82a817f9ab98ce876092c2964280ff52d16819c56ff",
+      "audio_pcm_sha256": "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb",
+      "decoder_seed": 42,
+      "guidance_scale": 1.5,
+      "guidance_route": "per_instance_inference_codes_override",
+      "effective_guidance_scales": [
+        1.5
+      ],
+      "analysis_include": true,
+      "source_case_id": "muse_synth_s37_base",
+      "audio_tokens_sha256": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "audio_token_count": 750,
+      "exact_token_control_group": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "same_decoder_random_draws_as_first_identical_codes": true,
+      "decoder_random_draws": [
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0d1f7de77a0539b40b39ddb9a920f1c841c399e1e70aead5794fd440db4521a3"
+        },
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "faebdfcf9599f42e63bb4e01b8f15b0eeaf3f96b22c7758de63bc37bac536880"
+        }
+      ],
+      "contrast": "exact_same_Muse_codes_actual_decoder_guidance",
+      "inference_seconds": 12.290212745778263,
+      "gpu_peak_allocated_bytes": 14877739520,
+      "rms_dbfs": -14.482926477130976,
+      "peak": 0.988330602645874,
+      "out_of_range_fraction": 0.0,
+      "full_mp3_sha256": "8fd11df38a2723a3911b2a9f9fac1ac95a8c60846fc56cdc1469f19822e5989d",
+      "model": "Muse0.6B＋MuCodec",
+      "source_group": "muse",
+      "full_audio": "./audio/artifact-control-20261105/muse_synth_s37_base_used1p5__full.mp3",
+      "human_rating": null,
+      "actual_guidance_scale": 1.5,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. / segment description: Female lead vocals over the requested bright analog synth arpeggios, synth pads, electronic bass, and drum machine.",
+      "scored_windows": [
+        {
+          "id": "muse_synth_s37_base_used1p5__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.2388959527015686,
+        "roughness70": 0.18577731631760053,
+        "roughness70_p95": 1.1721710806360173,
+        "resonance_protected": 0.005408578552305698,
+        "suno_descriptor_distance": 0.6150676900173809
+      },
+      "audiobox_window_mean_PQ": 7.919882774353027,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "muse_synth_s37_base_used2p0",
+      "family": "synth",
+      "arm": "base",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 30.0,
+      "actual_duration_s": 30.0,
+      "audio_sha256": "f39123cc9caa8729fcfd951deda34fa0c4d8749152d9f99e69a324c9c829a602",
+      "audio_pcm_sha256": "5d869ced041eebd8381bfbbea27a9c4a99c84bed20ef586a938a5da1c2b69e70",
+      "decoder_seed": 42,
+      "guidance_scale": 2.0,
+      "guidance_route": "per_instance_inference_codes_override",
+      "effective_guidance_scales": [
+        2.0
+      ],
+      "analysis_include": true,
+      "source_case_id": "muse_synth_s37_base",
+      "audio_tokens_sha256": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "audio_token_count": 750,
+      "exact_token_control_group": "3e6d28443594d650b9157b5228b4f1835068814d9e1084ce57b83d6dae3460d8",
+      "same_decoder_random_draws_as_first_identical_codes": true,
+      "decoder_random_draws": [
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0d1f7de77a0539b40b39ddb9a920f1c841c399e1e70aead5794fd440db4521a3"
+        },
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "faebdfcf9599f42e63bb4e01b8f15b0eeaf3f96b22c7758de63bc37bac536880"
+        }
+      ],
+      "contrast": "exact_same_Muse_codes_actual_decoder_guidance",
+      "inference_seconds": 12.343773688189685,
+      "gpu_peak_allocated_bytes": 14877739520,
+      "rms_dbfs": -13.52197295189589,
+      "peak": 0.9909147620201111,
+      "out_of_range_fraction": 0.0,
+      "full_mp3_sha256": "f84436d7840a7f3bace9714f54f783f2b17b7fd8ea0cede248a461c5f5854ff7",
+      "model": "Muse0.6B＋MuCodec",
+      "source_group": "muse",
+      "full_audio": "./audio/artifact-control-20261105/muse_synth_s37_base_used2p0__full.mp3",
+      "human_rating": null,
+      "actual_guidance_scale": 2.0,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. / segment description: Female lead vocals over the requested bright analog synth arpeggios, synth pads, electronic bass, and drum machine.",
+      "scored_windows": [
+        {
+          "id": "muse_synth_s37_base_used2p0__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.23035305738449097,
+        "roughness70": 0.2287695061422058,
+        "roughness70_p95": 1.2467737371384322,
+        "resonance_protected": 0.007164643611758947,
+        "suno_descriptor_distance": 0.760684672430043
+      },
+      "audiobox_window_mean_PQ": 7.977837562561035,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    },
+    {
+      "id": "muse_synth_s37_concrete_used1p5",
+      "family": "synth",
+      "arm": "concrete",
+      "seed": 37,
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_s": 30.0,
+      "actual_duration_s": 30.0,
+      "audio_sha256": "0c5b1d63a17a3af070d2749a44b72bd8bbba14a06f071ac97df18b8a75aa3b82",
+      "audio_pcm_sha256": "319d86357398832239901ffa1b607f393009eefce9ecbd97683c0997f253f821",
+      "decoder_seed": 42,
+      "guidance_scale": 1.5,
+      "guidance_route": "per_instance_inference_codes_override",
+      "effective_guidance_scales": [
+        1.5
+      ],
+      "analysis_include": true,
+      "source_case_id": "muse_synth_s37_concrete",
+      "audio_tokens_sha256": "42289fa4e65c306504072e20be7f2609fb2f48fe0f6a8a0d2fdc5c4b2bc83e92",
+      "audio_token_count": 750,
+      "exact_token_control_group": "42289fa4e65c306504072e20be7f2609fb2f48fe0f6a8a0d2fdc5c4b2bc83e92",
+      "same_decoder_random_draws_as_first_identical_codes": null,
+      "decoder_random_draws": [
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "0d1f7de77a0539b40b39ddb9a920f1c841c399e1e70aead5794fd440db4521a3"
+        },
+        {
+          "kind": "randn",
+          "shape": [
+            1,
+            32,
+            512,
+            32
+          ],
+          "dtype": "torch.float32",
+          "sha256": "faebdfcf9599f42e63bb4e01b8f15b0eeaf3f96b22c7758de63bc37bac536880"
+        }
+      ],
+      "contrast": "real_prompt_change_same_decoder_settings",
+      "inference_seconds": 12.387816648930311,
+      "gpu_peak_allocated_bytes": 14877739520,
+      "rms_dbfs": -11.413008167868306,
+      "peak": 0.996768593788147,
+      "out_of_range_fraction": 0.0,
+      "full_mp3_sha256": "ae8792b57e62f568fe02e0bf3b530eb0bcb9a3ee0b8f0a9c07fe752488de6fd2",
+      "model": "Muse0.6B＋MuCodec",
+      "source_group": "muse",
+      "full_audio": "./audio/artifact-control-20261105/muse_synth_s37_concrete_used1p5__full.mp3",
+      "human_rating": null,
+      "actual_guidance_scale": 1.5,
+      "prompt": "A synth-pop song with female lead vocals, 100 BPM, bright analog synthesizer arpeggios, sustained synth pads, electronic bass, and a drum machine. Keep synthesizers and electronic instruments prominent. / segment description: Use a close-miked, naturally articulated human singing voice, clear consonants, distinct attacks, breathing phrasing, and lively dynamic variation. Keep the original tempo, energy, and every requested instrument. Preserve the synthesizers, synth pads, electronic bass, and drum machine whenever requested; keep them prominent.",
+      "scored_windows": [
+        {
+          "id": "muse_synth_s37_concrete_used1p5__w1",
+          "start_s": 10.0,
+          "end_s": 20.0
+        }
+      ],
+      "window_mean": {
+        "modulation_depth": 0.43398112058639526,
+        "roughness70": 0.3621541914606833,
+        "roughness70_p95": 1.7998491578406788,
+        "resonance_protected": 0.01757626049220562,
+        "suno_descriptor_distance": 1.9043668382704009
+      },
+      "audiobox_window_mean_PQ": 8.310728073120117,
+      "mean_scope": "Mean of prescribed10s windows, NOT a whole-song quality score."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "mucodec-guidance-noop-pcm-v1",
+  "pcm_protocol": "Decodedfloat32little-endian C-order(frames,channels),48kHz; independent of WAVPEAK timestamp",
+  "native_requested_guidance": [
+    1.0,
+    2.0
+  ],
+  "native_observed_lower_guidance": [
+    1.5,
+    1.5
+  ],
+  "native_pcm_identical": true,
+  "override1p5_matches_native_pcm": true,
+  "native_pcm_max_abs_difference": 0.0,
+  "all_same_base_code_random_draws": true,
+  "pcm_hashes": {
+    "muse_synth_s37_native_arg1": "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb",
+    "muse_synth_s37_native_arg2": "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb",
+    "muse_synth_s37_base_used1p0": "2c2e92b33f1941f1fc3311e28dadfa8947929319380cdbc9a99310a0b7d3105c",
+    "muse_synth_s37_base_used1p5": "60c1fe1097524556fa94e9a59b5365693f7c47e7526398f6c392b924687195eb",
+    "muse_synth_s37_base_used2p0": "5d869ced041eebd8381bfbbea27a9c4a99c84bed20ef586a938a5da1c2b69e70",
+    "muse_synth_s37_concrete_used1p5": "319d86357398832239901ffa1b607f393009eefce9ecbd97683c0997f253f821"
+  },
+  "container_note": "DifferentWAVSHA isexpected: libsndfile PEAKchunk storeswritetime; noPCMtransform applied."
+}

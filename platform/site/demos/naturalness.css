@@ -71,3 +71,12 @@
 
 .nat-timeline svg { width: 100%; height: 70px; color: #197568; border-bottom: 1px solid #ccd9d4; }
 .nat-timeline .nat-button { font-size: .8rem; margin-bottom: .6rem; }
+
+#view-naturalness .nat-listening-review { padding: 12px 15px; margin: 12px 0 16px; border-left: 3px solid var(--green-dark); background: var(--surface-muted); }
+#view-naturalness .nat-review-purpose { font-size: .85rem; font-weight: 650; margin: 0 0 6px; }
+#view-naturalness .nat-source-time { font-size: .78rem; font-variant-numeric: tabular-nums; color: var(--ink-muted); margin: 5px 0; }
+#view-naturalness .nat-checkpoints { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+#view-naturalness .nat-checkpoints > p { flex-basis: 100%; }
+#view-naturalness .nat-reference-player { border-top: 1px solid var(--line); margin-top: 10px; padding-top: 8px; }
+#view-naturalness .nat-reference-player audio { width: min(100%, 600px); }
+#view-naturalness .nat-load-warning { color: var(--ink-muted); font-size: .8rem; border-left: 2px solid #b96832; padding-left: 9px; }
