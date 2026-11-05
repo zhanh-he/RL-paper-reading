@@ -290,9 +290,10 @@ function render(data) {
     pairSelect.value = pairIndex >= 0 ? String(pairIndex) : '';
     if (data.attribute_probe) pairNote.textContent = pair?.caveat || (currentA === currentB ? '当前A、B是同一个样本。' : '真实生成输出对照。相同种子只在同一模型内有意义；提示词改变不等于已改变伪影，也不等于reward已验证。');
     reviewBlock.hidden = !pair || ![pair.purpose, pair.observation, pair.caveat, pair.reference_audio, pair.checkpoints?.length].some(Boolean);
-    reviewPurpose.textContent = pair?.purpose || ''; reviewPurpose.hidden = !pair?.purpose;
+    reviewPurpose.textContent = blind ? '先分别判断A/B的人工感、音质和音乐性；取消隐藏后可查看选片理由、指标差异与实验条件。' : pair?.purpose || ''; reviewPurpose.hidden = !pair;
     reviewObservation.textContent = pair?.observation || ''; reviewObservation.hidden = blind || !pair?.observation;
-    reviewCaveat.textContent = pair?.caveat || ''; reviewCaveat.hidden = !pair?.caveat;
+    reviewCaveat.textContent = pair?.caveat || ''; reviewCaveat.hidden = blind || !pair?.caveat;
+    if (blind && pair) pairNote.textContent = '先记录听感，允许相当或无法判断；条件与选片限制在取消隐藏后显示。片段内容可能不同，不要把内容偏好当作伪影判断。';
     checkpointBar.replaceChildren();
     for (const point of pair?.checkpoints || []) {
       const side = point.sample_id === currentA ? 'A' : point.sample_id === currentB ? 'B' : null;
