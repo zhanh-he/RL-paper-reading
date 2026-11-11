@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="以词生曲的 CMI-Pref 验证、自然度实验与 WildSongBench 整曲评测。" />
+  <title>音乐生成实验回顾 | RL Learning</title>
+  <link rel="stylesheet" href="./weekly.css?v=20261023-restored-songbench" />
+  <style>
+    .synthesis-results th[scope="row"] { background: transparent; font-size: inherit; white-space: normal; }
+    .synthesis-results td { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="./">Music-RL Live</a>
+    <a href="../musicgen/">MusicGen Live</a>
+  </header>
+  <main>
+    <h1>音乐生成实验回顾</h1>
+    <p class="lead">以词生曲的短片段验证、自然度与条件控制，以及整曲评测。</p>
+    <nav class="downloads" aria-label="本页章节">
+      <a href="#cmi">CMI-Pref 验证</a>
+      <a href="#naturalness">自然度与控制</a>
+      <a href="#wildsongbench">WildSongBench</a>
+    </nav>
+
+    <section id="cmi" aria-labelledby="cmi-title">
+      <h2 id="cmi-title">CMI-Pref 上的 GRPO 验证</h2>
+      <p>训练使用 270 条条件，以下均值来自固定的 30 条验证条件。每行比较同一实验的第 0 步和第 270 步，指标是 SongBench 七维原始均值（0–10）。区间按验证条件配对 bootstrap，基于一次训练种子。各模型的生成预算和训练配置不同，表中差值用于读各自相对底座的变化。</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="CMI-Pref 完整验证表，可横向滚动">
+        <table class="synthesis-results">
+          <thead><tr><th scope="col">模型与训练奖励</th><th scope="col">生成范围</th><th scope="col">第 0 步</th><th scope="col">第 270 步</th><th scope="col">变化 [95% 区间]</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Muse · Mean7 v3</th><td>512 token，最长 10.24 秒</td><td>3.971</td><td>4.318</td><td>+0.347 [0.106, 0.604]</td></tr>
+            <tr><th scope="row">Muse · Richness v2</th><td>512 token，最长 10.24 秒</td><td>3.971</td><td>4.205</td><td>+0.234 [0.017, 0.462]</td></tr>
+            <tr><th scope="row">YuE2 · Instrument</th><td>约 24 秒</td><td>5.391</td><td>6.003</td><td>+0.612 [0.474, 0.751]</td></tr>
+            <tr><th scope="row">YuE2 · Arrangement</th><td>约 24 秒</td><td>5.391</td><td>5.747</td><td>+0.356 [0.193, 0.526]</td></tr>
+            <tr><th scope="row">YuE2 · Richness</th><td>约 24 秒</td><td>5.391</td><td>5.165</td><td>−0.226 [−0.450, −0.014]</td></tr>
+            <tr><th scope="row">DiffRhythm2 · Mean7，LR 3e−4</th><td>60 秒</td><td>5.116</td><td>5.055</td><td>−0.061 [−0.179, 0.052]</td></tr>
+            <tr><th scope="row">DiffRhythm2 · Mean7，LR 1e−4</th><td>60 秒</td><td>5.116</td><td>5.055</td><td>−0.061 [−0.139, 0.014]</td></tr>
+            <tr><th scope="row">DiffRhythm2 · Arrangement</th><td>60 秒</td><td>5.116</td><td>5.228</td><td>+0.112 [0.025, 0.204]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>另一组 YuE2 实验使用 SongEval 训练与评估。在 600 semantic token、30 条验证条件和 LR 3e−4 下，SongEval 从 3.464 升至 3.661，变化 +0.197 [0.043, 0.354]。其余两档学习率的区间均跨过 0。</p>
+      <p class="downloads"><a href="./weekly-2026-10-23.html#progression">完整曲线、设置与试听</a><a href="./weekly-2026-10-23/summary.json">公开结果回执 JSON</a></p>
+    </section>
+
+    <section id="naturalness" aria-labelledby="naturalness-title">
+      <h2 id="naturalness-title">自然度与条件控制</h2>
+      <ul>
+        <li>在公开 Muse 数据中选取的 16 首 Suno V5 歌曲、48 个未加工十秒片段上，测了子带调制、DW roughness 和窄峰持久性。构造对照显示 FM 铃声也能产生较高窄峰分，因此这些描述子需要配合试听定位。</li>
+        <li>Prompt 与 CFG 实验覆盖 32 条生成输出、60 个固定十秒窗口。归档的 MuCodec 路径对外层 guidance 1 和 2 输出了逐位相同的 PCM，实际模型调用固定为 1.5。补充对照直接控制传给模型的值。</li>
+      </ul>
+      <p>这批审计尚无人工缺陷标签或新增 RL 训练结果。</p>
+      <p class="downloads"><a href="./#naturalness">自然度实验与试听</a><a href="./data/suno-real-audit.json">真实音频审计回执</a><a href="./data/psychoacoustic-audit.json">心理声学对照回执</a><a href="./data/prompt-control-audit.json">Prompt / CFG 回执</a></p>
+    </section>
+
+    <section id="wildsongbench" aria-labelledby="wsb-title">
+      <h2 id="wsb-title">WildSongBench 整曲对照</h2>
+      <p class="scope"><time datetime="2026-11-12">11 月 12 日</time>核对，原版 Muse-0.6b 和 Muse Mean7 v3 第 270 步的 192 题整曲评测进行中。两组完整结果将在候选与九项指标全部核对后发布。</p>
+      <p>192 题含 94 条中文与 98 条英文。每组使用同一套提示、音素投影和解码设置，每题按两个固定种子各生成一个候选。每个候选做四次 ASR，两组分别按最低 PER 选曲，其他指标都在各组选中的同一首歌上计算。比较按题目配对，语料 PER 用总音素编辑数除以总参考音素数。</p>
+      <p>YuE2 团队公开的标准 192 题结果中，Muse 的 SongBench 为 6.035、PER 为 33.42%，HeartMuLa 为 6.248、10.71%，YuE2 为 6.732、8.44%。我们的同题复测还要检验短片段 Mean7 上升能否延续到整曲，以及歌词遵循和控制是否同时改善。</p>
+      <p class="downloads"><a href="https://huggingface.co/datasets/m-a-p/WildSongBench/blob/main/benchmark/results.md">外部发布的完整基准</a><a href="../musicgen/#ablations">AR / NAR 与显式音乐计划</a></p>
+    </section>
+  </main>
+</body>
+</html>
