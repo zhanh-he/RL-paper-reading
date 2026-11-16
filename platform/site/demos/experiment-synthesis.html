@@ -22,6 +22,7 @@
     <nav class="downloads" aria-label="本页章节">
       <a href="#cmi">CMI-Pref 验证</a>
       <a href="#naturalness">自然度与控制</a>
+      <a href="#recovery">历史回收</a>
       <a href="#wildsongbench">WildSongBench</a>
     </nav>
 
@@ -45,6 +46,21 @@
       </div>
       <p>另一组 YuE2 实验使用 SongEval 训练与评估。在 600 semantic token、30 条验证条件和 LR 3e−4 下，SongEval 从 3.464 升至 3.661，变化 +0.197 [0.043, 0.354]。其余两档学习率的区间均跨过 0。</p>
       <p class="downloads"><a href="./weekly-2026-10-23.html#progression">完整曲线、设置与试听</a><a href="./weekly-2026-10-23/summary.json">公开结果回执 JSON</a></p>
+
+      <h3 id="muse-mean7-lr1e4">Muse · Mean7 v3，LR 1e−4</h3>
+      <p>沿用固定 30 条 CMI-Pref 验证条件，每条生成一个候选，最多 512 token（10.24 秒）。第 50 步有一个 0.92 秒的输出，低于评分器的 1 秒门槛。其余三个检查点各完成 30/30 条评分。</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Muse Mean7 小学习率验证表，可横向滚动">
+        <table class="synthesis-results">
+          <thead><tr><th scope="col">训练步</th><th scope="col">已评分条件</th><th scope="col">SongBench Mean7</th><th scope="col">变化（相对第 0 步）</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">0</th><td>30 / 30</td><td>3.971</td><td>—</td></tr>
+            <tr><th scope="row">50</th><td>29 / 30</td><td>全量均值缺失</td><td>—</td></tr>
+            <tr><th scope="row">100</th><td>30 / 30</td><td>4.073</td><td>+0.102</td></tr>
+            <tr><th scope="row">270</th><td>30 / 30</td><td>4.321</td><td>+0.350</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="downloads"><a href="./data/muse-mean7-lr1e4-cmi-validation-recovery.json">回收结果 JSON</a></p>
     </section>
 
     <section id="naturalness" aria-labelledby="naturalness-title">
@@ -52,14 +68,29 @@
       <ul>
         <li>在公开 Muse 数据中选取的 16 首 Suno V5 歌曲、48 个未加工十秒片段上，测了子带调制、DW roughness 和窄峰持久性。构造对照显示 FM 铃声也能产生较高窄峰分，因此这些描述子需要配合试听定位。</li>
         <li>Prompt 与 CFG 实验覆盖 32 条生成输出、60 个固定十秒窗口。归档的 MuCodec 路径对外层 guidance 1 和 2 输出了逐位相同的 PCM，实际模型调用固定为 1.5。补充对照直接控制传给模型的值。</li>
+        <li>补充的条件对比引导实验完成 8 次 60 秒生成和 16 个固定窗的测量，两次重复性检查均通过。</li>
       </ul>
       <p>这批审计尚无人工缺陷标签或新增 RL 训练结果。</p>
-      <p class="downloads"><a href="./#naturalness">自然度实验与试听</a><a href="./data/suno-real-audit.json">真实音频审计回执</a><a href="./data/psychoacoustic-audit.json">心理声学对照回执</a><a href="./data/prompt-control-audit.json">Prompt / CFG 回执</a></p>
+      <p class="downloads"><a href="./#naturalness">自然度实验与试听</a><a href="./data/suno-real-audit.json">真实音频审计回执</a><a href="./data/psychoacoustic-audit.json">心理声学对照回执</a><a href="./data/prompt-control-audit.json">Prompt / CFG 回执</a><a href="./?nat-corpus=contrast#naturalness">条件对比引导与试听</a></p>
+    </section>
+
+    <section id="recovery" aria-labelledby="recovery-title">
+      <h2 id="recovery-title">实验结果回收</h2>
+      <p class="scope">核对于 <time datetime="2026-11-16">2026 年 11 月 16 日</time>（Perth）。</p>
+      <ul>
+        <li><strong>SheetSage2 · 程序化谐波探针。</strong>四种条件各 12 份预测，共 48 份，三项 F1 已补齐。原版、500 ms 前置静音和 −6 dB 增益的绝对音高起音 F1 均为 100%，30 dB SNR 噪声条件为 75%。 <a href="../amt/demos/?run=sheetsage2-harmonic-smoke#experiments">查看完整表格与评分协议</a></li>
+        <li><strong>LaDA-Band · MUSDB18-HQ。</strong>CUDA 12.8 环境的 14 项测试通过，完成两次预检更新并核对两份保存记录。合格训练集为 83 首、1,087 段，验证集为 14 首、208 段，50 首测试曲仍封存。两组正式训练与六项消融仍缺结果。 <a href="./data/lada-band-musdb-preflight-recovery.json">预检回执</a> · <a href="./vocal-lada.html">已归档的固定乐句实验</a></li>
+        <li><strong>AR / NAR 与 CoT。</strong>两次公开 Muse AR-only 容量检查各完成 20 步，四组合成数据检查各完成三步。真实 CoT 和 NAR 的质量对照待完成。 <a href="../musicgen/#records">查看工程结果</a></li>
+        <li><strong>Muse · CMI-Pref 正式实验。</strong>SongEval 与 MuseCritic 共六组，五组完成 270 步，均待补固定 30 条独立验证。另一组 MuseCritic 在 200 步停止。 <a href="./#lyrics">查看正式实验记录</a></li>
+        <li><strong>Muse · Mean7，LR 1e−4。</strong>固定 30 条 CMI-Pref 短片段验证上，第 0 到第 270 步的 Mean7 从 3.971 升至 4.321。第 50 步缺一条评分。 <a href="#muse-mean7-lr1e4">分步回执</a></li>
+        <li><strong>YuE2 · 旧客观测试。</strong>CMI-Pref 官方 121 条和 WildSongBench 192 题仍缺全量评分。30 条固定验证的结果已归档。 <a href="./weekly-2026-10-23.html#cohorts">查看验证和测试范围</a></li>
+        <li><strong>其他生成模型。</strong>HeartMuLa 和 SongBloom 仍缺正式质量评测，ACE-Step 1.5 Base 仍缺完整端到端实测。 <a href="./#model-costs">查看已发布的模型测速</a></li>
+      </ul>
     </section>
 
     <section id="wildsongbench" aria-labelledby="wsb-title">
       <h2 id="wsb-title">WildSongBench 整曲对照</h2>
-      <p class="scope"><time datetime="2026-11-12">11 月 12 日</time>核对，原版 Muse-0.6b 和 Muse Mean7 v3 第 270 步的 192 题整曲评测进行中。两组完整结果将在候选与九项指标全部核对后发布。</p>
+      <p class="scope"><time datetime="2026-11-16">11 月 16 日</time>核对，原版 Muse-0.6B 与 Muse Mean7 v3 第 270 步均缺完整评分。音质评分环境出现依赖版本和 MuQ 初始化故障，部分剩余作业因集群存储配额暂停。发布条件为每组 192 题、384 个候选、九项指标全部核验通过。</p>
       <p>192 题含 94 条中文与 98 条英文。每组使用同一套提示、音素投影和解码设置，每题按两个固定种子各生成一个候选。每个候选做四次 ASR，两组分别按最低 PER 选曲，其他指标都在各组选中的同一首歌上计算。比较按题目配对，语料 PER 用总音素编辑数除以总参考音素数。</p>
       <p>YuE2 团队公开的标准 192 题结果中，Muse 的 SongBench 为 6.035、PER 为 33.42%，HeartMuLa 为 6.248、10.71%，YuE2 为 6.732、8.44%。我们的同题复测还要检验短片段 Mean7 上升能否延续到整曲，以及歌词遵循和控制是否同时改善。</p>
       <p class="downloads"><a href="https://huggingface.co/datasets/m-a-p/WildSongBench/blob/main/benchmark/results.md">外部发布的完整基准</a><a href="../musicgen/#ablations">AR / NAR 与显式音乐计划</a></p>

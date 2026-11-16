@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-30",
+  "updated_at": "2026-11-16",
   "experiments": [
     {
       "id": "asap-duet-benchmark",
@@ -956,13 +956,13 @@
       "reward": "Evaluation only; no optimization",
       "method": "Frozen evaluation; no parameter updates",
       "id": "sheetsage2-harmonic-smoke",
-      "title": "E1 · SheetSage2 冻结模型 smoke / 微扰审计",
-      "status": "queued",
+      "title": "E1 · SheetSage2 冻结模型 · 谐波微扰审计",
+      "status": "measured",
       "task": "Raw procedural harmonic audio -> timed melody events",
       "model": "SheetSage2 b83c3d79 + MERT parent d8ba1c74",
       "receipt": "music-trans/reliability/runs/2026-10-29/sheetsage2.md",
       "samples": [],
-      "evaluation_protocol": "Slurm job 248098; one allocated V100-32GB, 30-minute cap, at most 48 attempts. 12 procedural cases x four conditions. Not singing and not independent works. Default 300s window retained; paper preset; FP32 if V100 lacks BF16. No measured model-quality scores yet.",
+      "evaluation_protocol": "48/48 archived inferences across 12 procedural harmonic probes and four conditions. Macro mean across the same 12 probes per condition. mir_eval 0.8.2, 50 ms onset, 50 cents pitch, 20% offset ratio with 50 ms minimum. The prefix reference is shifted by 0.5 s. Paper preset and 300 s window. Runtime requested BF16 on V100. Scope is procedural harmonic probes.",
       "metric_definitions": [
         {
           "id": "class_onset",
@@ -984,22 +984,58 @@
         {
           "id": "original",
           "label": "原版",
-          "status": "planned"
+          "status": "measured",
+          "evaluation": {
+            "cohort": "12 procedural harmonic probes",
+            "n": 12,
+            "values": {
+              "class_onset": 1,
+              "abs_onset": 1,
+              "abs_onoff": 0.2222222222222222
+            }
+          }
         },
         {
           "id": "prefix-500ms",
           "label": "前置静音 .5s",
-          "status": "planned"
+          "status": "measured",
+          "evaluation": {
+            "cohort": "12 procedural harmonic probes",
+            "n": 12,
+            "values": {
+              "class_onset": 1,
+              "abs_onset": 1,
+              "abs_onoff": 0.2222222222222222
+            }
+          }
         },
         {
           "id": "gain-minus6db",
           "label": "增益 -6dB",
-          "status": "planned"
+          "status": "measured",
+          "evaluation": {
+            "cohort": "12 procedural harmonic probes",
+            "n": 12,
+            "values": {
+              "class_onset": 1,
+              "abs_onset": 1,
+              "abs_onoff": 0.2222222222222222
+            }
+          }
         },
         {
           "id": "noise-snr30",
           "label": "30dB SNR 噪声",
-          "status": "planned"
+          "status": "measured",
+          "evaluation": {
+            "cohort": "12 procedural harmonic probes",
+            "n": 12,
+            "values": {
+              "class_onset": 1,
+              "abs_onset": 0.75,
+              "abs_onoff": 0.1111111111111111
+            }
+          }
         }
       ]
     },

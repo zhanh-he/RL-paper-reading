@@ -1,0 +1,71 @@
+{
+  "aggregation": "macro mean over 12 procedural probes per condition",
+  "conditions": [
+    {
+      "id": "original",
+      "median_inference_seconds": 12.9883793592453,
+      "n": 12,
+      "nonempty_abc": 12,
+      "values": {
+        "abs_onoff": 0.2222222222222222,
+        "abs_onset": 1.0,
+        "class_onset": 1.0
+      }
+    },
+    {
+      "id": "prefix-500ms",
+      "median_inference_seconds": 13.028694987297058,
+      "n": 12,
+      "nonempty_abc": 12,
+      "values": {
+        "abs_onoff": 0.2222222222222222,
+        "abs_onset": 1.0,
+        "class_onset": 1.0
+      }
+    },
+    {
+      "id": "gain-minus6db",
+      "median_inference_seconds": 13.014381408691406,
+      "n": 12,
+      "nonempty_abc": 12,
+      "values": {
+        "abs_onoff": 0.2222222222222222,
+        "abs_onset": 1.0,
+        "class_onset": 1.0
+      }
+    },
+    {
+      "id": "noise-snr30",
+      "median_inference_seconds": 3.272478222846985,
+      "n": 12,
+      "nonempty_abc": 12,
+      "values": {
+        "abs_onoff": 0.1111111111111111,
+        "abs_onset": 0.75,
+        "class_onset": 1.0
+      }
+    }
+  ],
+  "elapsed_seconds": 1097.7186179161072,
+  "gpu_model": "Tesla V100-PCIE-32GB",
+  "input_manifest_sha256": "dd810b65d4f0a6ae6abe78dec1c727a85c741a1b0e9675c62c40dc3d0ef6532a",
+  "melody_exports_sha256": "de221f13fe6c0110048825d6c0ec20a5b73104fe328d663efe4b8bd3282a883b",
+  "minimum_offset_tolerance_s": 0.05,
+  "model_revision": "b83c3d79a6d98bcffaf8f9ed112c90aa887887bc",
+  "n_attempts": 48,
+  "n_probes": 12,
+  "offset_ratio": 0.2,
+  "onset_tolerance_s": 0.05,
+  "parent_revision": "d8ba1c745e733b3908ce6ad16ebeb17ac7600a42",
+  "peak_gpu_gib": 10.418074607849121,
+  "pitch_tolerance_cents": 50,
+  "requested_dtype": "bf16",
+  "schema": "sheetsage2-procedural-e1-summary-v1",
+  "scorer": "mir_eval 0.8.2",
+  "source_state_sha256": "61631ee9edb903a094bbdc3ab7835f1000ce2e2952d163f7d1b675d61225293e",
+  "midi_export_verification": {
+    "expected": 48,
+    "matching_note_counts": 48,
+    "matching_note_pitches": 48
+  }
+}

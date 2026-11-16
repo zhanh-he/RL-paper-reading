@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "recovered_on": "2026-11-16",
+  "model": "Muse-0.6B",
+  "training_objective": "Mean7 v3",
+  "learning_rate": 0.0001,
+  "optimizer_updates": 270,
+  "evaluation": {
+    "cohort": "CMI-Pref fixed validation",
+    "expected_count_per_checkpoint": 30,
+    "candidates_per_condition": 1,
+    "max_audio_tokens": 512,
+    "max_audio_seconds": 10.24,
+    "scoring_minimum_seconds": 1,
+    "metric": "SongBench Mean7",
+    "dimensions": ["Vocal", "Instrumental", "Melody", "Structure", "Arrangement", "Mixing", "Musicality"]
+  },
+  "sweep_complete": false,
+  "scored_count": 119,
+  "expected_count": 120,
+  "checkpoints": [
+    {"step": 0, "scored_count": 30, "mean7": 3.970893429574512, "delta_from_step_0": 0},
+    {"step": 50, "scored_count": 29, "mean7": null, "delta_from_step_0": null, "unscorable_duration_seconds": 0.92},
+    {"step": 100, "scored_count": 30, "mean7": 4.073212624731518, "delta_from_step_0": 0.10231919515700572},
+    {"step": 270, "scored_count": 30, "mean7": 4.321386765298389, "delta_from_step_0": 0.3504933357238764}
+  ]
+}

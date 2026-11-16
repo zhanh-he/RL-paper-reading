@@ -1,23 +1,28 @@
 # SheetSage2 raw-audio audit
 
-Submitted Slurm job: **248098**. Scope: one V100-32GB, four CPU cores, 64 GB RAM,
-30-minute limit, no more than 48 inference attempts. Other queued/held jobs were
-not modified. No training or codec bootstrap is performed.
+The frozen inference audit uses 12 procedural harmonic probes, each tested as
+original, with 500 ms leading silence, at −6 dB gain and with 30 dB SNR noise.
+These four conditions share the same 12 references. The evaluation covers
+synthetic harmonic audio. The pinned model runs the paper preset with a 300-second window.
 
-Inputs: 12 original procedural harmonic probes x original / 500ms leading silence /
--6dB gain / 30dB SNR noise. These are related diagnostic cases, not independent
-musical works and not singing. They cannot establish real vocal accuracy.
+## Recovered on 2026-11-12
 
-Model and parent assets are existing pinned releases. No checkpoints are published.
-The 300-second model window is unchanged. V100 has no native BF16, so the worker
-uses FP32 when required and explicitly records this departure from paper precision.
-Keep load failures, OOM, parse/export failures and incomplete attempts visible.
+The archived inference completed all 48 attempts. Each condition has 12
+measured probes and 12 nonempty ABC outputs. The pitch lists and counts used
+for scoring match the corresponding melody MIDI exports in all 48 cases.
+The worker requested BF16 on a V100-32GB. Effective kernel precision was unverified.
+Wall time inside the worker was 1,097.7 seconds and peak GPU allocation was 10.42 GiB.
 
-This receipt initially records submission, not completion. The machine state and
-subsequent measured results or failure receipt must be attached before any score
-is presented. The public manifest may lag a running remote process until a new
-verified snapshot is published; it is not a live scheduler connection.
+| Condition | Probes | Pitch-class onset F1 | Absolute onset F1 | Absolute onset + offset F1 |
+| --- | ---: | ---: | ---: | ---: |
+| Original | 12 | 100.0% | 100.0% | 22.2% |
+| 500 ms leading silence | 12 | 100.0% | 100.0% | 22.2% |
+| −6 dB gain | 12 | 100.0% | 100.0% | 22.2% |
+| 30 dB SNR noise | 12 | 100.0% | 75.0% | 11.1% |
 
-Scheduler snapshot checked 2026-10-29, approximately 15:15 AWST: PENDING (Priority).
-The scheduler estimated 2026-10-30 01:45:41 start; estimates can change and are
-not a promise. No allocated GPU or measured inference score existed in this snapshot.
+The recovery used the archived melody predictions and references with
+mir_eval 0.8.2. The onset tolerance is 50 ms and the pitch tolerance is
+50 cents. Offset matching uses 20% of the reference note duration with a
+50 ms floor. The silence condition shifts the reference by 500 ms before
+scoring. Each value is the macro mean over the same 12 procedural harmonic
+probes. [Aggregate and artifact bindings](sheetsage2-e1-summary.json).

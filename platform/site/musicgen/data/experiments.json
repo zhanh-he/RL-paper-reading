@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-29",
+  "updated_at": "2026-11-16",
   "project": {
     "title": "MusicGen Live",
     "subtitle": "方法论探索 · 计划、验证与实验记录",
@@ -152,7 +152,7 @@
       "id": "engineering",
       "title": "01 · 数据与执行链",
       "status": "in_progress",
-      "gate": "核对成对 token、同步与歌曲划分。CPU 验证及两种 GPU 的基础工程 smoke 已有记录；生产资产加载与真实数据 20 步仍待研究回执。"
+      "gate": "公开 Muse 的短上下文 AR 工程运行已在两种 GPU 上各完成 20 步。正式对照仍需冻结歌曲级划分，并核对同窗音频、token 和 SheetSage2 谱面。"
     },
     {
       "id": "baseline",
@@ -249,6 +249,54 @@
       "finding": "已校验回传摘要记录单卡 Tesla V100、fp16，工程 smoke 状态 completed。摘要未提供音乐质量评分。",
       "limits": "来源证据类型为 engineering_smoke；本摘要未记录训练步数或音频评测，不能证明收敛、生产资产兼容、CoT 或 NAR 改善。",
       "provenance": "通过既有结果 schema 与 payload SHA256 校验的回传摘要；UTC 完成时间换算为 Australia/Perth 后为 2026-10-28，原始身份不公开。"
+    },
+    {
+      "id": "mg-muse-ar-a100-20261027",
+      "date": "2026-10-27",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "Muse-0.6B · A100 单卡 AR 容量检查",
+      "scope": "BF16，AR-only，无 CoT。训练和验证各 8 个 token 片段，各来自一条公开源记录。",
+      "tests_passed_per_suite": null,
+      "suite_count": null,
+      "cpu_update_steps": null,
+      "runtime": "GPU",
+      "finding": "完成 20 次优化器更新、最终 teacher-forced 验证和权重保存。8 个验证 batch 的最终 loss 为 3.607。",
+      "limits": "只测终点 loss。权重重载、音频生成及质量评估均待验证。",
+      "provenance": "公开 Muse 初始化，种子 42，context 上限 1,024，batch 及梯度累积均为 1。标准 JSON/TXT 回传通过 schema、哈希和等价性核验。"
+    },
+    {
+      "id": "mg-muse-ar-v100-20261028",
+      "date": "2026-10-28",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "Muse-0.6B · V100 单卡 AR 容量检查",
+      "scope": "FP16，AR-only，无 CoT。与 A100 运行采用同一批训练和验证片段。",
+      "tests_passed_per_suite": null,
+      "suite_count": null,
+      "cpu_update_steps": null,
+      "runtime": "GPU",
+      "finding": "完成 20 次优化器更新、最终 teacher-forced 验证和权重保存。8 个验证 batch 的最终 loss 为 3.580。",
+      "limits": "使用 16 GB 显存的单卡和短序列。整曲容量、权重重载、音频生成及质量评估均待验证。",
+      "provenance": "公开 Muse 初始化，种子 42，context 上限 1,024，batch 及梯度累积均为 1。标准 JSON/TXT 回传通过 schema、哈希和等价性核验。"
+    },
+    {
+      "id": "mg-ar-nar-cot-fixture-20261029",
+      "date": "2026-10-29",
+      "kind": "engineering_check",
+      "status": "verified",
+      "task": "lyrics2song",
+      "title": "AR / AR+NAR × CoT · 四臂合成输入检查",
+      "scope": "随机初始化的小模型，4 条合成样本，四组各训练 3 步。",
+      "tests_passed_per_suite": null,
+      "suite_count": null,
+      "cpu_update_steps": 3,
+      "runtime": "CPU",
+      "finding": "四组完成保存、重载及 8 帧 token 生成。两组 CoT 的 ABC 均未通过格式容器校验。",
+      "limits": "谱面来自合成样本。真实 SheetSage2 对齐、音频解码和音乐质量均待验证。",
+      "provenance": "四组工程回执与失败项已核对。种子 42，FP32。"
     }
   ],
   "training_results": [],
@@ -275,7 +323,7 @@
       "id": "sheetsage2",
       "title": "SheetSage2",
       "url": "https://arxiv.org/abs/2610.05336",
-      "relation": "离线谱面监督来源；模型可下载不代表本项目已经实际运行。"
+      "relation": "拟用作离线谱面监督。已回收独立的谐波转写审计，同窗音频与谱面训练链仍待验证。"
     },
     {
       "id": "ace-step",

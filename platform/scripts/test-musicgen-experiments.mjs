@@ -37,7 +37,8 @@ test('raw runtime fields, private paths, credentials and private implementation 
 });
 test('GPU engineering returns retain missing counts and cannot masquerade as CPU updates', () => {
   const gpu = dataset.evidence.filter(row => row.runtime === 'GPU');
-  assert.equal(gpu.length, 2);
+  assert(gpu.some(row => row.id === 'mg-gpu-a100-20261027'));
+  assert(gpu.some(row => row.id === 'mg-gpu-v100-20261028'));
   assert(gpu.every(row => row.cpu_update_steps === null && row.tests_passed_per_suite === null));
   const data = copy(); data.evidence.find(row => row.runtime === 'GPU').cpu_update_steps = 20;
   assert.throws(() => validateMusicGen(data), /CPU updates/);

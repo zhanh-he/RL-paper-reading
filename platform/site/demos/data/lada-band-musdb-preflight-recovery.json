@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "executed_on": "2026-11-12",
+  "evidence_kind": "engineering_check",
+  "model": "LaDA-Band",
+  "dataset": "MUSDB18-HQ",
+  "objective": "Beat-v5 + Coverage + Richness",
+  "seed": 13,
+  "cuda_toolkit": "12.8",
+  "pytorch_cuda_build": "12.8",
+  "unit_tests_passed": 14,
+  "optimizer_updates": 2,
+  "nonempty_checkpoints_verified": 2,
+  "formal_results_recovered": {
+    "main_runs": 0,
+    "ablation_arms": 0,
+    "test_scores": null
+  }
+}
