@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>歌手身份盲听 | Music-RL Live</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top"><div class="frame top-inner"><a href="../">‹ Music-RL Live</a><span>开发集 · 匿名盲听</span></div></header>
+  <main class="frame">
+    <div class="title-row"><div><h1>歌手身份盲听</h1><p id="scope">正在载入开发集…</p></div>
+      <a class="button outline" href="#return">导出与回传 ↓</a>
+    </div>
+    <div class="tracker" aria-live="polite"><span id="pair-progress">配对 —</span><span id="clip-progress">单曲 —</span><span id="event-progress">事件 —</span><span id="storage-status" role="status">浏览器草稿</span></div>
+    <div class="control-row">
+      <div class="toggle" role="group" aria-label="标注视图"><button data-mode="pair" type="button" aria-pressed="true">A/B 配对</button><button data-mode="clip" type="button" aria-pressed="false">单曲事件</button></div>
+      <div class="navigator"><button id="previous" type="button" aria-label="上一项" title="上一项">‹</button><select id="jump" aria-label="选择试听项" disabled></select><button id="next" type="button" aria-label="下一项" title="下一项">›</button><button id="unrated" type="button">下一条未标</button></div>
+    </div>
+    <div id="stage"><p>正在载入音频目录。</p></div>
+    <section id="return" class="return" aria-labelledby="return-title">
+      <h2 id="return-title">导出与回传</h2>
+      <p>标注自动保存在当前浏览器。导出 CSV 后，把文件作为附件发回本次聊天。也可以复制 CSV 粘贴回聊天。换设备可先导出 JSON，再导入继续；网页不会自动上传标注。</p>
+      <div class="actions">
+        <button type="button" id="export-csv" class="primary" disabled>下载标注 CSV</button>
+        <button type="button" id="copy-csv" disabled>复制标注 CSV</button>
+        <button type="button" id="export-json" disabled>备份 JSON</button>
+        <label class="button outline" for="import-json">导入备份</label><input id="import-json" type="file" accept=".json,application/json" class="visually-hidden" disabled>
+        <a href="./annotations.csv" download>空白 CSV 模板</a>
+      </div>
+      <p id="return-status" role="status"></p>
+    </section>
+    <footer><details><summary>音频来源</summary><p>非商业学术研究试听。原始研究提示生成的音频；主唱是估计分离轨，供复听参考。试听 MP3 与用于评分的无损原件不是同一文件。模型归属：<a href="https://huggingface.co/m-a-p/YuE2-3B">M-A-P YuE2-3B</a> 与 <a href="https://huggingface.co/m-a-p/YuE2-Vae">YuE2-Vae</a>，<a href="https://huggingface.co/m-a-p/YuE2-3B/blob/main/LICENSE">权重许可</a>。</p></details></footer>
+  </main>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

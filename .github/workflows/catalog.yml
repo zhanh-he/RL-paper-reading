@@ -35,6 +35,7 @@ jobs:
           npm --prefix platform run test:catalog
           npm --prefix platform run test:amt
           npm --prefix platform run test:musicgen
+          node --test platform/scripts/test-singer-blind.mjs
           git diff --check
 
       - name: Require generated files in pull requests
