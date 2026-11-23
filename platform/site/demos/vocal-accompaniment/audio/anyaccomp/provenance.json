@@ -1,0 +1,54 @@
+{
+  "evidence_kind": "historical_model_inference",
+  "original_demo": "https://zhanh-he.github.io/RL-paper-reading/demos/#vocal",
+  "source": "https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/vocal2accomp/models/anyaccomp",
+  "model": "AnyAccomp public checkpoint",
+  "model_card": "https://huggingface.co/amphion/anyaccomp",
+  "paper": "https://arxiv.org/abs/2509.14052",
+  "seed": 29,
+  "inference_steps": 50,
+  "cfg": 3,
+  "post_training_steps": 0,
+  "guide": {
+    "kind": "original_deterministic_synthetic_vowels",
+    "synthesis_source": "https://github.com/zhanh-he/RL-paper-reading/blob/main/music-gen/vocal2accomp/models/ace-step-1.5/guide_vocal.py",
+    "human_voice": false,
+    "lyrics": null,
+    "duration_seconds": 16,
+    "tempo_bpm": null,
+    "meter": null,
+    "reference_bars": null,
+    "note_format": ["onset_seconds", "end_seconds", "midi_pitch"],
+    "notes": [
+      [0, 1.3, 60], [1.45, 2.75, 64], [2.9, 4.4, 67], [4.75, 5.9, 64], [6.1, 7.5, 62],
+      [7.8, 9.4, 65], [9.7, 11.3, 67], [11.6, 13.6, 72], [13.9, 15.3, 67]
+    ]
+  },
+  "audio": {
+    "encoding": "48 kHz mono MP3, 192 kbps nominal, copied byte-for-byte from the original public listening assets",
+    "assets": [
+      {
+        "kind": "vocal",
+        "file": "guide_vocal.mp3",
+        "source_url": "https://zhanh-he.github.io/RL-paper-reading/demos/audio/guide_vocal.mp3",
+        "mp3_sha256": "c6bd7cf23c6a80120969cdf1e0dc6a464dd97bad59853f4cce64271b878da0b9",
+        "original_pcm_sha256": "b4336c4f124adeba71076388735751c7b4426d4ac4391891ab6d520baa7d5b79"
+      },
+      {
+        "kind": "accompaniment_only",
+        "file": "anyaccomp_accompaniment_seed29.mp3",
+        "source_url": "https://zhanh-he.github.io/RL-paper-reading/demos/audio/anyaccomp_accompaniment_seed29.mp3",
+        "mp3_sha256": "a003eee79563cef22185c660ca9421a4ce025c6feb0dbe74562386b70715489f",
+        "original_pcm_sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea"
+      },
+      {
+        "kind": "guide_plus_accompaniment",
+        "file": "anyaccomp_mixture_seed29.mp3",
+        "source_url": "https://zhanh-he.github.io/RL-paper-reading/demos/audio/anyaccomp_mixture_seed29.mp3",
+        "mp3_sha256": "2968d6ff82272d78ff6613d89a8c193608cc6e042a11f312db85271ff94e132f",
+        "original_pcm_sha256": "ad206f8ac57371f06fb3c82d28eefb3e867d6cc76b65c3914b8239e5a78279b6"
+      }
+    ]
+  },
+  "human_ratings": []
+}

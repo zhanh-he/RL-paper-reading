@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hear and audit how an accompaniment follows a dry vocal, bar by bar.">
+  <title>Vocal Accompaniment Lab</title>
+  <link rel="stylesheet" href="lab.css">
+  <script type="module" src="lab.js"></script>
+</head>
+<body>
+  <header class="top shell">
+    <a class="wordmark" href="./"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> Accompaniment Lab</a>
+    <a class="source" href="https://zhanh-he.github.io/RL-paper-reading/demos/">Music-RL Live</a>
+  </header>
+
+  <main class="shell">
+    <section class="intro" aria-labelledby="title">
+      <h1 id="title">Does the backing<br>follow the singer?</h1>
+      <p>Hear different arrangements of the same dry vocal. Trace where the backing loses the phrase, then decide which take you’d keep.</p>
+    </section>
+
+    <nav class="session-nav" aria-label="Audio sessions">
+      <button type="button" data-session="control" aria-pressed="true">Controlled examples</button>
+      <button type="button" data-session="real" aria-pressed="false">Model run</button>
+    </nav>
+
+    <section class="lab" aria-label="Accompaniment playback and review">
+      <div class="studio">
+        <div class="studio-header">
+          <div><h2 id="session-title">Loading session</h2><p id="session-meta"></p></div>
+          <div class="modes" role="group" aria-label="Listening mode">
+            <button id="explore" type="button" aria-pressed="true">Explore</button>
+            <button id="blind" type="button" aria-pressed="false">Blind A/B</button>
+          </div>
+        </div>
+        <div class="arrangement">
+          <div class="lane-label"><span class="swatch voice"></span> Dry vocal</div>
+          <div class="timeline" id="timeline" aria-label="Jump to a bar"></div>
+          <div class="lane-label"><span class="swatch backing"></span> <span id="backing-label">Backing</span></div>
+          <canvas id="wave" aria-hidden="true"></canvas>
+          <div id="cursor" aria-hidden="true"></div>
+          <input id="scrub" type="range" min="0" max="16" value="0" step="0.01" aria-label="Playback position in seconds">
+        </div>
+        <div class="transport">
+          <button type="button" id="play" class="play" aria-label="Play" disabled><span aria-hidden="true">▶</span></button>
+          <output id="clock" class="clock" for="scrub">0:00.0 / 0:16.0</output>
+          <div class="monitor" role="group" aria-label="Monitor audio">
+            <button data-monitor="mix" type="button" aria-pressed="true">Mix</button>
+            <button data-monitor="voice" type="button" aria-pressed="false">Vocal</button>
+            <button data-monitor="backing" type="button" aria-pressed="false">Backing</button>
+          </div>
+        </div>
+        <p class="status" id="status" role="status"></p>
+        <div id="inspection" class="inspection"></div>
+      </div>
+
+      <aside class="takes" aria-labelledby="takes-title">
+        <h2 id="takes-title">Arrangements</h2>
+        <p id="takes-intro" class="muted"></p>
+        <div id="take-list" class="take-list"></div>
+        <form id="vote" hidden>
+          <fieldset>
+            <legend>Which arrangement would you keep?</legend>
+            <div class="choices">
+              <label><input type="radio" name="winner" value="A" required> A</label>
+              <label><input type="radio" name="winner" value="B"> B</label>
+              <label><input type="radio" name="winner" value="tie"> Tie</label>
+            </div>
+          </fieldset>
+          <label for="timing-review">Which take follows the phrase better? <span class="muted">(optional)</span></label>
+          <select id="timing-review" name="timing_review">
+            <option value="">Skip timing judgment</option>
+            <option value="A">A follows better</option>
+            <option value="B">B follows better</option>
+            <option value="tie">About the same</option>
+            <option value="uncertain">Hard to tell</option>
+          </select>
+          <label for="reason">What made the difference?</label>
+          <select id="reason" name="reason" required>
+            <option value="">Select a reason</option>
+            <option value="timing">Timing or groove</option>
+            <option value="structure">Phrase or section</option>
+            <option value="texture">Style or texture</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="vote-note">Listening note <span class="muted">(optional)</span></label>
+          <textarea id="vote-note" name="note" maxlength="300" rows="2" placeholder="e.g. the fill sets up the next phrase"></textarea>
+          <button type="submit" class="primary">Save judgment</button>
+        </form>
+        <button id="export" class="text-button" type="button" disabled>Export listening judgments</button>
+        <p id="saved" class="muted" role="status"></p>
+      </aside>
+    </section>
+
+    <section class="method" aria-labelledby="method-title">
+      <h2 id="method-title">What this checks</h2>
+      <p>The controlled examples share annotated bar starts. A detector looks for the strong accents designed into these backing tracks, then measures their timing against the reference. A missed accent is a cue to listen. Syncopation and intentional space can sound right even when they look different.</p>
+      <p>Listening judgments stay in this browser until you export them. Compare takes in the same style before using a preference as a training pair.</p>
+      <div class="references"><a href="https://arxiv.org/html/2609.16034v1#S5.SS5">StepAudio 3 Music evaluation limits</a><a href="https://zhanh-he.github.io/casm-beat-tracking/">CASM beat and downbeat tracking</a></div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "title": "AnyAccomp · public inference replay",
+  "duration_s": 16,
+  "bars": [],
+  "bpm": null,
+  "beats_per_bar": null,
+  "meter": null,
+  "sample_rate": 48000,
+  "vocal": {
+    "file": "guide_vocal.mp3",
+    "label": "Original synthetic vowel guide",
+    "onsets_s": [0, 1.45, 2.9, 4.75, 6.1, 7.8, 9.7, 11.6, 13.9]
+  },
+  "variants": [
+    {
+      "id": "anyaccomp-seed29",
+      "label": "AnyAccomp · seed 29",
+      "description": "Historical frozen-checkpoint accompaniment for this synthetic guide. The guide has exact note onsets but no reference beat or bar grid.",
+      "file": "anyaccomp_accompaniment_seed29.mp3",
+      "mix_file": "anyaccomp_mixture_seed29.mp3"
+    }
+  ],
+  "provenance": {
+    "label": "Original Music-RL Live replay",
+    "url": "https://zhanh-he.github.io/RL-paper-reading/demos/#vocal",
+    "detail": "AnyAccomp public checkpoint · original synthetic vowels · seed 29, 50 inference steps, CFG 3 · 0 post-training steps"
+  }
+}

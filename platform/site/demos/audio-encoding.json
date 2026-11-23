@@ -3543,6 +3543,55 @@
       "sha256": "7162691549d4c2413551fc0cff8203728be319bb0796f6cbded283ccda38e0b3",
       "bytes": 1441197,
       "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/drift.mp3": {
+      "source_path": "procedural-fixtures/drift.wav",
+      "source_audio_sha256": "312d26d173b16daa8f9be34cd8bc261bd2d039a87527867c2aa84324d9a0fa5e",
+      "sha256": "416b8fa65c119c58c6381cd9db5d525b7f0ecfee45c78477aa9e03326cc55390",
+      "bytes": 385388,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/pocket.mp3": {
+      "source_path": "procedural-fixtures/pocket.wav",
+      "source_audio_sha256": "1826af52de637760d08bd883340b85243d39eb9cad4cb37f33376627888dc0d6",
+      "sha256": "0f2182ba94facaa240fde2cb41e777e3915af862721328b6921a35012be4f8ea",
+      "bytes": 385388,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/syncopated.mp3": {
+      "source_path": "procedural-fixtures/syncopated.wav",
+      "source_audio_sha256": "80768656a72d878ddc5b957bbeb28ac67b8ae0b9c8d15ccab0f3be40484b0247",
+      "sha256": "f2048d69242f47ebe1111095467871fc59ce338a7f79f18ee21e9660cf77840e",
+      "bytes": 385388,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/vocal.mp3": {
+      "source_path": "procedural-fixtures/vocal.wav",
+      "source_audio_sha256": "9e739140dde7c094899f3f3a6292d0a28024455483fcb28daebf7329a1ef495d",
+      "sha256": "7d4e141dd972aa1de0a6f57ab5c4c26ca0314443e70f96780c4c09396742015b",
+      "bytes": 385388,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/anyaccomp/anyaccomp_accompaniment_seed29.mp3": {
+      "source_path": "platform/site/demos/audio/anyaccomp_accompaniment_seed29.wav",
+      "source_audio_sha256": "b1ebca6e626e5b2164def3549abf92a4302b0b8f693cda4f60fb4d869e20daea",
+      "sha256": "a003eee79563cef22185c660ca9421a4ce025c6feb0dbe74562386b70715489f",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/anyaccomp/anyaccomp_mixture_seed29.mp3": {
+      "source_path": "platform/site/demos/audio/anyaccomp_mixture_seed29.wav",
+      "source_audio_sha256": "ad206f8ac57371f06fb3c82d28eefb3e867d6cc76b65c3914b8239e5a78279b6",
+      "sha256": "2968d6ff82272d78ff6613d89a8c193608cc6e042a11f312db85271ff94e132f",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
+    },
+    "platform/site/demos/vocal-accompaniment/audio/anyaccomp/guide_vocal.mp3": {
+      "source_path": "platform/site/demos/audio/guide_vocal.wav",
+      "source_audio_sha256": "b4336c4f124adeba71076388735751c7b4426d4ac4391891ab6d520baa7d5b79",
+      "sha256": "c6bd7cf23c6a80120969cdf1e0dc6a464dd97bad59853f4cce64271b878da0b9",
+      "bytes": 385389,
+      "encoding": "MP3 192 kbps / 48 kHz; no loudness normalization"
     }
   }
 }
