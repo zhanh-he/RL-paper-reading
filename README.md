@@ -60,9 +60,9 @@ Public audio is MP3 only, including GitHub release assets: 192 kbps / 48 kHz, wi
 
 ## Labels
 - Domain：`MusicGen(LLM) / MusicGen(Small) / MusicGen(Mid) / MusicGen(Large) / MusicGen / MusicFoundation / MusicEval / MusicTranscription / MIR / AudioGen / Speech / SpeechEnhance / AudioLLM / LLM / CV / MachineLearning / SourceSep / Multimodal / Other`
-- Workstream：`Reward / RL / Reward-n-RL / Other`
+- Workstream：`Reward / RL / Reward-n-RL / 基础知识 / Other`
 - `MusicFoundation` 留给 MERT/MuQ 等理解表征；`MusicGen(LLM)` 是语言模型/LM+渲染体系。非 LM 生成器按已核验参考配置分 Small <1B、Mid 1–3B、Large >3B；未知规模保留 MusicGen。这是目录约定，不是统一行业标准。
 - Domain 下拉框可多选，取消勾选即排除；筛选链接和 CSV 导出保留当前选择。
-- “规模 / 速度”列与详情保留组件参数量、硬件和原文测量口径；论文报告不是本地重测，缺失数据不猜测。不同 RTF 定义与采样预算不能直接排名。
+- 文献单元格按标题、核心词和链接排列。`Direct Project Value` 保留一条可共享的项目价值。
 - 星级分为 Zhanh 与 Other；Other 保留推荐人姓名，未评分留空，`*` 表示等待重读。解读颜色为 Zhanh 深红、Other／Felix 绿色、Hanyu 蓝色。
-- 最后一栏“主要作者”列出第一作者单位，支持搜索、筛选、排序；点击单位可查看核验来源。
+- 作者、机构、年份和 venue 同列；已核验的机构可点击查看来源。

@@ -8,12 +8,12 @@
       content="Music generation, reinforcement learning and reward research"
     />
     <title>MusicGen / RL / Reward | RL Learning</title>
-    <link rel="stylesheet" href="./assets/styles.css?v=20261022-catalogs" />
+    <link rel="stylesheet" href="./assets/styles.css?v=20261123-catalog" />
     <script
       defer
       src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"
     ></script>
-    <script type="module" src="./assets/app.js?v=20261022-catalogs"></script>
+    <script type="module" src="./assets/app.js?v=20261123-catalog"></script>
   </head>
   <body data-catalog="rl" data-site-root="./">
     <header class="app-header">
@@ -124,6 +124,7 @@
               <button type="button" data-value="Reward-n-RL" aria-pressed="false">
                 Reward-n-RL
               </button>
+              <button type="button" data-value="基础知识" aria-pressed="false">基础知识</button>
               <button type="button" data-value="Other" aria-pressed="false">Other</button>
             </div>
           </div>
@@ -176,9 +177,19 @@
         <table>
           <thead>
             <tr>
-              <th class="year-column" scope="col">
-                <button class="sort-button" type="button" data-sort="year">
-                  Year / Venue <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+              <th class="title-column" scope="col">
+                <button class="sort-button" type="button" data-sort="title">
+                  Literature <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="classification-column" scope="col">
+                <button class="sort-button" type="button" data-sort="domain" title="Sort by domain">
+                  Domain / Workstream <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
+                </button>
+              </th>
+              <th class="bibliographic-column" scope="col">
+                <button class="sort-button" type="button" data-sort="year" title="Sort by year">
+                  Authors / Year / Venue <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
                 </button>
               </th>
               <th class="rating-column other-column" scope="col">
@@ -191,28 +202,7 @@
                   Zhanh <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
                 </button>
               </th>
-              <th class="domain-column" scope="col">
-                <button class="sort-button" type="button" data-sort="domain">
-                  Domain <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
-                </button>
-              </th>
-              <th class="workstream-column" scope="col">Workstream</th>
-              <th class="title-column" scope="col">
-                <button class="sort-button" type="button" data-sort="title">
-                  Literature <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
-                </button>
-              </th>
-              <th class="keywords-column optional-wide" scope="col">Core terms</th>
-              <th class="metrics-column optional-wide" scope="col">
-                <button class="sort-button" type="button" data-sort="model_params_b">规模 / 速度 <i data-lucide="chevrons-up-down" aria-hidden="true"></i></button>
-              </th>
-              <th class="links-column" scope="col">Links</th>
-              <th class="value-column optional-wide" scope="col">Direct project value</th>
-              <th class="organization-column" scope="col">
-                <button class="sort-button" type="button" data-sort="author_org">
-                  主要作者 <i data-lucide="chevrons-up-down" aria-hidden="true"></i>
-                </button>
-              </th>
+              <th scope="col">Direct Project Value</th>
             </tr>
           </thead>
           <tbody id="catalog-body"></tbody>
@@ -239,21 +229,21 @@
         <div class="dialog-labels" id="detail-labels"></div>
         <section>
           <h3>Core terms</h3>
-          <p id="detail-keywords"></p>
+          <p id="detail-keywords" class="keywords"></p>
         </section>
+        <nav id="detail-links" class="detail-links" aria-label="Literature links"></nav>
         <section>
-          <h3>Direct project value</h3>
-          <div id="detail-notes" class="note-stack"></div>
-        </section>
-        <section>
-          <h3>规模 / 速度</h3>
-          <div id="detail-metrics" class="note-stack"></div>
+          <h3>Direct Project Value</h3>
+          <p id="detail-value"></p>
         </section>
         <section>
           <h3>主要作者</h3>
-          <p id="detail-organization"></p>
+          <div id="detail-organization"></div>
         </section>
-        <nav id="detail-links" class="detail-links" aria-label="Literature links"></nav>
+        <details id="detail-reviews" class="reviewer-notes">
+          <summary>Reviewer notes</summary>
+          <div id="detail-notes" class="note-stack"></div>
+        </details>
       </div>
     </dialog>
 

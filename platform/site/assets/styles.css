@@ -376,11 +376,6 @@ h1 {
 .domain-option small { margin-left: auto; color: var(--ink-muted); }
 .filter-chip-removable { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
 .filter-chip-removable svg { width: 12px; height: 12px; }
-.metrics-column { width: 210px; }
-.metric-size, .metric-speed { margin: 0 0 6px; line-height: 1.5; font-size: 0.76rem; }
-.metric-speed, .metric-context { color: var(--ink-muted); }
-.metric-source { color: var(--green); }
-
 .filter-group {
   flex: 1 1 auto;
   min-width: 0;
@@ -471,7 +466,7 @@ h1 {
 
 table {
   width: 100%;
-  min-width: 1690px;
+  min-width: 960px;
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
@@ -520,46 +515,35 @@ tbody tr:hover td {
   background: #fafbf9;
 }
 
-.year-column {
-  width: 92px;
-}
-
 .rating-column {
-  width: 72px;
+  width: 66px;
   text-align: center;
 }
 
-.domain-column {
-  width: 148px;
-}
-
-.workstream-column {
-  width: 116px;
+.classification-column {
+  width: 15%;
 }
 
 .title-column {
-  width: 300px;
+  width: 33%;
 }
 
-.keywords-column {
-  width: 205px;
-}
-
-.links-column {
-  width: 172px;
-}
-
-.value-column {
-  width: 370px;
-}
-
-.organization-column {
-  width: 174px;
+.bibliographic-column {
+  width: 17%;
 }
 
 .organization-name {
-  line-height: 1.5;
+  display: block;
   overflow-wrap: anywhere;
+}
+
+.primary-author {
+  display: block;
+  font-weight: 700;
+}
+
+.primary-author + .organization-name {
+  color: var(--ink-muted);
 }
 
 .sort-button {
@@ -591,22 +575,16 @@ tbody tr:hover td {
 }
 
 .year-venue {
+  margin-top: 4px;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
 
-.year-venue strong,
-.year-venue span {
-  display: block;
-}
-
-.year-venue strong {
-  font-size: 0.82rem;
-}
-
-.year-venue span {
-  margin-top: 2px;
-  color: var(--ink-muted);
-  font-size: 0.68rem;
+.classification-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .rating {
@@ -699,16 +677,22 @@ tbody tr:hover td {
   background: var(--surface-muted);
 }
 
+.tag-foundations {
+  color: var(--blue);
+  background: var(--blue-soft);
+}
+
 .title-button {
   padding: 0;
   color: var(--ink);
   background: transparent;
   border: 0;
   cursor: pointer;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 750;
   line-height: 1.4;
   text-align: left;
+  overflow-wrap: anywhere;
 }
 
 .title-button:hover {
@@ -718,10 +702,13 @@ tbody tr:hover td {
 }
 
 .keywords {
-  color: var(--ink-muted);
+  margin: 4px 0 0;
+  color: var(--red);
+  font-weight: 400;
 }
 
 .link-list {
+  margin-top: 7px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -761,17 +748,9 @@ tbody tr:hover td {
   gap: 10px;
 }
 
-.note-stack-compact {
-  gap: 7px;
-}
-
 .author-note {
   margin: 0;
   line-height: 1.65;
-}
-
-.author-note-compact {
-  line-height: 1.45;
 }
 
 .author-zhanh {
@@ -789,11 +768,6 @@ tbody tr:hover td {
 
 .author-label {
   font-weight: 800;
-}
-
-.note-empty {
-  color: #8a9690;
-  font-style: italic;
 }
 
 .table-state {
@@ -885,15 +859,26 @@ dialog::backdrop {
 }
 
 .detail-links {
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
+  margin-top: 10px;
 }
 
 .detail-links .resource-link {
   min-height: 34px;
   padding: 6px 10px;
   font-size: 0.75rem;
+}
+
+.reviewer-notes {
+  margin-top: 20px;
+}
+
+.reviewer-notes summary {
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.reviewer-notes .note-stack {
+  margin-top: 10px;
 }
 
 .toast {
@@ -1019,29 +1004,8 @@ dialog::backdrop {
     margin: 0 8px;
   }
 
-  table {
-    min-width: 0;
-  }
-
-  .optional-wide,
-  .other-column,
-  .organization-column,
-  .domain-column,
-  .workstream-column,
-  .links-column {
-    display: none;
-  }
-
-  .year-column {
-    width: 76px;
-  }
-
-  .zhanh-column {
-    width: 58px;
-  }
-
   .title-column {
-    width: auto;
+    width: 275px;
   }
 
   .dialog-header,

@@ -2,6 +2,7 @@ const CATALOG_ID = document.body.dataset.catalog;
 const SITE_ROOT = new URL(document.body.dataset.siteRoot, window.location.href);
 const DATA_URL = new URL(`data/${CATALOG_ID}-literature.json`, SITE_ROOT);
 const CATALOG_ROUTES = { rl: "./", amt: "amt/" };
+const SORT_KEYS = new Set(["source_order", "title", "domain", "year", "other_rating", "zhanh_rating", "author_org"]);
 const CSV_HEADERS = [
   "year",
   "venue",
@@ -11,20 +12,16 @@ const CSV_HEADERS = [
   "workstream",
   "title",
   "keywords",
-  "model_size",
-  "model_params_b",
-  "generation_speed",
-  "measurement_context",
-  "model_size_url",
-  "generation_speed_url",
   "paper_url",
   "github_url",
   "demo_url",
   "web_url",
+  "direct_project_value",
   "zhanh_note",
   "felix_note",
   "other_note",
   "hanyu_note",
+  "primary_author",
   "author_org",
   "author_org_url"
 ];
@@ -54,8 +51,9 @@ const elements = {
   detailTitle: document.querySelector("#detail-title"),
   detailLabels: document.querySelector("#detail-labels"),
   detailKeywords: document.querySelector("#detail-keywords"),
+  detailValue: document.querySelector("#detail-value"),
+  detailReviews: document.querySelector("#detail-reviews"),
   detailNotes: document.querySelector("#detail-notes"),
-  detailMetrics: document.querySelector("#detail-metrics"),
   detailOrganization: document.querySelector("#detail-organization"),
   detailLinks: document.querySelector("#detail-links"),
   toast: document.querySelector("#toast")
@@ -150,9 +148,10 @@ function readUrlState() {
   for (const key of Object.keys(state.filters)) {
     state.filters[key] = params.get(key) ?? (key === "other" ? params.get("felix") : null) ?? "";
   }
-  state.sort = params.get("sort") || "source_order";
-  if (state.sort === "felix_rating") state.sort = "other_rating";
-  state.direction = params.get("dir") === "desc" ? "desc" : "asc";
+  const requestedSort = params.get("sort") || "source_order";
+  const sort = requestedSort === "felix_rating" ? "other_rating" : requestedSort;
+  state.sort = SORT_KEYS.has(sort) ? sort : "source_order";
+  state.direction = SORT_KEYS.has(sort) && params.get("dir") === "desc" ? "desc" : "asc";
   state.excludedDomains = new Set(params.getAll("exclude"));
 }
 
@@ -198,13 +197,12 @@ function recordSearchText(record) {
   return [
     record.title,
     record.keywords,
-    record.model_size,
-    record.generation_speed,
-    record.measurement_context,
+    record.direct_project_value,
     record.zhanh_note,
     record.felix_note,
     record.other_note,
     record.hanyu_note,
+    record.primary_author,
     record.author_org,
     record.domain,
     record.workstream,
@@ -236,13 +234,7 @@ function matchesFilters(record) {
 function compareRecords(left, right) {
   const key = state.sort;
   let result;
-  if (key === "model_params_b") {
-    if (!left[key] || !right[key]) {
-      if (!left[key] && !right[key]) return left.source_order - right.source_order;
-      return left[key] ? -1 : 1;
-    }
-    result = Number(left[key]) - Number(right[key]);
-  } else if (key === "other_rating" || key === "zhanh_rating") {
+  if (key === "other_rating" || key === "zhanh_rating") {
     result = ratingValue(left[key]) - ratingValue(right[key]);
   } else if (key === "year" || key === "source_order") {
     result = Number(left[key]) - Number(right[key]);
@@ -254,7 +246,7 @@ function compareRecords(left, right) {
 }
 
 function makeTag(value, kind) {
-  const classSuffix = value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const classSuffix = value === "基础知识" ? "foundations" : value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   const className =
     kind === "domain"
       ? `tag tag-domain tag-domain-${classSuffix}`
@@ -273,7 +265,7 @@ function makeRating(value) {
   return rating;
 }
 
-function makeProjectNotes(record, compact = false) {
+function makeProjectNotes(record) {
   const notes = [
     ["Zhanh", record.zhanh_note, "zhanh"],
     ["Felix", record.felix_note, "felix"],
@@ -281,15 +273,8 @@ function makeProjectNotes(record, compact = false) {
     ["Hanyu", record.hanyu_note, "hanyu"]
   ].filter(([, note]) => Boolean(note));
 
-  if (notes.length === 0) {
-    return [el("span", "note-empty", "No project note recorded")];
-  }
-
   return notes.map(([name, note, author]) => {
-    const paragraph = el(
-      "p",
-      `author-note author-${author}${compact ? " author-note-compact" : ""}`
-    );
+    const paragraph = el("p", `author-note author-${author}`);
     paragraph.append(
       el("strong", "author-label", `${name}:`),
       document.createTextNode(` ${note}`)
@@ -332,61 +317,53 @@ function makeOrganization(record) {
   return node;
 }
 
+function makeAuthorCredit(record) {
+  const credit = el("div", "author-credit");
+  if (record.primary_author) credit.append(el("strong", "primary-author", record.primary_author));
+  if (record.author_org || !record.primary_author) credit.append(makeOrganization(record));
+  return credit;
+}
+
 function makeRow(record) {
   const row = document.createElement("tr");
   row.dataset.id = record.id;
 
-  const yearCell = el("td", "year-venue");
-  yearCell.append(el("strong", "", record.year || "待核验"), el("span", "", record.venue));
+  const bibliographicCell = el("td", "bibliographic-column");
+  bibliographicCell.append(
+    makeAuthorCredit(record),
+    el("div", "year-venue", [record.year || "待核验", record.venue].filter(Boolean).join(" · "))
+  );
 
   const otherCell = el("td", "rating-column other-column");
   otherCell.append(makeRating(record.other_rating));
   const zhanhCell = el("td", "rating-column zhanh-column");
   zhanhCell.append(makeRating(record.zhanh_rating));
 
-  const domainCell = el("td", "domain-column");
-  domainCell.append(makeTag(record.domain, "domain"));
-  const workstreamCell = el("td", "workstream-column");
-  workstreamCell.append(makeTag(record.workstream, "workstream"));
+  const classificationCell = el("td", "classification-column");
+  const tags = el("div", "classification-tags");
+  tags.append(makeTag(record.domain, "domain"), makeTag(record.workstream, "workstream"));
+  classificationCell.append(tags);
 
   const titleCell = el("td", "title-column");
   const titleButton = el("button", "title-button", record.title);
   titleButton.type = "button";
   titleButton.addEventListener("click", () => openDetails(record));
   titleCell.append(titleButton);
+  if (record.keywords) titleCell.append(el("p", "keywords", record.keywords));
 
-  const keywordsCell = el("td", "keywords optional-wide", record.keywords);
-  const metricsCell = el("td", "metrics-column optional-wide");
-  metricsCell.append(
-    el("p", "metric-size", record.model_size || (record.domain.startsWith("MusicGen") ? "规模待核验" : "")),
-    el("p", "metric-speed", record.generation_speed || (record.domain.startsWith("MusicGen") ? "速度未核验" : ""))
-  );
-  metricsCell.title = record.measurement_context || "";
-  const linksCell = el("td", "links-column");
   const linkList = el("div", "link-list");
   for (const definition of resourceDefinition(record)) {
     linkList.append(makeResourceLink(record, definition));
   }
-  linksCell.append(linkList);
-  const valueCell = el("td", "direct-value optional-wide");
-  const noteStack = el("div", "note-stack note-stack-compact");
-  noteStack.append(...makeProjectNotes(record, true));
-  valueCell.append(noteStack);
-  const organizationCell = el("td", "organization-column");
-  organizationCell.append(makeOrganization(record));
+  if (linkList.childElementCount) titleCell.append(linkList);
 
   row.append(
-    yearCell,
+    titleCell,
+    classificationCell,
+    bibliographicCell,
     otherCell,
     zhanhCell,
-    domainCell,
-    workstreamCell,
-    titleCell,
-    keywordsCell,
-    metricsCell,
-    linksCell,
-    valueCell,
-    organizationCell
+    el("td", "direct-value", record.direct_project_value || "—")
   );
   return row;
 }
@@ -470,24 +447,12 @@ function openDetails(record) {
     makeRating(record.other_rating)
   );
   elements.detailKeywords.textContent = record.keywords || "No terms recorded";
-  elements.detailNotes.replaceChildren(...makeProjectNotes(record));
-  elements.detailMetrics.replaceChildren();
-  for (const [label, value, source] of [
-    ["参数量", record.model_size, record.model_size_url],
-    ["生成速度", record.generation_speed, record.generation_speed_url]
-  ]) {
-    const paragraph = el("p", "", `${label}: ${value || (record.domain.startsWith("MusicGen") ? "未核验 / 未报告" : "未登记 / 不适用")}`);
-    if (source) {
-      const link = el("a", "metric-source", "source");
-      link.href = source;
-      link.target = "_blank";
-      link.rel = "noreferrer";
-      paragraph.append(document.createTextNode(" "), link);
-    }
-    elements.detailMetrics.append(paragraph);
-  }
-  if (record.measurement_context) elements.detailMetrics.append(el("p", "metric-context", record.measurement_context));
-  elements.detailOrganization.replaceChildren(makeOrganization(record));
+  elements.detailValue.textContent = record.direct_project_value || "—";
+  const reviewerNotes = makeProjectNotes(record);
+  elements.detailReviews.open = false;
+  elements.detailReviews.hidden = !reviewerNotes.length;
+  elements.detailNotes.replaceChildren(...reviewerNotes);
+  elements.detailOrganization.replaceChildren(makeAuthorCredit(record));
   elements.detailLinks.replaceChildren(
     ...resourceDefinition(record).map((definition) => makeResourceLink(record, definition))
   );

@@ -49,6 +49,41 @@ test("current table contains exactly one linked row per stable ID", () => {
   for (const r of records) assert(table.includes(`${r.obsidian_target}\\|`));
 });
 
+test("Obsidian tables group the reference fields and show only the shared sentence", () => {
+  const example = {
+    ...record,
+    title: "Example Paper",
+    author_org: "Example Institute",
+    author_org_url: "https://example.org/institute",
+    primary_author: "Author Name",
+    year: "2026",
+    venue: "arXiv",
+    keywords: "first term；second term",
+    paper_url: "https://example.org/paper",
+    model_size: "model size only on the card",
+    zhanh_note: "existing attributed judgment",
+    direct_project_value: "Use the paper for foundational reading."
+  };
+  const table = catalogTable([example], "huawei-rl/literature");
+  assert.match(table, /^\| Literature \| Domain \/ Workstream \| Authors \/ Year \/ Venue \| Other \| Zhanh \| Direct Project Value \|/);
+  assert(table.includes(`**[[huawei-rl/literature/${example.obsidian_target}\\|Example Paper]]**<br><span style="color:`));
+  assert(table.includes("first term；second term</span><br>[Paper](https://example.org/paper)"));
+  assert(table.includes("Author Name<br>[Example Institute](https://example.org/institute)<br>2026 · arXiv"));
+  assert(table.includes(example.direct_project_value));
+  assert(!table.includes(example.model_size));
+  assert(!table.includes(example.zhanh_note));
+  const card = sharedSection(example);
+  assert(card.includes(`### Direct Project Value\n\n${example.direct_project_value}`));
+  assert(card.includes(example.model_size));
+  assert(card.includes(example.zhanh_note));
+  const properties = updateFrontmatter("---\ntitle: Example\n---\n", example);
+  assert(properties.includes(`catalog_direct_project_value: "${example.direct_project_value}"`));
+  const empty = { ...example, direct_project_value: "" };
+  assert(!sharedSection(empty).includes("### Direct Project Value"));
+  assert(!updateFrontmatter(properties, empty).includes("catalog_direct_project_value"));
+  assert(!catalogTable([empty]).includes(example.zhanh_note));
+});
+
 test("understanding foundations, not generators; no ungrounded quantities", () => {
   assert(records.filter((r) => r.domain === "MusicFoundation").every((r) => /MERT|MuQ:/.test(r.title)));
   for (const r of records) {
@@ -130,6 +165,47 @@ test("Obsidian sync scopes AMT independently and keeps private prose with two in
   assert.equal(result.status, 0, result.stderr);
   assert(fs.readFileSync(rlIndex, "utf8").includes("Private research prose stays."));
   assert(!fs.readFileSync(rlIndex, "utf8").includes(loadCatalog("amt")[0].title));
+  result = run();
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.equal(JSON.parse(result.stdout).changes, 0);
+});
+
+test("Obsidian sync routes the flat vault and rejects mixed layouts before writing", t => {
+  const vault = fs.mkdtempSync(path.join(os.tmpdir(), "catalog-flat-vault-test-"));
+  t.after(() => fs.rmSync(vault, { recursive: true, force: true }));
+  const rl = path.join(vault, "huawei-rl/literature");
+  const amt = path.join(vault, "self-choral-transcription/literature");
+  fs.mkdirSync(rl, { recursive: true });
+  fs.mkdirSync(amt, { recursive: true });
+  fs.writeFileSync(path.join(vault, "AGENTS.md"), "Test fixture rules\n");
+  const rlFirst = loadCatalog("rl")[0];
+  const amtFirst = loadCatalog("amt")[0];
+  const rlCard = path.join(rl, `${rlFirst.obsidian_target}.md`);
+  const original = "---\ntitle: Example\n---\n\n# Example\n\nPrivate research prose stays.\n";
+  fs.writeFileSync(rlCard, original);
+  const run = (...args) => spawnSync(process.execPath, [fileURLToPath(new URL("./sync-obsidian.mjs", import.meta.url)), "--vault", vault, "--date", "2026-11-23", ...args], { encoding: "utf8" });
+
+  let result = run("--catalog", "amt", "--write", "--source-dir", fileURLToPath(new URL("../data", import.meta.url)));
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(fs.readFileSync(rlCard, "utf8"), original);
+  const amtIndex = fs.readFileSync(path.join(amt, "AMT 文献目录.md"), "utf8");
+  assert(amtIndex.includes(`[[self-choral-transcription/literature/${amtFirst.obsidian_target}\\|`));
+  const amtCard = fs.readFileSync(path.join(amt, `${amtFirst.obsidian_target}.md`), "utf8");
+  assert(amtCard.includes("project: self-choral-transcription"));
+  assert(amtCard.includes("[[self-choral-transcription/literature/AMT 文献目录|文献目录]]"));
+
+  const legacy = path.join(vault, "30-projects/huawei-rl/1 Literature");
+  fs.mkdirSync(legacy, { recursive: true });
+  result = run("--write");
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Mixed legacy and flat vault layouts/);
+  assert.equal(fs.readFileSync(rlCard, "utf8"), original);
+  fs.rmSync(legacy, { recursive: true });
+  result = run("--write");
+  assert.equal(result.status, 0, result.stderr);
+  const rlIndex = fs.readFileSync(path.join(rl, "Huawei RL 文献目录.md"), "utf8");
+  assert(rlIndex.includes(`[[huawei-rl/literature/${rlFirst.obsidian_target}\\|`));
+  assert(fs.readFileSync(rlCard, "utf8").includes("Private research prose stays."));
   result = run();
   assert.equal(result.status, 0, result.stderr || result.stdout);
   assert.equal(JSON.parse(result.stdout).changes, 0);

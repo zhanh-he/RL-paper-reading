@@ -26,6 +26,8 @@
     "hanyu_note": "",
     "author_org": "Sony CSL",
     "author_org_url": "https://arxiv.org/pdf/2503.06346",
+    "primary_author": "",
+    "direct_project_value": "ICASSP metric qualification receipt：timing/pitch/nuisance perturbations + 875 次人工评分；但不是 per-song reward，也没有 policy-attack test。",
     "catalog": "rl",
     "source_order": 0,
     "keywords_list": [
@@ -61,6 +63,8 @@
     "hanyu_note": "",
     "author_org": "Sapienza",
     "author_org_url": "https://arxiv.org/pdf/2504.05690",
+    "primary_author": "",
+    "direct_project_value": "以 Beat This 和 mir_eval F1 的生成分轨评测为基线，补做局部漂移、节拍歧义、置信度校准和独立人工节奏吻合度评测。",
     "catalog": "rl",
     "source_order": 1,
     "keywords_list": [
@@ -96,6 +100,8 @@
     "hanyu_note": "",
     "author_org": "ETH Zurich",
     "author_org_url": "https://arxiv.org/pdf/2606.21458",
+    "primary_author": "",
+    "direct_project_value": "用语音增强的 GSPO 多指标奖励作为设计参照，分别核验各指标的实际影响和非目标质量守门条件。",
     "catalog": "rl",
     "source_order": 2,
     "keywords_list": [
@@ -131,6 +137,8 @@
     "hanyu_note": "",
     "author_org": "CUHK-Shenzhen / SRIBD",
     "author_org_url": "https://arxiv.org/pdf/2508.17229",
+    "primary_author": "",
+    "direct_project_value": "借鉴多指标一致判优来构造节拍改善且覆盖率和音质非劣的偏好对，并保留独立听感验证。",
     "catalog": "rl",
     "source_order": 3,
     "keywords_list": [
@@ -166,6 +174,8 @@
     "hanyu_note": "",
     "author_org": "Google DeepMind",
     "author_org_url": "https://arxiv.org/pdf/2402.04229",
+    "primary_author": "",
+    "direct_project_value": "以 MusicRL 的两阶段奖励和 KL 正则 REINFORCE 为先例，设计自回归音乐生成的分阶段后训练。",
     "catalog": "rl",
     "source_order": 4,
     "keywords_list": [
@@ -201,6 +211,8 @@
     "hanyu_note": "",
     "author_org": "Mila / Montreal",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/e6731a1d3eddafeb8c94669a1d82fc5d-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "把实时音乐交互中一致性提升伴随重复和多样性退化的结果，用作设计音乐奖励过优化审计的案例。",
     "catalog": "rl",
     "source_order": 5,
     "keywords_list": [
@@ -236,6 +248,8 @@
     "hanyu_note": "",
     "author_org": "HKUST-GZ",
     "author_org_url": "https://arxiv.org/pdf/2608.03032",
+    "primary_author": "",
+    "direct_project_value": "`K=8` rendered-audio GRPO 显著改善 OOD NSynth matching，却让 in-domain Dexed 退化；直接展示强推 reward 与 domain-retention trade-off。",
     "catalog": "rl",
     "source_order": 6,
     "keywords_list": [
@@ -271,6 +285,8 @@
     "hanyu_note": "",
     "author_org": "QMUL",
     "author_org_url": "https://arxiv.org/pdf/2603.00610",
+    "primary_author": "",
+    "direct_project_value": "用 CMI-Pref 和 CMI-RM 两个评分维度作比较基线，并单独定义节拍人工标注、版本冻结和训练数据重叠检查。",
     "catalog": "rl",
     "source_order": 7,
     "keywords_list": [
@@ -306,6 +322,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2505.10793",
+    "primary_author": "",
+    "direct_project_value": "用 SongEval 五维评分监测歌曲整体美学，同时单独建立节拍时间轴真值并审计策略分布变化。",
     "catalog": "rl",
     "source_order": 8,
     "keywords_list": [
@@ -341,6 +359,8 @@
     "hanyu_note": "",
     "author_org": "ETH Zurich",
     "author_org_url": "https://doi.org/10.1109/ICASSP49660.2025.10887745",
+    "primary_author": "",
+    "direct_project_value": "6,000 clips、12 systems、15,600 human pairs，含 Suno/Udio；适合公开 same-prompt disagreement mining 与 rhythm-focused relabel。",
     "catalog": "rl",
     "source_order": 9,
     "keywords_list": [
@@ -376,6 +396,8 @@
     "hanyu_note": "",
     "author_org": "Fudan",
     "author_org_url": "https://arxiv.org/pdf/2608.11755",
+    "primary_author": "",
+    "direct_project_value": "用 MuseCritic 的五维美学奖励和 GRPO 作为整体歌曲偏好基线，并单独测试局部节拍正确性。",
     "catalog": "rl",
     "source_order": 10,
     "keywords_list": [
@@ -411,6 +433,8 @@
     "hanyu_note": "",
     "author_org": "Fudan",
     "author_org_url": "https://arxiv.org/pdf/2601.03973",
+    "primary_author": "",
+    "direct_project_value": "用公开的 Muse 自回归 SFT 底座建立可复现的音乐后训练对照。",
     "catalog": "rl",
     "source_order": 11,
     "keywords_list": [
@@ -446,6 +470,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2601.07237",
+    "primary_author": "",
+    "direct_project_value": "官方 venue signal：generated-song automatic evaluation 与 RL reward 有明确研究价值；Hard set 强调 unseen-generator generalization。",
     "catalog": "rl",
     "source_order": 12,
     "keywords_list": [
@@ -481,6 +507,8 @@
     "hanyu_note": "",
     "author_org": "Google Research",
     "author_org_url": "https://arxiv.org/pdf/2404.09824",
+    "primary_author": "",
+    "direct_project_value": "系统展示 preference noise 对 downstream alignment 的损害及 confidence filtering 的部分收益；直接支撑 pair correctness 与 noise-curve 实验。",
     "catalog": "rl",
     "source_order": 13,
     "keywords_list": [
@@ -516,6 +544,8 @@
     "hanyu_note": "",
     "author_org": "JD.com",
     "author_org_url": "https://arxiv.org/pdf/2606.08480",
+    "primary_author": "",
+    "direct_project_value": "只在 policy difficulty 和 reward discriminability 均通过时使用 GRPO，否则回到监督 NLL；是 confidence-gated GRPO 的直接方法先例。",
     "catalog": "rl",
     "source_order": 14,
     "keywords_list": [
@@ -551,6 +581,8 @@
     "hanyu_note": "",
     "author_org": "Oxford",
     "author_org_url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/3d719fee332caa23d5038b8a90e81796-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "理论上说明全策略空间的非平凡 unhackable proxy 需要极强的 policy-order equivalence；支持限制 policy set，而非声称完美 reward。",
     "catalog": "rl",
     "source_order": 15,
     "keywords_list": [
@@ -586,6 +618,8 @@
     "hanyu_note": "",
     "author_org": "UCL",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/5eee634cb9729b8bcc2ec9f2a46a74ae-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "固定多 reward 加权存在不同 usefulness turning points；支持 beat objective + coverage/quality constraints，而非无限补偿式求和。",
     "catalog": "rl",
     "source_order": 16,
     "keywords_list": [
@@ -621,6 +655,8 @@
     "hanyu_note": "",
     "author_org": "Stanford",
     "author_org_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/e45caa3d5273d105b8d045e748636957-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "DPO 也会随 KL budget 增大而退化，甚至一个 epoch 内发生；DPO 更可审计，但不免疫 overoptimization。",
     "catalog": "rl",
     "source_order": 17,
     "keywords_list": [
@@ -656,6 +692,8 @@
     "hanyu_note": "",
     "author_org": "Tokyo / RIKEN",
     "author_org_url": "https://arxiv.org/pdf/2507.15507",
+    "primary_author": "",
+    "direct_project_value": "将 overoptimization 解释为 reward-data 与 current-policy rollout mismatch；要求逐 checkpoint 重测 reward validity。",
     "catalog": "rl",
     "source_order": 18,
     "keywords_list": [
@@ -691,6 +729,8 @@
     "hanyu_note": "",
     "author_org": "HKUST",
     "author_org_url": "https://aclanthology.org/2026.acl-long.636/",
+    "primary_author": "",
+    "direct_project_value": "揭示 perception failure、modality dominance、fusion failure；支持独立 MIR verifier 作为 learned judge 的感知审计层。",
     "catalog": "rl",
     "source_order": 19,
     "keywords_list": [
@@ -726,6 +766,8 @@
     "hanyu_note": "",
     "author_org": "Tongyi",
     "author_org_url": "https://arxiv.org/pdf/2601.16483",
+    "primary_author": "",
+    "direct_project_value": "把 FlowSE 的单指标优化退化和标准差归一化复合奖励作为对照，检验目标增益是否牺牲其他质量维度。",
     "catalog": "rl",
     "source_order": 20,
     "keywords_list": [
@@ -761,6 +803,8 @@
     "hanyu_note": "",
     "author_org": "Sun Yat-sen University / Kuaishou",
     "author_org_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Wang_GRPO-Guard_Mitigating_Implicit_Over-Optimization_in_Flow_Matching_via_Regulated_Clipping_CVPR_2026_paper.html",
+    "primary_author": "",
+    "direct_project_value": "把 GRPO-Guard 的受控裁剪当作连续 flow 策略过优化的机制参照，另行验证自回归音乐模型的退化来源。",
     "catalog": "rl",
     "source_order": 21,
     "keywords_list": [
@@ -796,6 +840,8 @@
     "hanyu_note": "",
     "author_org": "Kyoto University",
     "author_org_url": "https://arxiv.org/pdf/2607.13903",
+    "primary_author": "",
+    "direct_project_value": "证明 aesthetics predictor 可能把 genre 当 quality proxy；要求对 MIR reward 做 tempo/density/confidence subgroup audit，并降低 aesthetics correlation 的证据等级。",
     "catalog": "rl",
     "source_order": 22,
     "keywords_list": [
@@ -831,6 +877,8 @@
     "hanyu_note": "",
     "author_org": "JKU",
     "author_org_url": "https://arxiv.org/pdf/2407.21658",
+    "primary_author": "",
+    "direct_project_value": "公开、可复现的 detector transfer baseline；用于替代内部 Beat It，但 detector 本身不是 BeatReward novelty。",
     "catalog": "rl",
     "source_order": 23,
     "keywords_list": [
@@ -866,6 +914,8 @@
     "hanyu_note": "",
     "author_org": "HKUST / NVIDIA",
     "author_org_url": "https://arxiv.org/pdf/2601.05242",
+    "primary_author": "",
+    "direct_project_value": "用 GDPO 检查逐维归一化如何改变多目标权重，尤其检验两候选时的维度投票效应和并列处理。",
     "catalog": "rl",
     "source_order": 24,
     "keywords_list": [
@@ -901,6 +951,8 @@
     "hanyu_note": "",
     "author_org": "CMU",
     "author_org_url": "https://arxiv.org/pdf/2503.16669",
+    "primary_author": "",
+    "direct_project_value": "常见 TTM 指标与 human preference 可能很弱；支持 controlled construct test + real human validation + pair-level evaluation。",
     "catalog": "rl",
     "source_order": 25,
     "keywords_list": [
@@ -936,6 +988,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua",
     "author_org_url": "https://arxiv.org/pdf/2506.07520",
+    "primary_author": "",
+    "direct_project_value": "把 LeVo 的分维度 DPO 后模型合并纳入多偏好音乐后训练对照，并固定模型和代码版本。",
     "catalog": "rl",
     "source_order": 26,
     "keywords_list": [
@@ -971,6 +1025,8 @@
     "hanyu_note": "",
     "author_org": "Wuhan University",
     "author_org_url": "https://arxiv.org/pdf/2508.05011",
+    "primary_author": "",
+    "direct_project_value": "借鉴同提示词 PER 筛选与 DPO、PPO、GRPO 对照，并用人工歌词一致性评估检验自动奖励。",
     "catalog": "rl",
     "source_order": 27,
     "keywords_list": [
@@ -1006,6 +1062,8 @@
     "hanyu_note": "",
     "author_org": "OpenAI",
     "author_org_url": "https://proceedings.mlr.press/v202/gao23h.html",
+    "primary_author": "",
+    "direct_project_value": "据代理奖励与较强参考奖励的受控实验，设计 RL 和 Best-of-N 在不同优化压力下的尾部失效审计。",
     "catalog": "rl",
     "source_order": 28,
     "keywords_list": [
@@ -1041,6 +1099,8 @@
     "hanyu_note": "",
     "author_org": "Cambridge",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/dda7f9378a210c25e470e19304cce85d-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "worst-case/uncertainty-weighted ensembles 配合小 KL 可缓解 overoptimization；共享 blind spot 仍需攻击测试。",
     "catalog": "rl",
     "source_order": 29,
     "keywords_list": [
@@ -1076,6 +1136,8 @@
     "hanyu_note": "",
     "author_org": "Northwestern University",
     "author_org_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/fa69e968b7319fd42524febd41475fb3-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "从 distribution shift/uncertainty 推导 DPO + SFT anchor；支持 pair filtering 之外约束 reference drift。",
     "catalog": "rl",
     "source_order": 30,
     "keywords_list": [
@@ -1111,6 +1173,8 @@
     "hanyu_note": "",
     "author_org": "CCOM",
     "author_org_url": "https://arxiv.org/pdf/2502.18008",
+    "primary_author": "",
+    "direct_project_value": "自动 top/bottom preference construction、K=0 vs K=3、DPOP 与 human A/B 是我们的 pair recipe 和 iterative DPO 强参考。",
     "catalog": "rl",
     "source_order": 31,
     "keywords_list": [
@@ -1146,6 +1210,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba Qwen",
     "author_org_url": "https://arxiv.org/pdf/2507.18071",
+    "primary_author": "",
+    "direct_project_value": "sequence-level ratio 更贴合整段音乐 reward；适合 reward 成熟后的 P2，不替代当前 pair/reward qualification。",
     "catalog": "rl",
     "source_order": 32,
     "keywords_list": [
@@ -1181,6 +1247,8 @@
     "hanyu_note": "",
     "author_org": "Technion",
     "author_org_url": "https://proceedings.mlr.press/v97/geifman19a.html",
+    "primary_author": "",
+    "direct_project_value": "面向分类器 reject option 的经典工作，可借鉴 risk-coverage 表达，但与当前音乐 reward 和生成式 post-training 的直接关系很弱。",
     "catalog": "rl",
     "source_order": 33,
     "keywords_list": [
@@ -1216,6 +1284,8 @@
     "hanyu_note": "",
     "author_org": "MIT",
     "author_org_url": "https://arxiv.org/pdf/2509.24159",
+    "primary_author": "",
+    "direct_project_value": "推断每条 label 的 posterior correctness 并重加权 preference loss；形式上最接近 confidence-weighted MIR pairs。",
     "catalog": "rl",
     "source_order": 34,
     "keywords_list": [
@@ -1251,6 +1321,8 @@
     "hanyu_note": "",
     "author_org": "UCF",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/17061a94c3c7fda5fa24bbdd1832fa99-Abstract-Conference.html",
+    "primary_author": "",
+    "direct_project_value": "多维冲突被压成 binary label 会制造错误梯度；支持 consensus/Pareto clean pairs，冲突 pair abstain。",
     "catalog": "rl",
     "source_order": 35,
     "keywords_list": [
@@ -1286,6 +1358,8 @@
     "hanyu_note": "",
     "author_org": "NUDT",
     "author_org_url": "https://arxiv.org/pdf/2401.00243",
+    "primary_author": "",
+    "direct_project_value": "异构 reward ensembles 提供不确定性证据与保守优化思路；多个 tracker 一致不等于排序正确，仍需要 pair-direction calibration 与 shared-blind-spot stress tests。",
     "catalog": "rl",
     "source_order": 36,
     "keywords_list": [
@@ -1321,6 +1395,8 @@
     "hanyu_note": "",
     "author_org": "Google DeepMind",
     "author_org_url": "https://arxiv.org/pdf/2312.09244",
+    "primary_author": "",
+    "direct_project_value": "ensemble 可缓解却不能消除 reward hacking；Madmom + Beat This 只能提供 uncertainty evidence。",
     "catalog": "rl",
     "source_order": 37,
     "keywords_list": [
@@ -1356,6 +1432,8 @@
     "hanyu_note": "",
     "author_org": "Zhejiang University",
     "author_org_url": "https://arxiv.org/pdf/2505.10561",
+    "primary_author": "",
+    "direct_project_value": "evaluator 先验证 human preference，再构造 249K audio preference data；强支撑 evaluator-first protocol。",
     "catalog": "rl",
     "source_order": 38,
     "keywords_list": [
@@ -1391,6 +1469,8 @@
     "hanyu_note": "",
     "author_org": "Stanford",
     "author_org_url": "https://arxiv.org/pdf/2305.18290",
+    "primary_author": "",
+    "direct_project_value": "用原始 DPO 作固定偏好对的后训练基线，审计错标、优样本绝对质量及基线策略覆盖。",
     "catalog": "rl",
     "source_order": 39,
     "keywords_list": [
@@ -1426,6 +1506,8 @@
     "hanyu_note": "",
     "author_org": "UC Davis",
     "author_org_url": "https://arxiv.org/pdf/2605.15458",
+    "primary_author": "",
+    "direct_project_value": "并非只停留在概念：包含 SDE-GRPO、dense decomposed rewards、Early-Step Focus 及 Maze/FlowFree/Sokoban 实验；但其 verifier 建立在规则可判定的视觉谜题上，距离细粒度 music reward 很远，因此对本项目直接价值低。",
     "catalog": "rl",
     "source_order": 40,
     "keywords_list": [
@@ -1461,6 +1543,8 @@
     "hanyu_note": "",
     "author_org": "CUHK / Kuaishou / Shanghai AI Lab",
     "author_org_url": "https://arxiv.org/pdf/2505.05470",
+    "primary_author": "",
+    "direct_project_value": "用 Flow-GRPO 核对连续生成器做在线 RL 所需的随机转移与对数概率接口，再与 DiffusionNFT 比较。",
     "catalog": "rl",
     "source_order": 41,
     "keywords_list": [
@@ -1496,6 +1580,8 @@
     "hanyu_note": "",
     "author_org": "UCF",
     "author_org_url": "https://arxiv.org/pdf/2509.00051",
+    "primary_author": "",
+    "direct_project_value": "Music generation evaluation metrics 与 music reward 的综述。",
     "catalog": "rl",
     "source_order": 42,
     "keywords_list": [
@@ -1531,6 +1617,8 @@
     "hanyu_note": "",
     "author_org": "OpenDILab",
     "author_org_url": "https://github.com/opendilab/awesome-RLVR",
+    "primary_author": "",
+    "direct_project_value": "系统汇总 verifiable reward、RLVR 方法、论文和代码资源，是追踪该方向进展与搭建 related-work 图谱的核心入口。",
     "catalog": "rl",
     "source_order": 43,
     "keywords_list": [
@@ -1566,6 +1654,8 @@
     "hanyu_note": "",
     "author_org": "University of Minnesota",
     "author_org_url": "https://arxiv.org/pdf/2607.01232",
+    "primary_author": "",
+    "direct_project_value": "提醒不要默认全参或全层 LoRA；应先做 middle-layer/contribution-guided LoRA DPO 小规模验证。",
     "catalog": "rl",
     "source_order": 44,
     "keywords_list": [
@@ -1601,6 +1691,8 @@
     "hanyu_note": "",
     "author_org": "China Mobile Shandong",
     "author_org_url": "https://arxiv.org/pdf/2510.18913",
+    "primary_author": "",
+    "direct_project_value": "把锚定列表排序作为利用整组候选信息的后训练对照，并独立检查排序标签可靠性。",
     "catalog": "rl",
     "source_order": 45,
     "keywords_list": [
@@ -1636,6 +1728,8 @@
     "hanyu_note": "",
     "author_org": "Inflection AI",
     "author_org_url": "https://arxiv.org/pdf/2510.23868",
+    "primary_author": "",
+    "direct_project_value": "用 GIFT 比较 GRPO 与隐式偏好拟合，重点核对采样分布梯度、初始奖励方差和参考约束。",
     "catalog": "rl",
     "source_order": 46,
     "keywords_list": [
@@ -1671,6 +1765,8 @@
     "hanyu_note": "",
     "author_org": "XJTU",
     "author_org_url": "https://arxiv.org/pdf/2601.12222",
+    "primary_author": "",
+    "direct_project_value": "支持 stem decomposition 与 uncertainty；也迫使我们突出无需 MOS 的 explicit timing construct 和 confidence calibration。",
     "catalog": "rl",
     "source_order": 47,
     "keywords_list": [
@@ -1706,6 +1802,8 @@
     "hanyu_note": "",
     "author_org": "Microsoft Research",
     "author_org_url": "https://arxiv.org/pdf/2403.00409",
+    "primary_author": "",
+    "direct_project_value": "用随机偏好翻转下的鲁棒 DPO 作为噪声对照，并针对节拍歧义和静音另做结构性错标测试。",
     "catalog": "rl",
     "source_order": 48,
     "keywords_list": [
@@ -1741,6 +1839,8 @@
     "hanyu_note": "",
     "author_org": "MBZUAI",
     "author_org_url": "https://arxiv.org/pdf/2510.18924",
+    "primary_author": "",
+    "direct_project_value": "对 Bernoulli reward corruption 修正 gradient；对连续、相关、结构化音乐噪声只作数学对照。",
     "catalog": "rl",
     "source_order": 49,
     "keywords_list": [
@@ -1776,6 +1876,8 @@
     "hanyu_note": "",
     "author_org": "Google DeepMind / Tokyo",
     "author_org_url": "https://arxiv.org/pdf/2409.06691",
+    "primary_author": "",
+    "direct_project_value": "接近 50/50 的 pair 学习压力趋零，适合 calibrated confidence-weighted music DPO。",
     "catalog": "rl",
     "source_order": 50,
     "keywords_list": [
@@ -1811,6 +1913,8 @@
     "hanyu_note": "",
     "author_org": "UC Berkeley",
     "author_org_url": "https://arxiv.org/pdf/2208.02814",
+    "primary_author": "",
+    "direct_project_value": "提供 conformal pair-risk/coverage 的统计工具，但与当前 music reward/post-training 缺少直接方法连接，因此仅作备用背景。",
     "catalog": "rl",
     "source_order": 51,
     "keywords_list": [
@@ -1846,6 +1950,8 @@
     "hanyu_note": "",
     "author_org": "SJTU",
     "author_org_url": "https://arxiv.org/pdf/2603.11661",
+    "primary_author": "",
+    "direct_project_value": "说明 reward 成熟时 online GRPO 可优于 offline；不支持“DPO 普遍优于 GRPO”，反而强调先修 reward。",
     "catalog": "rl",
     "source_order": 52,
     "keywords_list": [
@@ -1881,6 +1987,8 @@
     "hanyu_note": "",
     "author_org": "Stevens",
     "author_org_url": "https://arxiv.org/pdf/2603.22677",
+    "primary_author": "",
+    "direct_project_value": "音乐 per-sample quality predictor，可作独立 quality gate 或评测候选；质量预测、局部错拍辨别、以及作为在线优化 reward 的安全性是三项不同资格，需要分别验证。",
     "catalog": "rl",
     "source_order": 53,
     "keywords_list": [
@@ -1916,6 +2024,8 @@
     "hanyu_note": "",
     "author_org": "Georgia Tech",
     "author_org_url": "https://arxiv.org/pdf/2606.17006",
+    "primary_author": "",
+    "direct_project_value": "开放 instance-level pairwise reward；可做 Best-of-N、pair filtering 和 OOD anchor calibration，但需验证 vocal-fit/beat sensitivity。",
     "catalog": "rl",
     "source_order": 54,
     "keywords_list": [
@@ -1951,6 +2061,8 @@
     "hanyu_note": "",
     "author_org": "AudioLabs Erlangen",
     "author_org_url": "https://arxiv.org/pdf/2607.13278",
+    "primary_author": "",
+    "direct_project_value": "借鉴 PPG、F0 与歌手条件做跨域歌声建模，并独立测试数据域配比、歌声保真和时变条件控制。",
     "catalog": "rl",
     "source_order": 55,
     "keywords_list": [
@@ -1986,6 +2098,8 @@
     "hanyu_note": "",
     "author_org": "McGill",
     "author_org_url": "https://academic.oup.com/book/55154/chapter/424072391",
+    "primary_author": "",
+    "direct_project_value": "支持区分 structural perception 与 hedonic valuation；不能用来声称 beat alignment 等价于 pleasure。",
     "catalog": "rl",
     "source_order": 56,
     "keywords_list": [
@@ -2021,6 +2135,8 @@
     "hanyu_note": "",
     "author_org": "Google",
     "author_org_url": "https://arxiv.org/pdf/2606.04921",
+    "primary_author": "",
+    "direct_project_value": "用于分析 separator-induced BeatReward noise、构造 remix stress tests；不设为截稿前复现依赖。",
     "catalog": "rl",
     "source_order": 57,
     "keywords_list": [
@@ -2056,6 +2172,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2409.09601",
+    "primary_author": "",
+    "direct_project_value": "支持 learned semantic judge + explicit MIR expert 分层；模型地图停留在 2024，不代表当前 SOTA。",
     "catalog": "rl",
     "source_order": 58,
     "keywords_list": [
@@ -2091,6 +2209,8 @@
     "hanyu_note": "",
     "author_org": "Meta FAIR / Hebrew University",
     "author_org_url": "https://arxiv.org/pdf/2512.10264",
+    "primary_author": "",
+    "direct_project_value": "借鉴多奖励一致胜出的配对规则和语义奖励异常上限，单独核验代码与论文的评分配置。",
     "catalog": "rl",
     "source_order": 59,
     "keywords_list": [
@@ -2126,6 +2246,8 @@
     "hanyu_note": "",
     "author_org": "Google Research",
     "author_org_url": "https://arxiv.org/pdf/2301.12662",
+    "primary_author": "",
+    "direct_project_value": "支撑 separated-vocal leakage 和 noise/artifact augmentation；preference receipt 必须记录 separator 与 residual leakage。",
     "catalog": "rl",
     "source_order": 60,
     "keywords_list": [
@@ -2161,6 +2283,8 @@
     "hanyu_note": "",
     "author_org": "Zhejiang Lab",
     "author_org_url": "https://arxiv.org/pdf/2604.09054",
+    "primary_author": "",
+    "direct_project_value": "与 Qwen codec-token accompaniment generation 形态接近；dual-rate semantic/acoustic representation 可启发分层 reward。",
     "catalog": "rl",
     "source_order": 61,
     "keywords_list": [
@@ -2196,6 +2320,8 @@
     "hanyu_note": "",
     "author_org": "University of Minnesota",
     "author_org_url": "https://arxiv.org/pdf/2605.30046",
+    "primary_author": "",
+    "direct_project_value": "可作 reward-hacked output OOD guardrail/diagnostic；原实验不是音频，近期不作主 reward。",
     "catalog": "rl",
     "source_order": 62,
     "keywords_list": [
@@ -2231,6 +2357,8 @@
     "hanyu_note": "",
     "author_org": "ytxwzqin（博客作者）",
     "author_org_url": "https://www.cnblogs.com/ytxwzqin/p/12813965.html",
+    "primary_author": "",
+    "direct_project_value": "便于团队沟通生成依赖和速度；概念混合经典时间序列 AR 与 neural autoregression，不作为论文证据。",
     "catalog": "rl",
     "source_order": 63,
     "keywords_list": [
@@ -2266,6 +2394,8 @@
     "hanyu_note": "",
     "author_org": "Spotify",
     "author_org_url": "https://arxiv.org/pdf/2403.06826",
+    "primary_author": "",
+    "direct_project_value": "补充离线上下文 RL 的概念基础，了解回报条件化 Transformer 如何在推理时平衡探索与利用。",
     "catalog": "rl",
     "source_order": 64,
     "keywords_list": [
@@ -2301,6 +2431,8 @@
     "hanyu_note": "",
     "author_org": "DeepMind",
     "author_org_url": "https://arxiv.org/pdf/2210.14215",
+    "primary_author": "",
+    "direct_project_value": "用 Algorithm Distillation 理解序列模型如何吸收跨回合学习历史并在上下文中改进策略，为阅读 ICEE 建立基线。",
     "catalog": "rl",
     "source_order": 65,
     "keywords_list": [
@@ -2336,6 +2468,8 @@
     "hanyu_note": "",
     "author_org": "Cornell",
     "author_org_url": "https://arxiv.org/pdf/2402.08021",
+    "primary_author": "",
+    "direct_project_value": "为歌词 ASR 奖励增加静音、间奏、弱人声及分离残留压力测试，识别整体 WER 或 PER 掩盖的幻觉。",
     "catalog": "rl",
     "source_order": 66,
     "keywords_list": [
@@ -2371,6 +2505,8 @@
     "hanyu_note": "",
     "author_org": "MBZUAI",
     "author_org_url": "https://aclanthology.org/2025.findings-acl.1190/",
+    "primary_author": "",
+    "direct_project_value": "评估 ASR 或 PER 奖励时并报幻觉率、分布扰动曲线及按模型分组的结果，识别低 WER 仍隐藏的幻觉。",
     "catalog": "rl",
     "source_order": 67,
     "keywords_list": [
@@ -2406,6 +2542,8 @@
     "hanyu_note": "",
     "author_org": "AGH Krakow",
     "author_org_url": "https://arxiv.org/pdf/2606.23060",
+    "primary_author": "",
+    "direct_project_value": "把 Whisper 解码器内部探针纳入歌词奖励门控候选，与文本指标和 LLM 判断做对照。",
     "catalog": "rl",
     "source_order": 68,
     "keywords_list": [
@@ -2441,6 +2579,8 @@
     "hanyu_note": "",
     "author_org": "AI Foundation and Algorithm Lab / MISIS",
     "author_org_url": "https://arxiv.org/pdf/2606.07473",
+    "primary_author": "",
+    "direct_project_value": "用非语音输入压力测试检验歌词 ASR 奖励的声学依据，并评估何时应拒绝输出。",
     "catalog": "rl",
     "source_order": 69,
     "keywords_list": [
@@ -2476,6 +2616,8 @@
     "hanyu_note": "",
     "author_org": "HES-SO",
     "author_org_url": "https://proceedings.mlr.press/v309/corpataux26a.html",
+    "primary_author": "",
+    "direct_project_value": "轻量 local confidence contrasts 用于 ASR hallucination detection；可借鉴 verifier 的拒绝机制，但 ASR acoustic confidence 不是 BeatReward pair correctness，不能直接迁移阈值或校准概率。",
     "catalog": "rl",
     "source_order": 70,
     "keywords_list": [
@@ -2511,6 +2653,8 @@
     "hanyu_note": "",
     "author_org": "HKU",
     "author_org_url": "https://arxiv.org/pdf/2501.17161",
+    "primary_author": "",
+    "direct_project_value": "在项目中用真实 rollout 检验训练与推理分布差异，并独立监测奖励过优化。",
     "catalog": "rl",
     "source_order": 71,
     "keywords_list": [
@@ -2546,6 +2690,8 @@
     "hanyu_note": "",
     "author_org": "Stanford",
     "author_org_url": "https://arxiv.org/pdf/2507.14843",
+    "primary_author": "",
+    "direct_project_value": "用 Best-of-K、多样性、熵和各训练检查点的轨迹监测 RL 调优是否收缩策略覆盖并压低稀有正确解。",
     "catalog": "rl",
     "source_order": 72,
     "keywords_list": [
@@ -2581,6 +2727,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba",
     "author_org_url": "https://arxiv.org/pdf/2508.11408",
+    "primary_author": "",
+    "direct_project_value": "借鉴 CHORD 的动态专家监督约束，测试能否减缓音乐 RL 的策略突变和多样性流失。",
     "catalog": "rl",
     "source_order": 73,
     "keywords_list": [
@@ -2616,6 +2764,8 @@
     "hanyu_note": "",
     "author_org": "Meta FAIR / Hebrew University",
     "author_org_url": "https://arxiv.org/pdf/2401.04577",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 74,
     "keywords_list": [
@@ -2651,6 +2801,8 @@
     "hanyu_note": "",
     "author_org": "Stability AI",
     "author_org_url": "https://arxiv.org/pdf/2402.04825",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 75,
     "keywords_list": [
@@ -2686,6 +2838,8 @@
     "hanyu_note": "",
     "author_org": "Stability AI",
     "author_org_url": "https://arxiv.org/pdf/2404.10301",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 76,
     "keywords_list": [
@@ -2721,6 +2875,8 @@
     "hanyu_note": "",
     "author_org": "Stability AI",
     "author_org_url": "https://arxiv.org/pdf/2407.14358",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 77,
     "keywords_list": [
@@ -2756,6 +2912,8 @@
     "hanyu_note": "",
     "author_org": "Oxford",
     "author_org_url": "https://arxiv.org/pdf/2410.20478",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 78,
     "keywords_list": [
@@ -2791,6 +2949,8 @@
     "hanyu_note": "",
     "author_org": "Meta",
     "author_org_url": "https://arxiv.org/pdf/2407.03648",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 79,
     "keywords_list": [
@@ -2826,6 +2986,8 @@
     "hanyu_note": "",
     "author_org": "USTC",
     "author_org_url": "https://arxiv.org/pdf/2405.15863",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 80,
     "keywords_list": [
@@ -2861,6 +3023,8 @@
     "hanyu_note": "",
     "author_org": "UC San Diego",
     "author_org_url": "https://arxiv.org/pdf/2410.05167",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 81,
     "keywords_list": [
@@ -2896,6 +3060,8 @@
     "hanyu_note": "",
     "author_org": "UC San Diego / Stability AI",
     "author_org_url": "https://arxiv.org/pdf/2505.08175",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 82,
     "keywords_list": [
@@ -2931,6 +3097,8 @@
     "hanyu_note": "",
     "author_org": "Stability AI",
     "author_org_url": "https://arxiv.org/pdf/2605.17991",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 83,
     "keywords_list": [
@@ -2966,6 +3134,8 @@
     "hanyu_note": "",
     "author_org": "ByteDance",
     "author_org_url": "https://arxiv.org/pdf/2409.09214",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 84,
     "keywords_list": [
@@ -3001,6 +3171,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua",
     "author_org_url": "https://arxiv.org/pdf/2409.06029",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 85,
     "keywords_list": [
@@ -3036,6 +3208,8 @@
     "hanyu_note": "",
     "author_org": "HKUST / M-A-P",
     "author_org_url": "https://arxiv.org/pdf/2503.08638",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 86,
     "keywords_list": [
@@ -3071,6 +3245,8 @@
     "hanyu_note": "",
     "author_org": "Beihang / Shanghai AI Lab",
     "author_org_url": "https://arxiv.org/pdf/2502.13128",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 87,
     "keywords_list": [
@@ -3106,6 +3282,8 @@
     "hanyu_note": "",
     "author_org": "Tongyi",
     "author_org_url": "https://arxiv.org/pdf/2503.00084",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 88,
     "keywords_list": [
@@ -3141,6 +3319,8 @@
     "hanyu_note": "",
     "author_org": "CUHK-Shenzhen / SRIBD",
     "author_org_url": "https://arxiv.org/pdf/2506.07634",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 89,
     "keywords_list": [
@@ -3176,6 +3356,8 @@
     "hanyu_note": "",
     "author_org": "HeartMuLa",
     "author_org_url": "https://arxiv.org/pdf/2601.10547",
+    "primary_author": "",
+    "direct_project_value": "用 HeartMuLa 的分维度 DPO 和中英文指标差异设计多偏好权衡评测，并区分已对齐检查点与基础模型。",
     "catalog": "rl",
     "source_order": 90,
     "keywords_list": [
@@ -3211,6 +3393,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua",
     "author_org_url": "https://arxiv.org/pdf/2606.30642",
+    "primary_author": "",
+    "direct_project_value": "用 LeVo 2 比较离线条件控制与半在线音乐性优化，检验更新生成候选能否提升音乐性并保住歌词和条件控制。",
     "catalog": "rl",
     "source_order": 91,
     "keywords_list": [
@@ -3246,6 +3430,8 @@
     "hanyu_note": "",
     "author_org": "CCOM",
     "author_org_url": "https://arxiv.org/pdf/2605.01790",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 92,
     "keywords_list": [
@@ -3281,6 +3467,8 @@
     "hanyu_note": "",
     "author_org": "MiniMax",
     "author_org_url": "https://github.com/MiniMax-AI/MiniMax-Music3",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 93,
     "keywords_list": [
@@ -3316,6 +3504,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2503.01183",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 94,
     "keywords_list": [
@@ -3351,6 +3541,8 @@
     "hanyu_note": "",
     "author_org": "ACE Studio",
     "author_org_url": "https://arxiv.org/pdf/2506.00045",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 95,
     "keywords_list": [
@@ -3386,6 +3578,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2507.12890",
+    "primary_author": "",
+    "direct_project_value": "借鉴 DiffRhythm+ 的边际筛选与连续扩散偏好损失，分任务标定歌曲与器乐评分。",
     "catalog": "rl",
     "source_order": 96,
     "keywords_list": [
@@ -3421,6 +3615,8 @@
     "hanyu_note": "",
     "author_org": "SUTD",
     "author_org_url": "https://arxiv.org/pdf/2507.20880",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 97,
     "keywords_list": [
@@ -3456,6 +3652,8 @@
     "hanyu_note": "",
     "author_org": "NPU",
     "author_org_url": "https://arxiv.org/pdf/2510.22950",
+    "primary_author": "",
+    "direct_project_value": "把 DiffRhythm 2 的 CPPO 纳入块状 flow 后训练对照，并核验在线训练的转移概率接口和检查点履历。",
     "catalog": "rl",
     "source_order": 98,
     "keywords_list": [
@@ -3491,6 +3689,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba Wan",
     "author_org_url": "https://arxiv.org/pdf/2607.14749",
+    "primary_author": "",
+    "direct_project_value": "用 WanSong 的 DPO 和可微 ReFL 区分连续渲染器的梯度优化与依赖黑盒节拍奖励的策略优化。",
     "catalog": "rl",
     "source_order": 99,
     "keywords_list": [
@@ -3526,6 +3726,8 @@
     "hanyu_note": "",
     "author_org": "Kunlun",
     "author_org_url": "https://arxiv.org/pdf/2503.19611",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 100,
     "keywords_list": [
@@ -3561,6 +3763,8 @@
     "hanyu_note": "",
     "author_org": "ACE Studio",
     "author_org_url": "https://arxiv.org/pdf/2602.00744",
+    "primary_author": "",
+    "direct_project_value": "用 ACE-Step 1.5 梳理描述器、生成语言模型及 DiT 的后训练接口，并找出可单独评估的模块。",
     "catalog": "rl",
     "source_order": 101,
     "keywords_list": [
@@ -3596,6 +3800,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba Qwen",
     "author_org_url": "https://arxiv.org/pdf/2607.11699",
+    "primary_author": "",
+    "direct_project_value": "用 Qwen-Music 的冷启动、迭代 DPO 和 GSPO 流程作为自回归歌曲后训练的阶段安排参照。",
     "catalog": "rl",
     "source_order": 102,
     "keywords_list": [
@@ -3631,6 +3837,8 @@
     "hanyu_note": "",
     "author_org": "StepFun",
     "author_org_url": "https://arxiv.org/pdf/2609.16034",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 103,
     "keywords_list": [
@@ -3666,6 +3874,8 @@
     "hanyu_note": "",
     "author_org": "HKUST / M-A-P",
     "author_org_url": "https://arxiv.org/pdf/2609.33757",
+    "primary_author": "",
+    "direct_project_value": "用 YuE2 的 PER 候选筛选作推理重排基线，在预算一致时与更新模型参数的后训练分开评估。",
     "catalog": "rl",
     "source_order": 104,
     "keywords_list": [
@@ -3701,6 +3911,8 @@
     "hanyu_note": "",
     "author_org": "Fudan / Alibaba Token Foundry",
     "author_org_url": "https://arxiv.org/pdf/2608.08787",
+    "primary_author": "",
+    "direct_project_value": "用 FullDiT 的固定 token 比较评估渲染器在抗扰动和干净音频重建之间的权衡。",
     "catalog": "rl",
     "source_order": 105,
     "keywords_list": [
@@ -3736,6 +3948,8 @@
     "hanyu_note": "",
     "author_org": "Hebrew University / Meta FAIR",
     "author_org_url": "https://arxiv.org/pdf/2406.10970",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 106,
     "keywords_list": [
@@ -3771,6 +3985,8 @@
     "hanyu_note": "",
     "author_org": "NTU Taiwan",
     "author_org_url": "https://arxiv.org/pdf/2506.18729",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 107,
     "keywords_list": [
@@ -3806,6 +4022,8 @@
     "hanyu_note": "",
     "author_org": "Meta FAIR / IRCAM",
     "author_org_url": "https://arxiv.org/pdf/2407.12563",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 108,
     "keywords_list": [
@@ -3841,6 +4059,8 @@
     "hanyu_note": "",
     "author_org": "UC San Diego / Adobe",
     "author_org_url": "https://arxiv.org/pdf/2401.12179",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 109,
     "keywords_list": [
@@ -3876,6 +4096,8 @@
     "hanyu_note": "",
     "author_org": "UC San Diego",
     "author_org_url": "https://arxiv.org/pdf/2405.20289",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 110,
     "keywords_list": [
@@ -3911,6 +4133,8 @@
     "hanyu_note": "",
     "author_org": "Kuaishou",
     "author_org_url": "https://arxiv.org/pdf/2510.18416",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 111,
     "keywords_list": [
@@ -3946,6 +4170,8 @@
     "hanyu_note": "",
     "author_org": "CUHK",
     "author_org_url": "https://arxiv.org/pdf/2402.17645",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 112,
     "keywords_list": [
@@ -3981,6 +4207,8 @@
     "hanyu_note": "",
     "author_org": "QMUL",
     "author_org_url": "https://arxiv.org/pdf/2412.16526",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 113,
     "keywords_list": [
@@ -4016,6 +4244,8 @@
     "hanyu_note": "",
     "author_org": "MIT",
     "author_org_url": "https://arxiv.org/pdf/2511.03942",
+    "primary_author": "",
+    "direct_project_value": "参考 MIDI-LLM 的数据与词表扩展方案，为文本到 MIDI 的符号音乐生成设计输入和输出表示。",
     "catalog": "rl",
     "source_order": 114,
     "keywords_list": [
@@ -4051,6 +4281,8 @@
     "hanyu_note": "",
     "author_org": "Zhejiang University",
     "author_org_url": "https://arxiv.org/pdf/2504.19062",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 115,
     "keywords_list": [
@@ -4086,6 +4318,8 @@
     "hanyu_note": "",
     "author_org": "NTU Taiwan / Taiwan AI Labs",
     "author_org_url": "https://arxiv.org/pdf/2602.22029",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 116,
     "keywords_list": [
@@ -4121,6 +4355,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba Token Foundry",
     "author_org_url": "https://arxiv.org/pdf/2607.20253",
+    "primary_author": "",
+    "direct_project_value": "参考 Token Foundry 的分阶段自回归后训练，分别检验 GRPO、拒绝采样微调、在策略蒸馏和渲染器训练。",
     "catalog": "rl",
     "source_order": 117,
     "keywords_list": [
@@ -4156,6 +4392,8 @@
     "hanyu_note": "",
     "author_org": "Imperial",
     "author_org_url": "https://arxiv.org/pdf/2411.12843",
+    "primary_author": "",
+    "direct_project_value": "从二元 BT 偏好扩展到多等级与平局反馈，证明更细粒度标注的统计收益并扩展到 DPO；适合我们的 small-margin/tie pair 和人类审听标注。",
     "catalog": "rl",
     "source_order": 118,
     "keywords_list": [
@@ -4191,6 +4429,8 @@
     "hanyu_note": "",
     "author_org": "University of Valencia",
     "author_org_url": "https://arxiv.org/pdf/2608.17804",
+    "primary_author": "",
+    "direct_project_value": "受控 LoRA-GRPO unlearning 表明训练 reward、benchmark 分数和 held-out 行为可能给出相反结论；要用独立行为审计定位 reward hacking 与 policy-support 限制。",
     "catalog": "rl",
     "source_order": 119,
     "keywords_list": [
@@ -4226,6 +4466,8 @@
     "hanyu_note": "",
     "author_org": "Penn State",
     "author_org_url": "https://arxiv.org/pdf/2507.07375",
+    "primary_author": "",
+    "direct_project_value": "联合 BT 偏好与多属性回归在论文所测 scoring/OOD 场景互补；可启发保留 beat/coverage 显式维度，但不证明该融合已在音乐 policy shift 上可靠。",
     "catalog": "rl",
     "source_order": 120,
     "keywords_list": [
@@ -4261,6 +4503,8 @@
     "hanyu_note": "",
     "author_org": "Independent",
     "author_org_url": "https://arxiv.org/pdf/2508.12165",
+    "primary_author": "",
+    "direct_project_value": "用非验证社交反馈、baseline normalization 和语义相似度迁移 reward 的应用框架；正文定位为 GSPO/UED 的实用组合，全面评估仍待后续，不应作为噪声奖励已解决的强证据。",
     "catalog": "rl",
     "source_order": 121,
     "keywords_list": [
@@ -4296,6 +4540,8 @@
     "hanyu_note": "",
     "author_org": "UC Santa Barbara",
     "author_org_url": "https://proceedings.mlr.press/v306/juneja26b.html",
+    "primary_author": "",
+    "direct_project_value": "用固定多锚点的 rubric pairwise win-rate 作为 reward，稳定比较参照并聚合 judge 噪声；对音乐无唯一 GT 的打分尤其相关，但需要独立锚点、judge budget 与盲听验证。",
     "catalog": "rl",
     "source_order": 122,
     "keywords_list": [
@@ -4331,6 +4577,8 @@
     "hanyu_note": "",
     "author_org": "SJTU / UESTC",
     "author_org_url": "https://arxiv.org/pdf/2410.05317",
+    "primary_author": "",
+    "direct_project_value": "按 token 敏感度和层深选择 feature caching，无需训练即可加速图像/视频 DiT；可考虑移植音频 renderer，但需实测节奏、瞬态和长时结构失真。",
     "catalog": "rl",
     "source_order": 123,
     "keywords_list": [
@@ -4366,6 +4614,8 @@
     "hanyu_note": "",
     "author_org": "RadixArk",
     "author_org_url": "https://arxiv.org/pdf/2609.08368",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 124,
     "keywords_list": [
@@ -4401,6 +4651,8 @@
     "hanyu_note": "",
     "author_org": "Hugging Face",
     "author_org_url": "https://huggingface.co/docs/trl/index",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 125,
     "keywords_list": [
@@ -4436,6 +4688,8 @@
     "hanyu_note": "",
     "author_org": "Hugging Face",
     "author_org_url": "https://huggingface.co/learn/deep-rl-course/unit0/introduction",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 126,
     "keywords_list": [
@@ -4471,6 +4725,8 @@
     "hanyu_note": "",
     "author_org": "WalkingLabs",
     "author_org_url": "https://walkinglabs.github.io/hands-on-modern-rl/",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 127,
     "keywords_list": [
@@ -4506,6 +4762,8 @@
     "hanyu_note": "",
     "author_org": "M-A-P",
     "author_org_url": "https://huggingface.co/datasets/m-a-p/WildSongBench",
+    "primary_author": "",
+    "direct_project_value": "用 WildSongBench 的全曲提示词设计生成对照，按候选数量匹配推理预算并自建节拍真值。",
     "catalog": "rl",
     "source_order": 128,
     "keywords_list": [
@@ -4541,6 +4799,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "https://zhuanlan.zhihu.com/p/1967271772702376530",
+    "primary_author": "",
+    "direct_project_value": "作为中文补课阅读线索，先了解从 PPO 到 DAPO 的 RLHF 方法演进。",
     "catalog": "rl",
     "source_order": 129,
     "keywords_list": [
@@ -4576,6 +4836,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "https://zhuanlan.zhihu.com/p/1984387073625593089",
+    "primary_author": "",
+    "direct_project_value": "作为中文补课阅读线索，建立对 PPO、DPO 和 GRPO 的基本直觉。",
     "catalog": "rl",
     "source_order": 130,
     "keywords_list": [
@@ -4611,6 +4873,8 @@
     "hanyu_note": "",
     "author_org": "Daily Dose of Data Science",
     "author_org_url": "https://www.dailydoseofds.com/rl-course-part-10/",
+    "primary_author": "",
+    "direct_project_value": "GRPO 与 verifiable reward 的课程说明，适合建立算法直觉；音乐的半可验证 MIR 与 learned reward 仍需额外鲁棒性及人类验证。",
     "catalog": "rl",
     "source_order": 131,
     "keywords_list": [
@@ -4646,6 +4910,8 @@
     "hanyu_note": "",
     "author_org": "36氪的朋友们",
     "author_org_url": "https://eu.36kr.com/zh/p/3957481215786115",
+    "primary_author": "",
+    "direct_project_value": "中文二手解读，串联 SFT/RL 泛化、entropy 与 support 限制；便于团队讨论“近端收敛”，论文引用应回到 Invisible Leash 等原始来源。",
     "catalog": "rl",
     "source_order": 132,
     "keywords_list": [
@@ -4681,6 +4947,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "https://zhuanlan.zhihu.com/p/2030762111979234665",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 133,
     "keywords_list": [
@@ -4714,6 +4982,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "https://zhuanlan.zhihu.com/p/2079745899316749216",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 134,
     "keywords_list": [
@@ -4747,6 +5017,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "https://zhuanlan.zhihu.com/p/2062125803085860914",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 135,
     "keywords_list": [
@@ -4780,6 +5052,8 @@
     "hanyu_note": "",
     "author_org": "University of Manchester / Sheffield",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/33dffa2e3d2ab74a783d1a8c292f66d9-Paper-Conference.pdf",
+    "primary_author": "",
+    "direct_project_value": "用 MERT 音乐表征建立诊断探针，检验 embedding 相似度能否反映实际节奏吻合度。",
     "catalog": "rl",
     "source_order": 136,
     "keywords_list": [
@@ -4815,6 +5089,8 @@
     "hanyu_note": "",
     "author_org": "SJTU",
     "author_org_url": "https://arxiv.org/abs/2501.01108",
+    "primary_author": "",
+    "direct_project_value": "把 MuQ 和 MuQ-MuLan 纳入音乐表征对照，分别核验代码和模型权重许可。",
     "catalog": "rl",
     "source_order": 137,
     "keywords_list": [
@@ -4850,6 +5126,8 @@
     "hanyu_note": "",
     "author_org": "CMU",
     "author_org_url": "https://aclanthology.org/2025.emnlp-main.1298.pdf",
+    "primary_author": "",
+    "direct_project_value": "在有可靠 verifier 的 theorem proving 中分析 GRPO rank bias 并提高稀有正确解权重；启发同时测 support@K 与 diversity，不证明不可靠音乐 reward 也应给稀有高分加权。",
     "catalog": "rl",
     "source_order": 138,
     "keywords_list": [
@@ -4885,6 +5163,8 @@
     "hanyu_note": "",
     "author_org": "University of Tehran",
     "author_org_url": "https://aclanthology.org/2026.acl-long.1982.pdf",
+    "primary_author": "",
+    "direct_project_value": "解释低离散度/同质 group 的 normalization 问题；可用于我们的 ties、raw reward spread 与梯度放大诊断，但不能自动修复排序方向错误。",
     "catalog": "rl",
     "source_order": 139,
     "keywords_list": [
@@ -4920,6 +5200,8 @@
     "hanyu_note": "",
     "author_org": "NAVER Cloud",
     "author_org_url": "https://aclanthology.org/2026.eacl-long.30.pdf",
+    "primary_author": "",
+    "direct_project_value": "用中等难度过滤提高 verifier-based reasoning RL 的效率；音乐中 reward 可分性与方向正确性须分开资格验证，不能照搬成功概率阈值。",
     "catalog": "rl",
     "source_order": 140,
     "keywords_list": [
@@ -4955,6 +5237,8 @@
     "hanyu_note": "",
     "author_org": "LY Corporation",
     "author_org_url": "https://arxiv.org/pdf/2501.05050",
+    "primary_author": "",
+    "direct_project_value": "建模 genre/mood/instrument 标签组之间的依赖，可启发条件一致性评测；tagging 性能不是主观音乐质量、乐器数量或 post-training reward 有效性。",
     "catalog": "rl",
     "source_order": 141,
     "keywords_list": [
@@ -4990,6 +5274,8 @@
     "hanyu_note": "",
     "author_org": "Alibaba Qwen",
     "author_org_url": "https://arxiv.org/pdf/2604.15804",
+    "primary_author": "",
+    "direct_project_value": "通用多模态理解与流式语音系统的工程/后训练参考；不是音乐生成论文，也不能凭音频理解能力把它当已验证的音乐 judge。",
     "catalog": "rl",
     "source_order": 142,
     "keywords_list": [
@@ -5025,6 +5311,8 @@
     "hanyu_note": "",
     "author_org": "Stanford",
     "author_org_url": "https://arxiv.org/pdf/2603.20100",
+    "primary_author": "",
+    "direct_project_value": "GPT-2 规模特定任务显示强 SFT 与参数化选择影响很大；小规模 DPO/LoRA 增益依赖设置，不能推导出 full fine-tuning 对所有音乐底座都更好。",
     "catalog": "rl",
     "source_order": 143,
     "keywords_list": [
@@ -5060,6 +5348,8 @@
     "hanyu_note": "",
     "author_org": "Google DeepMind / Mila",
     "author_org_url": "https://openreview.net/pdf?id=3zKtaqxLhW",
+    "primary_author": "",
+    "direct_project_value": "用 GKD 理解如何在学生生成的前缀上查询教师分布，并验证音乐教师的逐 token 反馈在分布外是否可靠。",
     "catalog": "rl",
     "source_order": 144,
     "keywords_list": [
@@ -5095,6 +5385,8 @@
     "hanyu_note": "",
     "author_org": "Washington University in St. Louis",
     "author_org_url": "https://arxiv.org/pdf/2609.38360",
+    "primary_author": "",
+    "direct_project_value": "用 SCOUT 区分学生前缀带来的教师分布偏移与基于可验证结果的教师更新，为后续音乐蒸馏研究保留机制参照。",
     "catalog": "rl",
     "source_order": 145,
     "keywords_list": [
@@ -5130,6 +5422,8 @@
     "hanyu_note": "",
     "author_org": "Quark LLM, Alibaba Group",
     "author_org_url": "https://arxiv.org/html/2506.00103v2",
+    "primary_author": "",
+    "direct_project_value": "借鉴 Writing-Zero 的组内相对比较，验证两候选时胜负标签相比连续分数是否提供额外信息。",
     "catalog": "rl",
     "source_order": 146,
     "keywords_list": [
@@ -5165,6 +5459,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua University / NVIDIA",
     "author_org_url": "https://arxiv.org/html/2509.16117v2",
+    "primary_author": "",
+    "direct_project_value": "把 DiffusionNFT 作为连续音乐渲染器接入黑盒奖励的对照，分别验证采样策略更新和奖励质量。",
     "catalog": "rl",
     "source_order": 147,
     "keywords_list": [
@@ -5200,6 +5496,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua University / NVIDIA",
     "author_org_url": "https://arxiv.org/html/2505.18116v3",
+    "primary_author": "",
+    "direct_project_value": "用数学推理 NFT 核对它与 GRPO 梯度等价的条件，并检验连续音乐奖励是否满足这些条件。",
     "catalog": "rl",
     "source_order": 148,
     "keywords_list": [
@@ -5235,6 +5533,8 @@
     "hanyu_note": "",
     "author_org": "Institute of Software, Chinese Academy of Sciences / University of Chinese Academy of Sciences",
     "author_org_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/93f250215e4889119807b6fac3a57aec-Paper-Conference.pdf",
+    "primary_author": "",
+    "direct_project_value": "用下游策略效用、提示分布和候选数量共同检验奖励模型，避免仅凭离线偏好准确率选择音乐奖励。",
     "catalog": "rl",
     "source_order": 149,
     "keywords_list": [
@@ -5270,6 +5570,8 @@
     "hanyu_note": "",
     "author_org": "DeepSeek-AI / Tsinghua University",
     "author_org_url": "https://arxiv.org/html/2402.03300v3",
+    "primary_author": "",
+    "direct_project_value": "以 DeepSeekMath 核对组内优势、裁剪比率和参考策略 KL 的原始 GRPO 基线，再独立验证音乐听感收益。",
     "catalog": "rl",
     "source_order": 150,
     "keywords_list": [
@@ -5305,6 +5607,8 @@
     "hanyu_note": "",
     "author_org": "UC Berkeley",
     "author_org_url": "https://arxiv.org/pdf/2305.13301v4",
+    "primary_author": "",
+    "direct_project_value": "用 DDPO 设计连续生成器接入黑盒终局奖励的对照，并沿优化轨迹检查奖励是否被利用。",
     "catalog": "rl",
     "source_order": 151,
     "keywords_list": [
@@ -5340,6 +5644,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua University",
     "author_org_url": "https://arxiv.org/pdf/2304.05977v4",
+    "primary_author": "",
+    "direct_project_value": "把 ImageReward 的人工偏好学习和 ReFL 生成器优化作为两层设计参照，各自验证奖励相关度与更新后的实际效用。",
     "catalog": "rl",
     "source_order": 152,
     "keywords_list": [
@@ -5375,6 +5681,8 @@
     "hanyu_note": "",
     "author_org": "Salesforce AI Research",
     "author_org_url": "https://arxiv.org/pdf/2311.12908v1",
+    "primary_author": "",
+    "direct_project_value": "借鉴 Diffusion DPO 的偏好配对和参考约束，为连续扩散生成器建立独立后训练基线。",
     "catalog": "rl",
     "source_order": 153,
     "keywords_list": [
@@ -5410,6 +5718,8 @@
     "hanyu_note": "",
     "author_org": "Carnegie Mellon University",
     "author_org_url": "https://align-prop.github.io/",
+    "primary_author": "",
+    "direct_project_value": "用 AlignProp 理解如何让可微奖励穿过连续去噪链，并判断该梯度接口能否用于目标音乐渲染器。",
     "catalog": "rl",
     "source_order": 154,
     "keywords_list": [
@@ -5445,6 +5755,8 @@
     "hanyu_note": "",
     "author_org": "Tsinghua University",
     "author_org_url": "https://arxiv.org/pdf/2512.19479v1",
+    "primary_author": "",
+    "direct_project_value": "借鉴情绪生成的受控对照，在歌词、旋律和音色一致时，单独评估音乐表达中的情绪变化。",
     "catalog": "rl",
     "source_order": 155,
     "keywords_list": [
@@ -5480,6 +5792,8 @@
     "hanyu_note": "",
     "author_org": "Nanyang Technological University",
     "author_org_url": "https://arxiv.org/pdf/2406.00654v1",
+    "primary_author": "",
+    "direct_project_value": "把 UNO 的非配对优劣标注与不确定性建模作为音乐偏好的替代监督方案，单独校准节拍置信度。",
     "catalog": "rl",
     "source_order": 156,
     "keywords_list": [
@@ -5515,6 +5829,8 @@
     "hanyu_note": "",
     "author_org": "A*STAR",
     "author_org_url": "https://arxiv.org/pdf/2409.10157v1",
+    "primary_author": "",
+    "direct_project_value": "借鉴同文本的情绪偏好对和人工评价，在维持音乐内容时验证情绪表达控制。",
     "catalog": "rl",
     "source_order": 157,
     "keywords_list": [
@@ -5550,6 +5866,8 @@
     "hanyu_note": "",
     "author_org": "Ohio State University",
     "author_org_url": "https://arxiv.org/html/2405.14632v2",
+    "primary_author": "",
+    "direct_project_value": "参考 DLPO 同时使用质量奖励和原扩散损失的训练方式，评估生成音质增益与原有能力保留。",
     "catalog": "rl",
     "source_order": 158,
     "keywords_list": [
@@ -5585,6 +5903,8 @@
     "hanyu_note": "",
     "author_org": "Northwestern Polytechnical University",
     "author_org_url": "https://arxiv.org/pdf/2509.00685v1",
+    "primary_author": "",
+    "direct_project_value": "将 MPO 的多维集合配对与逐对 Pareto 非劣筛选比较，确认节拍收益是否伴随其他质量退化。",
     "catalog": "rl",
     "source_order": 159,
     "keywords_list": [
@@ -5620,6 +5940,8 @@
     "hanyu_note": "",
     "author_org": "Northwestern Polytechnical University",
     "author_org_url": "https://doi.org/10.1109/TASLPRO.2025.3648888",
+    "primary_author": "",
+    "direct_project_value": "借鉴 FPO 的局部坏段标注与选择性损失，为局部音乐反馈建立从音频区间到 codec token 的归因。",
     "catalog": "rl",
     "source_order": 160,
     "keywords_list": [
@@ -5655,6 +5977,8 @@
     "hanyu_note": "",
     "author_org": "Meta Superintelligence Labs / MIT",
     "author_org_url": "https://arxiv.org/pdf/2602.13891v1",
+    "primary_author": "",
+    "direct_project_value": "用 GSRM 作为专家监督的生成式语音奖励基线，分别验证评分器与生成策略的训练收益。",
     "catalog": "rl",
     "source_order": 161,
     "keywords_list": [
@@ -5690,6 +6014,8 @@
     "hanyu_note": "",
     "author_org": "Shanghai AI Laboratory",
     "author_org_url": "https://arxiv.org/pdf/2512.02523v1",
+    "primary_author": "",
+    "direct_project_value": "借鉴 VocalCritic 的多维评分和文字反馈，将歌声质量问题结构化，并单独标注人声与伴奏的节拍吻合度。",
     "catalog": "rl",
     "source_order": 162,
     "keywords_list": [
@@ -5725,6 +6051,8 @@
     "hanyu_note": "",
     "author_org": "University of Maryland, College Park",
     "author_org_url": "https://arxiv.org/pdf/2608.30125v1",
+    "primary_author": "",
+    "direct_project_value": "用 VIBE 的节奏、调性和软奖励课程作为器乐背景音乐参考，独立校准节拍置信度与人声伴奏同步。",
     "catalog": "rl",
     "source_order": 163,
     "keywords_list": [
@@ -5760,6 +6088,8 @@
     "hanyu_note": "",
     "author_org": "Tongyi Lab, Alibaba",
     "author_org_url": "https://arxiv.org/pdf/2507.05911v1",
+    "primary_author": "",
+    "direct_project_value": "参考 DiffRO 的 codec token 可微奖励，检查固定渲染器输出的音质与 token 奖励是否脱钩。",
     "catalog": "rl",
     "source_order": 164,
     "keywords_list": [
@@ -5795,6 +6125,8 @@
     "hanyu_note": "",
     "author_org": "Australian National University",
     "author_org_url": "https://arxiv.org/pdf/2406.04314v4",
+    "primary_author": "",
+    "direct_project_value": "借鉴按去噪步分配偏好的做法思考细粒度更新，并独立验证节拍反馈如何归因到歌曲片段。",
     "catalog": "rl",
     "source_order": 165,
     "keywords_list": [
@@ -5830,6 +6162,8 @@
     "hanyu_note": "",
     "author_org": "Beijing University of Posts and Telecommunications",
     "author_org_url": "https://arxiv.org/pdf/2512.04552v3",
+    "primary_author": "",
+    "direct_project_value": "用 RRPO 的奖励模型加固与策略正则联合设计，验证音频奖励的可靠性和生成能力保留。",
     "catalog": "rl",
     "source_order": 166,
     "keywords_list": [
@@ -5865,6 +6199,8 @@
     "hanyu_note": "",
     "author_org": "National Taiwan University",
     "author_org_url": "https://arxiv.org/abs/2610.20967v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 167,
     "keywords_list": [
@@ -5900,6 +6236,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 168,
     "keywords_list": [
@@ -5935,6 +6273,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 169,
     "keywords_list": [
@@ -5970,6 +6310,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 170,
     "keywords_list": [
@@ -6005,6 +6347,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 171,
     "keywords_list": [
@@ -6039,6 +6383,8 @@
     "hanyu_note": "",
     "author_org": "Bryel Labs / UC Berkeley",
     "author_org_url": "https://arxiv.org/abs/2609.10351v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 172,
     "keywords_list": [
@@ -6073,6 +6419,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 173,
     "keywords_list": [
@@ -6108,6 +6456,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 174,
     "keywords_list": [
@@ -6142,6 +6492,8 @@
     "hanyu_note": "",
     "author_org": "QMUL",
     "author_org_url": "https://arxiv.org/abs/2610.26253v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 175,
     "keywords_list": [
@@ -6177,6 +6529,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 176,
     "keywords_list": [
@@ -6212,6 +6566,8 @@
     "hanyu_note": "",
     "author_org": "Huawei Hong Kong Research Center",
     "author_org_url": "https://arxiv.org/abs/2503.23128v2",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 177,
     "keywords_list": [
@@ -6246,6 +6602,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 178,
     "keywords_list": [
@@ -6280,12 +6638,51 @@
     "hanyu_note": "",
     "author_org": "AI Lab, GiantNetwork",
     "author_org_url": "https://arxiv.org/html/2512.04779v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "rl",
     "source_order": 179,
     "keywords_list": [
       "SOME melody",
       "CKA",
       "Flow-GRPO"
+    ]
+  },
+  {
+    "id": "2026-arxiv-affective-music-recommendation",
+    "year": "2026",
+    "venue": "arXiv",
+    "other_rating": "",
+    "zhanh_rating": "",
+    "domain": "MIR",
+    "workstream": "基础知识",
+    "title": "Affective Music Recommendation: A Rollout-Based World Model for Offline Preference Optimization",
+    "keywords": "Offline RL；Rollout-based World Model；DPO",
+    "model_size": "",
+    "model_params_b": "",
+    "generation_speed": "",
+    "measurement_context": "",
+    "model_size_url": "",
+    "generation_speed_url": "",
+    "paper_url": "https://arxiv.org/abs/2605.28810",
+    "github_url": "",
+    "github_note": "",
+    "demo_url": "",
+    "web_url": "https://www.alphaxiv.org/abs/2605.28810",
+    "zhanh_note": "",
+    "felix_note": "",
+    "other_note": "",
+    "hanyu_note": "",
+    "author_org": "LUCID Inc.",
+    "author_org_url": "https://arxiv.org/html/2605.28810v1",
+    "primary_author": "Audrey Chan",
+    "direct_project_value": "用音乐推荐案例补齐离线强化学习基础，串起从日志训练世界模型、生成模拟轨迹、行为克隆初始化到 DPO 策略微调的完整流程。",
+    "catalog": "rl",
+    "source_order": 180,
+    "keywords_list": [
+      "Offline RL",
+      "Rollout-based World Model",
+      "DPO"
     ]
   },
   {
@@ -6315,6 +6712,8 @@
     "hanyu_note": "",
     "author_org": "UNSW / Great Bay University",
     "author_org_url": "https://arxiv.org/pdf/2610.09861",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 0,
     "keywords_list": [
@@ -6350,6 +6749,8 @@
     "hanyu_note": "",
     "author_org": "University of Rochester",
     "author_org_url": "https://par.nsf.gov/biblio/10534053",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 1,
     "keywords_list": [
@@ -6385,6 +6786,8 @@
     "hanyu_note": "",
     "author_org": "Kyutai / IRCAM",
     "author_org_url": "https://arxiv.org/pdf/2607.08168",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 2,
     "keywords_list": [
@@ -6420,6 +6823,8 @@
     "hanyu_note": "",
     "author_org": "Google Research",
     "author_org_url": "https://openreview.net/forum?id=iMSjopcOn0p",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 3,
     "keywords_list": [
@@ -6455,6 +6860,8 @@
     "hanyu_note": "",
     "author_org": "QMUL",
     "author_org_url": "https://arxiv.org/pdf/2407.04822",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 4,
     "keywords_list": [
@@ -6490,6 +6897,8 @@
     "hanyu_note": "",
     "author_org": "UPF",
     "author_org_url": "https://arxiv.org/pdf/2009.04172",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 5,
     "keywords_list": [
@@ -6525,6 +6934,8 @@
     "hanyu_note": "",
     "author_org": "UPF / DAACI",
     "author_org_url": "https://doi.org/10.5334/tismir.121",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 6,
     "keywords_list": [
@@ -6560,6 +6971,8 @@
     "hanyu_note": "",
     "author_org": "NYU / MBZUAI / ACE Studio",
     "author_org_url": "https://arxiv.org/abs/2610.05336v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 7,
     "keywords_list": [
@@ -6595,6 +7008,8 @@
     "hanyu_note": "",
     "author_org": "University College Dublin / Great Bay University",
     "author_org_url": "https://arxiv.org/abs/2608.06165v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 8,
     "keywords_list": [
@@ -6630,6 +7045,8 @@
     "hanyu_note": "",
     "author_org": "University of Washington",
     "author_org_url": "https://arxiv.org/abs/2605.24291v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 9,
     "keywords_list": [
@@ -6665,6 +7082,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 10,
     "keywords_list": [
@@ -6700,6 +7119,8 @@
     "hanyu_note": "",
     "author_org": "National Taiwan University",
     "author_org_url": "https://arxiv.org/abs/2610.29928v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 11,
     "keywords_list": [
@@ -6735,6 +7156,8 @@
     "hanyu_note": "",
     "author_org": "NUS",
     "author_org_url": "https://arxiv.org/abs/2405.13527v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 12,
     "keywords_list": [
@@ -6770,6 +7193,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 13,
     "keywords_list": [
@@ -6805,6 +7230,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 14,
     "keywords_list": [
@@ -6840,6 +7267,8 @@
     "hanyu_note": "",
     "author_org": "University of Washington",
     "author_org_url": "https://arxiv.org/abs/2608.04511v2",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 15,
     "keywords_list": [
@@ -6875,6 +7304,8 @@
     "hanyu_note": "",
     "author_org": "NUS",
     "author_org_url": "https://arxiv.org/abs/2610.34694v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 16,
     "keywords_list": [
@@ -6910,6 +7341,8 @@
     "hanyu_note": "",
     "author_org": "Carnegie Mellon University",
     "author_org_url": "https://arxiv.org/abs/2607.08756v2",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 17,
     "keywords_list": [
@@ -6945,6 +7378,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 18,
     "keywords_list": [
@@ -6979,6 +7414,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 19,
     "keywords_list": [
@@ -7014,6 +7451,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 20,
     "keywords_list": [
@@ -7049,6 +7488,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 21,
     "keywords_list": [
@@ -7084,6 +7525,8 @@
     "hanyu_note": "",
     "author_org": "NUS",
     "author_org_url": "https://arxiv.org/abs/2610.21467v1",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 22,
     "keywords_list": [
@@ -7119,6 +7562,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 23,
     "keywords_list": [
@@ -7154,6 +7599,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 24,
     "keywords_list": [
@@ -7188,6 +7635,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 25,
     "keywords_list": [
@@ -7222,6 +7671,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 26,
     "keywords_list": [
@@ -7256,6 +7707,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 27,
     "keywords_list": [
@@ -7291,6 +7744,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 28,
     "keywords_list": [
@@ -7325,6 +7780,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 29,
     "keywords_list": [
@@ -7360,6 +7817,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 30,
     "keywords_list": [
@@ -7395,6 +7854,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 31,
     "keywords_list": [
@@ -7430,6 +7891,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 32,
     "keywords_list": [
@@ -7464,6 +7927,8 @@
     "hanyu_note": "",
     "author_org": "待核验",
     "author_org_url": "",
+    "primary_author": "",
+    "direct_project_value": "",
     "catalog": "amt",
     "source_order": 33,
     "keywords_list": [

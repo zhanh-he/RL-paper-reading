@@ -39,6 +39,10 @@ try {
       await page.goto(new URL(id === "rl" ? "./" : "amt/", base).href);
       await page.locator("#sync-status").filter({ hasText: "synced from GitHub" }).waitFor();
       assert.equal(await page.locator("#catalog-body tr").count(), records.length);
+      assert.deepEqual(
+        (await page.locator("thead th").allTextContents()).map(text => text.trim()),
+        ["Literature", "Domain / Workstream", "Authors / Year / Venue", "Other", "Zhanh", "Direct Project Value"]
+      );
       assert.equal(await page.locator(".catalog-switch [aria-current=page]").count(), 1);
       assert.match(await page.locator(".header-actions .button-primary").getAttribute("href"), new RegExp(`/upd_request/${id}$`));
       assert.equal(await page.locator(".catalog-switch").getByRole("link", { name: "MusicGen Live", exact: true }).getAttribute("href"), id === "rl" ? "./musicgen/" : "../musicgen/");
@@ -52,6 +56,8 @@ try {
       const exported = parseCsv(fs.readFileSync(await download.path(), "utf8").replace(/^\uFEFF/, ""));
       assert.equal(exported.length, 2);
       assert(exported[1].includes(records[0].title));
+      assert(exported[0].includes("direct_project_value"));
+      assert(!exported[0].some(key => key === "model_size" || key === "generation_speed"));
       await page.reload();
       await page.locator("#sync-status").filter({ hasText: "synced from GitHub" }).waitFor();
       assert.equal(await page.locator("#catalog-body tr").count(), 1);
@@ -64,8 +70,26 @@ try {
       await page.locator("#domain-menu summary").click();
       await page.locator(".sort-button[data-sort=title]").click();
       assert.equal(await page.locator("th[aria-sort=ascending] .sort-button").getAttribute("data-sort"), "title");
-      await page.locator("#catalog-body .title-button").first().click();
+      const firstRow = page.locator("#catalog-body tr").first();
+      const firstId = await firstRow.getAttribute("data-id");
+      const record = records.find(item => item.id === firstId);
+      const title = firstRow.locator(".title-button");
+      assert(Number(await title.evaluate(node => getComputedStyle(node).fontWeight)) >= 700);
+      assert.equal(await firstRow.locator(".direct-value").textContent(), record.direct_project_value || "—");
+      if (record.keywords) {
+        const terms = firstRow.locator(".title-column > .keywords");
+        assert.equal(await terms.textContent(), record.keywords);
+        assert.equal(await terms.evaluate(node => getComputedStyle(node).fontWeight), "400");
+        assert.equal(await terms.evaluate(node => getComputedStyle(node).color), "rgb(166, 58, 50)");
+      }
+      if (record.paper_url) {
+        assert.equal(await firstRow.locator(".title-column").getByRole("link", { name: "Paper" }).getAttribute("href"), record.paper_url);
+      }
+      await title.click();
       assert.equal(await page.locator("#detail-dialog").isVisible(), true);
+      assert.equal(await page.locator("#detail-value").textContent(), record.direct_project_value || "—");
+      assert.equal(await page.locator("#detail-metrics").count(), 0);
+      assert.equal(await page.locator("#detail-reviews[open]").count(), 0);
       await page.locator("#close-dialog").click();
       const box = await page.locator(".catalog-switch").boundingBox();
       assert(box.x >= 0 && box.x + box.width <= width + 1);
@@ -73,6 +97,21 @@ try {
       await page.locator(`.catalog-switch a${id === "rl" ? ":nth-child(2)" : ":nth-child(1)"}`).click();
       await page.locator("#sync-status").filter({ hasText: "synced from GitHub" }).waitFor();
       assert.equal(await page.locator("#catalog-body tr").count(), loadCatalog(id === "rl" ? "amt" : "rl").length);
+    }
+  }
+  await page.goto(new URL("./?sort=other_rating&dir=desc", base).href);
+  await page.locator("#sync-status").filter({ hasText: "synced from GitHub" }).waitFor();
+  assert.equal(await page.locator("th[aria-sort=descending] .sort-button").getAttribute("data-sort"), "other_rating");
+  await page.goto(new URL("./?sort=model_params_b&dir=desc", base).href);
+  await page.locator("#sync-status").filter({ hasText: "synced from GitHub" }).waitFor();
+  assert.equal(new URL(page.url()).searchParams.has("sort"), false);
+  const foundations = loadCatalog("rl").filter(record => record.workstream === "基础知识");
+  if (foundations.length) {
+    await page.locator('#workstream-filter button[data-value="基础知识"]').click();
+    assert.equal(await page.locator("#catalog-body tr").count(), foundations.length);
+    for (const record of foundations.filter(record => record.primary_author)) {
+      const row = page.locator("#catalog-body tr").filter({ hasText: record.title });
+      assert.equal(await row.locator(".primary-author").textContent(), record.primary_author);
     }
   }
   for (const [entry, destination] of [["rl", "amt"], ["amt", "rl"]]) {

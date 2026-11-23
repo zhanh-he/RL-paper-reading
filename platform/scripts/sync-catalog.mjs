@@ -4,6 +4,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const DATA_DIR = path.join(ROOT, "data");
 const JSON_PATH = path.join(ROOT, "site", "data", "literature.json");
 const CHECK_ONLY = process.argv.includes("--check");
 
@@ -39,7 +40,9 @@ const EXPECTED_HEADERS = [
   "hanyu_note",
   "author_org",
   "author_org_url",
-  "obsidian_target"
+  "obsidian_target",
+  "primary_author",
+  "direct_project_value"
 ];
 
 const DOMAINS = new Set([
@@ -63,7 +66,7 @@ const DOMAINS = new Set([
   "Multimodal",
   "Other"
 ]);
-const WORKSTREAMS = new Set(["Reward", "RL", "Reward-n-RL", "Other"]);
+const WORKSTREAMS = new Set(["Reward", "RL", "Reward-n-RL", "基础知识", "Other"]);
 const RATING_PATTERN = /^(?:[0-5](?:\.5)?)\/5\*?$/;
 
 export function parseCsv(input) {
@@ -134,8 +137,8 @@ function validateUrl(value, rowNumber, field, errors) {
   }
 }
 
-function loadSource(catalogId) {
-  const filename = path.join(ROOT, "data", catalogId, "literature.csv");
+function loadSource(catalogId, sourceDir) {
+  const filename = path.join(sourceDir, catalogId, "literature.csv");
   const parsed = parseCsv(fs.readFileSync(filename, "utf8"));
   if (parsed.length < 1) throw new Error(`${catalogId}: missing CSV headers`);
 
@@ -185,6 +188,9 @@ function loadSource(catalogId) {
         errors.push(`row ${rowNumber}: invalid ${field} ${record[field]}`);
       }
     }
+    if (/[\r\n]/.test(record.direct_project_value)) {
+      errors.push(`row ${rowNumber}: direct_project_value must be one line`);
+    }
     if (record.keywords_list.length > 3) {
       errors.push(`row ${rowNumber}: keywords must contain at most three terms`);
     }
@@ -216,9 +222,9 @@ function loadSource(catalogId) {
   return catalog;
 }
 
-export function loadCatalog(catalogId) {
+export function loadCatalog(catalogId, sourceDir = DATA_DIR) {
   if (catalogId && !Object.hasOwn(CATALOGS, catalogId)) throw new Error(`Unknown catalog: ${catalogId}`);
-  const records = Object.keys(CATALOGS).flatMap(loadSource);
+  const records = Object.keys(CATALOGS).flatMap((id) => loadSource(id, sourceDir));
   const ids = new Set();
   const titles = new Set();
   for (const record of records) {
