@@ -25,7 +25,7 @@
     <script type="module" src="./lyrics-formal-v2.js?v=20261014-invalid-counts"></script>
     <link rel="stylesheet" href="./reward-regime.css?v=20261014-five-inputs" />
     <script type="module" src="./reward-regime.js?v=20261026-recovery"></script>
-    <script type="module" src="./lyrics-objective.js?v=20261014-old-work-paused"></script>
+    <script type="module" src="./lyrics-objective.js?v=20261123-full-muse"></script>
   </head>
   <body>
     <header class="app-header">
@@ -233,15 +233,16 @@
           <details class="choral-deep-dive" id="formal-v2-dimensions-details"><summary>五项子分数 · 30 条固定验证趋势</summary><p class="section-copy" id="formal-v2-dimensions-note"></p><div class="choral-small-plots" id="formal-v2-dimensions"></div></details>
           <section id="lyrics-objective" aria-label="Lyrics2song objective test evaluation">
             <h3 class="subsection-heading">Objective evaluation</h3>
+            <p class="section-copy"><a href="./experiment-synthesis.html#wildsongbench">Muse 原版与 Mean7 v3 · 192 题全量配对结果 · 九项指标与 95% 区间</a></p>
             <div class="metric-controls"><span class="control-label">Test set</span><div class="segmented" role="group" aria-label="Objective evaluation dataset"><button type="button" data-objective-dataset="cmi" aria-pressed="false">CMI-Pref</button><button type="button" data-objective-dataset="wsb" aria-pressed="true">WildSongBench</button></div></div>
             <div class="metric-controls"><span class="control-label">Results</span><div class="segmented" role="group" aria-label="Objective evaluation result source"><button type="button" data-objective-origin="local" aria-pressed="true">本站实测</button><button type="button" data-objective-origin="official" aria-pressed="false">官方发表 · 17 settings</button></div></div>
             <h4 data-objective="title"></h4><p class="section-copy" data-objective="scope">加载客观评估清单</p>
             <div class="table-shell lab-table" tabindex="0"><table><thead data-objective="head"></thead><tbody data-objective="body"></tbody></table></div>
             <p class="stage-context" data-objective="updated"></p>
-            <details class="choral-deep-dive" data-objective="diagnostics"><summary>运行中 · 逐样本评分回执（不是全量结果）</summary><p class="section-copy">以下是已经完成评分的单首候选，保留样本编号和实际时长；不足全量不能作为模型排名或提升结论。这里 PER 为单首比例，主表完结后才报告 corpus micro PER。</p><div class="table-shell lab-table" tabindex="0"><table><thead data-objective="diagnostic-head"></thead><tbody data-objective="diagnostic-body"></tbody></table></div></details>
-            <details class="choral-deep-dive"><summary>指标定义、n/a 与测试协议</summary>
+            <details class="choral-deep-dive" data-objective="diagnostics"><summary>归档 · 逐样本评分回执（不是全量结果）</summary><p class="section-copy">以下是已经完成评分的单首候选，保留样本编号和实际时长；不足全量不能作为模型排名或提升结论。这里 PER 为单首比例，主表完结后才报告 corpus micro PER。</p><div class="table-shell lab-table" tabindex="0"><table><thead data-objective="diagnostic-head"></thead><tbody data-objective="diagnostic-body"></tbody></table></div></details>
+            <details class="choral-deep-dive"><summary>2026 年 10 月归档的指标定义与测试协议</summary>
               <p class="section-copy"><strong>SongBench</strong>：Vocal、Instrumental、Melody、Structure、Arrangement、Mixing、Musicality 七维均值（0–10），另列 Musicality。<strong>SongEval</strong>：Coherence、Musicality、Memorability、Clarity、Naturalness 五维均值（1–5），另列 Musicality。两者不是同一个 reward。</p>
-              <p class="section-copy"><strong>AudioBox PQ</strong> 衡量制作质量；MuQ-MuLan / AllMusicCaps 衡量音频与风格文本相似度，不混入歌词。<strong>Q3O</strong> 是冻结属性加权的提示控制（0–5），不是歌曲质量；WSB 可算但需 80 GB GPU，目前未提交此 scorer。<strong>PER</strong> 为总 phoneme edits / 总 reference phonemes；越低越好，保留漏唱歌词和截断，不裁剪 reference 来提高分数。</p>
+              <p class="section-copy"><strong>AudioBox PQ</strong> 衡量制作质量；MuQ-MuLan / AllMusicCaps 衡量音频与风格文本相似度，不混入歌词。<strong>Q3O</strong> 是冻结属性加权的提示控制（0–5），不是歌曲质量；WSB 可算但需 80 GB GPU，2026 年 10 月归档时尚未提交此 scorer。<strong>PER</strong> 为总 phoneme edits / 总 reference phonemes；越低越好，保留漏唱歌词和截断，不裁剪 reference 来提高分数。</p>
               <p class="section-copy">PER / MuLan / AllMusicCaps 使用官方冻结 worker 与权重。SongBench 保留原模型、权重、FP32 MuQ 前处理，但官方 cu126 环境不支持 5090；本站采用已记录哈希的 Torch 2.9.1+cu128 兼容运行时，不宣称通过原环境复现。SongEval / AudioBox 是单独版本固定、留有模型哈希的补充实现。客观表评分输入使用已绑定哈希的 192 kbps MP3，与官方 WSB 编码协议一致；它和训练 reward 的 WAV / PCM24-FLAC 口径不同。部分集只显示覆盖度，不显示貌似完整的均分。</p>
               <p class="section-copy">WSB 七条可用 YuE2 臂（冻结 baseline + 六个正式 final-step 270 checkpoint）已进入顺序 evaluation 队列；CMI-Pref 同样评估全部 121 条。Muse 新臂仍等待训练，未借用旧小 LR / Mock 的结果。Test 不选择 LR / checkpoint，不新增训练，不改变原有 270/30 split。</p>
               <div class="model-links"><a class="source-link" href="https://huggingface.co/datasets/m-a-p/WildSongBench" target="_blank" rel="noreferrer">WildSongBench protocol ↗</a><a class="source-link" href="https://github.com/multimodal-art-projection/YuE/blob/main/docs/benchmarks.md" target="_blank" rel="noreferrer">九列官方指标 ↗</a><a class="source-link" href="./data/lyrics-objective-results.json" download>下载本站测试清单 JSON</a><a class="source-link" href="https://github.com/zhanh-he/RL-paper-reading/tree/main/music-gen/lyrics2song/evaluation" target="_blank" rel="noreferrer">评估代码与复现协议 ↗</a></div>

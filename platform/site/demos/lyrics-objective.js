@@ -56,6 +56,10 @@ function render() {
   const museDone = museRecords.filter((r) => r.verified_train_steps === 270).length;
   $('updated').textContent = `回收时间 ${new Date(measured.updated_at).toLocaleString('zh-CN', {timeZone: 'Australia/Perth'})} AWST · CMI 全量生成 ${generated}/1694 (${(100*generated/1694).toFixed(1)}%) · 5090 ${measured.queue_running_at_collection ? '运行中' : '回收时未运行'}${submitted} · 提交不代表完成；Muse ${museDone}/6 臂训练完成${museRecords.some((r) => r.resume) ? '、从 180 续跑已提交' : ''}，独立评估尚未提交`;
   if (priority?.other_work?.paused_on) $('updated').textContent = `2026-10-14 用户要求优先 SP / AI Rewards：此处旧评估队列和旧 Muse 续跑已暂停，保留已完成结果。以下数字为上次回收快照，不是当前运行状态：CMI 生成 ${generated}/1694；Muse ${museDone}/6 臂训练完成。提交或局部覆盖不等于全量完成。`;
+  const musePair = measured.datasets.wsb.verified_muse_pair;
+  if (!published && dataset === 'wsb' && musePair) {
+    $('updated').textContent = `Muse 全量核验 ${musePair.date}：原版与 Mean7 v3 第 270 步各 192 题、384 候选，九项指标齐全。配对区间与生成时长见上方全量结果链接。其他实验行保留十月历史快照，不代表当前队列状态。`;
+  }
   const diagnostics = measured.datasets[dataset].rows.flatMap((r) => (r.diagnostic_rows || []).map((sample) => ({ system: r.system, ...sample })));
   $('diagnostics').hidden = published || !diagnostics.length;
   $('diagnostic-head').replaceChildren(tr(['Experiment', 'Candidate · duration', ...official.metrics.map((m) => `${m.label} ${m.lowerIsBetter ? '↓' : '↑'}`)], true));

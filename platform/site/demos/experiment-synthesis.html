@@ -90,9 +90,31 @@
 
     <section id="wildsongbench" aria-labelledby="wsb-title">
       <h2 id="wsb-title">WildSongBench 整曲对照</h2>
-      <p class="scope"><time datetime="2026-11-16">11 月 16 日</time>核对，原版 Muse-0.6B 与 Muse Mean7 v3 第 270 步均缺完整评分。音质评分环境出现依赖版本和 MuQ 初始化故障，部分剩余作业因集群存储配额暂停。发布条件为每组 192 题、384 个候选、九项指标全部核验通过。</p>
-      <p>192 题含 94 条中文与 98 条英文。每组使用同一套提示、音素投影和解码设置，每题按两个固定种子各生成一个候选。每个候选做四次 ASR，两组分别按最低 PER 选曲，其他指标都在各组选中的同一首歌上计算。比较按题目配对，语料 PER 用总音素编辑数除以总参考音素数。</p>
-      <p>YuE2 团队公开的标准 192 题结果中，Muse 的 SongBench 为 6.035、PER 为 33.42%，HeartMuLa 为 6.248、10.71%，YuE2 为 6.732、8.44%。我们的同题复测还要检验短片段 Mean7 上升能否延续到整曲，以及歌词遵循和控制是否同时改善。</p>
+      <p class="scope"><time datetime="2026-11-23">2026 年 11 月 23 日</time>核验。原版 Muse-0.6B 与 Muse Mean7 v3 第 270 步各完成 192 题、384 个候选的音频和 PER 核验。两组九项指标均覆盖全部 192 题。</p>
+      <p>192 题含 94 条中文与 98 条英文。每组使用同一套提示、音素投影和解码设置，每题按两个固定种子各生成一个候选。每个候选做四次 ASR，两组分别按最低 PER 选曲，其他指标都在各组选中的同一首歌上计算。比较按题目配对，语料 PER 用总音素编辑数除以总参考音素数。两组均关闭 CoT，整曲上限为 9,000 音频帧（360 秒）；保留提前结束和截断，使用完整参考歌词评分。</p>
+      <h3 id="wsb-muse-paired">本站全量配对复测</h3>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="WildSongBench 全量评分表，可横向滚动">
+        <table class="synthesis-results">
+          <thead><tr><th scope="col">指标</th><th scope="col">Muse-0.6B 原版</th><th scope="col">Muse Mean7 v3 · 270 步</th><th scope="col">RL − 原版 [95% 区间]</th></tr></thead>
+          <tbody>
+          <tr><th scope="row">SongBench 平均 ↑</th><td>5.8746</td><td>6.0860</td><td>+0.2115 [+0.1471, +0.2813]</td></tr>
+          <tr><th scope="row">SongBench Musicality ↑</th><td>5.0630</td><td>5.1853</td><td>+0.1223 [+0.0520, +0.1941]</td></tr>
+          <tr><th scope="row">SongEval 平均 ↑</th><td>3.8403</td><td>3.9262</td><td>+0.0860 [+0.0393, +0.1331]</td></tr>
+          <tr><th scope="row">SongEval Musicality ↑</th><td>3.7950</td><td>3.8743</td><td>+0.0793 [+0.0305, +0.1265]</td></tr>
+          <tr><th scope="row">AudioBox PQ ↑</th><td>8.0957</td><td>8.1387</td><td>+0.0429 [+0.0121, +0.0733]</td></tr>
+          <tr><th scope="row">MuLan ↑</th><td>0.3869</td><td>0.3948</td><td>+0.0078 [-0.0039, +0.0197]</td></tr>
+          <tr><th scope="row">AllMusicCaps ↑</th><td>0.3167</td><td>0.3068</td><td>-0.0099 [-0.0229, +0.0031]</td></tr>
+          <tr><th scope="row">Q3O ↑</th><td>4.3365</td><td>4.2227</td><td>-0.1138 [-0.2200, -0.0159]</td></tr>
+          <tr><th scope="row">PER ↓</th><td>60.85%</td><td>49.11%</td><td>-11.73 [-33.84, +5.04]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>区间按 192 道题配对重采样 4,000 次计算。PER 差值及区间使用百分点，两组共同参考 155,111 个音素。PER 允许超过 100%，极端错误率未被裁剪或剔除。</p>
+      <p>这是两个固定检查点的自动评测。区间反映题目重采样，不覆盖重复训练的不确定性；九项区间分别计算，未作多重检验校正。</p>
+      <p>每组选中 192 首，原版平均 182.2 秒，RL 版平均 213.8 秒。生成截断或提前结束标记分别为 41 和 70 首。</p>
+      <p>本次检查点的 SongBench 提升延续到了整曲，SongEval 与 AudioBox 的配对区间也在 0 以上。Q3O 的区间在 0 以下；MuLan、AllMusicCaps 与 PER 的区间跨 0，尚不能确认它们改善。RL 输出更长，截断或提前结束标记也更多，长度和终止行为仍需进一步审计。AR / NAR 与显式计划的收益仍待独立消融。</p>
+      <p class="downloads"><a href="./data/wildsongbench-muse-paired.json" download>全量配对回执 JSON</a></p>
+      <p>YuE2 团队公开的标准 192 题结果中，Muse 的 SongBench 为 6.035、PER 为 33.42%，HeartMuLa 为 6.248、10.71%，YuE2 为 6.732、8.44%。本站原版 Muse 的 PER 高于作者表；差异来源尚待核查，两个表不能视作已完全对齐的复现。</p>
       <p class="downloads"><a href="https://huggingface.co/datasets/m-a-p/WildSongBench/blob/main/benchmark/results.md">外部发布的完整基准</a><a href="../musicgen/#ablations">AR / NAR 与显式音乐计划</a></p>
     </section>
   </main>

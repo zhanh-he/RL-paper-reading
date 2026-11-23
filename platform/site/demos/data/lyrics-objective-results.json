@@ -2051,71 +2051,167 @@
         },
         {
           "id": "muse-baseline",
-          "system": "Muse-Baseline",
+          "system": "Muse-0.6B",
           "step": 0,
-          "status": "not-submitted",
-          "generated_candidates": 0,
+          "status": "complete",
+          "generated_candidates": 384,
           "expected_candidates": 384,
-          "scored_conditions": 0,
+          "scored_conditions": 192,
           "metrics": {
             "songbench_global_avg": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 5.874566692681539,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "songbench_musicality": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 5.0629892734189825,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "songeval_global_avg": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 3.840277069931229,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "songeval_musicality": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 3.7949925251305103,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "audiobox_pq": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 8.095721783737341,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "mulan": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 0.386925498227356,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "allmusiccaps": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 0.31670473473059246,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "control_overall": {
-              "status": "deferred",
-              "value": null,
-              "scored": 0,
-              "reason": "用户要求暂缓 Q3O；权重保留，未启动评分。"
+              "status": "complete",
+              "value": 4.336505488523769,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             },
             "per": {
-              "status": "pending",
-              "value": null,
-              "scored": 0,
-              "reason": "尚未完成完整测试集。"
+              "status": "complete",
+              "value": 0.6084610375795398,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
             }
           },
           "diagnostic_rows": [],
           "generation_receipts": [],
-          "receipt_files": []
+          "receipt_files": [
+            {
+              "file": "platform/site/demos/data/wildsongbench-muse-paired.json",
+              "sha256": "c0696529b49580964b1f4437fa6fc3d5ff70179851c7441b2a2410bd4be5683a"
+            }
+          ]
+        },
+        {
+          "id": "muse-mean7-v3-step270",
+          "system": "Muse-Mean7-v3-step270",
+          "step": 270,
+          "status": "complete",
+          "generated_candidates": 384,
+          "expected_candidates": 384,
+          "scored_conditions": 192,
+          "metrics": {
+            "songbench_global_avg": {
+              "status": "complete",
+              "value": 6.086049512738273,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "songbench_musicality": {
+              "status": "complete",
+              "value": 5.185300899048646,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "songeval_global_avg": {
+              "status": "complete",
+              "value": 3.92624458471934,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "songeval_musicality": {
+              "status": "complete",
+              "value": 3.87427186469237,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "audiobox_pq": {
+              "status": "complete",
+              "value": 8.138665989041328,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "mulan": {
+              "status": "complete",
+              "value": 0.3947571632452309,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "allmusiccaps": {
+              "status": "complete",
+              "value": 0.3067893364423071,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "control_overall": {
+              "status": "complete",
+              "value": 4.222749770868897,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            },
+            "per": {
+              "status": "complete",
+              "value": 0.4911450509635036,
+              "scored": 192,
+              "expected": 192,
+              "reason": "192 题完整核验；每题两候选、每候选四次 ASR，按 PER 选曲。配对区间见完整回执。"
+            }
+          },
+          "diagnostic_rows": [],
+          "generation_receipts": [],
+          "receipt_files": [
+            {
+              "file": "platform/site/demos/data/wildsongbench-muse-paired.json",
+              "sha256": "c0696529b49580964b1f4437fa6fc3d5ff70179851c7441b2a2410bd4be5683a"
+            }
+          ]
         },
         {
           "id": "muse-songeval-2e-5",
@@ -2525,7 +2621,14 @@
           "generation_receipts": [],
           "receipt_files": []
         }
-      ]
+      ],
+      "verified_muse_pair": {
+        "date": "2026-11-23",
+        "receipt": "wildsongbench-muse-paired.json",
+        "sha256": "c0696529b49580964b1f4437fa6fc3d5ff70179851c7441b2a2410bd4be5683a",
+        "stock_id": "muse-baseline",
+        "rl_id": "muse-mean7-v3-step270"
+      }
     },
     "cmi": {
       "conditions": 121,

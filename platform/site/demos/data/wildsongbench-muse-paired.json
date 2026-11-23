@@ -1,0 +1,140 @@
+{
+  "schema": "muse-wsb-paired-public-v1",
+  "status": "complete",
+  "manifest_sha256": "859e5225d319912efb64d587d1d5eb6cf0abc9fb162cc3d5f02d1688cff2edc0",
+  "expected_prompts": 192,
+  "paired_prompts": 192,
+  "selection": "best-per-of-two-four-asr-v1",
+  "selected_candidate_switches": 99,
+  "bootstrap": {
+    "draws": 4000,
+    "seed": 20261112,
+    "sampling_unit": "paired_prompt"
+  },
+  "stock": {
+    "candidate_audio_count": 384,
+    "candidate_per_count": 384,
+    "selected_truncated_count": 41,
+    "selected_mean_seconds": 182.15104036458334,
+    "per_edits": 94379,
+    "per_reference_phonemes": 155111
+  },
+  "rl": {
+    "candidate_audio_count": 384,
+    "candidate_per_count": 384,
+    "selected_truncated_count": 70,
+    "selected_mean_seconds": 213.7814560546875,
+    "per_edits": 76182,
+    "per_reference_phonemes": 155111
+  },
+  "metrics": {
+    "songbench_global_avg": {
+      "n": 192,
+      "headline": {
+        "stock": 5.874566692681539,
+        "rl": 6.086049512738273,
+        "rl_minus_stock": 0.2114828200567338,
+        "paired_bootstrap_95pct": [
+          0.1471277072227427,
+          0.28132534500743667
+        ]
+      }
+    },
+    "songbench_musicality": {
+      "n": 192,
+      "headline": {
+        "stock": 5.0629892734189825,
+        "rl": 5.185300899048646,
+        "rl_minus_stock": 0.12231162562966347,
+        "paired_bootstrap_95pct": [
+          0.05201699410875638,
+          0.1941219363672038
+        ]
+      }
+    },
+    "songeval_global_avg": {
+      "n": 192,
+      "headline": {
+        "stock": 3.840277069931229,
+        "rl": 3.92624458471934,
+        "rl_minus_stock": 0.08596751478811093,
+        "paired_bootstrap_95pct": [
+          0.039313351232558476,
+          0.1331132163355748
+        ]
+      }
+    },
+    "songeval_musicality": {
+      "n": 192,
+      "headline": {
+        "stock": 3.7949925251305103,
+        "rl": 3.87427186469237,
+        "rl_minus_stock": 0.07927933956185962,
+        "paired_bootstrap_95pct": [
+          0.03052904255067309,
+          0.12650879838814338
+        ]
+      }
+    },
+    "audiobox_pq": {
+      "n": 192,
+      "headline": {
+        "stock": 8.095721783737341,
+        "rl": 8.138665989041328,
+        "rl_minus_stock": 0.04294420530398746,
+        "paired_bootstrap_95pct": [
+          0.01210721575965484,
+          0.07333270094046991
+        ]
+      }
+    },
+    "mulan": {
+      "n": 192,
+      "headline": {
+        "stock": 0.386925498227356,
+        "rl": 0.3947571632452309,
+        "rl_minus_stock": 0.007831665017874911,
+        "paired_bootstrap_95pct": [
+          -0.0039132328222573655,
+          0.019676582661729
+        ]
+      }
+    },
+    "allmusiccaps": {
+      "n": 192,
+      "headline": {
+        "stock": 0.31670473473059246,
+        "rl": 0.3067893364423071,
+        "rl_minus_stock": -0.00991539828828536,
+        "paired_bootstrap_95pct": [
+          -0.02294893338779123,
+          0.003069531428081973
+        ]
+      }
+    },
+    "control_overall": {
+      "n": 192,
+      "headline": {
+        "stock": 4.336505488523769,
+        "rl": 4.222749770868897,
+        "rl_minus_stock": -0.1137557176548718,
+        "paired_bootstrap_95pct": [
+          -0.21998555030502678,
+          -0.01593323019315356
+        ]
+      }
+    },
+    "per": {
+      "n": 192,
+      "headline": {
+        "stock": 0.6084610375795398,
+        "rl": 0.4911450509635036,
+        "rl_minus_stock": -0.11731598661603626,
+        "paired_bootstrap_95pct": [
+          -0.3383612129660033,
+          0.050370431548997556
+        ]
+      }
+    }
+  }
+}
