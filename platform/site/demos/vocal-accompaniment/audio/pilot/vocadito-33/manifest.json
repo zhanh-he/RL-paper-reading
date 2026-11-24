@@ -1,0 +1,840 @@
+{
+  "version": "fixed-vocal-2026-11-24-v1",
+  "input_id": "vocadito-33",
+  "title": "Trying to Sleep (Vocadito 33)",
+  "duration_s": 30.04,
+  "meta": "30.0 s · human solo vocal · tentative bar markers",
+  "bars": [
+    {
+      "index": 1,
+      "start_s": 0.7,
+      "end_s": 2.89,
+      "section": "Verse",
+      "lyrics": "close my"
+    },
+    {
+      "index": 2,
+      "start_s": 2.89,
+      "end_s": 5.08,
+      "section": "Verse",
+      "lyrics": "I close my eyes"
+    },
+    {
+      "index": 3,
+      "start_s": 5.08,
+      "end_s": 7.3,
+      "section": "Verse",
+      "lyrics": "phrase tail"
+    },
+    {
+      "index": 4,
+      "start_s": 7.3,
+      "end_s": 9.56,
+      "section": "Lift",
+      "lyrics": "understand"
+    },
+    {
+      "index": 5,
+      "start_s": 9.56,
+      "end_s": 11.94,
+      "section": "Lift",
+      "lyrics": "why I might be fired"
+    },
+    {
+      "index": 6,
+      "start_s": 11.94,
+      "end_s": 14.34,
+      "section": "Refrain",
+      "lyrics": "Tryin’ to sleep"
+    },
+    {
+      "index": 7,
+      "start_s": 14.34,
+      "end_s": 16.72,
+      "section": "Refrain",
+      "lyrics": "tryin’ to sleep"
+    },
+    {
+      "index": 8,
+      "start_s": 16.72,
+      "end_s": 19.1,
+      "section": "Refrain",
+      "lyrics": "force my eyelids closed"
+    },
+    {
+      "index": 9,
+      "start_s": 19.1,
+      "end_s": 21.48,
+      "section": "Refrain",
+      "lyrics": "tryin’ to sleep"
+    },
+    {
+      "index": 10,
+      "start_s": 21.48,
+      "end_s": 23.26,
+      "section": "Refrain",
+      "lyrics": "can't even dose"
+    },
+    {
+      "index": 11,
+      "start_s": 23.26,
+      "end_s": 25.55,
+      "section": "Verse reprise",
+      "lyrics": "so I close my eyes"
+    },
+    {
+      "index": 12,
+      "start_s": 25.55,
+      "end_s": 27.75,
+      "section": "Verse reprise",
+      "lyrics": "baby coughs"
+    },
+    {
+      "index": 13,
+      "start_s": 27.75,
+      "end_s": 30.0,
+      "section": "Verse reprise",
+      "lyrics": "car alarm goes off"
+    }
+  ],
+  "vocal": {
+    "file": "dry.mp3",
+    "sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a"
+  },
+  "takes_note": "Bar markers are tentative and detector flags need a listening review.",
+  "provenance": {
+    "detail": "Solo vocal from Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein, vocadito-33, CC BY 4.0. The public dry MP3 is a listening copy of the exact WAV used for every candidate. Candidate mixes sum that dry vocal and the generated backing at fixed gain.",
+    "label": "Vocal source and attribution",
+    "url": "https://zenodo.org/records/5578807",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "variants": [
+    {
+      "id": "vocadito-33-anyaccomp-seed29",
+      "label": "AnyAccomp · No style conditioning · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": null,
+      "style": "No style conditioning",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-anyaccomp-seed29-backing.mp3",
+      "mix_file": "vocadito-33-anyaccomp-seed29-mix.mp3",
+      "output_sha256": "668c855fa9d68be01dbb9932a1bc08b51f586074dce382ced46a79b88a631060",
+      "timing_file": "vocadito-33-anyaccomp-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": -80,
+          "status": "uncertain",
+          "reason": "Detected at 9.48 s with activation 1.00. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+        },
+        {
+          "index": 6,
+          "offset_ms": -40,
+          "status": "uncertain",
+          "reason": "Detected at 11.90 s with activation 1.00. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+        },
+        {
+          "index": 7,
+          "offset_ms": -20,
+          "status": "uncertain",
+          "reason": "Detected at 14.32 s with activation 1.00. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        },
+        {
+          "index": 8,
+          "offset_ms": 0,
+          "status": "uncertain",
+          "reason": "Detected at 16.72 s with activation 1.00. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        },
+        {
+          "index": 9,
+          "offset_ms": 40,
+          "status": "uncertain",
+          "reason": "Detected at 19.14 s with activation 1.00. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        },
+        {
+          "index": 10,
+          "offset_ms": 100,
+          "status": "uncertain",
+          "reason": "Detected at 21.58 s with activation 0.99. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-acoustic-folk-seed29",
+      "label": "LaDA-Band · Acoustic folk · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-acoustic-folk-seed29-backing.mp3",
+      "mix_file": "vocadito-33-lada-acoustic-folk-seed29-mix.mp3",
+      "output_sha256": "77e0532bcd58bbdc0a83def2d08be49b20159e6e3c1ba765ad32352269b25ec8",
+      "timing_file": "vocadito-33-lada-acoustic-folk-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-acoustic-folk-seed73",
+      "label": "LaDA-Band · Acoustic folk · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-acoustic-folk-seed73-backing.mp3",
+      "mix_file": "vocadito-33-lada-acoustic-folk-seed73-mix.mp3",
+      "output_sha256": "c8d1866a5363630dc5dcd8fa6b6c27158d89e8e0273340e36460461c5f20cbfb",
+      "timing_file": "vocadito-33-lada-acoustic-folk-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Blank backing signal"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-sparse-synth-pop-seed29",
+      "label": "LaDA-Band · Sparse synth-pop · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-sparse-synth-pop-seed29-backing.mp3",
+      "mix_file": "vocadito-33-lada-sparse-synth-pop-seed29-mix.mp3",
+      "output_sha256": "ec6214e6dee1d77c7339f9cf8fbcb6ebcadff12ac6f35f4ecd83519546d4d279",
+      "timing_file": "vocadito-33-lada-sparse-synth-pop-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-sparse-synth-pop-seed73",
+      "label": "LaDA-Band · Sparse synth-pop · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-sparse-synth-pop-seed73-backing.mp3",
+      "mix_file": "vocadito-33-lada-sparse-synth-pop-seed73-mix.mp3",
+      "output_sha256": "fd39b5ebbe06055a52fb9629af1b94776575ee3ba77f8c15c0ed3741a44a4b3d",
+      "timing_file": "vocadito-33-lada-sparse-synth-pop-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-half-time-rnb-seed29",
+      "label": "LaDA-Band · Half-time R&B · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-half-time-rnb-seed29-backing.mp3",
+      "mix_file": "vocadito-33-lada-half-time-rnb-seed29-mix.mp3",
+      "output_sha256": "52afe7c7a8a30ba8bb5b16deb9fd141facd2c95a14667645ce37bb2bfaca22b3",
+      "timing_file": "vocadito-33-lada-half-time-rnb-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": -90,
+          "status": "uncertain",
+          "reason": "Detected at 2.80 s with activation 0.51. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat."
+        },
+        {
+          "index": 3,
+          "offset_ms": 140,
+          "status": "uncertain",
+          "reason": "Detected at 5.22 s with activation 0.95. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap."
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": 20,
+          "status": "uncertain",
+          "reason": "Detected at 14.36 s with activation 0.74. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": 10,
+          "status": "uncertain",
+          "reason": "Detected at 25.56 s with activation 0.88. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain."
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-33-lada-half-time-rnb-seed73",
+      "label": "LaDA-Band · Half-time R&B · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-33-lada-half-time-rnb-seed73-backing.mp3",
+      "mix_file": "vocadito-33-lada-half-time-rnb-seed73-mix.mp3",
+      "output_sha256": "044cc1c90c2a83e21f4d6c1690e101d8dd855492b59db4aafcd8d6ab9631c4c3",
+      "timing_file": "vocadito-33-lada-half-time-rnb-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Lift begins after a breath gap. Bar phase can shift within the gap.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Free syllable placement around the lift. Grid uses approximate pulse interpolation.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Waveform breath gap and refrain entry delimit a section, not a measured downbeat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The reprise phase is ambiguous after the preceding phrase resolves.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Final phrases are loose and tail to silence. Bar continuation is uncertain.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    }
+  ],
+  "reference_file": "reference.json",
+  "scored_reference_sha256": "56b3f7ed928f2584aea802312d6f9a75c5db60efa9f7d64e5270e0393407a407"
+}

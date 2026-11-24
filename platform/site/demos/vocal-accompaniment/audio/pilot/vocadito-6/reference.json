@@ -1,0 +1,139 @@
+{
+  "song_id": "vocadito-06",
+  "title": "Love Song for My Little Dog (Vocadito 6)",
+  "duration_s": 23.831995,
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual motif reading of both independent note transcriptions and source lyrics, with signal-level checks of the source WAV. Matching first and second melodic contours give phrase starts near 0.16 and 5.94 s, followed by less regular related phrases near 11.45 and 17.80 s. Eight candidate bar starts assume two roughly 2.8–3.1 s bars per phrase. Relative phrase movement supports a flexible pulse and cannot settle the absolute bar phase. No human listening judgment is recorded.",
+  "meter": "4/4 hypothesis",
+  "tempo_bpm": [
+    78,
+    87
+  ],
+  "bars": [
+    {
+      "bar": 1,
+      "time_s": 0.48,
+      "section": "Opening",
+      "lyrics": "write a love song"
+    },
+    {
+      "bar": 2,
+      "time_s": 3.32,
+      "section": "Opening",
+      "lyrics": "love song"
+    },
+    {
+      "bar": 3,
+      "time_s": 6.16,
+      "section": "Opening",
+      "lyrics": "all about my little dog"
+    },
+    {
+      "bar": 4,
+      "time_s": 9.0,
+      "section": "Opening",
+      "lyrics": "little dog"
+    },
+    {
+      "bar": 5,
+      "time_s": 11.81,
+      "section": "Descriptive phrase",
+      "lyrics": "he is cute, his is small"
+    },
+    {
+      "bar": 6,
+      "time_s": 14.84,
+      "section": "Descriptive phrase",
+      "lyrics": "but he snores loud"
+    },
+    {
+      "bar": 7,
+      "time_s": 17.87,
+      "section": "Tag",
+      "lyrics": "he’s the best of ‘em all"
+    },
+    {
+      "bar": 8,
+      "time_s": 20.89,
+      "section": "Tag",
+      "lyrics": "my little pal"
+    }
+  ],
+  "lyrics": "and if I had to write a love song\nit would be all about my little dog\nhe is cute, his is small\nbut he snores loud\nhe’s the best of ‘em all\nmy little pal",
+  "sections": [
+    {
+      "name": "Opening",
+      "start_s": 0.16
+    },
+    {
+      "name": "Descriptive phrase",
+      "start_s": 11.45
+    },
+    {
+      "name": "Tag",
+      "start_s": 17.8
+    }
+  ],
+  "uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.91,
+      "reason": "The start has a candidate pickup and no independent cue for absolute beat phase."
+    },
+    {
+      "start_s": 2.83,
+      "end_s": 3.72,
+      "reason": "Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+    },
+    {
+      "start_s": 5.85,
+      "end_s": 6.45,
+      "reason": "Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+    },
+    {
+      "start_s": 8.65,
+      "end_s": 9.35,
+      "reason": "The voice sustains or ornaments pitches around the estimated phase."
+    },
+    {
+      "start_s": 10.86,
+      "end_s": 12.1,
+      "reason": "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+    },
+    {
+      "start_s": 14.39,
+      "end_s": 15.27,
+      "reason": "Phrase tail and new melody figure admit more than one bar phase."
+    },
+    {
+      "start_s": 17.4,
+      "end_s": 18.31,
+      "reason": "Tag begins near a phrase transition without a separately heard strong beat."
+    },
+    {
+      "start_s": 20.6,
+      "end_s": 23.831995,
+      "reason": "The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+    }
+  ],
+  "provenance": {
+    "collection": "vocadito v3",
+    "doi": "10.5281/zenodo.5578807",
+    "source_url": "https://zenodo.org/records/5578807",
+    "source_report": "https://arxiv.org/html/2110.05580#S2",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_evidence": "https://mirdata.readthedocs.io/en/stable/_modules/mirdata/datasets/vocadito.html",
+    "attribution": "Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein",
+    "composition_status": "Participant submission. The report allowed original or public-domain compositions. The track metadata does not identify which applies to this item.",
+    "recording": "Source-released 44.1 kHz, 16-bit mono WAV, kept byte-for-byte. Human solo vocal.",
+    "track_id": 6,
+    "archive_member": "Audio/vocadito_6.wav",
+    "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+    "format": {
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bits_per_sample": 16
+    }
+  }
+}

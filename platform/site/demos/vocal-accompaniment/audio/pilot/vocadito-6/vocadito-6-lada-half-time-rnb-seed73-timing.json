@@ -1,0 +1,415 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "backing",
+  "audio_sha256": "243d722cc02c92ad3f8e7d32efabe8bc7fd9396c88f77cdebae6a6926c72b843",
+  "reference_sha256": "108b52674ec5d8fdf4c2c30537887c194c1ca7d168e95c023d0dd36f508bca13",
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual motif reading of both independent note transcriptions and source lyrics, with signal-level checks of the source WAV. Matching first and second melodic contours give phrase starts near 0.16 and 5.94 s, followed by less regular related phrases near 11.45 and 17.80 s. Eight candidate bar starts assume two roughly 2.8–3.1 s bars per phrase. Relative phrase movement supports a flexible pulse and cannot settle the absolute bar phase. No human listening judgment is recorded.",
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "detector_status": "events_proposed",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.008005000000000706,
+  "duration_flag": null,
+  "first_downbeat_s": 2.3,
+  "first_downbeat_raw_lag_s": 1.8199999999999998,
+  "entry_flag": "late_possible",
+  "signal": {
+    "duration_s": 23.84,
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "peak_absolute_sample": 0.308563232421875,
+    "out_of_range_sample_count": 0,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": 2.2600000000000002,
+    "last_signal_s": 22.62,
+    "blank_intervals": [
+      {
+        "start_s": 0.0,
+        "end_s": 2.2600000000000002,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 10.22,
+        "end_s": 10.66,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 10.76,
+        "end_s": 11.76,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 12.52,
+        "end_s": 12.96,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 13.56,
+        "end_s": 13.94,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 22.62,
+        "end_s": 23.84,
+        "reason": "audio_below_rms_gate"
+      }
+    ]
+  },
+  "detections": {
+    "beats": [
+      {
+        "time_s": 2.3,
+        "confidence": 0.9267704202322494,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.74,
+        "confidence": 0.5258338274385038,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.22,
+        "confidence": 0.3846025243222357,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.22,
+        "confidence": 0.3145654086573262,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.18,
+        "confidence": 0.5554218081389409,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.14,
+        "confidence": 0.9626062221085782,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.98,
+        "confidence": 0.4829672941274322,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.82,
+        "confidence": 0.37319714585559305,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.04,
+        "confidence": 0.28547037701684924,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.98,
+        "confidence": 0.9708876189932969,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ],
+    "downbeats": [
+      {
+        "time_s": 2.3,
+        "confidence": 0.7489586925437699,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.14,
+        "confidence": 0.943238112664104,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.82,
+        "confidence": 0.11026054153779509,
+        "low_confidence": true,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.98,
+        "confidence": 0.882948268403104,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ]
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 1,
+    "reference_count": 8,
+    "eligible_detection_count": 4,
+    "median_raw_lag_s": 0.009999999999999787,
+    "median_absolute_residual_s": 0.009999999999999787,
+    "matched": [
+      {
+        "bar": 5,
+        "time_s": 11.81,
+        "section": "Descriptive phrase",
+        "lyrics": "he is cute, his is small",
+        "detected_s": 11.82,
+        "raw_lag_s": 0.009999999999999787,
+        "residual_s": 0.009999999999999787,
+        "confidence": 0.11026054153779509,
+        "low_confidence": true,
+        "reference_uncertainty": [
+          "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+        ],
+        "timing_flag": "within_50ms"
+      }
+    ],
+    "unmatched_reference": [
+      {
+        "bar": 1,
+        "time_s": 0.48,
+        "section": "Opening",
+        "lyrics": "write a love song",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": [
+          "The start has a candidate pickup and no independent cue for absolute beat phase."
+        ]
+      },
+      {
+        "bar": 2,
+        "time_s": 3.32,
+        "section": "Opening",
+        "lyrics": "love song",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+        ]
+      },
+      {
+        "bar": 3,
+        "time_s": 6.16,
+        "section": "Opening",
+        "lyrics": "all about my little dog",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+        ]
+      },
+      {
+        "bar": 4,
+        "time_s": 9.0,
+        "section": "Opening",
+        "lyrics": "little dog",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The voice sustains or ornaments pitches around the estimated phase."
+        ]
+      },
+      {
+        "bar": 6,
+        "time_s": 14.84,
+        "section": "Descriptive phrase",
+        "lyrics": "but he snores loud",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Phrase tail and new melody figure admit more than one bar phase."
+        ]
+      },
+      {
+        "bar": 7,
+        "time_s": 17.87,
+        "section": "Tag",
+        "lyrics": "he’s the best of ‘em all",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Tag begins near a phrase transition without a separately heard strong beat."
+        ]
+      },
+      {
+        "bar": 8,
+        "time_s": 20.89,
+        "section": "Tag",
+        "lyrics": "my little pal",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+        ]
+      }
+    ],
+    "extra_detected": [
+      {
+        "time_s": 2.3,
+        "confidence": 0.7489586925437699,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 2,
+        "raw_lag_s_to_nearest_bar": -1.02,
+        "residual_s_to_nearest_bar": -1.02,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 8.14,
+        "confidence": 0.943238112664104,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 4,
+        "raw_lag_s_to_nearest_bar": -0.8599999999999994,
+        "residual_s_to_nearest_bar": -0.8599999999999994,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 13.98,
+        "confidence": 0.882948268403104,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 6,
+        "raw_lag_s_to_nearest_bar": -0.8599999999999994,
+        "residual_s_to_nearest_bar": -0.8599999999999994,
+        "reason": "downbeat_without_unique_reference_match"
+      }
+    ]
+  },
+  "global_shift": {
+    "estimate_s": null,
+    "matched_support": 0,
+    "min_support": 3,
+    "eligible_reference_count": 0,
+    "eligible_detection_count": 3,
+    "search_limit_s": 0.75,
+    "status": "insufficient_evidence"
+  },
+  "corrected": null,
+  "section_boundaries": [
+    {
+      "name": "Opening",
+      "reference_start_s": 0.16,
+      "nearest_downbeat_s": 2.3,
+      "raw_lag_s": 2.1399999999999997,
+      "confidence": 0.7489586925437699,
+      "reference_uncertainty": [
+        "The start has a candidate pickup and no independent cue for absolute beat phase."
+      ]
+    },
+    {
+      "name": "Descriptive phrase",
+      "reference_start_s": 11.45,
+      "nearest_downbeat_s": 11.82,
+      "raw_lag_s": 0.370000000000001,
+      "confidence": 0.11026054153779509,
+      "reference_uncertainty": [
+        "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+      ]
+    },
+    {
+      "name": "Tag",
+      "reference_start_s": 17.8,
+      "nearest_downbeat_s": 13.98,
+      "raw_lag_s": -3.8200000000000003,
+      "confidence": 0.882948268403104,
+      "reference_uncertainty": [
+        "Tag begins near a phrase transition without a separately heard strong beat."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.91,
+      "reason": "The start has a candidate pickup and no independent cue for absolute beat phase."
+    },
+    {
+      "start_s": 2.83,
+      "end_s": 3.72,
+      "reason": "Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+    },
+    {
+      "start_s": 5.85,
+      "end_s": 6.45,
+      "reason": "Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+    },
+    {
+      "start_s": 8.65,
+      "end_s": 9.35,
+      "reason": "The voice sustains or ornaments pitches around the estimated phase."
+    },
+    {
+      "start_s": 10.86,
+      "end_s": 12.1,
+      "reason": "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+    },
+    {
+      "start_s": 14.39,
+      "end_s": 15.27,
+      "reason": "Phrase tail and new melody figure admit more than one bar phase."
+    },
+    {
+      "start_s": 17.4,
+      "end_s": 18.31,
+      "reason": "Tag begins near a phrase transition without a separately heard strong beat."
+    },
+    {
+      "start_s": 20.6,
+      "end_s": 23.831995,
+      "reason": "The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+    }
+  ],
+  "low_confidence_downbeats": [
+    {
+      "time_s": 11.82,
+      "confidence": 0.11026054153779509,
+      "low_confidence": true,
+      "suppression_reason": null
+    }
+  ],
+  "section_transitions": [
+    {
+      "bar": 5,
+      "time_s": 11.81,
+      "section": "Descriptive phrase",
+      "lyrics": "he is cute, his is small",
+      "detected_s": 11.82,
+      "raw_lag_s": 0.009999999999999787,
+      "residual_s": 0.009999999999999787,
+      "confidence": 0.11026054153779509,
+      "low_confidence": true,
+      "reference_uncertainty": [
+        "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+      ],
+      "timing_flag": "within_50ms",
+      "timing_status": "paired"
+    },
+    {
+      "bar": 7,
+      "time_s": 17.87,
+      "section": "Tag",
+      "lyrics": "he’s the best of ‘em all",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "Tag begins near a phrase transition without a separately heard strong beat."
+      ],
+      "timing_status": "unmatched"
+    }
+  ],
+  "analysis_seconds": 0.3449260424822569
+}

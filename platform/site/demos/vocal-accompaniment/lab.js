@@ -4,6 +4,7 @@ const voteKey = "vocal-accompaniment-lab-judgments-v1";
 const view = {session: null, take: 0, pair: null, monitor: "mix", bar: 0, loading: false};
 const player = {context: null, clockStart: 0, position: 0, run: [], request: 0, clipEnd: null};
 const buffers = new Map();
+let pilotSongs;
 let votes = [];
 try {
   const saved = JSON.parse(localStorage.getItem(voteKey) || "[]");
@@ -19,6 +20,10 @@ function node(tag, data, className) {
 
 function take() {
   return view.session.variants[view.take];
+}
+
+function backingFile(candidate) {
+  return candidate.output_kind === "mix-only" ? null : candidate.file;
 }
 
 function meter() {
@@ -55,11 +60,12 @@ async function requestBuffer(file) {
 
 function audioFiles() {
   const {base, vocal} = view.session;
-  const {file, mix_file: mixFile} = take();
+  const candidate = take();
+  const backing = backingFile(candidate);
   if (view.monitor === "voice") return [[base + vocal.file, 0.72]];
-  if (view.monitor === "backing") return [[base + file, 0.72]];
-  if (mixFile) return [[base + mixFile, 0.82]];
-  return [[base + vocal.file, 0.72], [base + file, 0.60]];
+  if (view.monitor === "backing" && backing) return [[base + backing, 0.72]];
+  if (candidate.mix_file) return [[base + candidate.mix_file, 0.82]];
+  return [[base + vocal.file, 0.72], [base + backing, 0.60]];
 }
 
 async function play() {
@@ -106,6 +112,12 @@ function renderClock() {
   get("scrub").value = position;
   get("play").setAttribute("aria-label", playing ? "Pause" : "Play");
   get("play").firstElementChild.textContent = playing ? "Ⅱ" : "▶";
+  if (view.pair) {
+    const bar = meter().find((entry) => position >= entry.start_s && position < entry.end_s);
+    get("timestamp-note").textContent = bar
+      ? `This judgment will include bar ${bar.index} at ${timeText(position)}.`
+      : `This judgment will include ${timeText(position)}.`;
+  }
 }
 
 function seek(seconds, auto = player.run.length > 0) {
@@ -149,8 +161,11 @@ async function plot() {
   if (!view.session) return;
   const {base, duration_s: duration} = view.session;
   try {
+    const candidate = take();
+    const waveformFile = backingFile(candidate) || candidate.mix_file;
     const [voice, backing] = await Promise.all([
-      requestBuffer(base + view.session.vocal.file), requestBuffer(base + take().file),
+      requestBuffer(base + view.session.vocal.file),
+      view.pair ? null : requestBuffer(base + waveformFile),
     ]);
     if (drawRevision !== revision) return;
     const canvas = get("wave");
@@ -172,8 +187,8 @@ async function plot() {
     for (const marker of bars.length ? bars.map((bar) => bar.start_s) : (view.session.vocal.onsets_s || [])) {
       context.fillRect(Math.round(marker / duration * width), 0, 1, height);
     }
-    plotTrack(context, voice.getChannelData(0), 3, 41, width, "#d7fb9d");
-    if (!view.pair) plotTrack(context, backing.getChannelData(0), 71, 26, width, "#b6a4ff");
+    plotTrack(context, voice.getChannelData(0), 3, 41, Math.min(width, width * voice.duration / duration), "#d7fb9d");
+    if (backing) plotTrack(context, backing.getChannelData(0), 71, 26, Math.min(width, width * backing.duration / duration), "#b6a4ff");
   } catch (error) {
     if (drawRevision === revision) get("status").textContent = error.message;
   }
@@ -211,10 +226,18 @@ function renderInspection() {
   const line = node("div", "", "inspection-title");
   line.append(node("strong", `Bar ${bar.index} · ${bar.section}`));
   if (observed) {
-    const badge = observed.offset_ms === null ? "No accent detected" : `${observed.offset_ms >= 0 ? "+" : ""}${observed.offset_ms} ms`;
+    const badge = observed.offset_ms === null ? (observed.label || "No accent detected") : `${observed.offset_ms >= 0 ? "+" : ""}${observed.offset_ms} ms raw`;
     line.append(node("span", badge, `result ${observed.status}`));
   }
-  inspection.append(line, node("p", planned?.note || "Listen to the relationship between the backing and vocal here."));
+  inspection.append(line, node("p", observed?.reason || planned?.note || "Listen to the relationship between the backing and vocal here."));
+  if (bar.lyrics) inspection.append(node("p", bar.lyrics));
+  if (take().timing_file) {
+    const link = node("a", "Timing evidence");
+    link.href = view.session.base + take().timing_file;
+    const paragraph = node("p");
+    paragraph.append(link);
+    inspection.append(paragraph);
+  }
   const playBar = node("button", "Play this bar", "text-button");
   playBar.type = "button";
   playBar.addEventListener("click", () => { player.clipEnd = bar.end_s; seek(bar.start_s, true); });
@@ -265,6 +288,7 @@ function changeTake(index) {
   const playing = player.run.length > 0;
   pause();
   view.take = index;
+  if (view.monitor === "backing" && !backingFile(take())) view.monitor = "mix";
   renderSelection();
   if (playing) void play();
 }
@@ -288,7 +312,14 @@ function renderSelection() {
   get("vote").hidden = !view.pair;
   const instruction = view.session.variants.length > 1 ? "Switch takes without moving the playhead." : "Solo the guide or backing to hear what the model added.";
   get("takes-intro").textContent = view.pair ? "Candidate names and detector scores are hidden." : view.session.takes_note || instruction;
-  get("backing-label").textContent = view.pair ? "Backing waveform hidden for blind review" : "Backing";
+  get("backing-label").textContent = view.pair ? "Candidate waveform hidden for blind review" : backingFile(take()) ? "Backing" : "Generated mix";
+  get("pair-styles").hidden = view.session.id !== "pilot" || Boolean(view.pair) || !get("pair-style").options.length;
+  for (const button of document.querySelectorAll("[data-monitor]")) {
+    const mode = button.dataset.monitor;
+    button.disabled = (Boolean(view.pair) && mode !== "mix") || (mode === "backing" && !backingFile(take()));
+    if (mode === "backing") button.textContent = !view.pair && !backingFile(take()) ? "Backing unavailable" : "Backing";
+  }
+  toggleGroup("[data-monitor]", "monitor", view.monitor);
   get("explore").setAttribute("aria-pressed", String(!view.pair));
   get("blind").setAttribute("aria-pressed", String(Boolean(view.pair)));
   renderTimeline();
@@ -296,14 +327,40 @@ function renderSelection() {
   void plot();
 }
 
+function stylePairs() {
+  const groups = new Map();
+  view.session.variants.forEach((candidate, index) => {
+    if (!candidate.style_id) return;
+    if (!groups.has(candidate.style_id)) groups.set(candidate.style_id, {label: candidate.style, indices: []});
+    groups.get(candidate.style_id).indices.push(index);
+  });
+  return Array.from(groups.entries()).filter(([, group]) => group.indices.length >= 2);
+}
+
+function setPairStyles() {
+  const select = get("pair-style");
+  select.replaceChildren();
+  if (view.session.id === "pilot") {
+    for (const [id, group] of stylePairs()) {
+      const option = node("option", group.label);
+      option.value = id;
+      select.append(option);
+    }
+  }
+  get("blind").disabled = view.session.id === "pilot" ? !select.options.length : view.session.variants.length < 2;
+}
+
 function blind() {
-  const count = view.session.variants.length;
+  const eligible = view.session.id === "pilot"
+    ? new Map(stylePairs()).get(get("pair-style").value)?.indices || []
+    : view.session.variants.map((_, index) => index);
+  const count = eligible.length;
   if (count < 2 || view.pair) return;
   pause();
   const a = Math.floor(Math.random() * count);
   const b = (a + 1 + Math.floor(Math.random() * (count - 1))) % count;
-  view.pair = [a, b];
-  view.take = a;
+  view.pair = [eligible[a], eligible[b]];
+  view.take = eligible[a];
   view.monitor = "mix";
   player.position = 0;
   player.clipEnd = null;
@@ -313,18 +370,58 @@ function blind() {
   renderClock();
 }
 
-async function loadSession(id) {
-  if (view.loading || id === view.session?.id) return;
+async function loadPilotSongs() {
+  if (pilotSongs) return pilotSongs;
+  const response = await fetch("audio/pilot/sessions.json");
+  if (!response.ok) throw new Error("The pilot index could not be loaded.");
+  pilotSongs = await response.json();
+  const select = get("pilot-song");
+  select.replaceChildren();
+  for (const song of pilotSongs) {
+    const option = node("option", song.title);
+    option.value = song.id;
+    select.append(option);
+  }
+  return pilotSongs;
+}
+
+function renderProvenance(manifest) {
+  const element = get("pilot-provenance");
+  element.hidden = view.session.id !== "pilot";
+  element.replaceChildren();
+  if (element.hidden) return;
+  const paragraph = node("p", manifest.provenance.detail + " ");
+  const link = node("a", manifest.provenance.label);
+  link.href = manifest.provenance.url;
+  const license = node("a", "License");
+  license.href = manifest.provenance.license_url;
+  const reference = node("a", "Bar, section and lyric reference");
+  reference.href = view.session.base + manifest.reference_file;
+  paragraph.append(link, " · ", license, " · ", reference);
+  element.append(paragraph);
+}
+
+async function loadSession(id, songId) {
+  if (view.loading || (id === view.session?.id && (!songId || songId === view.session.input_id))) return;
   view.loading = true;
   pause();
   get("play").disabled = true;
   get("status").textContent = "Loading session…";
-  const path = sessionPaths[id];
   try {
+    let path = sessionPaths[id];
+    if (id === "pilot") {
+      const songs = await loadPilotSongs();
+      const song = songs.find((entry) => entry.id === songId) || songs[0];
+      path = `audio/pilot/${song.manifest}`;
+      get("pilot-song").value = song.id;
+    }
     const response = await fetch(path);
     if (!response.ok) throw new Error("This session could not be loaded.");
     const manifest = await response.json();
     if (!manifest.variants?.length || !manifest.vocal?.file || !(manifest.duration_s > 0)) throw new Error("The session manifest is incomplete.");
+    if (manifest.variants.some((candidate) => candidate.output_kind === "mix-only" ? !candidate.mix_file : !candidate.file)) {
+      throw new Error("A candidate is missing its playback file.");
+    }
     player.context ||= new (window.AudioContext || window.webkitAudioContext)();
     view.session = {...manifest, id, base: path.slice(0, path.lastIndexOf("/") + 1)};
     Object.assign(view, {take: 0, pair: null, monitor: "mix", bar: 0});
@@ -332,10 +429,12 @@ async function loadSession(id) {
     player.clipEnd = null;
     get("scrub").max = manifest.duration_s;
     get("session-title").textContent = manifest.title || "Eight bars, one vocal";
-    get("session-meta").textContent = manifest.bpm ? `${manifest.bpm} BPM · ${manifest.beats_per_bar}/4 · ~${Math.round(manifest.duration_s)} s · Procedural audio` : `${Math.round(manifest.duration_s)} s · Original synthetic guide · No annotated meter`;
+    get("session-meta").textContent = manifest.meta || (manifest.bpm ? `${manifest.bpm} BPM · ${manifest.beats_per_bar}/4 · ~${Math.round(manifest.duration_s)} s · Procedural audio` : `${Math.round(manifest.duration_s)} s · Original synthetic guide · No annotated meter`);
     get("timeline").setAttribute("aria-label", manifest.bars.length ? "Jump to a bar" : "Jump to a vocal note");
     get("status").textContent = "";
-    get("blind").disabled = manifest.variants.length < 2;
+    get("pilot-songs").hidden = id !== "pilot";
+    setPairStyles();
+    renderProvenance(manifest);
     toggleGroup("[data-session]", "session", id);
     toggleGroup("[data-monitor]", "monitor", "mix");
     renderSelection();
@@ -362,6 +461,7 @@ get("explore").addEventListener("click", () => {
   if (!view.pair) return;
   view.pair = null;
   renderSelection();
+  renderClock();
 });
 get("scrub").addEventListener("input", (event) => {
   player.clipEnd = null;
@@ -370,6 +470,9 @@ get("scrub").addEventListener("input", (event) => {
 for (const button of document.querySelectorAll("[data-session]")) {
   button.addEventListener("click", () => { void loadSession(button.dataset.session); });
 }
+get("pilot-song").addEventListener("change", (event) => {
+  void loadSession("pilot", event.target.value);
+});
 for (const button of document.querySelectorAll("[data-monitor]")) {
   button.addEventListener("click", () => {
     if (button.dataset.monitor === view.monitor) return;
@@ -385,14 +488,27 @@ get("vote").addEventListener("submit", (event) => {
   if (!view.pair) return;
   const fields = new FormData(event.currentTarget);
   const winner = fields.get("winner");
-  const candidateIds = view.pair.map((index) => view.session.variants[index].id);
-  votes.push({session_id: view.session.id, dataset_version: view.session.version || 1,
-    presentation: {A: candidateIds[0], B: candidateIds[1]}, preference: winner,
-    chosen_candidate_id: winner === "tie" ? null : candidateIds[winner === "A" ? 0 : 1],
-    rejected_candidate_id: winner === "tie" ? null : candidateIds[winner === "A" ? 1 : 0],
-    timing_judgment: fields.get("timing_review") || null, reason: fields.get("reason"),
-    note: fields.get("note").trim(), recorded_at: new Date().toISOString(),
-  });
+  if (!winner) return;
+  const [a, b] = view.pair.map((index) => view.session.variants[index]);
+  const position = currentPosition();
+  const bar = meter().find((entry) => position >= entry.start_s && position < entry.end_s);
+  const isPilot = view.session.id === "pilot";
+  const canReuse = isPilot && fields.has("reuse");
+  const describe = (candidate) => ({candidate_id: candidate.id, output_sha256: candidate.output_sha256 || null});
+  const vote = {
+    record_version: 2, session_id: view.session.id, dataset_version: view.session.version || 1,
+    input_id: view.session.input_id || null, input_sha256: view.session.vocal.sha256 || null,
+    scope: isPilot ? "same-style" : "practice",
+    style_id: isPilot ? a.style_id : null, presentation: {A: describe(a), B: describe(b)}, preference: winner,
+    timing_judgment: fields.get("timing_review") || null, reason: fields.get("reason") || null,
+    bar: bar?.index ?? null, time_s: Number(position.toFixed(3)),
+    note: fields.get("note").trim(), recorded_at: new Date().toISOString(), reuse_consent: canReuse,
+  };
+  if (canReuse && (winner === "A" || winner === "B")) {
+    vote.chosen = describe(winner === "A" ? a : b);
+    vote.rejected = describe(winner === "A" ? b : a);
+  }
+  votes.push(vote);
   let persisted = true;
   try { localStorage.setItem(voteKey, JSON.stringify(votes)); }
   catch { persisted = false; }
@@ -401,7 +517,12 @@ get("vote").addEventListener("submit", (event) => {
   if (!persisted) get("saved").textContent = "Storage unavailable. Export before you close the page.";
 });
 get("export").addEventListener("click", () => {
-  const payload = new Blob([votes.map((vote) => JSON.stringify(vote)).join("\n"), "\n"], {type: "application/x-ndjson"});
+  const exportRows = votes.map((vote) => {
+    if (vote.record_version === 2) return vote;
+    const {chosen_candidate_id, rejected_candidate_id, ...historicVote} = vote;
+    return {...historicVote, scope: "practice", reuse_consent: false};
+  });
+  const payload = new Blob([exportRows.map((vote) => JSON.stringify(vote)).join("\n"), "\n"], {type: "application/x-ndjson"});
   const url = URL.createObjectURL(payload);
   const link = node("a");
   link.href = url;
@@ -412,4 +533,5 @@ get("export").addEventListener("click", () => {
 new ResizeObserver(() => { void plot(); }).observe(get("wave"));
 showVoteCount();
 requestAnimationFrame(frame);
-void loadSession("control");
+const query = new URLSearchParams(window.location.search);
+void loadSession(query.get("session") === "pilot" ? "pilot" : "control", query.get("song"));

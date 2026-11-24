@@ -1,0 +1,790 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "backing",
+  "audio_sha256": "668c855fa9d68be01dbb9932a1bc08b51f586074dce382ced46a79b88a631060",
+  "reference_sha256": "56b3f7ed928f2584aea802312d6f9a75c5db60efa9f7d64e5270e0393407a407",
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual phrase and form reading of the two independent note transcriptions and source lyrics, with signal-level checks of breath gaps and ending from the source WAV. A 2.19 s opening span comes from plausible subdivision of the repeated motivic sentence, and the refrain’s four initial figures start about 1.18 s apart, yielding a possible 2.38 s 4/4 bar. The bar phase and meter are underdetermined. No human listening judgment is recorded.",
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "detector_status": "events_proposed",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.019999999999999574,
+  "duration_flag": null,
+  "first_downbeat_s": 2.26,
+  "first_downbeat_raw_lag_s": 1.5599999999999998,
+  "entry_flag": "late_possible",
+  "signal": {
+    "duration_s": 30.02,
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "peak_absolute_sample": 1.1863925457000732,
+    "out_of_range_sample_count": 24,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": 0.0,
+    "last_signal_s": 28.86,
+    "blank_intervals": [
+      {
+        "start_s": 22.46,
+        "end_s": 23.04,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 28.86,
+        "end_s": 30.02,
+        "reason": "audio_below_rms_gate"
+      }
+    ]
+  },
+  "detections": {
+    "beats": [
+      {
+        "time_s": 0.44,
+        "confidence": 0.9999719661008493,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 1.04,
+        "confidence": 0.9999882311696762,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 1.64,
+        "confidence": 0.9999888330532675,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.26,
+        "confidence": 0.9999962516217896,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.86,
+        "confidence": 0.9999869493089114,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.48,
+        "confidence": 0.9999855352808298,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.08,
+        "confidence": 0.9999878621645804,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.68,
+        "confidence": 0.9999933878035723,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.28,
+        "confidence": 0.9999913938665398,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.88,
+        "confidence": 0.9999845443632028,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.48,
+        "confidence": 0.9999865210113947,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.06,
+        "confidence": 0.9999939176464803,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.68,
+        "confidence": 0.9999961176884058,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.28,
+        "confidence": 0.9999931704644258,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.88,
+        "confidence": 0.9999920513180794,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.48,
+        "confidence": 0.9999959970249357,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 10.1,
+        "confidence": 0.9999955358041652,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 10.7,
+        "confidence": 0.9999933476399994,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.3,
+        "confidence": 0.99999452965419,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.9,
+        "confidence": 0.9999918940199966,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 12.52,
+        "confidence": 0.9999964108958288,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.12,
+        "confidence": 0.9999915152836386,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.72,
+        "confidence": 0.9999943001480605,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.32,
+        "confidence": 0.9999887821393842,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.94,
+        "confidence": 0.9999931013187786,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.52,
+        "confidence": 0.9999921615463531,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.12,
+        "confidence": 0.9999842153609727,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.72,
+        "confidence": 0.9999934582777412,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.32,
+        "confidence": 0.9999902628532605,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.92,
+        "confidence": 0.9999923856919152,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.54,
+        "confidence": 0.9999882113322768,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.14,
+        "confidence": 0.999989742445949,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.74,
+        "confidence": 0.9999949751258178,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.36,
+        "confidence": 0.9999919471693026,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.96,
+        "confidence": 0.9999845214264083,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.58,
+        "confidence": 0.999962981960224,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.18,
+        "confidence": 0.9999910041926454,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.8,
+        "confidence": 0.9999422500195728,
+        "low_confidence": false,
+        "suppression_reason": "audio_below_rms_gate"
+      },
+      {
+        "time_s": 23.42,
+        "confidence": 0.9999786600349151,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 24.02,
+        "confidence": 0.9999843506179293,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 24.64,
+        "confidence": 0.9999641300475803,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 25.26,
+        "confidence": 0.9999020337136831,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 25.86,
+        "confidence": 0.9996147544063548,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 26.46,
+        "confidence": 0.999690711553115,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 27.06,
+        "confidence": 0.9986861403980047,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 27.66,
+        "confidence": 0.9983643558174663,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 28.24,
+        "confidence": 0.9415680125115168,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 28.84,
+        "confidence": 0.8199707252065926,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ],
+    "downbeats": [
+      {
+        "time_s": 2.26,
+        "confidence": 0.9995364078144996,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.68,
+        "confidence": 0.999937254628189,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.06,
+        "confidence": 0.9999817058467858,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.48,
+        "confidence": 0.9998725156057979,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.9,
+        "confidence": 0.9976665819438388,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.32,
+        "confidence": 0.9999022906515038,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.72,
+        "confidence": 0.9999056604387513,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.14,
+        "confidence": 0.9997964304087288,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.58,
+        "confidence": 0.993384817269363,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 24.02,
+        "confidence": 0.9982636005820192,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 26.46,
+        "confidence": 0.9997158528950015,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 28.84,
+        "confidence": 0.9583485445833726,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ]
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 6,
+    "reference_count": 13,
+    "eligible_detection_count": 12,
+    "median_raw_lag_s": -0.009999999999999787,
+    "median_absolute_residual_s": 0.03999999999999915,
+    "matched": [
+      {
+        "bar": 5,
+        "time_s": 9.56,
+        "section": "Lift",
+        "lyrics": "why I might be fired",
+        "detected_s": 9.48,
+        "raw_lag_s": -0.08000000000000007,
+        "residual_s": -0.08000000000000007,
+        "confidence": 0.9998725156057979,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+        ],
+        "timing_flag": "early"
+      },
+      {
+        "bar": 6,
+        "time_s": 11.94,
+        "section": "Refrain",
+        "lyrics": "Tryin’ to sleep",
+        "detected_s": 11.9,
+        "raw_lag_s": -0.03999999999999915,
+        "residual_s": -0.03999999999999915,
+        "confidence": 0.9976665819438388,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 7,
+        "time_s": 14.34,
+        "section": "Refrain",
+        "lyrics": "tryin’ to sleep",
+        "detected_s": 14.32,
+        "raw_lag_s": -0.019999999999999574,
+        "residual_s": -0.019999999999999574,
+        "confidence": 0.9999022906515038,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 8,
+        "time_s": 16.72,
+        "section": "Refrain",
+        "lyrics": "force my eyelids closed",
+        "detected_s": 16.72,
+        "raw_lag_s": 0.0,
+        "residual_s": 0.0,
+        "confidence": 0.9999056604387513,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 9,
+        "time_s": 19.1,
+        "section": "Refrain",
+        "lyrics": "tryin’ to sleep",
+        "detected_s": 19.14,
+        "raw_lag_s": 0.03999999999999915,
+        "residual_s": 0.03999999999999915,
+        "confidence": 0.9997964304087288,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 10,
+        "time_s": 21.48,
+        "section": "Refrain",
+        "lyrics": "can't even dose",
+        "detected_s": 21.58,
+        "raw_lag_s": 0.09999999999999787,
+        "residual_s": 0.09999999999999787,
+        "confidence": 0.993384817269363,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+        ],
+        "timing_flag": "late"
+      }
+    ],
+    "unmatched_reference": [
+      {
+        "bar": 1,
+        "time_s": 0.7,
+        "section": "Verse",
+        "lyrics": "close my",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown."
+        ]
+      },
+      {
+        "bar": 2,
+        "time_s": 2.89,
+        "section": "Verse",
+        "lyrics": "I close my eyes",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat."
+        ]
+      },
+      {
+        "bar": 3,
+        "time_s": 5.08,
+        "section": "Verse",
+        "lyrics": "phrase tail",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Lift begins after a breath gap. Bar phase can shift within the gap."
+        ]
+      },
+      {
+        "bar": 4,
+        "time_s": 7.3,
+        "section": "Lift",
+        "lyrics": "understand",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+        ]
+      },
+      {
+        "bar": 11,
+        "time_s": 23.26,
+        "section": "Verse reprise",
+        "lyrics": "so I close my eyes",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The reprise phase is ambiguous after the preceding phrase resolves."
+        ]
+      },
+      {
+        "bar": 12,
+        "time_s": 25.55,
+        "section": "Verse reprise",
+        "lyrics": "baby coughs",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Final phrases are loose and tail to silence. Bar continuation is uncertain."
+        ]
+      },
+      {
+        "bar": 13,
+        "time_s": 27.75,
+        "section": "Verse reprise",
+        "lyrics": "car alarm goes off",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Final phrases are loose and tail to silence. Bar continuation is uncertain."
+        ]
+      }
+    ],
+    "extra_detected": [
+      {
+        "time_s": 2.26,
+        "confidence": 0.9995364078144996,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 2,
+        "raw_lag_s_to_nearest_bar": -0.6300000000000003,
+        "residual_s_to_nearest_bar": -0.6300000000000003,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 4.68,
+        "confidence": 0.999937254628189,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 3,
+        "raw_lag_s_to_nearest_bar": -0.40000000000000036,
+        "residual_s_to_nearest_bar": -0.40000000000000036,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 7.06,
+        "confidence": 0.9999817058467858,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 4,
+        "raw_lag_s_to_nearest_bar": -0.2400000000000002,
+        "residual_s_to_nearest_bar": -0.2400000000000002,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 24.02,
+        "confidence": 0.9982636005820192,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 11,
+        "raw_lag_s_to_nearest_bar": 0.759999999999998,
+        "residual_s_to_nearest_bar": 0.759999999999998,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 26.46,
+        "confidence": 0.9997158528950015,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 12,
+        "raw_lag_s_to_nearest_bar": 0.9100000000000001,
+        "residual_s_to_nearest_bar": 0.9100000000000001,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 28.84,
+        "confidence": 0.9583485445833726,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 13,
+        "raw_lag_s_to_nearest_bar": 1.0899999999999999,
+        "residual_s_to_nearest_bar": 1.0899999999999999,
+        "reason": "downbeat_without_unique_reference_match"
+      }
+    ]
+  },
+  "global_shift": {
+    "estimate_s": null,
+    "matched_support": 0,
+    "min_support": 3,
+    "eligible_reference_count": 0,
+    "eligible_detection_count": 12,
+    "search_limit_s": 0.75,
+    "status": "insufficient_evidence"
+  },
+  "corrected": null,
+  "section_boundaries": [
+    {
+      "name": "Verse",
+      "reference_start_s": 0.16,
+      "nearest_downbeat_s": 2.26,
+      "raw_lag_s": 2.0999999999999996,
+      "confidence": 0.9995364078144996,
+      "reference_uncertainty": [
+        "The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown."
+      ]
+    },
+    {
+      "name": "Lift",
+      "reference_start_s": 6.22,
+      "nearest_downbeat_s": 7.06,
+      "raw_lag_s": 0.8399999999999999,
+      "confidence": 0.9999817058467858,
+      "reference_uncertainty": [
+        "Lift begins after a breath gap. Bar phase can shift within the gap."
+      ]
+    },
+    {
+      "name": "Refrain",
+      "reference_start_s": 12.03,
+      "nearest_downbeat_s": 11.9,
+      "raw_lag_s": -0.129999999999999,
+      "confidence": 0.9976665819438388,
+      "reference_uncertainty": [
+        "Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+      ]
+    },
+    {
+      "name": "Verse reprise",
+      "reference_start_s": 23.12,
+      "nearest_downbeat_s": 24.02,
+      "raw_lag_s": 0.8999999999999986,
+      "confidence": 0.9982636005820192,
+      "reference_uncertainty": [
+        "The reprise phase is ambiguous after the preceding phrase resolves."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.73,
+      "reason": "The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown."
+    },
+    {
+      "start_s": 2.6,
+      "end_s": 3.2,
+      "reason": "Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat."
+    },
+    {
+      "start_s": 4.9,
+      "end_s": 6.37,
+      "reason": "Lift begins after a breath gap. Bar phase can shift within the gap."
+    },
+    {
+      "start_s": 6.95,
+      "end_s": 10.15,
+      "reason": "Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+    },
+    {
+      "start_s": 11.58,
+      "end_s": 12.39,
+      "reason": "Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+    },
+    {
+      "start_s": 13.95,
+      "end_s": 22.42,
+      "reason": "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+    },
+    {
+      "start_s": 22.3,
+      "end_s": 23.52,
+      "reason": "The reprise phase is ambiguous after the preceding phrase resolves."
+    },
+    {
+      "start_s": 25.4,
+      "end_s": 30.0,
+      "reason": "Final phrases are loose and tail to silence. Bar continuation is uncertain."
+    }
+  ],
+  "low_confidence_downbeats": [],
+  "section_transitions": [
+    {
+      "bar": 6,
+      "time_s": 11.94,
+      "section": "Refrain",
+      "lyrics": "Tryin’ to sleep",
+      "detected_s": 11.9,
+      "raw_lag_s": -0.03999999999999915,
+      "residual_s": -0.03999999999999915,
+      "confidence": 0.9976665819438388,
+      "low_confidence": false,
+      "reference_uncertainty": [
+        "Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+      ],
+      "timing_flag": "within_50ms",
+      "timing_status": "paired"
+    },
+    {
+      "bar": 4,
+      "time_s": 7.3,
+      "section": "Lift",
+      "lyrics": "understand",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+      ],
+      "timing_status": "unmatched"
+    },
+    {
+      "bar": 11,
+      "time_s": 23.26,
+      "section": "Verse reprise",
+      "lyrics": "so I close my eyes",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "The reprise phase is ambiguous after the preceding phrase resolves."
+      ],
+      "timing_status": "unmatched"
+    }
+  ],
+  "analysis_seconds": 1.2922421246767044
+}

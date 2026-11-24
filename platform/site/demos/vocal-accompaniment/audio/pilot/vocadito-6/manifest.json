@@ -1,0 +1,562 @@
+{
+  "version": "fixed-vocal-2026-11-24-v1",
+  "input_id": "vocadito-6",
+  "title": "Love Song for My Little Dog (Vocadito 6)",
+  "duration_s": 23.84,
+  "meta": "23.8 s · human solo vocal · tentative bar markers",
+  "bars": [
+    {
+      "index": 1,
+      "start_s": 0.48,
+      "end_s": 3.32,
+      "section": "Opening",
+      "lyrics": "write a love song"
+    },
+    {
+      "index": 2,
+      "start_s": 3.32,
+      "end_s": 6.16,
+      "section": "Opening",
+      "lyrics": "love song"
+    },
+    {
+      "index": 3,
+      "start_s": 6.16,
+      "end_s": 9.0,
+      "section": "Opening",
+      "lyrics": "all about my little dog"
+    },
+    {
+      "index": 4,
+      "start_s": 9.0,
+      "end_s": 11.81,
+      "section": "Opening",
+      "lyrics": "little dog"
+    },
+    {
+      "index": 5,
+      "start_s": 11.81,
+      "end_s": 14.84,
+      "section": "Descriptive phrase",
+      "lyrics": "he is cute, his is small"
+    },
+    {
+      "index": 6,
+      "start_s": 14.84,
+      "end_s": 17.87,
+      "section": "Descriptive phrase",
+      "lyrics": "but he snores loud"
+    },
+    {
+      "index": 7,
+      "start_s": 17.87,
+      "end_s": 20.89,
+      "section": "Tag",
+      "lyrics": "he’s the best of ‘em all"
+    },
+    {
+      "index": 8,
+      "start_s": 20.89,
+      "end_s": 23.831995,
+      "section": "Tag",
+      "lyrics": "my little pal"
+    }
+  ],
+  "vocal": {
+    "file": "dry.mp3",
+    "sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b"
+  },
+  "takes_note": "Bar markers are tentative and detector flags need a listening review.",
+  "provenance": {
+    "detail": "Solo vocal from Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein, vocadito-6, CC BY 4.0. The public dry MP3 is a listening copy of the exact WAV used for every candidate. Candidate mixes sum that dry vocal and the generated backing at fixed gain.",
+    "label": "Vocal source and attribution",
+    "url": "https://zenodo.org/records/5578807",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "variants": [
+    {
+      "id": "vocadito-6-anyaccomp-seed29",
+      "label": "AnyAccomp · No style conditioning · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": null,
+      "style": "No style conditioning",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-anyaccomp-seed29-backing.mp3",
+      "mix_file": "vocadito-6-anyaccomp-seed29-mix.mp3",
+      "output_sha256": "8a2d54a79263f577ad390a3a44a88574f56bc2430c5d6fea1cd562a5db839732",
+      "timing_file": "vocadito-6-anyaccomp-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-acoustic-folk-seed29",
+      "label": "LaDA-Band · Acoustic folk · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-acoustic-folk-seed29-backing.mp3",
+      "mix_file": "vocadito-6-lada-acoustic-folk-seed29-mix.mp3",
+      "output_sha256": "2c1c8d838868901f530bf09aa85eeca9d6f37fd065c45de5b62db9df2d132a45",
+      "timing_file": "vocadito-6-lada-acoustic-folk-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": -140,
+          "status": "uncertain",
+          "reason": "Detected at 3.18 s with activation 0.69. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+        },
+        {
+          "index": 3,
+          "offset_ms": 40,
+          "status": "uncertain",
+          "reason": "Detected at 6.20 s with activation 0.67. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": 130,
+          "status": "uncertain",
+          "reason": "Detected at 21.02 s with activation 0.99. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-acoustic-folk-seed73",
+      "label": "LaDA-Band · Acoustic folk · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-acoustic-folk-seed73-backing.mp3",
+      "mix_file": "vocadito-6-lada-acoustic-folk-seed73-mix.mp3",
+      "output_sha256": "97f52731b85cf5274d15a534080f7dc9bf29b316f7277bfed472fb84f3dd4ebb",
+      "timing_file": "vocadito-6-lada-acoustic-folk-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": 130,
+          "status": "uncertain",
+          "reason": "Detected at 21.02 s with activation 0.99. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-sparse-synth-pop-seed29",
+      "label": "LaDA-Band · Sparse synth-pop · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-sparse-synth-pop-seed29-backing.mp3",
+      "mix_file": "vocadito-6-lada-sparse-synth-pop-seed29-mix.mp3",
+      "output_sha256": "59e1560a2ca0b21e6ea8a24cbbebc33384b75e97a7ef3b57b4b9df78b412bd0d",
+      "timing_file": "vocadito-6-lada-sparse-synth-pop-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": -60,
+          "status": "uncertain",
+          "reason": "Detected at 3.26 s with activation 0.44. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-sparse-synth-pop-seed73",
+      "label": "LaDA-Band · Sparse synth-pop · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-sparse-synth-pop-seed73-backing.mp3",
+      "mix_file": "vocadito-6-lada-sparse-synth-pop-seed73-mix.mp3",
+      "output_sha256": "08ed966c449724d3878b90b1c52fcb9e371766bcf0ea616c4d9a2558732f130d",
+      "timing_file": "vocadito-6-lada-sparse-synth-pop-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": 120,
+          "status": "uncertain",
+          "reason": "Detected at 14.96 s with activation 0.81. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase."
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": 130,
+          "status": "uncertain",
+          "reason": "Detected at 21.02 s with activation 0.51. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-half-time-rnb-seed29",
+      "label": "LaDA-Band · Half-time R&B · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-half-time-rnb-seed29-backing.mp3",
+      "mix_file": "vocadito-6-lada-half-time-rnb-seed29-mix.mp3",
+      "output_sha256": "5dd1417201c8205b95d7846511edb3bc23e8624c57169884ff5c28d3c63f16a3",
+      "timing_file": "vocadito-6-lada-half-time-rnb-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-6-lada-half-time-rnb-seed73",
+      "label": "LaDA-Band · Half-time R&B · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-6-lada-half-time-rnb-seed73-backing.mp3",
+      "mix_file": "vocadito-6-lada-half-time-rnb-seed73-mix.mp3",
+      "output_sha256": "243d722cc02c92ad3f8e7d32efabe8bc7fd9396c88f77cdebae6a6926c72b843",
+      "timing_file": "vocadito-6-lada-half-time-rnb-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The start has a candidate pickup and no independent cue for absolute beat phase.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Mid-phrase boundary interpolated between peaks of the repeated pitch figure.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The voice sustains or ornaments pitches around the estimated phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": 10,
+          "status": "uncertain",
+          "reason": "Detected at 11.82 s with activation 0.11. Detector confidence is low. Reference uncertain. The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Phrase tail and new melody figure admit more than one bar phase.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Tag begins near a phrase transition without a separately heard strong beat.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    }
+  ],
+  "reference_file": "reference.json",
+  "scored_reference_sha256": "108b52674ec5d8fdf4c2c30537887c194c1ca7d168e95c023d0dd36f508bca13"
+}

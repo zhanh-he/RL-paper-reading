@@ -1,0 +1,141 @@
+{
+  "codec": "libmp3lame",
+  "normalization": "none",
+  "files": {
+    "dry.mp3": {
+      "source_audio_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "sha256": "87493518b2f990fe57879023eb9183869abeac4f7fc58f31ae44c3e28230c2c2",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.138833
+    },
+    "vocadito-18-anyaccomp-seed29-backing.mp3": {
+      "source_audio_sha256": "86e2c7eb59c5fd3977a6589ebbfd5144f32768e43de21b0bb0fff2a6626a2b11",
+      "sha256": "50d12fb43886359a05222dad63520cb685393a8fb6327275833cb49f23359c0a",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.14
+    },
+    "vocadito-18-anyaccomp-seed29-mix.mp3": {
+      "source_audio_sha256": "41c6d32a1ad19cf7ffbd77a8e000683e444bb15d02611a948869514eb83e60c4",
+      "sha256": "ba4e1864c9f1ad3a317ae71e737197bc9544a60841860d6aa935bacb8fc69236",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.14
+    },
+    "vocadito-18-lada-acoustic-folk-seed29-backing.mp3": {
+      "source_audio_sha256": "c47ee90b27686f44c36181863f73773d09d590ad4dd18df99a1717f50f171df4",
+      "sha256": "9812eb1ff1831d29dd99899ccf6fbc70fa4363c2132329ff255c6a384b4cb132",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-acoustic-folk-seed29-mix.mp3": {
+      "source_audio_sha256": "05a1c5025e3bf7ebde18b74115bc78036c1c1207fea5af258deafe73a16ab792",
+      "sha256": "33ddfb8496350d01cad474813ddadffde1a88037cf33fca50cef710f6b419b4d",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-acoustic-folk-seed73-backing.mp3": {
+      "source_audio_sha256": "54d292a6dff1f511b69cc37ca12fd701a45565e12bd30b489b038331513fb14f",
+      "sha256": "20908eb121d2d3747a91652c831acd8a87c865b0538ca63d403a28a9dc108660",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-acoustic-folk-seed73-mix.mp3": {
+      "source_audio_sha256": "c572da90aa67986df652926b2aba46666c499a8cfd9c233928c8a7cf1c6087b6",
+      "sha256": "68107f120d2afc296311430cce0494f5dee405ea93958f5c588fb6e6d9ce1e91",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-half-time-rnb-seed29-backing.mp3": {
+      "source_audio_sha256": "ff1959aee9e787953606f0ee4d40247697541974c8dedcfd009412b2bd6cd1a3",
+      "sha256": "6124b78e164d65159064a1f1bfc6cb8bac148efd2e3a53761f58c0da1d1ad77c",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-half-time-rnb-seed29-mix.mp3": {
+      "source_audio_sha256": "6881980840ae610c9fa6a0365864028f874edde0a26d4780e795d25e5a6020f0",
+      "sha256": "666eabc9bb09803e62b6b536a794bead36e73987cb3d5b8195f22ba17b4a2aa3",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-half-time-rnb-seed73-backing.mp3": {
+      "source_audio_sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+      "sha256": "d8a9f1591f44bbe020d610dfc190f5a2b6803a35764f77cbc773d1193eb444f9",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-half-time-rnb-seed73-mix.mp3": {
+      "source_audio_sha256": "c0441e1f4f829884a37702a8f67900a6d182ee67881d2119450327ca2c293484",
+      "sha256": "361b320399701056f1b4e26d441eb958781fe561a1b0a52052fe337c3fe1e37e",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "source_audio_sha256": "9eec814c7bc4485beeff1536285a7b5aef74553ae15848bce4ecca5b23cecb40",
+      "sha256": "506ae49a9f7aa340b5544759717202be637ea2a2ddfcdfa94c7afc574eba95e0",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "source_audio_sha256": "93803612c12edc93b1c0e34248bf7f474a50b0870e54d850a5850ba4ac799d4f",
+      "sha256": "48d07a303284bc8cc251968715406c1dd1d70dd9062f3a3f859d9a2c51882452",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-sparse-synth-pop-seed73-backing.mp3": {
+      "source_audio_sha256": "da579f8c46fbc8a5f861f27d5c17e5b5d809afc30f2d91283399b2549150c9d1",
+      "sha256": "9320b8cd1d497659cce91d20ee466671c7120f288d1f99b23632610430163041",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 29.16
+    },
+    "vocadito-18-lada-sparse-synth-pop-seed73-mix.mp3": {
+      "source_audio_sha256": "a2f7dd0294b9df37b1b436204367db9c1e0c91720350f7b669eed2ae5468199d",
+      "sha256": "930657d60e666af7d3bae3eb02429bf3ca9f3de864c3555f41cbf42b3e53d908",
+      "bytes": 701037,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 29.16
+    }
+  }
+}

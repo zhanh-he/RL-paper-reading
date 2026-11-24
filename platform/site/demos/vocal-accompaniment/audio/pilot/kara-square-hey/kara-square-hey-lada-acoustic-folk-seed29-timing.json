@@ -1,0 +1,247 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "backing",
+  "audio_sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+  "reference_sha256": "090e1869ce1c635b78b115c236bbfaf22a315bde4318d8cb04a1587e3e945fda",
+  "reference_type": "Artist-published tempo and cross-aligned companion-mix-supported meter, pending independent aural review",
+  "reference_basis": "A source-uploaded mix provides the timing anchor. Band-passed normalized cross-correlation aligns the dry stem to the mix at +10.757 s in 14 of 15 independently searched three-second windows (correlation 0.224–0.560). The mix has transient phases around 0.039–0.049 s at 123 BPM across low, mid and high frequency bands. Phase 0.024 s estimates the grid before acoustic decay/attack rise, and gives a verse-anchor agreement with the 22-beat dry stem start after accounting for the source alignment. Quarter phase carries about 30 ms model uncertainty. Four-beat grouping aligns with the eight-bar repeated opening phrase and distinct lift after two stanzas. Bar phase and lyric cue alignment await an independent human aural pass.",
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "detector_status": "no_signal",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.03999999999999915,
+  "duration_flag": null,
+  "first_downbeat_s": null,
+  "first_downbeat_raw_lag_s": null,
+  "entry_flag": null,
+  "signal": {
+    "duration_s": 26.84,
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "peak_absolute_sample": 0.003692626953125,
+    "out_of_range_sample_count": 0,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": null,
+    "last_signal_s": null,
+    "blank_intervals": [
+      {
+        "start_s": 0.0,
+        "end_s": 26.84,
+        "reason": "audio_below_rms_gate"
+      }
+    ]
+  },
+  "detections": {
+    "beats": [],
+    "downbeats": []
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 0,
+    "reference_count": 14,
+    "eligible_detection_count": 0,
+    "median_raw_lag_s": null,
+    "median_absolute_residual_s": null,
+    "matched": [],
+    "unmatched_reference": [
+      {
+        "bar": 1,
+        "time_s": 0.186512,
+        "section": "Question stanza",
+        "lyrics": "Are you here?",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": [
+          "Excerpt begins at a quiet point shortly before the first supported bar."
+        ]
+      },
+      {
+        "bar": 2,
+        "time_s": 2.137732,
+        "section": "Question stanza",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 3,
+        "time_s": 4.088951,
+        "section": "Question stanza",
+        "lyrics": "Can you see that life",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 4,
+        "time_s": 6.040171,
+        "section": "Question stanza",
+        "lyrics": "Is happening around you?",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 5,
+        "time_s": 7.99139,
+        "section": "Question stanza",
+        "lyrics": "Do you care?",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 6,
+        "time_s": 9.94261,
+        "section": "Question stanza",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 7,
+        "time_s": 11.893829,
+        "section": "Lift",
+        "lyrics": "When is the last time",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": [
+          "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+        ]
+      },
+      {
+        "bar": 8,
+        "time_s": 13.845049,
+        "section": "Lift",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 9,
+        "time_s": 15.796268,
+        "section": "Lift",
+        "lyrics": "You felt alive",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 10,
+        "time_s": 17.747488,
+        "section": "Lift",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 11,
+        "time_s": 19.698707,
+        "section": "Lift",
+        "lyrics": "You watched the sun",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 12,
+        "time_s": 21.649927,
+        "section": "Lift",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 13,
+        "time_s": 23.601146,
+        "section": "Lift",
+        "lyrics": "Set or rise?",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 14,
+        "time_s": 25.552366,
+        "section": "Lift",
+        "lyrics": "",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": [
+          "Sustained phrase ending and clipped lead-in to the next stanza."
+        ]
+      }
+    ],
+    "extra_detected": []
+  },
+  "global_shift": {
+    "estimate_s": null,
+    "matched_support": 0,
+    "min_support": 5,
+    "eligible_reference_count": 11,
+    "eligible_detection_count": 0,
+    "search_limit_s": 0.75,
+    "status": "insufficient_evidence"
+  },
+  "corrected": null,
+  "section_boundaries": [
+    {
+      "name": "Question stanza",
+      "reference_start_s": 0.186512,
+      "nearest_downbeat_s": null,
+      "raw_lag_s": null,
+      "confidence": null,
+      "reference_uncertainty": [
+        "Excerpt begins at a quiet point shortly before the first supported bar."
+      ]
+    },
+    {
+      "name": "Lift",
+      "reference_start_s": 11.893829,
+      "nearest_downbeat_s": null,
+      "raw_lag_s": null,
+      "confidence": null,
+      "reference_uncertainty": [
+        "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0,
+      "end_s": 0.3,
+      "reason": "Excerpt begins at a quiet point shortly before the first supported bar."
+    },
+    {
+      "start_s": 11.64,
+      "end_s": 12.18,
+      "reason": "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+    },
+    {
+      "start_s": 24.12,
+      "end_s": 26.8,
+      "reason": "Sustained phrase ending and clipped lead-in to the next stanza."
+    }
+  ],
+  "low_confidence_downbeats": [],
+  "section_transitions": [
+    {
+      "bar": 7,
+      "time_s": 11.893829,
+      "section": "Lift",
+      "lyrics": "When is the last time",
+      "reason": "audio_blank_at_reference",
+      "reference_uncertainty": [
+        "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+      ],
+      "timing_status": "unmatched"
+    }
+  ],
+  "analysis_seconds": 0.013804292306303978
+}

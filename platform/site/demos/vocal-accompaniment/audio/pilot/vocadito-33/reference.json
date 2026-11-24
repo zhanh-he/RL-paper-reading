@@ -1,0 +1,173 @@
+{
+  "song_id": "vocadito-33",
+  "title": "Trying to Sleep (Vocadito 33)",
+  "duration_s": 30.0,
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual phrase and form reading of the two independent note transcriptions and source lyrics, with signal-level checks of breath gaps and ending from the source WAV. A 2.19 s opening span comes from plausible subdivision of the repeated motivic sentence, and the refrain’s four initial figures start about 1.18 s apart, yielding a possible 2.38 s 4/4 bar. The bar phase and meter are underdetermined. No human listening judgment is recorded.",
+  "meter": "4/4 hypothesis",
+  "tempo_bpm": [
+    104,
+    110
+  ],
+  "bars": [
+    {
+      "bar": 1,
+      "time_s": 0.7,
+      "section": "Verse",
+      "lyrics": "close my"
+    },
+    {
+      "bar": 2,
+      "time_s": 2.89,
+      "section": "Verse",
+      "lyrics": "I close my eyes"
+    },
+    {
+      "bar": 3,
+      "time_s": 5.08,
+      "section": "Verse",
+      "lyrics": "phrase tail"
+    },
+    {
+      "bar": 4,
+      "time_s": 7.3,
+      "section": "Lift",
+      "lyrics": "understand"
+    },
+    {
+      "bar": 5,
+      "time_s": 9.56,
+      "section": "Lift",
+      "lyrics": "why I might be fired"
+    },
+    {
+      "bar": 6,
+      "time_s": 11.94,
+      "section": "Refrain",
+      "lyrics": "Tryin’ to sleep"
+    },
+    {
+      "bar": 7,
+      "time_s": 14.34,
+      "section": "Refrain",
+      "lyrics": "tryin’ to sleep"
+    },
+    {
+      "bar": 8,
+      "time_s": 16.72,
+      "section": "Refrain",
+      "lyrics": "force my eyelids closed"
+    },
+    {
+      "bar": 9,
+      "time_s": 19.1,
+      "section": "Refrain",
+      "lyrics": "tryin’ to sleep"
+    },
+    {
+      "bar": 10,
+      "time_s": 21.48,
+      "section": "Refrain",
+      "lyrics": "can't even dose"
+    },
+    {
+      "bar": 11,
+      "time_s": 23.26,
+      "section": "Verse reprise",
+      "lyrics": "so I close my eyes"
+    },
+    {
+      "bar": 12,
+      "time_s": 25.55,
+      "section": "Verse reprise",
+      "lyrics": "baby coughs"
+    },
+    {
+      "bar": 13,
+      "time_s": 27.75,
+      "section": "Verse reprise",
+      "lyrics": "car alarm goes off"
+    }
+  ],
+  "lyrics": "so I close my and the neighbor sings\nI close my eyes and the doorbell rings\n\nso you understand why I'm awfully tired\nand you understand why I might be fired\n\nTryin' to sleep, tryin' to sleep\ntryin' to sleep, yes I'm tryin' to sleep\ntryin' to sleep...\nforce my eyelids closed\ntryin' to sleep can't even dose\n\nso I close my eyes and the baby coughs\nI close my eyes the car alarm goes off",
+  "sections": [
+    {
+      "name": "Verse",
+      "start_s": 0.16
+    },
+    {
+      "name": "Lift",
+      "start_s": 6.22
+    },
+    {
+      "name": "Refrain",
+      "start_s": 12.03
+    },
+    {
+      "name": "Verse reprise",
+      "start_s": 23.12
+    }
+  ],
+  "uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.73,
+      "reason": "The opening vocal phrase can be heard as a pickup. Absolute beat phase is unknown."
+    },
+    {
+      "start_s": 2.6,
+      "end_s": 3.2,
+      "reason": "Second phrase enters around 2.89 s. The vocal attack alone does not mark a downbeat."
+    },
+    {
+      "start_s": 4.9,
+      "end_s": 6.37,
+      "reason": "Lift begins after a breath gap. Bar phase can shift within the gap."
+    },
+    {
+      "start_s": 6.95,
+      "end_s": 10.15,
+      "reason": "Free syllable placement around the lift. Grid uses approximate pulse interpolation."
+    },
+    {
+      "start_s": 11.58,
+      "end_s": 12.39,
+      "reason": "Waveform breath gap and refrain entry delimit a section, not a measured downbeat."
+    },
+    {
+      "start_s": 13.95,
+      "end_s": 22.42,
+      "reason": "Refrain variants imply a flexible pulse. Approximate 2.4 s bars are a navigation hypothesis."
+    },
+    {
+      "start_s": 22.3,
+      "end_s": 23.52,
+      "reason": "The reprise phase is ambiguous after the preceding phrase resolves."
+    },
+    {
+      "start_s": 25.4,
+      "end_s": 30.0,
+      "reason": "Final phrases are loose and tail to silence. Bar continuation is uncertain."
+    }
+  ],
+  "provenance": {
+    "collection": "vocadito v3",
+    "doi": "10.5281/zenodo.5578807",
+    "source_url": "https://zenodo.org/records/5578807",
+    "source_report": "https://arxiv.org/html/2110.05580#S2",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_evidence": "https://mirdata.readthedocs.io/en/stable/_modules/mirdata/datasets/vocadito.html",
+    "attribution": "Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein",
+    "composition_status": "Participant submission. The report allowed original or public-domain compositions. The track metadata does not identify which applies to this item.",
+    "recording": "Source-released 44.1 kHz, 16-bit mono WAV, kept byte-for-byte. Human solo vocal.",
+    "track_id": 33,
+    "archive_member": "Audio/vocadito_33.wav",
+    "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+    "format": {
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bits_per_sample": 16
+    }
+  }
+}

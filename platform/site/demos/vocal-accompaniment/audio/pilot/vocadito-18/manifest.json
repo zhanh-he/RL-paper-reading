@@ -1,0 +1,903 @@
+{
+  "version": "fixed-vocal-2026-11-24-v1",
+  "input_id": "vocadito-18",
+  "title": "Phantoms and Diamonds (Vocadito 18)",
+  "duration_s": 29.16,
+  "meta": "29.1 s · human solo vocal · tentative bar markers",
+  "bars": [
+    {
+      "index": 1,
+      "start_s": 0.46,
+      "end_s": 2.61,
+      "section": "Opening pair",
+      "lyrics": "See the phantoms"
+    },
+    {
+      "index": 2,
+      "start_s": 2.61,
+      "end_s": 4.76,
+      "section": "Opening pair",
+      "lyrics": "melting on your bed"
+    },
+    {
+      "index": 3,
+      "start_s": 4.76,
+      "end_s": 6.91,
+      "section": "Opening pair",
+      "lyrics": "phrase tail"
+    },
+    {
+      "index": 4,
+      "start_s": 6.91,
+      "end_s": 9.06,
+      "section": "Opening pair",
+      "lyrics": "vocal rest"
+    },
+    {
+      "index": 5,
+      "start_s": 9.06,
+      "end_s": 11.21,
+      "section": "Opening pair",
+      "lyrics": "make the diamonds"
+    },
+    {
+      "index": 6,
+      "start_s": 11.21,
+      "end_s": 13.36,
+      "section": "Opening pair",
+      "lyrics": "shine over your head"
+    },
+    {
+      "index": 7,
+      "start_s": 13.36,
+      "end_s": 15.51,
+      "section": "Opening pair",
+      "lyrics": "phrase tail"
+    },
+    {
+      "index": 8,
+      "start_s": 15.51,
+      "end_s": 17.66,
+      "section": "Opening pair",
+      "lyrics": "vocal rest"
+    },
+    {
+      "index": 9,
+      "start_s": 17.66,
+      "end_s": 19.81,
+      "section": "Answer and close",
+      "lyrics": "let the voices"
+    },
+    {
+      "index": 10,
+      "start_s": 19.81,
+      "end_s": 21.96,
+      "section": "Answer and close",
+      "lyrics": "seconds to escape"
+    },
+    {
+      "index": 11,
+      "start_s": 21.96,
+      "end_s": 24.11,
+      "section": "Answer and close",
+      "lyrics": "phrase tail"
+    },
+    {
+      "index": 12,
+      "start_s": 24.11,
+      "end_s": 26.26,
+      "section": "Answer and close",
+      "lyrics": "vocal rest"
+    },
+    {
+      "index": 13,
+      "start_s": 26.26,
+      "end_s": 28.41,
+      "section": "Answer and close",
+      "lyrics": "cause you're here to stay"
+    },
+    {
+      "index": 14,
+      "start_s": 28.41,
+      "end_s": 29.138821,
+      "section": "Answer and close",
+      "lyrics": "final sustained vowel"
+    }
+  ],
+  "vocal": {
+    "file": "dry.mp3",
+    "sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929"
+  },
+  "takes_note": "Bar markers are tentative and detector flags need a listening review.",
+  "provenance": {
+    "detail": "Solo vocal from Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein, vocadito-18, CC BY 4.0. The public dry MP3 is a listening copy of the exact WAV used for every candidate. Candidate mixes sum that dry vocal and the generated backing at fixed gain.",
+    "label": "Vocal source and attribution",
+    "url": "https://zenodo.org/records/5578807",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "variants": [
+    {
+      "id": "vocadito-18-anyaccomp-seed29",
+      "label": "AnyAccomp · No style conditioning · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": null,
+      "style": "No style conditioning",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-anyaccomp-seed29-backing.mp3",
+      "mix_file": "vocadito-18-anyaccomp-seed29-mix.mp3",
+      "output_sha256": "86e2c7eb59c5fd3977a6589ebbfd5144f32768e43de21b0bb0fff2a6626a2b11",
+      "timing_file": "vocadito-18-anyaccomp-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": 120,
+          "status": "uncertain",
+          "reason": "Detected at 13.48 s with activation 0.99. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence."
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": 0,
+          "status": "uncertain",
+          "reason": "Detected at 17.66 s with activation 0.83. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence."
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-acoustic-folk-seed29",
+      "label": "LaDA-Band · Acoustic folk · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-acoustic-folk-seed29-backing.mp3",
+      "mix_file": "vocadito-18-lada-acoustic-folk-seed29-mix.mp3",
+      "output_sha256": "c47ee90b27686f44c36181863f73773d09d590ad4dd18df99a1717f50f171df4",
+      "timing_file": "vocadito-18-lada-acoustic-folk-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Blank backing signal"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-acoustic-folk-seed73",
+      "label": "LaDA-Band · Acoustic folk · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-acoustic-folk-seed73-backing.mp3",
+      "mix_file": "vocadito-18-lada-acoustic-folk-seed73-mix.mp3",
+      "output_sha256": "54d292a6dff1f511b69cc37ca12fd701a45565e12bd30b489b038331513fb14f",
+      "timing_file": "vocadito-18-lada-acoustic-folk-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-sparse-synth-pop-seed29",
+      "label": "LaDA-Band · Sparse synth-pop · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-sparse-synth-pop-seed29-backing.mp3",
+      "mix_file": "vocadito-18-lada-sparse-synth-pop-seed29-mix.mp3",
+      "output_sha256": "9eec814c7bc4485beeff1536285a7b5aef74553ae15848bce4ecca5b23cecb40",
+      "timing_file": "vocadito-18-lada-sparse-synth-pop-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Blank backing signal"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-sparse-synth-pop-seed73",
+      "label": "LaDA-Band · Sparse synth-pop · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-sparse-synth-pop-seed73-backing.mp3",
+      "mix_file": "vocadito-18-lada-sparse-synth-pop-seed73-mix.mp3",
+      "output_sha256": "da579f8c46fbc8a5f861f27d5c17e5b5d809afc30f2d91283399b2549150c9d1",
+      "timing_file": "vocadito-18-lada-sparse-synth-pop-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-half-time-rnb-seed29",
+      "label": "LaDA-Band · Half-time R&B · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-half-time-rnb-seed29-backing.mp3",
+      "mix_file": "vocadito-18-lada-half-time-rnb-seed29-mix.mp3",
+      "output_sha256": "ff1959aee9e787953606f0ee4d40247697541974c8dedcfd009412b2bd6cd1a3",
+      "timing_file": "vocadito-18-lada-half-time-rnb-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": 120,
+          "status": "uncertain",
+          "reason": "Detected at 4.88 s with activation 0.96. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence."
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Blank backing signal"
+        }
+      ]
+    },
+    {
+      "id": "vocadito-18-lada-half-time-rnb-seed73",
+      "label": "LaDA-Band · Half-time R&B · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "half-time-rnb",
+      "style": "Half-time R&B",
+      "output_kind": "isolated-backing",
+      "file": "vocadito-18-lada-half-time-rnb-seed73-backing.mp3",
+      "mix_file": "vocadito-18-lada-half-time-rnb-seed73-mix.mp3",
+      "output_sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+      "timing_file": "vocadito-18-lada-half-time-rnb-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Absolute beat phase is unknown. The first attack could act as a pickup.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The tail and long breath leave bar phase unsupported by vocal evidence.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. The final sung note is sustained across the proposed bar.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    }
+  ],
+  "reference_file": "reference.json",
+  "scored_reference_sha256": "21a0e79d254913c57ef360ae97468b9384c174bfebc6e633b57114b467f0ad1a"
+}

@@ -1,0 +1,356 @@
+{
+  "schema": "accompaniment-timing-control/v1",
+  "reference_sha256": "63d1bf3e885822d644ee29025418c73db83704c39a4e075f03b9503054920d22",
+  "procedure": "Downbeats inferred from each rendered PCM control independently of the control reference",
+  "known_lag_s": 0.42,
+  "known_muted_bar_ids": [
+    5,
+    6
+  ],
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "results": {
+    "aligned": {
+      "audio_sha256": "33c3f11fdbdb1764bff9ef17979271a5075bd58d7f0ef3ea6aae913b121df98b",
+      "status": "events_proposed",
+      "analysis_seconds": 0.5151881631463766,
+      "entry_flag": null,
+      "first_downbeat_raw_lag_s": -0.010000000000000009,
+      "duration_flag": null,
+      "raw_match_count": 10,
+      "raw_extra_count": 0,
+      "raw_unmatched_reference": [],
+      "global_shift_s": -0.0018181818181801646,
+      "corrected_match_count": 10,
+      "corrected_median_absolute_residual_s": 0.004545454545453964,
+      "suppressed_downbeats": [
+        {
+          "time_s": 22.72,
+          "confidence": 0.9128299342386869,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        }
+      ]
+    },
+    "late": {
+      "audio_sha256": "0984194aa78fe7f8a892f8b30bf85bffc02dec670986193e785fec5c27d9fe2a",
+      "status": "events_proposed",
+      "analysis_seconds": 0.49205487594008446,
+      "entry_flag": "late_possible",
+      "first_downbeat_raw_lag_s": 0.41000000000000003,
+      "duration_flag": null,
+      "raw_match_count": 0,
+      "raw_extra_count": 10,
+      "raw_unmatched_reference": [
+        {
+          "bar": 1,
+          "time_s": 0.91,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 2,
+          "time_s": 3.091818181818182,
+          "section": "A",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 3,
+          "time_s": 5.2736363636363635,
+          "section": "A",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 4,
+          "time_s": 7.455454545454545,
+          "section": "A",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 5,
+          "time_s": 9.637272727272727,
+          "section": "A",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 6,
+          "time_s": 11.819090909090908,
+          "section": "B",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 7,
+          "time_s": 14.00090909090909,
+          "section": "B",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 8,
+          "time_s": 16.18272727272727,
+          "section": "B",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 9,
+          "time_s": 18.364545454545453,
+          "section": "B",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 10,
+          "time_s": 20.546363636363633,
+          "section": "B",
+          "reason": "no_paired_downbeat_within_tolerance",
+          "reference_uncertainty": []
+        }
+      ],
+      "global_shift_s": 0.41818181818182065,
+      "corrected_match_count": 10,
+      "corrected_median_absolute_residual_s": 0.004545454545453076,
+      "suppressed_downbeats": [
+        {
+          "time_s": 23.14,
+          "confidence": 0.9813526092440269,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        }
+      ]
+    },
+    "first_bar_muted": {
+      "audio_sha256": "cb673ecce366376ca0d7405f2a572a2f8af7b82cc19320445e544f153a1f3331",
+      "status": "events_proposed",
+      "analysis_seconds": 0.4612023774534464,
+      "entry_flag": "late_possible",
+      "first_downbeat_raw_lag_s": 2.17,
+      "duration_flag": null,
+      "raw_match_count": 9,
+      "raw_extra_count": 0,
+      "raw_unmatched_reference": [
+        {
+          "bar": 1,
+          "time_s": 0.91,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        }
+      ],
+      "global_shift_s": -0.0009090909090900823,
+      "corrected_match_count": 9,
+      "corrected_median_absolute_residual_s": 0.003636363636363882,
+      "suppressed_downbeats": [
+        {
+          "time_s": 0.92,
+          "confidence": 0.8902214814268263,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        },
+        {
+          "time_s": 22.72,
+          "confidence": 0.9023364253747596,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        }
+      ]
+    },
+    "two_bars_muted": {
+      "audio_sha256": "651df84cff01413534dc80c7b4756ad9375ac4c0fccae0a1b9feccd601f736a3",
+      "status": "events_proposed",
+      "analysis_seconds": 0.3398108761757612,
+      "entry_flag": null,
+      "first_downbeat_raw_lag_s": -0.010000000000000009,
+      "duration_flag": null,
+      "raw_match_count": 8,
+      "raw_extra_count": 0,
+      "raw_unmatched_reference": [
+        {
+          "bar": 5,
+          "time_s": 9.637272727272727,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 6,
+          "time_s": 11.819090909090908,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        }
+      ],
+      "global_shift_s": -0.005454545454544046,
+      "corrected_match_count": 8,
+      "corrected_median_absolute_residual_s": 0.005454545454546822,
+      "suppressed_downbeats": [
+        {
+          "time_s": 9.64,
+          "confidence": 0.9991086614096155,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        },
+        {
+          "time_s": 11.82,
+          "confidence": 0.9988556814461906,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        },
+        {
+          "time_s": 22.72,
+          "confidence": 0.9858246022176326,
+          "low_confidence": false,
+          "suppression_reason": "audio_below_rms_gate"
+        }
+      ]
+    },
+    "silence": {
+      "audio_sha256": "9e6249279366e594e31460669e88ee4c36fa2670f7ffe423131f6044d600591b",
+      "status": "no_signal",
+      "analysis_seconds": 0.002824248746037483,
+      "entry_flag": null,
+      "first_downbeat_raw_lag_s": null,
+      "duration_flag": null,
+      "raw_match_count": 0,
+      "raw_extra_count": 0,
+      "raw_unmatched_reference": [
+        {
+          "bar": 1,
+          "time_s": 0.91,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 2,
+          "time_s": 3.091818181818182,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 3,
+          "time_s": 5.2736363636363635,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 4,
+          "time_s": 7.455454545454545,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 5,
+          "time_s": 9.637272727272727,
+          "section": "A",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 6,
+          "time_s": 11.819090909090908,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 7,
+          "time_s": 14.00090909090909,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 8,
+          "time_s": 16.18272727272727,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 9,
+          "time_s": 18.364545454545453,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 10,
+          "time_s": 20.546363636363633,
+          "section": "B",
+          "reason": "audio_blank_at_reference",
+          "reference_uncertainty": []
+        }
+      ],
+      "global_shift_s": null,
+      "corrected_match_count": null,
+      "corrected_median_absolute_residual_s": null,
+      "suppressed_downbeats": []
+    },
+    "cropped": {
+      "audio_sha256": "983b4598c7863c2566980c85c4c0c7208d177ef2b6a5f6cae280a130b2cb0602",
+      "status": "events_proposed",
+      "analysis_seconds": 0.2157354149967432,
+      "entry_flag": null,
+      "first_downbeat_raw_lag_s": -0.010000000000000009,
+      "duration_flag": "possibly_cropped",
+      "raw_match_count": 8,
+      "raw_extra_count": 0,
+      "raw_unmatched_reference": [
+        {
+          "bar": 9,
+          "time_s": 18.364545454545453,
+          "section": "B",
+          "reason": "beyond_output_end",
+          "reference_uncertainty": []
+        },
+        {
+          "bar": 10,
+          "time_s": 20.546363636363633,
+          "section": "B",
+          "reason": "beyond_output_end",
+          "reference_uncertainty": []
+        }
+      ],
+      "global_shift_s": 8.881784197001252e-16,
+      "corrected_match_count": 8,
+      "corrected_median_absolute_residual_s": 0.0036363636363634377,
+      "suppressed_downbeats": []
+    }
+  },
+  "checks": {
+    "aligned_detects_all_raw": true,
+    "aligned_estimates_near_zero_shift": true,
+    "late_raw_reports_misses": true,
+    "late_estimates_known_shift": true,
+    "late_correction_recovers_pairs": true,
+    "first_bar_absent_and_entry_flagged": true,
+    "silence_keeps_no_model_events": true,
+    "silence_records_no_shift_evidence": true,
+    "cropped_detects_shortfall": true,
+    "missing_bars_are_independently_flagged_blank": true,
+    "one_to_one_does_not_reuse_detection": true,
+    "one_to_one_maximizes_coverage": true,
+    "one_to_one_leaves_extra_detection": true
+  }
+}

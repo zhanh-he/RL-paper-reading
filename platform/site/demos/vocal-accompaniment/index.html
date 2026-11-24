@@ -23,7 +23,14 @@
     <nav class="session-nav" aria-label="Audio sessions">
       <button type="button" data-session="control" aria-pressed="true">Controlled examples</button>
       <button type="button" data-session="real" aria-pressed="false">Model run</button>
+      <button type="button" data-session="pilot" aria-pressed="false">Fixed-vocal pilot</button>
     </nav>
+
+    <div id="pilot-songs" class="pilot-songs" hidden>
+      <label for="pilot-song">Dry vocal</label>
+      <select id="pilot-song"></select>
+      <a href="audio/pilot/receipt.json">Run receipt</a>
+    </div>
 
     <section class="lab" aria-label="Accompaniment playback and review">
       <div class="studio">
@@ -58,6 +65,10 @@
       <aside class="takes" aria-labelledby="takes-title">
         <h2 id="takes-title">Arrangements</h2>
         <p id="takes-intro" class="muted"></p>
+        <div class="pair-style" id="pair-styles" hidden>
+          <label for="pair-style">Style for blind A/B</label>
+          <select id="pair-style"></select>
+        </div>
         <div id="take-list" class="take-list"></div>
         <form id="vote" hidden>
           <fieldset>
@@ -66,6 +77,7 @@
               <label><input type="radio" name="winner" value="A" required> A</label>
               <label><input type="radio" name="winner" value="B"> B</label>
               <label><input type="radio" name="winner" value="tie"> Tie</label>
+              <label><input type="radio" name="winner" value="skip"> Skip</label>
             </div>
           </fieldset>
           <label for="timing-review">Which take follows the phrase better? <span class="muted">(optional)</span></label>
@@ -75,9 +87,10 @@
             <option value="B">B follows better</option>
             <option value="tie">About the same</option>
             <option value="uncertain">Hard to tell</option>
+            <option value="musical-deviation">The beat differs and the timing works musically</option>
           </select>
           <label for="reason">What made the difference?</label>
-          <select id="reason" name="reason" required>
+          <select id="reason" name="reason">
             <option value="">Select a reason</option>
             <option value="timing">Timing or groove</option>
             <option value="structure">Phrase or section</option>
@@ -86,6 +99,8 @@
           </select>
           <label for="vote-note">Listening note <span class="muted">(optional)</span></label>
           <textarea id="vote-note" name="note" maxlength="300" rows="2" placeholder="e.g. the fill sets up the next phrase"></textarea>
+          <p class="muted" id="timestamp-note"></p>
+          <label class="reuse"><input type="checkbox" name="reuse"> I listened to both takes and agree to reuse this judgment for research.</label>
           <button type="submit" class="primary">Save judgment</button>
         </form>
         <button id="export" class="text-button" type="button" disabled>Export listening judgments</button>
@@ -96,7 +111,8 @@
     <section class="method" aria-labelledby="method-title">
       <h2 id="method-title">What this checks</h2>
       <p>The controlled examples share annotated bar starts. A detector looks for the strong accents designed into these backing tracks, then measures their timing against the reference. A missed accent is a cue to listen. Syncopation and intentional space can sound right even when they look different.</p>
-      <p>Listening judgments stay in this browser until you export them. Compare takes in the same style before using a preference as a training pair.</p>
+      <p>In the fixed-vocal pilot, listen to randomized takes within the same style. Record timing and personal preference separately. Judgments stay in this browser until you export them. Only consented directional pilot judgments are eligible for preference pairs.</p>
+      <div id="pilot-provenance" hidden></div>
       <div class="references"><a href="https://arxiv.org/html/2609.16034v1#S5.SS5">StepAudio 3 Music evaluation limits</a><a href="https://zhanh-he.github.io/casm-beat-tracking/">CASM beat and downbeat tracking</a></div>
     </section>
   </main>

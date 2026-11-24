@@ -1,0 +1,417 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "backing",
+  "audio_sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+  "reference_sha256": "21a0e79d254913c57ef360ae97468b9384c174bfebc6e633b57114b467f0ad1a",
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual phrase reading gives corresponding starts at 0.46, 9.06, 17.62 and 26.27 s from both note annotations. The 8.60 s phrase period supports a candidate division into four 2.15 s bars. The source WAV confirms the pauses after the first three phrases. The 4/4 subdivision and bar phase are hypotheses. No vocal syllable was treated as an observed downbeat.",
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "detector_status": "events_proposed",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.02117900000000006,
+  "duration_flag": null,
+  "first_downbeat_s": 3.24,
+  "first_downbeat_raw_lag_s": 2.7800000000000002,
+  "entry_flag": "late_possible",
+  "signal": {
+    "duration_s": 29.16,
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "peak_absolute_sample": 0.51348876953125,
+    "out_of_range_sample_count": 0,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": 0.0,
+    "last_signal_s": 29.16,
+    "blank_intervals": [
+      {
+        "start_s": 16.26,
+        "end_s": 17.1,
+        "reason": "audio_below_rms_gate"
+      },
+      {
+        "start_s": 22.32,
+        "end_s": 25.64,
+        "reason": "audio_below_rms_gate"
+      }
+    ]
+  },
+  "detections": {
+    "beats": [
+      {
+        "time_s": 0.0,
+        "confidence": 0.7911609085274343,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.24,
+        "confidence": 0.8395678982295198,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.9,
+        "confidence": 0.5622495891354296,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.54,
+        "confidence": 0.6924749175623831,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.16,
+        "confidence": 0.8546135566793372,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.92,
+        "confidence": 0.7792445796600137,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.6,
+        "confidence": 0.7215453642513895,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.36,
+        "confidence": 0.8657206639456205,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.06,
+        "confidence": 0.7598147254838394,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.14,
+        "confidence": 0.7544783705317147,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.84,
+        "confidence": 0.8624661622849881,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.56,
+        "confidence": 0.7918698393082196,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ],
+    "downbeats": [
+      {
+        "time_s": 3.24,
+        "confidence": 0.9505376851673253,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.16,
+        "confidence": 0.5794987281066036,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.36,
+        "confidence": 0.9362610074133892,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.84,
+        "confidence": 0.7629374630774834,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ]
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 0,
+    "reference_count": 14,
+    "eligible_detection_count": 4,
+    "median_raw_lag_s": null,
+    "median_absolute_residual_s": null,
+    "matched": [],
+    "unmatched_reference": [
+      {
+        "bar": 1,
+        "time_s": 0.46,
+        "section": "Opening pair",
+        "lyrics": "See the phantoms",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Absolute beat phase is unknown. The first attack could act as a pickup."
+        ]
+      },
+      {
+        "bar": 2,
+        "time_s": 2.61,
+        "section": "Opening pair",
+        "lyrics": "melting on your bed",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 3,
+        "time_s": 4.76,
+        "section": "Opening pair",
+        "lyrics": "phrase tail",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 4,
+        "time_s": 6.91,
+        "section": "Opening pair",
+        "lyrics": "vocal rest",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 5,
+        "time_s": 9.06,
+        "section": "Opening pair",
+        "lyrics": "make the diamonds",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 6,
+        "time_s": 11.21,
+        "section": "Opening pair",
+        "lyrics": "shine over your head",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 7,
+        "time_s": 13.36,
+        "section": "Opening pair",
+        "lyrics": "phrase tail",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 8,
+        "time_s": 15.51,
+        "section": "Opening pair",
+        "lyrics": "vocal rest",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 9,
+        "time_s": 17.66,
+        "section": "Answer and close",
+        "lyrics": "let the voices",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 10,
+        "time_s": 19.81,
+        "section": "Answer and close",
+        "lyrics": "seconds to escape",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": []
+      },
+      {
+        "bar": 11,
+        "time_s": 21.96,
+        "section": "Answer and close",
+        "lyrics": "phrase tail",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 12,
+        "time_s": 24.11,
+        "section": "Answer and close",
+        "lyrics": "vocal rest",
+        "reason": "audio_blank_at_reference",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 13,
+        "time_s": 26.26,
+        "section": "Answer and close",
+        "lyrics": "cause you're here to stay",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The tail and long breath leave bar phase unsupported by vocal evidence."
+        ]
+      },
+      {
+        "bar": 14,
+        "time_s": 28.41,
+        "section": "Answer and close",
+        "lyrics": "final sustained vowel",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The final sung note is sustained across the proposed bar."
+        ]
+      }
+    ],
+    "extra_detected": [
+      {
+        "time_s": 3.24,
+        "confidence": 0.9505376851673253,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 2,
+        "raw_lag_s_to_nearest_bar": 0.6300000000000003,
+        "residual_s_to_nearest_bar": 0.6300000000000003,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 17.16,
+        "confidence": 0.5794987281066036,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 9,
+        "raw_lag_s_to_nearest_bar": -0.5,
+        "residual_s_to_nearest_bar": -0.5,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 19.36,
+        "confidence": 0.9362610074133892,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 10,
+        "raw_lag_s_to_nearest_bar": -0.4499999999999993,
+        "residual_s_to_nearest_bar": -0.4499999999999993,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 20.84,
+        "confidence": 0.7629374630774834,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 10,
+        "raw_lag_s_to_nearest_bar": 1.0300000000000011,
+        "residual_s_to_nearest_bar": 1.0300000000000011,
+        "reason": "downbeat_without_unique_reference_match"
+      }
+    ]
+  },
+  "global_shift": {
+    "estimate_s": null,
+    "matched_support": 0,
+    "min_support": 3,
+    "eligible_reference_count": 3,
+    "eligible_detection_count": 4,
+    "search_limit_s": 0.75,
+    "status": "insufficient_evidence"
+  },
+  "corrected": null,
+  "section_boundaries": [
+    {
+      "name": "Opening pair",
+      "reference_start_s": 0.46,
+      "nearest_downbeat_s": 3.24,
+      "raw_lag_s": 2.7800000000000002,
+      "confidence": 0.9505376851673253,
+      "reference_uncertainty": [
+        "Absolute beat phase is unknown. The first attack could act as a pickup."
+      ]
+    },
+    {
+      "name": "Answer and close",
+      "reference_start_s": 17.62,
+      "nearest_downbeat_s": 17.16,
+      "raw_lag_s": -0.46000000000000085,
+      "confidence": 0.5794987281066036,
+      "reference_uncertainty": [
+        "The tail and long breath leave bar phase unsupported by vocal evidence."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.82,
+      "reason": "Absolute beat phase is unknown. The first attack could act as a pickup."
+    },
+    {
+      "start_s": 4.25,
+      "end_s": 9.36,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 12.78,
+      "end_s": 17.92,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 21.63,
+      "end_s": 26.63,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 27.88,
+      "end_s": 29.138821,
+      "reason": "The final sung note is sustained across the proposed bar."
+    }
+  ],
+  "low_confidence_downbeats": [],
+  "section_transitions": [
+    {
+      "bar": 9,
+      "time_s": 17.66,
+      "section": "Answer and close",
+      "lyrics": "let the voices",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "The tail and long breath leave bar phase unsupported by vocal evidence."
+      ],
+      "timing_status": "unmatched"
+    }
+  ],
+  "analysis_seconds": 0.45876054279506207
+}

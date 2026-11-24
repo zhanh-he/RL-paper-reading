@@ -1,0 +1,898 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "control",
+  "audio_sha256": "a5ce190d9407eba7c51a1e98bf85d0690f10e72b7cf88e3c822467e139f5c519",
+  "reference_sha256": "090e1869ce1c635b78b115c236bbfaf22a315bde4318d8cb04a1587e3e945fda",
+  "reference_type": "Artist-published tempo and cross-aligned companion-mix-supported meter, pending independent aural review",
+  "detector_status": "events_proposed",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.0,
+  "duration_flag": null,
+  "first_downbeat_s": 0.2,
+  "first_downbeat_raw_lag_s": 0.013488,
+  "entry_flag": null,
+  "signal": {
+    "duration_s": 26.8,
+    "sample_rate_hz": 44100,
+    "channels": 2,
+    "peak_absolute_sample": 0.9103202819824219,
+    "out_of_range_sample_count": 0,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": 0.0,
+    "last_signal_s": 26.8,
+    "blank_intervals": []
+  },
+  "detections": {
+    "beats": [
+      {
+        "time_s": 0.2,
+        "confidence": 0.9994383515802384,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 0.7,
+        "confidence": 0.9998464493159858,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 1.18,
+        "confidence": 0.9999760697592763,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 1.68,
+        "confidence": 0.9998702066442277,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.16,
+        "confidence": 0.9999880135792532,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.64,
+        "confidence": 0.9996688457853351,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.14,
+        "confidence": 0.999733023942511,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.62,
+        "confidence": 0.99947449130336,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.1,
+        "confidence": 0.9999925049837473,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.6,
+        "confidence": 0.9997733394718581,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.08,
+        "confidence": 0.9999803420384628,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.56,
+        "confidence": 0.9992862369739842,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.06,
+        "confidence": 0.9999844723856878,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.54,
+        "confidence": 0.9996865799240473,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.04,
+        "confidence": 0.9999300063245824,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.52,
+        "confidence": 0.999329372805357,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.02,
+        "confidence": 0.99995520766296,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.5,
+        "confidence": 0.9990203739954471,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.98,
+        "confidence": 0.9999408131334777,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.48,
+        "confidence": 0.9997291949385461,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.96,
+        "confidence": 0.9999684887442624,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 10.46,
+        "confidence": 0.9993137366824901,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 10.94,
+        "confidence": 0.9999568360513877,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.42,
+        "confidence": 0.9990518883088364,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.92,
+        "confidence": 0.9999762231256465,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 12.4,
+        "confidence": 0.9993886433799397,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 12.88,
+        "confidence": 0.9998845353940323,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.38,
+        "confidence": 0.9981635789325415,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.88,
+        "confidence": 0.9999644995511924,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.36,
+        "confidence": 0.9997205898766858,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.84,
+        "confidence": 0.9999298185823473,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.34,
+        "confidence": 0.9991319528588057,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.82,
+        "confidence": 0.9999300737060938,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.3,
+        "confidence": 0.9995315730298309,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.78,
+        "confidence": 0.9996247979171182,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.28,
+        "confidence": 0.9979874994043576,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.76,
+        "confidence": 0.999910139954339,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.26,
+        "confidence": 0.9994615927152517,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.74,
+        "confidence": 0.999830075108295,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.24,
+        "confidence": 0.9991133904121403,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.72,
+        "confidence": 0.9999518421866992,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.2,
+        "confidence": 0.9989700979666853,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.7,
+        "confidence": 0.9996378693802005,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.16,
+        "confidence": 0.9979329458648667,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.66,
+        "confidence": 0.9994701592964441,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.16,
+        "confidence": 0.9929538718892564,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.64,
+        "confidence": 0.9997380677788154,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 23.14,
+        "confidence": 0.9979385968554562,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 23.62,
+        "confidence": 0.9979254095324519,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 24.1,
+        "confidence": 0.9886285603896566,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 24.58,
+        "confidence": 0.998814484154704,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 25.08,
+        "confidence": 0.9949746722417545,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 25.56,
+        "confidence": 0.9964910419651613,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 26.04,
+        "confidence": 0.9955685873555897,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 26.52,
+        "confidence": 0.9808861217345258,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ],
+    "downbeats": [
+      {
+        "time_s": 0.2,
+        "confidence": 0.9997446972722414,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.16,
+        "confidence": 0.9999559382661057,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.1,
+        "confidence": 0.9999871429604734,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.06,
+        "confidence": 0.9999823133076491,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.02,
+        "confidence": 0.9999704655608319,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.96,
+        "confidence": 0.9999651569067209,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.92,
+        "confidence": 0.9999872445584426,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.88,
+        "confidence": 0.9999145678376661,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.82,
+        "confidence": 0.9999018149633219,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.76,
+        "confidence": 0.9998819793328518,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.72,
+        "confidence": 0.9999513615447286,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.66,
+        "confidence": 0.9988903812066159,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 23.62,
+        "confidence": 0.999561696083344,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 25.56,
+        "confidence": 0.996590385399537,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ]
+  },
+  "global_shift": {
+    "estimate_s": 0.019828999999999652,
+    "matched_support": 11,
+    "min_support": 5,
+    "eligible_reference_count": 11,
+    "eligible_detection_count": 14,
+    "search_limit_s": 0.75,
+    "status": "estimated"
+  },
+  "section_boundaries": [
+    {
+      "name": "Question stanza",
+      "reference_start_s": 0.186512,
+      "nearest_downbeat_s": 0.2,
+      "raw_lag_s": 0.013488,
+      "confidence": 0.9997446972722414,
+      "reference_uncertainty": [
+        "Excerpt begins at a quiet point shortly before the first supported bar."
+      ]
+    },
+    {
+      "name": "Lift",
+      "reference_start_s": 11.893829,
+      "nearest_downbeat_s": 11.92,
+      "raw_lag_s": 0.026170999999999722,
+      "confidence": 0.9999872445584426,
+      "reference_uncertainty": [
+        "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0,
+      "end_s": 0.3,
+      "reason": "Excerpt begins at a quiet point shortly before the first supported bar."
+    },
+    {
+      "start_s": 11.64,
+      "end_s": 12.18,
+      "reason": "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+    },
+    {
+      "start_s": 24.12,
+      "end_s": 26.8,
+      "reason": "Sustained phrase ending and clipped lead-in to the next stanza."
+    }
+  ],
+  "low_confidence_downbeats": [],
+  "analysis_seconds": 0.42099804058671,
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "postprocessor": "CASM no-SMC",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 14,
+    "reference_count": 14,
+    "eligible_detection_count": 14,
+    "median_raw_lag_s": 0.019341500000000345,
+    "median_absolute_residual_s": 0.019341500000000345,
+    "matched": [
+      {
+        "bar": 1,
+        "time_s": 0.186512,
+        "section": "Question stanza",
+        "detected_s": 0.2,
+        "raw_lag_s": 0.013488,
+        "residual_s": 0.013488,
+        "confidence": 0.9997446972722414,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Excerpt begins at a quiet point shortly before the first supported bar."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 2,
+        "time_s": 2.137732,
+        "section": "Question stanza",
+        "detected_s": 2.16,
+        "raw_lag_s": 0.022267999999999954,
+        "residual_s": 0.022267999999999954,
+        "confidence": 0.9999559382661057,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 3,
+        "time_s": 4.088951,
+        "section": "Question stanza",
+        "detected_s": 4.1,
+        "raw_lag_s": 0.011048999999999864,
+        "residual_s": 0.011048999999999864,
+        "confidence": 0.9999871429604734,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 4,
+        "time_s": 6.040171,
+        "section": "Question stanza",
+        "detected_s": 6.06,
+        "raw_lag_s": 0.019828999999999652,
+        "residual_s": 0.019828999999999652,
+        "confidence": 0.9999823133076491,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 5,
+        "time_s": 7.99139,
+        "section": "Question stanza",
+        "detected_s": 8.02,
+        "raw_lag_s": 0.02860999999999958,
+        "residual_s": 0.02860999999999958,
+        "confidence": 0.9999704655608319,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 6,
+        "time_s": 9.94261,
+        "section": "Question stanza",
+        "detected_s": 9.96,
+        "raw_lag_s": 0.017390000000000683,
+        "residual_s": 0.017390000000000683,
+        "confidence": 0.9999651569067209,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 7,
+        "time_s": 11.893829,
+        "section": "Lift",
+        "detected_s": 11.92,
+        "raw_lag_s": 0.026170999999999722,
+        "residual_s": 0.026170999999999722,
+        "confidence": 0.9999872445584426,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 8,
+        "time_s": 13.845049,
+        "section": "Lift",
+        "detected_s": 13.88,
+        "raw_lag_s": 0.03495100000000129,
+        "residual_s": 0.03495100000000129,
+        "confidence": 0.9999145678376661,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 9,
+        "time_s": 15.796268,
+        "section": "Lift",
+        "detected_s": 15.82,
+        "raw_lag_s": 0.023732000000000752,
+        "residual_s": 0.023732000000000752,
+        "confidence": 0.9999018149633219,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 10,
+        "time_s": 17.747488,
+        "section": "Lift",
+        "detected_s": 17.76,
+        "raw_lag_s": 0.012512000000000967,
+        "residual_s": 0.012512000000000967,
+        "confidence": 0.9998819793328518,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 11,
+        "time_s": 19.698707,
+        "section": "Lift",
+        "detected_s": 19.72,
+        "raw_lag_s": 0.021293000000000006,
+        "residual_s": 0.021293000000000006,
+        "confidence": 0.9999513615447286,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 12,
+        "time_s": 21.649927,
+        "section": "Lift",
+        "detected_s": 21.66,
+        "raw_lag_s": 0.010072999999998444,
+        "residual_s": 0.010072999999998444,
+        "confidence": 0.9988903812066159,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 13,
+        "time_s": 23.601146,
+        "section": "Lift",
+        "detected_s": 23.62,
+        "raw_lag_s": 0.018854000000001037,
+        "residual_s": 0.018854000000001037,
+        "confidence": 0.999561696083344,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 14,
+        "time_s": 25.552366,
+        "section": "Lift",
+        "detected_s": 25.56,
+        "raw_lag_s": 0.0076339999999994745,
+        "residual_s": 0.0076339999999994745,
+        "confidence": 0.996590385399537,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Sustained phrase ending and clipped lead-in to the next stanza."
+        ],
+        "timing_flag": "within_50ms"
+      }
+    ],
+    "unmatched_reference": [],
+    "extra_detected": []
+  },
+  "corrected": {
+    "shift_applied_to_detection_s": -0.019828999999999652,
+    "match_count": 14,
+    "reference_count": 14,
+    "eligible_detection_count": 14,
+    "median_raw_lag_s": 0.019341500000000345,
+    "median_absolute_residual_s": 0.006341499999999861,
+    "matched": [
+      {
+        "bar": 1,
+        "time_s": 0.186512,
+        "section": "Question stanza",
+        "detected_s": 0.2,
+        "raw_lag_s": 0.013488,
+        "residual_s": -0.0063409999999996525,
+        "confidence": 0.9997446972722414,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Excerpt begins at a quiet point shortly before the first supported bar."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 2,
+        "time_s": 2.137732,
+        "section": "Question stanza",
+        "detected_s": 2.16,
+        "raw_lag_s": 0.022267999999999954,
+        "residual_s": 0.002439000000000302,
+        "confidence": 0.9999559382661057,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 3,
+        "time_s": 4.088951,
+        "section": "Question stanza",
+        "detected_s": 4.1,
+        "raw_lag_s": 0.011048999999999864,
+        "residual_s": -0.008779999999999788,
+        "confidence": 0.9999871429604734,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 4,
+        "time_s": 6.040171,
+        "section": "Question stanza",
+        "detected_s": 6.06,
+        "raw_lag_s": 0.019828999999999652,
+        "residual_s": 0.0,
+        "confidence": 0.9999823133076491,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 5,
+        "time_s": 7.99139,
+        "section": "Question stanza",
+        "detected_s": 8.02,
+        "raw_lag_s": 0.02860999999999958,
+        "residual_s": 0.008780999999999928,
+        "confidence": 0.9999704655608319,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 6,
+        "time_s": 9.94261,
+        "section": "Question stanza",
+        "detected_s": 9.96,
+        "raw_lag_s": 0.017390000000000683,
+        "residual_s": -0.0024389999999989698,
+        "confidence": 0.9999651569067209,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 7,
+        "time_s": 11.893829,
+        "section": "Lift",
+        "detected_s": 11.92,
+        "raw_lag_s": 0.026170999999999722,
+        "residual_s": 0.00634200000000007,
+        "confidence": 0.9999872445584426,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+        ],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 8,
+        "time_s": 13.845049,
+        "section": "Lift",
+        "detected_s": 13.88,
+        "raw_lag_s": 0.03495100000000129,
+        "residual_s": 0.015122000000001634,
+        "confidence": 0.9999145678376661,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 9,
+        "time_s": 15.796268,
+        "section": "Lift",
+        "detected_s": 15.82,
+        "raw_lag_s": 0.023732000000000752,
+        "residual_s": 0.0039030000000011,
+        "confidence": 0.9999018149633219,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 10,
+        "time_s": 17.747488,
+        "section": "Lift",
+        "detected_s": 17.76,
+        "raw_lag_s": 0.012512000000000967,
+        "residual_s": -0.007316999999998686,
+        "confidence": 0.9998819793328518,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 11,
+        "time_s": 19.698707,
+        "section": "Lift",
+        "detected_s": 19.72,
+        "raw_lag_s": 0.021293000000000006,
+        "residual_s": 0.001464000000000354,
+        "confidence": 0.9999513615447286,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 12,
+        "time_s": 21.649927,
+        "section": "Lift",
+        "detected_s": 21.66,
+        "raw_lag_s": 0.010072999999998444,
+        "residual_s": -0.009756000000001208,
+        "confidence": 0.9988903812066159,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 13,
+        "time_s": 23.601146,
+        "section": "Lift",
+        "detected_s": 23.62,
+        "raw_lag_s": 0.018854000000001037,
+        "residual_s": -0.0009749999999986159,
+        "confidence": 0.999561696083344,
+        "low_confidence": false,
+        "reference_uncertainty": [],
+        "timing_flag": "within_50ms"
+      },
+      {
+        "bar": 14,
+        "time_s": 25.552366,
+        "section": "Lift",
+        "detected_s": 25.56,
+        "raw_lag_s": 0.0076339999999994745,
+        "residual_s": -0.012195000000000178,
+        "confidence": 0.996590385399537,
+        "low_confidence": false,
+        "reference_uncertainty": [
+          "Sustained phrase ending and clipped lead-in to the next stanza."
+        ],
+        "timing_flag": "within_50ms"
+      }
+    ],
+    "unmatched_reference": [],
+    "extra_detected": []
+  },
+  "section_transitions": [
+    {
+      "bar": 7,
+      "time_s": 11.893829,
+      "section": "Lift",
+      "detected_s": 11.92,
+      "raw_lag_s": 0.026170999999999722,
+      "residual_s": 0.00634200000000007,
+      "confidence": 0.9999872445584426,
+      "low_confidence": false,
+      "reference_uncertainty": [
+        "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+      ],
+      "timing_flag": "within_50ms",
+      "timing_status": "paired"
+    }
+  ]
+}

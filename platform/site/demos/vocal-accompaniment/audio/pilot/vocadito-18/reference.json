@@ -1,0 +1,153 @@
+{
+  "song_id": "vocadito-18",
+  "title": "Phantoms and Diamonds (Vocadito 18)",
+  "duration_s": 29.138821,
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual phrase reading gives corresponding starts at 0.46, 9.06, 17.62 and 26.27 s from both note annotations. The 8.60 s phrase period supports a candidate division into four 2.15 s bars. The source WAV confirms the pauses after the first three phrases. The 4/4 subdivision and bar phase are hypotheses. No vocal syllable was treated as an observed downbeat.",
+  "meter": "4/4 hypothesis",
+  "tempo_bpm": 111.5,
+  "bars": [
+    {
+      "bar": 1,
+      "time_s": 0.46,
+      "section": "Opening pair",
+      "lyrics": "See the phantoms"
+    },
+    {
+      "bar": 2,
+      "time_s": 2.61,
+      "section": "Opening pair",
+      "lyrics": "melting on your bed"
+    },
+    {
+      "bar": 3,
+      "time_s": 4.76,
+      "section": "Opening pair",
+      "lyrics": "phrase tail"
+    },
+    {
+      "bar": 4,
+      "time_s": 6.91,
+      "section": "Opening pair",
+      "lyrics": "vocal rest"
+    },
+    {
+      "bar": 5,
+      "time_s": 9.06,
+      "section": "Opening pair",
+      "lyrics": "make the diamonds"
+    },
+    {
+      "bar": 6,
+      "time_s": 11.21,
+      "section": "Opening pair",
+      "lyrics": "shine over your head"
+    },
+    {
+      "bar": 7,
+      "time_s": 13.36,
+      "section": "Opening pair",
+      "lyrics": "phrase tail"
+    },
+    {
+      "bar": 8,
+      "time_s": 15.51,
+      "section": "Opening pair",
+      "lyrics": "vocal rest"
+    },
+    {
+      "bar": 9,
+      "time_s": 17.66,
+      "section": "Answer and close",
+      "lyrics": "let the voices"
+    },
+    {
+      "bar": 10,
+      "time_s": 19.81,
+      "section": "Answer and close",
+      "lyrics": "seconds to escape"
+    },
+    {
+      "bar": 11,
+      "time_s": 21.96,
+      "section": "Answer and close",
+      "lyrics": "phrase tail"
+    },
+    {
+      "bar": 12,
+      "time_s": 24.11,
+      "section": "Answer and close",
+      "lyrics": "vocal rest"
+    },
+    {
+      "bar": 13,
+      "time_s": 26.26,
+      "section": "Answer and close",
+      "lyrics": "cause you're here to stay"
+    },
+    {
+      "bar": 14,
+      "time_s": 28.41,
+      "section": "Answer and close",
+      "lyrics": "final sustained vowel"
+    }
+  ],
+  "lyrics": "See the phantoms melting on your bed\nmake the diamonds shine over your head\nlet the voices seconds to escape\ncause you're here to stay",
+  "sections": [
+    {
+      "name": "Opening pair",
+      "start_s": 0.46
+    },
+    {
+      "name": "Answer and close",
+      "start_s": 17.62
+    }
+  ],
+  "uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.82,
+      "reason": "Absolute beat phase is unknown. The first attack could act as a pickup."
+    },
+    {
+      "start_s": 4.25,
+      "end_s": 9.36,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 12.78,
+      "end_s": 17.92,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 21.63,
+      "end_s": 26.63,
+      "reason": "The tail and long breath leave bar phase unsupported by vocal evidence."
+    },
+    {
+      "start_s": 27.88,
+      "end_s": 29.138821,
+      "reason": "The final sung note is sustained across the proposed bar."
+    }
+  ],
+  "provenance": {
+    "collection": "vocadito v3",
+    "doi": "10.5281/zenodo.5578807",
+    "source_url": "https://zenodo.org/records/5578807",
+    "source_report": "https://arxiv.org/html/2110.05580#S2",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_evidence": "https://mirdata.readthedocs.io/en/stable/_modules/mirdata/datasets/vocadito.html",
+    "attribution": "Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein",
+    "composition_status": "Participant submission. The report allowed original or public-domain compositions. The track metadata does not identify which applies to this item.",
+    "recording": "Source-released 44.1 kHz, 16-bit mono WAV, kept byte-for-byte. Human solo vocal.",
+    "track_id": 18,
+    "archive_member": "Audio/vocadito_18.wav",
+    "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+    "format": {
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "bits_per_sample": 16
+    }
+  }
+}

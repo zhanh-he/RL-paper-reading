@@ -1,0 +1,87 @@
+{
+  "codec": "libmp3lame",
+  "normalization": "none",
+  "files": {
+    "dry.mp3": {
+      "source_audio_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+      "sha256": "b179e7571af073c6675df6b87cee6e8305af1d2b999bb614c837a6a9ee464594",
+      "bytes": 644589,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 26.8
+    },
+    "kara-square-hey-anyaccomp-seed29-backing.mp3": {
+      "source_audio_sha256": "ee893ff4cd2a72014563aa7a2fa168a30c56464627b0e5144ae6bf72d96467f1",
+      "sha256": "3c7e51cc026a4479612d3bf8253a097f13c94e16dfda9b20d20e6bc2d396924f",
+      "bytes": 645165,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 26.82
+    },
+    "kara-square-hey-anyaccomp-seed29-mix.mp3": {
+      "source_audio_sha256": "b19e7ab46ab5ef17fe538f5c9cf51892f7d18f74265a0d3bbb14718ae350b16f",
+      "sha256": "d9a22e8a93520bb020eedb4ab008bbc5a24cad2fa964a1216df61362dfd818c0",
+      "bytes": 645165,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 26.82
+    },
+    "kara-square-hey-lada-acoustic-folk-seed29-backing.mp3": {
+      "source_audio_sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+      "sha256": "09b9db7edb6b75304c6616d05dbf8c75ed8a64811ecfd358f3d212c747307674",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 26.84
+    },
+    "kara-square-hey-lada-acoustic-folk-seed29-mix.mp3": {
+      "source_audio_sha256": "1e20a54c253547d620211dd8df69106c11b3997eebdd70701eaf2dd69436025a",
+      "sha256": "7f01b6eb73aa271ff920184d5c16118fe484a801368877a2839a8ab7e5c5e886",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 26.84
+    },
+    "kara-square-hey-lada-acoustic-folk-seed73-backing.mp3": {
+      "source_audio_sha256": "7c1bfc494def09e8f63986faeafdedbd168834d74de1d636d8d2aeb0614d1930",
+      "sha256": "3f813b15ae6397b248fa31df8f2e21cb50f2f2915312e16eb3757e198b5c39e6",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 26.84
+    },
+    "kara-square-hey-lada-acoustic-folk-seed73-mix.mp3": {
+      "source_audio_sha256": "714ed21c0fc87f14925412c65b4607ecf6ee11d2127c23610245fb779a8bfa9b",
+      "sha256": "bbff12b550c105b4de78d6bc3cd0cc7f024f29a21fe9e8b225a491f27c41da67",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 26.84
+    },
+    "kara-square-hey-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "source_audio_sha256": "6131a9928ad6cdce56791f3b116c8335add07655967e14d5ce17923f280751d9",
+      "sha256": "26da02eda2e7233644998ad46afd7b911966024c5891cae658501df942d0d42d",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 0.5,
+      "mp3_container_seconds": 26.84
+    },
+    "kara-square-hey-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "source_audio_sha256": "772dc3881d8718c907d5d9f045e41a1e5b1d36a6cedf9b9d00e8d87de6ce907a",
+      "sha256": "b64c3af50acf8221b13b0a136b5d7d34091eac0edc482db8a6af6ee4b76987fa",
+      "bytes": 645741,
+      "sample_rate_hz": 48000,
+      "bit_rate": 192000,
+      "fixed_gain": 1,
+      "mp3_container_seconds": 26.84
+    }
+  }
+}

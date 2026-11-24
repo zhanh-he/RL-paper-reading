@@ -1,0 +1,3533 @@
+{
+  "schema": "fixed-vocal-public-receipt/v1",
+  "date_awst": "2026-11-24",
+  "scope": "Public non-commercial research pilot. Beat comparisons use tentative bar references.",
+  "paper_motivation": "https://arxiv.org/html/2609.16034v1#S5.SS5",
+  "stepfun": {
+    "route": "StepAudio 3 Music",
+    "model_id": "stepaudio-3-music-preview",
+    "task": "vocal_to_music",
+    "state": "not_submitted",
+    "attempted": 0,
+    "reason": "No StepFun credential available in the authorised runtime. No request was submitted.",
+    "model_guide": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-3-music",
+    "request_reference": "https://platform.stepfun.com/docs/zh/api-reference/audio/music.md",
+    "expected_output": "Generated full mix",
+    "abc_input": "The official model guide says coming soon. No ABC provided."
+  },
+  "planned_styled_candidates": 21,
+  "planned_anyaccomp_baselines": 4,
+  "cohorts": {
+    "vocadito_matrix": "3 songs × 3 styles × 2 seeds, with 1 AnyAccomp each",
+    "kara_original": "3 styled takes and 1 AnyAccomp"
+  },
+  "candidate_status_counts": {
+    "success": 25
+  },
+  "candidates": [
+    {
+      "candidate_id": "kara-square-hey-anyaccomp-seed29",
+      "model": "AnyAccomp",
+      "checkpoint": {
+        "id": "amphion/anyaccomp",
+        "revision": "9aa9e62427337bf1df4caa3c4f3e6ad934522e711",
+        "sha256": {
+          "flow_matching": "e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129",
+          "vocoder": "7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da",
+          "vq": "9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc"
+        }
+      },
+      "commit": "82604b5e3107944ad4c49fc64900b86118ae2c62",
+      "style": "unconditioned",
+      "style_control": "none",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T15:04:10.325250+08:00",
+      "ended_at_awst": "2026-11-24T15:04:17.901909+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.333021723199636,
+        "generation": 2.055564052890986,
+        "postprocess": 0.0945381629280746,
+        "total": 7.58817730192095
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 2643.4931640625,
+        "caching_allocator_peak_reserved_mib": 2790.0
+      },
+      "duration_error_seconds": 0.019999999999999574,
+      "model_input_samples": 643200,
+      "raw_output_samples": 643680,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "n_timesteps": 50,
+        "cfg": 3.0,
+        "precision": "CUDA BF16 autocast"
+      },
+      "source": "https://huggingface.co/amphion/anyaccomp",
+      "use": "Research listening and evaluation",
+      "input_id": "kara-square-hey",
+      "input_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+      "outputs": {
+        "backing": {
+          "sha256": "ee893ff4cd2a72014563aa7a2fa168a30c56464627b0e5144ae6bf72d96467f1",
+          "sample_rate": 24000,
+          "channels": 1,
+          "samples": 643680,
+          "seconds": 26.82,
+          "rms": 0.018816193260110064,
+          "peak": 0.09427361190319061,
+          "listening_mp3": {
+            "source_audio_sha256": "ee893ff4cd2a72014563aa7a2fa168a30c56464627b0e5144ae6bf72d96467f1",
+            "sha256": "3c7e51cc026a4479612d3bf8253a097f13c94e16dfda9b20d20e6bc2d396924f",
+            "bytes": 645165,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 26.82
+          }
+        },
+        "mix": {
+          "sha256": "b19e7ab46ab5ef17fe538f5c9cf51892f7d18f74265a0d3bbb14718ae350b16f",
+          "sample_rate": 44100,
+          "channels": 1,
+          "samples": 1182762,
+          "seconds": 26.82,
+          "rms": 0.02405353784141298,
+          "peak": 0.2625585198402405,
+          "listening_mp3": {
+            "source_audio_sha256": "b19e7ab46ab5ef17fe538f5c9cf51892f7d18f74265a0d3bbb14718ae350b16f",
+            "sha256": "d9a22e8a93520bb020eedb4ab008bbc5a24cad2fa964a1216df61362dfd818c0",
+            "bytes": 645165,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 26.82
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 1,
+        "reference_markers": 14,
+        "raw_extra": 6,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 0.0,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.186512,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.42178708128631115
+      }
+    },
+    {
+      "candidate_id": "kara-square-hey-lada-acoustic-folk-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T15:04:19.971611+08:00",
+      "ended_at_awst": "2026-11-24T15:05:03.434405+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 29.635516186011955,
+        "generation": 10.232953071594238,
+        "postprocess": 0.10951328207738698,
+        "total": 43.47391881397925
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77587890625,
+        "caching_allocator_peak_reserved_mib": 23414.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 1736700721,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "kara-square-hey",
+      "input_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+      "outputs": {
+        "backing": {
+          "sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1288320,
+          "seconds": 26.84,
+          "rms": 0.0001977016687888403,
+          "peak": 0.003692626953125,
+          "listening_mp3": {
+            "source_audio_sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+            "sha256": "09b9db7edb6b75304c6616d05dbf8c75ed8a64811ecfd358f3d212c747307674",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 26.84
+          }
+        },
+        "mix": {
+          "sha256": "1e20a54c253547d620211dd8df69106c11b3997eebdd70701eaf2dd69436025a",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1183644,
+          "seconds": 26.84,
+          "rms": 0.022216698966776863,
+          "peak": 0.24811561405658722,
+          "listening_mp3": {
+            "source_audio_sha256": "1e20a54c253547d620211dd8df69106c11b3997eebdd70701eaf2dd69436025a",
+            "sha256": "7f01b6eb73aa271ff920184d5c16118fe484a801368877a2839a8ab7e5c5e886",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 26.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 0,
+        "raw_unmatched": 14,
+        "first_downbeat_s": null,
+        "first_signal_s": null,
+        "first_raw_lag_s": null,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": null,
+        "analysis_seconds": 0.013804292306303978
+      }
+    },
+    {
+      "candidate_id": "kara-square-hey-lada-acoustic-folk-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T15:05:03.443667+08:00",
+      "ended_at_awst": "2026-11-24T15:05:13.855137+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.327219747006893e-05,
+        "generation": 10.068528175354004,
+        "postprocess": 0.15604331297799945,
+        "total": 10.420100070070475
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77587890625,
+        "caching_allocator_peak_reserved_mib": 23430.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 579913171,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "kara-square-hey",
+      "input_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+      "outputs": {
+        "backing": {
+          "sha256": "7c1bfc494def09e8f63986faeafdedbd168834d74de1d636d8d2aeb0614d1930",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1288320,
+          "seconds": 26.84,
+          "rms": 0.1793344164389946,
+          "peak": 0.959686279296875,
+          "listening_mp3": {
+            "source_audio_sha256": "7c1bfc494def09e8f63986faeafdedbd168834d74de1d636d8d2aeb0614d1930",
+            "sha256": "3f813b15ae6397b248fa31df8f2e21cb50f2f2915312e16eb3757e198b5c39e6",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 26.84
+          }
+        },
+        "mix": {
+          "sha256": "714ed21c0fc87f14925412c65b4607ecf6ee11d2127c23610245fb779a8bfa9b",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1183644,
+          "seconds": 26.84,
+          "rms": 0.09236990499170192,
+          "peak": 0.5535061955451965,
+          "listening_mp3": {
+            "source_audio_sha256": "714ed21c0fc87f14925412c65b4607ecf6ee11d2127c23610245fb779a8bfa9b",
+            "sha256": "bbff12b550c105b4de78d6bc3cd0cc7f024f29a21fe9e8b225a491f27c41da67",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 26.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 0,
+        "raw_unmatched": 14,
+        "first_downbeat_s": null,
+        "first_signal_s": 0.8200000000000001,
+        "first_raw_lag_s": null,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": null,
+        "analysis_seconds": 0.4433985836803913
+      }
+    },
+    {
+      "candidate_id": "kara-square-hey-lada-sparse-synth-pop-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T15:05:13.863960+08:00",
+      "ended_at_awst": "2026-11-24T15:05:24.190159+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.6825967729091644e-05,
+        "generation": 10.056731462478638,
+        "postprocess": 0.11034433403983712,
+        "total": 10.33445532922633
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77587890625,
+        "caching_allocator_peak_reserved_mib": 23430.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 1736700721,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "kara-square-hey",
+      "input_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+      "outputs": {
+        "backing": {
+          "sha256": "6131a9928ad6cdce56791f3b116c8335add07655967e14d5ce17923f280751d9",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1288320,
+          "seconds": 26.84,
+          "rms": 0.0003953120899626567,
+          "peak": 0.00634765625,
+          "listening_mp3": {
+            "source_audio_sha256": "6131a9928ad6cdce56791f3b116c8335add07655967e14d5ce17923f280751d9",
+            "sha256": "26da02eda2e7233644998ad46afd7b911966024c5891cae658501df942d0d42d",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 26.84
+          }
+        },
+        "mix": {
+          "sha256": "772dc3881d8718c907d5d9f045e41a1e5b1d36a6cedf9b9d00e8d87de6ce907a",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1183644,
+          "seconds": 26.84,
+          "rms": 0.022216848256455122,
+          "peak": 0.2480914443731308,
+          "listening_mp3": {
+            "source_audio_sha256": "772dc3881d8718c907d5d9f045e41a1e5b1d36a6cedf9b9d00e8d87de6ce907a",
+            "sha256": "b64c3af50acf8221b13b0a136b5d7d34091eac0edc482db8a6af6ee4b76987fa",
+            "bytes": 645741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 26.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 0,
+        "raw_unmatched": 14,
+        "first_downbeat_s": null,
+        "first_signal_s": null,
+        "first_raw_lag_s": null,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": null,
+        "analysis_seconds": 0.008127249777317047
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-anyaccomp-seed29",
+      "model": "AnyAccomp",
+      "checkpoint": {
+        "id": "amphion/anyaccomp",
+        "revision": "9aa9e62427337bf1df4caa3c4f3e6ad934522e711",
+        "sha256": {
+          "flow_matching": "e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129",
+          "vocoder": "7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da",
+          "vq": "9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc"
+        }
+      },
+      "commit": "82604b5e3107944ad4c49fc64900b86118ae2c62",
+      "style": "unconditioned",
+      "style_control": "none",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:46:06.544018+08:00",
+      "ended_at_awst": "2026-11-24T14:46:15.102152+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.404246388934553,
+        "generation": 2.5460590401198715,
+        "postprocess": 0.03240824700333178,
+        "total": 8.568695964990184
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 2718.5947265625,
+        "caching_allocator_peak_reserved_mib": 2848.0
+      },
+      "duration_error_seconds": 0.019999999999999574,
+      "model_input_samples": 720001,
+      "raw_output_samples": 720480,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "n_timesteps": 50,
+        "cfg": 3.0,
+        "precision": "CUDA BF16 autocast"
+      },
+      "source": "https://huggingface.co/amphion/anyaccomp",
+      "use": "Research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "668c855fa9d68be01dbb9932a1bc08b51f586074dce382ced46a79b88a631060",
+          "sample_rate": 24000,
+          "channels": 1,
+          "samples": 720480,
+          "seconds": 30.02,
+          "rms": 0.1133634790645439,
+          "peak": 1.1863925457000732,
+          "listening_mp3": {
+            "source_audio_sha256": "668c855fa9d68be01dbb9932a1bc08b51f586074dce382ced46a79b88a631060",
+            "sha256": "1e0cd8afa3fc79d63d323b9f2408a0aa98df1c8fb7b9a459ba46565a7c8f8ba8",
+            "bytes": 721773,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.02
+          }
+        },
+        "mix": {
+          "sha256": "d95684e28ad3aee08fd895e1dab6dbe8f3412bee53a453e887fec22877f8f7e9",
+          "sample_rate": 44100,
+          "channels": 1,
+          "samples": 1323882,
+          "seconds": 30.02,
+          "rms": 0.06079823850190032,
+          "peak": 0.6177113652229309,
+          "listening_mp3": {
+            "source_audio_sha256": "d95684e28ad3aee08fd895e1dab6dbe8f3412bee53a453e887fec22877f8f7e9",
+            "sha256": "63023d61860dc769c10e5efca553d8dbd0c5111c23a9d96df7503bb6f7a386fb",
+            "bytes": 721773,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.02
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 6,
+        "reference_markers": 13,
+        "raw_extra": 6,
+        "raw_unmatched": 7,
+        "first_downbeat_s": 2.26,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 1.5599999999999998,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 1.2922421246767044
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-acoustic-folk-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:47:31.254989+08:00",
+      "ended_at_awst": "2026-11-24T14:48:43.033790+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 58.03534500813112,
+        "generation": 10.767444133758545,
+        "postprocess": 0.12369576212950051,
+        "total": 71.79190691700205
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 855100232,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "77e0532bcd58bbdc0a83def2d08be49b20159e6e3c1ba765ad32352269b25ec8",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.04799934267421463,
+          "peak": 0.49981689453125,
+          "listening_mp3": {
+            "source_audio_sha256": "77e0532bcd58bbdc0a83def2d08be49b20159e6e3c1ba765ad32352269b25ec8",
+            "sha256": "00745d6cd0366ba93ffa269fba6e0a4182bd09f417873cc1b686b7534a1ec250",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "c2700c0a5c332900c8bfc961ee162bda081951e6d80ab013ff46bf56de441843",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.03247798246207667,
+          "peak": 0.34290018677711487,
+          "listening_mp3": {
+            "source_audio_sha256": "c2700c0a5c332900c8bfc961ee162bda081951e6d80ab013ff46bf56de441843",
+            "sha256": "15556450cfa0acbcb7f3da3484ec922607c2818cb13dce887cd167c72e0aa159",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 13,
+        "raw_extra": 11,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 0.34,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.35999999999999993,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.9646910429000854
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-acoustic-folk-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:48:47.166378+08:00",
+      "ended_at_awst": "2026-11-24T14:49:59.313004+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 57.49597470695153,
+        "generation": 10.384846210479736,
+        "postprocess": 0.07761431694962084,
+        "total": 72.15573177114129
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 595998988,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "c8d1866a5363630dc5dcd8fa6b6c27158d89e8e0273340e36460461c5f20cbfb",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.0006034612190027623,
+          "peak": 0.0079345703125,
+          "listening_mp3": {
+            "source_audio_sha256": "c8d1866a5363630dc5dcd8fa6b6c27158d89e8e0273340e36460461c5f20cbfb",
+            "sha256": "ac8ce3c4bd3a9a3c2a10f0c8c6db9756771434a36ff1d36285cdb44b11533327",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "1d231578bfea5b644d75ee2f895741bbdccea739f67b9cdbc1afb80507221927",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.021747404427901705,
+          "peak": 0.18049374222755432,
+          "listening_mp3": {
+            "source_audio_sha256": "1d231578bfea5b644d75ee2f895741bbdccea739f67b9cdbc1afb80507221927",
+            "sha256": "20252045c9d56144a51f971ee24aa4c762ee930ce1705f3b29a4fe9cfeb7926a",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 13,
+        "raw_extra": 0,
+        "raw_unmatched": 13,
+        "first_downbeat_s": null,
+        "first_signal_s": 29.42,
+        "first_raw_lag_s": null,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": null,
+        "analysis_seconds": 0.9366175830364227
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-half-time-rnb-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:52:06.443108+08:00",
+      "ended_at_awst": "2026-11-24T14:52:16.738222+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.473600372672081e-05,
+        "generation": 10.12895393371582,
+        "postprocess": 0.07890931889414787,
+        "total": 10.301454426022246
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 855100232,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "52afe7c7a8a30ba8bb5b16deb9fd141facd2c95a14667645ce37bb2bfaca22b3",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.01896221293944296,
+          "peak": 0.194854736328125,
+          "listening_mp3": {
+            "source_audio_sha256": "52afe7c7a8a30ba8bb5b16deb9fd141facd2c95a14667645ce37bb2bfaca22b3",
+            "sha256": "a35c314bdef9f4628a58494d5099b36801b6f4683916cfb0044b69efef5ec80a",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "942cac82a4f81cec658ffb536456c8d6b415e133dc695dce5cd54a1efb329cd0",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.023689496620157555,
+          "peak": 0.20200325548648834,
+          "listening_mp3": {
+            "source_audio_sha256": "942cac82a4f81cec658ffb536456c8d6b415e133dc695dce5cd54a1efb329cd0",
+            "sha256": "5a0258fcee5a550e889789ae81c3eb4e591abb4c6a9a25367e834ab22519fc80",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 4,
+        "reference_markers": 13,
+        "raw_extra": 23,
+        "raw_unmatched": 9,
+        "first_downbeat_s": 0.06,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.6399999999999999,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.9198413733392954
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-half-time-rnb-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:52:16.745248+08:00",
+      "ended_at_awst": "2026-11-24T14:52:27.067155+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.289206117391586e-05,
+        "generation": 10.137552499771118,
+        "postprocess": 0.07891713199205697,
+        "total": 10.32838661200367
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 595998988,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "044cc1c90c2a83e21f4d6c1690e101d8dd855492b59db4aafcd8d6ab9631c4c3",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.1194233369881655,
+          "peak": 0.960601806640625,
+          "listening_mp3": {
+            "source_audio_sha256": "044cc1c90c2a83e21f4d6c1690e101d8dd855492b59db4aafcd8d6ab9631c4c3",
+            "sha256": "e932e035a66d7f968846e60db98578fd74692d44ee77adbf937cb824f54455b2",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "cee519f3a6f7553191dfbd5265c5514ce9f84a2300cbf1549d38104452c6f8ba",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.06356264679574515,
+          "peak": 0.5145783424377441,
+          "listening_mp3": {
+            "source_audio_sha256": "cee519f3a6f7553191dfbd5265c5514ce9f84a2300cbf1549d38104452c6f8ba",
+            "sha256": "62b2a85871c87791377ab1dba61a3493f7ccb21df1a68570e665ef34e2c15c90",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 13,
+        "raw_extra": 1,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 28.66,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 27.96,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.9678702931851149
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-sparse-synth-pop-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:50:02.097099+08:00",
+      "ended_at_awst": "2026-11-24T14:50:47.691362+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 31.48545038816519,
+        "generation": 10.316330671310425,
+        "postprocess": 0.09582097898237407,
+        "total": 45.603806875878945
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 855100232,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "ec6214e6dee1d77c7339f9cf8fbcb6ebcadff12ac6f35f4ecd83519546d4d279",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.17127037913701249,
+          "peak": 0.75396728515625,
+          "listening_mp3": {
+            "source_audio_sha256": "ec6214e6dee1d77c7339f9cf8fbcb6ebcadff12ac6f35f4ecd83519546d4d279",
+            "sha256": "06d7b0f927605ddca82cf70e2fe314f28da6dcaf24d362be51ed5e25835a369b",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "d030e6667fe6581f8f1878e9a48c1765d75b4472b01425ea4e414a5cf8b0c4ba",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.08846905877458613,
+          "peak": 0.39936864376068115,
+          "listening_mp3": {
+            "source_audio_sha256": "d030e6667fe6581f8f1878e9a48c1765d75b4472b01425ea4e414a5cf8b0c4ba",
+            "sha256": "03463b9abeb72806fea6f548e43b39a932449d1fb5ceb810b82a871e7911ea0c",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 13,
+        "raw_extra": 2,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 0.02,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.6799999999999999,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.9172795414924622
+      }
+    },
+    {
+      "candidate_id": "vocadito-33-lada-sparse-synth-pop-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:51:13.403944+08:00",
+      "ended_at_awst": "2026-11-24T14:52:06.436122+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 39.779515598900616,
+        "generation": 10.307234525680542,
+        "postprocess": 0.13235178613103926,
+        "total": 53.04116857913323
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77783203125,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.03999999999999915,
+      "sample_seed": 595998988,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-33",
+      "input_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+      "outputs": {
+        "backing": {
+          "sha256": "fd39b5ebbe06055a52fb9629af1b94776575ee3ba77f8c15c0ed3741a44a4b3d",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1441920,
+          "seconds": 30.04,
+          "rms": 0.010714758631698532,
+          "peak": 0.04644775390625,
+          "listening_mp3": {
+            "source_audio_sha256": "fd39b5ebbe06055a52fb9629af1b94776575ee3ba77f8c15c0ed3741a44a4b3d",
+            "sha256": "f807262a72cc029d992884a4e9fdc8db75c72b883d62860e30e233f6d8dbff83",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 30.04
+          }
+        },
+        "mix": {
+          "sha256": "5a57dcbe65b76af9dc2ae35ea456db2872743809cc5f90ea20448c02f3a57954",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1324764,
+          "seconds": 30.04,
+          "rms": 0.022398503532013937,
+          "peak": 0.178646519780159,
+          "listening_mp3": {
+            "source_audio_sha256": "5a57dcbe65b76af9dc2ae35ea456db2872743809cc5f90ea20448c02f3a57954",
+            "sha256": "1ce53c6a7203daee22bbf350fda1fdbbfe24b553e3c19fedb06c42e33fce3b11",
+            "bytes": 722349,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 30.04
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 13,
+        "raw_extra": 3,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 0.44,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.25999999999999995,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.9632139168679714
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-anyaccomp-seed29",
+      "model": "AnyAccomp",
+      "checkpoint": {
+        "id": "amphion/anyaccomp",
+        "revision": "9aa9e62427337bf1df4caa3c4f3e6ad934522e711",
+        "sha256": {
+          "flow_matching": "e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129",
+          "vocoder": "7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da",
+          "vq": "9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc"
+        }
+      },
+      "commit": "82604b5e3107944ad4c49fc64900b86118ae2c62",
+      "style": "unconditioned",
+      "style_control": "none",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:50:51.470304+08:00",
+      "ended_at_awst": "2026-11-24T14:51:02.469457+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 5.916065368102863,
+        "generation": 3.100813440978527,
+        "postprocess": 0.08807182894088328,
+        "total": 11.012262620963156
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 2689.6923828125,
+        "caching_allocator_peak_reserved_mib": 2800.0
+      },
+      "duration_error_seconds": 0.001179138321994344,
+      "model_input_samples": 699332,
+      "raw_output_samples": 699360,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "n_timesteps": 50,
+        "cfg": 3.0,
+        "precision": "CUDA BF16 autocast"
+      },
+      "source": "https://huggingface.co/amphion/anyaccomp",
+      "use": "Research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "86e2c7eb59c5fd3977a6589ebbfd5144f32768e43de21b0bb0fff2a6626a2b11",
+          "sample_rate": 24000,
+          "channels": 1,
+          "samples": 699360,
+          "seconds": 29.14,
+          "rms": 0.05088103298587589,
+          "peak": 0.5066647529602051,
+          "listening_mp3": {
+            "source_audio_sha256": "86e2c7eb59c5fd3977a6589ebbfd5144f32768e43de21b0bb0fff2a6626a2b11",
+            "sha256": "50d12fb43886359a05222dad63520cb685393a8fb6327275833cb49f23359c0a",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.14
+          }
+        },
+        "mix": {
+          "sha256": "41c6d32a1ad19cf7ffbd77a8e000683e444bb15d02611a948869514eb83e60c4",
+          "sample_rate": 44100,
+          "channels": 1,
+          "samples": 1285074,
+          "seconds": 29.14,
+          "rms": 0.14327879457140108,
+          "peak": 0.5902417898178101,
+          "listening_mp3": {
+            "source_audio_sha256": "41c6d32a1ad19cf7ffbd77a8e000683e444bb15d02611a948869514eb83e60c4",
+            "sha256": "ba4e1864c9f1ad3a317ae71e737197bc9544a60841860d6aa935bacb8fc69236",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.14
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 2,
+        "reference_markers": 14,
+        "raw_extra": 2,
+        "raw_unmatched": 12,
+        "first_downbeat_s": 0.74,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 0.27999999999999997,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.4460277911275625
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-acoustic-folk-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:52:27.074118+08:00",
+      "ended_at_awst": "2026-11-24T14:52:37.387285+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.3071963116526604e-05,
+        "generation": 10.147162914276123,
+        "postprocess": 0.07623607595451176,
+        "total": 10.319594749016687
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 121078391,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "c47ee90b27686f44c36181863f73773d09d590ad4dd18df99a1717f50f171df4",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.021495360458198377,
+          "peak": 0.2237548828125,
+          "listening_mp3": {
+            "source_audio_sha256": "c47ee90b27686f44c36181863f73773d09d590ad4dd18df99a1717f50f171df4",
+            "sha256": "9812eb1ff1831d29dd99899ccf6fbc70fa4363c2132329ff255c6a384b4cb132",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "05a1c5025e3bf7ebde18b74115bc78036c1c1207fea5af258deafe73a16ab792",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.14142838966779187,
+          "peak": 0.5340188145637512,
+          "listening_mp3": {
+            "source_audio_sha256": "05a1c5025e3bf7ebde18b74115bc78036c1c1207fea5af258deafe73a16ab792",
+            "sha256": "33ddfb8496350d01cad474813ddadffde1a88037cf33fca50cef710f6b419b4d",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 4,
+        "raw_unmatched": 14,
+        "first_downbeat_s": 0.02,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.44,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.4654821678996086
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-acoustic-folk-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:52:37.394478+08:00",
+      "ended_at_awst": "2026-11-24T14:52:47.768474+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.3013056963682175e-05,
+        "generation": 10.193743705749512,
+        "postprocess": 0.07448246306739748,
+        "total": 10.380660701077431
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 607818863,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "54d292a6dff1f511b69cc37ca12fd701a45565e12bd30b489b038331513fb14f",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.029630701886232975,
+          "peak": 0.27325439453125,
+          "listening_mp3": {
+            "source_audio_sha256": "54d292a6dff1f511b69cc37ca12fd701a45565e12bd30b489b038331513fb14f",
+            "sha256": "20908eb121d2d3747a91652c831acd8a87c865b0538ca63d403a28a9dc108660",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "c572da90aa67986df652926b2aba46666c499a8cfd9c233928c8a7cf1c6087b6",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.1417986710715188,
+          "peak": 0.5444202423095703,
+          "listening_mp3": {
+            "source_audio_sha256": "c572da90aa67986df652926b2aba46666c499a8cfd9c233928c8a7cf1c6087b6",
+            "sha256": "68107f120d2afc296311430cce0494f5dee405ea93958f5c588fb6e6d9ce1e91",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 1,
+        "raw_unmatched": 14,
+        "first_downbeat_s": 25.7,
+        "first_signal_s": 0.26,
+        "first_raw_lag_s": 25.24,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.45680641755461693
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-half-time-rnb-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:53:08.649607+08:00",
+      "ended_at_awst": "2026-11-24T14:53:19.081270+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.485684283077717e-05,
+        "generation": 10.253676652908325,
+        "postprocess": 0.07842155802063644,
+        "total": 10.437997462926432
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 121078391,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "ff1959aee9e787953606f0ee4d40247697541974c8dedcfd009412b2bd6cd1a3",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.004485030943950911,
+          "peak": 0.030303955078125,
+          "listening_mp3": {
+            "source_audio_sha256": "ff1959aee9e787953606f0ee4d40247697541974c8dedcfd009412b2bd6cd1a3",
+            "sha256": "6124b78e164d65159064a1f1bfc6cb8bac148efd2e3a53761f58c0da1d1ad77c",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "6881980840ae610c9fa6a0365864028f874edde0a26d4780e795d25e5a6020f0",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.141051603263006,
+          "peak": 0.5059035420417786,
+          "listening_mp3": {
+            "source_audio_sha256": "6881980840ae610c9fa6a0365864028f874edde0a26d4780e795d25e5a6020f0",
+            "sha256": "666eabc9bb09803e62b6b536a794bead36e73987cb3d5b8195f22ba17b4a2aa3",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 1,
+        "reference_markers": 14,
+        "raw_extra": 1,
+        "raw_unmatched": 13,
+        "first_downbeat_s": 0.02,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.44,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.4651289992034435
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-half-time-rnb-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:53:19.087821+08:00",
+      "ended_at_awst": "2026-11-24T14:53:29.571168+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.289198502898216e-05,
+        "generation": 10.283885478973389,
+        "postprocess": 0.07245424995198846,
+        "total": 10.489330164855346
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 607818863,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.06172605787945745,
+          "peak": 0.51348876953125,
+          "listening_mp3": {
+            "source_audio_sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+            "sha256": "d8a9f1591f44bbe020d610dfc190f5a2b6803a35764f77cbc773d1193eb444f9",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "c0441e1f4f829884a37702a8f67900a6d182ee67881d2119450327ca2c293484",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.14442510278305248,
+          "peak": 0.5657331943511963,
+          "listening_mp3": {
+            "source_audio_sha256": "c0441e1f4f829884a37702a8f67900a6d182ee67881d2119450327ca2c293484",
+            "sha256": "361b320399701056f1b4e26d441eb958781fe561a1b0a52052fe337c3fe1e37e",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 4,
+        "raw_unmatched": 14,
+        "first_downbeat_s": 3.24,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 2.7800000000000002,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.45876054279506207
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-sparse-synth-pop-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:52:47.775488+08:00",
+      "ended_at_awst": "2026-11-24T14:52:58.206826+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.2550888136029243e-05,
+        "generation": 10.20176911354065,
+        "postprocess": 0.07580700609833002,
+        "total": 10.437812513904646
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 121078391,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "9eec814c7bc4485beeff1536285a7b5aef74553ae15848bce4ecca5b23cecb40",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.0032457462909725103,
+          "peak": 0.022552490234375,
+          "listening_mp3": {
+            "source_audio_sha256": "9eec814c7bc4485beeff1536285a7b5aef74553ae15848bce4ecca5b23cecb40",
+            "sha256": "506ae49a9f7aa340b5544759717202be637ea2a2ddfcdfa94c7afc574eba95e0",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "93803612c12edc93b1c0e34248bf7f474a50b0870e54d850a5850ba4ac799d4f",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.1410434307190897,
+          "peak": 0.5044657588005066,
+          "listening_mp3": {
+            "source_audio_sha256": "93803612c12edc93b1c0e34248bf7f474a50b0870e54d850a5850ba4ac799d4f",
+            "sha256": "48d07a303284bc8cc251968715406c1dd1d70dd9062f3a3f859d9a2c51882452",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 1,
+        "raw_unmatched": 14,
+        "first_downbeat_s": 0.02,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.44,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.553693251684308
+      }
+    },
+    {
+      "candidate_id": "vocadito-18-lada-sparse-synth-pop-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:52:58.213484+08:00",
+      "ended_at_awst": "2026-11-24T14:53:08.642720+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.273117519915104e-05,
+        "generation": 10.233434915542603,
+        "postprocess": 0.09164999099448323,
+        "total": 10.43533456302248
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.77734375,
+        "caching_allocator_peak_reserved_mib": 23440.0
+      },
+      "duration_error_seconds": 0.021179138321993918,
+      "sample_seed": 607818863,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-18",
+      "input_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+      "outputs": {
+        "backing": {
+          "sha256": "da579f8c46fbc8a5f861f27d5c17e5b5d809afc30f2d91283399b2549150c9d1",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1399680,
+          "seconds": 29.16,
+          "rms": 0.11001389756811522,
+          "peak": 0.365142822265625,
+          "listening_mp3": {
+            "source_audio_sha256": "da579f8c46fbc8a5f861f27d5c17e5b5d809afc30f2d91283399b2549150c9d1",
+            "sha256": "9320b8cd1d497659cce91d20ee466671c7120f288d1f99b23632610430163041",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 29.16
+          }
+        },
+        "mix": {
+          "sha256": "a2f7dd0294b9df37b1b436204367db9c1e0c91720350f7b669eed2ae5468199d",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1285956,
+          "seconds": 29.16,
+          "rms": 0.1513440281223734,
+          "peak": 0.6040847897529602,
+          "listening_mp3": {
+            "source_audio_sha256": "a2f7dd0294b9df37b1b436204367db9c1e0c91720350f7b669eed2ae5468199d",
+            "sha256": "930657d60e666af7d3bae3eb02429bf3ca9f3de864c3555f41cbf42b3e53d908",
+            "bytes": 701037,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 29.16
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 14,
+        "raw_extra": 3,
+        "raw_unmatched": 14,
+        "first_downbeat_s": 0.0,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.46,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.45533295907080173
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-anyaccomp-seed29",
+      "model": "AnyAccomp",
+      "checkpoint": {
+        "id": "amphion/anyaccomp",
+        "revision": "9aa9e62427337bf1df4caa3c4f3e6ad934522e711",
+        "sha256": {
+          "flow_matching": "e6802bd1123935a54e990cb8d3897a18190df6c53f73db021baa28c420721129",
+          "vocoder": "7efd04c71c058cd00b4e9a91c761b31da745f878b7d7ee839e157104d3a7da",
+          "vq": "9d7f48cefea30602b2148c057faf14ecad168184e8063c8377dd57f208dc65fc"
+        }
+      },
+      "commit": "82604b5e3107944ad4c49fc64900b86118ae2c62",
+      "style": "unconditioned",
+      "style_control": "none",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:51:04.425204+08:00",
+      "ended_at_awst": "2026-11-24T14:51:11.662126+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 4.454081999137998,
+        "generation": 1.7163363799918443,
+        "postprocess": 0.02594518894329667,
+        "total": 7.250617576064542
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 2571.3447265625,
+        "caching_allocator_peak_reserved_mib": 2700.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "model_input_samples": 571968,
+      "raw_output_samples": 572160,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "n_timesteps": 50,
+        "cfg": 3.0,
+        "precision": "CUDA BF16 autocast"
+      },
+      "source": "https://huggingface.co/amphion/anyaccomp",
+      "use": "Research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "8a2d54a79263f577ad390a3a44a88574f56bc2430c5d6fea1cd562a5db839732",
+          "sample_rate": 24000,
+          "channels": 1,
+          "samples": 572160,
+          "seconds": 23.84,
+          "rms": 0.08100760617933041,
+          "peak": 1.1618551015853882,
+          "listening_mp3": {
+            "source_audio_sha256": "8a2d54a79263f577ad390a3a44a88574f56bc2430c5d6fea1cd562a5db839732",
+            "sha256": "ba6a1d962fbfad62b71e208857fbbf8add770c3a5d4d480fa5dffb349770b6b6",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "b89a372c963188bdee0e9015abcafc1204788d154bd1559752bf4027d7a66882",
+          "sample_rate": 44100,
+          "channels": 1,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.06297263643796877,
+          "peak": 0.645478367805481,
+          "listening_mp3": {
+            "source_audio_sha256": "b89a372c963188bdee0e9015abcafc1204788d154bd1559752bf4027d7a66882",
+            "sha256": "2ab9acfe994f1791750386b497312f7cd63a62e17ac47488fe2c8559f43231a1",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 8,
+        "raw_extra": 8,
+        "raw_unmatched": 8,
+        "first_downbeat_s": 1.7,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 1.22,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.31879408098757267
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-acoustic-folk-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:53:29.577144+08:00",
+      "ended_at_awst": "2026-11-24T14:53:39.798489+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 2.6840949431061745e-05,
+        "generation": 10.060287237167358,
+        "postprocess": 0.060914205852895975,
+        "total": 10.226735717151314
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 1351713174,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "2c1c8d838868901f530bf09aa85eeca9d6f37fd065c45de5b62db9df2d132a45",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.01969785149356417,
+          "peak": 0.39459228515625,
+          "listening_mp3": {
+            "source_audio_sha256": "2c1c8d838868901f530bf09aa85eeca9d6f37fd065c45de5b62db9df2d132a45",
+            "sha256": "a0fd4e26b821e12e22a5391e9dc1305e48722cbffd725606c760d14d5b2e1af5",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "89e9978a467ec4f2d5aaeb0877a06d8b1aea1331cf68a244c4dc09fc2f2b1a1d",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.04910016222322498,
+          "peak": 0.4359075725078583,
+          "listening_mp3": {
+            "source_audio_sha256": "89e9978a467ec4f2d5aaeb0877a06d8b1aea1331cf68a244c4dc09fc2f2b1a1d",
+            "sha256": "321b6351bc5d65967ccce5cca48a6add72c521c67f9e3b2f0d3917dc3fec8342",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 3,
+        "reference_markers": 8,
+        "raw_extra": 17,
+        "raw_unmatched": 5,
+        "first_downbeat_s": 0.32,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.15999999999999998,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.3361909594386816
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-acoustic-folk-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "acoustic-folk",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:53:39.804475+08:00",
+      "ended_at_awst": "2026-11-24T14:53:50.059323+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.2602110877633095e-05,
+        "generation": 10.089688777923584,
+        "postprocess": 0.06221600715070963,
+        "total": 10.260293424129486
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 862126645,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "97f52731b85cf5274d15a534080f7dc9bf29b316f7277bfed472fb84f3dd4ebb",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.25841484861740993,
+          "peak": 0.999176025390625,
+          "listening_mp3": {
+            "source_audio_sha256": "97f52731b85cf5274d15a534080f7dc9bf29b316f7277bfed472fb84f3dd4ebb",
+            "sha256": "fec07aad3da8c02c9bb943eed16b1197241e48575549a7132df6476797478fa4",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "c1a9c82f6cd4bb550d59287b0dc81d700379dcc985e9bca845fa918cf364c01d",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.13801956240846863,
+          "peak": 0.8160689473152161,
+          "listening_mp3": {
+            "source_audio_sha256": "c1a9c82f6cd4bb550d59287b0dc81d700379dcc985e9bca845fa918cf364c01d",
+            "sha256": "05631d1d308dedf8f20ad4e9c933b8bcf4237f3d49f6e83c424b1ffc6ee08786",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 1,
+        "reference_markers": 8,
+        "raw_extra": 8,
+        "raw_unmatched": 7,
+        "first_downbeat_s": 0.88,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 0.4,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.34262795746326447
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-half-time-rnb-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:54:10.686443+08:00",
+      "ended_at_awst": "2026-11-24T14:54:20.983437+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.191106952726841e-05,
+        "generation": 10.156322717666626,
+        "postprocess": 0.06131063215434551,
+        "total": 10.302606316050515
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 1351713174,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "5dd1417201c8205b95d7846511edb3bc23e8624c57169884ff5c28d3c63f16a3",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.030473134275455626,
+          "peak": 0.3306884765625,
+          "listening_mp3": {
+            "source_audio_sha256": "5dd1417201c8205b95d7846511edb3bc23e8624c57169884ff5c28d3c63f16a3",
+            "sha256": "5bff31d3c128502307c11db9d24bfb8dc089f2838d781956824a3df789cd0533",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "c3ff88de99771062435b098db5887c5e3fea6a232e15d5ed471a8709ec0dd1c1",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.05055934754613129,
+          "peak": 0.466255247592926,
+          "listening_mp3": {
+            "source_audio_sha256": "c3ff88de99771062435b098db5887c5e3fea6a232e15d5ed471a8709ec0dd1c1",
+            "sha256": "6098f5f373df7e7e44780bf8242e79d4290e585cc0134d52fac0d0f95dd408e3",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 0,
+        "reference_markers": 8,
+        "raw_extra": 8,
+        "raw_unmatched": 8,
+        "first_downbeat_s": 2.34,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": 1.8599999999999999,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.33349641785025597
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-half-time-rnb-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "half-time-rnb",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:54:20.989285+08:00",
+      "ended_at_awst": "2026-11-24T14:54:31.361163+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.251200541853905e-05,
+        "generation": 10.153139114379883,
+        "postprocess": 0.060586486011743546,
+        "total": 10.377190566854551
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 862126645,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "243d722cc02c92ad3f8e7d32efabe8bc7fd9396c88f77cdebae6a6926c72b843",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.015230528764535005,
+          "peak": 0.308563232421875,
+          "listening_mp3": {
+            "source_audio_sha256": "243d722cc02c92ad3f8e7d32efabe8bc7fd9396c88f77cdebae6a6926c72b843",
+            "sha256": "97c1940a3f4e708c2485203ec6073b499144e5eea7d06477b876d23cf9643541",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "08ed9984d69b5a3ae342d0f8bf0a77f9ba18d2ba400a403d11a7a0d860f52706",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.04873843740917654,
+          "peak": 0.4341309070587158,
+          "listening_mp3": {
+            "source_audio_sha256": "08ed9984d69b5a3ae342d0f8bf0a77f9ba18d2ba400a403d11a7a0d860f52706",
+            "sha256": "d9d9cc62cc0375da85c7f582e1b77df2e2b5028409151d89a4c13faa62e5e84a",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 1,
+        "reference_markers": 8,
+        "raw_extra": 3,
+        "raw_unmatched": 7,
+        "first_downbeat_s": 2.3,
+        "first_signal_s": 2.2600000000000002,
+        "first_raw_lag_s": 1.8199999999999998,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "late_possible",
+        "analysis_seconds": 0.3449260424822569
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-sparse-synth-pop-seed29",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 29,
+      "started_at_awst": "2026-11-24T14:53:50.065128+08:00",
+      "ended_at_awst": "2026-11-24T14:54:00.349275+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.4153927117586136e-05,
+        "generation": 10.111907958984375,
+        "postprocess": 0.060110095888376236,
+        "total": 10.289413854945451
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 1351713174,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "59e1560a2ca0b21e6ea8a24cbbebc33384b75e97a7ef3b57b4b9df78b412bd0d",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.017971787544593106,
+          "peak": 0.191192626953125,
+          "listening_mp3": {
+            "source_audio_sha256": "59e1560a2ca0b21e6ea8a24cbbebc33384b75e97a7ef3b57b4b9df78b412bd0d",
+            "sha256": "9270c222e8f81730ce9b57eadab5bfd51babe98fa4950167a58f1ac58e206a50",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "2c98e33c83019db3b9d276d3a3d8f1bc912f9e707cf667a4f8accb7ac5b34547",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.048932207323150505,
+          "peak": 0.4324277639389038,
+          "listening_mp3": {
+            "source_audio_sha256": "2c98e33c83019db3b9d276d3a3d8f1bc912f9e707cf667a4f8accb7ac5b34547",
+            "sha256": "5508b5b429786bb25feaa36bb9b87e7d99660e7d81a534dc0434836395809a61",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 1,
+        "reference_markers": 8,
+        "raw_extra": 5,
+        "raw_unmatched": 7,
+        "first_downbeat_s": 0.04,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.44,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.3332754597067833
+      }
+    },
+    {
+      "candidate_id": "vocadito-6-lada-sparse-synth-pop-seed73",
+      "model": "LaDA-Band",
+      "checkpoint": {
+        "id": "sDuoluoluos/LaDA-Band/lada_band_lm1B_total3B.ckpt",
+        "revision": "6d444caee85385677b0652ecb0b2b8220436dd37",
+        "sha256": "050ee4e4c67fd7e06947f475d21af3a13e183344ce790e06a79076a148ef82c5"
+      },
+      "commit": "1177fafd43a5f9b5166aa938c52f73180fdff46f",
+      "style": "sparse-synth-pop",
+      "style_control": "text",
+      "model_output_kind": "isolated_backing",
+      "seed_controllable": true,
+      "seed": 73,
+      "started_at_awst": "2026-11-24T14:54:00.355457+08:00",
+      "ended_at_awst": "2026-11-24T14:54:10.680284+08:00",
+      "status": "success",
+      "timings_seconds": {
+        "model_load": 3.17208468914032e-05,
+        "generation": 10.118236780166626,
+        "postprocess": 0.06925694784149528,
+        "total": 10.330480822827667
+      },
+      "timeout_seconds": 600,
+      "gpu": {
+        "name": "NVIDIA GeForce RTX 5090",
+        "torch_version": "2.8.0+cu128",
+        "cuda_version": "12.8",
+        "caching_allocator_peak_allocated_mib": 20294.7744140625,
+        "caching_allocator_peak_reserved_mib": 23424.0
+      },
+      "duration_error_seconds": 0.008004535147392744,
+      "sample_seed": 862126645,
+      "mix": {
+        "provenance": "original dry and generated backing, unshifted fixed-gain sum",
+        "dry_gain": 0.5,
+        "backing_gain": 0.5
+      },
+      "parameters": {
+        "sampling_steps": 24,
+        "config": "infer_1B.yaml",
+        "top_k": 100,
+        "top_p": 0.9,
+        "temperature": 1.0,
+        "mask_temperature": 10.5,
+        "remask_strategy": "low_confidence",
+        "remask_schedule": "cosine",
+        "decode_mode": "diffusion",
+        "segment": [
+          0,
+          -1
+        ]
+      },
+      "source": "https://huggingface.co/sDuoluoluos/LaDA-Band",
+      "use": "Non-commercial research listening and evaluation",
+      "input_id": "vocadito-6",
+      "input_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+      "outputs": {
+        "backing": {
+          "sha256": "08ed966c449724d3878b90b1c52fcb9e371766bcf0ea616c4d9a2558732f130d",
+          "sample_rate": 48000,
+          "channels": 2,
+          "samples": 1144320,
+          "seconds": 23.84,
+          "rms": 0.19775470186166938,
+          "peak": 0.94659423828125,
+          "listening_mp3": {
+            "source_audio_sha256": "08ed966c449724d3878b90b1c52fcb9e371766bcf0ea616c4d9a2558732f130d",
+            "sha256": "0e735f824a8e4a0f424f1715655f86092c1cb45c7e5e32d72d286a99b4853095",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 0.5,
+            "mp3_container_seconds": 23.84
+          }
+        },
+        "mix": {
+          "sha256": "1fca0c133cf3e74eba73d4d416e4dc8f8ed103e323628ebf016017d9791b1f5a",
+          "sample_rate": 44100,
+          "channels": 2,
+          "samples": 1051344,
+          "seconds": 23.84,
+          "rms": 0.11005589469373656,
+          "peak": 0.6504523754119873,
+          "listening_mp3": {
+            "source_audio_sha256": "1fca0c133cf3e74eba73d4d416e4dc8f8ed103e323628ebf016017d9791b1f5a",
+            "sha256": "07b0a12b3bdb3c955fda3c5eec252e3589eaaf6a33c7b717fb7730c3b1c9a90a",
+            "bytes": 573741,
+            "sample_rate_hz": 48000,
+            "bit_rate": 192000,
+            "fixed_gain": 1,
+            "mp3_container_seconds": 23.84
+          }
+        }
+      },
+      "timing": {
+        "raw_matches": 2,
+        "reference_markers": 8,
+        "raw_extra": 16,
+        "raw_unmatched": 6,
+        "first_downbeat_s": 0.0,
+        "first_signal_s": 0.0,
+        "first_raw_lag_s": -0.48,
+        "estimated_shift_s": null,
+        "corrected_median_absolute_residual_s": null,
+        "shift_status": "insufficient_evidence",
+        "duration_flag": null,
+        "entry_flag": "early_possible",
+        "analysis_seconds": 0.3344098348170519
+      }
+    }
+  ],
+  "sources": {
+    "vocadito": {
+      "dataset": "https://doi.org/10.5281/zenodo.5578807",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Rachel M. Bittner, Katherine Pasalo, Juan José Bosch, Gabriel Meseguer-Brocal and David Rubinstein"
+    },
+    "kara_square": {
+      "source": "https://ccmixter.org/files/mindmapthat/60165",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "attribution": "Kara Square"
+    }
+  },
+  "audio_release": "48 kHz 192 kbps MP3 with separate hashes for listening copies and lossless scored audio",
+  "human_reviews": {
+    "same_style": 0,
+    "cross_style": 0,
+    "reusable_pairs": 0,
+    "counterexamples": null
+  },
+  "data_split": {
+    "pilot_song_ids": [
+      "kara-square-hey",
+      "vocadito-33",
+      "vocadito-18",
+      "vocadito-6"
+    ],
+    "future_evaluation": "Hold out entire compositions and retain all seeds and styles of each song together."
+  },
+  "control_file": "controls.json",
+  "packaging_seconds": 1.059,
+  "infrastructure_attempts": [
+    {
+      "candidate_id": "vocadito-33-lada-acoustic-folk-seed29",
+      "status": "failed",
+      "stage": "LaDA-Band model load",
+      "reason": "Offline Hugging Face cache directory setting did not resolve XLM-R; corrected before retry.",
+      "started_at_awst": "2026-11-24T14:46:33.771564+08:00",
+      "seconds": 9.785408835159615
+    }
+  ],
+  "lossless_mix_verification": {
+    "schema": "fixed-vocal-mix-verification/v1",
+    "test": "Subtract the receipt-scaled, polyphase-resampled backing from the unshifted lossless mix and divide by the documented dry gain. Compare every recovered dry sample at zero lag to the hash-verified input.",
+    "pass_max_abs_error_fs": 2e-06,
+    "results": {
+      "kara-square-hey-anyaccomp-seed29": {
+        "dry_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+        "backing_sha256": "ee893ff4cd2a72014563aa7a2fa168a30c56464627b0e5144ae6bf72d96467f1",
+        "mix_sha256": "b19e7ab46ab5ef17fe538f5c9cf51892f7d18f74265a0d3bbb14718ae350b16f",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1181880,
+        "mix_samples": 1182762,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.318035186021916e-08,
+        "dry_recovery_rms_error_fs": 1.218947065906689e-09,
+        "dry_recovery_normalized_rms_error": 2.741115488672774e-08,
+        "post_vocal_max_abs_error_fs": 4.6487112423387877e-10
+      },
+      "kara-square-hey-lada-acoustic-folk-seed29": {
+        "dry_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+        "backing_sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+        "mix_sha256": "1e20a54c253547d620211dd8df69106c11b3997eebdd70701eaf2dd69436025a",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1181880,
+        "mix_samples": 1183644,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 1.4899205202922872e-08,
+        "dry_recovery_rms_error_fs": 1.1236911474967881e-09,
+        "dry_recovery_normalized_rms_error": 2.5269080955511456e-08,
+        "post_vocal_max_abs_error_fs": 7.176539798623566e-12
+      },
+      "kara-square-hey-lada-acoustic-folk-seed73": {
+        "dry_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+        "backing_sha256": "7c1bfc494def09e8f63986faeafdedbd168834d74de1d636d8d2aeb0614d1930",
+        "mix_sha256": "714ed21c0fc87f14925412c65b4607ecf6ee11d2127c23610245fb779a8bfa9b",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1181880,
+        "mix_samples": 1183644,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9526845785917715e-08,
+        "dry_recovery_rms_error_fs": 4.687493203674187e-09,
+        "dry_recovery_normalized_rms_error": 1.0541032160475514e-07,
+        "post_vocal_max_abs_error_fs": 7.253381201222098e-09
+      },
+      "kara-square-hey-lada-sparse-synth-pop-seed29": {
+        "dry_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+        "backing_sha256": "6131a9928ad6cdce56791f3b116c8335add07655967e14d5ce17923f280751d9",
+        "mix_sha256": "772dc3881d8718c907d5d9f045e41a1e5b1d36a6cedf9b9d00e8d87de6ce907a",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1181880,
+        "mix_samples": 1183644,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 1.4886558152849005e-08,
+        "dry_recovery_rms_error_fs": 1.1239509184195184e-09,
+        "dry_recovery_normalized_rms_error": 2.527492257176961e-08,
+        "post_vocal_max_abs_error_fs": 7.211096005261056e-12
+      },
+      "vocadito-18-anyaccomp-seed29": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "86e2c7eb59c5fd3977a6589ebbfd5144f32768e43de21b0bb0fff2a6626a2b11",
+        "mix_sha256": "41c6d32a1ad19cf7ffbd77a8e000683e444bb15d02611a948869514eb83e60c4",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285074,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.959902982244358e-08,
+        "dry_recovery_rms_error_fs": 7.192615735049287e-09,
+        "dry_recovery_normalized_rms_error": 2.5490479071161907e-08,
+        "post_vocal_max_abs_error_fs": 3.839038288655505e-10
+      },
+      "vocadito-18-lada-acoustic-folk-seed29": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "c47ee90b27686f44c36181863f73773d09d590ad4dd18df99a1717f50f171df4",
+        "mix_sha256": "05a1c5025e3bf7ebde18b74115bc78036c1c1207fea5af258deafe73a16ab792",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9531606755314215e-08,
+        "dry_recovery_rms_error_fs": 7.120516036508901e-09,
+        "dry_recovery_normalized_rms_error": 2.5234959254118848e-08,
+        "post_vocal_max_abs_error_fs": 1.4266913334320258e-11
+      },
+      "vocadito-18-lada-acoustic-folk-seed73": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "54d292a6dff1f511b69cc37ca12fd701a45565e12bd30b489b038331513fb14f",
+        "mix_sha256": "c572da90aa67986df652926b2aba46666c499a8cfd9c233928c8a7cf1c6087b6",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9528800222530265e-08,
+        "dry_recovery_rms_error_fs": 7.134811415956406e-09,
+        "dry_recovery_normalized_rms_error": 2.5285621778580605e-08,
+        "post_vocal_max_abs_error_fs": 4.612849165142041e-10
+      },
+      "vocadito-18-lada-half-time-rnb-seed29": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "ff1959aee9e787953606f0ee4d40247697541974c8dedcfd009412b2bd6cd1a3",
+        "mix_sha256": "6881980840ae610c9fa6a0365864028f874edde0a26d4780e795d25e5a6020f0",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.5984957114674216e-08,
+        "dry_recovery_rms_error_fs": 7.105476367292055e-09,
+        "dry_recovery_normalized_rms_error": 2.5181658982349693e-08,
+        "post_vocal_max_abs_error_fs": 7.022050855284151e-12
+      },
+      "vocadito-18-lada-half-time-rnb-seed73": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "7461654906675dde3a42d34a5d7c6e7f9e0b1b48d2f27ebbfb0880083be8cca1",
+        "mix_sha256": "c0441e1f4f829884a37702a8f67900a6d182ee67881d2119450327ca2c293484",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.943612446657198e-08,
+        "dry_recovery_rms_error_fs": 7.2606856201700626e-09,
+        "dry_recovery_normalized_rms_error": 2.5731717314099352e-08,
+        "post_vocal_max_abs_error_fs": 3.723768973729058e-09
+      },
+      "vocadito-18-lada-sparse-synth-pop-seed29": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "9eec814c7bc4485beeff1536285a7b5aef74553ae15848bce4ecca5b23cecb40",
+        "mix_sha256": "93803612c12edc93b1c0e34248bf7f474a50b0870e54d850a5850ba4ac799d4f",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.697557969863709e-08,
+        "dry_recovery_rms_error_fs": 7.114978830188711e-09,
+        "dry_recovery_normalized_rms_error": 2.521533551123909e-08,
+        "post_vocal_max_abs_error_fs": 7.090202367278711e-12
+      },
+      "vocadito-18-lada-sparse-synth-pop-seed73": {
+        "dry_sha256": "4f2a3712dd912b235990f3505593200172da3f386c80db91dfaeb04fc641c929",
+        "backing_sha256": "da579f8c46fbc8a5f861f27d5c17e5b5d809afc30f2d91283399b2549150c9d1",
+        "mix_sha256": "a2f7dd0294b9df37b1b436204367db9c1e0c91720350f7b669eed2ae5468199d",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1285022,
+        "mix_samples": 1285956,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9598301849206337e-08,
+        "dry_recovery_rms_error_fs": 7.53706994272202e-09,
+        "dry_recovery_normalized_rms_error": 2.6711217547272818e-08,
+        "post_vocal_max_abs_error_fs": 9.029722733422396e-10
+      },
+      "vocadito-33-anyaccomp-seed29": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "668c855fa9d68be01dbb9932a1bc08b51f586074dce382ced46a79b88a631060",
+        "mix_sha256": "d95684e28ad3aee08fd895e1dab6dbe8f3412bee53a453e887fec22877f8f7e9",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1323882,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.7808545284032675e-08,
+        "dry_recovery_rms_error_fs": 3.0973282840359328e-09,
+        "dry_recovery_normalized_rms_error": 7.117414724806047e-08,
+        "post_vocal_max_abs_error_fs": 1.0608043145681205e-13
+      },
+      "vocadito-33-lada-acoustic-folk-seed29": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "77e0532bcd58bbdc0a83def2d08be49b20159e6e3c1ba765ad32352269b25ec8",
+        "mix_sha256": "c2700c0a5c332900c8bfc961ee162bda081951e6d80ab013ff46bf56de441843",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.9581947891266225e-08,
+        "dry_recovery_rms_error_fs": 1.6419527905747397e-09,
+        "dry_recovery_normalized_rms_error": 3.7730772773769874e-08,
+        "post_vocal_max_abs_error_fs": 7.3647346554572835e-09
+      },
+      "vocadito-33-lada-acoustic-folk-seed73": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "c8d1866a5363630dc5dcd8fa6b6c27158d89e8e0273340e36460461c5f20cbfb",
+        "mix_sha256": "1d231578bfea5b644d75ee2f895741bbdccea739f67b9cdbc1afb80507221927",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 1.4900734479628142e-08,
+        "dry_recovery_rms_error_fs": 1.1072312654808464e-09,
+        "dry_recovery_normalized_rms_error": 2.5443296254119585e-08,
+        "post_vocal_max_abs_error_fs": 5.7803942622031146e-11
+      },
+      "vocadito-33-lada-half-time-rnb-seed29": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "52afe7c7a8a30ba8bb5b16deb9fd141facd2c95a14667645ce37bb2bfaca22b3",
+        "mix_sha256": "942cac82a4f81cec658ffb536456c8d6b415e133dc695dce5cd54a1efb329cd0",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 1.4884663418479605e-08,
+        "dry_recovery_rms_error_fs": 1.2011227156685184e-09,
+        "dry_recovery_normalized_rms_error": 2.760084730721092e-08,
+        "post_vocal_max_abs_error_fs": 1.862243158290422e-09
+      },
+      "vocadito-33-lada-half-time-rnb-seed73": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "044cc1c90c2a83e21f4d6c1690e101d8dd855492b59db4aafcd8d6ab9631c4c3",
+        "mix_sha256": "cee519f3a6f7553191dfbd5265c5514ce9f84a2300cbf1549d38104452c6f8ba",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.906609001904428e-08,
+        "dry_recovery_rms_error_fs": 3.2130543916935445e-09,
+        "dry_recovery_normalized_rms_error": 7.383344141113672e-08,
+        "post_vocal_max_abs_error_fs": 7.447246097580518e-09
+      },
+      "vocadito-33-lada-sparse-synth-pop-seed29": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "ec6214e6dee1d77c7339f9cf8fbcb6ebcadff12ac6f35f4ecd83519546d4d279",
+        "mix_sha256": "d030e6667fe6581f8f1878e9a48c1765d75b4472b01425ea4e414a5cf8b0c4ba",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.979855628915118e-08,
+        "dry_recovery_rms_error_fs": 4.467057316866206e-09,
+        "dry_recovery_normalized_rms_error": 1.0264943398956569e-07,
+        "post_vocal_max_abs_error_fs": 7.448498845485929e-09
+      },
+      "vocadito-33-lada-sparse-synth-pop-seed73": {
+        "dry_sha256": "896ae8828bfdc7eefc46a4781c328b979f519fea310c04c32cf5859c54ba4c7a",
+        "backing_sha256": "fd39b5ebbe06055a52fb9629af1b94776575ee3ba77f8c15c0ed3741a44a4b3d",
+        "mix_sha256": "5a57dcbe65b76af9dc2ae35ea456db2872743809cc5f90ea20448c02f3a57954",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1323000,
+        "mix_samples": 1324764,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 1.4900707223652887e-08,
+        "dry_recovery_rms_error_fs": 1.1365781083899646e-09,
+        "dry_recovery_normalized_rms_error": 2.6117663427029517e-08,
+        "post_vocal_max_abs_error_fs": 8.797974987428958e-10
+      },
+      "vocadito-6-anyaccomp-seed29": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "8a2d54a79263f577ad390a3a44a88574f56bc2430c5d6fea1cd562a5db839732",
+        "mix_sha256": "b89a372c963188bdee0e9015abcafc1204788d154bd1559752bf4027d7a66882",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9323943868427875e-08,
+        "dry_recovery_rms_error_fs": 3.197700849256771e-09,
+        "dry_recovery_normalized_rms_error": 3.32123623884009e-08,
+        "post_vocal_max_abs_error_fs": 3.6343596860298477e-12
+      },
+      "vocadito-6-lada-acoustic-folk-seed29": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "2c1c8d838868901f530bf09aa85eeca9d6f37fd065c45de5b62db9df2d132a45",
+        "mix_sha256": "89e9978a467ec4f2d5aaeb0877a06d8b1aea1331cf68a244c4dc09fc2f2b1a1d",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.9792509015358348e-08,
+        "dry_recovery_rms_error_fs": 2.495558702131822e-09,
+        "dry_recovery_normalized_rms_error": 2.591968538770403e-08,
+        "post_vocal_max_abs_error_fs": 4.6271864465041723e-10
+      },
+      "vocadito-6-lada-acoustic-folk-seed73": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "97f52731b85cf5274d15a534080f7dc9bf29b316f7277bfed472fb84f3dd4ebb",
+        "mix_sha256": "c1a9c82f6cd4bb550d59287b0dc81d700379dcc985e9bca845fa918cf364c01d",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9602189961260876e-08,
+        "dry_recovery_rms_error_fs": 6.879735193630511e-09,
+        "dry_recovery_normalized_rms_error": 7.145517018585386e-08,
+        "post_vocal_max_abs_error_fs": 3.699695050318752e-09
+      },
+      "vocadito-6-lada-half-time-rnb-seed29": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "5dd1417201c8205b95d7846511edb3bc23e8624c57169884ff5c28d3c63f16a3",
+        "mix_sha256": "c3ff88de99771062435b098db5887c5e3fea6a232e15d5ed471a8709ec0dd1c1",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.979661184454585e-08,
+        "dry_recovery_rms_error_fs": 2.5756034929402835e-09,
+        "dry_recovery_normalized_rms_error": 2.6751056652546477e-08,
+        "post_vocal_max_abs_error_fs": 4.639025361768967e-10
+      },
+      "vocadito-6-lada-half-time-rnb-seed73": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "243d722cc02c92ad3f8e7d32efabe8bc7fd9396c88f77cdebae6a6926c72b843",
+        "mix_sha256": "08ed9984d69b5a3ae342d0f8bf0a77f9ba18d2ba400a403d11a7a0d860f52706",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.9802292189629043e-08,
+        "dry_recovery_rms_error_fs": 2.4843592356610864e-09,
+        "dry_recovery_normalized_rms_error": 2.5803364081704043e-08,
+        "post_vocal_max_abs_error_fs": 1.4494147256103457e-11
+      },
+      "vocadito-6-lada-sparse-synth-pop-seed29": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "59e1560a2ca0b21e6ea8a24cbbebc33384b75e97a7ef3b57b4b9df78b412bd0d",
+        "mix_sha256": "2c98e33c83019db3b9d276d3a3d8f1bc912f9e707cf667a4f8accb7ac5b34547",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 2.9801123568873322e-08,
+        "dry_recovery_rms_error_fs": 2.489633143719239e-09,
+        "dry_recovery_normalized_rms_error": 2.585814060830477e-08,
+        "post_vocal_max_abs_error_fs": 4.6552103317998306e-10
+      },
+      "vocadito-6-lada-sparse-synth-pop-seed73": {
+        "dry_sha256": "13816752a6366f2d66f21e71a70d55e22b6a44f0d1712d97abff5390bc0c1f3b",
+        "backing_sha256": "08ed966c449724d3878b90b1c52fcb9e371766bcf0ea616c4d9a2558732f130d",
+        "mix_sha256": "1fca0c133cf3e74eba73d4d416e4dc8f8ed103e323628ebf016017d9791b1f5a",
+        "sample_rate_hz": 44100,
+        "dry_samples": 1050991,
+        "mix_samples": 1051344,
+        "dry_gain": 0.5,
+        "backing_gain": 0.5,
+        "zero_sample_delay": true,
+        "dry_recovery_max_abs_error_fs": 5.9232031945910535e-08,
+        "dry_recovery_rms_error_fs": 5.567251511901394e-09,
+        "dry_recovery_normalized_rms_error": 5.782328724202511e-08,
+        "post_vocal_max_abs_error_fs": 7.322870615444899e-09
+      }
+    }
+  },
+  "mp3_verification": {
+    "kara-square-hey/dry.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.53,
+      "window_correlation": 0.9999865273064258
+    },
+    "kara-square-hey/kara-square-hey-anyaccomp-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 17.03,
+      "window_correlation": 0.9999999776632171
+    },
+    "kara-square-hey/kara-square-hey-anyaccomp-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.53,
+      "window_correlation": 0.9999864955135589
+    },
+    "kara-square-hey/kara-square-hey-lada-acoustic-folk-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.03,
+      "window_correlation": 0.9998670775796431
+    },
+    "kara-square-hey/kara-square-hey-lada-acoustic-folk-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.53,
+      "window_correlation": 0.9999675293176854
+    },
+    "kara-square-hey/kara-square-hey-lada-acoustic-folk-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 7.53,
+      "window_correlation": 0.9999996364331397
+    },
+    "kara-square-hey/kara-square-hey-lada-acoustic-folk-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 7.53,
+      "window_correlation": 0.9999880241953139
+    },
+    "kara-square-hey/kara-square-hey-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 9.03,
+      "window_correlation": 0.9999061026423148
+    },
+    "kara-square-hey/kara-square-hey-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.53,
+      "window_correlation": 0.9999683759869861
+    },
+    "vocadito-18/dry.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.999999357253975
+    },
+    "vocadito-18/vocadito-18-anyaccomp-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 26.53,
+      "window_correlation": 0.9999999915693663
+    },
+    "vocadito-18/vocadito-18-anyaccomp-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.99999921552343
+    },
+    "vocadito-18/vocadito-18-lada-acoustic-folk-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 1.53,
+      "window_correlation": 0.9998273176347585
+    },
+    "vocadito-18/vocadito-18-lada-acoustic-folk-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.999988440744465
+    },
+    "vocadito-18/vocadito-18-lada-acoustic-folk-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 25.53,
+      "window_correlation": 0.9999996989268544
+    },
+    "vocadito-18/vocadito-18-lada-acoustic-folk-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.9999973107271424
+    },
+    "vocadito-18/vocadito-18-lada-half-time-rnb-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999088121747622
+    },
+    "vocadito-18/vocadito-18-lada-half-time-rnb-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.9999951411543704
+    },
+    "vocadito-18/vocadito-18-lada-half-time-rnb-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 26.03,
+      "window_correlation": 0.99999890091096
+    },
+    "vocadito-18/vocadito-18-lada-half-time-rnb-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.9999959883427924
+    },
+    "vocadito-18/vocadito-18-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 6.53,
+      "window_correlation": 0.9997922010115914
+    },
+    "vocadito-18/vocadito-18-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.9999968672291663
+    },
+    "vocadito-18/vocadito-18-lada-sparse-synth-pop-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 4.03,
+      "window_correlation": 0.9999999478149045
+    },
+    "vocadito-18/vocadito-18-lada-sparse-synth-pop-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 3.03,
+      "window_correlation": 0.9999968405394616
+    },
+    "vocadito-33/dry.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999992506962567
+    },
+    "vocadito-33/vocadito-33-anyaccomp-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.999999849179218
+    },
+    "vocadito-33/vocadito-33-anyaccomp-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999992705118069
+    },
+    "vocadito-33/vocadito-33-lada-acoustic-folk-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 23.53,
+      "window_correlation": 0.9999990334258048
+    },
+    "vocadito-33/vocadito-33-lada-acoustic-folk-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999951489080712
+    },
+    "vocadito-33/vocadito-33-lada-acoustic-folk-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 29.03,
+      "window_correlation": 0.9993559868606102
+    },
+    "vocadito-33/vocadito-33-lada-acoustic-folk-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999960319391262
+    },
+    "vocadito-33/vocadito-33-lada-half-time-rnb-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 28.53,
+      "window_correlation": 0.999999771873798
+    },
+    "vocadito-33/vocadito-33-lada-half-time-rnb-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999975461912217
+    },
+    "vocadito-33/vocadito-33-lada-half-time-rnb-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 26.53,
+      "window_correlation": 0.9999992084929799
+    },
+    "vocadito-33/vocadito-33-lada-half-time-rnb-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 26.53,
+      "window_correlation": 0.9999982096876675
+    },
+    "vocadito-33/vocadito-33-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 15.53,
+      "window_correlation": 0.999999401070973
+    },
+    "vocadito-33/vocadito-33-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 23.03,
+      "window_correlation": 0.9999974068126204
+    },
+    "vocadito-33/vocadito-33-lada-sparse-synth-pop-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.53,
+      "window_correlation": 0.9999991690627843
+    },
+    "vocadito-33/vocadito-33-lada-sparse-synth-pop-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 27.53,
+      "window_correlation": 0.9999950122767876
+    },
+    "vocadito-6/dry.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.99999758505954
+    },
+    "vocadito-6/vocadito-6-anyaccomp-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 6.53,
+      "window_correlation": 0.9999953167568953
+    },
+    "vocadito-6/vocadito-6-anyaccomp-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999965544028286
+    },
+    "vocadito-6/vocadito-6-lada-acoustic-folk-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 20.53,
+      "window_correlation": 0.9998921018237572
+    },
+    "vocadito-6/vocadito-6-lada-acoustic-folk-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999815460491609
+    },
+    "vocadito-6/vocadito-6-lada-acoustic-folk-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 12.03,
+      "window_correlation": 0.9998345887233947
+    },
+    "vocadito-6/vocadito-6-lada-acoustic-folk-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9994098658306558
+    },
+    "vocadito-6/vocadito-6-lada-half-time-rnb-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 22.03,
+      "window_correlation": 0.999994316841778
+    },
+    "vocadito-6/vocadito-6-lada-half-time-rnb-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999773750125188
+    },
+    "vocadito-6/vocadito-6-lada-half-time-rnb-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999997641545576
+    },
+    "vocadito-6/vocadito-6-lada-half-time-rnb-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999837924436378
+    },
+    "vocadito-6/vocadito-6-lada-sparse-synth-pop-seed29-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 16.03,
+      "window_correlation": 0.9999995388814992
+    },
+    "vocadito-6/vocadito-6-lada-sparse-synth-pop-seed29-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 8.03,
+      "window_correlation": 0.9999816004361813
+    },
+    "vocadito-6/vocadito-6-lada-sparse-synth-pop-seed73-backing.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 17.53,
+      "window_correlation": 0.9999914268176922
+    },
+    "vocadito-6/vocadito-6-lada-sparse-synth-pop-seed73-mix.mp3": {
+      "decoded_sample_delta_at_8_khz": 0,
+      "estimated_decoded_delay_samples_at_8_khz": 0,
+      "check_window_start_s": 19.53,
+      "window_correlation": 0.9999295932901865
+    }
+  },
+  "kara_reference_corroboration": "kara-companion-mix-control.json"
+}

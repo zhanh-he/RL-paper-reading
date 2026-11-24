@@ -1,0 +1,572 @@
+{
+  "schema": "accompaniment-timing/v1",
+  "version": "1.0.0",
+  "audio_kind": "backing",
+  "audio_sha256": "5dd1417201c8205b95d7846511edb3bc23e8624c57169884ff5c28d3c63f16a3",
+  "reference_sha256": "108b52674ec5d8fdf4c2c30537887c194c1ca7d168e95c023d0dd36f508bca13",
+  "reference_type": "Analyst-proposed bar navigation, pending independent human aural and metrical review",
+  "reference_basis": "Manual motif reading of both independent note transcriptions and source lyrics, with signal-level checks of the source WAV. Matching first and second melodic contours give phrase starts near 0.16 and 5.94 s, followed by less regular related phrases near 11.45 and 17.80 s. Eight candidate bar starts assume two roughly 2.8–3.1 s bars per phrase. Relative phrase movement supports a flexible pulse and cannot settle the absolute bar phase. No human listening judgment is recorded.",
+  "detector": {
+    "backbone": "Beat This (CASM MIREX 2026 split checkpoint)",
+    "checkpoint": "beatthis_mirex.ckpt",
+    "checkpoint_sha256": "3bcd54a331076fcc406c68d155a43d0ed3770808d175f87372ced9bd9ca1cd6e",
+    "postprocessor": "CASM no-SMC",
+    "config_sha256": "19e56ca4001f1a96a8bd0632d86d455e35b996478042c9fec8168e156cdc4f12",
+    "activation_hz": 50,
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "device": "cpu",
+    "confidence": "Sigmoid of the raw activation logit at the decoded event frame, uncalibrated",
+    "low_confidence_below": 0.25
+  },
+  "detector_status": "events_proposed",
+  "pairing_tolerance_s": 0.15,
+  "duration_delta_s": 0.008005000000000706,
+  "duration_flag": null,
+  "first_downbeat_s": 2.34,
+  "first_downbeat_raw_lag_s": 1.8599999999999999,
+  "entry_flag": "late_possible",
+  "signal": {
+    "duration_s": 23.84,
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "peak_absolute_sample": 0.3306884765625,
+    "out_of_range_sample_count": 0,
+    "gate_dbfs": -55.0,
+    "gate_envelope_frame_s": 0.02,
+    "gate_envelope_window_s": 0.1,
+    "minimum_blank_s": 0.35,
+    "first_signal_s": 0.0,
+    "last_signal_s": 23.84,
+    "blank_intervals": []
+  },
+  "detections": {
+    "beats": [
+      {
+        "time_s": 0.16,
+        "confidence": 0.9996166955974551,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 0.88,
+        "confidence": 0.99990467084472,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 1.62,
+        "confidence": 0.9999036816179,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 2.34,
+        "confidence": 0.9997534203888614,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.08,
+        "confidence": 0.9998693092339922,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 3.8,
+        "confidence": 0.9998030962286051,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 4.54,
+        "confidence": 0.9998752576929634,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.28,
+        "confidence": 0.9999042588879968,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.02,
+        "confidence": 0.9998898785145979,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 6.76,
+        "confidence": 0.9997776523478934,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 7.48,
+        "confidence": 0.9997310965140785,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.2,
+        "confidence": 0.9998503506435886,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.94,
+        "confidence": 0.9998721073525313,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 9.66,
+        "confidence": 0.9996624958273872,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 10.38,
+        "confidence": 0.9996227995881131,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.12,
+        "confidence": 0.999908849374191,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.86,
+        "confidence": 0.999653953637533,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 12.58,
+        "confidence": 0.9993016818000631,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 13.34,
+        "confidence": 0.9939829012216503,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.08,
+        "confidence": 0.9261925065332747,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.22,
+        "confidence": 0.9972189348700411,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 15.96,
+        "confidence": 0.9997813094746129,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.68,
+        "confidence": 0.9998883605420694,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 17.42,
+        "confidence": 0.9982945170464671,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.16,
+        "confidence": 0.9987421006636357,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 18.88,
+        "confidence": 0.9999063437231566,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.6,
+        "confidence": 0.9998334407917459,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 20.34,
+        "confidence": 0.9994611917657028,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.06,
+        "confidence": 0.9991965662358683,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 21.78,
+        "confidence": 0.9998211095705106,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.5,
+        "confidence": 0.9997942105120221,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 23.24,
+        "confidence": 0.9783599673140769,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ],
+    "downbeats": [
+      {
+        "time_s": 2.34,
+        "confidence": 0.9998407168787976,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 5.28,
+        "confidence": 0.9999592151327702,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 8.2,
+        "confidence": 0.9999338939783833,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 11.12,
+        "confidence": 0.9999283041463888,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 14.08,
+        "confidence": 0.9904592689302901,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 16.68,
+        "confidence": 0.9999260496734006,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 19.6,
+        "confidence": 0.999044376887107,
+        "low_confidence": false,
+        "suppression_reason": null
+      },
+      {
+        "time_s": 22.5,
+        "confidence": 0.9994532161382728,
+        "low_confidence": false,
+        "suppression_reason": null
+      }
+    ]
+  },
+  "raw": {
+    "shift_applied_to_detection_s": -0.0,
+    "match_count": 0,
+    "reference_count": 8,
+    "eligible_detection_count": 8,
+    "median_raw_lag_s": null,
+    "median_absolute_residual_s": null,
+    "matched": [],
+    "unmatched_reference": [
+      {
+        "bar": 1,
+        "time_s": 0.48,
+        "section": "Opening",
+        "lyrics": "write a love song",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The start has a candidate pickup and no independent cue for absolute beat phase."
+        ]
+      },
+      {
+        "bar": 2,
+        "time_s": 3.32,
+        "section": "Opening",
+        "lyrics": "love song",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+        ]
+      },
+      {
+        "bar": 3,
+        "time_s": 6.16,
+        "section": "Opening",
+        "lyrics": "all about my little dog",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+        ]
+      },
+      {
+        "bar": 4,
+        "time_s": 9.0,
+        "section": "Opening",
+        "lyrics": "little dog",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The voice sustains or ornaments pitches around the estimated phase."
+        ]
+      },
+      {
+        "bar": 5,
+        "time_s": 11.81,
+        "section": "Descriptive phrase",
+        "lyrics": "he is cute, his is small",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+        ]
+      },
+      {
+        "bar": 6,
+        "time_s": 14.84,
+        "section": "Descriptive phrase",
+        "lyrics": "but he snores loud",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Phrase tail and new melody figure admit more than one bar phase."
+        ]
+      },
+      {
+        "bar": 7,
+        "time_s": 17.87,
+        "section": "Tag",
+        "lyrics": "he’s the best of ‘em all",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "Tag begins near a phrase transition without a separately heard strong beat."
+        ]
+      },
+      {
+        "bar": 8,
+        "time_s": 20.89,
+        "section": "Tag",
+        "lyrics": "my little pal",
+        "reason": "no_paired_downbeat_within_tolerance",
+        "reference_uncertainty": [
+          "The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+        ]
+      }
+    ],
+    "extra_detected": [
+      {
+        "time_s": 2.34,
+        "confidence": 0.9998407168787976,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 2,
+        "raw_lag_s_to_nearest_bar": -0.98,
+        "residual_s_to_nearest_bar": -0.98,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 5.28,
+        "confidence": 0.9999592151327702,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 3,
+        "raw_lag_s_to_nearest_bar": -0.8799999999999999,
+        "residual_s_to_nearest_bar": -0.8799999999999999,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 8.2,
+        "confidence": 0.9999338939783833,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 4,
+        "raw_lag_s_to_nearest_bar": -0.8000000000000007,
+        "residual_s_to_nearest_bar": -0.8000000000000007,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 11.12,
+        "confidence": 0.9999283041463888,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 5,
+        "raw_lag_s_to_nearest_bar": -0.6900000000000013,
+        "residual_s_to_nearest_bar": -0.6900000000000013,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 14.08,
+        "confidence": 0.9904592689302901,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 6,
+        "raw_lag_s_to_nearest_bar": -0.7599999999999998,
+        "residual_s_to_nearest_bar": -0.7599999999999998,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 16.68,
+        "confidence": 0.9999260496734006,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 7,
+        "raw_lag_s_to_nearest_bar": -1.1900000000000013,
+        "residual_s_to_nearest_bar": -1.1900000000000013,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 19.6,
+        "confidence": 0.999044376887107,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 8,
+        "raw_lag_s_to_nearest_bar": -1.2899999999999991,
+        "residual_s_to_nearest_bar": -1.2899999999999991,
+        "reason": "downbeat_without_unique_reference_match"
+      },
+      {
+        "time_s": 22.5,
+        "confidence": 0.9994532161382728,
+        "low_confidence": false,
+        "suppression_reason": null,
+        "nearest_bar": 8,
+        "raw_lag_s_to_nearest_bar": 1.6099999999999994,
+        "residual_s_to_nearest_bar": 1.6099999999999994,
+        "reason": "downbeat_without_unique_reference_match"
+      }
+    ]
+  },
+  "global_shift": {
+    "estimate_s": null,
+    "matched_support": 0,
+    "min_support": 3,
+    "eligible_reference_count": 0,
+    "eligible_detection_count": 8,
+    "search_limit_s": 0.75,
+    "status": "insufficient_evidence"
+  },
+  "corrected": null,
+  "section_boundaries": [
+    {
+      "name": "Opening",
+      "reference_start_s": 0.16,
+      "nearest_downbeat_s": 2.34,
+      "raw_lag_s": 2.1799999999999997,
+      "confidence": 0.9998407168787976,
+      "reference_uncertainty": [
+        "The start has a candidate pickup and no independent cue for absolute beat phase."
+      ]
+    },
+    {
+      "name": "Descriptive phrase",
+      "reference_start_s": 11.45,
+      "nearest_downbeat_s": 11.12,
+      "raw_lag_s": -0.33000000000000007,
+      "confidence": 0.9999283041463888,
+      "reference_uncertainty": [
+        "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+      ]
+    },
+    {
+      "name": "Tag",
+      "reference_start_s": 17.8,
+      "nearest_downbeat_s": 16.68,
+      "raw_lag_s": -1.120000000000001,
+      "confidence": 0.9999260496734006,
+      "reference_uncertainty": [
+        "Tag begins near a phrase transition without a separately heard strong beat."
+      ]
+    }
+  ],
+  "reference_uncertain_intervals": [
+    {
+      "start_s": 0.0,
+      "end_s": 0.91,
+      "reason": "The start has a candidate pickup and no independent cue for absolute beat phase."
+    },
+    {
+      "start_s": 2.83,
+      "end_s": 3.72,
+      "reason": "Mid-phrase boundary interpolated between peaks of the repeated pitch figure."
+    },
+    {
+      "start_s": 5.85,
+      "end_s": 6.45,
+      "reason": "Phrase starts off the hypothesized phase. An alternative pickup placement remains plausible."
+    },
+    {
+      "start_s": 8.65,
+      "end_s": 9.35,
+      "reason": "The voice sustains or ornaments pitches around the estimated phase."
+    },
+    {
+      "start_s": 10.86,
+      "end_s": 12.1,
+      "reason": "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+    },
+    {
+      "start_s": 14.39,
+      "end_s": 15.27,
+      "reason": "Phrase tail and new melody figure admit more than one bar phase."
+    },
+    {
+      "start_s": 17.4,
+      "end_s": 18.31,
+      "reason": "Tag begins near a phrase transition without a separately heard strong beat."
+    },
+    {
+      "start_s": 20.6,
+      "end_s": 23.831995,
+      "reason": "The signal has two weak/transient gaps and a final sustained note. Last-bar phase is ambiguous."
+    }
+  ],
+  "low_confidence_downbeats": [],
+  "section_transitions": [
+    {
+      "bar": 5,
+      "time_s": 11.81,
+      "section": "Descriptive phrase",
+      "lyrics": "he is cute, his is small",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "The early phrase pattern changes around the descriptive lyrics. Meter is ambiguous."
+      ],
+      "timing_status": "unmatched"
+    },
+    {
+      "bar": 7,
+      "time_s": 17.87,
+      "section": "Tag",
+      "lyrics": "he’s the best of ‘em all",
+      "reason": "no_paired_downbeat_within_tolerance",
+      "reference_uncertainty": [
+        "Tag begins near a phrase transition without a separately heard strong beat."
+      ],
+      "timing_status": "unmatched"
+    }
+  ],
+  "analysis_seconds": 0.33349641785025597
+}

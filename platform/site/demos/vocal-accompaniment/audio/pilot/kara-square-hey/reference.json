@@ -1,0 +1,143 @@
+{
+  "song_id": "kara-square-hey",
+  "title": "Hey, Are You Here? (excerpt)",
+  "duration_s": 26.8,
+  "reference_type": "Artist-published tempo and cross-aligned companion-mix-supported meter, pending independent aural review",
+  "reference_basis": "A source-uploaded mix provides the timing anchor. Band-passed normalized cross-correlation aligns the dry stem to the mix at +10.757 s in 14 of 15 independently searched three-second windows (correlation 0.224–0.560). The mix has transient phases around 0.039–0.049 s at 123 BPM across low, mid and high frequency bands. Phase 0.024 s estimates the grid before acoustic decay/attack rise, and gives a verse-anchor agreement with the 22-beat dry stem start after accounting for the source alignment. Quarter phase carries about 30 ms model uncertainty. Four-beat grouping aligns with the eight-bar repeated opening phrase and distinct lift after two stanzas. Bar phase and lyric cue alignment await an independent human aural pass.",
+  "tempo_bpm": 123,
+  "meter": "4/4 supported hypothesis",
+  "bars": [
+    {
+      "bar": 1,
+      "time_s": 0.186512,
+      "section": "Question stanza",
+      "lyrics": "Are you here?"
+    },
+    {
+      "bar": 2,
+      "time_s": 2.137732,
+      "section": "Question stanza",
+      "lyrics": ""
+    },
+    {
+      "bar": 3,
+      "time_s": 4.088951,
+      "section": "Question stanza",
+      "lyrics": "Can you see that life"
+    },
+    {
+      "bar": 4,
+      "time_s": 6.040171,
+      "section": "Question stanza",
+      "lyrics": "Is happening around you?"
+    },
+    {
+      "bar": 5,
+      "time_s": 7.99139,
+      "section": "Question stanza",
+      "lyrics": "Do you care?"
+    },
+    {
+      "bar": 6,
+      "time_s": 9.94261,
+      "section": "Question stanza",
+      "lyrics": ""
+    },
+    {
+      "bar": 7,
+      "time_s": 11.893829,
+      "section": "Lift",
+      "lyrics": "When is the last time"
+    },
+    {
+      "bar": 8,
+      "time_s": 13.845049,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "bar": 9,
+      "time_s": 15.796268,
+      "section": "Lift",
+      "lyrics": "You felt alive"
+    },
+    {
+      "bar": 10,
+      "time_s": 17.747488,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "bar": 11,
+      "time_s": 19.698707,
+      "section": "Lift",
+      "lyrics": "You watched the sun"
+    },
+    {
+      "bar": 12,
+      "time_s": 21.649927,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "bar": 13,
+      "time_s": 23.601146,
+      "section": "Lift",
+      "lyrics": "Set or rise?"
+    },
+    {
+      "bar": 14,
+      "time_s": 25.552366,
+      "section": "Lift",
+      "lyrics": ""
+    }
+  ],
+  "sections": [
+    {
+      "name": "Question stanza",
+      "start_s": 0.186512
+    },
+    {
+      "name": "Lift",
+      "start_s": 11.893829
+    }
+  ],
+  "lyrics": "Are you here?\nCan you see that life\nIs happening around you?\nDo you care?\n\nWhen is the last time\nYou felt alive\nYou watched the sun\nSet or rise?",
+  "uncertain_intervals": [
+    {
+      "start_s": 0,
+      "end_s": 0.3,
+      "reason": "Excerpt begins at a quiet point shortly before the first supported bar."
+    },
+    {
+      "start_s": 11.64,
+      "end_s": 12.18,
+      "reason": "Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar."
+    },
+    {
+      "start_s": 24.12,
+      "end_s": 26.8,
+      "reason": "Sustained phrase ending and clipped lead-in to the next stanza."
+    }
+  ],
+  "provenance": {
+    "title": "Hey, Are You Here? - Vocals",
+    "artist": "Kara Square",
+    "source_url": "https://ccmixter.org/files/mindmapthat/60165",
+    "source_archive_url": "https://ccmixter.org/content/mindmapthat/mindmapthat_-_Hey_Are_You_Here_-_Vocals_1.zip",
+    "source_archive_sha256": "3fe9a95c8671a360a01a8b49aa7b7d7f64b47fb8e001fe42a84b713539dccace",
+    "source_archive_member": "Vocals DRY/Main VOX dry.flac",
+    "source_stem_sha256": "351b3188d5e67d6888e660302a4ec548798af71a82890398097e4e7804d5829e",
+    "input_sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870",
+    "license": "Creative Commons Attribution 3.0 Unported",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "changes": "Sample-accurate trim from 20.3 to 47.1 s and conversion to mono 24-bit PCM WAV at source sample rate. No processing or normalization.",
+    "trim_source_start_s": 20.3,
+    "trim_source_end_exclusive_s": 47.1,
+    "sample_rate_hz": 44100,
+    "trim_source_start_sample": 895230,
+    "trim_source_end_exclusive_sample": 2077110,
+    "timing_mix_source": "https://ccmixter.org/files/mindmapthat/60164",
+    "timing_mix_sha256": "17ae8062cefa6892927c0e0010ba92e8838c87b1ba9ab4a8273a046a6fa2fa8d"
+  }
+}

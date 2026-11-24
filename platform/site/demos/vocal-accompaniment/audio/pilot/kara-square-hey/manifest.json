@@ -1,0 +1,569 @@
+{
+  "version": "fixed-vocal-2026-11-24-v1",
+  "input_id": "kara-square-hey",
+  "title": "Hey, Are You Here? (excerpt)",
+  "duration_s": 26.84,
+  "meta": "26.8 s · 123 BPM · original Kara Square dry vocal",
+  "bars": [
+    {
+      "index": 1,
+      "start_s": 0.186512,
+      "end_s": 2.137732,
+      "section": "Question stanza",
+      "lyrics": "Are you here?"
+    },
+    {
+      "index": 2,
+      "start_s": 2.137732,
+      "end_s": 4.088951,
+      "section": "Question stanza",
+      "lyrics": ""
+    },
+    {
+      "index": 3,
+      "start_s": 4.088951,
+      "end_s": 6.040171,
+      "section": "Question stanza",
+      "lyrics": "Can you see that life"
+    },
+    {
+      "index": 4,
+      "start_s": 6.040171,
+      "end_s": 7.99139,
+      "section": "Question stanza",
+      "lyrics": "Is happening around you?"
+    },
+    {
+      "index": 5,
+      "start_s": 7.99139,
+      "end_s": 9.94261,
+      "section": "Question stanza",
+      "lyrics": "Do you care?"
+    },
+    {
+      "index": 6,
+      "start_s": 9.94261,
+      "end_s": 11.893829,
+      "section": "Question stanza",
+      "lyrics": ""
+    },
+    {
+      "index": 7,
+      "start_s": 11.893829,
+      "end_s": 13.845049,
+      "section": "Lift",
+      "lyrics": "When is the last time"
+    },
+    {
+      "index": 8,
+      "start_s": 13.845049,
+      "end_s": 15.796268,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "index": 9,
+      "start_s": 15.796268,
+      "end_s": 17.747488,
+      "section": "Lift",
+      "lyrics": "You felt alive"
+    },
+    {
+      "index": 10,
+      "start_s": 17.747488,
+      "end_s": 19.698707,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "index": 11,
+      "start_s": 19.698707,
+      "end_s": 21.649927,
+      "section": "Lift",
+      "lyrics": "You watched the sun"
+    },
+    {
+      "index": 12,
+      "start_s": 21.649927,
+      "end_s": 23.601146,
+      "section": "Lift",
+      "lyrics": ""
+    },
+    {
+      "index": 13,
+      "start_s": 23.601146,
+      "end_s": 25.552366,
+      "section": "Lift",
+      "lyrics": "Set or rise?"
+    },
+    {
+      "index": 14,
+      "start_s": 25.552366,
+      "end_s": 26.8,
+      "section": "Lift",
+      "lyrics": ""
+    }
+  ],
+  "vocal": {
+    "file": "dry.mp3",
+    "sha256": "6e21aa21b6ee3245825a4d1f4b3f1ee9d5fc8c08c3c48eaec26c82e11dd68870"
+  },
+  "takes_note": "The artist's companion mix supports the 14 reference markers. Detector flags still need a listening review.",
+  "provenance": {
+    "detail": "Dry vocal by Kara Square, CC BY 3.0. Sample-exact excerpt from the artist's dry lead stem. The public dry MP3 is a listening copy of the exact WAV used for every candidate. Candidate mixes sum that dry vocal and the generated backing at fixed gain.",
+    "label": "Vocal source and attribution",
+    "url": "https://ccmixter.org/files/mindmapthat/60165",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/"
+  },
+  "variants": [
+    {
+      "id": "kara-square-hey-anyaccomp-seed29",
+      "label": "AnyAccomp · No style conditioning · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": null,
+      "style": "No style conditioning",
+      "output_kind": "isolated-backing",
+      "file": "kara-square-hey-anyaccomp-seed29-backing.mp3",
+      "mix_file": "kara-square-hey-anyaccomp-seed29-mix.mp3",
+      "output_sha256": "ee893ff4cd2a72014563aa7a2fa168a30c56464627b0e5144ae6bf72d96467f1",
+      "timing_file": "kara-square-hey-anyaccomp-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Excerpt begins at a quiet point shortly before the first supported bar.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": 30,
+          "status": "aligned",
+          "reason": "Detected at 21.68 s with activation 0.81."
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Sustained phrase ending and clipped lead-in to the next stanza.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "kara-square-hey-lada-acoustic-folk-seed29",
+      "label": "LaDA-Band · Acoustic folk · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "kara-square-hey-lada-acoustic-folk-seed29-backing.mp3",
+      "mix_file": "kara-square-hey-lada-acoustic-folk-seed29-mix.mp3",
+      "output_sha256": "f3dade15737f22a73ca2297e5dec45d280c6c4f003736fd32e36fbb4a12ad597",
+      "timing_file": "kara-square-hey-lada-acoustic-folk-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Excerpt begins at a quiet point shortly before the first supported bar.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Sustained phrase ending and clipped lead-in to the next stanza.",
+          "label": "Blank backing signal"
+        }
+      ]
+    },
+    {
+      "id": "kara-square-hey-lada-acoustic-folk-seed73",
+      "label": "LaDA-Band · Acoustic folk · seed 73",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "acoustic-folk",
+      "style": "Acoustic folk",
+      "output_kind": "isolated-backing",
+      "file": "kara-square-hey-lada-acoustic-folk-seed73-backing.mp3",
+      "mix_file": "kara-square-hey-lada-acoustic-folk-seed73-mix.mp3",
+      "output_sha256": "7c1bfc494def09e8f63986faeafdedbd168834d74de1d636d8d2aeb0614d1930",
+      "timing_file": "kara-square-hey-lada-acoustic-folk-seed73-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Excerpt begins at a quiet point shortly before the first supported bar.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "missing",
+          "reason": "No unique detected downbeat within ±150 ms.",
+          "label": "Unpaired downbeat"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "uncertain",
+          "reason": "No unique detected downbeat within ±150 ms. Reference uncertain. Sustained phrase ending and clipped lead-in to the next stanza.",
+          "label": "Unpaired downbeat"
+        }
+      ]
+    },
+    {
+      "id": "kara-square-hey-lada-sparse-synth-pop-seed29",
+      "label": "LaDA-Band · Sparse synth-pop · seed 29",
+      "description": "Isolated backing plus a mix made with the original dry vocal.",
+      "style_id": "sparse-synth-pop",
+      "style": "Sparse synth-pop",
+      "output_kind": "isolated-backing",
+      "file": "kara-square-hey-lada-sparse-synth-pop-seed29-backing.mp3",
+      "mix_file": "kara-square-hey-lada-sparse-synth-pop-seed29-mix.mp3",
+      "output_sha256": "6131a9928ad6cdce56791f3b116c8335add07655967e14d5ce17923f280751d9",
+      "timing_file": "kara-square-hey-lada-sparse-synth-pop-seed29-timing.json",
+      "observed_bars": [
+        {
+          "index": 1,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Excerpt begins at a quiet point shortly before the first supported bar.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 2,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 3,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 4,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 5,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 6,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 7,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Short vocal pickup and breath at the stanza-to-lift transition. Review whether to cue earlier than the bar.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 8,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 9,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 10,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 11,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 12,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 13,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point.",
+          "label": "Blank backing signal"
+        },
+        {
+          "index": 14,
+          "offset_ms": null,
+          "status": "blank",
+          "reason": "Backing signal below the silence gate at this navigation point. Reference uncertain. Sustained phrase ending and clipped lead-in to the next stanza.",
+          "label": "Blank backing signal"
+        }
+      ]
+    }
+  ],
+  "reference_file": "reference.json",
+  "scored_reference_sha256": "090e1869ce1c635b78b115c236bbfaf22a315bde4318d8cb04a1587e3e945fda"
+}
